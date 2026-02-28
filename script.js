@@ -4,7 +4,7 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
     // 1. Collect Course Data
     const courseRows = document.querySelectorAll('.course-row');
     const coursesArray = Array.from(courseRows).map(row => ({
-        name: row.querySelector('.course-name').value,
+        name: row.querySelector('.course-name').value.toUpperCase().trim(),
         grade: parseFloat(row.querySelector('.course-grade').value)
     }));
 
@@ -28,6 +28,8 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
         const data = await response.json();
         const resultArea = document.getElementById('resultArea');
         const resultBox = document.getElementById('resultBox');
+        const resultMessage = document.getElementById('resultMessage');
+        
         resultArea.classList.remove('hidden');
 
         // Logic to show "Confidence in Success" vs "Risk of Failure"
@@ -62,26 +64,29 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
             htmlContent += `<p class="font-semibold text-sm mb-2">Recommended Foundational Resources:</p>`;
             htmlContent += `<div class="space-y-2 text-sm mt-1">`;
             data.resource_links.forEach(resource => {
-                const icon = resource.resource_type === 'video' ? '🎥' : (resource.resource_type === 'PDF' ? '📄' : '🔗');
+                const icon = resource.resource_type.toLowerCase() === 'video' ? '🎥' : (resource.resource_type === 'PDF' ? '📄' : '🔗');
                 htmlContent += `
-                    <a href="${resource.url}" target="_blank" class="block p-3 border border-gray-200 rounded-md hover:bg-white hover:shadow transition duration-150">
+                    <a href="${resource.url}" target="_blank" class="block p-3 border border-gray-200 bg-white rounded-md hover:shadow-md transition duration-150">
+                        <div class="flex items-center">
                             <span class="mr-2">${icon}</span>
-                            <span class="font-medium text-blue-700 hover:underline">${resource.title}</span>
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase">${resource.course_code} - ${resource.subject_tag}</p>
+                                <p class="font-medium text-blue-700 hover:underline">${resource.title}</p>
+                            </div>
+                        </div>
                     </a>
                 `;
             });
 
             htmlContent += `</div>`;
-        }
-
-        else if (data.subjects_to_focus.length > 0) {
-            htmlContent += `<p class="font-semibold text-sm">Focus immediate attention on:</p>
+        } else if (data.subjects_to_focus.length > 0) {
+            htmlContent += `<p class="font-semibold text-sm">Review habits for these codes:</p>
                             <ul class="list-disc list-inside text-sm mt-1">
                                 ${data.subjects_to_focus.map(s => `<li>${s}</li>`).join('')}
                             </ul>`;
         }
 
-        resultBox.innerHTML = htmlContent;
+        resultMessage.innerHTML = htmlContent;
 
     } catch (error) {
         console.error("Connection Error:", error);

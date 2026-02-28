@@ -8,11 +8,25 @@ import torch
 import torch.nn as nn
 import joblib
 import numpy as np
-from typing import List
+from typing import List, Optional
 import psycopg 
+import requests
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+
+COURSE_MAPPING = {
+    "WIX1001": "Computing Mathematics I",
+    "WIA1002": "Fundamentals of Programming Java",
+    "WIX1003": "Computer Systems and Organization",
+    "WIA1003": "Computer System Architecture",
+    "WIA1006": "Machine Learning",
+    "WIA1005": "Network Technology Foundation",
+    "WIA2004": "Operating Systems",
+    "WIA2007": "Mobile Application Development",
+    "WIA2003": "Probability and Statistics"
+}
 
 # 1. Initialize the FastAPI Application
 app = FastAPI(title="Educational Resource Predictor API")
@@ -59,6 +73,8 @@ class ResourcePredictorMLP(nn.Module):
         return x
     
 class LearningResource(BaseModel):
+    subject_tag: str
+    course_code: str
     title: str
     url: str
     resource_type: str
@@ -93,7 +109,11 @@ def fetch_neon_resources(subjects: List[str]) -> List[LearningResource]:
             # Open a cursor to perform database operations
             with conn.cursor() as cur:
                 cur.execute(
-                    "SELECT title, url , resource_type FROM learning_resources WHERE subject_tag = ANY(%s)",
+                    """
+                    SELECT subject_tag, title, url, resource_type, course_code
+                    FROM learning_resources 
+                    WHERE course_code = ANY(%s)
+                    """,
                     (subjects,)
                 )
                 
@@ -102,14 +122,71 @@ def fetch_neon_resources(subjects: List[str]) -> List[LearningResource]:
                 #convert database rows to Pydantic objects
                 for row in rows:
                     resources_list.append(LearningResource(
-                        title=row[0], 
-                        url=row[1], 
-                        resource_type=row[2]
+                        subject_tag=row[0], 
+                        title=row[1], 
+                        url=row[2], 
+                        resource_type=row[3],
+                        course_code=row[4]
                     ))
     except Exception as e:#log to Sentry later
         print(f"Database Error: {e}")
         
     return resources_list
+
+def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
+    """Fetches a video from YouTube if not in Neon, and saves it to the database."""
+    if not YOUTUBE_API_KEY:
+        print("YouTube API key not set. Skipping YouTube fetch.")
+        return None
+    
+    # Translate code to name, default to the code itself if not found
+    course_name = COURSE_MAPPING.get(course_code, course_code)
+    
+    search_query = f"{course_name} full course"
+    
+    url = "https://www.googleapis.com/youtube/v3/search"
+    
+    params = {
+        "part": "snippet",
+        "q": search_query,
+        "type": "video",
+        "maxResults": 1,
+        "key": YOUTUBE_API_KEY
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("items"):
+                video = data["items"][0]
+                #Build the resource object
+                title = video["snippet"]["title"].replace("&quot;", "'").replace("&#39;", "'")
+                video_id = video["id"]["videoId"]
+                video_url = f"https://www.youtube.com/watch?v={video_id}"
+                
+                print(f"Auto-Discovered YouTube Video for {course_code}: {title}")
+                
+                with get_db_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            """
+                            INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type) 
+                            VALUES (%s, %s, %s, %s, %s)
+                            """,
+                            (course_code, course_name, title, video_url, "video")
+                        )
+                    conn.commit() # Save the new video resource to Neon for future queries
+                return LearningResource(
+                    subject_tag=course_name, 
+                    course_code=course_code, 
+                    title=title, 
+                    url=video_url, 
+                    resource_type="video")
+    except Exception as e:
+        print(f"YouTube API Error: {e}")
+    
+    return None
 
 # 5. Define the API Endpoint
 @app.post("/predict")
@@ -153,9 +230,19 @@ def predict_student_needs(student: StudentProfile):
         resource_links = []
         if needs_help and len(recommended_subjects) > 0:
             print(f"Querying Neon for subjects: {recommended_subjects}...")
-            resource_links = fetch_neon_resources(recommended_subjects)
-            print(f"Found {len(resource_links)} resources in Neon.")
-        
+            
+            for subject_code in recommended_subjects:
+                db_resources = fetch_neon_resources([subject_code])
+                
+                if db_resources:
+                    print(f"Found {len(db_resources)} resources in Neon for {subject_code}.")
+                    resource_links.extend(db_resources)
+                else:
+                    print(f"No resources in Neon for {subject_code}. Triggering YouTube API...")
+                    new_video = fetch_and_store_yt_videos(subject_code)
+                    
+                    if new_video:
+                        resource_links.append(new_video)
         return {
             "alert_level": alert_level,
             "needs_resources": needs_help,
