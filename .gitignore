@@ -1,0 +1,22 @@
+# Virtual Environments
+.env
+.venv/
+venv/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch models and data
+*.pt
+*.pth
+*.dat
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+Thumbs.db
