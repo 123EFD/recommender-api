@@ -1,7 +1,10 @@
 import os
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File
+import fitz
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from sentence_transformers import SentenceTransformer
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import torch
@@ -11,10 +14,15 @@ import numpy as np
 from typing import List, Optional
 import psycopg 
 import requests
+from google import genai
+import httpx
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if GEMINI_API_KEY:
+    client = genai.Client(api_key=GEMINI_API_KEY)
 
 COURSE_MAPPING = {
     "WIX1001": "Computing Mathematics I",
@@ -39,6 +47,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class ChatRequest(BaseModel):
+    question: str
+    filename: str
+    
+class URLRequest(BaseModel):
+    url: str
 
 class CourseGrade(BaseModel):
     name: str
@@ -72,6 +87,13 @@ class ResourcePredictorMLP(nn.Module):
         x = self.output(x)
         return x
     
+print("Loading PDF Embedding Model...")
+try:
+    embedder  = SentenceTransformer('all-MiniLM-L6-v2')
+    print("PDF Engine Ready!")
+except Exception as e:
+    print(f"Embedding Engine Error: {e}")
+    
 class LearningResource(BaseModel):
     subject_tag: str
     course_code: str
@@ -104,9 +126,9 @@ def fetch_neon_resources(subjects: List[str]) -> List[LearningResource]:
     resources_list = []
     
     try: 
-        #'with' ensure theconnection closed properly, connect to Neon
+        #'with' close  the connection and cursor after block finished 
         with get_db_connection() as conn:
-            # Open a cursor to perform database operations
+            # Open a cursor to perform database operations(INSERT, SELECT)
             with conn.cursor() as cur:
                 cur.execute(
                     """
@@ -150,7 +172,7 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
         "part": "snippet",
         "q": search_query,
         "type": "video",
-        "maxResults": 1,
+        "maxResults": 1, #later can test 
         "key": YOUTUBE_API_KEY
     }
     
@@ -172,7 +194,7 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
                         cur.execute(
                             """
                             INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type) 
-                            VALUES (%s, %s, %s, %s, %s)
+                            VALUES (%s, %s, %s, %s, %s) # "%s" prevent SQL injection 
                             """,
                             (course_code, course_name, title, video_url, "video")
                         )
@@ -187,7 +209,7 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
         print(f"YouTube API Error: {e}")
     
     return None
-
+    
 # 5. Define the API Endpoint
 @app.post("/predict")
 def predict_student_needs(student: StudentProfile):
@@ -257,3 +279,184 @@ def predict_student_needs(student: StudentProfile):
     except Exception as e:
         # If anything breaks, return a safe 500 error code
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/upload-pdf")
+async def process_and_store_pdf(file: UploadFile = File(...)):
+    try:
+        #Read pdf 
+        file_bytes = await file.read()
+        doc = fitz.open(stream=file_bytes, filetype="pdf")
+        
+        full_text = ""
+        for page in doc:
+            full_text += str(page.get_text())
+            
+        if not full_text.strip():
+            raise HTTPException(status_code=400, detail="No text extracted from PDF")
+        
+        #chunk text
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1000, 
+            chunk_overlap=200,
+            separators=["\n\n", "\n", ".", " ", ""]
+        )
+        chunks = text_splitter.split_text(full_text)
+        
+        #embed  chunks 
+        embeddings = embedder.encode(chunks)
+        
+        #store chunks in vector db
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                #enumerate allows index number of the vector to be kept track with the text chunk
+                for i, chunk_text in enumerate(chunks):
+                    
+                    # Convert the numpy array to a standard Python list, then to a string
+                    vector_string = str(embeddings[i].tolist())
+                    
+                    cur.execute(
+                        """
+                        INSERT INTO document_chunks (document_name, chunk_text, embedding) 
+                        VALUES (%s, %s, %s)
+                        """,
+                        (file.filename, chunk_text, vector_string)
+                    )
+            conn.commit()
+            
+        return  {
+            "message" : "Success",
+            "filename": file.filename,
+            "chunks_processed": len(chunks)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to process PDF: {str(e)}")
+    
+#RAG for Q&A AI Chatbox
+@app.post("/chat")
+def ask_pdf_question(request: ChatRequest):
+    if not GEMINI_API_KEY:
+        raise HTTPException(status_code=500, detail="Gemini API Key is missing.")
+    
+    try:
+        #1. embedding-question convert into 384-d vector
+        question_vector = str(embedder.encode(request.question).tolist())
+        
+        #2. retrieve relevant chunks from neon
+        retrieved_text = ""
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT chunk_text 
+                    FROM document_chunks
+                    WHERE document_name = %s
+                    ORDER BY embedding <=> %s::vector
+                    LIMIT 8 -- Adjust the number of chunks to retrieve as needed
+                    """,
+                    (request.filename, question_vector)
+                )
+                
+                rows = cur.fetchall()
+                
+                # Combine the top 3 chunks into a single text block
+                for i, row in enumerate(rows):
+                    retrieved_text += f"\n--- Excerpt {i+1} ---\n{row[0]}\n"
+                    
+        # 3. CONSTRUCT PROMPT         
+        prompt = f"""
+        Thinks as an educational AI assistant helping Malaysian student.
+        Your goal is to provide precise, comprehensive, and highly accurate answers to the student's question.
+        
+        RULES:
+        1. Base your answer STRICTLY on the Context Excerpts provided below.
+        2. Synthesize the information logically. Use clear bullet points and bold text for readability.
+        3. Maintain a professional, academic tone in English. Do not use slang.
+        4. If the exact answer is not in the excerpts, do your best to infer from the provided context, but clearly state what is missing.
+
+        Context Excerpts:
+        {retrieved_text}
+        
+        Student's Question: {request.question}
+        
+        Answer:
+        """
+        
+        #generate answer
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+        
+        return {
+            "question": request.question,
+            "answer": response.text,
+            "sources_used": len(rows)
+        }
+        
+    except Exception as e:
+        print(f"Chat Error: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to generate answer: {str(e)}")
+    
+@app.post("/analyze-pdf-url")
+async def process_pdf_from_url(request: dict):
+    url = request.get("url")
+    if not url:
+        raise HTTPException(status_code=400, detail="URL is required.")
+    
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url)
+            if response.status_code != 200:
+                raise HTTPException(status_code=400, detail="Could not download PDF from URL")
+            
+            #open pdf from stream
+            file_bytes = response.content
+            doc = fitz.open(stream=file_bytes, filetype="pdf")
+
+            full_text = ""
+            for page in doc:
+                full_text += str(page.get_text())
+                
+            if not full_text.strip():
+                raise HTTPException(status_code=400, detail="No text extracted from PDF")
+            
+            #chunk text
+            text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=500, 
+                chunk_overlap=50,
+                separators=["\n\n", "\n", ".", " ", ""]
+            )
+            chunks = text_splitter.split_text(full_text)
+            
+            #embed  chunks 
+            embeddings = embedder.encode(chunks)
+            
+            #store chunks in vector db
+            with get_db_connection() as conn:
+                with conn.cursor() as cur:
+                    #enumerate allows index number of the vector to be kept track with the text chunk
+                    for i, chunk_text in enumerate(chunks):
+
+                        # Convert the numpy array to a standard Python list, then to a string
+                        vector_string = str(embeddings[i].tolist())
+                        
+                        cur.execute(
+                            """
+                            INSERT INTO document_chunks (document_name, chunk_text, embedding) 
+                            VALUES (%s, %s, %s)
+                            """,
+                            (url, chunk_text, vector_string)
+                        )
+                conn.commit()
+                
+            return  {
+                "message" : "Success",
+                "chunks_processed": len(chunks)
+            }
+    except Exception as e:
+        error_msg = str(e)
+        print(f"Chat Error: {error_msg}")
+        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg:
+            raise HTTPException(status_code=429, detail="Gemini API rate limit exceeded. Please wait 30 seconds and try again later.")
+        raise HTTPException(status_code=500, detail=str(e))
+    

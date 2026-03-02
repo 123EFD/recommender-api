@@ -106,3 +106,110 @@ function addCourseRow() {
 }
 
 function removeRow(btn) { btn.parentElement.remove(); }
+
+let currentFilename= "";
+
+async function handlePDFUpload() {
+    const fileInput = document.getElementById('pdfFile');
+    const urlInput = document.getElementById('pdfUrl');
+    const statusElement = document.getElementById('uploadStatus');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const pdfContainer = document.getElementById('pdfContainer');
+    const processBtn = document.getElementById('processBtn');
+
+    statusElement.innerHTML = '<span class="spinner"></span> AI is reading and indexing your PDF...';
+    processBtn.disabled = true;
+    processBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+    let formData = new FormData();
+    let response;
+
+    try {
+        if (fileInput.files.length > 0) {
+            formData.append('file', fileInput.files[0]);
+            response = await fetch('http://127.0.0.1:8000/upload-pdf', { method: 'POST', body: formData });
+        
+            //file preview
+            const fileURL = URL.createObjectURL(fileInput.files[0]);
+            pdfFrame.src = fileURL;
+        } else if (urlInput.value.trim() !== "") {
+            response = await fetch('http://127.0.0.1:8000/analyze-pdf-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: urlInput.value })
+            });
+            pdfFrame.src = urlInput.value;
+        } else {
+            alert("Please provide either a PDF file or URL");
+            resetUploadBtn(processBtn, statusElement);
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (data.message === "Success") {
+            currentFilename = data.filename;
+            statusElement.innerText = `✅ Loaded: ${data.filename} (${data.chunks_processed || data.chunks} chunks)`;
+            pdfContainer.classList.remove('hidden');
+        }
+    } catch (error) {
+        console.error("Error processing PDF:", error);
+        statusElement.textContent = 'Error processing PDF: ' + error.message;
+    } finally {
+        processBtn.disabled = false;
+        processBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+}
+
+async function askQuestion() {
+    const input = document.getElementById('userQuestion');
+    const chatMessages = document.getElementById('chatMessages');
+    const question = input.value.trim();
+    if (!question) return;
+
+    // Show User Message
+    chatMessages.innerHTML += `<div class="text-right"><p class="bg-blue-500 text-white p-2 rounded-lg inline-block">${question}</p></div>`;
+    input.value = "";
+
+    const loadingId = "ai-loading-" + Date.now();
+    chatMessages.innerHTML += `<div id="${loadingId}" class="text-left"><p class="bg-gray-200 p-2 rounded-lg inline-block text-sm italic text-gray-500">AI is searching notes...</p></div>`;
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: question, filename: currentFilename })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Remove thinking message and show real answer
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) loadingElement.remove();
+
+        const formattedAnswer = marked.parse(data.answer);
+        chatMessages.innerHTML += `<div class="text-left"><div class="bg-gray-200 p-3 rounded-lg inline-block text-sm prose">${formattedAnswer}</div></div>`;
+    } catch (error) {
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) {
+            if (error.message.includes("429")) {
+                loadingElement.innerHTML = `<p class="text-orange-500 text-sm font-bold">⚠️ The AI is thinking too fast! Please wait 30 seconds and try asking again.</p>`;
+            } else {
+                loadingElement.innerHTML = `<p class="text-orange-500 text-sm font-bold">Error: ${error.message}</p>`;
+            }
+        }
+    }
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
