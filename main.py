@@ -460,3 +460,14 @@ async def process_pdf_from_url(request: dict):
             raise HTTPException(status_code=429, detail="Gemini API rate limit exceeded. Please wait 30 seconds and try again later.")
         raise HTTPException(status_code=500, detail=str(e))
     
+@app.get("/library")
+def get_pdf_library():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT DISTINCT document_name FROM document_chunks")
+                rows = cur.fetchall()
+                
+                return [row[0] for row in rows]  # Return a list of document names
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

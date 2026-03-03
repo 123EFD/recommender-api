@@ -213,3 +213,66 @@ async function askQuestion() {
     }
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+//sidebar elements
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const overlap = document.getElementById('overlap');
+const pdfLibraryList = document.getElementById('pdfLibraryList');
+
+//toggle sidebar logic
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+    overlay.classList.toggle('opacity-50');
+    overlay.classList.toggle('pointer-events-auto');
+    if (!sidebar.classList.contains('-translate-x-full')) {
+        refreshLibrary(); // Fetch list when opening
+    }
+});
+
+overlay.addEventListener('click', () => {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.remove('opacity-50', 'pointer-events-auto');
+});
+
+// 2. Fetch and Display Library
+async function refreshLibrary() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/library');
+        const files = await response.json();
+        
+        if (files.length === 0) {
+            pdfLibraryList.innerHTML = '<p class="text-gray-400 italic">Library is empty.</p>';
+            return;
+        }
+
+        pdfLibraryList.innerHTML = files.map(filename => `
+            <div onclick="selectLibraryFile('${filename}')" class="p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer transition-all truncate group">
+                <span class="mr-2">📄</span>
+                <span class="text-gray-700 font-medium group-hover:text-blue-700">${filename}</span>
+            </div>
+        `).join('');
+    } catch (err) {
+        console.error("Library Error:", err);
+    }
+}
+
+// 3. Select a file from History
+function selectLibraryFile(filename) {
+    currentFilename = filename;
+    
+    // Update the UI
+    document.getElementById('uploadStatus').innerHTML = `✅ <b>Active Subject:</b> ${filename}`;
+    document.getElementById('pdfViewerContainer').classList.remove('hidden');
+    
+    // Note:Will need to integrate with Firebase/AWS S3
+    // Since we don't store the full file URL in the vector DB,
+    // we can't show the PDF in the iframe unless it was just uploaded.
+    // For now, we clear the iframe to show we switched subjects.
+    document.getElementById('pdfFrame').src = ""; 
+    
+    // Clear chat and Close sidebar
+    document.getElementById('chatMessages').innerHTML = `<p class="text-gray-500 italic">Switched to: ${filename}</p>`;
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.remove('opacity-50', 'pointer-events-auto');
+}
