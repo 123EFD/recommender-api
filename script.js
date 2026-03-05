@@ -29,6 +29,7 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
         const resultArea = document.getElementById('resultArea');
         const resultBox = document.getElementById('resultBox');
         const resultMessage = document.getElementById('resultMessage');
+        resultMessage.innerHTML = "";
         
         resultArea.classList.remove('hidden');
 
@@ -63,19 +64,29 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
         if (data.resource_links && data.resource_links.length > 0) {
             htmlContent += `<p class="font-semibold text-sm mb-2">Recommended Foundational Resources:</p>`;
             htmlContent += `<div class="space-y-2 text-sm mt-1">`;
+            const seenResources = new Set();
             data.resource_links.forEach(resource => {
-                const icon = resource.resource_type.toLowerCase() === 'video' ? '🎥' : (resource.resource_type === 'PDF' ? '📄' : '🔗');
-                htmlContent += `
-                    <a href="${resource.url}" target="_blank" class="block p-3 border border-gray-200 bg-white rounded-md hover:shadow-md transition duration-150">
-                        <div class="flex items-center">
-                            <span class="mr-2">${icon}</span>
-                            <div>
-                                <p class="text-xs font-bold text-gray-500 uppercase">${resource.course_code} - ${resource.subject_tag}</p>
-                                <p class="font-medium text-blue-700 hover:underline">${resource.title}</p>
+                if (!seenResources.has(resource.url)) {
+                    const icon = resource.resource_type.toLowerCase() === 'video' ? '🎥' : (resource.resource_type === 'PDF' ? '📄' : '🔗');
+                    htmlContent += `
+                        <a href="${resource.url}" target="_blank" class="block p-3 border border-gray-200 bg-white rounded-md hover:shadow-md transition duration-150">
+                            <div class="flex items-center">
+                                <span class="mr-2">${icon}</span>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-500 uppercase">${resource.course_code} - ${resource.subject_tag}</p>
+                                    <p class="font-medium text-blue-700 hover:underline">${resource.title}</p>
+                                
+                                    ${resource.explanation ? `
+                                        <p class="text-xs text-gray-600 mt-1 italic border-l-2 border-blue-200 pl-2">
+                                            ${resource.explanation}
+                                        </p>
+                                    ` : ''}
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                 `;
+                    seenResources.add(resource.url);
+                }
             });
 
             htmlContent += `</div>`;

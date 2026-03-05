@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
 import fitz
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import torch
@@ -16,6 +16,7 @@ import psycopg
 import requests
 from google import genai
 import httpx
+import time
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -90,6 +91,7 @@ class ResourcePredictorMLP(nn.Module):
 print("Loading PDF Embedding Model...")
 try:
     embedder  = SentenceTransformer('all-MiniLM-L6-v2')
+    cross_encoder = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
     print("PDF Engine Ready!")
 except Exception as e:
     print(f"Embedding Engine Error: {e}")
@@ -100,6 +102,7 @@ class LearningResource(BaseModel):
     title: str
     url: str
     resource_type: str
+    explanation: Optional[str] = None
 
 # 4. Load the Model and Scaler into Memory
 print("Loading model and scaler...")
@@ -256,6 +259,20 @@ def predict_student_needs(student: StudentProfile):
             for subject_code in recommended_subjects:
                 db_resources = fetch_neon_resources([subject_code])
                 
+                for res in db_resources:
+                    # Generate an explanation using Gemini
+                    explain_prompt = f"""
+                    A university student is struggling with the course '{res.subject_tag}'. 
+                    I am recommending a resource titled '{res.title}'. 
+                    Write a single, encouraging sentence explaining why watching/reading this will help them improve their grade.
+                    """
+                    explain = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents=explain_prompt
+                    )
+                    res.explanation = explain.text.strip() if explain.text else ""
+                    resource_links.append(res)
+                
                 if db_resources:
                     print(f"Found {len(db_resources)} resources in Neon for {subject_code}.")
                     resource_links.extend(db_resources)
@@ -287,33 +304,40 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
         file_bytes = await file.read()
         doc = fitz.open(stream=file_bytes, filetype="pdf")
         
-        full_text = ""
-        for page in doc:
-            full_text += str(page.get_text())
-            
-        if not full_text.strip():
-            raise HTTPException(status_code=400, detail="No text extracted from PDF")
-        
         #chunk text
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000, 
             chunk_overlap=200,
             separators=["\n\n", "\n", ".", " ", ""]
         )
-        chunks = text_splitter.split_text(full_text)
         
-        #embed  chunks 
-        embeddings = embedder.encode(chunks)
+        chunks_with_pages= []
+                
+        #READ PDF AND TRACK PAGES
+        #enumerate allows i ndex number of the vector to be kept track with the text chunk
+        for page_num, page in enumerate(doc.pages(), start=1):
+            page_text = page.get_text()
+            if not page_text.strip():
+                continue
+                
+            page_chunks = text_splitter.split_text(page_text)
+                    
+            for chunk in page_chunks:
+                annotated_chunk = f"[Page {page_num}]\n{chunk}"
+                chunks_with_pages.append(annotated_chunk)
+                        
+        if not chunks_with_pages:
+            raise HTTPException(status_code=400, detail="No valid text chunks extracted from PDF")
+                
+        # Embed the annotated chunks
+        embeddings = embedder.encode(chunks_with_pages)
         
-        #store chunks in vector db
         with get_db_connection() as conn:
             with conn.cursor() as cur:
-                #enumerate allows index number of the vector to be kept track with the text chunk
-                for i, chunk_text in enumerate(chunks):
-                    
+                for i, chunk_text in enumerate(chunks_with_pages):
                     # Convert the numpy array to a standard Python list, then to a string
                     vector_string = str(embeddings[i].tolist())
-                    
+                            
                     cur.execute(
                         """
                         INSERT INTO document_chunks (document_name, chunk_text, embedding) 
@@ -321,12 +345,13 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
                         """,
                         (file.filename, chunk_text, vector_string)
                     )
+                
             conn.commit()
             
         return  {
             "message" : "Success",
             "filename": file.filename,
-            "chunks_processed": len(chunks)
+            "chunks_processed": len(chunks_with_pages)
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to process PDF: {str(e)}")
@@ -338,10 +363,34 @@ def ask_pdf_question(request: ChatRequest):
         raise HTTPException(status_code=500, detail="Gemini API Key is missing.")
     
     try:
-        #1. embedding-question convert into 384-d vector
-        question_vector = str(embedder.encode(request.question).tolist())
+        # 1. CONSTRUCT PROMPT 
+        prompt = f"""
+        You are a search query optimizer for a Semantic Vector Database. 
+        CRITICAL RULE: NEVER use boolean operators like "OR", "AND", or parentheses "()".
+        Write the query as a natural, plain-English sentence.
+        Only output the query itself, nothing else.
+        Student Question: {request.question}
+        """
         
-        #2. retrieve relevant chunks from neon
+        #2. generate answer with QUERY TRANSFORMATION
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+        
+        
+        #-->Later uncomment this: 
+        # optimized_query = response.text.strip() if response.text else request.question
+        
+        optimized_query = request.question
+        optimized_query = optimized_query.replace('"', '')
+        
+        print(f"Original: {request.question} | Optimized: {optimized_query}")
+        
+        #3. embedding-question convert into 384-d vector
+        question_vector = str(embedder.encode(optimized_query).tolist())
+        
+        #4.hybrid retireval using pgvector(search similar meaning) and tsvector(search keywords)
         retrieved_text = ""
         with get_db_connection() as conn:
             with conn.cursor() as cur:
@@ -350,29 +399,54 @@ def ask_pdf_question(request: ChatRequest):
                     SELECT chunk_text 
                     FROM document_chunks
                     WHERE document_name = %s
-                    ORDER BY embedding <=> %s::vector
-                    LIMIT 8 -- Adjust the number of chunks to retrieve as needed
+                    ORDER BY 
+                        -- Weight 1: Semantic Meaning (70%)
+                        ((1.0 - (embedding <=> %s::vector)) * 0.7) 
+                        + 
+                        -- Weight 2: Exact Keyword Match (30%)
+                        (ts_rank(to_tsvector('english', chunk_text), plainto_tsquery('english', %s)) * 0.3)
+                    DESC
+                    LIMIT 30 
                     """,
-                    (request.filename, question_vector)
+                    (request.filename, question_vector, optimized_query)
                 )
                 
                 rows = cur.fetchall()
+        
+        #5. Re-Rank the results using the Cross-Encoder
+        final_source_count = 0
+        if rows:
+            #Create pairs of [Question, Document_Chunk]
+            sentence_pairs = [[optimized_query, row[0]] for row in rows]
+            
+            scores = cross_encoder.predict(sentence_pairs)
+            
+            # Sort the chunks by their re-ranking scores using tuple[key, value(text)]
+            scored_results = list(zip(scores, [row[0] for row in rows]))
+            scored_results.sort(key=lambda x: x[0], reverse=True)
+            
+            # Select the top 12 chunks
+            top_results = scored_results[:12]
+            final_source_count = len(top_results)
+            
+            #6. unpack the tuple into (score, chunk_text) and use chunk_text!
+            for i, (score, chunk_text) in enumerate(top_results):
+                retrieved_text += f"\n--- Excerpt {i+1} ---\n{chunk_text}\n"
                 
-                # Combine the top 3 chunks into a single text block
-                for i, row in enumerate(rows):
-                    retrieved_text += f"\n--- Excerpt {i+1} ---\n{row[0]}\n"
-                    
-        # 3. CONSTRUCT PROMPT         
-        prompt = f"""
-        Thinks as an educational AI assistant helping Malaysian student.
+        time.sleep(2)
+        
+        #7. Final Answer Generation with retrieved text as context
+        final_prompt = f"""         
+        Thinks as an educational AI assistant helping Malaysian student, especially those studying Computer Science related subjects.
         Your goal is to provide precise, comprehensive, and highly accurate answers to the student's question.
         
         RULES:
-        1. Base your answer STRICTLY on the Context Excerpts provided below.
-        2. Synthesize the information logically. Use clear bullet points and bold text for readability.
-        3. Maintain a professional, academic tone in English. Do not use slang.
-        4. If the exact answer is not in the excerpts, do your best to infer from the provided context, but clearly state what is missing.
-
+        1. Base your factual information STRICTLY on the Context Excerpts provided below.
+        2. If the user asks for a recommendation, you ARE allowed to provide subjective, expert advice. Base your recommendation on general software engineering industry principles (e.g., practical application vs. theoretical value) using the course descriptions provided.
+        3. Do not say "I do not possess personal opinions." You must confidently advise the student.
+        4. Synthesize the information logically using bullet points.
+        5. If a specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end.
+        
         Context Excerpts:
         {retrieved_text}
         
@@ -381,16 +455,15 @@ def ask_pdf_question(request: ChatRequest):
         Answer:
         """
         
-        #generate answer
-        response = client.models.generate_content(
+        final_response = client.models.generate_content(
             model="gemini-2.5-flash",
-            contents=prompt
+            contents=final_prompt
         )
-        
+                    
         return {
             "question": request.question,
-            "answer": response.text,
-            "sources_used": len(rows)
+            "answer": final_response.text,
+            "sources_used": final_source_count
         }
         
     except Exception as e:
