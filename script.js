@@ -65,19 +65,47 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
             htmlContent += `<p class="font-semibold text-sm mb-2">Recommended Foundational Resources:</p>`;
             htmlContent += `<div class="space-y-2 text-sm mt-1">`;
             const seenResources = new Set();
+
             data.resource_links.forEach(resource => {
                 if (!seenResources.has(resource.url)) {
-                    const icon = resource.resource_type.toLowerCase() === 'video' ? '🎥' : (resource.resource_type === 'PDF' ? '📄' : '🔗');
+                    // 1. Determine Icon and Color Styling based on resource_type
+                    let icon, bgStyle, textStyle, label;
+                    const type = resource.resource_type.toLowerCase();
+
+                    if (type === 'video') {
+                        icon = '🎥';
+                        bgStyle = 'bg-red-50 border-red-200';
+                        textStyle = 'text-red-700';
+                        label = 'YouTube Video';
+                    } else if (type === 'book') {
+                        icon = '📚';
+                        bgStyle = 'bg-blue-50 border-blue-200';
+                        textStyle = 'text-blue-700';
+                        label = 'Textbook / PDF';
+                    } else if (type === 'article') {
+                        icon = '📄';
+                        bgStyle = 'bg-gray-50 border-gray-200';
+                        textStyle = 'text-gray-700';
+                        label = 'Web Article';
+                    } else {
+                        icon = '🔗';
+                        bgStyle = 'bg-white border-gray-200';
+                        textStyle = 'text-gray-600';
+                        label = 'Resource';
+                    }
+
                     htmlContent += `
-                        <a href="${resource.url}" target="_blank" class="block p-3 border border-gray-200 bg-white rounded-md hover:shadow-md transition duration-150">
-                            <div class="flex items-center">
-                                <span class="mr-2">${icon}</span>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-500 uppercase">${resource.course_code} - ${resource.subject_tag}</p>
-                                    <p class="font-medium text-blue-700 hover:underline">${resource.title}</p>
+                        <a href="${resource.url}" target="_blank" class="block p-3 border ${bgStyle} rounded-md hover:shadow-md transition duration-150">
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-3 mt-1">${icon}</span>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <p class="text-xs font-bold ${textStyle} uppercase tracking-wider">${resource.course_code} - ${label}</p>
+                                    </div>
+                                    <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors leading-tight mb-2">${resource.title}</p>
                                 
                                     ${resource.explanation ? `
-                                        <p class="text-xs text-gray-600 mt-1 italic border-l-2 border-blue-200 pl-2">
+                                        <p class="text-xs text-gray-600 mt-1 italic border-l-2 border-blue-200 pl-2 mt-1 leading-snug">
                                             ${resource.explanation}
                                         </p>
                                     ` : ''}
@@ -90,11 +118,13 @@ document.getElementById('predictionForm').addEventListener('submit', async (e) =
             });
 
             htmlContent += `</div>`;
-        } else if (data.subjects_to_focus.length > 0) {
-            htmlContent += `<p class="font-semibold text-sm">Review habits for these codes:</p>
-                            <ul class="list-disc list-inside text-sm mt-1">
-                                ${data.subjects_to_focus.map(s => `<li>${s}</li>`).join('')}
-                            </ul>`;
+        } else if (data.subjects_to_focus && data.subjects_to_focus.length > 0) {
+            htmlContent += `<div class="mt-4 text-left border-t pt-2">
+                                <p class="font-semibold text-sm">Review habits for these codes:</p>
+                                <ul class="list-disc list-inside text-sm mt-1 text-gray-700">
+                                    ${data.subjects_to_focus.map(s => `<li>${s}</li>`).join('')}
+                                </ul>
+                            </div>`;
         }
 
         resultMessage.innerHTML = htmlContent;
@@ -120,7 +150,9 @@ function removeRow(btn) { btn.parentElement.remove(); }
 
 let currentFilename= "";
 
-async function handlePDFUpload() {
+async function handlePDFUpload(event) {
+    if(event) event.preventDefault(); // Extra safety to prevent page reloads
+
     const fileInput = document.getElementById('pdfFile');
     const urlInput = document.getElementById('pdfUrl');
     const statusElement = document.getElementById('uploadStatus');
@@ -128,9 +160,25 @@ async function handlePDFUpload() {
     const pdfContainer = document.getElementById('pdfContainer');
     const processBtn = document.getElementById('processBtn');
 
+    if (fileInput.files.length === 0 && urlInput.value.trim() === "") {
+        alert("Please provide either a PDF file or URL");
+        return;
+    }
+
     statusElement.innerHTML = '<span class="spinner"></span> AI is reading and indexing your PDF...';
+
+    
     processBtn.disabled = true;
     processBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+    if (fileInput.files.length > 0) {
+        const fileURL = URL.createObjectURL(fileInput.files[0]);
+        pdfFrame.src = fileURL;
+        pdfContainer.classList.remove('hidden');
+    } else if (urlInput.value.trim() !== "") {
+        pdfFrame.src = urlInput.value;
+        pdfContainer.classList.remove('hidden');
+    }
 
     let formData = new FormData();
     let response;
@@ -139,23 +187,12 @@ async function handlePDFUpload() {
         if (fileInput.files.length > 0) {
             formData.append('file', fileInput.files[0]);
             response = await fetch('http://127.0.0.1:8000/upload-pdf', { method: 'POST', body: formData });
-        
-            //file preview
-            const fileURL = URL.createObjectURL(fileInput.files[0]);
-            pdfFrame.src = fileURL;
-        } else if (urlInput.value.trim() !== "") {
+        } else {
             response = await fetch('http://127.0.0.1:8000/analyze-pdf-url', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: urlInput.value })
             });
-            pdfFrame.src = urlInput.value;
-        } else {
-            alert("Please provide either a PDF file or URL");
-            resetUploadBtn(processBtn, statusElement);
-            return;
         }
 
         if (!response.ok) {
@@ -163,10 +200,10 @@ async function handlePDFUpload() {
         }
 
         const data = await response.json();
+
         if (data.message === "Success") {
             currentFilename = data.filename;
             statusElement.innerText = `✅ Loaded: ${data.filename} (${data.chunks_processed || data.chunks} chunks)`;
-            pdfContainer.classList.remove('hidden');
         }
     } catch (error) {
         console.error("Error processing PDF:", error);
@@ -287,3 +324,10 @@ function selectLibraryFile(filename) {
     sidebar.classList.add('-translate-x-full');
     overlay.classList.remove('opacity-50', 'pointer-events-auto');
 }
+
+document.getElementById("userQuestion").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Stops the page reload
+        askQuestion();
+    }
+});

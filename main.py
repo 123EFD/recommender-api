@@ -1,4 +1,9 @@
 import os
+import tempfile
+
+gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
+if gs_bin_path not in os.environ.get('PATH', ''):
+    os.environ['PATH'] += os.pathsep + gs_bin_path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
@@ -14,16 +19,28 @@ import numpy as np
 from typing import List, Optional
 import psycopg 
 import requests
-from google import genai
 import httpx
-import time
+from groq import Groq
+import nest_asyncio
+#from llama_parse import LlamaParse <--will be used later, alter for Camelot
+from ddgs import DDGS
+import concurrent.futures
+import camelot.io as camelot
+import pandas as pd
+import warnings
+
+
+#run async loops inside FastAPI smoothly
+nest_asyncio.apply()
+
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if GEMINI_API_KEY:
-    client = genai.Client(api_key=GEMINI_API_KEY)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if GROQ_API_KEY:
+    client = Groq(api_key=GROQ_API_KEY)
 
 COURSE_MAPPING = {
     "WIX1001": "Computing Mathematics I",
@@ -34,7 +51,22 @@ COURSE_MAPPING = {
     "WIA1005": "Network Technology Foundation",
     "WIA2004": "Operating Systems",
     "WIA2007": "Mobile Application Development",
-    "WIA2003": "Probability and Statistics"
+    "WIA2003": "Probability and Statistics",
+    "WIA2006": "System Analysis and Design",
+    "WIF2003": "Web Programming",
+    "WIF2002": "Software Requirements Engineering",
+    "WIF3001": "Software Testing",
+    "WIF3002": "Software Process and Quality",
+    "WIF3004": "Software Architecture and Design Paradigm",
+    "WIF3005": "Software Maintenance and Evolution",
+    "WIF3006": "Component Based Software Engineering ",
+    "WIF3008": "Real Time Systems",
+    "WIF3009": "Python for Scientific Computing",
+    "WIF3010": "Programming Language Paradigm",
+    "WIF3011": "Concurrent and Parallel Programming",
+    "WIG3005": "Game Development",
+    "WIC2008": "Internet of Things",
+    "WIA2002": "Software Modeling"
 }
 
 # 1. Initialize the FastAPI Application
@@ -179,40 +211,122 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
         "key": YOUTUBE_API_KEY
     }
     
+    response = None
     try:
         response = requests.get(url, params=params)
-        if response.status_code == 200:
-            data = response.json()
-            if data.get("items"):
-                video = data["items"][0]
-                #Build the resource object
-                title = video["snippet"]["title"].replace("&quot;", "'").replace("&#39;", "'")
-                video_id = video["id"]["videoId"]
-                video_url = f"https://www.youtube.com/watch?v={video_id}"
+        
+        if response.status_code != 200:
+            print(f"❌ YouTube API Rejected the Request! Status Code: {response.status_code}")
+            print(f"❌ YouTube Error Details: {response.text}")
+            return None
+        
+        data = response.json()
+        if not data.get("items"):
+            print(f"⚠️ No YouTube videos found for query: {search_query}")
+            return None
+            
+        video = data["items"][0]
+        #Build the resource object
+        title = video["snippet"]["title"].replace("&quot;", "'").replace("&#39;", "'")
+        video_id = video["id"]["videoId"]
+        video_url = f"https://www.youtube.com/watch?v={video_id}"
                 
-                print(f"Auto-Discovered YouTube Video for {course_code}: {title}")
+        print(f"Auto-Discovered YouTube Video for {course_code}: {title}")
+        
+        try:  
+            with get_db_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type) 
+                        VALUES (%s, %s, %s, %s, %s) 
+                        """,
+                        (course_code, course_name, title, video_url, "video")
+                    )
+                conn.commit() # Save the new video resource to Neon for future queries
+            print(f"Saved YouTube video to Neon DB for course {course_code}.")
+        except Exception as db_err:
+            print(f"❌ Database Insertion Error: {db_err}")
+            
+        return LearningResource(
+            subject_tag=course_name, 
+            course_code=course_code, 
+            title=title, 
+            url=video_url, 
+            resource_type="video"
+        )
+        
+    except Exception as e:
+        if response is not None:
+            print(f"YouTube API Failed! Status Code: {response.status_code}")
+            print(f"YouTube API Response: {response.text}")
+        else:
+            print(f"YouTube API Error: {e}")
+    
+    return None
+
+def fetch_and_store_web_resources(course_code: str) -> List[LearningResource]:
+    """Fetches an article and an PDF textbook using DuckDuckGo, and saves them to Neon."""
+    course_name = COURSE_MAPPING.get(course_code, course_code)
+    discovered_resources = []
+    
+    try:
+        with DDGS() as ddgs:
+            article_query = f"{course_name} (tutorial OR basics OR guide) computer science"
+            article_results = list(ddgs.text(article_query, max_results=1))
+            
+            if article_results:
+                item = article_results[0]
+                title = str(item.get("title", f"{course_name} Guide"))
+                url = str(item.get("href", ""))
                 
                 with get_db_connection() as conn:
                     with conn.cursor() as cur:
                         cur.execute(
                             """
                             INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type) 
-                            VALUES (%s, %s, %s, %s, %s) # "%s" prevent SQL injection 
+                            VALUES (%s, %s, %s, %s, %s) 
                             """,
-                            (course_code, course_name, title, video_url, "video")
+                            (course_code, course_name, title, url, "article")
                         )
-                    conn.commit() # Save the new video resource to Neon for future queries
-                return LearningResource(
-                    subject_tag=course_name, 
-                    course_code=course_code, 
-                    title=title, 
-                    url=video_url, 
-                    resource_type="video")
+                    conn.commit()
+                
+                discovered_resources.append(LearningResource(
+                    subject_tag=course_name, course_code=course_code,
+                    title=title, url=url, resource_type="article"
+                ))
+                print(f"✅ Auto-Discovered Article for {course_code}: {title}")
+            
+        pdf_query = f"{course_name} (textbook OR lecture notes OR pdf OR notes) filetype:pdf"
+        pdf_results = list(ddgs.text(pdf_query, max_results=1))
+        
+        if pdf_results:
+            item = pdf_results[0]
+            title = str(item.get("title", f"{course_name} Textbook"))
+            url = str(item.get("href", ""))
+            
+            with get_db_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type) 
+                        VALUES (%s, %s, %s, %s, %s)
+                        """,
+                        (course_code, course_name, title, url, "book")
+                    )
+                conn.commit()
+            
+            discovered_resources.append(LearningResource(
+                subject_tag=course_name, course_code=course_code,
+                title=title, url=url, resource_type="book"
+            ))
+            print(f"✅ Auto-Discovered PDF for {course_code}: {title}")
+            
     except Exception as e:
-        print(f"YouTube API Error: {e}")
-    
-    return None
-    
+        print(f"Web Resource Discovery Error for {course_code}: {e}")
+        
+    return discovered_resources
+
 # 5. Define the API Endpoint
 @app.post("/predict")
 def predict_student_needs(student: StudentProfile):
@@ -258,30 +372,50 @@ def predict_student_needs(student: StudentProfile):
             
             for subject_code in recommended_subjects:
                 db_resources = fetch_neon_resources([subject_code])
-                
-                for res in db_resources:
-                    # Generate an explanation using Gemini
-                    explain_prompt = f"""
-                    A university student is struggling with the course '{res.subject_tag}'. 
-                    I am recommending a resource titled '{res.title}'. 
-                    Write a single, encouraging sentence explaining why watching/reading this will help them improve their grade.
-                    """
-                    explain = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents=explain_prompt
-                    )
-                    res.explanation = explain.text.strip() if explain.text else ""
-                    resource_links.append(res)
-                
+                           
                 if db_resources:
                     print(f"Found {len(db_resources)} resources in Neon for {subject_code}.")
-                    resource_links.extend(db_resources)
                 else:
                     print(f"No resources in Neon for {subject_code}. Triggering YouTube API...")
-                    new_video = fetch_and_store_yt_videos(subject_code)
+                    
+                    #Improvment async speed up fetching speed
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        future_yt = executor.submit(fetch_and_store_yt_videos, subject_code)
+                        future_web = executor.submit(fetch_and_store_web_resources, subject_code)
+                        
+                        new_video = future_yt.result()
+                        new_web_docs = future_web.result()
                     
                     if new_video:
-                        resource_links.append(new_video)
+                        db_resources.append(new_video)
+                        
+                    if new_web_docs:
+                        db_resources.extend(new_web_docs)
+                        
+                def generate_explanation(res):
+                    explain_prompt=f"""
+                    A university student is struggling with the course '{res.subject_tag}'. 
+                    I am recommending a {res.resource_type} titled '{res.title}'. 
+                    Write a single, encouraging sentence explaining why watching/reading this will help them improve their grade.
+                    """
+                    try:
+                        explain = client.chat.completions.create(
+                            model="llama-3.1-8b-instant",
+                            messages=[{"role": "user", "content": explain_prompt}],
+                            max_tokens=80
+                        )
+                        content = explain.choices[0].message.content
+                        res.explanation = content.strip() if content else ""
+                    except Exception as e:
+                        print(f"Groq Explanation Error: {e}")
+                        res.explanation = "This resource covers foundational concepts to help you succeed."
+                    return res
+                
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    explained_resources = list(executor.map(generate_explanation, db_resources))
+                    
+                resource_links.extend(explained_resources)
+                    
         return {
             "alert_level": alert_level,
             "needs_resources": needs_help,
@@ -300,34 +434,59 @@ def predict_student_needs(student: StudentProfile):
 @app.post("/upload-pdf")
 async def process_and_store_pdf(file: UploadFile = File(...)):
     try:
-        #Read pdf 
-        file_bytes = await file.read()
-        doc = fitz.open(stream=file_bytes, filetype="pdf")
+        
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+            temp_path = tmp_file.name
+            tmp_file.write(await file.read())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to save temp file: {str(e)}")
+        
+    try:
+        chunks_with_pages = []
         
         #chunk text
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000, 
-            chunk_overlap=200,
+            chunk_size=5000, 
+            chunk_overlap=500,
             separators=["\n\n", "\n", ".", " ", ""]
         )
         
-        chunks_with_pages= []
-                
-        #READ PDF AND TRACK PAGES
-        #enumerate allows i ndex number of the vector to be kept track with the text chunk
-        for page_num, page in enumerate(doc.pages(), start=1):
-            page_text = page.get_text()
-            if not page_text.strip():
-                continue
-                
-            page_chunks = text_splitter.split_text(page_text)
+        #2. Extract text using fitz 
+        print(f"Processing PDF: {file.filename}...")
+        with fitz.open(temp_path) as doc:
+            #3. READ PDF AND TRACK PAGES
+            #enumerate allows i ndex number of the vector to be kept track with the text chunk
+            for page_num, page in enumerate(doc.pages(), start=1):
+                page_text = page.get_text()
+                if not page_text.strip():
+                    continue
                     
-            for chunk in page_chunks:
-                annotated_chunk = f"[Page {page_num}]\n{chunk}"
-                chunks_with_pages.append(annotated_chunk)
+                page_chunks = text_splitter.split_text(page_text)
                         
+                for chunk in page_chunks:
+                    annotated_chunk = f"[Page {page_num}]\n{chunk}"
+                    chunks_with_pages.append(annotated_chunk) 
+            
+        #4. Extract tables from Camelot
+        print(f"Extracting tables from PDF: {file.filename}...")
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                tables = camelot.read_pdf(temp_path, pages='all', flavor='lattice')
+                
+            for i, table in enumerate(tables):
+                df = table.df
+                if not df.empty:
+                    #Convert table into Markdown
+                    markdown_table = df.to_markdown(index=False)
+                    chunks_with_pages.append(f"[Page {table.page} Table {i+1}]\n{markdown_table}")
+                    
+            print(f"✅ Found and parsed {len(tables)} tables perfectly!")
+        except Exception as table_err:
+            print(f"⚠️ Table extraction skipped or failed: {table_err}")
+            
         if not chunks_with_pages:
-            raise HTTPException(status_code=400, detail="No valid text chunks extracted from PDF")
+            raise HTTPException(status_code=400, detail="No text or tables extracted from PDF")
                 
         # Embed the annotated chunks
         embeddings = embedder.encode(chunks_with_pages)
@@ -347,6 +506,10 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
                     )
                 
             conn.commit()
+        try:    
+            os.remove(temp_path) # Clean up the temporary file
+        except Exception as cleanup_err:
+            print(f"⚠️ Temporary file cleanup failed: {cleanup_err}")
             
         return  {
             "message" : "Success",
@@ -354,35 +517,53 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
             "chunks_processed": len(chunks_with_pages)
         }
     except Exception as e:
+        print(f"❌ Upload Error: {e}")
+        if os.path.exists(temp_path):
+            try:
+                os.remove(temp_path)
+            except:
+                pass
         raise HTTPException(status_code=500, detail=f"Failed to process PDF: {str(e)}")
     
 #RAG for Q&A AI Chatbox
 @app.post("/chat")
 def ask_pdf_question(request: ChatRequest):
-    if not GEMINI_API_KEY:
-        raise HTTPException(status_code=500, detail="Gemini API Key is missing.")
+    if not GROQ_API_KEY:
+        raise HTTPException(status_code=500, detail="GROQ API Key is missing.")
     
     try:
         # 1. CONSTRUCT PROMPT 
         prompt = f"""
         You are a search query optimizer for a Semantic Vector Database. 
-        CRITICAL RULE: NEVER use boolean operators like "OR", "AND", or parentheses "()".
-        Write the query as a natural, plain-English sentence.
+        Extract the core academic subjects and keywords from the student's question. 
+        CRITICAL RULES: 
+        1. NEVER use boolean operators like "OR", "AND", or parentheses "()".
+        2. NEVER write SQL code (like SELECT or WHERE).
+        3. Write the query as a simple, natural plain-English sentence.
         Only output the query itself, nothing else.
         Student Question: {request.question}
         """
         
         #2. generate answer with QUERY TRANSFORMATION
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
+        #    response = client.models.generate_content(
+        #        model="gemini-2.5-flash",
+        #        contents=prompt
+        #   )
         
+        # Groq Call for Optimizer
+        optimizer_response = client.chat.completions.create(
+            model="llama-3.1-8b-instant", # We use the smaller 8B model here because it's wildly fast for simple tasks
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=150
+        )
         
         #-->Later uncomment this: 
         # optimized_query = response.text.strip() if response.text else request.question
         
-        optimized_query = request.question
+        #optimized_query = request.question
+        
+        content = optimizer_response.choices[0].message.content if optimizer_response.choices else None
+        optimized_query = content.strip() if content else request.question
         optimized_query = optimized_query.replace('"', '')
         
         print(f"Original: {request.question} | Optimized: {optimized_query}")
@@ -400,10 +581,10 @@ def ask_pdf_question(request: ChatRequest):
                     FROM document_chunks
                     WHERE document_name = %s
                     ORDER BY 
-                        -- Weight 1: Semantic Meaning (70%)
+                        -- Weight 1: Semantic Meaning 
                         ((1.0 - (embedding <=> %s::vector)) * 0.7) 
                         + 
-                        -- Weight 2: Exact Keyword Match (30%)
+                        -- Weight 2: Exact Keyword Match 
                         (ts_rank(to_tsvector('english', chunk_text), plainto_tsquery('english', %s)) * 0.3)
                     DESC
                     LIMIT 30 
@@ -433,7 +614,7 @@ def ask_pdf_question(request: ChatRequest):
             for i, (score, chunk_text) in enumerate(top_results):
                 retrieved_text += f"\n--- Excerpt {i+1} ---\n{chunk_text}\n"
                 
-        time.sleep(2)
+        #time.sleep(2)
         
         #7. Final Answer Generation with retrieved text as context
         final_prompt = f"""         
@@ -442,10 +623,12 @@ def ask_pdf_question(request: ChatRequest):
         
         RULES:
         1. Base your factual information STRICTLY on the Context Excerpts provided below.
-        2. If the user asks for a recommendation, you ARE allowed to provide subjective, expert advice. Base your recommendation on general software engineering industry principles (e.g., practical application vs. theoretical value) using the course descriptions provided.
+        2. If the user asks for a recommendation, you ARE allowed to provide subjective, expert advice. 
+            Base your recommendation on general Information Technology or any related industry principles (e.g., practical application vs. theoretical value).
+            Give examples as well which related to current Malaysia well-known companies or startups to make it more relevant to the student's future career.
         3. Do not say "I do not possess personal opinions." You must confidently advise the student.
         4. Synthesize the information logically using bullet points.
-        5. If a specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end.
+        5. If there's missing information or a specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end. specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end.
         
         Context Excerpts:
         {retrieved_text}
@@ -455,14 +638,23 @@ def ask_pdf_question(request: ChatRequest):
         Answer:
         """
         
-        final_response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=final_prompt
+        #Gemini
+        #final_response = client.models.generate_content(
+        #    model="gemini-2.5-flash",
+        #    contents=final_prompt
+        #)
+
+        #GROQ        
+        final_response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile", # We use the massive 70B model here for deep reasoning
+            messages=[{"role": "user", "content": final_prompt}],
+            max_tokens=2048
         )
                     
         return {
             "question": request.question,
-            "answer": final_response.text,
+            #"answer": final_response.text,
+            "answer": final_response.choices[0].message.content,
             "sources_used": final_source_count
         }
         
@@ -530,7 +722,7 @@ async def process_pdf_from_url(request: dict):
         error_msg = str(e)
         print(f"Chat Error: {error_msg}")
         if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg:
-            raise HTTPException(status_code=429, detail="Gemini API rate limit exceeded. Please wait 30 seconds and try again later.")
+            raise HTTPException(status_code=429, detail="Groq API rate limit exceeded. Please wait 30 seconds and try again later.")
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.get("/library")
