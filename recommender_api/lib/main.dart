@@ -1,3 +1,4 @@
+import 'pdf_chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.grey[100], // Like Tailwind bg-gray-100
       ),
-      home: const StudentProfileScreen(),
+      home: const SplitScreenTest(),
     );
   }
 }
@@ -39,14 +40,18 @@ class StudentProfileScreen extends StatefulWidget {
 
 class _StudentProfileScreenState extends State<StudentProfileScreen> {
   // 1. Setup State Variables (Equivalent to JS variables)
-  final TextEditingController _sscController = TextEditingController(text: '3.5');
-  final TextEditingController _lastGpaController = TextEditingController(text: '3.0');
-  
+  final TextEditingController _sscController = TextEditingController(
+    text: '3.5',
+  );
+  final TextEditingController _lastGpaController = TextEditingController(
+    text: '3.0',
+  );
+
   int _selectedAttendance = 3;
   int _selectedPreparation = 2;
-  
+
   // This list tracks our dynamic rows
-  List<CourseEntry> _courses = [CourseEntry()]; 
+  List<CourseEntry> _courses = [CourseEntry()];
 
   // Hidden AI Features
   final int income = 2, hometown = 1, department = 0, gaming = 2;
@@ -93,15 +98,15 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       );
 
       if (response.statusCode == 200) {
-          final data = jsonDecode(response.body);
-          
-          //update state 
-          setState(() {
-            _predictionResult = data;
-          });
-        } else {
-          print("Server error: ${response.statusCode}");
-        }
+        final data = jsonDecode(response.body);
+
+        //update state
+        setState(() {
+          _predictionResult = data;
+        });
+      } else {
+        print("Server error: ${response.statusCode}");
+      }
     } catch (e) {
       print("Error: $e");
     } finally {
@@ -116,7 +121,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     final Uri url = Uri.parse(urlString);
 
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode:LaunchMode.externalApplication);//open in Chrome/Safari
+      await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      ); //open in Chrome/Safari
     } else {
       debugPrint('Could not launch $urlString');
     }
@@ -128,8 +136,20 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Student Academic Profile'),
-        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.chat_bubble_outline),
+            onPressed: () {
+              //href link
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PdfChatScreen()),
+              );
+            },
+          ),
+        ],
       ),
+
       // SingleChildScrollView prevents keyboard overflow errors!
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0), // Tailwind p-6
@@ -145,7 +165,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                   ),
                   const SizedBox(width: 16), // Gap between inputs
                   Expanded(
-                    child: _buildTextField('Last Semester GPA', _lastGpaController),
+                    child: _buildTextField(
+                      'Last Semester GPA',
+                      _lastGpaController,
+                    ),
                   ),
                 ],
               ),
@@ -155,7 +178,12 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
               _buildDropdown(
                 label: 'Class Attendance',
                 value: _selectedAttendance,
-                items: const {1: 'Below 40%', 2: '40%-59%', 3: '60%-79%', 4: '80%-100%'},
+                items: const {
+                  1: 'Below 40%',
+                  2: '40%-59%',
+                  3: '60%-79%',
+                  4: '80%-100%',
+                },
                 onChanged: (val) => setState(() => _selectedAttendance = val!),
               ),
               const SizedBox(height: 16),
@@ -163,16 +191,23 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
               _buildDropdown(
                 label: 'Daily Study Preparation',
                 value: _selectedPreparation,
-                items: const {1: '0-1 hour', 2: '2-3 hours', 3: 'More than 3 hours'},
+                items: const {
+                  1: '0-1 hour',
+                  2: '2-3 hours',
+                  3: 'More than 3 hours',
+                },
                 onChanged: (val) => setState(() => _selectedPreparation = val!),
               ),
-              
+
               const Divider(height: 40, thickness: 1),
-              
+
               // --- Dynamic Courses Section ---
-              const Text('Current Semester Courses', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Current Semester Courses',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 10),
-              
+
               // Map over our list of classes to draw the rows
               ..._courses.asMap().entries.map((entry) {
                 int index = entry.key;
@@ -187,7 +222,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                           decoration: const InputDecoration(
                             hintText: 'Code (e.g. WIA1006)',
                             border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0)
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 0,
+                            ),
                           ),
                         ),
                       ),
@@ -196,11 +234,16 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                         width: 80, // Force a small width for the grade box
                         child: TextFormField(
                           controller: course.gradeController,
-                          keyboardType: const TextInputType.numberWithOptions(decimal: true), // Pops up number pad!
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ), // Pops up number pad!
                           decoration: const InputDecoration(
                             hintText: 'Grade',
                             border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0)
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 0,
+                            ),
                           ),
                         ),
                       ),
@@ -212,12 +255,12 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                             _courses.removeAt(index);
                           });
                         },
-                      )
+                      ),
                     ],
                   ),
                 );
               }),
-              
+
               TextButton(
                 onPressed: () {
                   // setState triggers a UI refresh to add a new row!
@@ -231,27 +274,33 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
               const SizedBox(height: 24),
 
               //show loading spinner/result box
-              if (_isLoading) 
-                  const Center(child: CircularProgressIndicator())
+              if (_isLoading)
+                const Center(child: CircularProgressIndicator())
               else if (_predictionResult != null)
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: _predictionResult!['needs_resources'] ? Colors.red[50] : Colors.green[50],
-                      border: Border.all(
-                        color: _predictionResult!['needs_resources'] ? Colors.red[300]! : Colors.green[300]!,
-                      ),  
-                      borderRadius: BorderRadius.circular(8),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: _predictionResult!['needs_resources']
+                        ? Colors.red[50]
+                        : Colors.green[50],
+                    border: Border.all(
+                      color: _predictionResult!['needs_resources']
+                          ? Colors.red[300]!
+                          : Colors.green[300]!,
                     ),
-                    child: Column(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
                     children: [
                       Text(
                         _predictionResult!['message'],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: _predictionResult!['needs_resources'] ? Colors.red[800] : Colors.green[800],
+                          color: _predictionResult!['needs_resources']
+                              ? Colors.red[800]
+                              : Colors.green[800],
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -260,10 +309,30 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                         "Risk Score: ${_predictionResult!['confidence_score']}%",
                         style: const TextStyle(fontSize: 14),
                       ),
+
+                      //Dynamic injection of resource
+                      if (_predictionResult!['resource_links'] != null &&
+                          (_predictionResult!['resource_links'] as List)
+                              .isNotEmpty) ...[
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Recommended Resources:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+
+                        //map over the array of JSON objects, convert into cards using spread operator
+                        ...(_predictionResult!['resource_links'] as List).map((
+                          res,
+                        ) {
+                          return _buildResourceCard(
+                            res as Map<String, dynamic>,
+                          );
+                        }),
+                      ],
                     ],
                   ),
                 ),
-                  
+
               // --- Submit Button ---
               SizedBox(
                 width: double.infinity, // Full width button
@@ -274,9 +343,12 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: _analyzeNeeds,
-                  child: const Text('Analyze Needs with AI', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: const Text(
+                    'Analyze Needs with AI',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -289,7 +361,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+        ),
         const SizedBox(height: 4),
         TextFormField(
           controller: controller,
@@ -313,7 +388,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+        ),
         const SizedBox(height: 4),
         DropdownButtonFormField<int>(
           value: value,
@@ -349,29 +427,73 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       iconColor = Colors.cyanAccent;
     }
 
-  //list items using ListTile widget
+    //list items using ListTile widget
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(top: 8.0),
-      child : ListTile(
+      child: ListTile(
         leading: Icon(icon, color: iconColor, size: 32),
         title: Text(
           resource['title'],
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${resource['course_code']} - ${resource['resource_type'].toUpperCase()}", 
-              style: const TextStyle(fontSize: 12, color: Colors.blueGrey, fontWeight: FontWeight.bold)
+              "${resource['course_code']} - ${resource['resource_type'].toUpperCase()}",
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          
-          //resource explanation 
-          if (resource['explanation'] != null && resource['explanation'].toString().isNotEmpty )
-          ]
-        )
-      )
-    )
+
+            //resource explanation
+            if (resource['explanation'] != null &&
+                resource['explanation'].toString().isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  resource['explanation'],
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+          ],
+        ),
+        trailing: const Icon(
+          Icons.arrow_forward_ios,
+          size: 16,
+        ), //arrow on the right
+        //clickable card
+        onTap: () => _launchURL(resource['url']),
+      ),
+    );
+  }
+}
+
+class SplitScreenTest extends StatelessWidget {
+  const SplitScreenTest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          Expanded(flex: 1, child: const StudentProfileScreen()),
+
+          const VerticalDivider(
+            width: 2,
+            thickness: 2,
+            color: Colors.purpleAccent,
+          ),
+
+          Expanded(flex: 1, child: const PdfChatScreen()),
+        ],
+      ),
+    );
   }
 }
