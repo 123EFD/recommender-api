@@ -6,10 +6,12 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 //import 'dart:io';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PdfChatScreen extends StatefulWidget {
-  const PdfChatScreen({super.key});
+
+  final bool isFullScreen;
+
+  const PdfChatScreen({super.key, this.isFullScreen = false});
 
   @override
   State<PdfChatScreen> createState() => _PdfChatScreenState();
@@ -28,11 +30,56 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
 
   final TextEditingController _chatController = TextEditingController();
   bool _isAiThinking = false;
-  
-  //persistent chat history using Map(Dictionary) instead of single List 
+
+  //persistent chat history using Map(Dictionary) instead of single List
   // The 'String' is the filename ; The 'List' is the chat history for that file.
-  Map<String, List<Map<String, String>>> _chatSessions = {};
-  List<Map<String, String>> _currentActiveChat = []; 
+  List<Map<String, String>> _currentActiveChat = [];
+
+  //switching folder logic
+  Future<void> _loadChatForFile(String filename) async {
+    setState(() {
+      _pdfName = filename;
+      _currentActiveChat = []; //clear current chat when switching files
+    });
+
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/get-chat/$filename'));
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = jsonDecode(response.body);
+        setState(() {
+          _currentActiveChat = data.map((item) => {
+            "role": item['role'].toString(),
+            "text": item['text'].toString()
+          }).toList();
+        });
+      }
+    } catch (e) {
+      debugPrint("Failed to load chat for $filename: $e");
+    }
+  }
+
+
+  //saves message to the currently active chat
+  Future<void> _saveMessage(String role, String text) async {
+    setState(() {
+      _currentActiveChat.add({"role": role, "text": text});
+    });
+
+    try {
+      await http.post(
+        Uri.parse('$_baseUrl/save-message'),
+        headers: { 'Content-type' : 'application/json' },
+        body: jsonEncode({
+          "filename": _pdfName,
+          "role": role,
+          "text": text,
+        }),
+      );
+    } catch (e) {
+      debugPrint("Failed to save message: $e");
+    }
+  }
 
   Future<void> _fetchLibrary() async {
     try {
@@ -42,78 +89,22 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
         List<dynamic> data = jsonDecode(response.body);
 
         setState(() {
-          _pdfLibrary = data.cast<String>(); 
-          //cast<R> used on collections for type checking, more flexible than as keyword
+          _pdfLibrary = data.cast<String>();
         });
       }
     } catch (e) {
-        debugPrint("Library Fetch Error: $e");
+      debugPrint("Library Fetch Error: $e");
     }
   }
 
-  //switching folder logic
-  void _loadChatForFile(String filename) {
-    setState(() {
-      _pdfName = filename;
-
-      if (_chatSessions.containsKey(filename)) {
-        //chekc history for the file and load it
-        _currentActiveChat = _chatSessions[filename]!;
-      } else {
-        _chatSessions[filename] = [];
-        _currentActiveChat = _chatSessions[filename]!;
-      }
-    });
-  }
-
-  //save history even after restart (encode -> decode)
-  Future<void> _saveToDisk() async {
-    final prefs = await SharedPreferences.getInstance(); //get access to phone's hard drives
-    String jsonString = jsonEncode(_chatSessions);
-    await prefs.setString("saved_chat_history", jsonString);//save through key-value pair
-  }
-
-  //saves message to the currently active chat 
-  void _saveMessage(String role, String text) {
-    setState(() {
-      _currentActiveChat.add({"role": role, "text": text});
-      _chatSessions[_pdfName] = _currentActiveChat;
-      _saveToDisk(); //save every time a new message is added
-    });
-  }
-
- //load history from disk when app starts
-  @override 
+  //load history from disk when app starts
+  @override
   void initState() {
     super.initState();
-    _loadCabinetFromDisk(); //initiate the hard drive for chat memory
     _fetchLibrary(); //fetch pdf library from backend when app starts
   }
 
-  Future<void> _loadCabinetFromDisk() async {
-    final prefs = await SharedPreferences.getInstance();
-    String? jsonString = prefs.getString("saved_chat_history");
-
-    if (jsonString != null) {
-      Map<String, dynamic> decodedData = jsonDecode(jsonString); //return dynamic type
-      
-      //just imagine cabinet as pdf history storage, contain chat history 
-      Map<String, List<Map<String, String>>> restoredCabinet = {};
-
-      decodedData.forEach((key, value) {
-        restoredCabinet[key] = List<Map<String, String>>.from(
-          (value as List).map((item) => Map<String, String>.from(item))
-        );
-      });
-
-      // 4. Update state to restore memory
-      setState(() {
-        _chatSessions = restoredCabinet;
-      });
-    }
-  }
-
-  //  PDF Upload Logic 
+  //  PDF Upload Logic
   Future<void> _pickAndUploadPdf() async {
     // Open the phone's native file browser
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -130,14 +121,13 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
       });
 
       try {
-        var request = http.MultipartRequest('POST', Uri.parse('$_baseUrl/upload-pdf'));
-        //send bytes since path will be block by web 
+        var request = http.MultipartRequest(
+          'POST',
+          Uri.parse('$_baseUrl/upload-pdf'),
+        );
+        //send bytes since path will be block by web
         request.files.add(
-          http.MultipartFile.fromBytes(
-            'file', 
-            _pdfBytes!,
-            filename: _pdfName
-            )
+          http.MultipartFile.fromBytes('file', _pdfBytes!, filename: _pdfName),
         );
 
         var streamedResponse = await request.send();
@@ -145,13 +135,16 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
 
         if (response.statusCode == 200) {
           var data = jsonDecode(response.body);
-          
-          _loadChatForFile(data['filename']);
+
+          await _loadChatForFile(data['filename']);
 
           if (_currentActiveChat.isEmpty) {
-            _saveMessage("ai", "✅ Successfully loaded ${data['chunks_processed']} chunks. What would you like to know?");
+            _saveMessage(
+              "ai",
+              "✅ Successfully loaded ${data['chunks_processed']} chunks. What would you like to know?",
+            );
           }
-        } 
+        }
       } catch (e) {
         _saveMessage("ai", "❌ Upload failed: $e");
       } finally {
@@ -175,10 +168,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
       final response = await http.post(
         Uri.parse('$_baseUrl/chat'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          "question": question,
-          "filename": _pdfName
-        }),
+        body: jsonEncode({"question": question, "filename": _pdfName}),
       );
 
       if (response.statusCode == 200) {
@@ -196,167 +186,249 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
     }
   }
 
+  //helperfunction for pushing bytes into SPdfViewer
+  Future<void> _fetchPdfBytes(String filename) async {
+    setState(() => _isProcessingPdf = true);
+
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/get-pdf/$filename'));
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _pdfBytes = response.bodyBytes; //bytes into memory
+        });
+      }
+    } catch (e) {
+      debugPrint("Error fetching PDF bytes: $e");
+    } finally {
+      setState(() {
+        _isProcessingPdf = false;
+      });
+    }
+  }
+
   // --- SEGMENT 5: The UI Layout ---
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PDF AI Workspace'),
-        backgroundColor: Colors.blue[600],
-        foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.upload_file),
-            onPressed: _isProcessingPdf ? null : _pickAndUploadPdf,
-            tooltip: 'Upload PDF',
-          )
-        ],
-      ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
 
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Your PDF Library', 
-                style: TextStyle(color: Colors.white, fontSize: 24)
+        onDrawerChanged: (isOpened) {
+          if (isOpened) {
+            _fetchLibrary();
+          }
+        },
+
+        appBar: AppBar(
+          title: const Text('PDF AI Workspace'),
+          backgroundColor: Colors.blue[600],
+          foregroundColor: Colors.white,
+          actions: [
+
+            if (widget.isFullScreen)
+              IconButton(
+                icon: const Icon(Icons.fullscreen_exit),
+                tooltip: 'Back to Split View',
+                onPressed: () {
+                  Navigator.pop(context); //close full screen
+                },
               ),
+
+            IconButton(
+              icon: const Icon(Icons.upload_file),
+              onPressed: _isProcessingPdf ? null : _pickAndUploadPdf,
+              tooltip: 'Upload PDF',
             ),
-
-            if (_pdfLibrary.isEmpty) 
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text("No PDFs uploaded yet.", style: TextStyle(color: Colors.orangeAccent)),
+          ],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(color: Colors.blue),
+                child: Text(
+                  'Your PDF Library',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
               ),
+
+              if (_pdfLibrary.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    "No PDFs uploaded yet.",
+                    style: TextStyle(color: Colors.orangeAccent, fontSize: 18),
+                  ),
+                ),
 
               ..._pdfLibrary.map((filename) {
                 return ListTile(
-                  leading: const Icon(Icons.picture_as_pdf, color: Colors.redAccent),
-                  title: Text(filename, style: const TextStyle(fontWeight: FontWeight.w500)),
+                  leading: const Icon(
+                    Icons.picture_as_pdf,
+                    color: Colors.redAccent,
+                  ),
+                  title: Text(
+                    filename,
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
                   trailing: const Icon(Icons.chevron_right, size: 16),
                   onTap: () {
                     Navigator.pop(context);
-
                     _loadChatForFile(filename);
                   },
                 );
               }),
-          ],
+            ],
+          ),
+        ),
+
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 800) {
+              return Row(
+                children: [
+                  Expanded(flex: 5, child: _buildPdfViewer()),
+
+                  Expanded(flex: 5, child: _buildChatInterface()),
+                ],
+              );
+            } else {
+              return Column(
+                children: [
+                  const TabBar(
+                    labelColor: Colors.lightBlueAccent,
+                    tabs: [
+                      Tab(icon: Icon(Icons.picture_as_pdf), text: "Document"),
+                      Tab(icon: Icon(Icons.chat), text: "Chat"),
+                    ],
+                  ),
+
+                  Expanded(
+                    child: TabBarView(
+                      children: [_buildPdfViewer(), _buildChatInterface()],
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
-      
-      body: Row(
+    );
+  }
+
+  Widget _buildPdfViewer() {
+    return Container(
+      color: Colors.amber,
+      child: _isProcessingPdf
+          ? const Center(child: CircularProgressIndicator())
+          : _pdfName.isNotEmpty
+          ? SfPdfViewer.network(
+            '$_baseUrl/get-pdf/${Uri.encodeComponent(_pdfName)}',
+            )
+          : const Center(
+              child: Text(
+                "Tap the upload icon to add a PDF",
+                style: TextStyle(fontSize: 18, color: Color.fromARGB(88, 158, 158, 158)),
+              ),
+            ),
+    );
+  }
+
+  Widget _buildChatInterface() {
+    return Container(
+      color: Colors.white,
+      child: Column(
         children: [
-          // TOP HALF: The PDF Viewer
           Expanded(
-            flex: 5, 
-            child: Container(
-              color: Colors.grey[300],
-              child: _isProcessingPdf
-                  ? const Center(child: CircularProgressIndicator())
-                  : _pdfBytes != null
-                      ? SfPdfViewer.memory(_pdfBytes!)
-                      : const Center(
-                          child: Text(
-                            "Tap the upload icon to select a PDF", 
-                            style: TextStyle(color: Colors.grey)
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: _currentActiveChat.length,
+              itemBuilder: (context, index) {
+                var msg = _currentActiveChat[index];
+                bool isUser = msg['role'] == 'user';
+
+                return Align(
+                  alignment: isUser
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: isUser ? Colors.blue[600] : Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: isUser
+                        ? Text(
+                            msg['text']!,
+                            style: const TextStyle(color: Colors.white),
                           )
-                        ),
+                        : MarkdownBody(
+                            data: msg['text']!,
+                            styleSheet: MarkdownStyleSheet(
+                              p: const TextStyle(fontSize: 14),
+                            ),
+                          ), // Renders AI Markdown perfectly
+                  ),
+                );
+              },
             ),
           ),
 
-          // BOTTOM HALF: The Chat Interface
-          Expanded(
-            flex: 5,
-            child: Container(
+          // "Thinking" Indicator
+          if (_isAiThinking)
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "AI is searching notes...",
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+
+          // Input Area
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            decoration: BoxDecoration(
               color: Colors.white,
-              child: Column(
-                children: [
-                  // The Scrollable Message List
-                  Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(16),
-                      itemCount: _currentActiveChat.length,
-                      itemBuilder: (context, index) {
-                        var msg = _currentActiveChat[index];
-                        bool isUser = msg['role'] == 'user';
-                        
-                        return Align(
-                          alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 12),
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: isUser ? Colors.blue[600] : Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: isUser 
-                              ? Text(
-                                  msg['text']!, 
-                                  style: const TextStyle(color: Colors.white)
-                                )
-                              : MarkdownBody(
-                                  data: msg['text']!,
-                                  styleSheet: MarkdownStyleSheet(
-                                    p: const TextStyle(fontSize: 14),
-                                  ),
-                              ), // Renders AI Markdown perfectly
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  
-                  // "Thinking" Indicator
-                  if (_isAiThinking)
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "AI is searching notes...", 
-                        style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)
+              border: Border(top: BorderSide(color: Colors.grey[300]!)),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _chatController,
+                    decoration: InputDecoration(
+                      hintText: _pdfName.isEmpty
+                          ? "Upload a PDF first..."
+                          : "Ask about the PDF...",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
                       ),
                     ),
-
-                  // The Bottom Input Bar
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(top: BorderSide(color: Colors.grey[300]!))
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _chatController,
-                            decoration: InputDecoration(
-                              hintText: _pdfName.isEmpty 
-                                  ? "Upload a PDF first..." 
-                                  : "Ask about the PDF...",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20)
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                            ),
-                            enabled: _pdfName.isNotEmpty,
-                            onSubmitted: (_) => _sendMessage(), 
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        CircleAvatar(
-                          backgroundColor: _pdfName.isEmpty ? Colors.grey : Colors.blue[600],
-                          child: IconButton(
-                            icon: const Icon(Icons.send, color: Colors.white, size: 20),
-                            onPressed: _pdfName.isEmpty ? null : _sendMessage,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                    enabled: _pdfName.isNotEmpty,
+                    onSubmitted: (_) => _sendMessage(),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                CircleAvatar(
+                  backgroundColor: _pdfName.isEmpty
+                      ? Colors.grey
+                      : Colors.blue[600],
+                  child: IconButton(
+                    icon: const Icon(Icons.send, color: Colors.white, size: 20),
+                    onPressed: _pdfName.isEmpty ? null : _sendMessage,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -143,7 +143,9 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
               //href link
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PdfChatScreen()),
+                MaterialPageRoute(
+                  builder: (context) => const PdfChatScreen(isFullScreen: true,)
+                ),
               );
             },
           ),

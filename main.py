@@ -28,7 +28,9 @@ import concurrent.futures
 import camelot.io as camelot
 import pandas as pd
 import warnings
+from fastapi.responses import FileResponse
 
+os.makedirs("uploads", exist_ok=True)
 
 #run async loops inside FastAPI smoothly
 nest_asyncio.apply()
@@ -80,7 +82,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+class MessageRequest(BaseModel):
+    filename: str
+    role: str
+    text: str
+    
 class ChatRequest(BaseModel):
     question: str
     filename: str
@@ -189,6 +195,47 @@ def fetch_neon_resources(subjects: List[str]) -> List[LearningResource]:
         print(f"Database Error: {e}")
         
     return resources_list
+
+#chat history table
+def init_chat_db():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS chat_messages (
+                        id SERIAL PRIMARY KEY,
+                        filename TEXT NOT NULL,
+                        role TEXT NOT NULL,
+                        message_text TEXT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )        
+                """)
+            conn.commit()
+            print("Chat history table initialized successfully.")
+    except Exception as e:
+        print(f"Error initializing chat history table: {e}")
+        
+init_chat_db()
+
+#task queue for processing large size pdf 
+def init_jobs_db():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as curr:
+                curr.execute("""
+                    CREATE TABLE IF NOT EXISTS pdf_jobs (
+                        filename TEXT PRIMARY KEY,
+                        status TEXT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )    
+                """)
+                
+            conn.commit()
+            print("PDF jobs table initialized successfully.")
+    except Exception as e:
+        print(f"Error initializing pdf jobs table: {e}")
+        
+init_jobs_db()
 
 def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
     """Fetches a video from YouTube if not in Neon, and saves it to the database."""
@@ -346,10 +393,25 @@ def predict_student_needs(student: StudentProfile):
         with torch.no_grad():
             raw_pred = model(input_tensor)
             probability = torch.sigmoid(raw_pred).item()
+            
+        #fix AI overconfidence in risk score for good habits
+        safe_ai_prob = max(0.10, probability)
+            
+        #heuristic habit score to improve model without retrain
+        habit_risk = 0.15 #just a baseline of risk score, you can adjust 
+        if student.attendance < 3: habit_risk += 0.25
+        if student.preparation == 1 : habit_risk += 0.35
+        elif student.preparation == 2 : habit_risk += 0.25
+        if student.gaming == 1 : habit_risk += 0.30
         
-        needs_help = probability > 0.5
+        habit_risk = min(0.95, habit_risk) #prevent extreme values
         
-        risk_percentage = round(probability * 100, 2)
+        #ensemble rish score, model + heuristic
+        final_probability = (probability * 0.6) + (habit_risk * 0.4)
+        
+        needs_help = final_probability > 0.5
+        
+        risk_percentage = round(final_probability * 100, 2)
         
         recommended_subjects = [c.name for c in student.courses if c.grade < 3.0]
 
@@ -367,16 +429,13 @@ def predict_student_needs(student: StudentProfile):
             msg = "✅ On Track: Strong habits and passing all current courses."
             
         resource_links = []
-        if needs_help and len(recommended_subjects) > 0:
+        if len(recommended_subjects) > 0:
             print(f"Querying Neon for subjects: {recommended_subjects}...")
             
             for subject_code in recommended_subjects:
                 db_resources = fetch_neon_resources([subject_code])
-                           
-                if db_resources:
-                    print(f"Found {len(db_resources)} resources in Neon for {subject_code}.")
-                else:
-                    print(f"No resources in Neon for {subject_code}. Triggering YouTube API...")
+                
+                if not db_resources:
                     
                     #Improvment async speed up fetching speed
                     with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -412,9 +471,34 @@ def predict_student_needs(student: StudentProfile):
                     return res
                 
                 with concurrent.futures.ThreadPoolExecutor() as executor:
-                    explained_resources = list(executor.map(generate_explanation, db_resources))
+                    resource_links.extend(list(executor.map(generate_explanation, db_resources)))
                     
-                resource_links.extend(explained_resources)
+        elif needs_help and len(recommended_subjects) == 0:
+            habit_prompt = f"""
+            A university student has good grades (GPA: {student.last}), but poor study habits. 
+            They study {student.preparation} (1=Low, 3=High), attend {student.attendance} (1=Low, 4=High), 
+            and game {student.gaming} (1=High, 0=Low).
+            Write a highly personalized, 2-sentence warning about how these specific habits might cause 
+            them to burn out or fail future, harder classes. Be direct.
+            """
+            
+            try: 
+                habit_response = client.chat.completions.create(
+                    model="llama-3.1-8b-instant",
+                    messages=[{"role": "user", "content": habit_prompt}],
+                    max_tokens=100
+                )
+                
+                resource_links.append({
+                    "subject_tag": "General Advice",
+                    "course_code": "Study Strategy",
+                    "title": "AI Habit Analysis",
+                    "url": "https://www.computersciencedegreehub.com/top-30-computer-science-programming-blogs-2014/", # Link to a good study habits blog
+                    "resource_type": "article",
+                    "explanation": habit_response.choices[0].message.content.strip() # type: ignore
+                })
+            except Exception as e:
+                print(f"Habit LLM error: {e}")
                     
         return {
             "alert_level": alert_level,
@@ -425,105 +509,42 @@ def predict_student_needs(student: StudentProfile):
             "subjects_to_focus": recommended_subjects,
             "resource_links": resource_links
         }
-    
-        
+
     except Exception as e:
         # If anything breaks, return a safe 500 error code
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.post("/upload-pdf")
 async def process_and_store_pdf(file: UploadFile = File(...)):
-    try:
+    file_path = f"uploads/{file.filename}"
         
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-            temp_path = tmp_file.name
-            tmp_file.write(await file.read())
+    try:
+        with open(file_path, "wb") as f:
+            f.write(await file.read())
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save temp file: {str(e)}")
-        
+    
     try:
-        chunks_with_pages = []
-        
-        #chunk text
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=5000, 
-            chunk_overlap=500,
-            separators=["\n\n", "\n", ".", " ", ""]
-        )
-        
-        #2. Extract text using fitz 
-        print(f"Processing PDF: {file.filename}...")
-        with fitz.open(temp_path) as doc:
-            #3. READ PDF AND TRACK PAGES
-            #enumerate allows i ndex number of the vector to be kept track with the text chunk
-            for page_num, page in enumerate(doc.pages(), start=1):
-                page_text = page.get_text()
-                if not page_text.strip():
-                    continue
-                    
-                page_chunks = text_splitter.split_text(page_text)
-                        
-                for chunk in page_chunks:
-                    annotated_chunk = f"[Page {page_num}]\n{chunk}"
-                    chunks_with_pages.append(annotated_chunk) 
-            
-        #4. Extract tables from Camelot
-        print(f"Extracting tables from PDF: {file.filename}...")
-        try:
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                tables = camelot.read_pdf(temp_path, pages='all', flavor='lattice')
-                
-            for i, table in enumerate(tables):
-                df = table.df
-                if not df.empty:
-                    #Convert table into Markdown
-                    markdown_table = df.to_markdown(index=False)
-                    chunks_with_pages.append(f"[Page {table.page} Table {i+1}]\n{markdown_table}")
-                    
-            print(f"✅ Found and parsed {len(tables)} tables perfectly!")
-        except Exception as table_err:
-            print(f"⚠️ Table extraction skipped or failed: {table_err}")
-            
-        if not chunks_with_pages:
-            raise HTTPException(status_code=400, detail="No text or tables extracted from PDF")
-                
-        # Embed the annotated chunks
-        embeddings = embedder.encode(chunks_with_pages)
-        
         with get_db_connection() as conn:
             with conn.cursor() as cur:
-                for i, chunk_text in enumerate(chunks_with_pages):
-                    # Convert the numpy array to a standard Python list, then to a string
-                    vector_string = str(embeddings[i].tolist())
-                            
-                    cur.execute(
-                        """
-                        INSERT INTO document_chunks (document_name, chunk_text, embedding) 
-                        VALUES (%s, %s, %s)
-                        """,
-                        (file.filename, chunk_text, vector_string)
-                    )
-                
-            conn.commit()
-        try:    
-            os.remove(temp_path) # Clean up the temporary file
-        except Exception as cleanup_err:
-            print(f"⚠️ Temporary file cleanup failed: {cleanup_err}")
+                cur.execute(
+                    """
+                    INSERT INTO pdf_jobs (filename, status) 
+                    VALUES (%s, %s) 
+                    ON CONFLICT (filename)
+                    DO UPDATE SET status = 'pending',created_at = CURRENT_TIMESTAMP
+                    """,
+                    (file.filename, )
+                )
+            conn.commit()        
             
-        return  {
-            "message" : "Success",
+        return {
+            "message" : "Upload received. Processing in background.",
             "filename": file.filename,
-            "chunks_processed": len(chunks_with_pages)
+            "status": "pending"
         }
     except Exception as e:
-        print(f"❌ Upload Error: {e}")
-        if os.path.exists(temp_path):
-            try:
-                os.remove(temp_path)
-            except:
-                pass
-        raise HTTPException(status_code=500, detail=f"Failed to process PDF: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to queue PDF for processing: {str(e)}")
     
 #RAG for Q&A AI Chatbox
 @app.post("/chat")
@@ -734,5 +755,59 @@ def get_pdf_library():
                 rows = cur.fetchall()
                 
                 return [row[0] for row in rows]  # Return a list of document names
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/get-pdf/{filename}")
+def get_pdf(filename: str):
+    file_path = f"uploads/{filename}"
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="application/pdf")
+    raise HTTPException(status_code=404, detail="File not found.")
+
+@app.post("/save-message")
+def save_message(req: MessageRequest):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO chat_messages (filename, role, message_text) 
+                    VALUES (%s, %s, %s)
+                    """,
+                    (req.filename, req.role, req.text)
+                )
+            conn.commit()
+        return {"status": "success"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/get-chat/{filename}")
+def get_chat(filename: str):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT role, message_text FROM chat_messages WHERE filename = %s ORDER BY id ASC",
+                    (filename,)
+                )
+                rows = cur.fetchall()
+                # Format into a list of dictionaries for Flutter
+                return [{"role": row[0], "text": row[1]} for row in rows]
+            
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) 
+    
+#status checker pdf processing so that futter won't timeout
+@app.get("/job-status/{filename}")
+def get_job_status(filename:str):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT status FROM pdf_jobs WHERE filename = %s", (filename,))
+                row = cur.fetchone()
+                if row: 
+                    return {"filename": filename, "status" : row[0]}
+                return {"status": "not found"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
