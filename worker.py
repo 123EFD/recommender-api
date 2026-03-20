@@ -16,12 +16,14 @@ if gs_bin_path not in os.environ.get('PATH', ''):
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
+print("👨‍🍳 Chef is waking up... Warming up the AI ovens (Loading Models)...")
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=5000, 
     chunk_overlap=500, 
     separators=["\n\n", "\n", ".", " ", ""]
 )
+print("✅ Chef is ready and waiting for orders!")
 
 def get_db_connection():
     if DATABASE_URL is None:
@@ -70,6 +72,7 @@ def process_pdf(filename):
             raise HTTPException(status_code=400, detail="No text or tables extracted from PDF")
                 
         # Embed the annotated chunks
+        print(f"Embedding {len(chunks_with_pages)} chunks into Vector Space...")
         embeddings = embedder.encode(chunks_with_pages)
         
         with get_db_connection() as conn:
@@ -136,6 +139,8 @@ def start_worker():
                 
                 if job:
                     filename = job[0]
+                    print(f"🔔 DING! Order received: {filename}. Starting processing...")
+                    
                     is_success = process_pdf(filename)
                     
                     final_status = 'completed' if is_success else 'failed'

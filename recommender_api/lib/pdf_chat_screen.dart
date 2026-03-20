@@ -59,6 +59,37 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
     }
   }
 
+  Future<void> _waitForProcessing(String filename) async {
+    bool isDone = false;
+
+    while (!isDone) {
+      await Future.delayed(const Duration(seconds: 2));
+
+      try {
+        final response = await http.get(
+          Uri.parse('$_baseUrl/job-status/${Uri.encodeComponent(filename)}')
+        );
+
+        if (response.statusCode == 200) {
+          var data = jsonDecode(response.body);
+
+          if (data['status'] == 'completed') {
+            isDone = true;
+          } else if (data['status'] == 'failed') {
+            setState(() {
+              _currentActiveChat = [
+                {"role": "ai", "text": "❌ The AI failed to read this document."}
+              ];
+            });
+            isDone = true;
+          }
+        }
+      } catch (e) {
+        debugPrint("Error waiting for processing: $e");
+      }
+    }
+  }
+
 
   //saves message to the currently active chat
   Future<void> _saveMessage(String role, String text) async {
@@ -136,6 +167,16 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
         if (response.statusCode == 200) {
           var data = jsonDecode(response.body);
 
+          //swap pdf name and show loading state
+          setState(() {
+            _pdfName = data['filename'];
+            _currentActiveChat = [
+              {"role": "ai", "text": "⏳ AI is reading and memorizing this document. Please wait..."}
+            ];
+          });
+
+          await _waitForProcessing(data['filename']);
+          
           await _loadChatForFile(data['filename']);
 
           if (_currentActiveChat.isEmpty) {
@@ -183,27 +224,6 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
       _saveMessage("ai", "⚠️ AI Connection Error: $e");
     } finally {
       setState(() => _isAiThinking = false);
-    }
-  }
-
-  //helperfunction for pushing bytes into SPdfViewer
-  Future<void> _fetchPdfBytes(String filename) async {
-    setState(() => _isProcessingPdf = true);
-
-    try {
-      final response = await http.get(Uri.parse('$_baseUrl/get-pdf/$filename'));
-
-      if (response.statusCode == 200) {
-        setState(() {
-          _pdfBytes = response.bodyBytes; //bytes into memory
-        });
-      }
-    } catch (e) {
-      debugPrint("Error fetching PDF bytes: $e");
-    } finally {
-      setState(() {
-        _isProcessingPdf = false;
-      });
     }
   }
 
