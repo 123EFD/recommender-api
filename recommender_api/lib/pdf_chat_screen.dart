@@ -118,9 +118,10 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
 
       if (response.statusCode == 200) {
         List<dynamic> data = jsonDecode(response.body);
+        debugPrint("🔥 FLUTTER RECEIVED THIS LIBRARY DATA: $data");
 
         setState(() {
-          _pdfLibrary = data.cast<String>();
+          _pdfLibrary = List<String>.from(data);
         });
       }
     } catch (e) {
@@ -170,6 +171,11 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
           //swap pdf name and show loading state
           setState(() {
             _pdfName = data['filename'];
+            //insert new pdf inot library list
+            if (!_pdfLibrary.contains(_pdfName)) {
+              _pdfLibrary.insert(0, _pdfName);
+            }
+
             _currentActiveChat = [
               {"role": "ai", "text": "⏳ AI is reading and memorizing this document. Please wait..."}
             ];
@@ -227,7 +233,97 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
     }
   }
 
-  // --- SEGMENT 5: The UI Layout ---
+  //DELETE ENDPOINT
+  Future<void> _deletePdf(String filename) async {
+    try {
+      final response = await http.delete(
+        Uri.parse('$_baseUrl/delete-pdf/${Uri.encodeComponent(filename)}')
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _pdfLibrary.remove(filename);
+
+          if (_pdfName == filename) {
+            _pdfName = "";
+            _currentActiveChat = [];
+          }
+        });
+      }
+    } catch (e) {
+      debugPrint("Failed to delete PDF: $e");
+    }
+  }
+
+  //RENAME ENDPOINT
+  Future<void> _renamePdf(String oldFilename, String newFilename) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$_baseUrl/rename-pdf'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "old_filename": oldFilename,
+          "new_filename": newFilename
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        String updatedName = data['new_filename'];
+
+        setState(() {
+          int index = _pdfLibrary.indexOf(oldFilename);
+          if ( index != -1) _pdfLibrary[index] = updatedName;
+
+          if (_pdfName == oldFilename) _pdfName = updatedName;
+        });
+      }
+    } catch (e) {
+      debugPrint("Failed to rename PDF: $e");
+    }
+  }
+  //rename dialog UI
+  Future<void> _showRenameDialog(String oldFilename) async {
+    //filter out '.pdf' of the text field 
+    TextEditingController renameController = TextEditingController(
+      text: oldFilename.replaceAll('.pdf', '')
+    );
+
+    return showDialog(
+      context: context, 
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Rename PDF"),
+          content: TextField(
+            controller: renameController,
+            decoration: const InputDecoration(
+              hintText: "Enter new name",
+              border: OutlineInputBorder(),
+            ),
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  String newName = renameController.text.trim();
+                  if (newName.isNotEmpty) {
+                    Navigator.pop(context);
+                    await _renamePdf(oldFilename, newName);
+                  }
+                },
+                child: const Text("Rename"),
+              ),
+          ],
+        );
+      }
+    );
+  }
+
+  // --- SEGMENT 5: The UI Layout --- 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -293,7 +389,39 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
                     filename,
                     style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  trailing: const Icon(Icons.chevron_right, size: 16),
+                  trailing: PopupMenuButton<String>(
+                    icon: const Icon(Icons.more_vert, size: 20),
+                    onSelected: (value) {
+                      if (value == 'rename') {
+                        _showRenameDialog(filename);
+                      } else if (value == 'delete') {
+                        _deletePdf(filename);
+                      }
+                    },
+                    itemBuilder: (BuildContext context) => [
+                      const PopupMenuItem(
+                        value: 'rename',
+                        child: Row(
+                          children: [
+                            Icon(Icons.edit, size: 18, color: Colors.blue),
+                            SizedBox(width: 8),
+                            Text("Rename"),
+                          ],
+                        ),
+                      ),
+                      const PopupMenuItem(
+                        value: 'delete',
+                        child: Row(
+                          children: [
+                            Icon(Icons.delete, size: 18, color: Colors.red),
+                            SizedBox(width: 8),
+                            Text("Delete", style: TextStyle(color: Colors.red)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  
                   onTap: () {
                     Navigator.pop(context);
                     _loadChatForFile(filename);
@@ -303,7 +431,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
             ],
           ),
         ),
-
+  
         body: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 800) {

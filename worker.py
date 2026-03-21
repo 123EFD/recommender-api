@@ -35,8 +35,15 @@ def process_pdf(filename):
     chunks_with_pages = []
     
     try:
+        #wait for saving file 
+        time.sleep(1)
         
-        #2. Extract text using fitz 
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM document_chunks WHERE document_name = %s", (filename,))
+            conn.commit()
+        
+        #2. Extract text using fitz pdf
         print(f"Processing PDF: {filename}...")
         with fitz.open(file_path) as doc:
             #3. READ PDF AND TRACK PAGES
@@ -50,23 +57,30 @@ def process_pdf(filename):
                     chunks_with_pages.append(f"[Page {page_num}]\n{chunk}")
             
         #4. Extract tables from Camelot
-        print(f"Extracting tables from PDF: {filename}...")
-        try:
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                tables = camelot.read_pdf(file_path, pages='all', flavor='lattice')
+        total_pages = doc.page_count
+        
+        if total_pages <= 50:
+            
+            print(f"Extracting tables from PDF: {filename}...")
+            try:
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    tables = camelot.read_pdf(file_path, pages='all', flavor='lattice')
+                        
+                for i, table in enumerate(tables):
+                    df = table.df
+                    if not df.empty:
+                        #Convert table into Markdown
+                        markdown_table = df.to_markdown(index=False)
+                        chunks_with_pages.append(f"[Page {table.page} Table {i+1}]\n{markdown_table}")
+                        
+                print(f"✅ Found and parsed {len(tables)} tables perfectly!")
                     
-            for i, table in enumerate(tables):
-                df = table.df
-                if not df.empty:
-                    #Convert table into Markdown
-                    markdown_table = df.to_markdown(index=False)
-                    chunks_with_pages.append(f"[Page {table.page} Table {i+1}]\n{markdown_table}")
-                    
-            print(f"✅ Found and parsed {len(tables)} tables perfectly!")
+            except Exception as table_err:
+                print(f"⚠️ Table extraction skipped or failed: {table_err}")
                 
-        except Exception as table_err:
-            print(f"⚠️ Table extraction skipped or failed: {table_err}")
+        else:
+            print(f"⚠️ Table extraction skipped for {filename} (too many pages: {total_pages})")
             
         if not chunks_with_pages:
             raise HTTPException(status_code=400, detail="No text or tables extracted from PDF")

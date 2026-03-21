@@ -87,6 +87,10 @@ class MessageRequest(BaseModel):
     role: str
     text: str
     
+class RenameRequest(BaseModel):
+    old_filename: str
+    new_filename: str
+    
 class ChatRequest(BaseModel):
     question: str
     filename: str
@@ -534,7 +538,7 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
                     ON CONFLICT (filename)
                     DO UPDATE SET status = 'pending',created_at = CURRENT_TIMESTAMP
                     """,
-                    (file.filename, )
+                    (file.filename, 'pending')
                 )
             conn.commit()        
             
@@ -594,8 +598,28 @@ def ask_pdf_question(request: ChatRequest):
         
         #4.hybrid retireval using pgvector(search similar meaning) and tsvector(search keywords)
         retrieved_text = ""
+        chat_history_payload = [] # conversatoinal memory fetch last n messages
+        
         with get_db_connection() as conn:
             with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT role, message_text 
+                    FROM chat_messages 
+                    WHERE filename = %s 
+                    ORDER BY id DESC 
+                    LIMIT 4
+                    """,
+                    (request.filename,)
+                )
+                past_messages = cur.fetchall()
+                
+                #reverse from oldest to newest 
+                for row in reversed(past_messages):
+                    db_role = row[0] 
+                    llm_role = "assistant" if db_role == "ai" else "user" 
+                    chat_history_payload.append({"role": llm_role, "content": row[1]})
+                
                 cur.execute(
                     """
                     SELECT chunk_text 
@@ -642,6 +666,10 @@ def ask_pdf_question(request: ChatRequest):
         Thinks as an educational AI assistant helping Malaysian student, especially those studying Computer Science related subjects.
         Your goal is to provide precise, comprehensive, and highly accurate answers to the student's question.
         
+        CRITICAL CONTEXT:
+        The student is currently asking questions about the document named: '{request.filename}'.
+        Whenever they ask "this book" or "this document", they are referring to '{request.filename}'.
+        
         RULES:
         1. Base your factual information STRICTLY on the Context Excerpts provided below.
         2. If the user asks for a recommendation, you ARE allowed to provide subjective, expert advice. 
@@ -649,7 +677,7 @@ def ask_pdf_question(request: ChatRequest):
             Give examples as well which related to current Malaysia well-known companies or startups to make it more relevant to the student's future career.
         3. Do not say "I do not possess personal opinions." You must confidently advise the student.
         4. Synthesize the information logically using bullet points.
-        5. If there's missing information or a specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end. specific course code from the user's prompt is completely missing from the excerpts, explicitly state which ones are missing at the end.
+        5. State explicitly if specific answers cannot be found in the context excerpts.
         
         Context Excerpts:
         {retrieved_text}
@@ -664,11 +692,13 @@ def ask_pdf_question(request: ChatRequest):
         #    model="gemini-2.5-flash",
         #    contents=final_prompt
         #)
+        
+        messages_payload = chat_history_payload + [{"role": "user", "content": final_prompt}]
 
         #GROQ        
         final_response = client.chat.completions.create(
             model="llama-3.3-70b-versatile", # We use the massive 70B model here for deep reasoning
-            messages=[{"role": "user", "content": final_prompt}],
+            messages=messages_payload,
             max_tokens=2048
         )
                     
@@ -746,18 +776,6 @@ async def process_pdf_from_url(request: dict):
             raise HTTPException(status_code=429, detail="Groq API rate limit exceeded. Please wait 30 seconds and try again later.")
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.get("/library")
-def get_pdf_library():
-    try:
-        with get_db_connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute("SELECT DISTINCT document_name FROM document_chunks")
-                rows = cur.fetchall()
-                
-                return [row[0] for row in rows]  # Return a list of document names
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    
 @app.get("/get-pdf/{filename}")
 def get_pdf(filename: str):
     file_path = f"uploads/{filename}"
@@ -809,5 +827,57 @@ def get_job_status(filename:str):
                 if row: 
                     return {"filename": filename, "status" : row[0]}
                 return {"status": "not found"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/library")
+def get_pdf_library():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT filename FROM pdf_jobs ORDER BY created_at DESC")
+                rows = cur.fetchall()
+                return[row[0] for row in rows]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.put("/rename-pdf")
+def rename_pdf(req: RenameRequest):
+    
+    try:
+        new_name = req.new_filename if req.new_filename.endswith('.pdf') else req.new_filename + '.pdf'
+        
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                # Update the filename in the pdf_jobs table
+                cur.execute("UPDATE document_chunks SET document_name = %s WHERE document_name = %s", (new_name, req.old_filename))
+                cur.execute("UPDATE chat_messages SET filename = %s WHERE filename = %s", (new_name, req.old_filename))
+                cur.execute("UPDATE pdf_jobs SET filename = %s WHERE filename = %s", (new_name, req.old_filename))
+            conn.commit()
+            
+        old_path = f"uploads/{req.old_filename}"
+        new_path = f"uploads/{new_name}"
+        if os.path.exists(old_path):
+            os.rename(old_path, new_path)
+            
+        return {"status": "success", "message": f"Renamed {req.old_filename} to {new_name}"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.delete("/delete-pdf/{filename}")
+def delete_pdf(filename: str):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM document_chunks WHERE document_name = %s", (filename,))
+                cur.execute("DELETE FROM chat_messages WHERE filename = %s", (filename,))
+                cur.execute("DELETE FROM pdf_jobs WHERE filename = %s", (filename,))
+            conn.commit()
+            
+        file_path = f"uploads/{filename}"
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            
+        return {"status": "success"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
