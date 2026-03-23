@@ -206,28 +206,38 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
     if (question.isEmpty || _pdfName.isEmpty) return;
 
     _saveMessage("user", question);
+
     setState(() {
       _chatController.clear();
       _isAiThinking = true;
+
+      _currentActiveChat.add({"role" : "ai", "text":""});
     });
 
     try {
-      final response = await http.post(
-        Uri.parse('$_baseUrl/chat'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({"question": question, "filename": _pdfName}),
-      );
+      //streaming connection to show "AI is thinking" state immediately
+      var request = http.Request('POST', Uri.parse('$_baseUrl/chat'));
+      request.headers['Content-Type'] = 'application/json';
+      request.body = jsonEncode({"question":question, "filename": _pdfName}); 
+
+      var response = await http.Client().send(request);
 
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        setState(() {
-          _saveMessage("ai", data['answer']);
-        });
+
+        setState(() => _isAiThinking = false);
+
+        await for (var chunk in response.stream.transform(utf8.decoder)) {
+          setState(() {
+            _currentActiveChat.last["text"] = _currentActiveChat.last['text']! + chunk;
+          });
+        }
       } else {
         throw Exception("Server Error");
       }
     } catch (e) {
-      _saveMessage("ai", "⚠️ AI Connection Error: $e");
+      setState(() {
+        _currentActiveChat.last['text'] = "⚠️ AI Connection Error: $e";
+      });
     } finally {
       setState(() => _isAiThinking = false);
     }
@@ -253,6 +263,29 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
     } catch (e) {
       debugPrint("Failed to delete PDF: $e");
     }
+  }
+
+  //clear chat history
+  Future<void> _clearChatHistory() async {
+      if (_pdfName.isEmpty) return;
+
+      setState(() {
+        _currentActiveChat = [];
+      });
+
+      try {
+        final response = await http.delete(
+          Uri.parse('$_baseUrl/clear-chat/${Uri.encodeComponent(_pdfName)}')
+        );
+
+        if (response.statusCode == 200) {
+          _saveMessage("ai", "✅ Chat history cleared.");
+        } else {
+          debugPrint("Failed to clear chat history: ${response.statusCode}");
+        }
+      } catch (e) {
+          debugPrint("Clear chat error: $e");
+      }
   }
 
   //RENAME ENDPOINT
@@ -349,6 +382,13 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
                 onPressed: () {
                   Navigator.pop(context); //close full screen
                 },
+              ),
+
+            if (_pdfName.isNotEmpty)
+              IconButton(
+                icon: const Icon(Icons.cleaning_services_rounded),
+                tooltip: 'New Chat',
+                onPressed: _clearChatHistory,
               ),
 
             IconButton(

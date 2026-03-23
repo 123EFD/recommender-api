@@ -1,5 +1,6 @@
 import os
-import tempfile
+
+from time import time
 
 gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
 if gs_bin_path not in os.environ.get('PATH', ''):
@@ -28,7 +29,7 @@ import concurrent.futures
 import camelot.io as camelot
 import pandas as pd
 import warnings
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -694,25 +695,41 @@ def ask_pdf_question(request: ChatRequest):
         #)
         
         messages_payload = chat_history_payload + [{"role": "user", "content": final_prompt}]
-
-        #GROQ        
-        final_response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile", # We use the massive 70B model here for deep reasoning
-            messages=messages_payload,
-            max_tokens=2048
-        )
-                    
-        return {
-            "question": request.question,
-            #"answer": final_response.text,
-            "answer": final_response.choices[0].message.content,
-            "sources_used": final_source_count
-        }
         
+        #streaming response
+        def generate_stream():
+            stream = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=messages_payload,
+                max_tokens=2048,
+                stream=True
+            )
+            
+            full_answer = ""
+            
+            for chunk in stream:
+                if chunk.choices[0].delta.content is not None:
+                    text_chunk = chunk.choices[0].delta.content
+                    full_answer += text_chunk
+                    yield text_chunk
+
+            try:
+                with get_db_connection() as conn:
+                    with conn.cursor() as db_cur:
+                        db_cur.execute(
+                            "INSERT INTO chat_messages (filename, role, message_text) VALUES (%s, %s, %s)",
+                            (request.filename, "ai", full_answer)
+                        )
+                    conn.commit()
+            except Exception as db_err:
+                print(f"Database Error: {db_err}")
+                
+        return StreamingResponse(generate_stream(), media_type="text/plain")
+    
     except Exception as e:
         print(f"Chat Error: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to generate answer: {str(e)}")
-    
+
 @app.post("/analyze-pdf-url")
 async def process_pdf_from_url(request: dict):
     url = request.get("url")
@@ -879,5 +896,18 @@ def delete_pdf(filename: str):
             os.remove(file_path)
             
         return {"status": "success"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+#create new chat 
+@app.delete("/clear-chat/{fiename}")
+def clear_chat_history(filename: str):
+    try:
+        with get_db_connection() as conn: 
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM chat_messages WHERE filename = %s", (filename,))
+                
+            conn.commit()
+        return {"status": "success", "message": f"Cleared chat history for {filename}"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
