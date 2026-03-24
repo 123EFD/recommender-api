@@ -89,7 +89,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     };
 
     try {
-      final url = Uri.parse('http://127.0.0.1:8000/predict');
+      final url = Uri.parse('https://kasshier-ai-study-suite.hf.space/predict');
 
       final response = await http.post(
         url,
