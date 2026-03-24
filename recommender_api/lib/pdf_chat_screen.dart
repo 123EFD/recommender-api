@@ -21,7 +21,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> {
   List<String> _pdfLibrary = [];
 
   // IP helper (Use 10.0.2.2 for Android Emulator, 127.0.0.1 for Web/iOS)
-  final String _baseUrl = "http://127.0.0.1:8000";
+  final String _baseUrl = "https://kasshier-ai-study-suite.hf.space";
 
   // --- SEGMENT 2: State Variables ---
   Uint8List? _pdfBytes;

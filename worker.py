@@ -9,9 +9,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import camelot.io as camelot
 
-gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
-if gs_bin_path not in os.environ.get('PATH', ''):
-    os.environ['PATH'] += os.pathsep + gs_bin_path
+#gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
+#if gs_bin_path not in os.environ.get('PATH', ''):
+#    os.environ['PATH'] += os.pathsep + gs_bin_path
     
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")

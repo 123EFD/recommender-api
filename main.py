@@ -2,9 +2,11 @@ import os
 
 from time import time
 
-gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
-if gs_bin_path not in os.environ.get('PATH', ''):
-    os.environ['PATH'] += os.pathsep + gs_bin_path
+#gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
+#if gs_bin_path not in os.environ.get('PATH', ''):
+#    os.environ['PATH'] += os.pathsep + gs_bin_path
+
+
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
