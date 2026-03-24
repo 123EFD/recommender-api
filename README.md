@@ -13,7 +13,7 @@ This project is built using a decoupled microservice architecture, allowing the 
 ### **Frontend (The Workspace)**
 * **Framework:** Flutter (compiled to Web)
 * **Renderer:** CanvasKit (for high-performance UI and PDF rendering)
-* **Key Libraries:** `syncfusion_flutter_pdfviewer`, `flutter_markdown`, `http`
+* **Key Libraries:** `syncfusion_flutter_pdfviewer`, `flutter_markdown`, `http`，`camelot`
 * **Deployment:** Vercel
 
 ### **Backend (The Engine)**
