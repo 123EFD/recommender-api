@@ -26,11 +26,10 @@ import httpx
 from groq import Groq
 import nest_asyncio
 #from llama_parse import LlamaParse <--will be used later, alter for Camelot
-from ddgs import DDGS
+from duckduckgo_search import DDGS
 import concurrent.futures
 import camelot.io as camelot
 import pandas as pd
-import warnings
 from fastapi.responses import FileResponse, StreamingResponse
 import hashlib
 
@@ -326,7 +325,7 @@ def fetch_and_store_web_resources(course_code: str) -> List[LearningResource]:
     discovered_resources = []
     
     try:
-        with DDGS() as ddgs:
+        with DDGS(timeout=10) as ddgs:
             article_query = f"{course_name} (tutorial OR basics OR guide) computer science"
             article_results = list(ddgs.text(article_query, max_results=1))
             
