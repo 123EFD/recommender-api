@@ -32,6 +32,7 @@ import camelot.io as camelot
 import pandas as pd
 import warnings
 from fastapi.responses import FileResponse, StreamingResponse
+import hashlib
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -381,6 +382,15 @@ def fetch_and_store_web_resources(course_code: str) -> List[LearningResource]:
         
     return discovered_resources
 
+#short-term memory blank (cache) 
+question_cache = {}
+
+#md5 (Message Digest 5) use to scramble the bytes, the result translates to 32-character string using hexadecimal 
+def generate_cache_key(pdf_name: str, question: str) -> str:
+    """Creates a unique ID for a specific question on a specific PDF."""
+    unique_string = f"{pdf_name}_{question.strip().lower()}"
+    return hashlib.md5(unique_string.encode()).hexdigest()
+
 # 5. Define the API Endpoint
 @app.post("/predict")
 def predict_student_needs(student: StudentProfile):
@@ -523,8 +533,14 @@ def predict_student_needs(student: StudentProfile):
     
 @app.post("/upload-pdf")
 async def process_and_store_pdf(file: UploadFile = File(...)):
-    file_path = f"uploads/{file.filename}"
-        
+    # 1. Strip away any fake paths from the browser
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Filename is required.")
+    
+    safe_filename = os.path.basename(file.filename)
+    
+    file_path = f"uploads/{safe_filename}"
+    
     try:
         with open(file_path, "wb") as f:
             f.write(await file.read())
@@ -558,6 +574,15 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
 def ask_pdf_question(request: ChatRequest):
     if not GROQ_API_KEY:
         raise HTTPException(status_code=500, detail="GROQ API Key is missing.")
+    
+    cache_key = generate_cache_key(request.filename, request.question)
+    
+    if cache_key in question_cache:
+        print("⚡ Cache hit! Returning instant answer.")
+        
+        def cached_stream():
+            yield question_cache[cache_key]
+        return StreamingResponse(cached_stream(), media_type="text/plain")
     
     try:
         # 1. CONSTRUCT PROMPT 
@@ -715,6 +740,9 @@ def ask_pdf_question(request: ChatRequest):
                     full_answer += text_chunk
                     yield text_chunk
 
+            #save the finished answer to RAM
+            question_cache[cache_key] = full_answer
+            
             try:
                 with get_db_connection() as conn:
                     with conn.cursor() as db_cur:
