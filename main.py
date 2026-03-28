@@ -940,3 +940,27 @@ def clear_chat_history(filename: str):
         return {"status": "success", "message": f"Cleared chat history for {filename}"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+#building analytic tracker for counting the total PDFs uploaded and messages sent to React dashboard 
+@app.get("/analytics/global")
+def get_global_analytics():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                #Count total PDFs uploaded
+                cur.execute("SELECT COUNT(*) FROM pdf_jobs")
+                result = cur.fetchone()
+                total_pdfs = result[0] if result else 0
+                
+                #count total AI chat messages
+                cur.execute("SELECT COUNT(*) FROM chat_messages WHERE role = 'ai'")
+                result = cur.fetchone()
+                total_ai_interactions = result[0] if result else 0
+                
+        return {
+            "total_pdfs": total_pdfs,
+            "total_ai_interactions": total_ai_interactions
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
