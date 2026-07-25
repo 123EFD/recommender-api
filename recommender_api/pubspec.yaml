@@ -41,6 +41,11 @@ dependencies:
   flutter_markdown: ^0.7.7+1
   shared_preferences: ^2.5.4
 
+  # UI Overhaul: shadcn-inspired design system
+  shadcn_flutter: ^0.0.53
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

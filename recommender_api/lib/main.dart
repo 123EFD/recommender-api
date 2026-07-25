@@ -3,34 +3,53 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'theme/app_theme.dart';
+import 'theme/glassmorphism.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static void toggleTheme(BuildContext context) {
+    final _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.toggleTheme();
+  }
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AI Recommender',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey[100], // Like Tailwind bg-gray-100
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: _themeMode,
       home: const SplitScreenTest(),
     );
   }
 }
 
-// A custom class to hold the controllers for our dynamic course rows
 class CourseEntry {
   TextEditingController nameController = TextEditingController();
   TextEditingController gradeController = TextEditingController();
 }
 
-// This is a StatefulWidget because the UI changes (adding/removing courses)
 class StudentProfileScreen extends StatefulWidget {
   const StudentProfileScreen({super.key});
 
@@ -39,35 +58,22 @@ class StudentProfileScreen extends StatefulWidget {
 }
 
 class _StudentProfileScreenState extends State<StudentProfileScreen> {
-  // 1. Setup State Variables (Equivalent to JS variables)
-  final TextEditingController _sscController = TextEditingController(
-    text: '3.5',
-  );
-  final TextEditingController _lastGpaController = TextEditingController(
-    text: '3.0',
-  );
+  final TextEditingController _sscController = TextEditingController(text: '3.5');
+  final TextEditingController _lastGpaController = TextEditingController(text: '3.0');
 
   int _selectedAttendance = 3;
   int _selectedPreparation = 2;
-
-  // This list tracks our dynamic rows
   List<CourseEntry> _courses = [CourseEntry()];
-
-  // Hidden AI Features
   final int income = 2, hometown = 1, department = 0, gaming = 2;
-
   bool _isLoading = false;
-  Map<String, dynamic>? _predictionResult; // Holds the AI's response
+  Map<String, dynamic>? _predictionResult;
 
-  // 2. Submit Logic
   Future<void> _analyzeNeeds() async {
-    //loading spinner
     setState(() {
       _isLoading = true;
-      _predictionResult = null; // Clear previous results
+      _predictionResult = null;
     });
 
-    // Package courses into a list of maps (JSON)
     List<Map<String, dynamic>> coursesArray = _courses.map((course) {
       return {
         "name": course.nameController.text.toUpperCase().trim(),
@@ -75,7 +81,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       };
     }).toList();
 
-    // Create the final JSON payload
     Map<String, dynamic> studentData = {
       "ssc": double.tryParse(_sscController.text) ?? 0.0,
       "last": double.tryParse(_lastGpaController.text) ?? 0.0,
@@ -90,7 +95,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
 
     try {
       final url = Uri.parse('https://kasshier-ai-study-suite.hf.space/predict');
-
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -99,8 +103,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-
-        //update state
         setState(() {
           _predictionResult = data;
         });
@@ -116,31 +118,41 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     }
   }
 
-  //URL launcher logic
   Future<void> _launchURL(String urlString) async {
     final Uri url = Uri.parse(urlString);
-
     if (await canLaunchUrl(url)) {
-      await launchUrl(
-        url,
-        mode: LaunchMode.externalApplication,
-      ); //open in Chrome/Safari
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
       debugPrint('Could not launch $urlString');
     }
   }
 
-  // 3. UI Layout
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Academic Profile'),
+        flexibleSpace: const GlassContainer(
+          borderRadius: 0,
+          child: SizedBox.expand(),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          'Student Academic Profile',
+          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+        ),
         actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+              MyApp.toggleTheme(context);
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.chat_bubble_outline),
             onPressed: () {
-              //href link
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -151,236 +163,240 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
           ),
         ],
       ),
-
-      // SingleChildScrollView prevents keyboard overflow errors!
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0), // Tailwind p-6
-        child: Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // --- Row for SSC and GPA ---
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField('SSC Score (0-4)', _sscController),
-                  ),
-                  const SizedBox(width: 16), // Gap between inputs
-                  Expanded(
-                    child: _buildTextField(
-                      'Last Semester GPA',
-                      _lastGpaController,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // --- Dropdowns ---
-              _buildDropdown(
-                label: 'Class Attendance',
-                value: _selectedAttendance,
-                items: const {
-                  1: 'Below 40%',
-                  2: '40%-59%',
-                  3: '60%-79%',
-                  4: '80%-100%',
-                },
-                onChanged: (val) => setState(() => _selectedAttendance = val!),
-              ),
-              const SizedBox(height: 16),
-
-              _buildDropdown(
-                label: 'Daily Study Preparation',
-                value: _selectedPreparation,
-                items: const {
-                  1: '0-1 hour',
-                  2: '2-3 hours',
-                  3: 'More than 3 hours',
-                },
-                onChanged: (val) => setState(() => _selectedPreparation = val!),
-              ),
-
-              const Divider(height: 40, thickness: 1),
-
-              // --- Dynamic Courses Section ---
-              const Text(
-                'Current Semester Courses',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-
-              // Map over our list of classes to draw the rows
-              ..._courses.asMap().entries.map((entry) {
-                int index = entry.key;
-                CourseEntry course = entry.value;
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: course.nameController,
-                          decoration: const InputDecoration(
-                            hintText: 'Code (e.g. WIA1006)',
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 0,
-                            ),
-                          ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDark 
+              ? [const Color(0xFF1A1A2E), const Color(0xFF16213E)]
+              : [Colors.grey[100]!, Colors.blue[50]!],
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GlassContainer(
+                  borderRadius: 16,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(child: _buildTextField('SSC Score (0-4)', _sscController)),
+                            const SizedBox(width: 16),
+                            Expanded(child: _buildTextField('Last Semester GPA', _lastGpaController)),
+                          ],
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      SizedBox(
-                        width: 80, // Force a small width for the grade box
-                        child: TextFormField(
-                          controller: course.gradeController,
-                          keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true,
-                          ), // Pops up number pad!
-                          decoration: const InputDecoration(
-                            hintText: 'Grade',
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.close, color: Colors.red),
-                        onPressed: () {
-                          // setState triggers a UI refresh to remove the row!
-                          setState(() {
-                            _courses.removeAt(index);
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              }),
-
-              TextButton(
-                onPressed: () {
-                  // setState triggers a UI refresh to add a new row!
-                  setState(() {
-                    _courses.add(CourseEntry());
-                  });
-                },
-                child: const Text('+ Add Another Course'),
-              ),
-
-              const SizedBox(height: 24),
-
-              //show loading spinner/result box
-              if (_isLoading)
-                const Center(child: CircularProgressIndicator())
-              else if (_predictionResult != null)
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: _predictionResult!['needs_resources']
-                        ? Colors.red[50]
-                        : Colors.green[50],
-                    border: Border.all(
-                      color: _predictionResult!['needs_resources']
-                          ? Colors.red[300]!
-                          : Colors.green[300]!,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        _predictionResult!['message'],
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: _predictionResult!['needs_resources']
-                              ? Colors.red[800]
-                              : Colors.green[800],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Risk Score: ${_predictionResult!['confidence_score']}%",
-                        style: const TextStyle(fontSize: 14),
-                      ),
-
-                      //Dynamic injection of resource
-                      if (_predictionResult!['resource_links'] != null &&
-                          (_predictionResult!['resource_links'] as List)
-                              .isNotEmpty) ...[
                         const SizedBox(height: 16),
-                        const Text(
-                          'Recommended Resources:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        _buildDropdown(
+                          label: 'Class Attendance',
+                          value: _selectedAttendance,
+                          items: const {1: 'Below 40%', 2: '40%-59%', 3: '60%-79%', 4: '80%-100%'},
+                          onChanged: (val) => setState(() => _selectedAttendance = val!),
                         ),
-
-                        //map over the array of JSON objects, convert into cards using spread operator
-                        ...(_predictionResult!['resource_links'] as List).map((
-                          res,
-                        ) {
-                          return _buildResourceCard(
-                            res as Map<String, dynamic>,
+                        const SizedBox(height: 16),
+                        _buildDropdown(
+                          label: 'Daily Study Preparation',
+                          value: _selectedPreparation,
+                          items: const {1: '0-1 hour', 2: '2-3 hours', 3: 'More than 3 hours'},
+                          onChanged: (val) => setState(() => _selectedPreparation = val!),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                
+                GlassContainer(
+                  borderRadius: 16,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Current Semester Courses',
+                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(height: 16),
+                        ..._courses.asMap().entries.map((entry) {
+                          int index = entry.key;
+                          CourseEntry course = entry.value;
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: course.nameController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Code (e.g. WIA1006)',
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                                      filled: true,
+                                      fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                SizedBox(
+                                  width: 90,
+                                  child: TextFormField(
+                                    controller: course.gradeController,
+                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                    decoration: InputDecoration(
+                                      hintText: 'Grade',
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                                      filled: true,
+                                      fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.close, color: Colors.redAccent),
+                                  onPressed: () {
+                                    setState(() { _courses.removeAt(index); });
+                                  },
+                                ),
+                              ],
+                            ),
                           );
                         }),
+                        TextButton.icon(
+                          onPressed: () {
+                            setState(() { _courses.add(CourseEntry()); });
+                          },
+                          icon: const Icon(Icons.add),
+                          label: const Text('Add Another Course'),
+                        ),
                       ],
-                    ],
+                    ),
                   ),
                 ),
-
-              // --- Submit Button ---
-              SizedBox(
-                width: double.infinity, // Full width button
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[600],
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: _analyzeNeeds,
-                  child: const Text(
-                    'Analyze Needs with AI',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                const SizedBox(height: 24),
+                
+                if (_isLoading)
+                  const Center(child: CircularProgressIndicator()).animate().fadeIn()
+                else if (_predictionResult != null)
+                  GlassContainer(
+                    borderRadius: 16,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: _predictionResult!['needs_resources'] 
+                          ? [Colors.redAccent.withValues(alpha: isDark ? 0.2 : 0.1), Colors.redAccent.withValues(alpha: isDark ? 0.1 : 0.05)]
+                          : [Colors.greenAccent.withValues(alpha: isDark ? 0.2 : 0.1), Colors.greenAccent.withValues(alpha: isDark ? 0.1 : 0.05)],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Text(
+                            _predictionResult!['message'],
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: _predictionResult!['needs_resources'] 
+                                  ? (isDark ? Colors.red[300] : Colors.red[800]) 
+                                  : (isDark ? Colors.green[300] : Colors.green[800]),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            "Risk Score: ${_predictionResult!['confidence_score']}%",
+                            style: GoogleFonts.inter(fontSize: 14),
+                          ),
+                          if (_predictionResult!['resource_links'] != null &&
+                              (_predictionResult!['resource_links'] as List).isNotEmpty) ...[
+                            const SizedBox(height: 20),
+                            Text(
+                              'Recommended Resources:',
+                              style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            const SizedBox(height: 12),
+                            ...(_predictionResult!['resource_links'] as List).map((res) {
+                              return _buildResourceCard(res as Map<String, dynamic>);
+                            }),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0, curve: Curves.easeOut),
+                
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  height: 54,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.blue[600]!, Colors.blue[400]!],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withValues(alpha: 0.3),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: _analyzeNeeds,
+                      child: Text(
+                        'Analyze Needs with AI',
+                        style: GoogleFonts.inter(
+                          fontSize: 16, 
+                          fontWeight: FontWeight.bold, 
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  // Helper Widget for Text Fields
   Widget _buildTextField(String label, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 4),
+        Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w500)),
+        const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            filled: true,
+            fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
           ),
         ),
       ],
     );
   }
 
-  // Helper Widget for Dropdowns
   Widget _buildDropdown({
     required String label,
     required int value,
@@ -390,22 +406,18 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 4),
+        Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w500)),
+        const SizedBox(height: 8),
         DropdownButtonFormField<int>(
-          value: value,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          initialValue: value,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            filled: true,
+            fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
           ),
           items: items.entries.map((entry) {
-            return DropdownMenuItem<int>(
-              value: entry.key,
-              child: Text(entry.value),
-            );
+            return DropdownMenuItem<int>(value: entry.key, child: Text(entry.value));
           }).toList(),
           onChanged: onChanged,
         ),
@@ -416,62 +428,67 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
   Widget _buildResourceCard(Map<String, dynamic> resource) {
     IconData icon;
     Color iconColor;
-
     if (resource['resource_type'] == 'video') {
-      //styling based on type
       icon = Icons.play_circle_fill;
-      iconColor = Colors.red;
+      iconColor = Colors.redAccent;
     } else if (resource['resource_type'] == 'book') {
       icon = Icons.menu_book;
-      iconColor = Colors.blue;
+      iconColor = Colors.blueAccent;
     } else {
       icon = Icons.article;
-      iconColor = Colors.cyanAccent;
+      iconColor = Colors.cyan;
     }
-
-    //list items using ListTile widget
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(top: 8.0),
-      child: ListTile(
-        leading: Icon(icon, color: iconColor, size: 32),
-        title: Text(
-          resource['title'],
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "${resource['course_code']} - ${resource['resource_type'].toUpperCase()}",
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.bold,
+    
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12.0),
+      child: GlassContainer(
+        borderRadius: 12,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            hoverColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+            onTap: () => _launchURL(resource['url']),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Icon(icon, color: iconColor, size: 36),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          resource['title'],
+                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          "${resource['course_code']} - ${resource['resource_type'].toUpperCase()}",
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            color: Theme.of(context).textTheme.bodySmall?.color,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        if (resource['explanation'] != null && resource['explanation'].toString().isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Text(
+                              resource['explanation'],
+                              style: GoogleFonts.inter(fontStyle: FontStyle.italic, fontSize: 12),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                ],
               ),
             ),
-
-            //resource explanation
-            if (resource['explanation'] != null &&
-                resource['explanation'].toString().isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 4.0),
-                child: Text(
-                  resource['explanation'],
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-          ],
+          ),
         ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          size: 16,
-        ), //arrow on the right
-        //clickable card
-        onTap: () => _launchURL(resource['url']),
       ),
     );
   }
@@ -482,19 +499,39 @@ class SplitScreenTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(flex: 1, child: const StudentProfileScreen()),
-
-          const VerticalDivider(
-            width: 2,
-            thickness: 2,
-            color: Colors.purpleAccent,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDark 
+              ? [const Color(0xFF1A1A2E), const Color(0xFF16213E)]
+              : [Colors.grey[100]!, Colors.blue[50]!],
           ),
-
-          Expanded(flex: 1, child: const PdfChatScreen()),
-        ],
+        ),
+        child: Row(
+          children: [
+            const Expanded(flex: 1, child: StudentProfileScreen()),
+            Container(
+              width: 1,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.purpleAccent.withValues(alpha: 0.1),
+                    Colors.purpleAccent,
+                    Colors.purpleAccent.withValues(alpha: 0.1),
+                  ],
+                ),
+              ),
+            ),
+            const Expanded(flex: 1, child: PdfChatScreen()),
+          ],
+        ),
       ),
     );
   }
