@@ -410,6 +410,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
           ],
         ),
         body: Stack(
+          clipBehavior: Clip.hardEdge,
           children: [
             // Main Content
             SafeArea(
@@ -448,26 +449,31 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
             ),
 
             // Sidebar Overlay
-            if (_isSidebarOpen)
-              AnimatedBuilder(
-                animation: _sidebarAnimation,
-                builder: (context, child) {
-                  return GestureDetector(
-                    onTap: _toggleSidebar,
-                    child: Opacity(
-                      opacity: _sidebarAnimation.value * 0.5,
-                      child: Container(
-                        color: Colors.black,
-                      ),
+            AnimatedBuilder(
+              animation: _sidebarAnimation,
+              builder: (context, child) {
+                if (_sidebarAnimation.value == 0) {
+                  return const SizedBox.shrink();
+                }
+                return GestureDetector(
+                  onTap: _toggleSidebar,
+                  child: Opacity(
+                    opacity: _sidebarAnimation.value * 0.5,
+                    child: Container(
+                      color: Colors.black,
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
+            ),
 
             // Animated Sidebar
             AnimatedBuilder(
               animation: _sidebarAnimation,
               builder: (context, child) {
+                if (_sidebarAnimation.value == 0) {
+                  return const SizedBox.shrink();
+                }
                 return FractionalTranslation(
                   translation: Offset(_sidebarAnimation.value - 1.0, 0),
                   child: child,
