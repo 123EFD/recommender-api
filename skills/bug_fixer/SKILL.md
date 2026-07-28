@@ -1,5 +1,5 @@
 ---
-name: bug_fixer
+name: bug-fixer
 description: Assistance with identifying and fixing bugs in code, ensuring optimal performance and user experience.
 ---
 

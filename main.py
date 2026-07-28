@@ -6,8 +6,6 @@ from time import time
 #if gs_bin_path not in os.environ.get('PATH', ''):
 #    os.environ['PATH'] += os.pathsep + gs_bin_path
 
-
-
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
 import fitz
@@ -32,6 +30,7 @@ import camelot.io as camelot
 import pandas as pd
 from fastapi.responses import FileResponse, StreamingResponse
 import hashlib
+import json
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -85,6 +84,33 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class MindMapRequest(BaseModel):
+    filename: str
+    source_type: str  # "chat_history" or "pdf_range"
+    map_type: str = "hierarchical"  # "hierarchical", "flowchart", "bubble", "tree", "concept"
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    chapter_query: Optional[str] = None
+    
+#Structure Outputs Model definition for Groq parsing validation
+class MindMapNode(BaseModel):
+    id :str
+    label: str
+    type: str   #root, leaf node, branch
+    
+class MindMapEdge(BaseModel):
+    id_from: str                      
+    id_to: str                        
+    label: Optional[str] = None
+    
+class MindMapResponse(BaseModel): 
+    title: str
+    map_type: str
+    nodes: List[MindMapNode]
+    edges: List[MindMapEdge]
+    mermaid_code: str   #pre-compile syntax ready for client-side rendering
+    
 class MessageRequest(BaseModel):
     filename: str
     role: str
@@ -318,6 +344,69 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
             print(f"YouTube API Error: {e}")
     
     return None
+
+#Async daya gathering helper methods
+def gather_chat_source(filename: str) -> str:
+    """Queries the operational database to pull the conversational history context."""
+    chat_text = ""
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            # Pull history chronologically to preserve logic flow
+            cur.execute(
+                "SELECT role, message_text FROM chat_messages WHERE filename = %s ORDER BY id ASC",
+                (filename,)
+            )
+            rows = cur.fetchall()
+            for row in rows:
+                chat_text += f"{row[0].upper()}: {row[1]}\n\n"
+    return chat_text
+
+def gather_pdf_range_source(filename: str, start: Optional[int], end: Optional[int]) -> str:
+    """Uses PyMuPDF (fitz) to dynamically target and rip text from specific page indices."""
+    extracted_text = ""
+    file_path = f"uploads/{filename}"
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Source asset not found: {filename}")
+        
+    doc = fitz.open(file_path)
+    total_pages = len(doc)
+    
+    # Fallback assignment logic to capture boundaries safely
+    p_start = max(1, start if start else 1)
+    p_end = min(total_pages, end if end else total_pages)
+    
+    # Remember: PyMuPDF loops match 0-indexed page registers
+    for page_num in range(p_start - 1, p_end):
+        page = doc.load_page(page_num)
+        
+        #wrap inside str()
+        raw_text = str(page.get_text())
+        extracted_text += f"--- Page {page_num + 1} ---\n{raw_text}\n"
+        
+    return extracted_text
+
+def gather_chapter_chunks_source(filename: str, chapter_query: str) -> str:
+    """Leverages the pgvector hybrid index to scrape text chunks belonging to a chapter topic."""
+    context_text = ""
+    # Transform text target into query vector array strings
+    query_vector = str(embedder.encode(chapter_query).tolist())
+    
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT chunk_text FROM document_chunks
+                WHERE document_name = %s
+                ORDER BY ((1.0 - (embedding <=> %s::vector)) * 0.7)
+                LIMIT 15
+                """,
+                (filename, query_vector)
+            )
+            rows = cur.fetchall()
+            for row in rows:
+                context_text += row[0] + "\n"
+    return context_text
 
 def fetch_and_store_web_resources(course_code: str) -> List[LearningResource]:
     """Fetches an article and an PDF textbook using DuckDuckGo, and saves them to Neon."""
@@ -964,3 +1053,77 @@ def get_global_analytics():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
+#Core mind map contorller api endpoint route
+@app.post("/generate-mindmap")
+def generate_mindmap(request: MindMapRequest):
+    if not GROQ_API_KEY:
+        raise HTTPException(status_code=500, detail="Groq system authorization handle is missing.")
+    
+    # Context Gathering Switching system
+    try:
+        if request.source_type == "chat_history":
+            raw_context = gather_chat_source(request.filename)
+        elif request.source_type == "pdf_range" and request.chapter_query:
+            raw_context = gather_chapter_chunks_source(request.filename, request.chapter_query)
+        else:
+            raw_context = gather_pdf_range_source(request.filename, request.page_start, request.page_end)
+        
+        if not raw_context.strip():
+            raise HTTPException(status_code=400, detail="Target text repository contained zero readable assets.")
+    
+    except Exception as gather_err:
+        raise HTTPException(status_code=500, detail=f"Failed to gather context: {str(gather_err)}")
+    
+    #Layout Engine Instruction Mapping
+    layout_rules = {
+        "hierarchical": "Create a centralized radial branching network. Root node represents the core subject. Branches represent primary headings. Leaves hold minor sub-concepts.",
+        "flowchart": "Arrange data step-by-step linearly. Use 'process' nodes for standard tasks and 'decision' nodes for logical branches or conditionals with branching links.",
+        "bubble": "Design a main central hub node connected to multiple surrounding attribute/descriptive nodes. Use short, crisp summaries inside labels.",
+        "tree": "Establish a top-down nesting grid directory. Root must lead directly to primary containers, which descend strictly vertically down into detailed items.",
+        "concept": "Construct a web-like network where nodes are joined by cross-links. EVERY single edge object MUST include a meaningful 'label' relationship (e.g. 'requires', 'causes', 'defines')."
+    }
+    
+    chosen_rule = layout_rules.get(request.map_type, layout_rules["hierarchical"])
+    
+    #Construct system prompts targeting JSON compilation schemas
+    system_prompt = f"""
+    You are an expert educational graph database engineer and prompt optimizer for mapping visual layouts.
+    Your objective is to read the provided text context and break it down into a highly detailed visual chart network structure.
+    
+    SPECIFIC MAP ALGORITHM LAYOUT INSTRUCTION:
+    {chosen_rule}
+    
+    CRITICAL OUTPUT VALIDATION SCHEMA RULES:
+    1. Your output must strictly match a valid JSON object schema array. No conversational text filler, no trailing explanations.
+    2. Under the 'nodes' array key: assign distinct incremental numeric strings to 'id' (e.g., "1", "2"). 'type' values must be lowercase parameters matching your graph layout choice.
+    3. Under the 'edges' array key: connect source 'id_from' to target 'id_to'. For 'concept' maps, provide relationship metadata under the 'label' key.
+    4. Under the 'mermaid_code' string key: compile valid, pre-rendered syntax using standard 'graph TD' (top-down) layouts (e.g. `graph TD\n  1[Root] --> 2[Branch]`). Avoid special characters inside the bracket text arrays to ensure downstream renderers do not crash.
+    """
+    
+    user_prompt = f"Context Text:\n{raw_context[:12000]}\n\nCompile a complete visual structure mapping matching your instructions."
+    
+    #Fire generation exe. to Groq LPU
+    try:
+        # Enforce structural integrity out of open source networks via JSON mode configurations
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            response_format={"type": "json_object"}, # Forces LLM engine to map responses into strict parsing syntax
+            max_tokens=3000,
+            temperature=0.2 # Lower temperatures minimize structural variations and format breaking
+        )
+        
+        # Fast extraction parsing out raw strings back to JSON objects
+        json_output_string = response.choices[0].message.content
+        
+        if not json_output_string:
+            raise HTTPException(status_code=500, detail="LLM returned an empty response.")
+        
+        #convert raw string into native dictionary so FastAPI auto. serializes dict. into JSON for Flutter
+        return json.loads(json_output_string) 
+        
+    except Exception as groq_err:
+        raise HTTPException(status_code=500, detail=f"LLM Visual Compiler engine failure: {str(groq_err)}")
