@@ -19,7 +19,7 @@ class MindMapNode {
   factory MindMapNode.fromJson(Map<String, dynamic> json) {
     return MindMapNode(
       id: json['id']?.toString() ?? '',
-      label: json['label']?.toString() ?? '',
+      label: json['label']?.toString() ?? json['name']?.toString() ?? json['text']?.toString() ?? json['id']?.toString() ?? 'Node',
       type: json['type']?.toString() ?? 'leaf',
       position: Offset.zero, // Calculated later by Layout Engine
       size: const Size(150, 60),

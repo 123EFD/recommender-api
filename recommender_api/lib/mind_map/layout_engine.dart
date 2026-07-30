@@ -1,12 +1,20 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:flutter/widgets.dart';
 import '../models/mind_map_data.dart';
 
 // Assign (x,y) to each node
 class LayoutEngine {
   static void applyLayout(MindMapResponseData mindMapData) {
-    switch (mindMapData.mapType) {
+    // 1. Measure text and assign dynamic bounds to all nodes
+    for (var node in mindMapData.nodes) {
+      if (mindMapData.mapType != 'tree') {
+        node.size = _measureNodeText(node);
+      }
+    }
 
+    // 2. Apply layout algorithms
+    switch (mindMapData.mapType) {
       case 'flowchart':
         _layoutFlowchart(mindMapData);
         break;
@@ -22,6 +30,45 @@ class LayoutEngine {
       default:
         _layoutHierarchical(mindMapData);
     }
+  }
+
+  static Size _measureNodeText(MindMapNode node) {
+    double fontSize;
+    FontWeight fontWeight;
+
+    switch (node.type) {
+      case 'root':
+        fontSize = 16.0;
+        fontWeight = FontWeight.bold;
+        break;
+      case 'branch':
+        fontSize = 13.0;
+        fontWeight = FontWeight.w600;
+        break;
+      default:
+        fontSize = 12.0;
+        fontWeight = FontWeight.w500;
+    }
+
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: node.label,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          fontFamily: 'Inter', // Assuming GoogleFonts.inter
+          height: 1.2,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+      maxLines: 3,
+    )..layout(minWidth: 0, maxWidth: 160); // Allow text to wrap up to 160 width
+
+    // Add padding (horizontal 12*2, vertical 8*2) + border space
+    return Size(
+      max(100.0, textPainter.size.width + 32.0),
+      max(50.0, textPainter.size.height + 24.0),
+    );
   }
   
   // Helper methods
@@ -185,49 +232,73 @@ class LayoutEngine {
     _normalizePositions(mindMapData.nodes, 100, 80);
   }
 
-  // Bubble Map 
+  // Bubble Map (Bilateral Radial Arcs)
   static void _layoutBubble(MindMapResponseData data) {
     if (data.nodes.isEmpty) return;
     final adjacency = _buildAdjacencyMap(data.edges);
     final nodeMap = _buildNodeMap(data.nodes);
     final root = _findRoot(data.nodes, data.edges);
-    const double innerRadius = 280.0;
+    
     final Offset center = const Offset(900, 900);
-
-    root.size = const Size(200, 80);
+    root.size = Size(root.size.width + 40, root.size.height + 20); // Make root visually larger
     root.position = Offset(center.dx - root.size.width / 2, center.dy - root.size.height / 2);
 
-    // Position children in a circular layout
     final firstLevel = adjacency[root.id] ?? [];
     if (firstLevel.isEmpty) return;
 
-    final double angleStep = (2 * pi) / firstLevel.length;
+    // Split first level into left and right hemispheres
+    final leftNodes = <String>[];
+    final rightNodes = <String>[];
     for (int i = 0; i < firstLevel.length; i++) {
-      double angle = (i * angleStep) - (pi / 2); // Start from top
-      double x = center.dx + (innerRadius * cos(angle)) - 80;
-      double y = center.dy + (innerRadius * sin(angle)) - 30;
-
-      final child =  nodeMap[firstLevel[i]]!;
-      child.size = const Size(170,60);
-      child.position = Offset(x, y);
-
-      //position second-level children around each first-level child
-      final secondLevel = adjacency[child.id] ?? [];
-      if (secondLevel.isNotEmpty) continue;
-      Offset childCenter = Offset(x + child.size.width / 2, y + child.size.height / 2);
-      double subAngleStep = (2 * pi) / secondLevel.length;
-      //bias the sub-orbit to the direction away from the root
-      double baseAngle = angle;
-      for (int j = 0 ; j < secondLevel.length; j++) {
-        double subAngle = baseAngle + (j * subAngleStep) - ((secondLevel.length - 1) * subAngleStep / 2);
-        double sx = childCenter.dx + (160 * cos(subAngle)) - 60;
-        double sy = childCenter.dy + (160 * sin(subAngle)) - 25;
-
-        final subChild = nodeMap[secondLevel[j]]!;
-        subChild.size  = const Size(140, 50);
-        subChild.position = Offset(sx, sy);
+      if (i % 2 == 0) {
+        rightNodes.add(firstLevel[i]);
+      } else {
+        leftNodes.add(firstLevel[i]);
       }
     }
+
+    void layoutHemisphere(List<String> nodes, bool isRight) {
+      if (nodes.isEmpty) return;
+      // Spread nodes over a 120-degree arc on the respective side
+      final double totalArc = 120.0 * (pi / 180.0);
+      final double startAngle = isRight ? -totalArc / 2 : pi - (totalArc / 2);
+      final double angleStep = nodes.length > 1 ? totalArc / (nodes.length - 1) : 0;
+      final double radius = 280.0;
+
+      for (int i = 0; i < nodes.length; i++) {
+        double angle = startAngle + (i * angleStep);
+        double x = center.dx + (radius * cos(angle));
+        double y = center.dy + (radius * sin(angle));
+
+        final child = nodeMap[nodes[i]]!;
+        child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
+
+        // Position sub-children
+        final secondLevel = adjacency[child.id] ?? [];
+        if (secondLevel.isEmpty) continue;
+        
+        Offset childCenter = Offset(x, y);
+        // Sub-orbit angle spread
+        double subArc = 90.0 * (pi / 180.0);
+        // Base sub-orbit outward from center
+        double baseAngle = atan2(y - center.dy, x - center.dx);
+        double subStartAngle = baseAngle - (subArc / 2);
+        double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
+        double subRadius = 180.0;
+
+        for (int j = 0; j < secondLevel.length; j++) {
+          double subAngle = subStartAngle + (j * subStep);
+          double sx = childCenter.dx + (subRadius * cos(subAngle));
+          double sy = childCenter.dy + (subRadius * sin(subAngle));
+
+          final subChild = nodeMap[secondLevel[j]]!;
+          subChild.position = Offset(sx - subChild.size.width / 2, sy - subChild.size.height / 2);
+        }
+      }
+    }
+
+    layoutHemisphere(leftNodes, false);
+    layoutHemisphere(rightNodes, true);
 
     _normalizePositions(data.nodes, 100, 100);
   }
