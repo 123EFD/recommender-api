@@ -72,6 +72,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
   Future<void> _loadChatForFile(String filename) async {
     setState(() {
       _pdfName = filename;
+      _pdfBytes = null; // Clear previous bytes so it fetches from network
       _currentActiveChat = [];
     });
 
@@ -206,7 +207,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
           if (_currentActiveChat.isEmpty) {
             _saveMessage(
               "ai",
-              "✅ Successfully loaded ${data['chunks_processed']} chunks. What would you like to know?",
+              "✅ Successfully loaded the document. What would you like to know?",
             );
           }
         }
@@ -378,7 +379,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     try {
       //biuld request and send the http.post()
       final response = await http.post(
-        Uri.parse('$_baseUrl/generate-mind-map'),
+        Uri.parse('$_baseUrl/generate-mindmap'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           "filename": _pdfName,
@@ -848,8 +849,24 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
       child: _isProcessingPdf
           ? const Center(child: CircularProgressIndicator())
           : _pdfName.isNotEmpty
-          ? SfPdfViewer.network(
-            '$_baseUrl/get-pdf/${Uri.encodeComponent(_pdfName)}',
+          ? (_pdfBytes != null 
+              ? SfPdfViewer.memory(
+                  _pdfBytes!,
+                  onDocumentLoadFailed: (details) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to load local PDF: ${details.description}')));
+                  },
+                )
+              : SfPdfViewer.network(
+                  '$_baseUrl/get-pdf/${Uri.encodeComponent(_pdfName)}',
+                  onDocumentLoadFailed: (details) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('This PDF is no longer available on the server (it may have been deleted due to server restart).'),
+                        duration: Duration(seconds: 5),
+                      )
+                    );
+                  },
+                )
             )
           : Center(
               child: Column(
