@@ -5,11 +5,14 @@ import 'models/mind_map_data.dart';
 import 'mind_map/layout_engine.dart';
 import 'mind_map/edge_painter.dart';
 import 'theme/glassmorphism.dart';
+import 'export/png_exporter.dart' as png_exporter;
+import 'export/clipboard_helper.dart' as clipboard_helper;
 
 class MindMapScreen extends StatefulWidget {
   final Map<String, dynamic> data; // Raw JSON from backend
 
   const MindMapScreen({super.key, required this.data});
+
 
   @override
   State<MindMapScreen> createState() => _MindMapScreenState();
@@ -18,6 +21,8 @@ class MindMapScreen extends StatefulWidget {
 class _MindMapScreenState extends State<MindMapScreen> {
   late MindMapResponseData _mapData;
   final TransformationController _transformController = TransformationController();
+  String? _mermaidCode;
+  final GlobalKey _repaintKey = GlobalKey(); //handle the rendered pixels
 
   //color palette for tree map blocks 
   static const List<Color> _treeMapColors = [
@@ -36,6 +41,7 @@ class _MindMapScreenState extends State<MindMapScreen> {
     super.initState();
     _mapData = MindMapResponseData.fromJson(widget.data);
     LayoutEngine.applyLayout(_mapData);
+    _mermaidCode = _mapData.mermaidCode;
   }
 
   // the total canvas size needed to contain all nodes
@@ -63,6 +69,32 @@ class _MindMapScreenState extends State<MindMapScreen> {
       appBar: AppBar(
         title: Text(_mapData.title, style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
         actions: [
+          // --- Export as PNG Button ---
+          IconButton(
+            icon: const Icon(Icons.image_outlined),
+            tooltip: 'Export as PNG',
+            onPressed: () {
+              png_exporter.exportAsPng(
+                repaintKey: _repaintKey,
+                title: _mapData.title,
+                context: context,
+              );
+            },
+          ),
+
+          // --- Copy Mermaid Syntax Button ---
+          IconButton(
+            icon: const Icon(Icons.code),
+            tooltip: 'Copy Mermaid Code',
+            onPressed: () {
+              clipboard_helper.copyMermaidCode(
+                mermaidCode: _mermaidCode,
+                context: context,
+              );
+            },
+          ),
+
+          // --- Reset View Button
           IconButton(
             icon: const Icon(Icons.center_focus_strong),
             tooltip: 'Reset View',
@@ -93,47 +125,51 @@ class _MindMapScreenState extends State<MindMapScreen> {
           maxScale: 3.0,
           constrained: false, // Allows canvas to be larger than screen
 
-          child: SizedBox(
-            width: canvasSize.width,
-            height: canvasSize.height,
-            child: Stack(
-              children: [
-                // ============================
-                // LAYER 1: Edge lines (bottom)
-                // ============================
-                Positioned.fill(
-                  child: CustomPaint(
-                    painter: EdgePainter(
-                      nodes: _mapData.nodes,
-                      edges: _mapData.edges,
-                      mapType: _mapData.mapType,
-                      isDark: isDark,
+          child: RepaintBoundary(
+            key: _repaintKey, // For exporting as PNG
+
+            child: SizedBox(
+              width: canvasSize.width,
+              height: canvasSize.height,
+              child: Stack(
+                children: [
+                  // ============================
+                  // LAYER 1: Edge lines (bottom)
+                  // ============================
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: EdgePainter(
+                        nodes: _mapData.nodes,
+                        edges: _mapData.edges,
+                        mapType: _mapData.mapType,
+                        isDark: isDark,
+                      ),
                     ),
                   ),
-                ),
 
-                // ============================
-                // LAYER 2: Node cards (top)
-                // ============================
-                ..._mapData.nodes.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final node = entry.value;
+                  // ============================
+                  // LAYER 2: Node cards (top)
+                  // ============================
+                  ..._mapData.nodes.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final node = entry.value;
 
-                  if (_mapData.mapType == "tree") {
-                    return _buildTreeMapBlock(node, index, isDark);
-                  }
-                  return Positioned(
-                    left: node.position.dx,
-                    top: node.position.dy,
-                    width: node.size.width,
-                    height: node.size.height,
-                    child: _buildNodeCard(node, isDark),
-                  ).animate().fadeIn(duration: 400.ms, delay: (50 * index).ms)
-                      .scale(begin: const Offset(0.8, 0.8), duration: 400.ms, delay: (50 * index).ms);
-                }),
-              ],
+                    if (_mapData.mapType == "tree") {
+                      return _buildTreeMapBlock(node, index, isDark);
+                    }
+                    return Positioned(
+                      left: node.position.dx,
+                      top: node.position.dy,
+                      width: node.size.width,
+                      height: node.size.height,
+                      child: _buildNodeCard(node, isDark),
+                    ).animate().fadeIn(duration: 400.ms, delay: (50 * index).ms)
+                        .scale(begin: const Offset(0.8, 0.8), duration: 400.ms, delay: (50 * index).ms);
+                  }),
+                ],
+              ),
             ),
-          ),
+        ),
         ),
       ),
     );

@@ -8,6 +8,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_animate/flutter_animate.dart';
 import 'theme/glassmorphism.dart';
+import 'mind_map_screen.dart';
 
 class PdfChatScreen extends StatefulWidget {
   final bool isFullScreen;
@@ -33,6 +34,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
   late AnimationController _sidebarController;
   late Animation<double> _sidebarAnimation;
   bool _isSidebarOpen = false;
+  bool _isGeneratingMap = false;
 
   @override
   void initState() {
@@ -362,6 +364,251 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     );
   }
 
+  Future<void> _generateMindMap({
+    required String source, 
+    required String mapType,
+    int? pageStart,
+    int? pageEnd,
+  }) async {
+    //show loading indicator 
+    setState(() {
+      _isGeneratingMap = true;
+    });
+
+    try {
+      //biuld request and send the http.post()
+      final response = await http.post(
+        Uri.parse('$_baseUrl/generate-mind-map'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "filename": _pdfName,
+          "source": source,
+          "map_type": mapType,
+          "page_start": pageStart,
+          "page_end": pageEnd
+        }),
+      );
+
+      //parse response JSON include nodes, edges, mermaid_code
+      if (response.statusCode == 200) {
+        //parse the JSON string into Dart objects
+        final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+
+        //navigate to MindMapScree, pass the typed data
+        if (mounted) {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(
+              builder: (_) => MindMapScreen(data: jsonResponse),
+            ),
+          );
+        }
+      } else {
+        throw Exception("Failed to generate mind map: ${response.body}");
+      }
+    } catch (e) {
+      //show Snackbar or dialog to inform user of failure
+      debugPrint("Failed to generate mind map: $e");
+    } finally {
+      setState(() {
+        _isGeneratingMap = false;
+      });
+    }
+  }
+
+  void _showMindMapDialog() {
+    int selectedSourceIndex = 0; //0=Chat history, 1 = PDF range
+    String selectedMapType = 'hierarchical';
+    final pageStartController = TextEditingController();
+    final pageEndController = TextEditingController();
+
+    final mapTypes = [
+    {'id': 'hierarchical', 'label': 'Hierarchical', 'icon': Icons.account_tree},
+    {'id': 'flowchart',    'label': 'Flowchart',    'icon': Icons.linear_scale},
+    {'id': 'bubble',       'label': 'Bubble Map',   'icon': Icons.bubble_chart},
+    {'id': 'tree',         'label': 'Tree Map',     'icon': Icons.park_outlined},
+    {'id': 'concept',      'label': 'Concept Map',  'icon': Icons.hub_outlined},
+  ];
+
+  showDialog(
+    context: context,
+    builder: (dialogContext) {
+      //use StatefulBuilder to manage the dialog state and update own UI instead of entire screen
+      return StatefulBuilder(
+        builder: (context, setDialogState) {
+          final theme = Theme.of(context);
+
+          return AlertDialog(
+            //glassmorphism background color from theme
+            title: const Text('Generate Mind Map'),
+            content: SizedBox(
+              width: 450,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  //Source Selection Tabs
+                  const Text('Source', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+
+                  Row(
+                    children: [
+                      _buildSourceTab(label: 'Chat History', index: 0, selectedIndex: selectedSourceIndex, onTap: () {
+                        setDialogState(() {
+                          selectedSourceIndex = 0;
+                        });
+                      }),
+                      _buildSourceTab(label: 'PDF Range', index: 1, selectedIndex: selectedSourceIndex, onTap: () {
+                        setDialogState(() {
+                          selectedSourceIndex = 1;
+                        });
+                      })
+                    ]
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  //PDF Range Inputs tabs
+                  if (selectedSourceIndex == 1) ...[
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: pageStartController,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Start Page',
+                              border: OutlineInputBorder(),
+                            ),
+                          )
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: TextField(
+                            controller: pageEndController,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'End Page',
+                              border: OutlineInputBorder(),
+                            ),
+                          )
+                        )
+                      ],
+                      ),
+                      const SizedBox(height: 16),
+                  ],
+
+                  //Map Type Selector
+                  const Text('Map Type', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing : 8,
+                    runSpacing: 8,
+                    children: mapTypes.map((type) {
+                      final isSelected = type['id'] == selectedMapType;
+                      return GestureDetector(
+                        onTap: () {
+                          //update selectedMapType using setDialogState
+                          setDialogState(() {
+                            selectedMapType = type['id'] as String;
+                          });
+                        },
+                        child: Container(
+                          width: 130,
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            //primary color gradient if selected, else neutral background
+                            gradient: isSelected ? LinearGradient(
+                              colors: [Colors.blue[600]!, Colors.blue[400]!],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ) : null,
+                            color: isSelected ? null : theme.colorScheme.surface.withValues(alpha: 0.5),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            children: [
+                              Icon(type['icon'] as IconData),
+                              const SizedBox(height: 4),
+                              Text(type['label'] as String, textAlign:
+                              TextAlign.center),
+                            ],
+                            ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+              ),
+
+              //Actions Buttons
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(dialogContext),
+                  child: const Text("Cancel"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(dialogContext);
+                    //call the mind map generation function with selected options
+                    _generateMindMap(
+                      source : selectedSourceIndex == 0 ? 'chat_history' : 'pdf_range',
+                      mapType: selectedMapType,
+                      pageStart : int.tryParse(pageStartController.text),
+                      pageEnd : int.tryParse(pageEndController.text)
+                    );
+                  },
+                  child: const Text('Generate Mind Map'),
+                ),
+              ],
+          );
+        },
+      );
+    },
+    );
+  }
+
+  Widget _buildSourceTab({
+    required String label,
+    required int index,
+    required int selectedIndex,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+    final isSelected = index == selectedIndex;
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(
+            gradient: isSelected
+                ? LinearGradient(
+                    colors: [Colors.blue[600]!, Colors.blue[400]!],
+                  )
+                : null,
+            color: isSelected ? null : theme.colorScheme.surface.withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isSelected ? Colors.blue : theme.colorScheme.onSurface.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: isSelected ? Colors.white : theme.colorScheme.onSurface,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -401,6 +648,14 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                 icon: const Icon(Icons.cleaning_services_rounded),
                 tooltip: 'New Chat',
                 onPressed: _clearChatHistory,
+              ),
+            if (_pdfName.isNotEmpty)
+              IconButton(
+                icon: const Icon(Icons.account_tree_outlined),
+                tooltip: 'Export as Mind Map',
+                onPressed: () {
+                  _showMindMapDialog();
+                }
               ),
             IconButton(
               icon: const Icon(Icons.upload_file),
