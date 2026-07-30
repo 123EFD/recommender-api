@@ -814,7 +814,7 @@ def ask_pdf_question(request: ChatRequest):
         #streaming response
         def generate_stream():
             stream = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama-4-versatile",
                 messages=messages_payload,
                 max_tokens=2048,
                 stream=True
@@ -1106,7 +1106,7 @@ def generate_mindmap(request: MindMapRequest):
     try:
         # Enforce structural integrity out of open source networks via JSON mode configurations
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-4-versatile",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
