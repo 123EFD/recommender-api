@@ -18,17 +18,11 @@ class MindMapNode {
   // Factory constructor to build a Node from the parsed JSON dictionary
   factory MindMapNode.fromJson(Map<String, dynamic> json) {
     return MindMapNode(
-      id: json['id'] as String,
-      label: json['label'] as String,
-      type: json['type'] as String,
-      position: Offset(
-        (json['position'] as List)[0] as double,
-        (json['position'] as List)[1] as double,
-      ),
-      size: Size(
-        (json['size'] as List)[0] as double,
-        (json['size'] as List)[1] as double,
-      ),
+      id: json['id']?.toString() ?? '',
+      label: json['label']?.toString() ?? '',
+      type: json['type']?.toString() ?? 'leaf',
+      position: Offset.zero, // Calculated later by Layout Engine
+      size: const Size(150, 60),
     );
   }
 }
@@ -42,9 +36,9 @@ class MindMapEdge {
 
   factory MindMapEdge.fromJson(Map<String, dynamic> json) {
     return MindMapEdge(
-      idFrom: json['id_from'] as String,
-      idTo: json['id_to'] as String,
-      label: json['label'] as String?,
+      idFrom: json['id_from']?.toString() ?? json['idFrom']?.toString() ?? '',
+      idTo: json['id_to']?.toString() ?? json['idTo']?.toString() ?? '',
+      label: json['label']?.toString(),
     );
   }
 }
@@ -66,12 +60,11 @@ class MindMapResponseData {
 
   factory MindMapResponseData.fromJson(Map<String, dynamic> json) {
     return MindMapResponseData(
-      title: json['title'] as String,
-      mapType: json['map_type'] as String,
-      mermaidCode: json['mermaid_code'] as String,
-      // Safely map the raw JSON lists into strong Dart object lists
-      nodes: (json['nodes'] as List).map((n) => MindMapNode.fromJson(n)).toList(),
-      edges: (json['edges'] as List).map((e) => MindMapEdge.fromJson(e)).toList(),
+      title: json['title']?.toString() ?? 'Mind Map',
+      mapType: json['map_type']?.toString() ?? 'hierarchical',
+      mermaidCode: json['mermaid_code']?.toString() ?? '',
+      nodes: (json['nodes'] as List?)?.map((n) => MindMapNode.fromJson(n)).toList() ?? [],
+      edges: (json['edges'] as List?)?.map((e) => MindMapEdge.fromJson(e)).toList() ?? [],
     );
   }
 }
