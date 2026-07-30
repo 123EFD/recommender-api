@@ -651,13 +651,24 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                 onPressed: _clearChatHistory,
               ),
             if (_pdfName.isNotEmpty)
-              IconButton(
-                icon: const Icon(Icons.account_tree_outlined),
-                tooltip: 'Export as Mind Map',
-                onPressed: () {
-                  _showMindMapDialog();
-                }
-              ),
+              _isGeneratingMap
+                  ? const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                        ),
+                      ),
+                    )
+                  : IconButton(
+                      icon: const Icon(Icons.account_tree_outlined),
+                      tooltip: 'Export as Mind Map',
+                      onPressed: () {
+                        _showMindMapDialog();
+                      }
+                    ),
             IconButton(
               icon: const Icon(Icons.upload_file),
               onPressed: _isProcessingPdf ? null : _pickAndUploadPdf,

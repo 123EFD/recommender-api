@@ -90,9 +90,9 @@ class LayoutEngine {
 
   static MindMapNode _findRoot(List<MindMapNode> nodes, List<MindMapEdge> edges) {
     // Find the root node (type == 'root', or the node with no incoming edges)
-    final allTargets  = nodes.map((n) => n.id).toSet();
+    final allTargets  = edges.map((e) => e.idTo).toSet();
     for (var node in nodes) {
-      if ( !allTargets.contains(node.id)) return node;
+      if (!allTargets.contains(node.id)) return node;
     }
 
     for (var node in nodes) {
@@ -112,46 +112,99 @@ class LayoutEngine {
     const double verticalSpacing = 150.0;
     const double horizontalSpacing = 220.0;
 
-    //count the leaad descendants under each node to prevent overlapping 
-    Map<String, int> leafCounts = {};
-    int countLeaves(String nodeId) {
-      final children = adjacency[nodeId] ?? [];
-      if (children.isEmpty) {
-        leafCounts[nodeId] = 1;
-        return 1;
+    // Calculate exact pixel width of each subtree to prevent overlapping
+    Map<String, double> subtreeWidths = {};
+    double calculateSubtreeWidth(String nodeId, Set<String> visited) {
+      if (visited.contains(nodeId)) {
+        return 0.0; // Avoid cycles or double-counting in DAGs
       }
-      int total = 0;
-      for (var childId in children) {
-        total += countLeaves(childId);
-      }
-      leafCounts[nodeId] = total;
-      return total;
-    }
+      visited.add(nodeId);
 
-    countLeaves(root.id);
-
-    // Position each node using DFS 
-    void positionNode(String nodeId, int depth , double xOffset) {
       final node = nodeMap[nodeId]!;
       final children = adjacency[nodeId] ?? [];
-      final leafCount = leafCounts[nodeId] ?? 1;
+      
+      // Minimum width of this node itself + a gap
+      final minWidth = node.size.width + 40.0; 
 
-      //node's X is the center of its allocated horizontal space based on its leaf count
-      double totalWidth = leafCount * horizontalSpacing;
-      double centerX = xOffset + (totalWidth / 2) - (node.size.width / 2);
+      if (children.isEmpty) {
+        subtreeWidths[nodeId] = minWidth;
+        return minWidth;
+      }
+
+      double totalChildrenWidth = 0;
+      for (var childId in children) {
+        if (!visited.contains(childId)) {
+          totalChildrenWidth += calculateSubtreeWidth(childId, visited);
+        }
+      }
+      
+      // The subtree must be at least as wide as the parent node itself!
+      double finalWidth = max(minWidth, totalChildrenWidth);
+      subtreeWidths[nodeId] = finalWidth;
+      return finalWidth;
+    }
+
+    Set<String> globalVisitedWidth = {};
+    for (var node in mindMapData.nodes) {
+       if (!globalVisitedWidth.contains(node.id)) {
+           calculateSubtreeWidth(node.id, globalVisitedWidth);
+       }
+    }
+
+    // Position each node using DFS 
+    void positionNode(String nodeId, int depth , double xOffset, Set<String> visited) {
+      if (visited.contains(nodeId)) return;
+      visited.add(nodeId);
+
+      final node = nodeMap[nodeId]!;
+      final children = adjacency[nodeId] ?? [];
+      final width = subtreeWidths[nodeId] ?? (node.size.width + 40.0);
+
+      // Center the node within its allocated subtree width
+      double centerX = xOffset + (width / 2) - (node.size.width / 2);
       double y = 80.0 + (depth * verticalSpacing);
       node.position = Offset(centerX, y);
 
-      // left-to-right positioning of children
       double childXOffset = xOffset;
+      
+      // If the total width of all children is less than the parent's assigned width,
+      // we must center the children under the parent.
+      double totalChildrenWidth = 0;
       for (var childId in children) {
-        int childLeaves = leafCounts[childId] ?? 1;
-        positionNode(childId, depth + 1, childXOffset);
-        childXOffset += childLeaves * horizontalSpacing;
+         if (!visited.contains(childId)) {
+           totalChildrenWidth += subtreeWidths[childId] ?? 0;
+         }
+      }
+      if (totalChildrenWidth < width) {
+         childXOffset += (width - totalChildrenWidth) / 2;
+      }
+
+      // Position children side-by-side
+      for (var childId in children) {
+        if (!visited.contains(childId)) {
+          double childWidth = subtreeWidths[childId] ?? 0;
+          if (childWidth > 0) {
+            positionNode(childId, depth + 1, childXOffset, visited);
+            childXOffset += childWidth;
+          }
+        }
       }
     }
 
-    positionNode(root.id, 0, 0.0);
+    Set<String> globalVisitedPosition = {};
+    double currentRootX = 0.0;
+    
+    // First, position the main root
+    positionNode(root.id, 0, currentRootX, globalVisitedPosition);
+    currentRootX += subtreeWidths[root.id] ?? (root.size.width + 40.0);
+    
+    // Then position any remaining orphans/components
+    for (var node in mindMapData.nodes) {
+       if (!globalVisitedPosition.contains(node.id)) {
+           positionNode(node.id, 0, currentRootX, globalVisitedPosition);
+           currentRootX += subtreeWidths[node.id] ?? (node.size.width + 40.0);
+       }
+    }
 
     // Normalize coord. 
     _normalizePositions(mindMapData.nodes, 100, 80);
@@ -232,73 +285,58 @@ class LayoutEngine {
     _normalizePositions(mindMapData.nodes, 100, 80);
   }
 
-  // Bubble Map (Bilateral Radial Arcs)
+  // Bubble Map (Semi-Circle Radial Arc)
   static void _layoutBubble(MindMapResponseData data) {
     if (data.nodes.isEmpty) return;
     final adjacency = _buildAdjacencyMap(data.edges);
     final nodeMap = _buildNodeMap(data.nodes);
     final root = _findRoot(data.nodes, data.edges);
     
-    final Offset center = const Offset(900, 900);
+    final Offset center = const Offset(1000, 500);
     root.size = Size(root.size.width + 40, root.size.height + 20); // Make root visually larger
     root.position = Offset(center.dx - root.size.width / 2, center.dy - root.size.height / 2);
 
     final firstLevel = adjacency[root.id] ?? [];
     if (firstLevel.isEmpty) return;
 
-    // Split first level into left and right hemispheres
-    final leftNodes = <String>[];
-    final rightNodes = <String>[];
+    // Spread all first-level children over a 180-degree semi-circle (from right to left, facing downwards)
+    // We will use 0 to pi (0 = right, pi/2 = down, pi = left)
+    final double totalArc = pi; 
+    final double startAngle = 0.0;
+    final double angleStep = firstLevel.length > 1 ? totalArc / (firstLevel.length - 1) : 0;
+    final double radius = 320.0; // Radius for the primary arc
+
     for (int i = 0; i < firstLevel.length; i++) {
-      if (i % 2 == 0) {
-        rightNodes.add(firstLevel[i]);
-      } else {
-        leftNodes.add(firstLevel[i]);
+      double angle = startAngle + (i * angleStep);
+      double x = center.dx + (radius * cos(angle));
+      double y = center.dy + (radius * sin(angle));
+
+      final child = nodeMap[firstLevel[i]]!;
+      child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
+
+      // Position sub-children in their own mini semi-circle fanning outwards
+      final secondLevel = adjacency[child.id] ?? [];
+      if (secondLevel.isEmpty) continue;
+      
+      Offset childCenter = Offset(x, y);
+      // Sub-orbit angle spread (e.g., 90 degrees)
+      double subArc = 90.0 * (pi / 180.0);
+      
+      // Base angle from root to child
+      double baseAngle = atan2(y - center.dy, x - center.dx);
+      double subStartAngle = baseAngle - (subArc / 2);
+      double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
+      double subRadius = 220.0;
+
+      for (int j = 0; j < secondLevel.length; j++) {
+        double subAngle = subStartAngle + (j * subStep);
+        double sx = childCenter.dx + (subRadius * cos(subAngle));
+        double sy = childCenter.dy + (subRadius * sin(subAngle));
+
+        final subChild = nodeMap[secondLevel[j]]!;
+        subChild.position = Offset(sx - subChild.size.width / 2, sy - subChild.size.height / 2);
       }
     }
-
-    void layoutHemisphere(List<String> nodes, bool isRight) {
-      if (nodes.isEmpty) return;
-      // Spread nodes over a 120-degree arc on the respective side
-      final double totalArc = 120.0 * (pi / 180.0);
-      final double startAngle = isRight ? -totalArc / 2 : pi - (totalArc / 2);
-      final double angleStep = nodes.length > 1 ? totalArc / (nodes.length - 1) : 0;
-      final double radius = 280.0;
-
-      for (int i = 0; i < nodes.length; i++) {
-        double angle = startAngle + (i * angleStep);
-        double x = center.dx + (radius * cos(angle));
-        double y = center.dy + (radius * sin(angle));
-
-        final child = nodeMap[nodes[i]]!;
-        child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
-
-        // Position sub-children
-        final secondLevel = adjacency[child.id] ?? [];
-        if (secondLevel.isEmpty) continue;
-        
-        Offset childCenter = Offset(x, y);
-        // Sub-orbit angle spread
-        double subArc = 90.0 * (pi / 180.0);
-        // Base sub-orbit outward from center
-        double baseAngle = atan2(y - center.dy, x - center.dx);
-        double subStartAngle = baseAngle - (subArc / 2);
-        double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
-        double subRadius = 180.0;
-
-        for (int j = 0; j < secondLevel.length; j++) {
-          double subAngle = subStartAngle + (j * subStep);
-          double sx = childCenter.dx + (subRadius * cos(subAngle));
-          double sy = childCenter.dy + (subRadius * sin(subAngle));
-
-          final subChild = nodeMap[secondLevel[j]]!;
-          subChild.position = Offset(sx - subChild.size.width / 2, sy - subChild.size.height / 2);
-        }
-      }
-    }
-
-    layoutHemisphere(leftNodes, false);
-    layoutHemisphere(rightNodes, true);
 
     _normalizePositions(data.nodes, 100, 100);
   }
@@ -365,29 +403,40 @@ class LayoutEngine {
     // Concept maps are similar to hierarchical but with more horizontal spread
     // and every edge can have a relationship label, so we give extra spacing.
     const double verticalSpacing = 180.0;
-    const double horizontalSpacing = 260.0;
-    Map<String, int> leafCounts = {}; 
-
-    int countLeaves(String nodeId, Set<String> visited) {
+    Map<String, double> subtreeWidths = {}; 
+    double calculateSubtreeWidth(String nodeId, Set<String> visited) {
       if (visited.contains(nodeId)) {
-        leafCounts[nodeId] = 0;
-        return 0; // Avoid cycles
+        return 0.0; // Avoid cycles
       }
       visited.add(nodeId);
 
+      final node = nodeMap[nodeId]!;
       final children = adjacency[nodeId] ?? [];
+      final minWidth = node.size.width + 60.0; // Extra spacing for concept map labels
+
       if (children.isEmpty) {
-        leafCounts[nodeId] = 1;
-        return 1;
+        subtreeWidths[nodeId] = minWidth;
+        return minWidth;
       }
-      int total = 0;
+
+      double totalChildrenWidth = 0;
       for (var childId in children) {
-        total += countLeaves(childId, visited);
+        if (!visited.contains(childId)) {
+          totalChildrenWidth += calculateSubtreeWidth(childId, visited);
+        }
       }
-      leafCounts[nodeId] = total;
-      return total;
+      
+      double finalWidth = max(minWidth, totalChildrenWidth);
+      subtreeWidths[nodeId] = finalWidth;
+      return finalWidth;
     }
-    countLeaves(root.id, {});
+
+    Set<String> globalVisitedWidth = {};
+    for (var node in data.nodes) {
+       if (!globalVisitedWidth.contains(node.id)) {
+           calculateSubtreeWidth(node.id, globalVisitedWidth);
+       }
+    }
 
     void positionNode(String nodeId, int depth, double xOffset, Set<String> visited) {
       if (visited.contains(nodeId)) return;
@@ -395,22 +444,47 @@ class LayoutEngine {
 
       final node = nodeMap[nodeId]!;
       final children = adjacency[nodeId] ?? [];
-      final leafCount = leafCounts[nodeId] ?? 1;
+      final width = subtreeWidths[nodeId] ?? (node.size.width + 60.0);
 
-      double totalWidth = leafCount * horizontalSpacing;
-      double centerX = xOffset + (totalWidth / 2) - (node.size.width / 2);
+      double centerX = xOffset + (width / 2) - (node.size.width / 2);
       double y = 80.0 + (depth * verticalSpacing);
       node.position = Offset(centerX, y);
 
       double childXOffset = xOffset;
+      
+      double totalChildrenWidth = 0;
       for (var childId in children) {
-        int childLeaves = leafCounts[childId] ?? 1;
-        positionNode(childId, depth + 1, childXOffset, visited);
-        childXOffset += childLeaves * horizontalSpacing;
+         if (!visited.contains(childId)) {
+           totalChildrenWidth += subtreeWidths[childId] ?? 0;
+         }
+      }
+      if (totalChildrenWidth < width) {
+         childXOffset += (width - totalChildrenWidth) / 2;
+      }
+
+      for (var childId in children) {
+        if (!visited.contains(childId)) {
+          double childWidth = subtreeWidths[childId] ?? 0;
+          if (childWidth > 0) {
+            positionNode(childId, depth + 1, childXOffset, visited);
+            childXOffset += childWidth;
+          }
+        }
       }
     }
 
-    positionNode(root.id, 0, 0.0, {});
+    Set<String> globalVisitedPosition = {};
+    double currentRootX = 0.0;
+    
+    positionNode(root.id, 0, currentRootX, globalVisitedPosition);
+    currentRootX += subtreeWidths[root.id] ?? (root.size.width + 60.0);
+    
+    for (var node in data.nodes) {
+       if (!globalVisitedPosition.contains(node.id)) {
+           positionNode(node.id, 0, currentRootX, globalVisitedPosition);
+           currentRootX += subtreeWidths[node.id] ?? (node.size.width + 60.0);
+       }
+    }
     _normalizePositions(data.nodes, 100, 80);
   }
 

@@ -1095,7 +1095,7 @@ def generate_mindmap(request: MindMapRequest):
     
     CRITICAL OUTPUT VALIDATION SCHEMA RULES:
     1. Your output must strictly match a valid JSON object schema array. No conversational text filler, no trailing explanations.
-    2. Under the 'nodes' array key: assign distinct incremental numeric strings to 'id' (e.g., "1", "2"). 'type' values must be lowercase parameters matching your graph layout choice.
+    2. Under the 'nodes' array key: assign distinct incremental numeric strings to 'id' (e.g., "1", "2"). 'type' values must be lowercase parameters matching your graph layout choice. Crucially, you MUST include a 'label' key containing the actual text content for each node!
     3. Under the 'edges' array key: connect source 'id_from' to target 'id_to'. For 'concept' maps, provide relationship metadata under the 'label' key.
     4. Under the 'mermaid_code' string key: compile valid, pre-rendered syntax using standard 'graph TD' (top-down) layouts (e.g. `graph TD\n  1[Root] --> 2[Branch]`). Avoid special characters inside the bracket text arrays to ensure downstream renderers do not crash.
     """
