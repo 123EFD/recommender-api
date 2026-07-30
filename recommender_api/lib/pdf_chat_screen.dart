@@ -383,7 +383,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           "filename": _pdfName,
-          "source": source,
+          "source_type": source,
           "map_type": mapType,
           "page_start": pageStart,
           "page_end": pageEnd
