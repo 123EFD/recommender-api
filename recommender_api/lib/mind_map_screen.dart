@@ -107,12 +107,17 @@ class _MindMapScreenState extends State<MindMapScreen> {
 
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? [const Color(0xFF0F172A), const Color(0xFF1E293B)]
-                : [Colors.grey[100]!, Colors.blue[50]!],
+          color: isDark ? const Color(0xFF0F172A) : const Color(0xFFFDF6E3), // Warm cream in light mode
+          image: DecorationImage(
+            image: const AssetImage('assets/paper_texture.png'),
+            repeat: ImageRepeat.repeat,
+            // In dark mode, softly multiply the texture over the dark slate background.
+            // In light mode, multiply over the warm cream color.
+            colorFilter: ColorFilter.mode(
+              isDark ? Colors.white.withValues(alpha: 0.1) : const Color(0xFFFDF6E3),
+              isDark ? BlendMode.dstIn : BlendMode.multiply,
+            ),
+            opacity: isDark ? 0.3 : 1.0,
           ),
         ),
 
@@ -224,8 +229,6 @@ class _MindMapScreenState extends State<MindMapScreen> {
             child: Text(
               node.label,
               textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 3,
               style: GoogleFonts.inter(
                 color: isDark ? Colors.white : Colors.black,
                 fontSize: fontSize,

@@ -1076,11 +1076,11 @@ def generate_mindmap(request: MindMapRequest):
     
     #Layout Engine Instruction Mapping
     layout_rules = {
-        "hierarchical": "Create a centralized radial branching network. Root node represents the core subject. Branches represent primary headings. Leaves hold minor sub-concepts.",
-        "flowchart": "Arrange data step-by-step linearly. Use 'process' nodes for standard tasks and 'decision' nodes for logical branches or conditionals with branching links.",
-        "bubble": "Design a main central hub node connected to multiple surrounding attribute/descriptive nodes. Use short, crisp summaries inside labels.",
-        "tree": "Establish a top-down nesting grid directory. Root must lead directly to primary containers, which descend strictly vertically down into detailed items.",
-        "concept": "Construct a web-like network where nodes are joined by cross-links. EVERY single edge object MUST include a meaningful 'label' relationship (e.g. 'requires', 'causes', 'defines')."
+        "hierarchical": "Create a centralized radial branching network. Root node represents the core subject. Branches represent primary headings. Leaves must hold detailed, multi-sentence summaries and key educational facts.",
+        "flowchart": "Arrange data step-by-step linearly. Use 'process' nodes for standard tasks and 'decision' nodes for logical branches. Include rich, informative explanations for each step.",
+        "bubble": "Design a main central hub node connected to multiple surrounding attribute/descriptive nodes. DO NOT use short 1-2 word labels. Instead, use highly informative, detailed full-sentence summaries or bullet-point facts inside every label so it is highly educational (like Mapify).",
+        "tree": "Establish a top-down nesting grid directory. Root must lead directly to primary containers, which descend strictly vertically down into detailed items with rich descriptive text.",
+        "concept": "Construct a web-like network where nodes are joined by cross-links. EVERY single edge object MUST include a meaningful 'label' relationship (e.g. 'requires', 'causes', 'defines'). Node labels must contain comprehensive, educational explanations of the concepts."
     }
     
     chosen_rule = layout_rules.get(request.map_type, layout_rules["hierarchical"])
@@ -1088,7 +1088,8 @@ def generate_mindmap(request: MindMapRequest):
     #Construct system prompts targeting JSON compilation schemas
     system_prompt = f"""
     You are an expert educational graph database engineer and prompt optimizer for mapping visual layouts.
-    Your objective is to read the provided text context and break it down into a highly detailed visual chart network structure.
+    Your objective is to read the provided text context and break it down into a highly detailed visual chart network structure. 
+    Crucially, you must maximize INFORMATION QUALITY. Do not use 1-word or 2-word labels. Every node label must contain rich, detailed, full-sentence summaries and actionable educational insights. Make it read like a comprehensive study guide map.
     
     SPECIFIC MAP ALGORITHM LAYOUT INSTRUCTION:
     {chosen_rule}

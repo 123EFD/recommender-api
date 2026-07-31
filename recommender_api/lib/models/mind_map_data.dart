@@ -17,12 +17,18 @@ class MindMapNode {
 
   // Factory constructor to build a Node from the parsed JSON dictionary
   factory MindMapNode.fromJson(Map<String, dynamic> json) {
+    String labelText = json['label']?.toString() ?? json['name']?.toString() ?? json['text']?.toString() ?? json['id']?.toString() ?? 'Node';
+    
+    // Estimate size for longer informative text (approx 20-25 chars per line at width 220)
+    double estimatedHeight = 60.0 + ((labelText.length / 22).ceil() * 18.0);
+    if (estimatedHeight < 60) estimatedHeight = 60;
+    
     return MindMapNode(
       id: json['id']?.toString() ?? '',
-      label: json['label']?.toString() ?? json['name']?.toString() ?? json['text']?.toString() ?? json['id']?.toString() ?? 'Node',
+      label: labelText,
       type: json['type']?.toString() ?? 'leaf',
       position: Offset.zero, // Calculated later by Layout Engine
-      size: const Size(150, 60),
+      size: Size(220, estimatedHeight),
     );
   }
 }
