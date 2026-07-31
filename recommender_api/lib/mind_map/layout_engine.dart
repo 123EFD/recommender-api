@@ -285,7 +285,7 @@ class LayoutEngine {
     _normalizePositions(mindMapData.nodes, 100, 80);
   }
 
-  // Bubble Map (Semi-Circle Radial Arc)
+  // Bubble Map (Bilateral Radial Arcs)
   static void _layoutBubble(MindMapResponseData data) {
     if (data.nodes.isEmpty) return;
     final adjacency = _buildAdjacencyMap(data.edges);
@@ -299,44 +299,62 @@ class LayoutEngine {
     final firstLevel = adjacency[root.id] ?? [];
     if (firstLevel.isEmpty) return;
 
-    // Spread all first-level children over a 180-degree semi-circle (from right to left, facing downwards)
-    // We will use 0 to pi (0 = right, pi/2 = down, pi = left)
-    final double totalArc = pi; 
-    final double startAngle = 0.0;
-    final double angleStep = firstLevel.length > 1 ? totalArc / (firstLevel.length - 1) : 0;
-    final double radius = 320.0; // Radius for the primary arc
-
+    // Split first level into left and right hemispheres
+    final leftNodes = <String>[];
+    final rightNodes = <String>[];
     for (int i = 0; i < firstLevel.length; i++) {
-      double angle = startAngle + (i * angleStep);
-      double x = center.dx + (radius * cos(angle));
-      double y = center.dy + (radius * sin(angle));
-
-      final child = nodeMap[firstLevel[i]]!;
-      child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
-
-      // Position sub-children in their own mini semi-circle fanning outwards
-      final secondLevel = adjacency[child.id] ?? [];
-      if (secondLevel.isEmpty) continue;
-      
-      Offset childCenter = Offset(x, y);
-      // Sub-orbit angle spread (e.g., 90 degrees)
-      double subArc = 90.0 * (pi / 180.0);
-      
-      // Base angle from root to child
-      double baseAngle = atan2(y - center.dy, x - center.dx);
-      double subStartAngle = baseAngle - (subArc / 2);
-      double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
-      double subRadius = 220.0;
-
-      for (int j = 0; j < secondLevel.length; j++) {
-        double subAngle = subStartAngle + (j * subStep);
-        double sx = childCenter.dx + (subRadius * cos(subAngle));
-        double sy = childCenter.dy + (subRadius * sin(subAngle));
-
-        final subChild = nodeMap[secondLevel[j]]!;
-        subChild.position = Offset(sx - subChild.size.width / 2, sy - subChild.size.height / 2);
+      if (i % 2 == 0) {
+        rightNodes.add(firstLevel[i]);
+      } else {
+        leftNodes.add(firstLevel[i]);
       }
     }
+
+    void layoutHemisphere(List<String> nodes, bool isRight) {
+      if (nodes.isEmpty) return;
+      // Spread nodes over a 160-degree arc on the respective side
+      final double totalArc = 160.0 * (pi / 180.0);
+      
+      // Right side: -80 deg to +80 deg
+      // Left side: 100 deg to 260 deg
+      final double startAngle = isRight ? -totalArc / 2 : pi - (totalArc / 2);
+      final double angleStep = nodes.length > 1 ? totalArc / (nodes.length - 1) : 0;
+      final double radius = 320.0;
+
+      for (int i = 0; i < nodes.length; i++) {
+        double angle = startAngle + (i * angleStep);
+        double x = center.dx + (radius * cos(angle));
+        double y = center.dy + (radius * sin(angle));
+
+        final child = nodeMap[nodes[i]]!;
+        child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
+
+        // Position sub-children
+        final secondLevel = adjacency[child.id] ?? [];
+        if (secondLevel.isEmpty) continue;
+        
+        Offset childCenter = Offset(x, y);
+        // Sub-orbit angle spread
+        double subArc = 120.0 * (pi / 180.0);
+        // Base angle outward from center
+        double baseAngle = atan2(y - center.dy, x - center.dx);
+        double subStartAngle = baseAngle - (subArc / 2);
+        double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
+        double subRadius = 220.0;
+
+        for (int j = 0; j < secondLevel.length; j++) {
+          double subAngle = subStartAngle + (j * subStep);
+          double sx = childCenter.dx + (subRadius * cos(subAngle));
+          double sy = childCenter.dy + (subRadius * sin(subAngle));
+
+          final subChild = nodeMap[secondLevel[j]]!;
+          subChild.position = Offset(sx - subChild.size.width / 2, sy - subChild.size.height / 2);
+        }
+      }
+    }
+
+    layoutHemisphere(leftNodes, false);
+    layoutHemisphere(rightNodes, true);
 
     _normalizePositions(data.nodes, 100, 100);
   }
@@ -393,102 +411,82 @@ class LayoutEngine {
     sliceRectangle(root.id, true);
   }
 
-  //Concept Map
+  //Concept Map (Force-Directed Web Layout)
   static void _layoutConcept(MindMapResponseData data) {
     if (data.nodes.isEmpty) return;
-    final adjacency = _buildAdjacencyMap(data.edges);
-    final nodeMap = _buildNodeMap(data.nodes);
-    final root = _findRoot(data.nodes, data.edges);
 
-    // Concept maps are similar to hierarchical but with more horizontal spread
-    // and every edge can have a relationship label, so we give extra spacing.
-    const double verticalSpacing = 180.0;
-    Map<String, double> subtreeWidths = {}; 
-    double calculateSubtreeWidth(String nodeId, Set<String> visited) {
-      if (visited.contains(nodeId)) {
-        return 0.0; // Avoid cycles
-      }
-      visited.add(nodeId);
+    // Force-Directed Layout Constants
+    const double k = 200.0; // Optimal distance between connected nodes
+    const double repulsionK = 25000.0; // Repulsion constant
+    const int iterations = 60;
+    const double initialTemperature = 100.0;
+    
+    // Initialize random positions
+    final random = Random(42); // deterministic
+    for (var node in data.nodes) {
+      node.position = Offset(random.nextDouble() * 800, random.nextDouble() * 800);
+    }
 
-      final node = nodeMap[nodeId]!;
-      final children = adjacency[nodeId] ?? [];
-      final minWidth = node.size.width + 60.0; // Extra spacing for concept map labels
+    double temperature = initialTemperature;
 
-      if (children.isEmpty) {
-        subtreeWidths[nodeId] = minWidth;
-        return minWidth;
-      }
+    for (int iter = 0; iter < iterations; iter++) {
+      Map<String, Offset> displacements = {
+        for (var node in data.nodes) node.id: Offset.zero
+      };
 
-      double totalChildrenWidth = 0;
-      for (var childId in children) {
-        if (!visited.contains(childId)) {
-          totalChildrenWidth += calculateSubtreeWidth(childId, visited);
+      // Calculate Repulsive forces
+      for (int i = 0; i < data.nodes.length; i++) {
+        for (int j = i + 1; j < data.nodes.length; j++) {
+          final u = data.nodes[i];
+          final v = data.nodes[j];
+          
+          Offset delta = u.position - v.position;
+          double distance = delta.distance;
+          if (distance == 0) distance = 0.01;
+
+          double force = repulsionK / (distance);
+          Offset displacement = (delta / distance) * force;
+
+          displacements[u.id] = displacements[u.id]! + displacement;
+          displacements[v.id] = displacements[v.id]! - displacement;
         }
       }
-      
-      double finalWidth = max(minWidth, totalChildrenWidth);
-      subtreeWidths[nodeId] = finalWidth;
-      return finalWidth;
-    }
 
-    Set<String> globalVisitedWidth = {};
-    for (var node in data.nodes) {
-       if (!globalVisitedWidth.contains(node.id)) {
-           calculateSubtreeWidth(node.id, globalVisitedWidth);
-       }
-    }
+      // Calculate Attractive forces (Edges)
+      for (var edge in data.edges) {
+        final u = data.nodes.firstWhere((n) => n.id == edge.idFrom, orElse: () => data.nodes.first);
+        final v = data.nodes.firstWhere((n) => n.id == edge.idTo, orElse: () => data.nodes.first);
+        
+        Offset delta = u.position - v.position;
+        double distance = delta.distance;
+        if (distance == 0) distance = 0.01;
 
-    void positionNode(String nodeId, int depth, double xOffset, Set<String> visited) {
-      if (visited.contains(nodeId)) return;
-      visited.add(nodeId);
+        double force = (distance * distance) / k;
+        Offset displacement = (delta / distance) * force;
 
-      final node = nodeMap[nodeId]!;
-      final children = adjacency[nodeId] ?? [];
-      final width = subtreeWidths[nodeId] ?? (node.size.width + 60.0);
-
-      double centerX = xOffset + (width / 2) - (node.size.width / 2);
-      double y = 80.0 + (depth * verticalSpacing);
-      node.position = Offset(centerX, y);
-
-      double childXOffset = xOffset;
-      
-      double totalChildrenWidth = 0;
-      for (var childId in children) {
-         if (!visited.contains(childId)) {
-           totalChildrenWidth += subtreeWidths[childId] ?? 0;
-         }
-      }
-      if (totalChildrenWidth < width) {
-         childXOffset += (width - totalChildrenWidth) / 2;
+        displacements[u.id] = displacements[u.id]! - displacement;
+        displacements[v.id] = displacements[v.id]! + displacement;
       }
 
-      for (var childId in children) {
-        if (!visited.contains(childId)) {
-          double childWidth = subtreeWidths[childId] ?? 0;
-          if (childWidth > 0) {
-            positionNode(childId, depth + 1, childXOffset, visited);
-            childXOffset += childWidth;
-          }
+      // Apply displacements bounded by temperature
+      for (var node in data.nodes) {
+        Offset disp = displacements[node.id]!;
+        double dist = disp.distance;
+        if (dist > 0) {
+          double cappedDist = min(dist, temperature);
+          node.position += (disp / dist) * cappedDist;
         }
       }
-    }
 
-    Set<String> globalVisitedPosition = {};
-    double currentRootX = 0.0;
-    
-    positionNode(root.id, 0, currentRootX, globalVisitedPosition);
-    currentRootX += subtreeWidths[root.id] ?? (root.size.width + 60.0);
-    
-    for (var node in data.nodes) {
-       if (!globalVisitedPosition.contains(node.id)) {
-           positionNode(node.id, 0, currentRootX, globalVisitedPosition);
-           currentRootX += subtreeWidths[node.id] ?? (node.size.width + 60.0);
-       }
+      // Cool down
+      temperature *= 0.95;
     }
-    _normalizePositions(data.nodes, 100, 80);
+    
+    // Normalize coordinates so the graph is visible
+    _normalizePositions(data.nodes, 100, 100);
   }
 
-  //Normalize : shift all nodes so top-left is at (xOffset, yOffset)
+  // Normalizes positions so the top-left node is at (minX, minY)
   static void _normalizePositions(List<MindMapNode> nodes, double minX, double minY) {
     if (nodes.isEmpty) return;
     double currentMinX = double.infinity;

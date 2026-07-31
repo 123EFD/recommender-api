@@ -38,7 +38,7 @@ class MindMapEdge {
     return MindMapEdge(
       idFrom: json['id_from']?.toString() ?? json['idFrom']?.toString() ?? '',
       idTo: json['id_to']?.toString() ?? json['idTo']?.toString() ?? '',
-      label: json['label']?.toString(),
+      label: json['label']?.toString() ?? json['relationship']?.toString() ?? json['text']?.toString() ?? json['name']?.toString(),
     );
   }
 }

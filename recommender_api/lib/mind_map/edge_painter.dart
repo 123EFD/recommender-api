@@ -40,8 +40,8 @@ class EdgePainter extends CustomPainter {
         toNode.position.dy,
       );
 
-      //bubble maps : connect from center to center
-      if (mapType == 'bubble') {
+      //bubble and concept maps : connect from center to center
+      if (mapType == 'bubble' || mapType == 'concept') {
         start = Offset(
           fromNode.position.dx + fromNode.size.width / 2,
           fromNode.position.dy + fromNode.size.height / 2,
@@ -61,15 +61,14 @@ class EdgePainter extends CustomPainter {
         ..strokeWidth = 2.0
         ..style = PaintingStyle.stroke;
 
-        if (mapType == 'bubble') {
-          //straight line for bubble maps
+        if (mapType == 'bubble' || mapType == 'concept') {
+          //straight line for bubble and concept maps
           canvas.drawLine(start, end, paint);
         } else {
-          //curve lines using cubic bezier:
+          //curve lines using cubic bezier for hierarchical and flowchart:
           final path = Path()
             ..moveTo(start.dx, start.dy)
             ..cubicTo(start.dx, start.dy + 40, end.dx, end.dy - 40, end.dx, end.dy);
-          // arrow angle and draw a small triangle at 'end', using canvas.drawPath() with a filled Paint  
           canvas.drawPath(path, paint);
         }
       

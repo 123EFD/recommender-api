@@ -47,6 +47,7 @@ dependencies:
   flutter_animate: ^4.5.2
   path_provider: ^2.1.5
   web: ^1.1.1
+  graphview: ^1.5.1
 
 dev_dependencies:
   flutter_test:
