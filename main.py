@@ -1099,6 +1099,7 @@ def generate_mindmap(request: MindMapRequest):
     2. Under the 'nodes' array key: assign distinct incremental numeric strings to 'id' (e.g., "1", "2"). 'type' values must be lowercase parameters matching your graph layout choice. Crucially, you MUST include a 'label' key containing the actual text content for each node!
     3. Under the 'edges' array key: connect source 'id_from' to target 'id_to'. For 'concept' maps, provide relationship metadata under the 'label' key.
     4. Under the 'mermaid_code' string key: compile valid, pre-rendered syntax using standard 'graph TD' (top-down) layouts (e.g. `graph TD\n  1[Root] --> 2[Branch]`). Avoid special characters inside the bracket text arrays to ensure downstream renderers do not crash.
+    5. GRAPH CONNECTIVITY REQUIREMENT: EVERY single node listed under the 'nodes' array MUST be connected to the graph by at least one edge in the 'edges' array. Do not output any orphan or isolated nodes.
     """
     
     user_prompt = f"Context Text:\n{raw_context[:12000]}\n\nCompile a complete visual structure mapping matching your instructions."

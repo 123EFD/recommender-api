@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import '../models/mind_map_data.dart';
 
@@ -50,27 +49,30 @@ class LayoutEngine {
         fontWeight = FontWeight.w500;
     }
 
+    // Allow wider max text width for detailed educational content
+    final double maxTextWidth = node.type == 'root' ? 240.0 : 200.0;
+
     final textPainter = TextPainter(
       text: TextSpan(
         text: node.label,
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
-          fontFamily: 'Inter', // Assuming GoogleFonts.inter
-          height: 1.2,
+          fontFamily: 'Inter',
+          height: 1.35,
         ),
       ),
       textDirection: TextDirection.ltr,
-      maxLines: 3,
-    )..layout(minWidth: 0, maxWidth: 160); // Allow text to wrap up to 160 width
+      // Removed maxLines cap so height is measured accurately for ALL lines of text!
+    )..layout(minWidth: 0, maxWidth: maxTextWidth);
 
-    // Add padding (horizontal 12*2, vertical 8*2) + border space
+    // Padding (horizontal: 12*2 = 24 + 12 safety = 36; vertical: 8*2 = 16 + 18 safety = 34)
     return Size(
-      max(100.0, textPainter.size.width + 32.0),
-      max(50.0, textPainter.size.height + 24.0),
+      max(120.0, textPainter.size.width + 36.0),
+      max(56.0, textPainter.size.height + 34.0),
     );
   }
-  
+
   // Helper methods
   static Map<String, List<String>> _buildAdjacencyMap(List<MindMapEdge> edges) {
     final map = <String, List<String>>{};
@@ -90,7 +92,7 @@ class LayoutEngine {
 
   static MindMapNode _findRoot(List<MindMapNode> nodes, List<MindMapEdge> edges) {
     // Find the root node (type == 'root', or the node with no incoming edges)
-    final allTargets  = edges.map((e) => e.idTo).toSet();
+    final allTargets = edges.map((e) => e.idTo).toSet();
     for (var node in nodes) {
       if (!allTargets.contains(node.id)) return node;
     }
@@ -105,12 +107,11 @@ class LayoutEngine {
   // Hierarchical layout
   static void _layoutHierarchical(MindMapResponseData mindMapData) {
     if (mindMapData.nodes.isEmpty) return;
-    final adjacency  = _buildAdjacencyMap(mindMapData.edges);
+    final adjacency = _buildAdjacencyMap(mindMapData.edges);
     final nodeMap = _buildNodeMap(mindMapData.nodes);
     final root = _findRoot(mindMapData.nodes, mindMapData.edges);
 
-    const double verticalSpacing = 150.0;
-    const double horizontalSpacing = 220.0;
+    const double verticalSpacing = 160.0;
 
     // Calculate exact pixel width of each subtree to prevent overlapping
     Map<String, double> subtreeWidths = {};
@@ -138,7 +139,6 @@ class LayoutEngine {
         }
       }
       
-      // The subtree must be at least as wide as the parent node itself!
       double finalWidth = max(minWidth, totalChildrenWidth);
       subtreeWidths[nodeId] = finalWidth;
       return finalWidth;
@@ -152,7 +152,7 @@ class LayoutEngine {
     }
 
     // Position each node using DFS 
-    void positionNode(String nodeId, int depth , double xOffset, Set<String> visited) {
+    void positionNode(String nodeId, int depth, double xOffset, Set<String> visited) {
       if (visited.contains(nodeId)) return;
       visited.add(nodeId);
 
@@ -167,8 +167,6 @@ class LayoutEngine {
 
       double childXOffset = xOffset;
       
-      // If the total width of all children is less than the parent's assigned width,
-      // we must center the children under the parent.
       double totalChildrenWidth = 0;
       for (var childId in children) {
          if (!visited.contains(childId)) {
@@ -194,19 +192,26 @@ class LayoutEngine {
     Set<String> globalVisitedPosition = {};
     double currentRootX = 0.0;
     
-    // First, position the main root
+    // First, position the main root tree
     positionNode(root.id, 0, currentRootX, globalVisitedPosition);
     currentRootX += subtreeWidths[root.id] ?? (root.size.width + 40.0);
     
-    // Then position any remaining orphans/components
-    for (var node in mindMapData.nodes) {
-       if (!globalVisitedPosition.contains(node.id)) {
-           positionNode(node.id, 0, currentRootX, globalVisitedPosition);
-           currentRootX += subtreeWidths[node.id] ?? (node.size.width + 40.0);
-       }
+    // Position any orphan nodes neatly in a secondary sub-row instead of a single long horizontal line
+    final orphans = mindMapData.nodes.where((n) => !globalVisitedPosition.contains(n.id)).toList();
+    if (orphans.isNotEmpty) {
+      double orphanY = 80.0 + (3 * verticalSpacing);
+      double orphanX = 100.0;
+      for (int i = 0; i < orphans.length; i++) {
+        orphans[i].position = Offset(orphanX, orphanY);
+        orphanX += orphans[i].size.width + 40.0;
+        if ((i + 1) % 4 == 0) {
+          orphanX = 100.0;
+          orphanY += verticalSpacing;
+        }
+      }
     }
 
-    // Normalize coord. 
+    // Normalize coordinates
     _normalizePositions(mindMapData.nodes, 100, 80);
   }
 
@@ -218,7 +223,7 @@ class LayoutEngine {
     final nodeMap = _buildNodeMap(mindMapData.nodes);
     final root = _findRoot(mindMapData.nodes, mindMapData.edges);
     const double verticalGap = 130.0;
-    const double laneOffset = 200.0;
+    const double laneOffset = 220.0;
     double centerX = 800.0;
     double currentY = 80.0;
 
@@ -236,40 +241,35 @@ class LayoutEngine {
       if (children.length == 1) {
         walk(children[0], xPos);
       } else if (children.length == 2) {
-        //decision branch
+        // decision branch
         double branchY = currentY;
 
-        //left branch
+        // left branch
         final leftNode = nodeMap[children[0]]!;
         leftNode.position = Offset(xPos - laneOffset - leftNode.size.width / 2, branchY);
         visited.add(children[0]);
 
-        //right branch
+        // right branch
         final rightNode = nodeMap[children[1]]!;
         rightNode.position = Offset(xPos + laneOffset - rightNode.size.width / 2, branchY);
         visited.add(children[1]); 
 
-        currentY = branchY + leftNode.size.height + verticalGap; // move down after branches
+        currentY = branchY + leftNode.size.height + verticalGap;
 
         final leftChildren = adjacency[children[0]] ?? [];
         final rightChildren = adjacency[children[1]] ?? [];
 
-        //both branch converge to same node
         if (leftChildren.isNotEmpty && rightChildren.isNotEmpty && leftChildren.first == rightChildren.first) {
           walk(leftChildren.first, xPos);
         } else {
-          //walk left branch children
           for (var childId in leftChildren) {
             walk(childId, xPos - laneOffset);
           }
-          //walk right branch children
           for (var childId in rightChildren) {
             walk(childId, xPos + laneOffset);
           }
         }
-      }
-      else if (children.length > 2) {
-        //multiple branches
+      } else if (children.length > 2) {
         double totalWidth = (children.length - 1) * laneOffset;
         double startX = xPos - totalWidth / 2;
         double branchY = currentY;
@@ -281,7 +281,18 @@ class LayoutEngine {
         currentY = branchY + (nodeMap[children[0]]?.size.height ?? 60) + verticalGap;
       }
     }
+
     walk(root.id, centerX);
+
+    // Position any remaining unvisited / orphan flowchart nodes sequentially along the main axis
+    for (var node in mindMapData.nodes) {
+      if (!visited.contains(node.id)) {
+        node.position = Offset(centerX - node.size.width / 2, currentY);
+        currentY += node.size.height + verticalGap;
+        visited.add(node.id);
+      }
+    }
+
     _normalizePositions(mindMapData.nodes, 100, 80);
   }
 
@@ -293,16 +304,17 @@ class LayoutEngine {
     final root = _findRoot(data.nodes, data.edges);
     
     final Offset center = const Offset(1000, 500);
-    root.size = Size(root.size.width + 40, root.size.height + 20); // Make root visually larger
+    root.size = Size(root.size.width + 40, root.size.height + 20);
     root.position = Offset(center.dx - root.size.width / 2, center.dy - root.size.height / 2);
 
+    final Set<String> visited = {root.id};
     final firstLevel = adjacency[root.id] ?? [];
-    if (firstLevel.isEmpty) return;
-
+    
     // Split first level into left and right hemispheres
     final leftNodes = <String>[];
     final rightNodes = <String>[];
     for (int i = 0; i < firstLevel.length; i++) {
+      visited.add(firstLevel[i]);
       if (i % 2 == 0) {
         rightNodes.add(firstLevel[i]);
       } else {
@@ -312,14 +324,10 @@ class LayoutEngine {
 
     void layoutHemisphere(List<String> nodes, bool isRight) {
       if (nodes.isEmpty) return;
-      // Spread nodes over a 160-degree arc on the respective side
       final double totalArc = 160.0 * (pi / 180.0);
-      
-      // Right side: -80 deg to +80 deg
-      // Left side: 100 deg to 260 deg
       final double startAngle = isRight ? -totalArc / 2 : pi - (totalArc / 2);
       final double angleStep = nodes.length > 1 ? totalArc / (nodes.length - 1) : 0;
-      final double radius = 320.0;
+      final double radius = 340.0;
 
       for (int i = 0; i < nodes.length; i++) {
         double angle = startAngle + (i * angleStep);
@@ -329,20 +337,18 @@ class LayoutEngine {
         final child = nodeMap[nodes[i]]!;
         child.position = Offset(x - child.size.width / 2, y - child.size.height / 2);
 
-        // Position sub-children
         final secondLevel = adjacency[child.id] ?? [];
         if (secondLevel.isEmpty) continue;
         
         Offset childCenter = Offset(x, y);
-        // Sub-orbit angle spread
         double subArc = 120.0 * (pi / 180.0);
-        // Base angle outward from center
         double baseAngle = atan2(y - center.dy, x - center.dx);
         double subStartAngle = baseAngle - (subArc / 2);
         double subStep = secondLevel.length > 1 ? subArc / (secondLevel.length - 1) : 0;
-        double subRadius = 220.0;
+        double subRadius = 240.0;
 
         for (int j = 0; j < secondLevel.length; j++) {
+          visited.add(secondLevel[j]);
           double subAngle = subStartAngle + (j * subStep);
           double sx = childCenter.dx + (subRadius * cos(subAngle));
           double sy = childCenter.dy + (subRadius * sin(subAngle));
@@ -356,6 +362,20 @@ class LayoutEngine {
     layoutHemisphere(leftNodes, false);
     layoutHemisphere(rightNodes, true);
 
+    // Position any orphan / unvisited nodes in an outer 360-degree orbit
+    final unvisited = data.nodes.where((n) => !visited.contains(n.id)).toList();
+    if (unvisited.isNotEmpty) {
+      double orphanArc = 2 * pi;
+      double orphanAngleStep = orphanArc / unvisited.length;
+      double orphanRadius = 520.0;
+      for (int i = 0; i < unvisited.length; i++) {
+        double angle = i * orphanAngleStep;
+        double ox = center.dx + (orphanRadius * cos(angle));
+        double oy = center.dy + (orphanRadius * sin(angle));
+        unvisited[i].position = Offset(ox - unvisited[i].size.width / 2, oy - unvisited[i].size.height / 2);
+      }
+    }
+
     _normalizePositions(data.nodes, 100, 100);
   }
 
@@ -366,7 +386,6 @@ class LayoutEngine {
     final nodeMap = _buildNodeMap(data.nodes);
     final root = _findRoot(data.nodes, data.edges);
 
-     // Root gets the entire canvas
     const double canvasWidth = 1600.0;
     const double canvasHeight = 900.0;
     const double padding = 6.0;
@@ -386,7 +405,7 @@ class LayoutEngine {
 
       if (innerWidth <= 0 || innerHeight <= 0) return;
 
-      for (int  i =0; i < children.length; i++) {
+      for (int i = 0; i < children.length; i++) {
         MindMapNode child = nodeMap[children[i]]!;
         double childWidth, childHeight, startX, startY;
         if (sliceVertically) {
@@ -404,27 +423,28 @@ class LayoutEngine {
         child.position = Offset(startX, startY);
         child.size = Size(childWidth, childHeight);
 
-        //flip the slicing direction for the next level
         sliceRectangle(child.id, !sliceVertically);
       }
     }
     sliceRectangle(root.id, true);
   }
 
-  //Concept Map (Force-Directed Web Layout)
+  // Concept Map (Force-Directed Web Layout with Central Gravity)
   static void _layoutConcept(MindMapResponseData data) {
     if (data.nodes.isEmpty) return;
 
-    // Force-Directed Layout Constants
-    const double k = 200.0; // Optimal distance between connected nodes
-    const double repulsionK = 25000.0; // Repulsion constant
-    const int iterations = 60;
-    const double initialTemperature = 100.0;
+    const double k = 220.0; // Optimal distance between connected nodes
+    const double repulsionK = 28000.0; // Repulsion constant
+    const int iterations = 70;
+    const double initialTemperature = 120.0;
+    final Offset graphCenter = const Offset(500, 500);
     
-    // Initialize random positions
-    final random = Random(42); // deterministic
+    final random = Random(42);
     for (var node in data.nodes) {
-      node.position = Offset(random.nextDouble() * 800, random.nextDouble() * 800);
+      node.position = Offset(
+        graphCenter.dx + (random.nextDouble() - 0.5) * 600,
+        graphCenter.dy + (random.nextDouble() - 0.5) * 600,
+      );
     }
 
     double temperature = initialTemperature;
@@ -434,7 +454,7 @@ class LayoutEngine {
         for (var node in data.nodes) node.id: Offset.zero
       };
 
-      // Calculate Repulsive forces
+      // 1. Calculate Repulsive forces between all node pairs
       for (int i = 0; i < data.nodes.length; i++) {
         for (int j = i + 1; j < data.nodes.length; j++) {
           final u = data.nodes[i];
@@ -444,7 +464,7 @@ class LayoutEngine {
           double distance = delta.distance;
           if (distance == 0) distance = 0.01;
 
-          double force = repulsionK / (distance);
+          double force = repulsionK / distance;
           Offset displacement = (delta / distance) * force;
 
           displacements[u.id] = displacements[u.id]! + displacement;
@@ -452,7 +472,7 @@ class LayoutEngine {
         }
       }
 
-      // Calculate Attractive forces (Edges)
+      // 2. Calculate Attractive forces along edges
       for (var edge in data.edges) {
         final u = data.nodes.firstWhere((n) => n.id == edge.idFrom, orElse: () => data.nodes.first);
         final v = data.nodes.firstWhere((n) => n.id == edge.idTo, orElse: () => data.nodes.first);
@@ -468,7 +488,17 @@ class LayoutEngine {
         displacements[v.id] = displacements[v.id]! + displacement;
       }
 
-      // Apply displacements bounded by temperature
+      // 3. Central Gravity force (prevents orphan / disconnected nodes from floating off)
+      for (var node in data.nodes) {
+        Offset centerDelta = graphCenter - node.position;
+        double centerDist = centerDelta.distance;
+        if (centerDist > 0) {
+          Offset gravity = (centerDelta / centerDist) * (centerDist * 0.08);
+          displacements[node.id] = displacements[node.id]! + gravity;
+        }
+      }
+
+      // 4. Apply displacements bounded by temperature
       for (var node in data.nodes) {
         Offset disp = displacements[node.id]!;
         double dist = disp.distance;
@@ -478,11 +508,9 @@ class LayoutEngine {
         }
       }
 
-      // Cool down
-      temperature *= 0.95;
+      temperature *= 0.94;
     }
     
-    // Normalize coordinates so the graph is visible
     _normalizePositions(data.nodes, 100, 100);
   }
 
