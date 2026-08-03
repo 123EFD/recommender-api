@@ -1,0 +1,3872 @@
+1
+00:00:01,000 --> 00:00:05,000
+The following content is provided under a Creative Commons license.
+
+2
+00:00:05,000 --> 00:00:11,000
+Your support will help MIT OpenCourseWare continue to offer high quality educational resources for free.
+
+3
+00:00:11,000 --> 00:00:16,000
+To make a donation or to view additional materials from hundreds of MIT courses,
+
+4
+00:00:16,000 --> 00:00:22,000
+visit MIT OpenCourseWare at ocw.mit.edu.
+
+5
+00:00:22,000 --> 00:00:27,000
+Self-driving cars are pretty cool. They're being hot nowadays, so we're going to use this as an example.
+
+6
+00:00:27,000 --> 00:00:33,000
+And in the past, we have seen how we can give an autonomous vehicle a goal,
+
+7
+00:00:33,000 --> 00:00:35,000
+some condition we wanted to reach.
+
+8
+00:00:35,000 --> 00:00:39,000
+For example, we might have a car that wants to pick up some passengers along the way,
+
+9
+00:00:39,000 --> 00:00:44,000
+get to some destination, and maybe navigate some world.
+
+10
+00:00:44,000 --> 00:00:48,000
+But let's consider that there's something like a self-driving car.
+
+11
+00:00:48,000 --> 00:00:53,000
+We also have a number of other goals or requirements that are sort of implicit along the way,
+
+12
+00:00:53,000 --> 00:00:59,000
+in that we want our self-driving car to obey the rules of the road as it's driving.
+
+13
+00:00:59,000 --> 00:01:05,000
+And these aren't just goal conditions, which is a sort of single goal that you're trying to reach,
+
+14
+00:01:05,000 --> 00:01:11,000
+but these are sort of goals that you're trying to maintain throughout the path that you're traveling.
+
+15
+00:01:11,000 --> 00:01:17,000
+So one example of this is a traffic light.
+
+16
+00:01:17,000 --> 00:01:20,000
+So maybe you guys can help me out with this.
+
+17
+00:01:20,000 --> 00:01:26,000
+Just in plain English, how would you describe the rules of how you would want a car to behave
+
+18
+00:01:26,000 --> 00:01:30,000
+when it goes across a traffic light?
+
+19
+00:01:30,000 --> 00:01:32,000
+Very simple.
+
+20
+00:01:32,000 --> 00:01:37,000
+Slow down if you see yellow, stop if you see red, go if you see red.
+
+21
+00:01:37,000 --> 00:01:43,000
+Yeah, so pretty much, stop if you see red, go if you see green.
+
+22
+00:01:43,000 --> 00:01:49,000
+And specifically, if you see red and you stop, you're going to want to stop until you see the green,
+
+23
+00:01:49,000 --> 00:02:01,000
+at which point that sort of condition that you're stopping goes away and you're able to move on.
+
+24
+00:02:01,000 --> 00:02:06,000
+In addition to things like opening traffic lights, there might also be some other rules of the road
+
+25
+00:02:06,000 --> 00:02:08,000
+that we want to follow.
+
+26
+00:02:08,000 --> 00:02:13,000
+For example, we might want to always stay within his speed limit.
+
+27
+00:02:13,000 --> 00:02:18,000
+And then there might also be some other practical conditions of driving on the road,
+
+28
+00:02:18,000 --> 00:02:21,000
+which is that at some point we're going to need to refuel.
+
+29
+00:02:21,000 --> 00:02:24,000
+And if we consider a car that might be driving for a really long time,
+
+30
+00:02:24,000 --> 00:02:30,000
+one statement, logical statement we could say about the path that this car takes
+
+31
+00:02:30,000 --> 00:02:35,000
+and the sequence of states that it goes through is that at every point in time,
+
+32
+00:02:35,000 --> 00:02:40,000
+we want the plan to have some future state when we are going to visit a gas station.
+
+33
+00:02:40,000 --> 00:02:43,000
+So this isn't just like a single goal that we're trying to reach,
+
+34
+00:02:43,000 --> 00:02:49,000
+but over a very long time, even if we consider that the car could drive in a given amount of time,
+
+35
+00:02:49,000 --> 00:02:54,000
+at every point in the time, we're going to need to be thinking ahead that there's going to be some time
+
+36
+00:02:54,000 --> 00:02:58,000
+when we reach a gas station and reach the border.
+
+37
+00:02:58,000 --> 00:03:07,000
+So these types of conditions, things like staying on a red light until it turns green,
+
+38
+00:03:07,000 --> 00:03:13,000
+always staying within a certain speed limit, or always having some path in the future,
+
+39
+00:03:13,000 --> 00:03:15,000
+some state in the future when we reach a gas station,
+
+40
+00:03:15,000 --> 00:03:19,000
+are things that we can express with a type of logic called temporal logic.
+
+41
+00:03:19,000 --> 00:03:23,000
+And there are two things that we hope you're going to be able to do by the time you leave this lecture.
+
+42
+00:03:23,000 --> 00:03:28,000
+The first is to be able to model these temporally extended goals
+
+43
+00:03:28,000 --> 00:03:34,000
+using a specific type of temporal logic called linear temporal logic, or LTL.
+
+44
+00:03:34,000 --> 00:03:39,000
+And secondly, we're going to hope that you'll be able to actually apply this to planning
+
+45
+00:03:39,000 --> 00:03:42,000
+great plans with these temporally extended goals.
+
+46
+00:03:42,000 --> 00:03:46,000
+And in addition to just sort of this regular planning we've been dealing with,
+
+47
+00:03:46,000 --> 00:03:50,000
+actually incorporating this idea of preferences into your plans.
+
+48
+00:03:50,000 --> 00:03:57,000
+So preference basically is not a required condition, but a desired condition
+
+49
+00:03:57,000 --> 00:04:02,000
+that you can use to select between alternative paths.
+
+50
+00:04:02,000 --> 00:04:06,000
+So you might have many different ways that you could reach your goal,
+
+51
+00:04:06,000 --> 00:04:09,000
+but we can use some of these temporally extended goals,
+
+52
+00:04:09,000 --> 00:04:14,000
+like maybe you prefer to break as few of the rules of the road as you can,
+
+53
+00:04:14,000 --> 00:04:21,000
+and you can use those as preferences to choose between plans.
+
+54
+00:04:21,000 --> 00:04:26,000
+So just as an outline, first we're just going to do a little introduction to linear temporal logic.
+
+55
+00:04:26,000 --> 00:04:31,000
+We're going to talk about what this is, what LTL is, why you want to use it,
+
+56
+00:04:31,000 --> 00:04:36,000
+and we're going to go through the syntax and the semantics of different LTL operators.
+
+57
+00:04:36,000 --> 00:04:39,000
+Then we're going to walk you through some example LTL problems
+
+58
+00:04:39,000 --> 00:04:42,000
+and actually talk about applications to plan,
+
+59
+00:04:42,000 --> 00:04:47,000
+how you create plans with these linear temporal logic temporal goals.
+
+60
+00:04:47,000 --> 00:04:50,000
+Finally, we're going to incorporate preferences into this,
+
+61
+00:04:50,000 --> 00:04:52,000
+talk about how you express preferences,
+
+62
+00:04:52,000 --> 00:04:55,000
+and specifically talk about a language called LPP that allows you to plan
+
+63
+00:04:55,000 --> 00:05:01,000
+with temporal logic and preferences.
+
+64
+00:05:01,000 --> 00:05:05,000
+So now for the introduction to linear temporal logic.
+
+65
+00:05:05,000 --> 00:05:08,000
+Temporal logic at its core is a formalism
+
+66
+00:05:08,000 --> 00:05:11,000
+because we're just specifying properties of a system that vary with time.
+
+67
+00:05:11,000 --> 00:05:15,000
+So these aren't just conditions that are true at a single state,
+
+68
+00:05:15,000 --> 00:05:19,000
+which is what we've mostly been dealing with prepositional logic.
+
+69
+00:05:19,000 --> 00:05:27,000
+So we've been saying things like condition A and B but not C are true at a given state,
+
+70
+00:05:27,000 --> 00:05:29,000
+and that's prepositional logic.
+
+71
+00:05:29,000 --> 00:05:31,000
+Temporal logic is sort of a layer on top of that
+
+72
+00:05:31,000 --> 00:05:33,000
+when we're dealing not just with what's true at a single state,
+
+73
+00:05:33,000 --> 00:05:37,000
+but actually extending that over time as the system moves through a sequence of states
+
+74
+00:05:37,000 --> 00:05:43,000
+and expressing properties on a temporal level.
+
+75
+00:05:43,000 --> 00:05:47,000
+So you might have a system that can be represented as a state machine,
+
+76
+00:05:47,000 --> 00:05:55,000
+an automata, and it can go through a sequence of different states.
+
+77
+00:05:55,000 --> 00:05:58,000
+And while you might be able to represent the whole system like this,
+
+78
+00:05:58,000 --> 00:06:03,000
+if we actually execute the system, we're going to get one path through the system.
+
+79
+00:06:03,000 --> 00:06:06,000
+That's often called the trace of the system.
+
+80
+00:06:06,000 --> 00:06:09,000
+You can also think of it as a timeline of the system.
+
+81
+00:06:09,000 --> 00:06:13,000
+So one example of a timeline of the system is it might start at state A,
+
+82
+00:06:13,000 --> 00:06:18,000
+then go to state C, then go to D, and keep looping around the D forever.
+
+83
+00:06:18,000 --> 00:06:20,000
+So that's one trace or one timeline of the system,
+
+84
+00:06:20,000 --> 00:06:25,000
+and that's really just a sequence of states that it goes through.
+
+85
+00:06:25,000 --> 00:06:29,000
+And in the past, we've seen this in some of the problem sets, for example,
+
+86
+00:06:29,000 --> 00:06:35,000
+when we were modeling the warp reactor, we've had the valves
+
+87
+00:06:35,000 --> 00:06:38,000
+that could transition between open and closed states.
+
+88
+00:06:38,000 --> 00:06:44,000
+And also the whole system of the starship going through different planets,
+
+89
+00:06:44,000 --> 00:06:49,000
+transitioning through a larger set of locations, picking up passengers, dropping them off.
+
+90
+00:06:49,000 --> 00:06:54,000
+So these could be quite complex.
+
+91
+00:06:55,000 --> 00:07:00,000
+And so as I said, previously, in our problems that we've been modeling,
+
+92
+00:07:00,000 --> 00:07:04,000
+we've been going through a system and we've been searching for a single state
+
+93
+00:07:04,000 --> 00:07:07,000
+that satisfies all of our cold conditions.
+
+94
+00:07:07,000 --> 00:07:12,000
+Like maybe we want to reach LaVinia and save a certain number of people.
+
+95
+00:07:12,000 --> 00:07:20,000
+But with temporal logic, we can actually express goals that are satisfied over a number of states.
+
+96
+00:07:20,000 --> 00:07:25,000
+And this allows us to do some more expressive goals
+
+97
+00:07:25,000 --> 00:07:29,000
+than we could capture just by looking at a single state at the end.
+
+98
+00:07:32,000 --> 00:07:38,000
+So for example, what if a problem requires some condition to be met
+
+99
+00:07:38,000 --> 00:07:40,000
+until another condition is met?
+
+100
+00:07:40,000 --> 00:07:44,000
+For example, when you see a red light, that implies that we should stop
+
+101
+00:07:44,000 --> 00:07:47,000
+until we see the green light.
+
+102
+00:07:48,000 --> 00:07:52,000
+And if we look at a timeline or a trace of one of these systems,
+
+103
+00:07:52,000 --> 00:07:54,000
+that might look something like this.
+
+104
+00:07:54,000 --> 00:07:59,000
+So we're going along through our system and at one of the states we see the red light.
+
+105
+00:07:59,000 --> 00:08:03,000
+So that adds this condition that we should stop.
+
+106
+00:08:03,000 --> 00:08:06,000
+And then that condition will hold forever until we see a green light,
+
+107
+00:08:06,000 --> 00:08:10,000
+at which point that condition has dropped and we can keep moving on.
+
+108
+00:08:10,000 --> 00:08:13,000
+Another example where we might want to use temporal logic
+
+109
+00:08:13,000 --> 00:08:18,000
+is what if our problem requires a condition to always eventually be met?
+
+110
+00:08:18,000 --> 00:08:20,000
+And this is what I was talking about with the gas station.
+
+111
+00:08:20,000 --> 00:08:26,000
+So we might be going on forever and there should always be some point in the future
+
+112
+00:08:26,000 --> 00:08:30,000
+when we do have a state where we're at a gas station.
+
+113
+00:08:30,000 --> 00:08:34,000
+So we might start our system at a certain state
+
+114
+00:08:34,000 --> 00:08:38,000
+and our plan says that at some point we do reach a gas station.
+
+115
+00:08:38,000 --> 00:08:39,000
+So that's good.
+
+116
+00:08:39,000 --> 00:08:42,000
+But then when we get to the next state, we also want it to be true
+
+117
+00:08:42,000 --> 00:08:45,000
+that from that point on we're going to reach another gas station.
+
+118
+00:08:45,000 --> 00:08:50,000
+And after that, we're going on and on and on into the future.
+
+119
+00:08:50,000 --> 00:08:56,000
+These are things that you can express very easily with the types of logic
+
+120
+00:08:56,000 --> 00:09:00,000
+that we've been dealing with before.
+
+121
+00:09:00,000 --> 00:09:05,000
+So one important distinction that we should clear up before we really dive into the syntax
+
+122
+00:09:05,000 --> 00:09:11,000
+of how these linear temporal logics work is the difference between branching time and linear time.
+
+123
+00:09:11,000 --> 00:09:15,000
+There are really two different types, two different models of time that we can be working with.
+
+124
+00:09:15,000 --> 00:09:20,000
+There's two different types of temporal logic that exist to express these different types of time.
+
+125
+00:09:20,000 --> 00:09:26,000
+So linear time is more similar to the world that we live in.
+
+126
+00:09:26,000 --> 00:09:30,000
+Unless you're living in some sci-fi movie where time is branching into different realities
+
+127
+00:09:30,000 --> 00:09:36,000
+and all sorts of crazy stuff is going on, you can think of time as just this linear timeline.
+
+128
+00:09:36,000 --> 00:09:40,000
+So right now, there's one future state that's going to happen for me.
+
+129
+00:09:40,000 --> 00:09:47,000
+And regardless of how many options I have, there's one realization of the time.
+
+130
+00:09:47,000 --> 00:09:53,000
+And what this happens, what this lets us do is that it gives us a single path for our system.
+
+131
+00:09:53,000 --> 00:10:02,000
+And we can reason very exactly about the conditions that are met within that path.
+
+132
+00:10:02,000 --> 00:10:12,000
+And this lets us describe what will always happen in a system.
+
+133
+00:10:12,000 --> 00:10:17,000
+For example, we can guarantee that we always stop at a red light until we see a green light,
+
+134
+00:10:17,000 --> 00:10:23,000
+or we always stay within the speed limit.
+
+135
+00:10:23,000 --> 00:10:28,000
+This is contrasted with a different model of time called branching time.
+
+136
+00:10:28,000 --> 00:10:34,000
+And in this model of time, at each time instant, we consider all possible futures.
+
+137
+00:10:34,000 --> 00:10:39,000
+So if we have multiple actions that we can perform at a given state,
+
+138
+00:10:39,000 --> 00:10:44,000
+we're going to consider different timelines that branch off from each of those possible behaviors.
+
+139
+00:10:44,000 --> 00:10:50,000
+And this results in alternate courses of time that we can reason about as a set.
+
+140
+00:10:50,000 --> 00:10:56,000
+And instead of thinking about this as always conditions, so our path always does this,
+
+141
+00:10:56,000 --> 00:10:58,000
+we can think about this more in possibilities.
+
+142
+00:10:58,000 --> 00:11:02,000
+And if we're using branching time, we can say, at this state in time,
+
+143
+00:11:02,000 --> 00:11:07,000
+there exists a future path in which we will always stay under the speed limit.
+
+144
+00:11:07,000 --> 00:11:13,000
+Or at this point in time, all of our future paths satisfy a certain condition.
+
+145
+00:11:13,000 --> 00:11:20,000
+So whereas linear temporal logic is more about guaranteeing what will happen on a given path,
+
+146
+00:11:20,000 --> 00:11:26,000
+branching time allows us to reason about what might possibly happen in this system.
+
+147
+00:11:26,000 --> 00:11:31,000
+So for our purposes with planning, in part because it's more practical,
+
+148
+00:11:31,000 --> 00:11:35,000
+and in part because it gives us an exact analysis of a given path,
+
+149
+00:11:35,000 --> 00:11:37,000
+we're going to be doing linear time.
+
+150
+00:11:37,000 --> 00:11:40,000
+And for that reason, we use what's called linear temporal logic.
+
+151
+00:11:40,000 --> 00:11:42,000
+There's a different type of temporal logic.
+
+152
+00:11:42,000 --> 00:11:47,000
+There's one called CTL and CTL star that deal with branching time.
+
+153
+00:11:47,000 --> 00:11:52,000
+And those are sort of an extension of linear temporal logic that add a few other operators
+
+154
+00:11:52,000 --> 00:11:55,000
+that allow you to reason over multiple paths.
+
+155
+00:11:55,000 --> 00:12:00,000
+But for our purposes, we're just going to be using the linear time model.
+
+156
+00:12:00,000 --> 00:12:08,000
+So kind of as a recap of what linear temporal logic involves, we're using this linear time model.
+
+157
+00:12:08,000 --> 00:12:13,000
+Another important distinction is that we're actually going to be talking about infinite sequences of states.
+
+158
+00:12:14,000 --> 00:12:19,000
+So instead of us just reasoning up until a certain goal condition is met,
+
+159
+00:12:19,000 --> 00:12:26,000
+we're thinking about systems that could theoretically keep transitioning over time over and over and over into the future.
+
+160
+00:12:26,000 --> 00:12:31,000
+So if you have one of these state machines, you can think at each time step it's going to visit a new state.
+
+161
+00:12:31,000 --> 00:12:36,000
+And if you give it enough time, it's just going to generate an infinite sequence of states.
+
+162
+00:12:36,000 --> 00:12:40,000
+And we can actually express properties that can hold over an infinite number of states,
+
+163
+00:12:40,000 --> 00:12:46,000
+not just the discrete number of states that we might usually think of to reach a goal.
+
+164
+00:12:46,000 --> 00:12:52,000
+And linear temporal logic can actually be modified to work with discrete set of states.
+
+165
+00:12:52,000 --> 00:12:56,000
+It just requires an additional operator.
+
+166
+00:12:56,000 --> 00:13:02,000
+But the ability to reason about infinite sequences of states gives us a lot of power
+
+167
+00:13:02,000 --> 00:13:09,000
+in talking about guarantees for our system regardless of how much time we're talking about.
+
+168
+00:13:09,000 --> 00:13:17,000
+Finally, all the operators we're going to be looking at in our logic system are what we call forward-looking conditions.
+
+169
+00:13:17,000 --> 00:13:27,000
+So when we're given a state, we're going to be reasoning about what's going to happen in the future for potentially infinite amount of time in the future.
+
+170
+00:13:27,000 --> 00:13:33,000
+There's sort of a symmetric version of this logic that reasons about the past.
+
+171
+00:13:33,000 --> 00:13:40,000
+So for example, we could say, talk about guarantees and something will eventually happen in the future.
+
+172
+00:13:40,000 --> 00:13:48,000
+There's sort of a symmetric version where we can talk about, given a certain state, we can guarantee that something eventually happened in the past.
+
+173
+00:13:48,000 --> 00:13:54,000
+But for us, and that we're going to focus on planning, we're typically planning about what to do in the future.
+
+174
+00:13:54,000 --> 00:14:01,000
+It makes more sense for us to use this future-looking set of operators.
+
+175
+00:14:01,000 --> 00:14:11,000
+And so I guess one little nuance here that I sort of pointed out in the previous slide is that because we're using a linear model of time and not a branching model of time,
+
+176
+00:14:11,000 --> 00:14:22,000
+we're going to be expressing properties that happen over a single path of states and not properties that happen over a separate path of states.
+
+177
+00:14:22,000 --> 00:14:37,000
+So finally, I'm just going to talk about a couple of the main applications for linear temporal logic before Ellie will dive in and actually talk more about the semantics and the syntax of how we use this logic.
+
+178
+00:14:37,000 --> 00:14:42,000
+So the first main use is verification and model checking.
+
+179
+00:14:42,000 --> 00:14:56,000
+We can use this linear temporal logic to create guarantees about a system and formally verify it for a couple of different properties.
+
+180
+00:14:56,000 --> 00:14:59,000
+For example, we can talk about the safety of the system.
+
+181
+00:14:59,000 --> 00:15:06,000
+We can say over the course of the system, we guarantee that it will never enter a state with a certain condition.
+
+182
+00:15:06,000 --> 00:15:09,000
+We can also talk about the maintenance of properties.
+
+183
+00:15:09,000 --> 00:15:18,000
+So over the entire lifetime of the system, we guarantee that a certain condition will always hold.
+
+184
+00:15:18,000 --> 00:15:24,000
+The other main application for temporal logic, one that we're going to be focusing on, is for planning.
+
+185
+00:15:24,000 --> 00:15:28,000
+And this is planning using these temporarily extended goals that I've been talking about.
+
+186
+00:15:28,000 --> 00:15:33,000
+And it actually extends nicely to talking about temporarily extended preferences.
+
+187
+00:15:33,000 --> 00:15:38,000
+So this is given that we have a number of different paths that could reach a goal,
+
+188
+00:15:38,000 --> 00:15:51,000
+we can actually look at all of those and see which paths satisfy certain conditions over the sequence of states and use those conditions as a way of choosing which ones we prefer.
+
+189
+00:15:51,000 --> 00:15:59,000
+So with that, Ellie is now going to talk about some of the syntax of linear temporal logic.
+
+190
+00:16:03,000 --> 00:16:10,000
+Hi guys, my name is Ellie and I'm going to talk about the syntax of LTL.
+
+191
+00:16:10,000 --> 00:16:19,000
+So an LTL formula is a series of states and at each state, you can have various propositions that can be either true or false.
+
+192
+00:16:19,000 --> 00:16:23,000
+So for example, is it okay if I erase this?
+
+193
+00:16:23,000 --> 00:16:25,000
+Yeah, go ahead.
+
+194
+00:16:26,000 --> 00:16:39,000
+So for example, we can have as Red's animation shows, we have a series of states that goes on to infinity.
+
+195
+00:16:39,000 --> 00:16:44,000
+And at each state, we can have propositions that are either true or false.
+
+196
+00:16:44,000 --> 00:16:54,000
+So the track of like, if you read, could be an example of a proposition, we could be stopped, etc.
+
+197
+00:16:58,000 --> 00:17:03,000
+And there's various logical operators that we can apply to these formulas, these sets of states,
+
+198
+00:17:03,000 --> 00:17:14,000
+and we can determine if these logical operators are either true or false about each set of states, each formula.
+
+199
+00:17:14,000 --> 00:17:21,000
+So there's the not operated, the or operated, the and, the implies, it's an only if, and like I said, the state,
+
+200
+00:17:21,000 --> 00:17:25,000
+each proposition of this week can either be true or false.
+
+201
+00:17:25,000 --> 00:17:30,000
+So just to go into some examples of these.
+
+202
+00:17:30,000 --> 00:17:40,000
+The logical operator true says that there is, essentially what the operator true says is it's not saying, oh, the state is true.
+
+203
+00:17:40,000 --> 00:17:43,000
+The operator just true says that there are states for all infinity.
+
+204
+00:17:43,000 --> 00:17:45,000
+So true is always true.
+
+205
+00:17:45,000 --> 00:17:50,000
+So no matter what you had for your states here, the logical operator true holds.
+
+206
+00:17:50,000 --> 00:17:59,000
+However, when you talk about the logical operator true with respect to a certain state or a certain proposition, I mean, then it kind of becomes false.
+
+207
+00:17:59,000 --> 00:18:08,000
+So for example, here, the logical operator red light is true at the first state.
+
+208
+00:18:08,000 --> 00:18:12,000
+If this was green, then the logical operator red would be false at the first state.
+
+209
+00:18:12,000 --> 00:18:14,000
+Does that make sense?
+
+210
+00:18:14,000 --> 00:18:16,000
+All right.
+
+211
+00:18:16,000 --> 00:18:25,000
+One important thing to note about the logical operators is that they just apply to the very first state in your sequence.
+
+212
+00:18:25,000 --> 00:18:40,000
+So when we're discussing logical operators, we haven't gotten to the point where we can express temporal information about our sequence of states.
+
+213
+00:18:40,000 --> 00:18:42,000
+The next operator is not.
+
+214
+00:18:42,000 --> 00:18:48,000
+So as you can see here, the traffic light is red at the first state.
+
+215
+00:18:48,000 --> 00:18:56,000
+So the traffic light is not green holds because the proposition green is not true at the first state.
+
+216
+00:18:56,000 --> 00:19:04,000
+And the logical operator and rates at this first state is we're at the red light and we're getting gas.
+
+217
+00:19:04,000 --> 00:19:12,000
+So both that were at the red light and they were getting gas holds for the first state.
+
+218
+00:19:12,000 --> 00:19:20,000
+And then the operator or essentially says, I guess a lot of this is how you remove you guys, a lot of operators.
+
+219
+00:19:20,000 --> 00:19:28,000
+But essentially, if you have red or green, then you could either have the traffic light be red or the traffic light be green at the first state.
+
+220
+00:19:28,000 --> 00:19:34,000
+And as long as one of those two holds or both of them holds, then it's true.
+
+221
+00:19:34,000 --> 00:19:45,000
+And one thing to note about four applies and if and only if, these can be rewritten with just the logical operators and and not.
+
+222
+00:19:45,000 --> 00:19:54,000
+So another way of expressing red and green is to say that you can't have a scenario where both it's not red and it's not green.
+
+223
+00:19:54,000 --> 00:20:00,000
+And I'm not going to go over that for applies and if and only if, just for the sake of time.
+
+224
+00:20:00,000 --> 00:20:06,000
+So that's just a review of the logical operators and now we're going to go into the temporal operators.
+
+225
+00:20:06,000 --> 00:20:12,000
+So when we're talking about our economist card, what are some useful temporal operators?
+
+226
+00:20:12,000 --> 00:20:21,000
+Because up until now we just are describing the first state in our sequence, which is really useful if we want to talk about the entire set of sequences.
+
+227
+00:20:22,000 --> 00:20:27,000
+So what do you guys think are some useful things that we want to be able to describe?
+
+228
+00:20:27,000 --> 00:20:32,000
+You know, Ben touched on some of them at the beginning, but if you guys could recount some of them, yes?
+
+229
+00:20:32,000 --> 00:20:34,000
+State transitions.
+
+230
+00:20:34,000 --> 00:20:42,000
+State transitions. So, exactly. So if I'm in the state right now, might I be concerned about the next state?
+
+231
+00:20:42,000 --> 00:20:44,000
+Is that kind of like what you're saying?
+
+232
+00:20:44,000 --> 00:20:49,000
+Yeah, but yeah, so next is one of the things that we might be concerned about.
+
+233
+00:20:49,000 --> 00:20:51,000
+The next state.
+
+234
+00:20:56,000 --> 00:20:59,000
+Are there any other things you guys can do now?
+
+235
+00:20:59,000 --> 00:21:00,000
+Yes?
+
+236
+00:21:00,000 --> 00:21:02,000
+Always or always?
+
+237
+00:21:02,000 --> 00:21:04,000
+Yeah, I think that'd be always.
+
+238
+00:21:05,000 --> 00:21:20,000
+So, like Ben said, we always want to follow the speed limit. We always want to be under 35 miles an hour, whatever the speed limit is.
+
+239
+00:21:20,000 --> 00:21:22,000
+Anything else?
+
+240
+00:21:22,000 --> 00:21:23,000
+Yes?
+
+241
+00:21:23,000 --> 00:21:24,000
+Until?
+
+242
+00:21:24,000 --> 00:21:25,000
+Yeah.
+
+243
+00:21:25,000 --> 00:21:30,000
+So, like he said, we want to be stopped until the light turns green.
+
+244
+00:21:30,000 --> 00:21:31,000
+Yes?
+
+245
+00:21:31,000 --> 00:21:32,000
+Eventually.
+
+246
+00:21:32,000 --> 00:21:33,000
+Eventually?
+
+247
+00:21:33,000 --> 00:21:38,000
+So, we eventually want to get gas.
+
+248
+00:21:43,000 --> 00:21:44,000
+Any other things?
+
+249
+00:21:44,000 --> 00:21:45,000
+At this state.
+
+250
+00:21:45,000 --> 00:21:51,000
+At this state, yep. And so, at this state is kind of what the lots of operators are doing at the beginning,
+
+251
+00:21:51,000 --> 00:21:53,000
+but I agree that's something you have to be able to express.
+
+252
+00:21:53,000 --> 00:21:58,000
+So, that's not a specific temporal operator, but it's including the logical ones.
+
+253
+00:21:58,000 --> 00:22:00,000
+Well, I'll just write it up here for you.
+
+254
+00:22:01,000 --> 00:22:05,000
+So, the logical operators are then acting out of each other.
+
+255
+00:22:05,000 --> 00:22:08,000
+So, they're acting first state, they're not acting out of each other.
+
+256
+00:22:08,000 --> 00:22:10,000
+Exactly, they act first state.
+
+257
+00:22:10,000 --> 00:22:16,000
+And so, if you just wrote the logical operators, but I just find the definition of LTA,
+
+258
+00:22:16,000 --> 00:22:21,000
+it means let's just announce A1 as first state and see if it's true.
+
+259
+00:22:21,000 --> 00:22:24,000
+And so, it won't tell us anything about the third state or the fourth state or the second state,
+
+260
+00:22:24,000 --> 00:22:27,000
+which is why we have to look at the next state.
+
+261
+00:22:27,000 --> 00:22:28,000
+So, yeah.
+
+262
+00:22:28,000 --> 00:22:29,000
+Okay.
+
+263
+00:22:29,000 --> 00:22:30,000
+Any other questions?
+
+264
+00:22:32,000 --> 00:22:33,000
+Okay.
+
+265
+00:22:35,000 --> 00:22:39,000
+So, as you said, next is an important one.
+
+266
+00:22:39,000 --> 00:22:44,000
+So, right here we consider, okay, the next light will be green.
+
+267
+00:22:47,000 --> 00:22:51,000
+And intel is the one that she mentioned.
+
+268
+00:22:51,000 --> 00:22:55,000
+So, the light will be red until it becomes green.
+
+269
+00:22:56,000 --> 00:22:59,000
+Eventually.
+
+270
+00:22:59,000 --> 00:23:04,000
+So, the light will eventually, at some point in the future, turn green.
+
+271
+00:23:04,000 --> 00:23:06,000
+So, it might be waiting here for red light for a long time,
+
+272
+00:23:06,000 --> 00:23:08,000
+but eventually it's going to turn green for us.
+
+273
+00:23:10,000 --> 00:23:12,000
+The light will always be red.
+
+274
+00:23:12,000 --> 00:23:14,000
+So, I guess you're stuck at the traffic light for a long time.
+
+275
+00:23:14,000 --> 00:23:17,000
+Or globally, that's another name for always.
+
+276
+00:23:18,000 --> 00:23:24,000
+And lastly, this one is a little bit less intuitive.
+
+277
+00:23:25,000 --> 00:23:29,000
+So, what this is saying is the light will always be red
+
+278
+00:23:29,000 --> 00:23:33,000
+until another circumstance coincides with the same state.
+
+279
+00:23:33,000 --> 00:23:36,000
+So, the light will be always red until the car gets gas.
+
+280
+00:23:36,000 --> 00:23:40,000
+And then after it gets its gas, then the red is released
+
+281
+00:23:40,000 --> 00:23:43,000
+and the light can be either green or red after that.
+
+282
+00:23:43,000 --> 00:23:49,000
+So, we have red, red, red, red, red until we have both red and gas.
+
+283
+00:23:49,000 --> 00:23:51,000
+And then it can be green or it can be red after then.
+
+284
+00:23:51,000 --> 00:23:53,000
+It's not so strange to be red.
+
+285
+00:23:53,000 --> 00:23:54,000
+Does that make sense?
+
+286
+00:23:54,000 --> 00:23:56,000
+No, it's a little bit less intuitive.
+
+287
+00:23:56,000 --> 00:23:58,000
+So, is that good?
+
+288
+00:24:04,000 --> 00:24:09,000
+Alright, so now that we've gone over just the intuitive understanding of that,
+
+289
+00:24:09,000 --> 00:24:11,000
+I'm going to give you the actual syntax for that.
+
+290
+00:24:12,000 --> 00:24:16,000
+So, x is representative of next.
+
+291
+00:24:16,000 --> 00:24:22,000
+So, in the first state, we don't care if p is true, p could be not true, p could be true.
+
+292
+00:24:22,000 --> 00:24:23,000
+It doesn't matter.
+
+293
+00:24:23,000 --> 00:24:28,000
+But in the second state, the next one after the first state, p has to hold
+
+294
+00:24:28,000 --> 00:24:32,000
+in order for xb to be a true statement about our sequence state.
+
+295
+00:24:32,000 --> 00:24:35,000
+So, what do you guys think?
+
+296
+00:24:39,000 --> 00:24:45,000
+If I wrote this, what would that mean?
+
+297
+00:24:46,000 --> 00:24:51,000
+Do you guys want to stay here?
+
+298
+00:24:51,000 --> 00:24:52,000
+Yep.
+
+299
+00:24:52,000 --> 00:24:54,000
+So, this one over here?
+
+300
+00:24:54,000 --> 00:24:55,000
+Sure.
+
+301
+00:24:55,000 --> 00:24:58,000
+Yeah, perfect.
+
+302
+00:24:58,000 --> 00:25:00,000
+Alright, Intel Operator.
+
+303
+00:25:00,000 --> 00:25:07,000
+Intel Operator essentially says, like Ben said, we are stopped until the light is green.
+
+304
+00:25:07,000 --> 00:25:13,000
+So, if you have p until w, you just p s into every state until w.
+
+305
+00:25:13,000 --> 00:25:18,000
+And after that point, p can be whatever you want to be.
+
+306
+00:25:18,000 --> 00:25:25,000
+Eventually, our future operator says that at some point in the future, we will get gas.
+
+307
+00:25:25,000 --> 00:25:27,000
+However, it's worth a note.
+
+308
+00:25:27,000 --> 00:25:31,000
+I know when we talked about getting gas, we said, oh, we have to always get gas
+
+309
+00:25:31,000 --> 00:25:33,000
+at some point in the future.
+
+310
+00:25:33,000 --> 00:25:38,000
+But the future eventually operator is just at one point in the future.
+
+311
+00:25:38,000 --> 00:25:40,000
+So, once you get gas, you don't have to get it again.
+
+312
+00:25:40,000 --> 00:25:41,000
+Yes?
+
+313
+00:25:41,000 --> 00:25:46,000
+The greatest idea to note at the bottom is that w is required to become true.
+
+314
+00:25:46,000 --> 00:25:51,000
+Does that mean an Intel Operator also implies a future operator on the w?
+
+315
+00:25:51,000 --> 00:25:53,000
+Yeah.
+
+316
+00:25:53,000 --> 00:25:57,000
+But it's just the added condition that p will be true until the w.
+
+317
+00:25:57,000 --> 00:26:00,000
+So, like, whenever you use an Intel, you say p until w.
+
+318
+00:26:00,000 --> 00:26:01,000
+Yeah.
+
+319
+00:26:01,000 --> 00:26:05,000
+And you also have to add, like, at some point in the future.
+
+320
+00:26:05,000 --> 00:26:09,000
+Yeah, you're right.
+
+321
+00:26:09,000 --> 00:26:12,000
+What would be possible if your system just stays p, right?
+
+322
+00:26:12,000 --> 00:26:13,000
+It could, yeah.
+
+323
+00:26:13,000 --> 00:26:18,000
+But then, if your system, then you totally find that you had your system just be p.
+
+324
+00:26:18,000 --> 00:26:25,000
+But then, the operator p until w wouldn't hold unless you had a w at some point in that sequence of p's.
+
+325
+00:26:25,000 --> 00:26:26,000
+Does that make sense?
+
+326
+00:26:26,000 --> 00:26:27,000
+Here.
+
+327
+00:26:27,000 --> 00:26:32,000
+I mean, I guess it does if that's the way to do it, but it doesn't make sense.
+
+328
+00:26:32,000 --> 00:26:41,000
+So, you're saying that we can have a bunch of p's, right, at every state?
+
+329
+00:26:41,000 --> 00:26:47,000
+And I'm saying that this is a fine state tag.
+
+330
+00:26:47,000 --> 00:26:52,000
+You can have whatever you want in your state, and we're just analyzing if a sentence is true about it.
+
+331
+00:26:52,000 --> 00:27:05,000
+So, this statement is not true, or sorry, I'm saying that it's not true, not true, that we have p until w, because there's no w in our state.
+
+332
+00:27:05,000 --> 00:27:15,000
+But if we add any w somewhere, and we keep all the p's, then it's true because it has p, up until we get to a w.
+
+333
+00:27:15,000 --> 00:27:16,000
+Does that make sense?
+
+334
+00:27:16,000 --> 00:27:19,000
+It makes sense if that's the rule, but it doesn't make sense to me.
+
+335
+00:27:19,000 --> 00:27:26,000
+The statement of that is true, but if w never appears, do you have p until w?
+
+336
+00:27:26,000 --> 00:27:30,000
+Yeah, if w never happened, then it wouldn't be true.
+
+337
+00:27:30,000 --> 00:27:34,000
+I mean, we could technically, in English language, it would be true.
+
+338
+00:27:34,000 --> 00:27:35,000
+I guess it's not true.
+
+339
+00:27:35,000 --> 00:27:41,000
+If you have p out to infinity, then you never have w, p until w is true.
+
+340
+00:27:41,000 --> 00:27:43,000
+P until anything is true.
+
+341
+00:27:43,000 --> 00:27:48,000
+I think if you say that I'm hungry until I eat, then you never eat, then you'll always be hungry.
+
+342
+00:27:48,000 --> 00:27:49,000
+Oh, I see.
+
+343
+00:27:49,000 --> 00:27:53,000
+Yeah, so that makes sense in logical terms, but that's not how it's described.
+
+344
+00:27:53,000 --> 00:28:01,000
+Yeah, there's also an operator that's sort of like unofficial called the weak until, and that's sort of saying like p until w, or always p.
+
+345
+00:28:01,000 --> 00:28:05,000
+So that kind of like gets rid of the condition that it reaches w at some point.
+
+346
+00:28:05,000 --> 00:28:07,000
+It aligns more with the English language.
+
+347
+00:28:07,000 --> 00:28:12,000
+Yeah, but just that until operator on its own is sort of like a strong until.
+
+348
+00:28:12,000 --> 00:28:13,000
+Yeah, so that's good.
+
+349
+00:28:13,000 --> 00:28:14,000
+Yeah, that's fine.
+
+350
+00:28:14,000 --> 00:28:15,000
+Okay, yeah.
+
+351
+00:28:15,000 --> 00:28:16,000
+Yeah.
+
+352
+00:28:16,000 --> 00:28:21,000
+Sometimes, yeah, I get confused about this, and I feel like why I didn't necessarily choose anything.
+
+353
+00:28:21,000 --> 00:28:30,000
+Okay, and then the globally one, which we said, this is the one that you're just describing, is that we have to have p at every single state in the future.
+
+354
+00:28:30,000 --> 00:28:41,000
+And then the release operator is you have to have p until you have w, but p and w also have to share the same state when they switch from,
+
+355
+00:28:41,000 --> 00:28:50,000
+so it's like, until we don't have to have the p here, but with release, you have to have the p and w occur in the same state.
+
+356
+00:28:50,000 --> 00:28:51,000
+Nice.
+
+357
+00:28:52,000 --> 00:28:53,000
+Okay.
+
+358
+00:28:57,000 --> 00:29:02,000
+So just like p or operator, can you describe it or not?
+
+359
+00:29:02,000 --> 00:29:13,000
+And the future, when these end globally, operators can also be described using other temporal operators.
+
+360
+00:29:13,000 --> 00:29:23,000
+And so just as an exercise, can any of you guys tell me which, these are not in order, which of these line up with the other, like whichever one they line up with?
+
+361
+00:29:23,000 --> 00:29:29,000
+And I'll give you guys like, like three minutes to just think about it, and then we'll work through it together on the board.
+
+362
+00:29:43,000 --> 00:29:44,000
+Okay.
+
+363
+00:29:55,000 --> 00:29:56,000
+Thank you guys.
+
+364
+00:29:56,000 --> 00:29:57,000
+Okay.
+
+365
+00:30:26,000 --> 00:30:27,000
+Okay.
+
+366
+00:30:27,000 --> 00:30:28,000
+Okay.
+
+367
+00:30:28,000 --> 00:30:29,000
+Okay.
+
+368
+00:30:52,000 --> 00:30:53,000
+Um, all right.
+
+369
+00:30:53,000 --> 00:30:54,000
+All right.
+
+370
+00:31:03,000 --> 00:31:04,000
+This one is a hot one.
+
+371
+00:31:04,000 --> 00:31:05,000
+That's exactly right.
+
+372
+00:31:05,000 --> 00:31:10,000
+So, um, let's consider this state again.
+
+373
+00:31:10,000 --> 00:31:18,000
+So true, um, the statement true says, um, it doesn't say anything about what the propositions are.
+
+374
+00:31:18,000 --> 00:31:21,000
+It's just something that's true for all states, right?
+
+375
+00:31:21,000 --> 00:31:28,000
+So if we're saying true until p, that means that you can have whatever you want until p occurs.
+
+376
+00:31:28,000 --> 00:31:36,000
+So does that make sense that at some point in the future, p has occurred exactly because we had the strong until, right?
+
+377
+00:31:36,000 --> 00:31:38,000
+Does that make sense to everyone?
+
+378
+00:31:38,000 --> 00:31:39,000
+Yes, I see something.
+
+379
+00:31:39,000 --> 00:31:40,000
+That's cool.
+
+380
+00:31:40,000 --> 00:31:41,000
+All right.
+
+381
+00:31:41,000 --> 00:31:42,000
+And now what about this one?
+
+382
+00:31:42,000 --> 00:31:46,000
+We have not f not p.
+
+383
+00:31:46,000 --> 00:31:58,000
+Um, so this is saying that, um, you, that at some point, if you think of the case that at some point in the future, you don't have to p.
+
+384
+00:31:58,000 --> 00:32:00,000
+So what do you think that would correspond to?
+
+385
+00:32:00,000 --> 00:32:04,000
+If at some point in the future you can't have the situation where there's not p.
+
+386
+00:32:04,000 --> 00:32:05,000
+There's no p.
+
+387
+00:32:05,000 --> 00:32:06,000
+There's no p?
+
+388
+00:32:06,000 --> 00:32:07,000
+No, there's no p, right?
+
+389
+00:32:07,000 --> 00:32:15,000
+So if you have p at every single state, then you've never had the situation where you don't have to p, right?
+
+390
+00:32:16,000 --> 00:32:18,000
+And so that leads to this last one.
+
+391
+00:32:18,000 --> 00:32:27,000
+We have, um, you don't have a scenario where you have not p until not w.
+
+392
+00:32:27,000 --> 00:32:35,000
+So if you have not, okay, this will go a little harder.
+
+393
+00:32:35,000 --> 00:32:40,000
+But, um, I'll come back to that one at the end, okay?
+
+394
+00:32:40,000 --> 00:32:50,000
+But it's just important to remember that you can, um, describe, um, these operators with similar terms so that your planner doesn't have to deal with it.
+
+395
+00:32:50,000 --> 00:32:58,000
+Um, the global operator near these operators, the eventually operator, it can have less troubles to deal with.
+
+396
+00:32:58,000 --> 00:33:00,000
+So, yeah, you guys are right.
+
+397
+00:33:00,000 --> 00:33:01,000
+It's very good.
+
+398
+00:33:01,000 --> 00:33:04,000
+Um, and then this is just a recap of the different operators.
+
+399
+00:33:04,000 --> 00:33:10,000
+And the other way is that you can express them.
+
+400
+00:33:10,000 --> 00:33:15,000
+And so there's a number of really cool things that you can do combining these two final orders.
+
+401
+00:33:15,000 --> 00:33:25,000
+And the first is that, um, remember when Ben was describing that we need to get gas and we need to get it in the future.
+
+402
+00:33:25,000 --> 00:33:30,000
+But even after we get gas, we're going to have to get it again sometime in the future.
+
+403
+00:33:30,000 --> 00:33:35,000
+So it's important that we can describe something that happens infinitely often.
+
+404
+00:33:35,000 --> 00:33:44,000
+And the way that we describe it is saying that we always have the scenario where you will eventually reach P.
+
+405
+00:33:44,000 --> 00:33:49,000
+So, I don't think I'm going to be able to describe that.
+
+406
+00:33:49,000 --> 00:33:54,000
+But that makes sense that, like, at right now in the future, I'm going to get gas.
+
+407
+00:33:54,000 --> 00:33:59,000
+And even after I get that gas, I will eventually, in the future, also need to get gas again.
+
+408
+00:33:59,000 --> 00:34:02,000
+Because your car will always be needing to get gas.
+
+409
+00:34:02,000 --> 00:34:04,000
+Does that make sense?
+
+410
+00:34:04,000 --> 00:34:05,000
+Cool.
+
+411
+00:34:05,000 --> 00:34:11,000
+And then eventually, forever, is another scenario that's important to describe.
+
+412
+00:34:11,000 --> 00:34:15,000
+So, let's say that the traffic light will eventually turn green forever.
+
+413
+00:34:15,000 --> 00:34:21,000
+We need to be able to say that at some point in the future, although we don't know when, the traffic light will turn green.
+
+414
+00:34:21,000 --> 00:34:29,000
+So, the future operator says that at some point in the future, you will have something come true.
+
+415
+00:34:29,000 --> 00:34:33,000
+And so, at this state, P becomes true.
+
+416
+00:34:33,000 --> 00:34:38,000
+But the global operator says that happened from this state forever, afterwards.
+
+417
+00:34:38,000 --> 00:34:49,000
+Which is saying that you eventually have, you eventually will always have the state to P be true.
+
+418
+00:34:49,000 --> 00:34:52,000
+Do you guys have any questions about that?
+
+419
+00:34:52,000 --> 00:34:57,000
+It's weird to me that the gas thing is becoming this, like, occasional type of operator.
+
+420
+00:34:57,000 --> 00:35:05,000
+Instead of just, like, the state that we actually have gas would just be a logical thing.
+
+421
+00:35:05,000 --> 00:35:13,000
+Why is the act of getting gas showing up here like that, versus just we always need some quantity of gas?
+
+422
+00:35:13,000 --> 00:35:15,000
+That's true. We do always need some quantity of gas.
+
+423
+00:35:15,000 --> 00:35:18,000
+I mean, would describe it like this would be always operative.
+
+424
+00:35:18,000 --> 00:35:25,000
+But I guess my action of getting gas is I was thinking of actually driving up to the gas station and filling it up with gas.
+
+425
+00:35:25,000 --> 00:35:32,000
+If you didn't do that, you wouldn't be able to, like, always have gas.
+
+426
+00:35:32,000 --> 00:35:34,000
+Does that make sense?
+
+427
+00:35:34,000 --> 00:35:39,000
+Right, so, like, I would think that always have gas would make that problem.
+
+428
+00:35:39,000 --> 00:35:42,000
+Yeah, and depending on how you make your model, you definitely could do that.
+
+429
+00:35:42,000 --> 00:35:44,000
+That definitely would satisfy this condition.
+
+430
+00:35:44,000 --> 00:35:47,000
+But does the situation always go like this?
+
+431
+00:35:47,000 --> 00:35:49,000
+Well, it depends on the situation.
+
+432
+00:35:49,000 --> 00:35:56,000
+Maybe you would instead want to say, at some point in the future, that, like, it will always be green,
+
+433
+00:35:56,000 --> 00:36:02,000
+because you want to ensure that cars can go through, and even if it's red, at some point it will be green in the future.
+
+434
+00:36:02,000 --> 00:36:07,000
+So it really depends on your model and how, I think, the way you're saying it, where you always want to have gas,
+
+435
+00:36:07,000 --> 00:36:14,000
+and the proposition of gas is how much gas you have in your tank, and if you have it or don't,
+
+436
+00:36:14,000 --> 00:36:17,000
+then I think that that would be a really good way to model it, too.
+
+437
+00:36:17,000 --> 00:36:22,000
+Because this, I mean, if you said I have to get gas, I'd plan it for next week, and I'd run out of gas this week,
+
+438
+00:36:22,000 --> 00:36:24,000
+you know what I'm saying?
+
+439
+00:36:24,000 --> 00:36:26,000
+You have to somehow be tracking the formula of gas, also.
+
+440
+00:36:26,000 --> 00:36:28,000
+Yeah, I agree. I agree.
+
+441
+00:36:28,000 --> 00:36:31,000
+I was just using it as an example to explain the concept,
+
+442
+00:36:31,000 --> 00:36:34,000
+but I agree that that definitely probably would be a better way to model it.
+
+443
+00:36:34,000 --> 00:36:39,000
+I think in both cases of work, if you represent this having gas all the time,
+
+444
+00:36:39,000 --> 00:36:43,000
+or explicitly saying that you're going to be in a gas station,
+
+445
+00:36:43,000 --> 00:36:48,000
+then eventually it's always been found.
+
+446
+00:36:48,000 --> 00:36:55,000
+It depends on how, maybe you're going to always have a gas from a station to getting a gas from elsewhere.
+
+447
+00:36:55,000 --> 00:37:00,000
+So that depends on how you want to model it, but I think both will work.
+
+448
+00:37:01,000 --> 00:37:04,000
+Good question.
+
+449
+00:37:04,000 --> 00:37:08,000
+So if an infant often, if this doesn't really care, it's called, you know, how frequent it is.
+
+450
+00:37:08,000 --> 00:37:10,000
+Yeah, it doesn't care how frequently.
+
+451
+00:37:10,000 --> 00:37:11,000
+But what about this?
+
+452
+00:37:11,000 --> 00:37:14,000
+For instance, you know, something that hasn't happened in over 60 years.
+
+453
+00:37:14,000 --> 00:37:16,000
+My system of lifetimes took about 30 years.
+
+454
+00:37:16,000 --> 00:37:18,000
+So wishing it was something that happened only once.
+
+455
+00:37:18,000 --> 00:37:22,000
+So in this case, you know, if an infant often had the future,
+
+456
+00:37:22,000 --> 00:37:24,000
+a future operating group, it's the same, right?
+
+457
+00:37:24,000 --> 00:37:26,000
+Can you repeat that again just a little bit?
+
+458
+00:37:26,000 --> 00:37:29,000
+So for instance, you know, something happened in over 60 years.
+
+459
+00:37:29,000 --> 00:37:31,000
+My system of lifetimes was 30 years.
+
+460
+00:37:31,000 --> 00:37:34,000
+After 30 years, I have to get rid of the system.
+
+461
+00:37:34,000 --> 00:37:37,000
+And then, so during this period of time, if any one thing happens,
+
+462
+00:37:37,000 --> 00:37:39,000
+I thought it happened often too infinitely,
+
+463
+00:37:39,000 --> 00:37:42,000
+but in the lifetimes of the system, it only happened once.
+
+464
+00:37:42,000 --> 00:37:48,000
+And therefore, in this condition, the infant often should be exactly the same as the future, right?
+
+465
+00:37:48,000 --> 00:37:53,000
+In the current state, something happened in the future of the system, and it never happened again.
+
+466
+00:37:53,000 --> 00:37:55,000
+Kind of.
+
+467
+00:37:55,000 --> 00:37:59,000
+So when you don't want a system that's dying after 30 years,
+
+468
+00:37:59,000 --> 00:38:03,000
+the LTO doesn't actually model something that ends.
+
+469
+00:38:03,000 --> 00:38:05,000
+It will model something for infinity,
+
+470
+00:38:05,000 --> 00:38:09,000
+although there is an extension to LTO that can incorporate that into it,
+
+471
+00:38:09,000 --> 00:38:13,000
+having it have an actual end goal state.
+
+472
+00:38:13,000 --> 00:38:18,000
+And I think in that case, then, infinitely often would be different,
+
+473
+00:38:18,000 --> 00:38:22,000
+and would, I don't know exactly how that would apply in that situation.
+
+474
+00:38:22,000 --> 00:38:26,000
+Do you know about, you know, you would kind of...
+
+475
+00:38:26,000 --> 00:38:32,000
+There's something called metric temporal logic, which associates like a time scale with each of these operators.
+
+476
+00:38:32,000 --> 00:38:36,000
+So I think you'd have to use that if you were trying to express that you had to, you know,
+
+477
+00:38:36,000 --> 00:38:38,000
+always be in this condition still within your lifetime.
+
+478
+00:38:38,000 --> 00:38:43,000
+You could have some sort of qualified to use operators as specified actually in time,
+
+479
+00:38:43,000 --> 00:38:45,000
+where that operator hide the future.
+
+480
+00:38:45,000 --> 00:38:48,000
+So which would you want to use this often?
+
+481
+00:38:48,000 --> 00:38:51,000
+And some companies nowadays have a little bit more fruit than, you know,
+
+482
+00:38:51,000 --> 00:38:53,000
+doing a system lifetime, right?
+
+483
+00:38:53,000 --> 00:38:57,000
+Not like something, you know, have not already had for years, so for three years.
+
+484
+00:38:57,000 --> 00:39:00,000
+Yeah, you know, it's important that LTO is only dealing,
+
+485
+00:39:00,000 --> 00:39:03,000
+or the LTO were explaining here is only dealing with infinite states.
+
+486
+00:39:03,000 --> 00:39:06,000
+And so I agree, it's a little bit, you have to think about that process
+
+487
+00:39:06,000 --> 00:39:11,000
+of how do you apply something that goes on forever to a real system that doesn't go on forever.
+
+488
+00:39:11,000 --> 00:39:13,000
+There has to be a way to, I mean, the future thing,
+
+489
+00:39:13,000 --> 00:39:15,000
+like if he has a system that lasts 30 years,
+
+490
+00:39:15,000 --> 00:39:19,000
+and you say future P, somewhere in your design of the system is going to say
+
+491
+00:39:19,000 --> 00:39:23,000
+that the constraint on future P is that it happens to happen within 30 years, right?
+
+492
+00:39:23,000 --> 00:39:26,000
+Because like future P here, if you're getting gas,
+
+493
+00:39:26,000 --> 00:39:31,000
+after having before run out of gas, it's not just, this representation says it just happens in the future,
+
+494
+00:39:31,000 --> 00:39:34,000
+but somewhere in your, you know, constraint checking,
+
+495
+00:39:34,000 --> 00:39:37,000
+it's going to say, hey, we didn't get gas in this plan sooner than that, right?
+
+496
+00:39:37,000 --> 00:39:38,000
+Yeah.
+
+497
+00:39:38,000 --> 00:39:40,000
+Yeah, that's definitely true.
+
+498
+00:39:40,000 --> 00:39:44,000
+And these are just tools to help you model it,
+
+499
+00:39:44,000 --> 00:39:48,000
+but it's definitely not the entire model of your system, obviously.
+
+500
+00:39:48,000 --> 00:39:51,000
+And so I agree that like we definitely would have to incorporate that in,
+
+501
+00:39:51,000 --> 00:39:54,000
+and for finite systems, you'll have to account for that.
+
+502
+00:39:54,000 --> 00:39:58,000
+And that's why they have the extension of LTO to finite systems,
+
+503
+00:39:58,000 --> 00:40:02,000
+which we can certainly like send out a link of the papers,
+
+504
+00:40:02,000 --> 00:40:07,000
+and like forward all the information to the class of U.S. like that.
+
+505
+00:40:07,000 --> 00:40:10,000
+I think you guys have done a very good job of answering the questions.
+
+506
+00:40:10,000 --> 00:40:15,000
+The three extensions to LTO that I found to be the most relevant kind of thing that we're doing
+
+507
+00:40:15,000 --> 00:40:19,000
+is metric tempologic, which is the first one that you mentioned,
+
+508
+00:40:19,000 --> 00:40:22,000
+also to be able to have an overbounded time, which is related to you mentioned.
+
+509
+00:40:22,000 --> 00:40:25,000
+And then the last one is to deal with uncertainty,
+
+510
+00:40:25,000 --> 00:40:28,000
+and is then a problem of splinter tempologic.
+
+511
+00:40:28,000 --> 00:40:29,000
+Okay, cool.
+
+512
+00:40:29,000 --> 00:40:31,000
+Great.
+
+513
+00:40:31,000 --> 00:40:35,000
+So, I meant to add to this two separate slides,
+
+514
+00:40:35,000 --> 00:40:41,000
+but what are some of the two things about this LTO that you guys can tell you
+
+515
+00:40:41,000 --> 00:40:45,000
+to look at this, or do, and explain why if you look at it.
+
+516
+00:40:50,000 --> 00:40:53,000
+Okay, so why is the next read true?
+
+517
+00:40:55,000 --> 00:40:56,000
+The next step is slow read.
+
+518
+00:40:56,000 --> 00:40:58,000
+Yeah, exactly, because the next one is read.
+
+519
+00:40:58,000 --> 00:41:00,000
+Why is it true that in the future it's free?
+
+520
+00:41:01,000 --> 00:41:03,000
+We have to choose the future that's free.
+
+521
+00:41:03,000 --> 00:41:06,000
+And why is it true that there's read until free?
+
+522
+00:41:10,000 --> 00:41:12,000
+So it makes sense that if all of these are true,
+
+523
+00:41:12,000 --> 00:41:17,000
+that this culmination of the answer between all of them is also true, right?
+
+524
+00:41:17,000 --> 00:41:19,000
+And so you can do that with OR as well,
+
+525
+00:41:19,000 --> 00:41:23,000
+or you can do that with, if you had sequences behind here,
+
+526
+00:41:23,000 --> 00:41:26,000
+you could put a future around this whole thing,
+
+527
+00:41:26,000 --> 00:41:30,000
+and it would feature that at some point in the future, all of this would hold.
+
+528
+00:41:30,000 --> 00:41:31,000
+Is that okay?
+
+529
+00:41:33,000 --> 00:41:35,000
+Why do you have it right there?
+
+530
+00:41:38,000 --> 00:41:44,000
+I was just saying if you had more things that you were considering from the previous slide.
+
+531
+00:41:44,000 --> 00:41:50,000
+Alright, so now Lavi is going to talk about expressing LTO in PDDL3.
+
+532
+00:41:51,000 --> 00:42:06,000
+So Ben and Lavi have guide you through how expressive LTO formulation is.
+
+533
+00:42:06,000 --> 00:42:13,000
+I'm going to formulate the LTO in a classical planner like PDDL.
+
+534
+00:42:13,000 --> 00:42:19,000
+Now I'm using PDDL3, which is a composed extension of PDDL2.2,
+
+535
+00:42:19,000 --> 00:42:25,000
+which supports some of the LTO operators.
+
+536
+00:42:25,000 --> 00:42:34,000
+So these are the basic operators that you can use to express the constraints and goals of your plan.
+
+537
+00:42:34,000 --> 00:42:40,000
+So you have at A always, sometimes within and most once, sometimes after,
+
+538
+00:42:40,000 --> 00:42:45,000
+sometimes before, always within and holding during.
+
+539
+00:42:45,000 --> 00:42:50,000
+So the num here is a numeric in the trolls that you can specify,
+
+540
+00:42:50,000 --> 00:43:00,000
+and these are the ellipses represents already existing predicate goal description predicates.
+
+541
+00:43:00,000 --> 00:43:05,000
+So some of the operators maybe may look familiar to you,
+
+542
+00:43:05,000 --> 00:43:12,000
+because they can also be used to express the constraints in STN, the simple temporal network that we learn in class.
+
+543
+00:43:12,000 --> 00:43:20,000
+And there are some operators that you need to the LTL or other kinds like matrix,
+
+544
+00:43:20,000 --> 00:43:24,000
+temporal network like always for example.
+
+545
+00:43:24,000 --> 00:43:39,000
+So now we are going to take a look at how you can express the operators using the PDDL3 language.
+
+546
+00:43:39,000 --> 00:43:47,000
+So next we can use within one occurrence to model next, because there is no explicit next in the PDDL3.
+
+547
+00:43:47,000 --> 00:43:52,000
+And you can always, you can use always until to express until.
+
+548
+00:43:52,000 --> 00:43:58,000
+And in the future you use sometimes after and globally you can use always.
+
+549
+00:43:59,000 --> 00:44:10,000
+And for release, since it can always be omega or always until omega when you see P,
+
+550
+00:44:10,000 --> 00:44:17,000
+you can use all possible though this please.
+
+551
+00:44:17,000 --> 00:44:19,000
+Okay, let's see some example.
+
+552
+00:44:19,000 --> 00:44:27,000
+So if you want to, if your goal is to have the traffic light turn red in the next state,
+
+553
+00:44:27,000 --> 00:44:38,000
+you would want to formulate it using within one occurrence in the traffic light turn red.
+
+554
+00:44:41,000 --> 00:44:45,000
+And let's take a look at a more complicated example.
+
+555
+00:44:45,000 --> 00:44:51,000
+So if you want to model a goal saying that the traffic light would turn red,
+
+556
+00:44:51,000 --> 00:44:58,000
+it would be green until it turned red at which point, at which point it would be red forever.
+
+557
+00:44:58,000 --> 00:45:07,000
+So this is the temporal logic of predicates that express this goal.
+
+558
+00:45:07,000 --> 00:45:15,000
+And then if you want to model that using PDDL, there's a direct mapping.
+
+559
+00:45:15,000 --> 00:45:20,000
+You can see the direct mapping between the predicates and PDDL.
+
+560
+00:45:20,000 --> 00:45:28,000
+So this is basically saying if it will always be green until it turns red.
+
+561
+00:45:28,000 --> 00:45:32,000
+And turning red implies that it will always turn red.
+
+562
+00:45:33,000 --> 00:45:47,000
+So next please, who will tell us how to map between the LTL to PDDL via GUSHY Automata, which is Specialized Automata?
+
+563
+00:45:51,000 --> 00:45:56,000
+Cool. So I'm at least kind of bridge the gap between LTL and the planning world.
+
+564
+00:45:56,000 --> 00:46:03,000
+So this is kind of a framework for how you would go from taking a problem with temporarily extended goals all the way to a plan.
+
+565
+00:46:03,000 --> 00:46:08,000
+So as you can kind of imagine from what Ben and Ellie were talking about, LTL is pretty expressive.
+
+566
+00:46:08,000 --> 00:46:16,000
+You can express a lot of different types of goals that include more temporal properties than just a time window for a goal to be completed.
+
+567
+00:46:16,000 --> 00:46:21,000
+So once you have kind of defined problem with these temporary extended goals,
+
+568
+00:46:21,000 --> 00:46:26,000
+then you want to model it in a language like LTL or PDDL.
+
+569
+00:46:26,000 --> 00:46:32,000
+So if you have a language like PDDL and you have a planner that can do an algorithm called progression, which we'll talk about a little later,
+
+570
+00:46:32,000 --> 00:46:35,000
+you can go directly to a plan.
+
+571
+00:46:35,000 --> 00:46:43,000
+Basically how progression works is it's kind of an algorithm that tells you when you're analyzing a state and you're analyzing LTL-like formulas
+
+572
+00:46:43,000 --> 00:46:50,000
+that are true in a specific state, how to push formulas that you need to evaluate later on to the next state
+
+573
+00:46:50,000 --> 00:46:56,000
+and how to keep track of things that you need to evaluate for satisfaction in future states.
+
+574
+00:46:56,000 --> 00:47:02,000
+Another way you can do this is by taking LTL formulations and translating them into GUSHA Automata.
+
+575
+00:47:02,000 --> 00:47:10,000
+So GUSHA Automata are basically finite state machines that are extended to handle infinite sequence of states.
+
+576
+00:47:11,000 --> 00:47:14,000
+And I'll get into more about how GUSHA Automata works.
+
+577
+00:47:14,000 --> 00:47:19,000
+After you have a GUSHA Automata, you can then translate that into PDDL-2, which you guys are all familiar with.
+
+578
+00:47:19,000 --> 00:47:24,000
+And then that PDDL-2, you can just run with the classical planner and get a plan.
+
+579
+00:47:27,000 --> 00:47:29,000
+So a little bit more about GUSHA Automata.
+
+580
+00:47:29,000 --> 00:47:32,000
+Again, like I said, it's an extension of a finite state machine.
+
+581
+00:47:32,000 --> 00:47:33,000
+Oh, yes, sir.
+
+582
+00:47:33,000 --> 00:47:39,000
+Why would you care about GUSHA Automata if you could just use a planner that will go PDDL-3 straight to the plan?
+
+583
+00:47:39,000 --> 00:47:44,000
+I guess it just depends on what kind of planners you have access to, what part systems you have.
+
+584
+00:47:44,000 --> 00:47:45,000
+It's done both ways.
+
+585
+00:47:45,000 --> 00:47:47,000
+So PDDL-3 is still kind of new.
+
+586
+00:47:47,000 --> 00:47:51,000
+So there's not a lot of planners that actually have progression and can handle PDDL-3.
+
+587
+00:47:54,000 --> 00:48:00,000
+It's also the case that the particular algorithms that are trying to either do verification or planning,
+
+588
+00:48:00,000 --> 00:48:06,000
+maybe exploiting particular properties of the GUSHA Automata as opposed to the properties of the native language.
+
+589
+00:48:09,000 --> 00:48:12,000
+So you guys are all familiar with regular state machines.
+
+590
+00:48:12,000 --> 00:48:16,000
+GUSHA Automata has a very similar formulation with some slight differences.
+
+591
+00:48:16,000 --> 00:48:17,000
+You have a set of states.
+
+592
+00:48:17,000 --> 00:48:18,000
+You have an initial state.
+
+593
+00:48:18,000 --> 00:48:20,000
+You have a transition relation.
+
+594
+00:48:20,000 --> 00:48:23,000
+And then you have a set of accepting states.
+
+595
+00:48:23,000 --> 00:48:27,000
+These accepting states are essentially what replaces finite states in a state machine.
+
+596
+00:48:27,000 --> 00:48:32,000
+We also have a set of symbols that are basically the transitions between states.
+
+597
+00:48:32,000 --> 00:48:37,000
+So what an accepting state is is a GUSHA Automata can only be valid
+
+598
+00:48:37,000 --> 00:48:43,000
+if the sequence of transitions visits an accepting state in an infinite amount of time.
+
+599
+00:48:43,000 --> 00:48:45,000
+So we'll get into a couple of examples.
+
+600
+00:48:45,000 --> 00:48:48,000
+So let's say you want to model talking of a clock.
+
+601
+00:48:48,000 --> 00:48:51,000
+This is just a regular finite state machine.
+
+602
+00:48:51,000 --> 00:48:55,000
+As you can see, after some number of ticks and talks, you get it to S2.
+
+603
+00:48:55,000 --> 00:48:59,000
+And you're in S2 because the transition is only itself.
+
+604
+00:48:59,000 --> 00:49:02,000
+So you're in S2 basically forever once you get to S2.
+
+605
+00:49:02,000 --> 00:49:08,000
+So we can model this as a GUSHA Automata by making us to an accepting state.
+
+606
+00:49:08,000 --> 00:49:11,000
+This example, making it a GUSHA Automata doesn't really do anything for you.
+
+607
+00:49:11,000 --> 00:49:14,000
+It just kind of illustrates what the accepting state does.
+
+608
+00:49:14,000 --> 00:49:19,000
+So the accepting words or the sequence of transitions in this case would be
+
+609
+00:49:19,000 --> 00:49:25,000
+there's infinite combinations of ticks and talks that would make this GUSHA Automata valid.
+
+610
+00:49:25,000 --> 00:49:27,000
+Does that make sense?
+
+611
+00:49:27,000 --> 00:49:31,000
+Questions about that?
+
+612
+00:49:31,000 --> 00:49:35,000
+Here's another example, for example, if I change what my accepting state was.
+
+613
+00:49:35,000 --> 00:49:37,000
+So my accepting state was S1.
+
+614
+00:49:37,000 --> 00:49:41,000
+I now have to visit S1 an infinite amount of times for this GUSHA Automata to be valid.
+
+615
+00:49:41,000 --> 00:49:46,000
+That means the only valid sequence of transitions I could have is
+
+616
+00:49:46,000 --> 00:49:49,000
+talk tick, tick, tick, tick for an infinite amount of times.
+
+617
+00:49:49,000 --> 00:49:54,000
+So you can kind of represent different things and different sequences of inputs you might want to have
+
+618
+00:49:54,000 --> 00:49:58,000
+based on which accepting state you use.
+
+619
+00:49:58,000 --> 00:50:02,000
+So this is another example, if you wanted your clock to be tick, talk, tick, tick, tick,
+
+620
+00:50:02,000 --> 00:50:08,000
+you have more than one accepting state and now I have to visit S0 and S1 an infinite amount of times
+
+621
+00:50:08,000 --> 00:50:11,000
+if I want this GUSHA Automata to be valid.
+
+622
+00:50:11,000 --> 00:50:16,000
+So then the sequence of transitions I get is tick, talk, tick, tick, tick, tick, tick.
+
+623
+00:50:16,000 --> 00:50:22,000
+Does that have any questions generally about it?
+
+624
+00:50:22,000 --> 00:50:29,000
+Okay, I might want to see how we model LTL as GUSHA Automata.
+
+625
+00:50:29,000 --> 00:50:35,000
+So here's an example of one of these LTL formula, model as GUSHA Automata.
+
+626
+00:50:35,000 --> 00:50:41,000
+You guys take a few minutes and see if you can get which one this one might be.
+
+627
+00:50:53,000 --> 00:50:58,000
+Just allow everyone to kind of see that.
+
+628
+00:50:58,000 --> 00:51:04,000
+In future events, remember that means that eventually P has to be true on at least one.
+
+629
+00:51:04,000 --> 00:51:12,000
+So from any sort of input state, you go into S0 and then I do have not P for some amount of time
+
+630
+00:51:12,000 --> 00:51:17,000
+but as soon as I have P, I have to get to P because I have to be in my accepting state
+
+631
+00:51:17,000 --> 00:51:19,000
+in an infinite amount of times.
+
+632
+00:51:19,000 --> 00:51:22,000
+So I have to execute P at some point to get to my accepting state
+
+633
+00:51:22,000 --> 00:51:24,000
+for this GUSHA Automata to be valid.
+
+634
+00:51:24,000 --> 00:51:28,000
+And then once I'm in S1, I can have any other amount of inputs.
+
+635
+00:51:28,000 --> 00:51:34,000
+I'll always be in S1 and make sure that the true label me.
+
+636
+00:51:34,000 --> 00:51:36,000
+And it's also something stronger, right?
+
+637
+00:51:36,000 --> 00:51:38,000
+It's eventually globally?
+
+638
+00:51:38,000 --> 00:51:40,000
+Right.
+
+639
+00:51:40,000 --> 00:51:47,000
+Yeah, so actually in this case, after I get here, my input can be anything.
+
+640
+00:51:47,000 --> 00:51:53,000
+So this basically just says that for my initial state, I have to execute P at least once to get to this accepting state.
+
+641
+00:51:53,000 --> 00:51:59,000
+And once I'm there, I can be there. I'm always there. Any input will lead me in S1.
+
+642
+00:51:59,000 --> 00:52:05,000
+So just to make this clear of myself and me and for others, the thing that's being executed
+
+643
+00:52:05,000 --> 00:52:09,000
+that's at our state is basically that's on the loop.
+
+644
+00:52:09,000 --> 00:52:14,000
+So if you go from S0 to S0, that's essentially saying that one of the nodes is not P.
+
+645
+00:52:14,000 --> 00:52:18,000
+If you go from S1 to S1, it's saying that one of the nodes is P.
+
+646
+00:52:18,000 --> 00:52:19,000
+Yeah.
+
+647
+00:52:19,000 --> 00:52:22,000
+And if you go from S1 to S1, it's saying whatever it would be because you've said the truth.
+
+648
+00:52:22,000 --> 00:52:23,000
+Yeah.
+
+649
+00:52:23,000 --> 00:52:25,000
+Okay.
+
+650
+00:52:25,000 --> 00:52:29,000
+So if you put P where the truth is right now, then we will have the goal loop.
+
+651
+00:52:29,000 --> 00:52:32,000
+Right. That's what I missed.
+
+652
+00:52:32,000 --> 00:52:35,000
+By the way, you guys have 25 more minutes.
+
+653
+00:52:35,000 --> 00:52:38,000
+Okay.
+
+654
+00:52:38,000 --> 00:52:41,000
+So you guys are exactly right. This is the future.
+
+655
+00:52:41,000 --> 00:52:46,000
+So an accepted sequence of propositions would be not P, not P.
+
+656
+00:52:46,000 --> 00:52:49,000
+Then you put P, then it can be anything after you get to P.
+
+657
+00:52:49,000 --> 00:52:53,000
+And then in this case, for Lucia-Tomta states, which are kind of like Ellie printed out,
+
+658
+00:52:53,000 --> 00:52:56,000
+are slightly different than the LTL states we've been talking about.
+
+659
+00:52:56,000 --> 00:52:57,000
+In this case, you're in S0.
+
+660
+00:52:57,000 --> 00:53:03,000
+Then once you get to S1, you're forever in S1.
+
+661
+00:53:03,000 --> 00:53:06,000
+So globally looks pretty similar to this.
+
+662
+00:53:06,000 --> 00:53:10,000
+Can anyone, I mean, take a few minutes to think about how I might change this Lucia-Tomta
+
+663
+00:53:10,000 --> 00:53:22,000
+to fulfill the globally operating?
+
+664
+00:53:22,000 --> 00:53:23,000
+Yeah.
+
+665
+00:53:23,000 --> 00:53:28,000
+Exactly.
+
+666
+00:53:28,000 --> 00:53:34,000
+So you have, initially, your first state that you're in, because P has to be true
+
+667
+00:53:34,000 --> 00:53:36,000
+forever after you get to this first state.
+
+668
+00:53:36,000 --> 00:53:38,000
+You have an accepting state P.
+
+669
+00:53:38,000 --> 00:53:41,000
+You can also model not P if you want to.
+
+670
+00:53:41,000 --> 00:53:46,000
+You can also just have this single state, which would encapsulate exactly what globally is.
+
+671
+00:53:46,000 --> 00:53:50,000
+So this is kind of how you go from LTL to Lucia-Tomta.
+
+672
+00:53:50,000 --> 00:53:53,000
+In kind of a real-world scenario, we have multiple LTL formulas.
+
+673
+00:53:53,000 --> 00:53:55,000
+I'm kind of all combined.
+
+674
+00:53:55,000 --> 00:53:58,000
+Your Lucia-Tomta are going to look a little bit more complicated than this.
+
+675
+00:53:58,000 --> 00:54:01,000
+You can have multiple accepting states, like I said.
+
+676
+00:54:01,000 --> 00:54:08,000
+But it's kind of an escalated model of what an LTL is trying to represent.
+
+677
+00:54:08,000 --> 00:54:10,000
+So this is a guesser.
+
+678
+00:54:10,000 --> 00:54:11,000
+Right.
+
+679
+00:54:11,000 --> 00:54:13,000
+We have the not P transition out of there.
+
+680
+00:54:13,000 --> 00:54:17,000
+Like you could possibly come into S0, you would accept Lucia-Tomta,
+
+681
+00:54:17,000 --> 00:54:19,000
+but then you would do it in S1, right?
+
+682
+00:54:19,000 --> 00:54:22,000
+So accepting a Lucia-Tomta is a little confusing.
+
+683
+00:54:22,000 --> 00:54:27,000
+A Lucia-Tomta is only valid if the infinite sequence of states satisfies it.
+
+684
+00:54:27,000 --> 00:54:31,000
+So if I were to go to P, then I would do a not P.
+
+685
+00:54:31,000 --> 00:54:36,000
+And my sequence of transitions with P, P, P, not P,
+
+686
+00:54:36,000 --> 00:54:41,000
+then that would not be a valid sequence of transitions from this Lucia-Tomta,
+
+687
+00:54:41,000 --> 00:54:43,000
+because I'm transitioning out of my accepting state,
+
+688
+00:54:43,000 --> 00:54:46,000
+which I need to have been in for an infinite amount of time.
+
+689
+00:54:46,000 --> 00:54:49,000
+And there's no way I can get back to this.
+
+690
+00:54:55,000 --> 00:54:58,000
+So there's also a more defined algorithm.
+
+691
+00:54:58,000 --> 00:55:01,000
+I'm just looking at two of the ways to build a Lucia-Tomta.
+
+692
+00:55:01,000 --> 00:55:02,000
+There's an algorithm.
+
+693
+00:55:02,000 --> 00:55:05,000
+The one that's most popularly used was developed by GERF.
+
+694
+00:55:05,000 --> 00:55:09,000
+This is kind of a Sudoku version of the algorithm.
+
+695
+00:55:09,000 --> 00:55:11,000
+You go from LTL to Lucia.
+
+696
+00:55:11,000 --> 00:55:13,000
+As you notice, it actually uses progression,
+
+697
+00:55:13,000 --> 00:55:19,000
+which is something that planners that take PDDL use to generate plans.
+
+698
+00:55:19,000 --> 00:55:23,000
+An important thing to note, which I don't want to too much detail,
+
+699
+00:55:23,000 --> 00:55:26,000
+this algorithm generates a generalized Lucia-Tomta,
+
+700
+00:55:26,000 --> 00:55:30,000
+which you then need to change to a simple Lucia-Tomta.
+
+701
+00:55:30,000 --> 00:55:35,000
+The difference is a generalized Lucia-Tomta has a set of sets of accepting states.
+
+702
+00:55:35,000 --> 00:55:38,000
+So for a generalized Lucia-Tomta to be accepted,
+
+703
+00:55:38,000 --> 00:55:43,000
+you need to visit an accepting state in each one of those sets of accepting states.
+
+704
+00:55:43,000 --> 00:55:46,000
+At least one of those states has to be listed.
+
+705
+00:55:46,000 --> 00:55:50,000
+For a simple Lucia-Tomta, you only have one set of accepting states,
+
+706
+00:55:50,000 --> 00:55:54,000
+and you can visit any one of those states for the Lucia-Tomta to be valid.
+
+707
+00:55:54,000 --> 00:55:57,000
+The translation between those two is a little bit more complicated,
+
+708
+00:55:57,000 --> 00:56:01,000
+and we'll have papers in our reference that will walk through how to do that.
+
+709
+00:56:04,000 --> 00:56:07,000
+This is the progression algorithm.
+
+710
+00:56:07,000 --> 00:56:12,000
+Basically, it just tells you how if you have an LTO formula F,
+
+711
+00:56:12,000 --> 00:56:17,000
+and some current state N, and some usually they involve some time step,
+
+712
+00:56:17,000 --> 00:56:19,000
+because we're in the real world and we can't really model
+
+713
+00:56:19,000 --> 00:56:23,000
+in an amount of time and we have to make it discrete.
+
+714
+00:56:23,000 --> 00:56:27,000
+So if you have some time step between successive states,
+
+715
+00:56:27,000 --> 00:56:33,000
+how do you push certain LTO formulas onto next states to be evaluated later?
+
+716
+00:56:33,000 --> 00:56:37,000
+For example, I'll take this next F as an example.
+
+717
+00:56:37,000 --> 00:56:41,000
+So if F was the next F of some LTO formula,
+
+718
+00:56:41,000 --> 00:56:45,000
+you would need to append that formula to the next state
+
+719
+00:56:45,000 --> 00:56:49,000
+to be evaluated in the next state to see if that's going to be true or not.
+
+720
+00:56:49,000 --> 00:56:55,000
+Some are things for an until, and we'll go through this formally,
+
+721
+00:56:55,000 --> 00:56:58,000
+but it's here for reference.
+
+722
+00:56:58,000 --> 00:57:02,000
+So the next step to this process is going from Lucia-Tomta to PDDL2.
+
+723
+00:57:03,000 --> 00:57:06,000
+This process is confusing for me to understand.
+
+724
+00:57:06,000 --> 00:57:11,000
+So the first thing I'll say is that Lucia states are not equivalent to traditional PDDL states.
+
+725
+00:57:11,000 --> 00:57:17,000
+In a PDDL state, if you have two states that have the same propositions that are true or false,
+
+726
+00:57:17,000 --> 00:57:19,000
+those states are identical.
+
+727
+00:57:19,000 --> 00:57:22,000
+In Lucia-Tomta, that's not necessarily true.
+
+728
+00:57:22,000 --> 00:57:28,000
+In Lucia-Tomta, you also have to encapsulate which transitions you can make out of each state.
+
+729
+00:57:28,000 --> 00:57:35,000
+So F1 and F2 could have the same set of propositions that are true and that hold,
+
+730
+00:57:35,000 --> 00:57:39,000
+but out of F1, I should put that back up.
+
+731
+00:57:39,000 --> 00:57:44,000
+This is the Lucia-Tomta for future globally, which is what Professor Williams is talking about.
+
+732
+00:57:44,000 --> 00:57:51,000
+So if I enter in F1, the start means I have any sort of transitions that I want on F1,
+
+733
+00:57:51,000 --> 00:57:54,000
+and then at some point I need the transition P,
+
+734
+00:57:54,000 --> 00:57:58,000
+and when I'm in S2, I'm in P for I had to take transition P forever.
+
+735
+00:58:00,000 --> 00:58:09,000
+However, if I get a sequence of inputs, let's say I get P and then B, and then P again,
+
+736
+00:58:09,000 --> 00:58:12,000
+and then P again, it's not clear if I'm in S1 or S2,
+
+737
+00:58:12,000 --> 00:58:15,000
+because in S1, I can execute any kind of state I want,
+
+738
+00:58:15,000 --> 00:58:21,000
+and in S1, I can execute any transition I want, and in S1, 2, I have to execute only P.
+
+739
+00:58:21,000 --> 00:58:25,000
+So if I got a sequence of P's, I can be in either state.
+
+740
+00:58:25,000 --> 00:58:30,000
+So you need something else to act Pdl2 to basically determine which state you're in
+
+741
+00:58:30,000 --> 00:58:33,000
+and which transitions you can make from that state.
+
+742
+00:58:39,000 --> 00:58:47,000
+So there's two ways you can kind of transform Pdl2 to kind of encapsulate what Lucia-Tomta encapsulates.
+
+743
+00:58:47,000 --> 00:58:53,000
+The first thing is you can create new actions that encapsulate the allowable transitions in each state.
+
+744
+00:58:53,000 --> 00:58:57,000
+This would basically mean that for every action you have in your traditional Pdl,
+
+745
+00:58:57,000 --> 00:59:02,000
+you have to create an action for basically repetitive actions for each one of these states,
+
+746
+00:59:02,000 --> 00:59:06,000
+so you know exactly which transition you can take out of that state.
+
+747
+00:59:06,000 --> 00:59:11,000
+This could get long because you have to make a new action for every single one of these states
+
+748
+00:59:11,000 --> 00:59:15,000
+for every action that you want to take, but that is one way you can do it.
+
+749
+00:59:16,000 --> 00:59:19,000
+Another way you can do it is introducing derived predicates.
+
+750
+00:59:19,000 --> 00:59:22,000
+Derived predicates are predicates that don't depend on the actions at all
+
+751
+00:59:22,000 --> 00:59:25,000
+and just depend on some other formula in your plan.
+
+752
+00:59:25,000 --> 00:59:30,000
+So for example, we have a derived predicate that explicitly tells you whether you're in S1
+
+753
+00:59:30,000 --> 00:59:35,000
+or whether you're in S2, and you can use these predicates in your actions in Pdl2
+
+754
+00:59:35,000 --> 00:59:40,000
+to make sure you know which state S1 or S2 you're in and you're in Lucia-Tomta.
+
+755
+00:59:40,000 --> 00:59:46,000
+And then in your formulation of your plan, you set your final state to be one of the accepted states.
+
+756
+00:59:46,000 --> 00:59:52,000
+So I guess that kind of answers one of the questions about how you go from infinite to finite.
+
+757
+00:59:52,000 --> 00:59:56,000
+The accepting state is usually when you place as your final state.
+
+758
+00:59:56,000 --> 01:00:00,000
+And then the derived predicates appear purely in the preconditions?
+
+759
+01:00:00,000 --> 01:00:01,000
+Or do they also appear in the effects?
+
+760
+01:00:01,000 --> 01:00:03,000
+They also appear in the effects.
+
+761
+01:00:03,000 --> 01:00:08,000
+Because you need to know if you have to envision out of S1 to S2.
+
+762
+01:00:08,000 --> 01:00:13,000
+So you likely have a derived predicate for both S1 and a derived predicate for S2.
+
+763
+01:00:13,000 --> 01:00:17,000
+And that is also kind of a lot of work to add to your Pdl2 problem,
+
+764
+01:00:17,000 --> 01:00:19,000
+but it's definitely shorting them the first way.
+
+765
+01:00:19,000 --> 01:00:23,000
+And it definitely encapsulates everything that Lucia-Tomta does.
+
+766
+01:00:23,000 --> 01:00:26,000
+Does anyone have any questions about that?
+
+767
+01:00:26,000 --> 01:00:28,000
+So you are changing the action then?
+
+768
+01:00:28,000 --> 01:00:34,000
+Yeah, so you're changing the action, but you don't need to make a new action for every state.
+
+769
+01:00:34,000 --> 01:00:41,000
+In the first formulation, let's say I have some traditional action, like move block or something.
+
+770
+01:00:41,000 --> 01:00:44,000
+I have to create a move block action for each one of these states,
+
+771
+01:00:44,000 --> 01:00:48,000
+because I need to know exactly which transitions I can take out of that action.
+
+772
+01:00:48,000 --> 01:00:49,000
+And the second example?
+
+773
+01:00:49,000 --> 01:00:52,000
+And then the second one, I can just have one move block,
+
+774
+01:00:52,000 --> 01:00:58,000
+but in my move block I'll have a derived predicate that tells me which state I'm in,
+
+775
+01:00:58,000 --> 01:01:03,000
+which state I'm in when I execute that action.
+
+776
+01:01:03,000 --> 01:01:08,000
+So the number of actions you have to write is less,
+
+777
+01:01:08,000 --> 01:01:15,000
+because you explicitly have predicates that are telling you which state that you're in at each time.
+
+778
+01:01:15,000 --> 01:01:18,000
+Now I'm going to hand it over to Mark if there are no more questions.
+
+779
+01:01:18,000 --> 01:01:23,000
+I'm going to hand it over to Mark, and I'm just going to talk about predicates.
+
+780
+01:01:23,000 --> 01:01:27,000
+Alright, so we're getting a little low on time.
+
+781
+01:01:27,000 --> 01:01:28,000
+That's okay.
+
+782
+01:01:28,000 --> 01:01:31,000
+So now I'll transition to talking about, we've talked about template standard goals,
+
+783
+01:01:31,000 --> 01:01:34,000
+and we've said that goals are things that always have to be true.
+
+784
+01:01:34,000 --> 01:01:36,000
+So now let's talk about preferences,
+
+785
+01:01:36,000 --> 01:01:38,000
+preferences are things that don't necessarily have to be true,
+
+786
+01:01:38,000 --> 01:01:41,000
+but the things that you'd like to be true.
+
+787
+01:01:41,000 --> 01:01:45,000
+So in the classical planning problem, we can formulate it like that.
+
+788
+01:01:45,000 --> 01:01:47,000
+We have a set of states, S, initial state S0,
+
+789
+01:01:47,000 --> 01:01:50,000
+a set of operators, and a set of goal states.
+
+790
+01:01:50,000 --> 01:01:57,000
+And the problem is to transition from the initial state to any state that fulfills your goal state using the operators in the LAA.
+
+791
+01:01:57,000 --> 01:01:59,000
+In a preference-based planning problem,
+
+792
+01:01:59,000 --> 01:02:02,000
+we introduce this additional field R,
+
+793
+01:02:02,000 --> 01:02:07,000
+which is a partial or total relation expressing preferences between plans.
+
+794
+01:02:07,000 --> 01:02:10,000
+This is a little preference symbol right there.
+
+795
+01:02:10,000 --> 01:02:14,000
+So that basically tells you if there are multiple plans to accomplish your goal,
+
+796
+01:02:14,000 --> 01:02:17,000
+which one do you want to use?
+
+797
+01:02:17,000 --> 01:02:23,000
+And again, preferences are properties that are desired but not necessarily required.
+
+798
+01:02:23,000 --> 01:02:27,000
+So there are two kind of different types of preference languages,
+
+799
+01:02:27,000 --> 01:02:29,000
+quantitative and qualitative.
+
+800
+01:02:29,000 --> 01:02:31,000
+As you would expect in quantitative languages,
+
+801
+01:02:31,000 --> 01:02:36,000
+we actually assign an American value to the different plans in order to compare them.
+
+802
+01:02:36,000 --> 01:02:39,000
+So this plan is a weight of four and a weight of two,
+
+803
+01:02:39,000 --> 01:02:41,000
+and that tells you which one you prefer.
+
+804
+01:02:41,000 --> 01:02:43,000
+Here are some languages that do that.
+
+805
+01:02:43,000 --> 01:02:47,000
+For qualitative languages, we actually just have this type of plan.
+
+806
+01:02:47,000 --> 01:02:51,000
+This plan with this property is preferred to this other plan with this property.
+
+807
+01:02:51,000 --> 01:02:57,000
+But we don't actually know any sort of information about how much we prefer one to the other.
+
+808
+01:02:57,000 --> 01:03:01,000
+An important outcome of this is when you have quantitative languages,
+
+809
+01:03:01,000 --> 01:03:02,000
+you're totally comparable.
+
+810
+01:03:02,000 --> 01:03:05,000
+So if any two sets of plans, you can determine which one is preferred.
+
+811
+01:03:05,000 --> 01:03:10,000
+Whereas in qualitative languages, you could have a situation where plan one is preferred to plan two,
+
+812
+01:03:10,000 --> 01:03:12,000
+and plan one is also preferred to plan three,
+
+813
+01:03:12,000 --> 01:03:16,000
+but that doesn't give you any information about whether plan two is preferred to plan.
+
+814
+01:03:16,000 --> 01:03:19,000
+So it's a little bit less than the rest of them.
+
+815
+01:03:21,000 --> 01:03:25,000
+So to go into how you actually express preferences in PGDL3,
+
+816
+01:03:25,000 --> 01:03:27,000
+like you talked about with temporally extended goals,
+
+817
+01:03:27,000 --> 01:03:30,000
+there is some PGDL3 syntax to do this.
+
+818
+01:03:30,000 --> 01:03:33,000
+There's a label, the preference label here,
+
+819
+01:03:33,000 --> 01:03:37,000
+which you can put on fluence to represent things that you prefer.
+
+820
+01:03:37,000 --> 01:03:39,000
+And then there's a function called is violated
+
+821
+01:03:39,000 --> 01:03:41,000
+that essentially returns a number of times
+
+822
+01:03:41,000 --> 01:03:46,000
+that any fluent that has a preference label was not satisfied in your plan.
+
+823
+01:03:46,000 --> 01:03:48,000
+For example, if you had the preference,
+
+824
+01:03:48,000 --> 01:03:50,000
+you could have the latest green until it turns red.
+
+825
+01:03:50,000 --> 01:03:55,000
+So here's our PGDL3 temporally extended, in this case preference language,
+
+826
+01:03:55,000 --> 01:03:57,000
+and we label it with the preference label here.
+
+827
+01:03:57,000 --> 01:03:59,000
+This is just a name.
+
+828
+01:03:59,000 --> 01:04:03,000
+And then our metric, our plan basically tries to minimize the number of times
+
+829
+01:04:03,000 --> 01:04:05,000
+that this preference is violated.
+
+830
+01:04:05,000 --> 01:04:11,000
+So that's one way to actually express preferences directly in PGDL3.
+
+831
+01:04:11,000 --> 01:04:14,000
+All right, so now I'm going to talk about LDP.
+
+832
+01:04:14,000 --> 01:04:17,000
+LDP is a different language that is quite expressive
+
+833
+01:04:17,000 --> 01:04:20,000
+in terms of the types of preferences you can represent.
+
+834
+01:04:20,000 --> 01:04:22,000
+It's quantable languages, which the language,
+
+835
+01:04:22,000 --> 01:04:24,000
+which means we're going to be expressing,
+
+836
+01:04:24,000 --> 01:04:27,000
+we're going to have weights for each of our plans to express preferences,
+
+837
+01:04:27,000 --> 01:04:30,000
+and we can actually express kind of the strength of the preference label.
+
+838
+01:04:30,000 --> 01:04:34,000
+It is preferred 20 to 30 times as much as it will be.
+
+839
+01:04:34,000 --> 01:04:36,000
+It's the extension of the old language named PGDL3,
+
+840
+01:04:36,000 --> 01:04:41,000
+and here's the bigger if you want to actually check out this detail.
+
+841
+01:04:41,000 --> 01:04:43,000
+The formulas are constructed hierarchically,
+
+842
+01:04:43,000 --> 01:04:47,000
+so I'll go through briefly how we actually construct these preference formulas.
+
+843
+01:04:47,000 --> 01:04:51,000
+So the lowest level is called a basic desired formula for BDL,
+
+844
+01:04:51,000 --> 01:04:54,000
+and that just expresses our temporally extended proposition.
+
+845
+01:04:54,000 --> 01:04:56,000
+So this is just straight up LT on this,
+
+846
+01:04:56,000 --> 01:04:58,000
+because we saw it in the first section of the presentation.
+
+847
+01:04:58,000 --> 01:05:02,000
+So I'm going to use kind of a cooking dinner example through these slides.
+
+848
+01:05:02,000 --> 01:05:05,000
+So in this case, we always just use future operators.
+
+849
+01:05:05,000 --> 01:05:07,000
+So at some point I might want to cook as part of our plan,
+
+850
+01:05:07,000 --> 01:05:10,000
+maybe I want to order takeout to eat dinner,
+
+851
+01:05:10,000 --> 01:05:12,000
+and then I have some, you know, eating spaghetti or eating pizza.
+
+852
+01:05:12,000 --> 01:05:15,000
+Those are two different things, two different options that I could have in the plan.
+
+853
+01:05:15,000 --> 01:05:20,000
+I don't have to have either of those, but it was just obvious that I could have.
+
+854
+01:05:20,000 --> 01:05:21,000
+So that's the lowest level.
+
+855
+01:05:21,000 --> 01:05:24,000
+The next level is called atomic preference formulas, or APFs.
+
+856
+01:05:24,000 --> 01:05:29,000
+These are where we express our preferences between the BDFs that we informed in the previous slide.
+
+857
+01:05:29,000 --> 01:05:31,000
+So in this example, I'm using weight,
+
+858
+01:05:31,000 --> 01:05:35,000
+specifically to represent preferences for lower weights being preferred.
+
+859
+01:05:35,000 --> 01:05:39,000
+So here we're saying I prefer to cook over ordering takeouts.
+
+860
+01:05:39,000 --> 01:05:43,000
+So this is the BDF for cooking, this is the BDF for ordering takeout,
+
+861
+01:05:43,000 --> 01:05:47,000
+and we can apply weights to those to express which one is preferred
+
+862
+01:05:47,000 --> 01:05:49,000
+and how much is preferred over the previous slide.
+
+863
+01:05:49,000 --> 01:05:54,000
+And here's the preferred amount of spaghetti over eating pizza.
+
+864
+01:05:54,000 --> 01:05:56,000
+So that's the second level.
+
+865
+01:05:56,000 --> 01:05:59,000
+The third level is called general preference formulas, or GPFs.
+
+866
+01:05:59,000 --> 01:06:02,000
+And these are where we can do conjunctions or disjunctions
+
+867
+01:06:02,000 --> 01:06:04,000
+or qualification of our previous formats.
+
+868
+01:06:04,000 --> 01:06:09,000
+So for example, if we want to say, in our previous slide, we had two APFs.
+
+869
+01:06:09,000 --> 01:06:13,000
+We preferred to cook and we preferred to eat spaghetti.
+
+870
+01:06:13,000 --> 01:06:19,000
+And here we can express that we really don't care which one of these we want to satisfy.
+
+871
+01:06:19,000 --> 01:06:23,000
+You can think of this as we basically try to satisfy the APF with the lowest weight.
+
+872
+01:06:23,000 --> 01:06:25,000
+So if we have this OR operating here,
+
+873
+01:06:25,000 --> 01:06:28,000
+that means that our planner is going to try and satisfy the lowest weight
+
+874
+01:06:28,000 --> 01:06:31,000
+among all these different options here, which in this case is referring to cook.
+
+875
+01:06:31,000 --> 01:06:33,000
+That's its first goal.
+
+876
+01:06:33,000 --> 01:06:36,000
+You can also use an AND operator, for example,
+
+877
+01:06:36,000 --> 01:06:40,000
+and that's going to minimize the maximum weight across both of those options.
+
+878
+01:06:40,000 --> 01:06:48,000
+So basically what it's going to try and do is minimize the highest weight among these two options.
+
+879
+01:06:48,000 --> 01:06:52,000
+So it's going to try and order, sorry, it's going to try and cook,
+
+880
+01:06:52,000 --> 01:06:57,000
+and it's going to try and eat spaghetti versus doing these other options.
+
+881
+01:06:57,000 --> 01:06:59,000
+Okay, so those are GPFs.
+
+882
+01:06:59,000 --> 01:07:04,000
+And now I'm moving on to activated preferences, which are the highest level.
+
+883
+01:07:04,000 --> 01:07:09,000
+So with APFs, these define the order in which our different preferences are waxed.
+
+884
+01:07:09,000 --> 01:07:12,000
+You can, of course, express a lot of different preferences for your planner,
+
+885
+01:07:12,000 --> 01:07:14,000
+but not all of them may be achievable,
+
+886
+01:07:14,000 --> 01:07:17,000
+especially if you're trying to achieve a large number of preferences at the same time.
+
+887
+01:07:17,000 --> 01:07:20,000
+You may not actually be able to achieve all of those.
+
+888
+01:07:20,000 --> 01:07:25,000
+So how do we reduce our set in the correct order or in the preferred order
+
+889
+01:07:25,000 --> 01:07:28,000
+so that our planner to end up with isn't even the most preferred planner?
+
+890
+01:07:28,000 --> 01:07:30,000
+That's what APFs allow you to do.
+
+891
+01:07:30,000 --> 01:07:35,000
+So basically you can express, using this preference operator,
+
+892
+01:07:35,000 --> 01:07:37,000
+I want to satisfy both of these.
+
+893
+01:07:37,000 --> 01:07:40,000
+At first I want to try and satisfy both of these, you can create this slide.
+
+894
+01:07:40,000 --> 01:07:44,000
+And then if I can't, I want to relax it so I can satisfy G2,
+
+895
+01:07:44,000 --> 01:07:47,000
+and if I can't do that then I want to relax it so I only try and satisfy G1.
+
+896
+01:07:47,000 --> 01:07:51,000
+So that gives a kind of the order in which things are waxed.
+
+897
+01:07:51,000 --> 01:07:55,000
+And it's important here that if you have two situations that you can't distinguish from another
+
+898
+01:07:55,000 --> 01:07:57,000
+or you don't really care, you can establish some order.
+
+899
+01:07:57,000 --> 01:08:00,000
+So at the very lowest type of level,
+
+900
+01:08:00,000 --> 01:08:02,000
+you can just sort them alphabetically or something
+
+901
+01:08:02,000 --> 01:08:04,000
+to just provide some sort of order for the planner.
+
+902
+01:08:07,000 --> 01:08:10,000
+Okay, so this is just a review of what I've been talking about.
+
+903
+01:08:10,000 --> 01:08:15,000
+So PDF to the lowest level, which expresses temporarily extended propositions.
+
+904
+01:08:15,000 --> 01:08:18,000
+We can apply preferences to those using APFs.
+
+905
+01:08:18,000 --> 01:08:24,000
+Then we can combine or join APFs using general preference formulas.
+
+906
+01:08:25,000 --> 01:08:28,000
+And finally we can activate those preference formulas to show,
+
+907
+01:08:28,000 --> 01:08:33,000
+to kind of determine the order in which you should relax the propositions
+
+908
+01:08:33,000 --> 01:08:35,000
+to allow yourself to find a plan.
+
+909
+01:08:35,000 --> 01:08:38,000
+So using this kind of scheme at LDP,
+
+910
+01:08:38,000 --> 01:08:43,000
+we're using both the LTL syntax rules that we talked about in the first section
+
+911
+01:08:43,000 --> 01:08:46,000
+to express temporarily extended preferences.
+
+912
+01:08:46,000 --> 01:08:51,000
+The plan that's actually used to solve these types of problems is called P-Plan.
+
+913
+01:08:51,000 --> 01:08:55,000
+P-Plan can actually handle temporary extended purposes and the goal at the end as well.
+
+914
+01:08:55,000 --> 01:08:59,000
+And it does basically a best first search among all different options.
+
+915
+01:08:59,000 --> 01:09:03,000
+It actually is one of the planners that uses the left branch of what Marley showed.
+
+916
+01:09:03,000 --> 01:09:07,000
+It uses progression to take LTL, if you want, formulas at each point in the plan
+
+917
+01:09:07,000 --> 01:09:09,000
+and determine whether you've satisfied those formulas or not.
+
+918
+01:09:09,000 --> 01:09:13,000
+And if not, it will push them to the next date to determine,
+
+919
+01:09:13,000 --> 01:09:16,000
+so that the next date can evaluate whether you've satisfied those formulas.
+
+920
+01:09:16,000 --> 01:09:19,000
+And that's how it prunes the search space
+
+921
+01:09:19,000 --> 01:09:23,000
+and tries to always find the most preferred planning to meet your goal.
+
+922
+01:09:23,000 --> 01:09:28,000
+Alright, so, that's our presentation.
+
+923
+01:09:28,000 --> 01:09:30,000
+Any questions for anyone?
+
+924
+01:09:37,000 --> 01:09:39,000
+I have a question about the release of the tation.
+
+925
+01:09:39,000 --> 01:09:40,000
+Yeah.
+
+926
+01:09:40,000 --> 01:09:43,000
+Do you guys for a year grow and then release Omega?
+
+927
+01:09:43,000 --> 01:09:48,000
+Would you say that Omega has to hold until P happens
+
+928
+01:09:48,000 --> 01:09:51,000
+and they have a conjunction in one state?
+
+929
+01:09:51,000 --> 01:09:55,000
+No, so Omega doesn't have to hold until P happens.
+
+930
+01:09:55,000 --> 01:09:59,000
+Omega just has to hold at the last stage of the plan.
+
+931
+01:09:59,000 --> 01:10:02,000
+So essentially what it's saying is like Omega releases P.
+
+932
+01:10:02,000 --> 01:10:05,000
+So once Omega happens, P has to happen at that stage.
+
+933
+01:10:05,000 --> 01:10:07,000
+And then Omega has like released P.
+
+934
+01:10:07,000 --> 01:10:10,000
+It's like, okay, now it happened, so P, you can do whatever you want.
+
+935
+01:10:10,000 --> 01:10:12,000
+You can be two, you can be false.
+
+936
+01:10:12,000 --> 01:10:17,000
+Sorry, so P has to hold until Omega happens.
+
+937
+01:10:17,000 --> 01:10:19,000
+Yep, and then Omega like releases P.
+
+938
+01:10:19,000 --> 01:10:22,000
+So the definition is just switched maybe.
+
+939
+01:10:22,000 --> 01:10:24,000
+So this is the notation.
+
+940
+01:10:24,000 --> 01:10:31,000
+It is a notation that you have P, R, Omega, but like you're tweeting.
+
+941
+01:10:31,000 --> 01:10:32,000
+It's just the definition.
+
+942
+01:10:32,000 --> 01:10:33,000
+Oh, this should be P.
+
+943
+01:10:33,000 --> 01:10:34,000
+This should be P.
+
+944
+01:10:34,000 --> 01:10:35,000
+Oh, okay.
+
+945
+01:10:35,000 --> 01:10:36,000
+That's how ours would be great.
+
+946
+01:10:36,000 --> 01:10:37,000
+Because then our small guy was confused.
+
+947
+01:10:37,000 --> 01:10:39,000
+Okay, sorry.
+
+948
+01:10:39,000 --> 01:10:42,000
+Okay.
+
+949
+01:10:42,000 --> 01:10:44,000
+But yeah, you're right.
+
+950
+01:10:44,000 --> 01:10:47,000
+Any other questions?
+
+951
+01:10:47,000 --> 01:10:48,000
+Yeah.
+
+952
+01:10:48,000 --> 01:10:53,000
+Well, it seems there are multiple ways to express the same formula
+
+953
+01:10:53,000 --> 01:10:56,000
+using the grammar.
+
+954
+01:10:56,000 --> 01:11:00,000
+Is there any notion of canonical form
+
+955
+01:11:00,000 --> 01:11:04,000
+or at least complicated form or something like that?
+
+956
+01:11:04,000 --> 01:11:05,000
+Yeah, there is.
+
+957
+01:11:05,000 --> 01:11:10,000
+Basically, they actually may be able to run this slide.
+
+958
+01:11:10,000 --> 01:11:13,000
+So on the, to simplify the algorithms,
+
+959
+01:11:13,000 --> 01:11:16,000
+they typically apply the kind of reductions that we showed in the slide
+
+960
+01:11:16,000 --> 01:11:19,000
+to reduce the release in the globally in the future
+
+961
+01:11:19,000 --> 01:11:21,000
+down to just the until and the next.
+
+962
+01:11:21,000 --> 01:11:25,000
+That allows your algorithms to be able to handle fewer cases.
+
+963
+01:11:25,000 --> 01:11:26,000
+And then they apply the usual rules
+
+964
+01:11:26,000 --> 01:11:29,000
+trying to push knots out to the left-hand side.
+
+965
+01:11:35,000 --> 01:11:41,000
+Yes.
+
+966
+01:11:41,000 --> 01:11:42,000
+All right.
+
+967
+01:11:42,000 --> 01:11:43,000
+Thanks, everyone.
+
+968
+01:11:43,000 --> 01:11:48,000
+Thank you.
+

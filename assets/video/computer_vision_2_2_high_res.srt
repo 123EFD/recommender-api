@@ -1,0 +1,1168 @@
+1
+00:00:00,000 --> 00:00:07,000
+In the second unit we are going to discuss the geometric image formation process and basic camera models.
+
+2
+00:00:07,000 --> 00:00:14,000
+We're going to see how points in 3D space are related to points on the 2D image plane.
+
+3
+00:00:16,000 --> 00:00:25,000
+The principle of projection is an old one and as an example we can take for instance the human eye where
+
+4
+00:00:25,000 --> 00:00:34,000
+light is passing through a lens and an aperture and is then collected by photoreceptors on the retina.
+
+5
+00:00:34,000 --> 00:00:43,000
+And the same principle holds true for the first camera obscura which is collecting light through a little tiny hole
+
+6
+00:00:43,000 --> 00:00:51,000
+that's made into the wall of an otherwise entirely dark room and that gives rise to an image on the upper wall
+
+7
+00:00:51,000 --> 00:00:58,000
+and then all the way until the photographic camera has come to life.
+
+8
+00:00:58,000 --> 00:01:09,000
+So here's an example of the camera obscura where an entirely dark room is illuminated by the light that is passing through this tiny little hole
+
+9
+00:01:09,000 --> 00:01:22,000
+and creating an image of the objects outside of the scene outside upside down in this very dark room.
+
+10
+00:01:22,000 --> 00:01:35,000
+Of course because the aperture is so small and there's so little light coming into the room you have to adapt to the darkness of that room
+
+11
+00:01:35,000 --> 00:01:38,000
+if you're standing inside that room to actually perceive something.
+
+12
+00:01:38,000 --> 00:01:40,000
+It's actually just very little light.
+
+13
+00:01:40,000 --> 00:01:45,000
+It's not very bright if you create such a camera obscura at home.
+
+14
+00:01:45,000 --> 00:01:47,000
+But this has been used.
+
+15
+00:01:47,000 --> 00:01:49,000
+You can find this in various museums.
+
+16
+00:01:49,000 --> 00:01:57,000
+It has been used by artists here some examples and on this website you find more examples where ordinary rooms have been illuminated
+
+17
+00:01:57,000 --> 00:02:07,000
+using this principle of a very small pinhole and then an image has been captured inside that room with a very long shutter time
+
+18
+00:02:07,000 --> 00:02:17,000
+and giving rise to installations like you can see here by this artist.
+
+19
+00:02:17,000 --> 00:02:30,000
+So the most basic physical pinhole camera can be described as a box that has a little hole inside one of the walls
+
+20
+00:02:30,000 --> 00:02:44,000
+and that hole is collecting light or is letting light pass through but it's letting light pass through only into the direction continuing where the light is coming from.
+
+21
+00:02:44,000 --> 00:02:57,000
+So we have a point here then that light passes through that hole and because light travels linearly along rays that light is hitting this image plane
+
+22
+00:02:57,000 --> 00:03:04,000
+the sensor here on the back exactly at one location.
+
+23
+00:03:04,000 --> 00:03:14,000
+And because of this the image that is projected is actually projected upside down onto that image plane behind this little hole in the wall
+
+24
+00:03:14,000 --> 00:03:25,000
+which is called a focal point because all the light rays that pass through this hole must pass exactly through this hole this focal point.
+
+25
+00:03:25,000 --> 00:03:36,000
+However when we consider camera models in this lecture we typically consider the image plane to be in front of the focal point and not behind the focal point.
+
+26
+00:03:36,000 --> 00:03:45,000
+So here is an example of despite this being the physical model the mathematical model looks like this here on the right.
+
+27
+00:03:45,000 --> 00:03:55,000
+The distance from the focal point of this from the focal point of this plane is the same as the distance of this image plane to this focal point
+
+28
+00:03:55,000 --> 00:03:59,000
+but in this case the image plane is in front of the focal point.
+
+29
+00:03:59,000 --> 00:04:12,000
+Now in this case the image of the 3D object here is of the same size and the same shape as the image if it's projected behind the focal point
+
+30
+00:04:12,000 --> 00:04:25,000
+the only difference is that it's mirrored and so both models are actually equivalent right they are just related by this mirroring
+
+31
+00:04:25,000 --> 00:04:32,000
+so they can be brought into each other using appropriate change of image coordinates.
+
+32
+00:04:32,000 --> 00:04:43,000
+Now in this lecture we're considering this mathematical camera model which has some advantages in the sense that the image is not projected upside down
+
+33
+00:04:43,000 --> 00:04:51,000
+so we can directly see the image as we would see it as humans and that's also how digital cameras store images.
+
+34
+00:04:51,000 --> 00:04:57,000
+They don't store the images upside down but they store them in the right orientation.
+
+35
+00:04:57,000 --> 00:05:08,000
+So this is what we can use as a replacement for this model because both are equivalent up to very simple reflection.
+
+36
+00:05:08,000 --> 00:05:16,000
+Now if we talk about projection models there's two basic projection models that are important.
+
+37
+00:05:16,000 --> 00:05:20,000
+There's many more but these two are the ones that we're going to discuss here
+
+38
+00:05:20,000 --> 00:05:29,000
+and if you want to know about our projection models I recommend having a look into the Sileski book in chapter 214.
+
+39
+00:05:29,000 --> 00:05:44,000
+The first model that we're going to discuss here is the so-called orthographic projection model where light is assumed to travel parallel to each other's ray
+
+40
+00:05:44,000 --> 00:05:51,000
+and then projected in that parallel fashion onto that image plane
+
+41
+00:05:51,000 --> 00:05:57,000
+and in the perspective projection model which is the pinhole camera model where we have a focal point
+
+42
+00:05:57,000 --> 00:06:03,000
+and all the light rays that pass from any 3D point to that focal point
+
+43
+00:06:03,000 --> 00:06:13,000
+all the light rays must pass through that focal point are hitting the image plane at the intersection of that line with the image plane.
+
+44
+00:06:13,000 --> 00:06:21,000
+You can see that here in this case the size of the object changes while here the size remains the same.
+
+45
+00:06:21,000 --> 00:06:26,000
+The object has the same 3D size as the dimensions on the image plane
+
+46
+00:06:26,000 --> 00:06:31,000
+and both of these projection models are relevant.
+
+47
+00:06:31,000 --> 00:06:37,000
+The traditional projection model is really the perspective projection model that is implemented
+
+48
+00:06:37,000 --> 00:06:45,000
+that can approximate almost all the cameras that we know like our smartphones, our digital cameras or DSLRs
+
+49
+00:06:45,000 --> 00:06:52,000
+but if we use a very large focal length, if we have a telephoto lens
+
+50
+00:06:52,000 --> 00:06:59,000
+then this perspective projection model can be well approximated by an orthographic projection model.
+
+51
+00:06:59,000 --> 00:07:03,000
+The perspective effects vanish if we use a telephoto lens
+
+52
+00:07:03,000 --> 00:07:12,000
+and in other cases that is actually wanted for instance in applications where we want to use optics for measurement.
+
+53
+00:07:12,000 --> 00:07:21,000
+Here on the left you can see a so called telecentric lens that models exactly the orthographic projection process
+
+54
+00:07:21,000 --> 00:07:29,000
+because if you model that process exactly and you can measure distances then afterwards after projection on the image plane
+
+55
+00:07:29,000 --> 00:07:34,000
+you know that these distances correspond one to one to the distances in the real world.
+
+56
+00:07:34,000 --> 00:07:39,000
+So this is used for inspection purposes for instance.
+
+57
+00:07:39,000 --> 00:07:44,000
+Here is a comparison between perspective and orthographic projection
+
+58
+00:07:44,000 --> 00:07:51,000
+and what they do to the image that is formed and that there is a continuous transition in between these two
+
+59
+00:07:51,000 --> 00:07:56,000
+and that's also what you're going to play with and experiment with in the exercise.
+
+60
+00:07:56,000 --> 00:08:03,000
+So here on the left we have a classic, this is all the same cube but here it's projected using a perspective projection
+
+61
+00:08:03,000 --> 00:08:11,000
+where the vanishing point is in the vicinity and not at infinity
+
+62
+00:08:11,000 --> 00:08:18,000
+and we can see that these edges of that 3D cube that are all parallel to each other in 3D
+
+63
+00:08:18,000 --> 00:08:24,000
+are intersecting at this vanishing point that we see here on this image.
+
+64
+00:08:24,000 --> 00:08:31,000
+Now if we increase the focal length we come to a weak perspective setting
+
+65
+00:08:31,000 --> 00:08:40,000
+or closer to a weak perspective setting where this vanishing point moves outside this image domain that we're considering here
+
+66
+00:08:40,000 --> 00:08:47,000
+and if we increase the focal length even further if we move the camera infinitely far away from the object
+
+67
+00:08:47,000 --> 00:08:51,000
+and at the same time increase the focal length to infinity
+
+68
+00:08:51,000 --> 00:08:56,000
+which of course is physically impossible without such a telecentric lens
+
+69
+00:08:56,000 --> 00:09:03,000
+then we obtain an orthographic projection here where then all the lines that are parallel in 3D
+
+70
+00:09:03,000 --> 00:09:11,000
+are actually also parallel in the image that is projected in the image that we have captured with the camera
+
+71
+00:09:11,000 --> 00:09:15,000
+and here at the bottom you can see two examples of a perspective projection
+
+72
+00:09:15,000 --> 00:09:22,000
+and a orthographic projection or close to orthographic projection of a real scene.
+
+73
+00:09:22,000 --> 00:09:28,000
+So how can we describe these projections mathematically?
+
+74
+00:09:28,000 --> 00:09:32,000
+Here we see the model for the orthographic projection
+
+75
+00:09:32,000 --> 00:09:39,000
+and in all illustrations that I'm showing here the illustrations are only showing the X and the C coordinate
+
+76
+00:09:39,000 --> 00:09:47,000
+the Y coordinate you can think of as going into the image plane here of this camera coordinate system in red
+
+77
+00:09:47,000 --> 00:09:57,000
+but it's just difficult to draw in 3D and it's confusing so I draw everything just as this cut in X and C dimensions.
+
+78
+00:09:57,000 --> 00:10:02,000
+So what we have here is the camera center, the origin where the camera coordinate system is defined
+
+79
+00:10:02,000 --> 00:10:10,000
+this is the XYC coordinate system where the 3D coordinates of a 3D point and 3D space are defined
+
+80
+00:10:10,000 --> 00:10:17,000
+and then in the orthographic projection model the image coordinate system falls together with the X and the Y axis
+
+81
+00:10:17,000 --> 00:10:24,000
+here only X illustrated again so we have the X axis of the image coordinate system in blue
+
+82
+00:10:24,000 --> 00:10:31,000
+and the X axis of the camera coordinate system in red that are the same and the same holds true for the Y axis.
+
+83
+00:10:31,000 --> 00:10:41,000
+And now because the light rays travel parallel to the so-called principle line here and parallel to each other
+
+84
+00:10:41,000 --> 00:10:50,000
+we know that if we have this point X, C stands for camera coordinates and S stands for screen coordinates or image coordinates
+
+85
+00:10:50,000 --> 00:10:56,000
+we know that the X and the Y coordinates are actually remaining the same.
+
+86
+00:10:56,000 --> 00:11:07,000
+So everything that we have done in this projection is we have removed the C coordinate but X, S, so this is the 3D point
+
+87
+00:11:07,000 --> 00:11:14,000
+and the non-bold version is the X coordinate of that 3D point
+
+88
+00:11:14,000 --> 00:11:22,000
+and that X coordinate of the 3D point is projected to the same value in the image plane so the X coordinate in screen coordinates
+
+89
+00:11:22,000 --> 00:11:26,000
+is the same value as the X coordinate in the camera coordinates
+
+90
+00:11:26,000 --> 00:11:31,000
+and the same holds true for the Y coordinate.
+
+91
+00:11:31,000 --> 00:11:44,000
+So this is how another graphic projection of a 3D point bold X, C and 3D space to pixel coordinates bold X, S in the 2D image domain here works.
+
+92
+00:11:44,000 --> 00:11:49,000
+The Y and the X axis of the camera and the image coordinate systems are shared
+
+93
+00:11:49,000 --> 00:11:54,000
+the light rays are parallel to the C coordinate of the camera coordinate system
+
+94
+00:11:54,000 --> 00:11:58,000
+and during project it is also called the principal axis here in this black one
+
+95
+00:11:58,000 --> 00:12:05,000
+and during projection the C coordinate is dropped and X and Y remain the same.
+
+96
+00:12:05,000 --> 00:12:11,000
+And just to highlight it again the Y coordinate is not shown here for clarity
+
+97
+00:12:11,000 --> 00:12:18,000
+but you can think of the Y coordinate as going into the direction of the image plane, the direction we can see here
+
+98
+00:12:18,000 --> 00:12:21,000
+but it behaves exactly the same.
+
+99
+00:12:21,000 --> 00:12:25,000
+So how can we write this down in terms of linear algebra?
+
+100
+00:12:25,000 --> 00:12:31,000
+Well we know that an autographic projection simply drops the C component of the 3D point
+
+101
+00:12:31,000 --> 00:12:34,000
+but leaves the other coordinates the same
+
+102
+00:12:34,000 --> 00:12:38,000
+and so we can simply express this in inhomogeneous coordinates as such
+
+103
+00:12:38,000 --> 00:12:47,000
+where we have a 3D point multiplied with this 2 by 3 matrix where the last coordinate of this 3D point is multiplied with 0
+
+104
+00:12:48,000 --> 00:12:53,000
+and the first and the second coordinate are copied.
+
+105
+00:12:53,000 --> 00:12:59,000
+And we have an equivalent representation in homogeneous coordinates here with these augmented vectors
+
+106
+00:12:59,000 --> 00:13:03,000
+in camera coordinates in 3D space so this is a 4D vector
+
+107
+00:13:03,000 --> 00:13:08,000
+and here in screen coordinates now this is a three-dimensional vector
+
+108
+00:13:08,000 --> 00:13:14,000
+where we take this four-dimensional vector and the last element is a 1 because it's an augmented vector
+
+109
+00:13:14,000 --> 00:13:18,000
+so the last element of XS will also be a 1 in this case
+
+110
+00:13:18,000 --> 00:13:22,000
+but of course again this can be replaced by any homogeneous coordinates
+
+111
+00:13:22,000 --> 00:13:25,000
+it doesn't need to be augmented vectors.
+
+112
+00:13:25,000 --> 00:13:29,000
+Autography as already mentioned is exact for telecentric lenses
+
+113
+00:13:29,000 --> 00:13:32,000
+and an approximation for telephoto lenses
+
+114
+00:13:32,000 --> 00:13:37,000
+and after projection the distance of the 3D point from the image can't be recovered anymore
+
+115
+00:13:37,000 --> 00:13:42,000
+which is a property that holds true for whole projections also for perspective projection of course.
+
+116
+00:13:42,000 --> 00:13:48,000
+So after the projection onto the image plane the distance is unknown.
+
+117
+00:13:52,000 --> 00:13:57,000
+Now in practice we're not going to use exactly that model that I've just shown
+
+118
+00:13:57,000 --> 00:14:03,000
+because the image sensor typically measures in pixels
+
+119
+00:14:03,000 --> 00:14:09,000
+we define the image coordinate system in pixels not in millimeters or meters
+
+120
+00:14:09,000 --> 00:14:16,000
+and so we must scale the coordinates in order to be able to measure in pixels
+
+121
+00:14:16,000 --> 00:14:18,000
+and that's called scaled autography
+
+122
+00:14:18,000 --> 00:14:22,000
+and so what we have here is simply replace these ones with an S scaling factor
+
+123
+00:14:22,000 --> 00:14:28,000
+so we can scale the X and the Y coordinate that we're projecting
+
+124
+00:14:28,000 --> 00:14:31,000
+and still dropping the C coordinate of course
+
+125
+00:14:31,000 --> 00:14:37,000
+and the unit of this scaling factor is pixel over meter or pixel over millimeter
+
+126
+00:14:37,000 --> 00:14:44,000
+depending on the unit of the 3D point in order to be able to convert the metric 3D points into pixels.
+
+127
+00:14:44,000 --> 00:14:48,000
+So let's assume we have 10 pixels per millimeter
+
+128
+00:14:48,000 --> 00:14:52,000
+and we have a point that is at X 10 millimeters
+
+129
+00:14:52,000 --> 00:14:59,000
+then we would convert this into 100 pixels.
+
+130
+00:14:59,000 --> 00:15:06,000
+Under autography structure and motion can be estimated simultaneously using closed form factorization methods
+
+131
+00:15:06,000 --> 00:15:13,000
+and we're going to see some of these methods in the next lecture.
+
+132
+00:15:13,000 --> 00:15:17,000
+Now having seen the simple autographic projection model
+
+133
+00:15:17,000 --> 00:15:24,000
+we come to the perspective projection model which is a model that we need for almost all traditional cameras
+
+134
+00:15:24,000 --> 00:15:31,000
+where light rays are focused at a single focal point which is here the camera center.
+
+135
+00:15:31,000 --> 00:15:40,000
+So here's an example of how a 3D point XC in camera coordinates projects to pixel coordinates XS in
+
+136
+00:15:40,000 --> 00:15:45,000
+so here's the image plane now in the screen coordinates.
+
+137
+00:15:45,000 --> 00:15:53,000
+As you can see now the image plane and image coordinate system are not co-located with the camera coordinate system anymore as before
+
+138
+00:15:53,000 --> 00:15:59,000
+but the image plane is displaced from out of the camera center
+
+139
+00:15:59,000 --> 00:16:12,000
+and all the rays here must pass through this focal point, through this camera center.
+
+140
+00:16:12,000 --> 00:16:20,000
+So there's always the light ray that passes through the camera center, the pixel XS and the 3D point XC.
+
+141
+00:16:20,000 --> 00:16:22,000
+This is the constraint.
+
+142
+00:16:22,000 --> 00:16:30,000
+And the convention here is that the principal axis is, which is this one here, is orthogonal to the image plane
+
+143
+00:16:30,000 --> 00:16:33,000
+and aligns with the C axis.
+
+144
+00:16:33,000 --> 00:16:38,000
+So it's called the principal axis.
+
+145
+00:16:38,000 --> 00:16:44,000
+And again the Y coordinate is not shown here for clarity but it behaves similarly.
+
+146
+00:16:44,000 --> 00:16:50,000
+So how does a 3D point now project mathematically to this point XS?
+
+147
+00:16:50,000 --> 00:16:59,000
+Well, for this 3D point we know the X coordinate and we know the C coordinate in 3D camera coordinates
+
+148
+00:16:59,000 --> 00:17:10,000
+and for this image coordinate we know the X coordinate on screen in pixels let's say and we know the focal length F.
+
+149
+00:17:10,000 --> 00:17:15,000
+This is the focal length that is the distance of the image plane from the focal point.
+
+150
+00:17:15,000 --> 00:17:20,000
+That's a parameter of cameras. We can change it. If you have a zoom lens we can change the focal length.
+
+151
+00:17:20,000 --> 00:17:26,000
+That will change how big the object will appear on the image plane.
+
+152
+00:17:26,000 --> 00:17:34,000
+You can already imagine changing this will change the size of the projection onto the image
+
+153
+00:17:34,000 --> 00:17:39,000
+because the image plane moves, it translates left to right.
+
+154
+00:17:39,000 --> 00:17:44,000
+Now what is the relationship that we can infer from this geometric constellation?
+
+155
+00:17:44,000 --> 00:17:48,000
+Well, we see that there is a set of equal triangles.
+
+156
+00:17:48,000 --> 00:17:53,000
+So we have this triangle here XS and F.
+
+157
+00:17:53,000 --> 00:18:08,000
+So if we divide XS divided by F we must have the same ratio as if we divide XC by CC just by the principle of equal triangles.
+
+158
+00:18:08,000 --> 00:18:14,000
+So we have this triangle, this big triangle here and this little small triangle here.
+
+159
+00:18:14,000 --> 00:18:17,000
+And this is what I've written here on the right hand side.
+
+160
+00:18:17,000 --> 00:18:29,000
+So in other words I can solve this for XS by saying well the pixel coordinate X is equal to XC divided by CC multiplied with the focal length F.
+
+161
+00:18:29,000 --> 00:18:33,000
+And this is exactly the pinhole projection formula.
+
+162
+00:18:33,000 --> 00:18:41,000
+And it also holds for Y of course, YS is equal to YC divided by CC times F.
+
+163
+00:18:41,000 --> 00:18:52,000
+Now we can also formulate this mathematically in terms of a matrix multiplication if we use homogeneous coordinates.
+
+164
+00:18:52,000 --> 00:19:00,000
+So as we've seen in perspective projection 3D points and camera coordinates are mapped to the image plane by dividing them by their C component
+
+165
+00:19:00,000 --> 00:19:04,000
+and multiplying with the focal length. That's what we've just derived.
+
+166
+00:19:04,000 --> 00:19:13,000
+And this is this expression here for both the X and the Y coordinates in regular in homogeneous coordinates.
+
+167
+00:19:13,000 --> 00:19:23,000
+Now while this is a nonlinear expression because we have to divide by C in homogeneous coordinates we can write this as a linear equation.
+
+168
+00:19:24,000 --> 00:19:32,000
+So assume a matrix called a camera matrix or projection matrix.
+
+169
+00:19:32,000 --> 00:19:40,000
+There's a 3 by 4 matrix here with the focal length on the diagonal and zeros in the last column.
+
+170
+00:19:40,000 --> 00:20:06,000
+And if we multiply this with the homogeneous four-dimensional augmented vector XC of the 3D point then we obtain well XCF, YCF and then the third coordinate CC.
+
+171
+00:20:06,000 --> 00:20:16,000
+And if we now know this is a homogeneous three-dimensional homogeneous vector and if we normalize that homogeneous vector into an augmented vector where the last element is one,
+
+172
+00:20:16,000 --> 00:20:26,000
+we obtain exactly FXC over CC and FYC over CC in the first two coordinates elements of this vector.
+
+173
+00:20:27,000 --> 00:20:42,000
+So by using this homogeneous representation because we have these points that are all equivalent to each other and by the definition of conversion from homogeneous coordinates to inhomogeneous coordinates,
+
+174
+00:20:42,000 --> 00:20:59,000
+we are representing the projection process so that we can express this entire process here with a simple linear multiplication if we assume homogeneous coordinates and then afterwards do the conversion to inhomogeneous coordinates
+
+175
+00:20:59,000 --> 00:21:04,000
+by dividing by the third element of the homogeneous vector.
+
+176
+00:21:04,000 --> 00:21:09,000
+So the important point here is this projection is linear when using homogeneous coordinates.
+
+177
+00:21:09,000 --> 00:21:17,000
+And after the projection again as in the autographic case it's impossible to recover the distance of the 3D point from the image.
+
+178
+00:21:17,000 --> 00:21:26,000
+As a little remark the unit for F is typically chosen as pixels to convert metric 3D points into pixels.
+
+179
+00:21:26,000 --> 00:21:37,000
+If you look at this expression here, if we have a 3D point that's expressed in meters, so we have X and C being defined as meters,
+
+180
+00:21:37,000 --> 00:21:52,000
+but the screen coordinates are supposed to be in pixels and of course the unit of F has to be also defined in pixels because the meters cancel here and so the only thing that remains is the screen coordinate in pixel.
+
+181
+00:21:52,000 --> 00:22:07,000
+And that's why the focal length in our models that we're using is often going to be defined in pixels.
+
+182
+00:22:07,000 --> 00:22:19,000
+This is the most basic form of the pinhole projection principle, but we can add more parameters and one important parameter is the so-called principle point.
+
+183
+00:22:19,000 --> 00:22:31,000
+Why do we need a principle point? Well, in the previous model that I've explained the image coordinate system and this is now a 3D illustration of this one here.
+
+184
+00:22:31,000 --> 00:22:45,000
+The image coordinate system is defined on the principle axis, is centered on the principle axis, but it's inconvenient to store pixels with negative coordinates.
+
+185
+00:22:45,000 --> 00:22:50,000
+Consider a pixel here that would have negative coordinates with respect to that coordinate system.
+
+186
+00:22:50,000 --> 00:22:59,000
+So what is done is in practice and also I have already as you can see here oriented the coordinate system in a way that is convenient to store images.
+
+187
+00:22:59,000 --> 00:23:05,000
+What we can do here is we can move that coordinate system to the top left of the image.
+
+188
+00:23:05,000 --> 00:23:14,000
+So this is the view point here. So looking from behind, this is the top left corner of the image.
+
+189
+00:23:14,000 --> 00:23:23,000
+And so the first pixel here, well, if we move this coordinate system will be located at 0, 0 or 1, 1 if you use a one based coordinate system,
+
+190
+00:23:23,000 --> 00:23:28,000
+which is much more convenient to store image arrays. And that's what we typically do in practice.
+
+191
+00:23:29,000 --> 00:23:35,000
+We don't consider negative pixels, but we consider just positive pixels and define the image coordinate system here,
+
+192
+00:23:35,000 --> 00:23:47,000
+which means that this principle point here must be added to the image coordinates such that we obtain only positive coordinates.
+
+193
+00:23:47,000 --> 00:23:59,000
+And that's called the principle point CX and CY that's added to the pixel coordinates after this projection that was discussed in the previous slide.
+
+194
+00:24:01,000 --> 00:24:10,000
+So the complete perspective projection model without distortion is given by this equation here,
+
+195
+00:24:10,000 --> 00:24:18,000
+where you can see that now in addition to this multiplying the focal length with X divided by C,
+
+196
+00:24:18,000 --> 00:24:24,000
+we have also now a translation by the principle point.
+
+197
+00:24:24,000 --> 00:24:27,000
+And we have done two more modifications here.
+
+198
+00:24:27,000 --> 00:24:34,000
+So one modification is that we have allowed the focal length in X direction to differ from the focal length in Y direction.
+
+199
+00:24:35,000 --> 00:24:47,000
+And we have added another scaling factor here that allows for, this is called this Q,
+
+200
+00:24:47,000 --> 00:24:57,000
+that allows for modeling sensors that are not mounted perpendicular to the optical axis due to manufacturing inaccuracies.
+
+201
+00:24:58,000 --> 00:25:08,000
+FX and FY however would only be independent from each other if we have different pixel aspect ratios and sensors are manufactured typically pretty precise.
+
+202
+00:25:08,000 --> 00:25:18,000
+So in practice what we often do is we set FX equal to FY and also this Q is typically very small so that in practice often this Q is set to zero.
+
+203
+00:25:18,000 --> 00:25:23,000
+But we have to model in almost all cases that we consider the principle point.
+
+204
+00:25:24,000 --> 00:25:34,000
+So while F can be set the same and S can be set to zero, the principle point is still an important parameter that we want to estimate that we want to model.
+
+205
+00:25:34,000 --> 00:25:41,000
+Now this is the full camera matrix that is defined through all of these parameters and this is called the intrinsic matrix.
+
+206
+00:25:42,000 --> 00:25:54,000
+And actually this is the projection matrix, the 3 by 4 matrix, but the 3 by 3 sub matrix here in front is called the calibration matrix K here in red.
+
+207
+00:25:54,000 --> 00:26:00,000
+And this is called the intrinsic matrix because it stores all the intrinsic parameters of the camera.
+
+208
+00:26:00,000 --> 00:26:09,000
+Everything that's intrinsic to the camera like the focal length, the sensor ratio, the pixel ratio, the principle point and so on.
+
+209
+00:26:09,000 --> 00:26:17,000
+And this is opposed to the so-called extrinsic parameters which is the camera pose with respect to some world coordinate system.
+
+210
+00:26:17,000 --> 00:26:20,000
+That's why it's called intrinsic parameters.
+
+211
+00:26:20,000 --> 00:26:28,000
+And the projection then can be done in homogeneous coordinates by just taking this four-dimensional homogeneous vector,
+
+212
+00:26:28,000 --> 00:26:35,000
+representing a 3D point in camera coordinate system and projecting it by multiplying it with this matrix.
+
+213
+00:26:36,000 --> 00:26:41,000
+Now one thing that's nice about this homogeneous representation is that we can change transformations.
+
+214
+00:26:41,000 --> 00:26:49,000
+So if a 3D point is not represented in camera coordinate systems but is represented in the world coordinate system,
+
+215
+00:26:49,000 --> 00:26:59,000
+we can change the transformation, the rigid body transformation that maps a point by multiplying it with this rotation and translation matrix.
+
+216
+00:26:59,000 --> 00:27:04,000
+This is an Euclidean transformation that we've seen before.
+
+217
+00:27:04,000 --> 00:27:11,000
+So it multiplies that point and afterwards multiplies that point that is now in camera coordinates with the intrinsic matrix.
+
+218
+00:27:11,000 --> 00:27:15,000
+So we have the extrinsic and the intrinsic matrix here.
+
+219
+00:27:15,000 --> 00:27:23,000
+On to the image plane, we can also do this by simply multiplying these two transformations together into one matrix.
+
+220
+00:27:23,000 --> 00:27:28,000
+And now we have just to do one matrix multiplication instead of two matrix multiplications.
+
+221
+00:27:28,000 --> 00:27:34,000
+And in many cases that's very convenient and can also save time and be more efficient.
+
+222
+00:27:34,000 --> 00:27:39,000
+So here's the mathematical formulation of this.
+
+223
+00:27:39,000 --> 00:27:48,000
+So we have the screen coordinate which is equal to the camera coordinate or camera, the 3D point in camera coordinates,
+
+224
+00:27:48,000 --> 00:27:56,000
+multiplied with the intrinsic which is equal to the point in world coordinate,
+
+225
+00:27:56,000 --> 00:28:03,000
+multiplied with the extrinsic and the intrinsic and then we can multiply these two matrices together.
+
+226
+00:28:03,000 --> 00:28:07,000
+This is a 3 by 3 matrix and this is a 3 by 4 matrix.
+
+227
+00:28:07,000 --> 00:28:16,000
+So obtain a 3 by 4 projection matrix that directly maps a point from world coordinates to the screen.
+
+228
+00:28:16,000 --> 00:28:26,000
+And this 3 by 4 projection matrix P can be pre-computed, can be pre-multiplied and then applied for all the points where we want to apply this projection on.
+
+229
+00:28:26,000 --> 00:28:39,000
+Sometimes it's preferable to use a full-rank 4 by 4 projection matrix where instead of 3 by 4 matrix with the intrinsic
+
+230
+00:28:39,000 --> 00:28:51,000
+and a 4 by 4 matrix for the extrinsics we have also a 4 by 4 matrix for the intrinsic
+
+231
+00:28:51,000 --> 00:28:57,000
+where we simply have added the last row of zeros and a one in the last element.
+
+232
+00:28:57,000 --> 00:29:02,000
+Now this is of course if we multiply these together we get a 4 by 4 matrix
+
+233
+00:29:02,000 --> 00:29:11,000
+and now we can take this homogeneous vector, this 4D vector representing a 3D point
+
+234
+00:29:11,000 --> 00:29:18,000
+and project it through this matrix and obtain now a four-dimensional homogeneous vector x tilde
+
+235
+00:29:18,000 --> 00:29:27,000
+but because we know this is a point that's on the image screen we must still normalize this vector with respect to the third coordinate,
+
+236
+00:29:27,000 --> 00:29:29,000
+not with respect to the fourth coordinate.
+
+237
+00:29:29,000 --> 00:29:35,000
+And so what we obtain is this expression here which is familiar because the first three coordinates are the same,
+
+238
+00:29:35,000 --> 00:29:44,000
+the third coordinate is one by definition and we have this projection here in the first two coordinates
+
+239
+00:29:44,000 --> 00:29:55,000
+and then the last coordinate here is the inverse step as you can see here.
+
+240
+00:29:55,000 --> 00:30:02,000
+And so because this fourth component of this inhomogeneous 4D vector is the inverse step,
+
+241
+00:30:02,000 --> 00:30:08,000
+if the inverse step is known we can use this full-rank matrix to also do the inverse.
+
+242
+00:30:08,000 --> 00:30:14,000
+So assume we have this vector where we know the inverse step as well,
+
+243
+00:30:14,000 --> 00:30:24,000
+then we can also now because it's a full-rank matrix we can invert it and go from an image point to the 3D point
+
+244
+00:30:24,000 --> 00:30:29,000
+and afterwards in order to extract the 3D point we need to normalize with respect to the fourth entry
+
+245
+00:30:29,000 --> 00:30:32,000
+because now we have a point in 3D space.
+
+246
+00:30:32,000 --> 00:30:41,000
+But of course we need to know the depth otherwise this wouldn't be possible.
+
+247
+00:30:41,000 --> 00:30:45,000
+Good.
+
+248
+00:30:45,000 --> 00:30:53,000
+Now the last aspect about the geometric image formation process I want to mention is the lens distortion.
+
+249
+00:30:53,000 --> 00:30:57,000
+We haven't talked about lenses yet but we'll talk about lenses in the next unit
+
+250
+00:30:57,000 --> 00:31:04,000
+and lenses are important because as already mentioned if we just use a very small pinhole
+
+251
+00:31:04,000 --> 00:31:10,000
+we get very little light on the sensor plane so it's important to have a lens that collects light
+
+252
+00:31:10,000 --> 00:31:16,000
+but if we have a lens system then often also there's a geometric distortion introduced
+
+253
+00:31:16,000 --> 00:31:22,000
+and this linear projection model that we've seen before doesn't hold exactly anymore.
+
+254
+00:31:22,000 --> 00:31:33,000
+There's lines in 3D that are projected onto curves in the image plane and this is called distortion.
+
+255
+00:31:33,000 --> 00:31:38,000
+So the assumption of the linear projection that straight lines remain straight on the image plane
+
+256
+00:31:38,000 --> 00:31:42,000
+is violated in practice due to these properties of the camera lenses
+
+257
+00:31:42,000 --> 00:31:44,000
+and there's two types of distortions.
+
+258
+00:31:44,000 --> 00:31:48,000
+There's radial distortion and tangential distortion
+
+259
+00:31:48,000 --> 00:31:56,000
+and both of them luckily can be modeled for most camera models and most lens models relatively easily.
+
+260
+00:31:56,000 --> 00:32:01,000
+So here's the formula that is most often used.
+
+261
+00:32:01,000 --> 00:32:06,000
+What is done here is we take the point in camera coordinates
+
+262
+00:32:06,000 --> 00:32:11,000
+and first do the normalization by the C coordinate
+
+263
+00:32:11,000 --> 00:32:14,000
+but we don't multiply the focal length yet
+
+264
+00:32:14,000 --> 00:32:20,000
+and then we compute the radius and then with these components x, y and r
+
+265
+00:32:20,000 --> 00:32:31,000
+we can multiply those with these or we can apply these polynomials to them
+
+266
+00:32:31,000 --> 00:32:34,000
+that model the radial distortion and the tangential distortion.
+
+267
+00:32:34,000 --> 00:32:40,000
+So we see here how the x, y point is transformed through this equation non-linearly
+
+268
+00:32:40,000 --> 00:32:46,000
+to yield a point x' that is the distorted point.
+
+269
+00:32:46,000 --> 00:32:49,000
+So from the undistorted point we get a distorted point
+
+270
+00:32:49,000 --> 00:32:52,000
+and then this distorted point is multiplied with the focal length
+
+271
+00:32:52,000 --> 00:32:58,000
+so this is now the focal length from the pinhole model and the principal point is added
+
+272
+00:32:58,000 --> 00:33:06,000
+and so this is everything that we need to do in order to also model very basic radial and tangential distortion.
+
+273
+00:33:06,000 --> 00:33:11,000
+And the nice thing about this is that while this looks ugly
+
+274
+00:33:11,000 --> 00:33:15,000
+at first glance the nice thing is that this can actually be undone.
+
+275
+00:33:15,000 --> 00:33:20,000
+This effect is invertible because these transformations are typically monotonic
+
+276
+00:33:20,000 --> 00:33:25,000
+so we can pre-compute undistorted images from distorted images
+
+277
+00:33:25,000 --> 00:33:32,000
+and still apply the pinhole model directly on this undistorted images that have been simply pre-computed
+
+278
+00:33:32,000 --> 00:33:38,000
+before using the image or the projection models that we want to use, the simple pinhole projection model
+
+279
+00:33:38,000 --> 00:33:40,000
+and that's what's typically used in practice.
+
+280
+00:33:40,000 --> 00:33:43,000
+We are undistorting the images before using them.
+
+281
+00:33:43,000 --> 00:33:46,000
+Now this is a relatively simple model.
+
+282
+00:33:46,000 --> 00:33:51,000
+More complex distortion models must be used for more complex lenses
+
+283
+00:33:51,000 --> 00:33:57,000
+particularly wide angle lenses that do not follow this simple polynomial model.
+
+284
+00:33:57,000 --> 00:34:02,000
+And here's some examples of how this looks like.
+
+285
+00:34:02,000 --> 00:34:05,000
+You are probably familiar with this.
+
+286
+00:34:05,000 --> 00:34:11,000
+There's an example of a checkerboard here and if we have so-called barrel distortion
+
+287
+00:34:11,000 --> 00:34:14,000
+we obtain an effect like here.
+
+288
+00:34:14,000 --> 00:34:19,000
+If we have the inverse of that, the negative effect is called pincushion distortion
+
+289
+00:34:19,000 --> 00:34:21,000
+and we get a projection that looks like this
+
+290
+00:34:21,000 --> 00:34:27,000
+and you can see in both cases the lines are not projected to lines but to curves.
+
+291
+00:34:27,000 --> 00:34:34,000
+And also depending on the type of distortion the projected image becomes smaller or larger
+
+292
+00:34:34,000 --> 00:34:42,000
+so you need to use a different crop on the image sensor to fully exploit the projected image.
+

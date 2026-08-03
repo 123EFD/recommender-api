@@ -1,0 +1,1904 @@
+1
+00:00:00,000 --> 00:00:16,280
+Hi, everyone, and welcome back to the MIT class in Urban Energy Systems.
+
+2
+00:00:16,280 --> 00:00:19,240
+Wherever you're seeing this lecture, please subscribe.
+
+3
+00:00:19,240 --> 00:00:25,800
+You can either find it on the webpage where you found this video or ask the instructor.
+
+4
+00:00:25,800 --> 00:00:33,160
+So let's get back to the topic for today, which is going to be cities and decarbonization.
+
+5
+00:00:33,160 --> 00:00:34,880
+What is the role of cities?
+
+6
+00:00:34,880 --> 00:00:41,720
+Again, I'm David Su, and if you're thinking about how cities can take action or what are
+
+7
+00:00:41,720 --> 00:00:47,360
+the roles in decarbonization, you have found the right place and your people.
+
+8
+00:00:47,360 --> 00:00:51,200
+So I want to cover just briefly how you're going to prepare for class this week.
+
+9
+00:00:51,200 --> 00:00:52,200
+This is our second class.
+
+10
+00:00:52,200 --> 00:00:54,920
+I want to make sure that everyone's caught up.
+
+11
+00:00:54,920 --> 00:00:59,840
+First, the introductory reading from last week is fairly short and skimmable, so it's
+
+12
+00:00:59,840 --> 00:01:02,440
+easy to catch up, but you should catch up.
+
+13
+00:01:02,440 --> 00:01:06,560
+And it's particularly important to look at Mackay Chapter 2.
+
+14
+00:01:06,560 --> 00:01:10,320
+Again, it's Mackay Chapter 2.
+
+15
+00:01:10,320 --> 00:01:13,400
+There's an initial problem set due Monday night.
+
+16
+00:01:13,400 --> 00:01:18,160
+You can just access the problem set by going directly to this Google form, the link on
+
+17
+00:01:18,160 --> 00:01:20,160
+the screen.
+
+18
+00:01:20,160 --> 00:01:21,840
+You should do the reading for this week.
+
+19
+00:01:21,840 --> 00:01:22,840
+It's on the syllabus.
+
+20
+00:01:22,840 --> 00:01:26,520
+I'll also show the reading for this week on the next page.
+
+21
+00:01:26,520 --> 00:01:29,600
+And then you should watch the rest of this video lecture.
+
+22
+00:01:29,600 --> 00:01:33,240
+And during the reading and while watching the video lecture, it's important for you
+
+23
+00:01:33,240 --> 00:01:36,920
+to write down the questions that you have for discussion, and then I want you to feel
+
+24
+00:01:36,920 --> 00:01:44,400
+free to share them on Slack whenever, asynchronously, or in our class meeting on Tuesday.
+
+25
+00:01:44,400 --> 00:01:46,880
+So the material for today, again, I won't go over them.
+
+26
+00:01:46,880 --> 00:01:50,240
+These are all on your syllabus, but these will also be in the slides so you can follow
+
+27
+00:01:50,240 --> 00:01:51,240
+the links.
+
+28
+00:01:51,240 --> 00:01:59,920
+The first four readings are the required readings, a kind of gathering of very different readings.
+
+29
+00:01:59,920 --> 00:02:04,600
+And then the last two readings are optional readings that give additional information
+
+30
+00:02:04,600 --> 00:02:07,760
+to the articles of us.
+
+31
+00:02:07,760 --> 00:02:12,480
+So what I want to start with is Mackay Chapter 2, what he calls the balance sheet.
+
+32
+00:02:12,480 --> 00:02:17,840
+And it's an important set of concepts, simply so we can think about the energy system.
+
+33
+00:02:18,040 --> 00:02:24,720
+Very simply, what Mackay is trying to do in his book is contrast these red and green bars.
+
+34
+00:02:24,720 --> 00:02:30,280
+Energy consumption is on the left in red, and energy production is on the right in green.
+
+35
+00:02:30,280 --> 00:02:35,240
+And so when Mackay titles his book, Sustainable Energy Without the Hot Air, what we're trying
+
+36
+00:02:35,240 --> 00:02:41,480
+to do is replace our current level of consumption with entirely renewable resources, and that's
+
+37
+00:02:41,480 --> 00:02:44,560
+how we're going to achieve a sustainable energy system.
+
+38
+00:02:44,560 --> 00:02:50,680
+And so a sustainable energy system would be if our total conceivable sustainable production
+
+39
+00:02:50,680 --> 00:02:56,000
+sources on the right are greater than our total consumption, and an unsustainable energy
+
+40
+00:02:56,000 --> 00:03:01,360
+system would be where our total consumption of energy is larger than our total conceivable
+
+41
+00:03:01,360 --> 00:03:02,360
+sustainable production.
+
+42
+00:03:02,360 --> 00:03:08,520
+And of course, these two bars will change over time as our expectations around consumption
+
+43
+00:03:08,520 --> 00:03:14,160
+change and our technologies and our institutions and our markets for sustainable production
+
+44
+00:03:14,160 --> 00:03:15,160
+change.
+
+45
+00:03:15,160 --> 00:03:16,160
+But that's the challenge.
+
+46
+00:03:16,160 --> 00:03:20,640
+The challenge is to try to put these two in balance and at least have total sustainable
+
+47
+00:03:20,640 --> 00:03:26,720
+production that is enough to meet all of our societal needs or our global societal needs
+
+48
+00:03:26,720 --> 00:03:28,800
+for energy consumption.
+
+49
+00:03:28,800 --> 00:03:33,680
+And so what that might look like is the key forms of consumption on the left-hand stack
+
+50
+00:03:33,680 --> 00:03:35,240
+in red.
+
+51
+00:03:35,240 --> 00:03:40,520
+That is the energy we need for transportation, including cars, planes, and freight.
+
+52
+00:03:40,520 --> 00:03:44,920
+It's the energy we need to heat and cool the spaces that we live in that can wildly differ
+
+53
+00:03:44,920 --> 00:03:46,600
+across countries.
+
+54
+00:03:46,600 --> 00:03:50,440
+It's a basic need for lighting so we can see at night.
+
+55
+00:03:50,440 --> 00:03:56,280
+It's a growing need for energy for information systems and our other gadgets.
+
+56
+00:03:56,280 --> 00:04:03,520
+The fifth point, food, a tremendous amount of energy goes into growing and transporting
+
+57
+00:04:03,520 --> 00:04:07,640
+and keeping our food cold and finally manufacturing.
+
+58
+00:04:07,640 --> 00:04:12,560
+For all the technologies or all the gadgets we need to do transportation or heating and
+
+59
+00:04:12,560 --> 00:04:16,840
+cooling like information systems and food, we have to make these things in the first
+
+60
+00:04:16,840 --> 00:04:20,200
+place and that requires a tremendous amount of energy.
+
+61
+00:04:20,200 --> 00:04:24,800
+On the right-hand side, our sustainable production stack has a number of categories.
+
+62
+00:04:24,800 --> 00:04:29,640
+The good thing is, and I'll try to emphasize this in the class repeatedly, is that we have
+
+63
+00:04:29,640 --> 00:04:34,080
+many sustainable technologies that can produce energy.
+
+64
+00:04:34,080 --> 00:04:35,960
+We have wind and solar.
+
+65
+00:04:35,960 --> 00:04:40,720
+A solar energy can be harnessed in the form of fortable taillight or solar cells that
+
+66
+00:04:40,720 --> 00:04:42,560
+produce electricity.
+
+67
+00:04:42,560 --> 00:04:48,000
+We can harness solar energy through thermal energy and we can also harness solar energy
+
+68
+00:04:48,000 --> 00:04:53,480
+through biomass by harvesting the potential of the earth to engage in photosynthesis,
+
+69
+00:04:53,480 --> 00:05:00,160
+the crops that we've been can use for other things, including burning in engines.
+
+70
+00:05:00,160 --> 00:05:05,880
+Hydroelectric power is producing electricity directly from or mechanical storage directly
+
+71
+00:05:05,880 --> 00:05:07,680
+from hydropower.
+
+72
+00:05:07,680 --> 00:05:15,160
+A wave energy and tide energy are two sources of energy that comes from the earth on a regular
+
+73
+00:05:15,160 --> 00:05:16,160
+basis.
+
+74
+00:05:16,160 --> 00:05:18,960
+A geothermal energy also comes from the earth.
+
+75
+00:05:18,960 --> 00:05:23,920
+The heat inside the earth can be harnessed to produce energy, and finally, nuclear.
+
+76
+00:05:23,920 --> 00:05:28,200
+Mackay puts it with a question mark because it's not clear whether or not nuclear energy
+
+77
+00:05:28,200 --> 00:05:30,480
+or nuclear power counts are sustainable.
+
+78
+00:05:30,480 --> 00:05:32,480
+It is low-carbon.
+
+79
+00:05:32,480 --> 00:05:39,200
+As I said in the earlier class, we have questions about how do we handle the fuel for nuclear
+
+80
+00:05:39,200 --> 00:05:43,040
+power plants, how do we handle the waste for nuclear power plants, and whether or not that
+
+81
+00:05:43,040 --> 00:05:47,280
+will be fully sustainable in the long run.
+
+82
+00:05:47,280 --> 00:05:51,760
+I want to cover two physical concepts from Mackay chapter two that I think are basically
+
+83
+00:05:51,760 --> 00:05:57,280
+going to be the most important physical concepts you need to understand this class.
+
+84
+00:05:57,280 --> 00:05:59,960
+The first one, quite simply, is energy.
+
+85
+00:05:59,960 --> 00:06:04,160
+It's the quantitative property of doing work.
+
+86
+00:06:04,160 --> 00:06:10,800
+Energy can be neither destroyed nor created, one of our fundamental laws of thermodynamics.
+
+87
+00:06:10,800 --> 00:06:17,200
+Energy can be transformed into light, heat, or mass, hence the famous equation by Einstein
+
+88
+00:06:18,080 --> 00:06:20,320
+equals mc squared.
+
+89
+00:06:20,320 --> 00:06:23,560
+Energy equals mass times the speed of light squared.
+
+90
+00:06:23,560 --> 00:06:27,200
+This is a fundamental finding out of relativity.
+
+91
+00:06:27,200 --> 00:06:31,840
+Of course, energy can take many different forms, and we use it in many different forms
+
+92
+00:06:31,840 --> 00:06:33,520
+in our energy system.
+
+93
+00:06:33,520 --> 00:06:38,520
+Energy can be kinetic, it can be chemical, we can have potential energy, we can have
+
+94
+00:06:38,520 --> 00:06:43,080
+mechanical energy, let's say stored in the elastic properties and materials, and of course,
+
+95
+00:06:43,080 --> 00:06:47,920
+biological energy, which is fundamentally chemical energy, but we have different modes
+
+96
+00:06:47,920 --> 00:06:54,160
+of perhaps using that chemical energy in our muscles, in animals, in ecosystems.
+
+97
+00:06:54,160 --> 00:06:57,800
+We're going to measure energy in terms of units of kilowatt hours.
+
+98
+00:06:57,800 --> 00:07:02,640
+You'll see energy referred to in terms of British thermal units, BTUs, something only
+
+99
+00:07:02,640 --> 00:07:09,800
+used in the US and America, the United States, of therms, joules, calories, are all units
+
+100
+00:07:09,800 --> 00:07:10,800
+for energy.
+
+101
+00:07:10,800 --> 00:07:13,000
+Energy can be converted to kilowatt hours.
+
+102
+00:07:13,000 --> 00:07:17,800
+A specific category I just want to highlight below is fossil fuels are sometimes measured
+
+103
+00:07:17,800 --> 00:07:24,160
+in barrels of oil, short tons of coal, cubic feet of natural gas, that's because that's
+
+104
+00:07:24,160 --> 00:07:29,680
+how we measure the things we trade in commodity markets for commoditized fossil fuels.
+
+105
+00:07:29,680 --> 00:07:34,400
+But again, the amount of energy in a barrel of oil and a short ton of coal and cubic
+
+106
+00:07:34,400 --> 00:07:39,120
+foot of natural gas can be converted to kilowatt hours.
+
+107
+00:07:39,120 --> 00:07:43,960
+So just to give you a few examples, example one, you may have had the frustrating experience
+
+108
+00:07:43,960 --> 00:07:50,000
+of having gone to the gym, foolishly counting your calories, realizing you worked out for
+
+109
+00:07:50,000 --> 00:07:54,560
+an hour on a running treadmill as only equivalent to three Oreos.
+
+110
+00:07:54,560 --> 00:08:00,280
+You can also look at example two, the average American household uses per year about 11,000
+
+111
+00:08:00,280 --> 00:08:08,080
+kilowatt hours in electricity, each person uses 300 million BTUs total per year, which
+
+112
+00:08:08,080 --> 00:08:15,920
+is approximately 2.3 gallons of oil, 7.89 pounds of coal and 252 cubic feet of natural
+
+113
+00:08:15,920 --> 00:08:17,560
+gas per day.
+
+114
+00:08:17,560 --> 00:08:21,920
+Now it's just worth pointing out that the first example in terms of the American household
+
+115
+00:08:21,920 --> 00:08:25,640
+is in kilowatt hours, but only counts for electricity.
+
+116
+00:08:25,640 --> 00:08:27,840
+That's for the whole household per year.
+
+117
+00:08:27,840 --> 00:08:34,200
+The second sentence measures each person on a per capita basis, but then breaks the millions
+
+118
+00:08:34,200 --> 00:08:39,360
+of BTUs into different units because of the different sources of energy.
+
+119
+00:08:39,360 --> 00:08:44,480
+And this is to say that when we do these comparisons, we want to be careful about the units we use,
+
+120
+00:08:44,480 --> 00:08:49,840
+the averaging over time, and the sources of energy because the original source of energy
+
+121
+00:08:49,840 --> 00:08:52,440
+may not actually be how much energy we use in the end.
+
+122
+00:08:52,440 --> 00:08:56,960
+And we'll talk about that more in a few slides.
+
+123
+00:08:56,960 --> 00:09:01,800
+Another key fiscal concept we have to talk about or will be very useful is power.
+
+124
+00:09:02,200 --> 00:09:05,440
+And that's the quantitative rate of doing work.
+
+125
+00:09:05,440 --> 00:09:09,800
+That is, power is energy per time.
+
+126
+00:09:09,800 --> 00:09:11,040
+It's a rate.
+
+127
+00:09:11,040 --> 00:09:16,680
+The units we use of that are watts or equal to joules per second.
+
+128
+00:09:16,680 --> 00:09:23,120
+Other forms of power that you might be familiar with are urges, amperes in terms of electrical
+
+129
+00:09:23,120 --> 00:09:30,400
+current, horsepower in terms of the engine in your car or other motors, and lumens are
+
+130
+00:09:30,400 --> 00:09:38,440
+the amount of energy cast off per second from an LED light bulb, but measured over a sphere
+
+131
+00:09:38,440 --> 00:09:39,440
+around a light bulb.
+
+132
+00:09:39,440 --> 00:09:41,920
+So it's actually weighted by the area around the light bulb.
+
+133
+00:09:41,920 --> 00:09:48,680
+Or what degree of area is putting off how much energy.
+
+134
+00:09:48,680 --> 00:09:53,680
+So to just kind of use the same example as the previous slide, you could say, I worked
+
+135
+00:09:53,680 --> 00:09:58,680
+out for an hour and I only worked off the equivalent of three Oreos, but maybe sounds
+
+136
+00:09:58,680 --> 00:10:03,880
+perhaps more impressive if you say my workout maintained a steady power output of three
+
+137
+00:10:03,880 --> 00:10:07,400
+Oreos per hour.
+
+138
+00:10:07,400 --> 00:10:12,800
+Another key concept we have to cover that links energy and climate is emissions intensity.
+
+139
+00:10:12,800 --> 00:10:18,360
+And emissions are measured in terms of greenhouse gases, usually measured in metric ton carbon
+
+140
+00:10:18,360 --> 00:10:26,440
+dioxide equivalent, which is abbreviated MTCDE or MTCO2E and so on.
+
+141
+00:10:26,440 --> 00:10:31,480
+And the reason why we have to measure it in terms of metric ton carbon dioxide equivalent
+
+142
+00:10:31,480 --> 00:10:35,880
+is that there's a lot of different greenhouse gases and some of them, for example, methane
+
+143
+00:10:35,880 --> 00:10:40,840
+CH4 has much more global warming potential in carbon dioxide.
+
+144
+00:10:40,840 --> 00:10:47,840
+So a single ton of methane has about 84 times the global warming potential of a ton of carbon
+
+145
+00:10:47,840 --> 00:10:54,280
+dioxide in early in this life that declines over time to about 20 metric tons of carbon
+
+146
+00:10:54,280 --> 00:10:55,720
+dioxide equivalent.
+
+147
+00:10:55,720 --> 00:11:00,800
+So this is just to say that if we have different greenhouse gases, we measure them or make
+
+148
+00:11:00,800 --> 00:11:06,680
+them all equivalent to a metric ton of carbon dioxide equivalent during their lifetime.
+
+149
+00:11:06,680 --> 00:11:11,840
+We can also measure emissions intensity by the type of gas, as the example I just gave
+
+150
+00:11:11,840 --> 00:11:17,920
+you in terms of methane, also nitrous oxide and fluoride hexanes, I think, are another
+
+151
+00:11:17,920 --> 00:11:19,080
+greenhouse gas.
+
+152
+00:11:19,080 --> 00:11:22,400
+You can measure emissions intensity per unit of energy.
+
+153
+00:11:22,400 --> 00:11:26,880
+This much greenhouse gas is created in terms of this much energy.
+
+154
+00:11:26,880 --> 00:11:31,960
+You can measure greenhouse gases per activity, per dollar GDP or by region.
+
+155
+00:11:31,960 --> 00:11:33,920
+People use lots of different intensities.
+
+156
+00:11:33,920 --> 00:11:37,920
+The reason why I want to focus on this key constant intensity is that as we look at
+
+157
+00:11:37,920 --> 00:11:40,960
+different parts of the system, we're going to look at the intensity of the different
+
+158
+00:11:40,960 --> 00:11:45,040
+parts of the system to kind of get a whole picture of where greenhouse gases are coming
+
+159
+00:11:45,040 --> 00:11:49,200
+from, just like we're going to look at energy intensity, in terms of how much energy do
+
+160
+00:11:49,200 --> 00:11:54,400
+you need for different activities, how much energy do different regions of the world use.
+
+161
+00:11:54,400 --> 00:11:59,920
+And so to give you a few examples of the components of the parties, the COP meetings that the
+
+162
+00:11:59,920 --> 00:12:07,480
+UN framework invention on climate change runs every year, they have reporting inventory.
+
+163
+00:12:07,480 --> 00:12:12,680
+And when every country, which is party to the Paris Agreement, has to report its greenhouse
+
+164
+00:12:12,680 --> 00:12:16,480
+gas emissions, and frankly, the actions that they're taking to reduce their greenhouse
+
+165
+00:12:16,560 --> 00:12:21,640
+gases, they have to measure or report their greenhouse gases in terms of a specific inventory
+
+166
+00:12:21,640 --> 00:12:22,640
+format.
+
+167
+00:12:22,640 --> 00:12:24,120
+So I've linked to that here.
+
+168
+00:12:24,120 --> 00:12:29,880
+You can click on it and you can see how countries report different kinds of greenhouse gases.
+
+169
+00:12:29,880 --> 00:12:36,160
+It's because countries can only see the source of the activities that create greenhouse gases.
+
+170
+00:12:36,160 --> 00:12:40,320
+So it's easier, of course, to measure how many barrels of oil we burned, or how many
+
+171
+00:12:40,320 --> 00:12:45,240
+short tons of coal we burned, or let's say how much land use conversion has led to how
+
+172
+00:12:45,240 --> 00:12:48,000
+much methane or how much carbon dioxide.
+
+173
+00:12:48,000 --> 00:12:54,720
+We can also measure, let's say, our greenhouse gas emissions per unit of electricity, because
+
+174
+00:12:54,720 --> 00:12:56,640
+electricity comes from a grid.
+
+175
+00:12:56,640 --> 00:13:00,960
+The grid is a technology we'll talk about a lot in this class that mixes different sources
+
+176
+00:13:00,960 --> 00:13:01,960
+of energy together.
+
+177
+00:13:01,960 --> 00:13:08,240
+And so we try to get an average intensity of greenhouse gas emissions per unit electricity
+
+178
+00:13:08,240 --> 00:13:10,320
+in different regions.
+
+179
+00:13:10,320 --> 00:13:14,400
+Another mission's intensity factor that people look at quite often is air quality.
+
+180
+00:13:14,400 --> 00:13:19,880
+We can look at how many greenhouse gases or how much particulate matter is produced
+
+181
+00:13:19,880 --> 00:13:26,280
+by certain activities, like vehicle miles traveled or a number of cars in the road.
+
+182
+00:13:26,280 --> 00:13:30,280
+So just to give you an example of what carbon emission intensity looks like, this is the
+
+183
+00:13:30,280 --> 00:13:36,440
+carbon emission intensity of economies in 2018, and this is from our world and data.
+
+184
+00:13:36,440 --> 00:13:41,480
+And you can see, actually, it's measured on the bottom legend here in terms of amount
+
+185
+00:13:41,480 --> 00:13:48,480
+of kilograms of carbon dioxide equivalent, the carbon dioxide intensity per dollar of
+
+186
+00:13:48,480 --> 00:13:52,640
+GDP measured in international 2011 prices.
+
+187
+00:13:52,640 --> 00:13:58,240
+And you can see by that measure, actually, a lot of the developed worlds, such as Australia,
+
+188
+00:13:58,240 --> 00:14:04,400
+Europe, North America, and Arts of Latin America, don't look very intense, if only because
+
+189
+00:14:04,400 --> 00:14:09,840
+they don't produce that many greenhouse gases per dollar of a GDP output.
+
+190
+00:14:09,840 --> 00:14:15,760
+Now, like we talked about in the last class in terms of population, what does this hide?
+
+191
+00:14:15,760 --> 00:14:20,240
+Well, there's a couple of things with a map, you know, sometimes the area of the map distorts
+
+192
+00:14:20,240 --> 00:14:24,840
+the actual area or total emissions, you know, small places don't look like they had as much
+
+193
+00:14:24,840 --> 00:14:29,120
+impact as big places, even though that really has nothing to do with the average.
+
+194
+00:14:29,120 --> 00:14:33,760
+But the more important point from a map like this is that it hides the fact that the rich
+
+195
+00:14:33,760 --> 00:14:40,320
+countries like Australia, Europe, North America, and Arts of Latin America simply have much
+
+196
+00:14:40,320 --> 00:14:41,960
+larger GDPs.
+
+197
+00:14:41,960 --> 00:14:47,520
+So it looks like the carbon dioxide output per GDP is low.
+
+198
+00:14:47,520 --> 00:14:52,040
+But if we look at the per capita CO2 emissions, like the point in our last class, you can
+
+199
+00:14:52,040 --> 00:14:55,920
+see that for a relatively small number of people in those rich developed countries, they have
+
+200
+00:14:55,920 --> 00:14:58,880
+very high CO2 emissions per capita.
+
+201
+00:14:58,880 --> 00:15:03,440
+And so your map basically changes biometrically, and you can see the difference between richer
+
+202
+00:15:03,440 --> 00:15:05,240
+countries and poorer countries.
+
+203
+00:15:05,240 --> 00:15:11,880
+And overwhelmingly, the richer countries are more responsible for carbon dioxide emissions.
+
+204
+00:15:11,880 --> 00:15:17,320
+If we look at this similarly in kind of a scatter plot, you can again see that, you know, it looks
+
+205
+00:15:17,320 --> 00:15:21,760
+like on an emission intensity basis, India and the United States are not that different.
+
+206
+00:15:21,760 --> 00:15:27,200
+Of course, the differences in terms of the output of the economy on a per capita basis,
+
+207
+00:15:27,200 --> 00:15:32,720
+the average person in the United States, produces much more and inevitably consumes much more
+
+208
+00:15:32,720 --> 00:15:35,200
+than your average person in the other Pakistan.
+
+209
+00:15:35,200 --> 00:15:41,120
+So even though we have equivalent emissions intensity per dollar, we simply produce and
+
+210
+00:15:41,120 --> 00:15:44,040
+consume much more in the richer countries.
+
+211
+00:15:44,040 --> 00:15:50,680
+And I make this point because after the Kyoto Protocol, and after the George W. Bush administration
+
+212
+00:15:50,680 --> 00:15:55,480
+chose to leave the Kyoto Protocol, one of their arguments was that the U.S. actually
+
+213
+00:15:55,480 --> 00:16:01,880
+had a lower carbon emission intensity or at least a comparable carbon emission intensity
+
+214
+00:16:01,880 --> 00:16:03,400
+to some developing countries.
+
+215
+00:16:03,400 --> 00:16:09,680
+Of course, this hid the fact that the United States is both richer and consumes much more
+
+216
+00:16:09,680 --> 00:16:11,560
+and produces much more.
+
+217
+00:16:11,560 --> 00:16:17,040
+So that's just a way to talk about what intensities may tell us and what they may hide also.
+
+218
+00:16:17,040 --> 00:16:22,080
+Now, I'm going to get to a really kind of key diagram that I rather love in this class.
+
+219
+00:16:22,080 --> 00:16:26,040
+So I'll start off this class by talking about Sankey diagrams.
+
+220
+00:16:26,040 --> 00:16:30,760
+And you can find a Sankey diagram with the U.S. and every state at this web link at the
+
+221
+00:16:30,760 --> 00:16:34,160
+bottom, Lawrence Livermore National Laboratory.
+
+222
+00:16:34,160 --> 00:16:38,880
+What a Sankey diagram is, is basically a flow chart and it's a flow chart between the sources
+
+223
+00:16:38,880 --> 00:16:39,880
+on the left.
+
+224
+00:16:39,880 --> 00:16:44,200
+You can see all of our energy sources, solar, nuclear, hydro, wind, geothermal, natural gas
+
+225
+00:16:44,200 --> 00:16:46,200
+called biomass and petroleum.
+
+226
+00:16:46,200 --> 00:16:50,280
+And you can see all of the ultimate uses on the right.
+
+227
+00:16:50,280 --> 00:16:55,520
+And the final, I guess we call final consumption is in residential buildings, commercial buildings,
+
+228
+00:16:55,520 --> 00:16:57,920
+industrial buildings, and transportation.
+
+229
+00:16:57,920 --> 00:17:02,880
+Of course, the spinal category here is also a kind of a statement about where does the
+
+230
+00:17:02,880 --> 00:17:05,320
+energy go in the first place.
+
+231
+00:17:05,320 --> 00:17:12,560
+Only about 50% of the energy or less that we actually burn in the from the original sources
+
+232
+00:17:12,560 --> 00:17:19,120
+goes into these uses in these sectors about actually looks like one third of the energy
+
+233
+00:17:19,120 --> 00:17:25,840
+goes to what we call energy services and rejected energy is the byproduct of that combustion
+
+234
+00:17:25,840 --> 00:17:29,600
+usually that we don't capture for actual energy services.
+
+235
+00:17:29,600 --> 00:17:34,720
+So to give you an example, you can see how I said before the electric grid mixes many
+
+236
+00:17:34,720 --> 00:17:41,480
+different types of energy sources, solar, nuclear, hydro, wind, all these natural gas
+
+237
+00:17:41,480 --> 00:17:44,760
+and coal all feed into the electric grid.
+
+238
+00:17:44,760 --> 00:17:48,960
+But when we feed that energy into the electric grid into power plants, we basically only
+
+239
+00:17:48,960 --> 00:17:53,400
+take a fraction of it looks like about one third of the electricity, one third of the
+
+240
+00:17:53,440 --> 00:17:57,840
+energy in those energy sources actually goes to things like residential, commercial,
+
+241
+00:17:57,840 --> 00:18:01,960
+and industrial, but about two thirds of it gets rejected, which means that it's heat
+
+242
+00:18:01,960 --> 00:18:07,400
+energy going out of each chimney of a coal fire power plant, or might be energy lost
+
+243
+00:18:07,400 --> 00:18:12,520
+in electric grid, it's simply lost because the resistance of the electrical wires.
+
+244
+00:18:12,520 --> 00:18:17,600
+And so this kind of graph, I actually find tremendously useful to summarize what the
+
+245
+00:18:17,600 --> 00:18:23,160
+sources on the left are, the ultimate uses of the energy are on the right, and also
+
+246
+00:18:23,160 --> 00:18:27,160
+some of the interim steps where we might be able to capture some of the energy back
+
+247
+00:18:27,160 --> 00:18:31,480
+in terms of energy efficiency, or at least think about how our intermediate technologies
+
+248
+00:18:31,480 --> 00:18:36,560
+like the electric grid actually use energy and how much of the intrinsic energy in the
+
+249
+00:18:36,560 --> 00:18:41,280
+fuel source are we using to take one example from this graph.
+
+250
+00:18:41,280 --> 00:18:45,400
+I think it does a really good job of showing you, for example, that electricity overwhelmingly
+
+251
+00:18:45,400 --> 00:18:50,000
+goes into residential buildings, commercial buildings and industrial buildings are industrial
+
+252
+00:18:50,080 --> 00:18:54,080
+activities. But you can see that there's no link between electricity generation and
+
+253
+00:18:54,080 --> 00:19:00,400
+transportation. So very small orange line here, 0.0.02 quads.
+
+254
+00:19:00,400 --> 00:19:04,640
+One thing I should have pointed out is that the total US energy consumption in 2021 was
+
+255
+00:19:04,640 --> 00:19:10,080
+about 97 quads. It's pretty easy mentally to round that up to about 100. So this is
+
+256
+00:19:10,080 --> 00:19:16,680
+actually 0.02% roughly of all the energy in the US is used, or electricity is used for
+
+257
+00:19:16,720 --> 00:19:22,120
+transportation. You can see overwhelmingly that the majority of energy for transportation,
+
+258
+00:19:22,120 --> 00:19:28,400
+24.3 quads, or about 24% of the energy in the US comes from petroleum. And originally
+
+259
+00:19:28,400 --> 00:19:36,400
+that came from about 35 quads, or 35% of our initial energy sources. And you can see some
+
+260
+00:19:36,400 --> 00:19:41,080
+portion goes off to industrial activities. But the vast majority of the energy that drives
+
+261
+00:19:41,160 --> 00:19:46,880
+our transportation system is petroleum. And you can see that when we burn petroleum or
+
+262
+00:19:46,880 --> 00:19:51,960
+gasoline in our internal combustion engines, a very small fraction that looks like about
+
+263
+00:19:51,960 --> 00:19:58,200
+20% of it is actually used for moving the car forward. About 80% of the energy actually
+
+264
+00:19:58,200 --> 00:20:04,280
+goes out of the tailpipe, either in the form of heat out of the tailpipe or else air resistance
+
+265
+00:20:04,280 --> 00:20:09,000
+that is not really what we're trying to do. We're trying to move goods and services and
+
+266
+00:20:09,000 --> 00:20:13,640
+people around. And so this is just, again, a way of saying that, you know, there's lots of
+
+267
+00:20:13,640 --> 00:20:19,400
+different kinds of Sankey diagrams. This is a nice one that has proportional flows between sources,
+
+268
+00:20:19,400 --> 00:20:25,400
+intermediate, transforming technologies, and uses. It also shows you what efficiency level
+
+269
+00:20:25,400 --> 00:20:30,200
+is being achieved in these different sectors. This is essentially a counting exercise. Or if
+
+270
+00:20:30,200 --> 00:20:35,720
+you can find the Sankey diagram for a given region or city or country, it gives you a really good
+
+271
+00:20:35,720 --> 00:20:40,680
+picture of where the energy is coming from and where the energy is going to. And so we want to
+
+272
+00:20:40,680 --> 00:20:45,560
+use these Sankey diagrams to think about what our pathways are to deep decarbonization. Deep
+
+273
+00:20:45,560 --> 00:20:51,080
+decarbonization, I think I've said before, if I haven't said it before, it is both a goal and a
+
+274
+00:20:51,080 --> 00:20:57,880
+process. We know that climate science tells us that IPCC has told us through an exhaustive scientific
+
+275
+00:20:57,880 --> 00:21:03,880
+process that we need to achieve net zero anthropogenic greenhouse gas emissions by 2050.
+
+276
+00:21:03,960 --> 00:21:10,520
+Deep decarbonization is both the goal of getting to net zero emissions by 2050 and also it's this
+
+277
+00:21:10,520 --> 00:21:16,200
+process. We're decarbonizing for the next 28 years to lessen the effects of climate change.
+
+278
+00:21:16,840 --> 00:21:23,480
+And so the first deep decarbonization plan started in 2015. The deep decarbonization
+
+279
+00:21:23,480 --> 00:21:28,760
+pathways project started in 2015 for a number of countries to try to think about what analytical
+
+280
+00:21:28,760 --> 00:21:33,800
+or policy or technology pathways we needed. It was updated in this paper in 2020 that you read
+
+281
+00:21:33,800 --> 00:21:39,160
+about this class. That was probably followed by the White House mid-century strategy, which was the
+
+282
+00:21:39,160 --> 00:21:43,480
+Obama administration's commitment to the Paris Agreement to reduce greenhouse gas emissions
+
+283
+00:21:43,480 --> 00:21:51,080
+by 80% by 2050. But just four years later, you have a series of reports from academics and NGOs
+
+284
+00:21:51,080 --> 00:21:58,200
+looking at ways to get the 100% reduction by 2050, which is what the IPCC says we need to do by 2050.
+
+285
+00:21:59,080 --> 00:22:04,440
+And so the key thing I want to say in this class, but also in the paper I referred to last
+
+286
+00:22:05,400 --> 00:22:08,920
+time last week of the paper on deep decarbonization that I wrote recently,
+
+287
+00:22:09,640 --> 00:22:14,680
+is that many of these plans agree with the technology pathways are. So we should focus as
+
+288
+00:22:16,440 --> 00:22:21,560
+urban policy analysts and urban planners and people who work in cities on implementation,
+
+289
+00:22:21,560 --> 00:22:26,440
+we should focus on geography, we should focus on politics of it. And frankly, as planners,
+
+290
+00:22:26,440 --> 00:22:31,960
+we should look at the land use and built environment implications for deep decarbonization.
+
+291
+00:22:33,320 --> 00:22:39,240
+So look at the Sankey diagram from Williams et al. 2020. They look at the reference case
+
+292
+00:22:40,360 --> 00:22:45,800
+for energy use in the United States. And this is a reference case that I think the Energy
+
+293
+00:22:45,800 --> 00:22:51,560
+Information Administration puts out every year. You can see on the left hand side that overwhelmingly
+
+294
+00:22:51,560 --> 00:22:56,600
+the reference case, which is usually fairly conservative, shows that we will get most of our
+
+295
+00:22:56,600 --> 00:23:02,280
+energy from we get most of our energy currently from uranium, coal, natural gas, a little bit from
+
+296
+00:23:02,280 --> 00:23:08,040
+biomass and a large portion of petroleum. You can see renewables here are relatively small,
+
+297
+00:23:08,040 --> 00:23:13,800
+geothermal, solar, wind and hydro. And all the energy goes through the intermediate steps,
+
+298
+00:23:13,800 --> 00:23:19,560
+electricity generation, pipeline gas, volume refining outputs, or liquid fuels. It gets
+
+299
+00:23:19,560 --> 00:23:23,960
+transmitted through the grid. And it ultimately goes to buildings, which are residential and
+
+300
+00:23:23,960 --> 00:23:28,440
+commercial buildings together. It goes to industry, and it goes to transportation.
+
+301
+00:23:28,440 --> 00:23:33,320
+Again, you can see here from buildings that overwhelmingly about half of the energy comes
+
+302
+00:23:33,320 --> 00:23:37,640
+from the grid, half the energy comes from pipeline gas, transportation, almost all the
+
+303
+00:23:37,640 --> 00:23:45,800
+energy we currently use comes from the petroleum. And industry uses a variety of energy technologies
+
+304
+00:23:45,800 --> 00:23:52,440
+and fuels. Now let's contrast that with the Williams paper on what a 100% renewable energy
+
+305
+00:23:52,440 --> 00:23:57,480
+future would look like. There's a couple things to notice here. First, all of our renewables,
+
+306
+00:23:57,480 --> 00:24:03,400
+the 100% renewable sources we are going to need, are have taken over completely, geothermal, solar,
+
+307
+00:24:03,400 --> 00:24:09,720
+wind, hydro and biomass. There's no coal, no natural gas and no petroleum. Overwhelmingly,
+
+308
+00:24:09,720 --> 00:24:15,080
+about two thirds of the energy will go through the electric grid. It will be generated electricity
+
+309
+00:24:15,080 --> 00:24:21,000
+either go through the grid or you'd be used to produce hydrogen. Hydrogen will produce various
+
+310
+00:24:21,000 --> 00:24:26,680
+liquid and gaseous fuels. And if you look at what the future looks like in 2050, according to this
+
+311
+00:24:26,680 --> 00:24:31,400
+paper or this technology pathway, you can see that buildings have to overwhelmingly get their
+
+312
+00:24:31,400 --> 00:24:36,840
+energy from electricity. Industry will still use a variety of inputs, but all those inputs will be
+
+313
+00:24:36,840 --> 00:24:42,600
+from intermediate steps that have transformed our renewable energy into the kinds of fuels we
+
+314
+00:24:42,600 --> 00:24:47,720
+need to drive in ductile processes. And you can see that a transportation is going to come
+
+315
+00:24:47,720 --> 00:24:53,320
+overwhelmingly from electric, about 50% of our energy in transportation will come from electric.
+
+316
+00:24:53,320 --> 00:25:00,200
+Some of it will come from I think liquid fuels and some will come from compressed gases such as
+
+317
+00:25:00,200 --> 00:25:08,280
+hydrogen and maybe natural gas or methane produced from renewable resources. And let's just look at
+
+318
+00:25:08,280 --> 00:25:12,600
+the implications from this. And this is to read the numbers off those previous two graphs.
+
+319
+00:25:13,240 --> 00:25:18,840
+And then you look at the power sector, you can see the petroleum, natural gas and coal, as I said,
+
+320
+00:25:18,840 --> 00:25:26,360
+have to be eliminated completely, 100%. Biomass has to grow by three and a half times. Nuclear
+
+321
+00:25:26,360 --> 00:25:31,480
+power in the 100% renewable case is actually eliminated completely because I think Williams
+
+322
+00:25:31,480 --> 00:25:37,160
+and I'll do not define nuclear as a renewable energy source. But the key things that most
+
+323
+00:25:37,160 --> 00:25:43,320
+dire I think are most challenging things we have to deal with are growing our solar energy
+
+324
+00:25:43,320 --> 00:25:50,280
+share by about a factor of 46. We have to grow our share per wind by a factor of 27. Hydro and
+
+325
+00:25:50,280 --> 00:25:54,920
+geothermal are going to be relatively small players in this forecast. And that's just the
+
+326
+00:25:54,920 --> 00:26:00,680
+electric power sector. If you look at buildings, residential, commercial, you can see two things.
+
+327
+00:26:00,680 --> 00:26:07,320
+Not only does electricity have to decline in total use, but we have to completely eliminate
+
+328
+00:26:07,320 --> 00:26:14,360
+natural gas. And we have to increase our use of biomass just slightly. And the key thing is that
+
+329
+00:26:14,360 --> 00:26:19,080
+the reason why we're declining our total use of electricity is that it's more efficient.
+
+330
+00:26:19,080 --> 00:26:23,960
+But at the same time, the electricity we do use is going to be used to do things that natural gas
+
+331
+00:26:23,960 --> 00:26:29,320
+currently does. If we're going to get heating and cooling from electricity, rather than natural gas,
+
+332
+00:26:29,320 --> 00:26:33,880
+as we do now. And so this is one important point I want to highlight from Sankey Diagrams.
+
+333
+00:26:33,880 --> 00:26:38,520
+If you look at the total primary energy in buildings, it actually has to go down by about 50%.
+
+334
+00:26:39,320 --> 00:26:44,360
+And this is the point I think I made in the last class, which is if you look back here,
+
+335
+00:26:44,360 --> 00:26:49,560
+the total amount of energy looks like I think roughly 100 plots, also 100 exajoules, I think
+
+336
+00:26:49,560 --> 00:26:54,360
+is how this paper measures it. And if you look at the next slide, you can see that the width of
+
+337
+00:26:54,360 --> 00:26:59,640
+these flows have gone down by a bit, which is to make the point that I think I said to you last
+
+338
+00:26:59,640 --> 00:27:05,640
+week, which is that not only do our uses have to become more efficient, we also have to simply
+
+339
+00:27:06,360 --> 00:27:11,000
+reduce the total amount we're using. And the remaining 50% has to become renewable. So we
+
+340
+00:27:11,000 --> 00:27:15,480
+actually need a complete transformation of our energy system, both on the consumption side and
+
+341
+00:27:15,480 --> 00:27:23,560
+production side. If you look at the Tong paper, this is going to shift a little bit to this question
+
+342
+00:27:23,560 --> 00:27:30,840
+of existing energy infrastructure. This is a paper written in 2019 in Nature. And in this paper,
+
+343
+00:27:30,840 --> 00:27:37,000
+they say our estimate suggests that little or no new CO2 emitting infrastructure can be commissioned
+
+344
+00:27:37,000 --> 00:27:42,040
+and that existing infrastructure may need to be retired early or be retrofitted with carbon
+
+345
+00:27:42,040 --> 00:27:47,320
+capture and storage technology in order to meet the Paris agreement climate goals. So this paper
+
+346
+00:27:47,320 --> 00:27:51,640
+is basically going to show us that we have existing infrastructure, obviously the energy
+
+347
+00:27:51,640 --> 00:27:56,280
+infrastructure that we use every day. And if you want to meet our Paris agreement climate goals,
+
+348
+00:27:56,280 --> 00:28:02,120
+which is keeping preferably global average temperatures less than 1.5 degrees Celsius higher
+
+349
+00:28:02,120 --> 00:28:09,080
+than pre-industrial era, we actually need to build no more fossil fuel infrastructure, which is CO2
+
+350
+00:28:09,080 --> 00:28:13,320
+emitting infrastructure. And we may have to retire some of the energy infrastructure that we have
+
+351
+00:28:13,320 --> 00:28:19,880
+early before it's planned lifetime. This is part of the struggle. This is why you have activists
+
+352
+00:28:19,960 --> 00:28:26,840
+trying to retire whole fired power plants and avoid building new pipelines in natural gas plants
+
+353
+00:28:26,840 --> 00:28:32,920
+or having passing, let's say, gas bans for new appliances in parts of Massachusetts and California
+
+354
+00:28:32,920 --> 00:28:37,960
+and other states. So just to show you what this looks like, all these categories in the legend
+
+355
+00:28:37,960 --> 00:28:42,520
+here, commercial buildings, residential building, international transport, road transport, industry
+
+356
+00:28:42,520 --> 00:28:49,560
+electricity, these kinds of technologies have a natural lifetime in terms of they have a committed
+
+357
+00:28:49,560 --> 00:28:54,600
+CO2 emission from existing and proposed infrastructure. And you can see that our existing
+
+358
+00:28:54,600 --> 00:28:59,880
+infrastructure is overwhelmingly dominated by industry and electricity and road transport
+
+359
+00:28:59,880 --> 00:29:04,520
+is this blue wedge and buildings are actually relatively small. And those are all things that
+
+360
+00:29:04,520 --> 00:29:08,920
+are going to phase out naturally over time because infrastructure gets old. If you don't
+
+361
+00:29:08,920 --> 00:29:14,600
+maintain it and you don't rebuild it, then it wears out and you can't use it anymore. We have
+
+362
+00:29:14,600 --> 00:29:20,440
+more proposed infrastructure, but that proposed infrastructure cannot be built if we need to
+
+363
+00:29:20,440 --> 00:29:27,720
+try to meet our price of climate goals. At the same time, in the B panel here, we have the committed
+
+364
+00:29:27,720 --> 00:29:33,480
+emissions from different countries. And you can see the lifetime of infrastructure in China is
+
+365
+00:29:33,480 --> 00:29:40,040
+relatively long and a large portion of the future problem because so much of it is built fairly
+
+366
+00:29:40,040 --> 00:29:45,560
+recently. You can see the rest of the world is actually only about two thirds of the problem
+
+367
+00:29:45,560 --> 00:29:50,760
+that China poses. And actually, the US has a relatively small future committed emissions
+
+368
+00:29:50,760 --> 00:29:56,040
+because of the nature of our technology. Of course, there's been many more proposed projects,
+
+369
+00:29:56,040 --> 00:30:01,480
+but the point of this paper is that we cannot actually build the proposed infrastructure. And
+
+370
+00:30:01,480 --> 00:30:06,040
+we may have to retire some of this existing infrastructure early to avoid going over our
+
+371
+00:30:06,120 --> 00:30:11,320
+climate limits. So another kind of interesting graph in this paper, which I like quite a bit,
+
+372
+00:30:11,320 --> 00:30:16,760
+is a population pyramid. But instead of a population pyramid showing the proportions of
+
+373
+00:30:16,760 --> 00:30:22,920
+the population of people by age, it actually shows the age structure of our global electricity
+
+374
+00:30:22,920 --> 00:30:28,200
+generating capacity. And I want to simply make a point about what the different nature of the
+
+375
+00:30:28,200 --> 00:30:34,760
+problem in China and the US are. You can see on the left hand side, this is the rest of the world,
+
+376
+00:30:34,760 --> 00:30:40,040
+but in some ways, dominated by the US. You can see on 15 or 17 years ago, we built quite a bit
+
+377
+00:30:40,040 --> 00:30:45,880
+of natural gas or oil infrastructure. You can see the rest of the world has more recently
+
+378
+00:30:45,880 --> 00:30:50,440
+been building gas and oil infrastructure at the yellow bars. And you can see on the right hand
+
+379
+00:30:50,440 --> 00:30:56,360
+side, this is an electricity generation from coal that is overwhelmingly dominated by coal
+
+380
+00:30:56,360 --> 00:31:02,440
+fire power plants built in China, mostly the last 12 or 14 years. The reason why we use this
+
+381
+00:31:02,440 --> 00:31:06,680
+graph is to look at the nature of the problem and what particular sectors we're going to have to
+
+382
+00:31:06,680 --> 00:31:12,040
+tackle, which particular power plants are going to have to tackle, to avoid creating more greenhouse
+
+383
+00:31:12,040 --> 00:31:17,640
+gas emissions. That again, will put us beyond our Paris agreement targets, that will then finally
+
+384
+00:31:17,640 --> 00:31:27,400
+jeopardize the climate of the planet. So this brings me to cities, which is numerous recent
+
+385
+00:31:27,400 --> 00:31:31,960
+studies show that most US greenhouse gas emissions or global greenhouse gas emissions in
+
+386
+00:31:31,960 --> 00:31:36,760
+some of these studies are from cities. But the key point of this literature on a highlight is that
+
+387
+00:31:36,760 --> 00:31:43,560
+the exact proportion depends on how and where you count. The Jones et al. 2018 paper and the
+
+388
+00:31:43,560 --> 00:31:49,560
+Goldstein et al. 2020 paper, both find that higher incomes and lower population densities are highly
+
+389
+00:31:49,560 --> 00:31:57,640
+correlated with higher carbon footprints and energy use. The Gurney et al. 2018, 2020, and 2021
+
+390
+00:31:57,720 --> 00:32:03,320
+reports and papers find that a majority of road and fossil fuel infrastructure or use
+
+391
+00:32:03,320 --> 00:32:08,920
+can be associated with cities. The Moran paper is quite interesting and it finds that both in the
+
+392
+00:32:08,920 --> 00:32:16,360
+China, in both in China and the US, the largest 10 cities plus 5% or the top 5% of suburban
+
+393
+00:32:16,360 --> 00:32:21,160
+residents by income are responsible for more than a majority of the greenhouse gas emissions
+
+394
+00:32:21,160 --> 00:32:27,160
+from both countries, China and the US. Which is to say that if we focused just on the largest
+
+395
+00:32:27,160 --> 00:32:33,080
+10 cities and the most carbon intensive suburbs, then we could actually make a significant difference
+
+396
+00:32:33,080 --> 00:32:37,880
+in the greenhouse gas emissions in countries. It is also kind of recapping the moral argument I
+
+397
+00:32:37,880 --> 00:32:44,760
+made to you in the last class, which is that the richest people in both countries have a
+
+398
+00:32:44,760 --> 00:32:48,680
+disproportionate responsibility to lower the greenhouse gas emissions just in the same way
+
+399
+00:32:48,680 --> 00:32:53,400
+that the US has a disproportionate responsibility to lower greenhouse gas emissions relative to the
+
+400
+00:32:53,400 --> 00:33:01,320
+rest of the world. Finally, the CEDO in the 2021 and the Weidman et al. papers 2021 kind of show
+
+401
+00:33:01,320 --> 00:33:04,680
+different research and planning frameworks for how do you really count these greenhouse gas
+
+402
+00:33:04,680 --> 00:33:09,480
+emissions. And so there's debate about how you count it, but there's this emerging consensus
+
+403
+00:33:09,480 --> 00:33:14,840
+in the literature that cities are responsible for a large portion of greenhouse gas emissions
+
+404
+00:33:14,840 --> 00:33:20,680
+in many countries, including China and the US. Just to highlight a few of the key issues why
+
+405
+00:33:20,680 --> 00:33:25,720
+it's hard to get an exact proportion depends on different definitions of cities or what an urban
+
+406
+00:33:25,720 --> 00:33:31,560
+area is. It depends which emissions you count, upstream emissions like things that you import in
+
+407
+00:33:31,560 --> 00:33:38,120
+the form of fuels or goods, downstream emissions, the things that you export out of the city or waste
+
+408
+00:33:38,120 --> 00:33:42,680
+energy or waste products that go outside the city and goods and services. There's all different
+
+409
+00:33:42,680 --> 00:33:47,880
+ways to count the emissions from all these things. The C40 and air purport that I assigned in the
+
+410
+00:33:47,880 --> 00:33:53,560
+reading gets to some of these issues. Finally, some interesting questions that are not always
+
+411
+00:33:53,560 --> 00:33:58,760
+accounted for. Cities clearly shape local microclimates. Do we count that as part of climate
+
+412
+00:33:58,760 --> 00:34:03,400
+change because that actually changes how people subsequently use energy in cities? And this is
+
+413
+00:34:03,400 --> 00:34:07,800
+kind of a fundamental question. How do you measure affluence? Do you measure in terms of wealth or
+
+414
+00:34:07,800 --> 00:34:13,960
+income? I suspect if we measure these in different ways, you'd find different places are responsible
+
+415
+00:34:13,960 --> 00:34:18,840
+for different levels of greenhouse gas emissions. Just to again kind of make this argument about
+
+416
+00:34:18,840 --> 00:34:24,120
+how we measure things matters and also how intensity may show us a different picture.
+
+417
+00:34:24,120 --> 00:34:29,640
+This is from the Gurney et al. 2020 paper. The left hand panel shows absolute emissions.
+
+418
+00:34:29,640 --> 00:34:35,480
+You can see the absolute emissions in this country basically almost identically mimics
+
+419
+00:34:35,480 --> 00:34:41,400
+the spatial or urban spatial structure of the country where all the red areas and the
+
+420
+00:34:42,040 --> 00:34:47,240
+left coast are high concentrations of absolute emissions. Of course, if you make it on a per
+
+421
+00:34:47,240 --> 00:34:52,760
+capita basis, you might say, okay, out west people are relatively inefficient. But we should also
+
+422
+00:34:52,760 --> 00:34:57,720
+highlight the fact that there's these interrelationships between these two areas. Places out here in
+
+423
+00:34:57,720 --> 00:35:04,200
+the west is a high concentration of fossil fuel production generation. But where is that energy
+
+424
+00:35:04,200 --> 00:35:10,040
+going? That energy is going to cities. And so if we think back to Mackay's left hand bar of
+
+425
+00:35:10,040 --> 00:35:15,160
+consumption, I would argue to all the urban planners in the room, and I have said this to
+
+426
+00:35:15,160 --> 00:35:19,880
+my colleagues in city government, that we should not be complacent about the fact that we think
+
+427
+00:35:19,880 --> 00:35:25,400
+we have relatively low per capita emissions in cities. We have to be responsible for the fact
+
+428
+00:35:25,400 --> 00:35:31,800
+that energy is being used elsewhere, that we consume in the form of fuels, goods and services,
+
+429
+00:35:31,800 --> 00:35:37,400
+food, and we export our waste also. So that is the place where cities can have a big impact on
+
+430
+00:35:37,400 --> 00:35:42,040
+greenhouse gas emissions. But it may be a different kind of efficiency. We might have to think about
+
+431
+00:35:42,040 --> 00:35:47,720
+how much we consume, why we consume energy, and how do we do it more efficiently, and hopefully
+
+432
+00:35:47,720 --> 00:35:53,720
+ultimately reduce our consumption to meet our decarbonization goals. Finally, I'll just flash
+
+433
+00:35:53,720 --> 00:35:59,000
+through the readings quickly because we'll talk about them more in class. The Sue et al. 2019
+
+434
+00:35:59,000 --> 00:36:03,800
+paper, this is actually not my paper. It's written by a colleague, Angel Sue at the University of
+
+435
+00:36:03,800 --> 00:36:08,920
+North Carolina. It is a research roadmap for how do we spend more time or how do we spend more
+
+436
+00:36:08,920 --> 00:36:16,680
+thinking about quantifying the climate mitigation actions that non-state or subnational governments
+
+437
+00:36:16,680 --> 00:36:20,840
+could take? And this is getting that kind of measurement question. How are we going to measure
+
+438
+00:36:20,840 --> 00:36:25,960
+greenhouse gas emissions and how are we going to measure what action those energies take?
+
+439
+00:36:25,960 --> 00:36:30,200
+And just to give you an example, there's different ways to count how cities
+
+440
+00:36:30,200 --> 00:36:35,000
+take climate action in comparison to state targets. And those targets may be different
+
+441
+00:36:35,000 --> 00:36:39,640
+still than national level targets. And so, you know, this is the question, are we going to double
+
+442
+00:36:39,640 --> 00:36:46,600
+count? In some cases, cities are actually most cases, cities are more ambitious than their states.
+
+443
+00:36:46,600 --> 00:36:52,200
+Cities are all more ambitious than national governments. We want to avoid double counting.
+
+444
+00:36:52,200 --> 00:36:59,240
+We want to count cities considering how we're going to, those cities are going to act
+
+445
+00:36:59,240 --> 00:37:04,200
+relative to cities without targets. So this paper, we'll get at that. We'll just talk about more in
+
+446
+00:37:04,200 --> 00:37:11,160
+class. And this brings me to this optional reading by Mark Ulth et al, which is pledges and progress.
+
+447
+00:37:11,800 --> 00:37:15,800
+This is a Brookings institutional report. It looks at the hundred largest cities across the United
+
+448
+00:37:15,800 --> 00:37:22,280
+States. They find that number of cities, these hundred cities have all set fairly ambitious
+
+449
+00:37:22,280 --> 00:37:29,560
+goals. Everything on the blue here on the right, the parentheses shows you when they set the goal.
+
+450
+00:37:29,560 --> 00:37:35,320
+And you can see Boston where we are. Actually, Cambridge is also in the graph somewhere. But
+
+451
+00:37:35,320 --> 00:37:41,800
+Boston, Massachusetts in 2005, so they're going to have an 80% reduction by 2050. As all of these
+
+452
+00:37:41,880 --> 00:37:49,880
+cities did, also meeting the White House's targets in 2016, it's commensurate with the
+
+453
+00:37:49,880 --> 00:37:54,760
+national targets 2016. You can see a number of these cities here and left have set less ambitious
+
+454
+00:37:54,760 --> 00:38:02,200
+targets, 50% reduction, let's say 40% reduction, but they may have more closer targets. So this
+
+455
+00:38:02,200 --> 00:38:08,520
+might be an interim goal on the way to a more ambitious target down the road. But the take
+
+456
+00:38:08,600 --> 00:38:12,440
+home from this Mark Ulth report and I'll let you look at your lead here because I think
+
+457
+00:38:12,440 --> 00:38:16,760
+somebody will be quite interested in particular cities. You can see what the difference is
+
+458
+00:38:16,760 --> 00:38:20,920
+between their current emissions inventory and their target emissions. And you can see in the
+
+459
+00:38:20,920 --> 00:38:27,960
+case of Chicago, Illinois, they set a 2015, they have a 2015 greenhouse gas inventory.
+
+460
+00:38:27,960 --> 00:38:32,040
+They have a target emission in the year that inventory. And it looks like Chicago is emitting
+
+461
+00:38:32,040 --> 00:38:38,280
+about 50% more emissions than they targeted in 2015. I actually find this report quite hopeful
+
+462
+00:38:38,280 --> 00:38:42,760
+because it takes a serious look at all these cities and says, well, we should take cities
+
+463
+00:38:42,760 --> 00:38:47,560
+seriously in terms of the climate action goals and studying. But in order to take them seriously,
+
+464
+00:38:47,560 --> 00:38:52,920
+we also have to hold them according to the plans that they're setting. So it looks like Boston
+
+465
+00:38:52,920 --> 00:39:00,760
+is closer to its target at 10% higher inventory emissions than it had planned for in 2016.
+
+466
+00:39:00,760 --> 00:39:06,360
+That 10% hopefully gives us or that inventory difference gives us a good place to target our
+
+467
+00:39:06,360 --> 00:39:10,600
+actions. Other places, let's say Los Angeles looks like it's actually ahead of its goals. It's
+
+468
+00:39:10,600 --> 00:39:16,200
+actually 10% less in terms of greenhouse gas emissions than they planned for in 2013. So
+
+469
+00:39:16,840 --> 00:39:21,320
+cities looks like almost overwhelmingly temperate cities except for Minneapolis,
+
+470
+00:39:21,320 --> 00:39:25,320
+but all these fairly temperate region cities are doing better than they expected.
+
+471
+00:39:25,880 --> 00:39:31,880
+Some of these cities here, I guess Chicago is a cold climate city and Tucson is the opposite.
+
+472
+00:39:31,880 --> 00:39:38,840
+But for different reasons, Tucson and Chicago are wildly over the goals they set in 2014 and 2015.
+
+473
+00:39:39,640 --> 00:39:45,080
+And so I'll just stop here and we'll talk more in class this week. We'll talk about the results
+
+474
+00:39:45,080 --> 00:39:50,440
+of our carbon calculators that we did for homework. I'll put some questions for discussion on the
+
+475
+00:39:50,440 --> 00:39:55,480
+board and we'll just start our discussion. And we'll have some news items to talk about in class.
+
+476
+00:39:55,480 --> 00:40:06,440
+Thank you very much. I hope you guys have a great rest of your weekend.
+
