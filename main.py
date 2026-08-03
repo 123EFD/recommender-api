@@ -31,11 +31,18 @@ import pandas as pd
 from fastapi.responses import FileResponse, StreamingResponse
 import hashlib
 import json
+from app import bundler, lens_switcher
+
+app = FastAPI()
+
+app.include_router(bundler.router)
+app.include_router(lens_switcher.router)
 
 os.makedirs("uploads", exist_ok=True)
 
 #run async loops inside FastAPI smoothly
 nest_asyncio.apply()
+
 
 
 load_dotenv()
