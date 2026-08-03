@@ -3,9 +3,13 @@ import zipfile
 import sqlite3
 import tempfile
 import csv
+from dotenv import load_dotenv
+from groq import Groq
 import httpx
 import time
 from pathlib import Path
+
+load_dotenv()
 
 # Paths to your assets
 ASSETS_DIR = Path(__file__).parent.parent / "assets"
@@ -13,6 +17,12 @@ DB_PATH = Path(__file__).parent.parent / "resources.db"
 FLASHCARDS_DIR = ASSETS_DIR / "flashcards"
 PYQ_CSV = ASSETS_DIR / "questions-data-new.csv"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is not set")    
+
+if GROQ_API_KEY:
+    client = Groq(api_key=GROQ_API_KEY)
 
 def setup_db():
     """Initializes the SQLite Database for micro-resources."""
@@ -125,6 +135,10 @@ def process_pyq_csv(conn, csv_path, max_rows=10):
     print(f"Processing PYQs from {csv_path.name} (Limit: {max_rows} rows)...")
     cursor = conn.cursor()
     
+    # Fetch already processed questions to allow resuming
+    cursor.execute("SELECT content FROM micro_resources WHERE type='pyq_solution'")
+    existing_content = [row[0] for row in cursor.fetchall()]
+    
     count = 0
     with open(csv_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -134,6 +148,13 @@ def process_pyq_csv(conn, csv_path, max_rows=10):
                 
             topic = row.get('topic', 'General')
             question = row.get('question', '')
+            
+            # Check if this question was already processed (exists in any content string)
+            already_processed = any(question in content for content in existing_content)
+            if already_processed:
+                print(f"  -> Skipping (Already processed): {question[:50]}...")
+                continue
+
             
             print(f"  -> Generating solution for: {question[:50]}...")
             solution = generate_solution_with_groq(question)
