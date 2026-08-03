@@ -16,13 +16,11 @@ ASSETS_DIR = Path(__file__).parent.parent / "assets"
 DB_PATH = Path(__file__).parent.parent / "resources.db"
 FLASHCARDS_DIR = ASSETS_DIR / "flashcards"
 PYQ_CSV = ASSETS_DIR / "questions-data-new.csv"
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+import sys
+# Add the project root to sys.path so we can import the app module
+sys.path.append(str(Path(__file__).parent.parent))
+from app.groq_client import groq_chat
 
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY environment variable is not set")    
-
-if GROQ_API_KEY:
-    client = Groq(api_key=GROQ_API_KEY)
 
 def setup_db():
     """Initializes the SQLite Database for micro-resources."""
@@ -99,33 +97,14 @@ def process_anki_apkg(conn, apkg_path):
 
 def generate_solution_with_groq(question_text):
     """Uses Groq API to solve PYQ offline and extract a quick tip."""
-    if not GROQ_API_KEY:
-        print("[!] No GROQ_API_KEY found in environment variables. Skipping LLM generation.")
-        return None
-        
-    prompt = f"""
-    You are an expert Computer Science professor. 
-    Solve this past-year exam question concisely. 
-    Then, provide a 1-sentence 'Quick Tip'.
-    
-    Question: {question_text}
-    """
-    
-    payload = {
-        "model": "llama3-8b-8192", 
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.2
-    }
-    
-    headers = {"Authorization": f"Bearer {GROQ_API_KEY}"}
+    system_prompt = "You are an expert Computer Science professor. Solve this past-year exam question concisely. Then, provide a 1-sentence 'Quick Tip'."
+    user_message = f"Question: {question_text}"
     
     try:
-        response = httpx.post("https://api.groq.com/openai/v1/chat/completions", json=payload, headers=headers, timeout=10.0)
-        if response.status_code == 200:
-            return response.json()["choices"][0]["message"]["content"]
+        return groq_chat(system_prompt=system_prompt, user_message=user_message, model="llama3-8b-8192")
     except Exception as e:
         print(f"  [!] Groq API Error: {e}")
-    return None
+        return None
 
 def process_pyq_csv(conn, csv_path, max_rows=10):
     """
