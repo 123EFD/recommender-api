@@ -118,18 +118,8 @@ class EdgePainter extends CustomPainter {
     );
     textPainter.layout();
 
-    //small backgroud pill behind the label
-    final bgRect = RRect.fromRectAndRadius(
-      Rect.fromCenter(
-        center: midpoint,
-        width: textPainter.width + 12,
-        height: textPainter.height + 6,
-      ),
-      const Radius.circular(8),
-    );
-    canvas.drawRRect(bgRect, Paint()..color = isDark ? Colors.black54 : Colors.white.withValues(alpha: 0.85),
-    );
-
+    // Removed background pill as per user request to avoid overlapping boxes
+    // Just draw the text centered on the midpoint
     textPainter.paint(
       canvas, 
       Offset(midpoint.dx - textPainter.width / 2, midpoint.dy - textPainter.height / 2),

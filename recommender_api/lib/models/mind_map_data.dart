@@ -19,6 +19,12 @@ class MindMapNode {
   factory MindMapNode.fromJson(Map<String, dynamic> json) {
     String labelText = json['label']?.toString() ?? json['name']?.toString() ?? json['text']?.toString() ?? json['id']?.toString() ?? 'Node';
     
+    // User constraint: Truncate at exactly 8 sentences to avoid awkward middle-of-text cut-offs
+    final sentences = labelText.split(RegExp(r'(?<=[.!?])\s+'));
+    if (sentences.length > 8) {
+      labelText = sentences.take(8).join(' ') + ' ...';
+    }
+
     // Estimate size for longer informative text (approx 20-25 chars per line at width 220)
     double estimatedHeight = 60.0 + ((labelText.length / 22).ceil() * 18.0);
     if (estimatedHeight < 60) estimatedHeight = 60;
