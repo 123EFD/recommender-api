@@ -1,0 +1,3980 @@
+1
+00:00:00,000 --> 00:00:04,800
+The following content is provided under a Creative Commons license.
+
+2
+00:00:04,800 --> 00:00:09,300
+Your support will help MIT OpenCourseWare continue to offer high quality educational
+
+3
+00:00:09,300 --> 00:00:11,080
+resources for free.
+
+4
+00:00:11,080 --> 00:00:17,560
+To make a donation or to view additional materials from hundreds of MIT courses, visit MIT OpenCourseWare
+
+5
+00:00:17,560 --> 00:00:22,960
+at ocw.mit.edu.
+
+6
+00:00:22,960 --> 00:00:26,080
+Last class I talked about payment channels and Lightning Network.
+
+7
+00:00:26,080 --> 00:00:30,200
+So today we'll talk a bit more about payment channels.
+
+8
+00:00:30,200 --> 00:00:31,680
+We'll recap a little bit.
+
+9
+00:00:31,680 --> 00:00:36,680
+We'll talk about some optimizations, one of which is key addition, the other is hash
+
+10
+00:00:36,680 --> 00:00:43,000
+trees, and then we'll talk about cross-chain swaps or cross-chain atomic swaps.
+
+11
+00:00:43,000 --> 00:00:50,480
+Okay, so last time the main idea of these payment channels is you've got this commitment
+
+12
+00:00:50,480 --> 00:00:57,960
+transaction and each party holds a sort of different transaction that has the same amounts
+
+13
+00:00:57,960 --> 00:01:02,080
+but slightly different scripts.
+
+14
+00:01:02,080 --> 00:01:10,760
+So it's spending from a shared funding transaction and it's sending out to the one that's held
+
+15
+00:01:10,760 --> 00:01:14,800
+by Alice on her hard drive sends to Bob in the clear, right?
+
+16
+00:01:14,800 --> 00:01:18,560
+Bob just gets his eight coins with no ifs, ands, or buts.
+
+17
+00:01:18,960 --> 00:01:23,680
+However, when Alice broadcasts this, she needs to wait a hundred blocks.
+
+18
+00:01:23,680 --> 00:01:26,760
+She needs to wait a day.
+
+19
+00:01:26,760 --> 00:01:33,280
+And if she reveals this key to Bob, now Bob can use Bob's key and this revocable key,
+
+20
+00:01:33,280 --> 00:01:36,680
+and Bob can get these coins immediately.
+
+21
+00:01:36,680 --> 00:01:40,120
+And the opposite is for Bob, right?
+
+22
+00:01:40,120 --> 00:01:43,800
+So when Bob has his transaction, it's got Alice's signature.
+
+23
+00:01:43,800 --> 00:01:48,000
+He doesn't store his own because he can just compute it quickly.
+
+24
+00:01:48,000 --> 00:01:52,240
+So the two coins that go to Alice go to her in the clear, however, the eight coins that
+
+25
+00:01:52,240 --> 00:01:57,960
+Bob gets for himself, he has to wait a hundred blocks.
+
+26
+00:01:57,960 --> 00:02:05,920
+During the hundred blocks, Alice can sign if she has Bob's revocation key.
+
+27
+00:02:05,920 --> 00:02:12,840
+Okay, so that's the basic idea of these outputs and then you construct these.
+
+28
+00:02:12,840 --> 00:02:19,360
+So when I say Alice, one Bitcoin, Bob, nine Bitcoin, it's of the format in these, right?
+
+29
+00:02:19,360 --> 00:02:23,880
+The person who holds that transaction has a transaction where the other party gets the
+
+30
+00:02:23,880 --> 00:02:30,120
+coins immediately and their own coins have this lockup period and can be grabbed by the
+
+31
+00:02:30,120 --> 00:02:33,080
+other party if they revoke them.
+
+32
+00:02:33,080 --> 00:02:38,040
+So initially, the state is Alice has one Bitcoin, Bob has nine.
+
+33
+00:02:38,040 --> 00:02:42,240
+There's two different state one transactions, one held by Alice, one held by Bob.
+
+34
+00:02:42,240 --> 00:02:48,960
+They build a new transaction together where Alice has five coins and Bob has five coins
+
+35
+00:02:48,960 --> 00:02:54,800
+and then they revoke the old one by sharing these secrets, right?
+
+36
+00:02:54,800 --> 00:03:02,440
+So now, since they both hand at each other these revocation private keys, both of these
+
+37
+00:03:02,440 --> 00:03:04,160
+parties cannot broadcast this.
+
+38
+00:03:04,160 --> 00:03:08,240
+If they do, the other party takes all the money, right?
+
+39
+00:03:08,240 --> 00:03:11,800
+And then you can build these indefinitely, okay?
+
+40
+00:03:11,800 --> 00:03:19,800
+So any questions about that that was covered last time, but it's kind of, it can be complicated.
+
+41
+00:03:19,800 --> 00:03:22,200
+Questions, good?
+
+42
+00:03:22,200 --> 00:03:30,840
+Okay, so some optimizations we'd want to make, yeah, so basically either party broadcasts
+
+43
+00:03:30,840 --> 00:03:35,760
+and has to wait, Alice gives Bob the LSR private key, Bob gives Alice the BobR private key,
+
+44
+00:03:35,760 --> 00:03:38,760
+they broadcast, the counterpart takes all the funds.
+
+45
+00:03:38,760 --> 00:03:40,400
+So what are some optimizations here?
+
+46
+00:03:40,400 --> 00:03:44,400
+The basic idea of the script is, okay, key A can, you know, you can have a signature
+
+47
+00:03:44,400 --> 00:03:50,760
+from key A and you have to wait a day or two or five or whatever, or you can have a signature
+
+48
+00:03:50,760 --> 00:03:55,800
+from key B and a signature from key C.
+
+49
+00:03:55,800 --> 00:03:57,680
+So what are some optimizations here?
+
+50
+00:03:57,680 --> 00:04:03,520
+The revealing part, any way to make that smaller, more efficient?
+
+51
+00:04:03,520 --> 00:04:09,920
+So one idea is either pre-image instead of a signature, right?
+
+52
+00:04:09,920 --> 00:04:13,480
+You're just revealing something, you're not actually committing to any data.
+
+53
+00:04:13,480 --> 00:04:18,120
+So Bob could, when Bob reveals his secret, he could just be, here's a pre-image, and
+
+54
+00:04:18,120 --> 00:04:22,360
+you can get, instead of like 70 bytes for a signature, you get down to like 20 bytes
+
+55
+00:04:22,360 --> 00:04:26,080
+for a hash and a pre-image, right?
+
+56
+00:04:26,080 --> 00:04:28,920
+Because, so how would it work?
+
+57
+00:04:28,920 --> 00:04:36,080
+You just say, okay, Alice signs if Alice knows BobR's pre-image, right?
+
+58
+00:04:36,080 --> 00:04:39,640
+The BobR, BobR doesn't have to actually sign.
+
+59
+00:04:39,640 --> 00:04:41,280
+You can just know it.
+
+60
+00:04:41,280 --> 00:04:43,920
+That would work.
+
+61
+00:04:43,920 --> 00:04:48,480
+So actually that was sort of the initial idea, I think that's what's written in the paper.
+
+62
+00:04:48,480 --> 00:04:51,280
+But you can do it even smaller.
+
+63
+00:04:51,280 --> 00:04:55,640
+So an even smaller way to do it is combine keys.
+
+64
+00:04:55,640 --> 00:05:00,360
+So in the elliptic curve that we're using, in, you know, all these groups, all these
+
+65
+00:05:00,360 --> 00:05:04,800
+signature schemes, if you add two keys together, you can get a third key.
+
+66
+00:05:04,800 --> 00:05:09,960
+And it's using the addition operation that's defined on this group.
+
+67
+00:05:09,960 --> 00:05:14,440
+So in the case where you have, you know, key B and key C, and you add them together to
+
+68
+00:05:14,440 --> 00:05:20,240
+get, say, key R, what's the private key for key R?
+
+69
+00:05:20,240 --> 00:05:22,640
+Anyone?
+
+70
+00:05:22,640 --> 00:05:28,520
+You've got key B, private key, key C, which has a private key.
+
+71
+00:05:28,520 --> 00:05:31,040
+You add the two public keys up together.
+
+72
+00:05:32,040 --> 00:05:36,600
+Yeah, it's the sum of the private keys, right?
+
+73
+00:05:36,600 --> 00:05:44,840
+So public key B is just private key B times the generator point G, plus C times G equals
+
+74
+00:05:44,840 --> 00:05:50,920
+R times G. And then you can just, you know, move the parentheses around.
+
+75
+00:05:50,920 --> 00:05:57,960
+So B plus C, the private keys added together times the generator point is still the same.
+
+76
+00:05:57,960 --> 00:05:59,960
+So this is a really nice property.
+
+77
+00:06:00,000 --> 00:06:05,240
+It's sort of the main property that we use for all signatures and all this stuff.
+
+78
+00:06:05,240 --> 00:06:11,760
+But what that means is you can say, here, you know, I take your public key.
+
+79
+00:06:11,760 --> 00:06:14,680
+I'm going to compute, you know, come up with my own private key, compute the public key
+
+80
+00:06:14,680 --> 00:06:21,360
+for that, add them together and say, hey, we've got this new shared public key.
+
+81
+00:06:21,360 --> 00:06:26,240
+And neither of us can sign with it yet because we don't know each other's private keys.
+
+82
+00:06:26,240 --> 00:06:30,280
+But if either of us reveals the private key, then the other party can sign with it, right?
+
+83
+00:06:30,280 --> 00:06:37,640
+So if this is Bob's and this is Alice's, they can both compute little R times G by doing
+
+84
+00:06:37,640 --> 00:06:38,640
+this operation, right?
+
+85
+00:06:38,640 --> 00:06:42,880
+They both share public keys and compute the shared public key.
+
+86
+00:06:42,880 --> 00:06:50,680
+But they cannot sign because neither of them knows little R. And then let's say Alice says,
+
+87
+00:06:50,680 --> 00:06:54,000
+OK, Bob, here's this little C, gives it to Bob.
+
+88
+00:06:54,000 --> 00:06:59,320
+Bob says, OK, now I know little R. But Alice doesn't, right?
+
+89
+00:06:59,320 --> 00:07:05,320
+So this is a really nice way to do it because it saves a lot of space.
+
+90
+00:07:05,320 --> 00:07:12,080
+So instead, the script is now just key D, oh, I should have put R, oops, key D or key
+
+91
+00:07:12,080 --> 00:07:14,120
+A and time, right?
+
+92
+00:07:14,120 --> 00:07:20,600
+So instead of having this key and time passes or these other two keys both sign, you just
+
+93
+00:07:20,600 --> 00:07:26,600
+have a single key that can sign immediately or another key that can sign after a period
+
+94
+00:07:26,600 --> 00:07:28,360
+of time.
+
+95
+00:07:28,360 --> 00:07:32,360
+So the actual script used is this.
+
+96
+00:07:32,360 --> 00:07:40,800
+You say op if, the key R, op else, delay, object sequence verify, optrop, then the key
+
+97
+00:07:40,800 --> 00:07:42,440
+A, then the end if, then the object sig.
+
+98
+00:07:42,440 --> 00:07:45,720
+So I'll walk through this because it's a little confusing.
+
+99
+00:07:45,720 --> 00:07:50,880
+The op if takes an item off the stack and it's either true or false.
+
+100
+00:07:50,880 --> 00:07:54,560
+So the first thing you have to do is you have to indicate which of these two paths you're
+
+101
+00:07:54,560 --> 00:07:56,480
+going to use, right?
+
+102
+00:07:56,480 --> 00:08:02,560
+Either you're going to put key R on the stack or you're going to put this delay number, which
+
+103
+00:08:02,560 --> 00:08:07,840
+is say 100 blocks, put an object sequence verify to verify that it has been 100 blocks
+
+104
+00:08:07,840 --> 00:08:11,400
+since you created the transaction you're spending.
+
+105
+00:08:11,400 --> 00:08:13,440
+And then you have to drop the delay.
+
+106
+00:08:13,440 --> 00:08:16,640
+This was to ensure compatibility since it's a software.
+
+107
+00:08:16,640 --> 00:08:21,720
+So old nodes would see this, old nodes would see this, they would see a no op and then
+
+108
+00:08:21,720 --> 00:08:25,600
+they would see the drop to get rid of this whole thing.
+
+109
+00:08:25,600 --> 00:08:28,520
+So the old nodes wouldn't see it at all.
+
+110
+00:08:28,520 --> 00:08:32,360
+Then you have a key A put on the stack and then you end the if statement and then you
+
+111
+00:08:32,360 --> 00:08:33,560
+check signatures.
+
+112
+00:08:33,560 --> 00:08:41,480
+So really the if statement is just determining which key gets pushed onto the stack.
+
+113
+00:08:42,360 --> 00:08:46,680
+After the if statement there's a check sig to check the signature from that key.
+
+114
+00:08:46,680 --> 00:08:52,960
+So for example, if you're using the revocation key, the key that has been combined and revealed
+
+115
+00:08:52,960 --> 00:08:58,080
+to you, you just put a 1 on the stack and then a signature from R.
+
+116
+00:08:58,080 --> 00:09:03,560
+And the op if resolves the true so it executes this by just pushing the key onto the stack.
+
+117
+00:09:03,560 --> 00:09:09,080
+Then it executes op else, skips to op end if and then does op check sig.
+
+118
+00:09:09,080 --> 00:09:14,680
+So basically you say 1, execute op if, key R, skip to check sig.
+
+119
+00:09:14,680 --> 00:09:18,080
+So it's just you need to sign with this key.
+
+120
+00:09:18,080 --> 00:09:20,800
+Or you say 0 and signature for May.
+
+121
+00:09:20,800 --> 00:09:29,000
+And then so the op if takes a 0, it skips to op else because it's not true.
+
+122
+00:09:29,000 --> 00:09:36,200
+It performs pushes delay onto the stack, performs check sequence verify to make sure that enough
+
+123
+00:09:36,200 --> 00:09:41,280
+time has passed, drops the delay number off the stack, which is a little ugly.
+
+124
+00:09:41,280 --> 00:09:46,520
+It would be nicer if op check sequence verified did that itself, but it doesn't.
+
+125
+00:09:46,520 --> 00:09:54,160
+Then pushes key A onto the stack, ends the if statement and checks the signature.
+
+126
+00:09:54,160 --> 00:10:01,040
+So it's a little more complicated than in C where you just can say key D or key A and
+
+127
+00:10:01,040 --> 00:10:01,800
+time.
+
+128
+00:10:01,800 --> 00:10:08,280
+But this is stack based and it's not too hard when you get these things to work.
+
+129
+00:10:08,280 --> 00:10:12,680
+So any questions about this setup?
+
+130
+00:10:12,680 --> 00:10:13,440
+Yes.
+
+131
+00:10:13,440 --> 00:10:15,720
+So what's op drop again?
+
+132
+00:10:15,720 --> 00:10:19,120
+Op drop takes the top most item on the stack and deletes it.
+
+133
+00:10:19,120 --> 00:10:23,400
+And all the lower items come back up.
+
+134
+00:10:23,400 --> 00:10:31,000
+Yeah, it's just so that compatibility wise, there would be ways to,
+
+135
+00:10:31,000 --> 00:10:35,240
+since op check sequence verify, basically this used to be a no op where it did nothing.
+
+136
+00:10:35,240 --> 00:10:39,880
+And then the soft fork was, OK, we're redefining no op three, I believe,
+
+137
+00:10:39,880 --> 00:10:46,680
+to op check sequence verify where it looks at basically the age of your inputs.
+
+138
+00:10:46,680 --> 00:10:51,440
+And how many confirmations your inputs have had or really the specific input you're spending
+
+139
+00:10:51,440 --> 00:10:53,680
+in this case.
+
+140
+00:10:53,680 --> 00:10:55,640
+Old nodes would just see it as a no op.
+
+141
+00:10:55,640 --> 00:11:01,280
+And so you could put something like delay op check in sequence verify and then an op
+
+142
+00:11:01,280 --> 00:11:07,200
+code around here that says, make sure the top item on the stack is greater than five.
+
+143
+00:11:07,200 --> 00:11:13,160
+And if this consumed the delay value by taking it off the stack, the old nodes might say,
+
+144
+00:11:13,160 --> 00:11:14,120
+oh, this is invalid.
+
+145
+00:11:14,120 --> 00:11:21,120
+Even though this is a no op, the subsequent op code causes this to fail.
+
+146
+00:11:21,120 --> 00:11:25,040
+Whereas in the new version, it would be like, no, this is good because this consumes that
+
+147
+00:11:25,320 --> 00:11:26,600
+value.
+
+148
+00:11:26,600 --> 00:11:30,200
+And that would actually make it a hard fork because then there would be transactions
+
+149
+00:11:30,200 --> 00:11:35,960
+where the old nodes thought it was not good and the new nodes thought, yes, this is OK.
+
+150
+00:11:35,960 --> 00:11:45,080
+So to ensure that this only restricts the validity of scripts, it doesn't pop that off.
+
+151
+00:11:45,080 --> 00:11:47,080
+So you have to manually drop it.
+
+152
+00:11:47,080 --> 00:11:48,520
+And drop is there from before.
+
+153
+00:11:48,520 --> 00:11:52,760
+So to an old node, it would just say delay, no op drop.
+
+154
+00:11:52,800 --> 00:11:55,400
+And it's like, OK, you put something on the stack, you do nothing, and then you take it
+
+155
+00:11:55,400 --> 00:11:56,400
+off the stack.
+
+156
+00:11:56,400 --> 00:11:57,400
+Fine.
+
+157
+00:11:57,400 --> 00:11:58,400
+Yeah.
+
+158
+00:11:58,400 --> 00:12:01,040
+So that's just a compatibility thing.
+
+159
+00:12:01,040 --> 00:12:04,760
+If you were going to make it from scratch, you'd probably do it differently.
+
+160
+00:12:04,760 --> 00:12:06,680
+Other questions about this?
+
+161
+00:12:06,680 --> 00:12:08,960
+OK, cool.
+
+162
+00:12:08,960 --> 00:12:14,840
+So OK, so then you reveal keys.
+
+163
+00:12:14,840 --> 00:12:21,280
+You keep revealing things each time you make a new state.
+
+164
+00:12:21,320 --> 00:12:24,600
+And you can do these several times a second.
+
+165
+00:12:24,600 --> 00:12:26,440
+You can do it 10 times a second, something like that.
+
+166
+00:12:26,440 --> 00:12:29,760
+So you can have millions, billions of different old transactions.
+
+167
+00:12:29,760 --> 00:12:35,560
+The problem is you do have to remember all of these old private keys that your counterparty
+
+168
+00:12:35,560 --> 00:12:36,560
+has given to you.
+
+169
+00:12:36,560 --> 00:12:42,240
+Because if you forget one, they might broadcast a transaction where you really need to know
+
+170
+00:12:42,240 --> 00:12:45,400
+that private key in order to grab the money immediately.
+
+171
+00:12:45,400 --> 00:12:53,000
+So if you, for example, you forget, this was revoked, but you forgot about it.
+
+172
+00:12:53,000 --> 00:12:54,200
+And you're Alice.
+
+173
+00:12:54,200 --> 00:12:55,880
+And then Bob broadcasts this.
+
+174
+00:12:55,880 --> 00:13:01,720
+You really need to know that private key so you can grab Bob's five coins with your combined
+
+175
+00:13:01,720 --> 00:13:02,720
+key.
+
+176
+00:13:02,720 --> 00:13:06,800
+So you need to keep track of all of these old things.
+
+177
+00:13:06,800 --> 00:13:08,320
+So it's 32 bytes each.
+
+178
+00:13:08,320 --> 00:13:10,160
+It's not great for scalability.
+
+179
+00:13:10,160 --> 00:13:12,800
+So there's actually a couple of ways you could do this.
+
+180
+00:13:12,800 --> 00:13:19,280
+How can you remember a chain of 32 byte secrets?
+
+181
+00:13:19,280 --> 00:13:25,480
+A Merkle tree itself would have a root here, and then a bunch of little hashes that go
+
+182
+00:13:25,480 --> 00:13:30,080
+up to the tree, the tree's root.
+
+183
+00:13:30,080 --> 00:13:33,560
+So if these were secrets, you can't go back down, right?
+
+184
+00:13:33,560 --> 00:13:39,240
+So if you're like, OK, I got secret 0, secret 1, secret 2, secret 3, well I've got the
+
+185
+00:13:39,240 --> 00:13:43,280
+parents of these two things, but I can't actually remember them any better.
+
+186
+00:13:43,280 --> 00:13:48,520
+So the simple, like a real simple way, say, OK, I've got, and you can construct it however
+
+187
+00:13:48,520 --> 00:13:49,520
+you want, right?
+
+188
+00:13:49,520 --> 00:13:53,640
+Obviously, if your counterpart is not cooperating and these secret numbers are just completely
+
+189
+00:13:53,640 --> 00:13:55,960
+random, there's nothing you can do, right?
+
+190
+00:13:55,960 --> 00:14:01,560
+If you just say, hey, I'm going to give you secret 0, secret 1, secret 2, there's no special
+
+191
+00:14:01,560 --> 00:14:04,320
+properties about these things, I can't do anything.
+
+192
+00:14:04,320 --> 00:14:08,960
+The simplest way, what's a real simple way to say, OK, I'm going to reveal secrets sequentially
+
+193
+00:14:09,720 --> 00:14:19,920
+and then you can store fewer of them.
+
+194
+00:14:19,920 --> 00:14:23,800
+It's sort of like a blockchain, right?
+
+195
+00:14:23,800 --> 00:14:35,520
+So you could just say, OK, well, I create secret 3, secret 2 is the hash of secret 3,
+
+196
+00:14:35,560 --> 00:14:40,000
+secret 1 is the hash of secret 2.
+
+197
+00:14:40,000 --> 00:14:45,200
+And so now I reveal 1, you don't know what 2 is, you know, and so on.
+
+198
+00:14:45,200 --> 00:14:51,960
+So 0 equals hash of 1, so you can just have a linear chain like this, right?
+
+199
+00:14:51,960 --> 00:14:54,360
+So 0, 1, 2, 3.
+
+200
+00:14:54,360 --> 00:14:57,920
+If you remember 3, you can compute 2 and 1 and 0.
+
+201
+00:14:57,920 --> 00:15:01,400
+If you remember 2, you can compute 1 and 0, but not 3.
+
+202
+00:15:01,400 --> 00:15:02,400
+So you can do that.
+
+203
+00:15:03,160 --> 00:15:07,440
+That would actually probably work fine, but we always want to make unnecessary complex
+
+204
+00:15:07,440 --> 00:15:09,880
+optimizations to things.
+
+205
+00:15:09,880 --> 00:15:14,560
+So the problem with this is, if you've got a billion of them and you need to go back
+
+206
+00:15:14,560 --> 00:15:20,320
+to the first one, you need to compute a billion hash operations.
+
+207
+00:15:20,320 --> 00:15:21,520
+That's kind of slow.
+
+208
+00:15:21,520 --> 00:15:27,800
+So what we do or what the basic idea, there's like multiple implementations, slight variations.
+
+209
+00:15:27,800 --> 00:15:29,080
+You have a hash tree.
+
+210
+00:15:29,080 --> 00:15:33,680
+So you reveal secrets one at a time, you store only log n secrets, and you recompute any
+
+211
+00:15:33,680 --> 00:15:38,960
+secret you want with something around log n operations.
+
+212
+00:15:38,960 --> 00:15:40,000
+I called it Elkrim.
+
+213
+00:15:40,000 --> 00:15:44,040
+I think there's an actual paper that basically is this called GGM.
+
+214
+00:15:44,040 --> 00:15:48,080
+It's like, I think written by people at MIT.
+
+215
+00:15:48,080 --> 00:15:51,760
+But I called it Elkrim because it's basically Merkle Tree backwards because the arrows point
+
+216
+00:15:51,760 --> 00:15:54,640
+the other direction.
+
+217
+00:15:54,680 --> 00:16:02,760
+So in this case, if you start with a root, you start with something up here, and you
+
+218
+00:16:02,760 --> 00:16:09,920
+say, OK, if I want to descend to the left, I append a 0 to the hash value of this root,
+
+219
+00:16:09,920 --> 00:16:11,640
+and I hash to get down.
+
+220
+00:16:11,640 --> 00:16:17,120
+And if I want to go right, I append a 1 at the end, hash that, and then I go down here.
+
+221
+00:16:17,120 --> 00:16:21,040
+So what that lets you do is, there's a sender and a receiver.
+
+222
+00:16:21,040 --> 00:16:24,880
+The sender just computes a root and stores that.
+
+223
+00:16:24,880 --> 00:16:27,400
+They make a random root up, store it.
+
+224
+00:16:27,400 --> 00:16:31,080
+And then they also keep track of, OK, how many secrets have I given?
+
+225
+00:16:31,080 --> 00:16:37,280
+The receiver just receives the first one, number 0, can't do anything.
+
+226
+00:16:37,280 --> 00:16:41,080
+They receive 1, OK, still can't do anything.
+
+227
+00:16:41,080 --> 00:16:45,600
+They receive 2, now they can say, OK, well, I can throw away 0 and 1 because if I want
+
+228
+00:16:45,600 --> 00:16:48,240
+to compute 0 and 1, I can just store 2.
+
+229
+00:16:48,240 --> 00:16:53,520
+And if I want to descend to the left, append a 0 and hash if I want to send it right.
+
+230
+00:16:53,520 --> 00:16:59,800
+So I don't store these, but I know they're still computable for me if I ever want to
+
+231
+00:16:59,800 --> 00:17:01,000
+grab them back again.
+
+232
+00:17:01,000 --> 00:17:07,160
+I receive 3, can't do anything, receive 4, can't do anything.
+
+233
+00:17:07,160 --> 00:17:13,440
+Receive 5, now I can do the same thing with 3 and 4, remove those from the disk, and only
+
+234
+00:17:13,440 --> 00:17:15,240
+store 2 and 5.
+
+235
+00:17:15,240 --> 00:17:18,280
+So if I get a request for 3, I can easily compute it.
+
+236
+00:17:18,280 --> 00:17:21,200
+And then I receive 6, and I can delete those 2 as well.
+
+237
+00:17:21,200 --> 00:17:25,800
+So as I go up the tree, sometimes I only have to store one thing.
+
+238
+00:17:25,800 --> 00:17:30,320
+Sometimes I have to store three things because that's the height of the tree.
+
+239
+00:17:30,320 --> 00:17:36,200
+Well, it's basically you have to store at most one on every level and then sometimes
+
+240
+00:17:36,200 --> 00:17:39,160
+two if there are two leaves.
+
+241
+00:17:39,160 --> 00:17:44,280
+So basically log in storage and computing hashes is pretty quick too.
+
+242
+00:17:44,280 --> 00:17:50,280
+So that's a fun way to only have to store a very small amount of data.
+
+243
+00:17:50,280 --> 00:17:51,440
+Any questions about this?
+
+244
+00:17:51,440 --> 00:17:53,960
+OK, so we're going quick.
+
+245
+00:17:53,960 --> 00:17:58,200
+OK, we need an erection as quick.
+
+246
+00:17:58,200 --> 00:18:03,160
+So we'll talk about cross-chain swaps for most of the bulk of this day.
+
+247
+00:18:03,160 --> 00:18:06,560
+So there are altcoins.
+
+248
+00:18:06,560 --> 00:18:07,960
+I mostly work on Bitcoin.
+
+249
+00:18:07,960 --> 00:18:11,280
+I think a lot of the research is on Bitcoin, but there's a lot of different coins too.
+
+250
+00:18:11,280 --> 00:18:16,360
+So I saw the idea of Bitcoin and said, hey, let's copy it.
+
+251
+00:18:16,360 --> 00:18:20,760
+So initially, most of them were just copies.
+
+252
+00:18:20,760 --> 00:18:22,680
+There was a site called coingen.io.
+
+253
+00:18:22,680 --> 00:18:30,240
+So like 2012, there started to be a lot of altcoins like Litecoin and Dogecoin and things
+
+254
+00:18:30,240 --> 00:18:31,440
+like that.
+
+255
+00:18:31,440 --> 00:18:36,480
+And most of them were like real small changes where they took the Bitcoin source code on
+
+256
+00:18:36,480 --> 00:18:40,120
+GitHub and they changed a couple numbers here and there and they said, OK, well, it's a
+
+257
+00:18:40,120 --> 00:18:42,080
+new coin.
+
+258
+00:18:42,080 --> 00:18:47,000
+And then BlueMap made a site called coingen.io where you could do it all very easily.
+
+259
+00:18:47,000 --> 00:18:51,120
+For people who weren't programming savvy, they could just make their own altcoin by
+
+260
+00:18:51,120 --> 00:18:52,120
+menus.
+
+261
+00:18:52,120 --> 00:18:53,120
+Like there's a website.
+
+262
+00:18:53,120 --> 00:18:55,440
+You say, I want it to be called Tachcoin.
+
+263
+00:18:55,440 --> 00:18:59,280
+I want there to be 25 coins every three minutes.
+
+264
+00:18:59,280 --> 00:19:01,920
+And I want just a bunch of things.
+
+265
+00:19:01,920 --> 00:19:09,520
+You upload a little picture and it would make a program for you based on those things.
+
+266
+00:19:09,520 --> 00:19:10,960
+And then I think he sold the site.
+
+267
+00:19:10,960 --> 00:19:15,880
+I think it was like the first blockchain technology company, SwineParasite.
+
+268
+00:19:15,880 --> 00:19:19,240
+So then recent ones are very different.
+
+269
+00:19:19,240 --> 00:19:24,760
+People trade altcoins for Bitcoins and trade altcoins for altcoins and they use exchanges.
+
+270
+00:19:24,760 --> 00:19:30,360
+I don't know if people here used exchanges to trade altcoins.
+
+271
+00:19:30,360 --> 00:19:31,360
+Some?
+
+272
+00:19:31,360 --> 00:19:32,360
+OK.
+
+273
+00:19:32,360 --> 00:19:33,360
+I actually have.
+
+274
+00:19:33,360 --> 00:19:34,360
+I haven't until last year.
+
+275
+00:19:35,360 --> 00:19:40,520
+There was these like sort of hard forks from Bitcoin like Bitcoin Cash and Bitcoin Gold
+
+276
+00:19:40,520 --> 00:19:41,520
+and Bitcoin whatever.
+
+277
+00:19:41,520 --> 00:19:46,000
+And so I actually opened an account and sold them and got more Bitcoins.
+
+278
+00:19:46,000 --> 00:19:47,000
+How do you trade?
+
+279
+00:19:47,000 --> 00:19:48,840
+Well, use an exchange.
+
+280
+00:19:48,840 --> 00:19:54,960
+And so the current exchange model pretty much without fail is give us all your coins, post
+
+281
+00:19:54,960 --> 00:20:00,720
+orders on our site to swap with other users, and then ask for your coins back.
+
+282
+00:20:00,720 --> 00:20:04,760
+So to give us all your coins part, it works fine.
+
+283
+00:20:04,760 --> 00:20:09,760
+They give you an address, you send your coins to their address, and it'll appear on their
+
+284
+00:20:09,760 --> 00:20:14,200
+site generally, but you definitely can send your coins.
+
+285
+00:20:14,200 --> 00:20:18,920
+The ask for your coins back is where the model tends to fail.
+
+286
+00:20:18,920 --> 00:20:24,800
+There's many, many cases where they don't give them back.
+
+287
+00:20:24,800 --> 00:20:28,520
+And there's a lot of reasons for this.
+
+288
+00:20:28,520 --> 00:20:34,320
+So Mt. Gox is one of the most prominent early ones, but it certainly wasn't the first.
+
+289
+00:20:34,320 --> 00:20:40,120
+Well, there was a, OK, probably one of the first was called MyBitcoins.com, and then
+
+290
+00:20:40,120 --> 00:20:44,080
+it was sort of, I don't know if it was intentional, but the joke after was like, well, it's his
+
+291
+00:20:44,080 --> 00:20:45,080
+Bitcoins now.
+
+292
+00:20:45,080 --> 00:20:52,400
+So it's just, it was more of a web wallet that had private keys than a actual exchange.
+
+293
+00:20:52,400 --> 00:20:57,040
+But a lot of these exchanges, they're really easy to set up.
+
+294
+00:20:57,040 --> 00:21:01,520
+You just write some software, and people start sending you coins.
+
+295
+00:21:01,520 --> 00:21:06,240
+And then a lot of, either there's like internal problems where you've got some rogue employee
+
+296
+00:21:06,240 --> 00:21:11,680
+or the rogue employee is the only employee, and someone just realizes, hey, this computer
+
+297
+00:21:11,680 --> 00:21:15,200
+in front of me has $20 million worth of stuff on it.
+
+298
+00:21:15,200 --> 00:21:20,720
+Like, I think I'll just unplug it and keep all the money.
+
+299
+00:21:20,720 --> 00:21:21,720
+Also hackers, right?
+
+300
+00:21:21,720 --> 00:21:26,920
+Because they're probably the best targets for trying to intrude and hack into a system
+
+301
+00:21:26,920 --> 00:21:30,120
+that you can find, because there's a whole ton of money on this computer.
+
+302
+00:21:30,120 --> 00:21:36,040
+It's not like data or, oh, I get someone's Facebook pictures, or I get someone's credit
+
+303
+00:21:36,040 --> 00:21:37,040
+card numbers.
+
+304
+00:21:37,040 --> 00:21:42,640
+Like, yeah, that's nice, but Bitcoins are sort of money, and you just steal them.
+
+305
+00:21:42,640 --> 00:21:46,920
+OK, so other problems with the exchange model is that people tend to trust it a lot, and
+
+306
+00:21:46,920 --> 00:21:53,720
+they think, well, they assume that it's like a bank, and banks are very trustworthy, because
+
+307
+00:21:53,720 --> 00:21:57,040
+in recent memory there haven't really been bank failures, at least in this country.
+
+308
+00:21:57,040 --> 00:22:01,600
+So they sort of carry that trust forward, and bad things happen.
+
+309
+00:22:01,600 --> 00:22:06,120
+So the idea is, wouldn't it be cool if we could have cross-chain swaps, where we have
+
+310
+00:22:06,120 --> 00:22:10,960
+some kind of way where I've got a bunch of coin A, you've got a bunch of coin B, and
+
+311
+00:22:10,960 --> 00:22:16,880
+we can swap between them without giving custody to some third party, or even giving custody
+
+312
+00:22:16,960 --> 00:22:18,680
+to each other.
+
+313
+00:22:18,680 --> 00:22:24,400
+So you can do this using hash time lock contracts, just like in the Lightning Network.
+
+314
+00:22:24,400 --> 00:22:28,040
+So you get this coin if, and only if, I get this other coin.
+
+315
+00:22:28,040 --> 00:22:30,400
+You want them to be atomic.
+
+316
+00:22:30,400 --> 00:22:34,800
+Even if it's very quick, you don't want any period of time in which one party has all
+
+317
+00:22:34,800 --> 00:22:38,680
+the assets, or more of the assets.
+
+318
+00:22:38,680 --> 00:22:43,920
+So the interesting thing about this is the Lightning Network sort of does this already.
+
+319
+00:22:43,920 --> 00:22:50,120
+The Lightning Network is a way to make atomic payments between different channels.
+
+320
+00:22:50,120 --> 00:22:54,440
+And then if you look at these channels and say, well, do the channels have to be on
+
+321
+00:22:54,440 --> 00:22:55,440
+the same coin?
+
+322
+00:22:55,440 --> 00:22:57,200
+Do they have to be the same blockchain?
+
+323
+00:22:57,200 --> 00:22:58,280
+And basically, no.
+
+324
+00:22:58,280 --> 00:23:02,560
+Not much difference has to happen for them to be different, for them to be different
+
+325
+00:23:02,560 --> 00:23:03,560
+blockchains.
+
+326
+00:23:03,560 --> 00:23:04,560
+OK.
+
+327
+00:23:04,560 --> 00:23:08,160
+So this is the HDLC slide from last time.
+
+328
+00:23:08,160 --> 00:23:12,720
+It's similar in that you have these two outputs, the same as in a regular Lightning
+
+329
+00:23:12,720 --> 00:23:15,840
+payment channel that's at rest.
+
+330
+00:23:15,840 --> 00:23:20,800
+So for example, Bob holds this, where if he broadcasts this, Alice gets two coins right
+
+331
+00:23:20,800 --> 00:23:22,440
+off the bat.
+
+332
+00:23:22,440 --> 00:23:30,320
+Bob needs to wait 100 blocks, or Alice can know Bob's revocation key.
+
+333
+00:23:30,320 --> 00:23:32,920
+And she can get seven coins, or he gets the seven coins.
+
+334
+00:23:32,920 --> 00:23:39,720
+And then you've got this HDLC, hash time lock contract, where Alice needs to know a pre-image.
+
+335
+00:23:39,720 --> 00:23:41,720
+Of course it will.
+
+336
+00:23:41,720 --> 00:23:45,240
+Yeah, Alice needs to know R, this receipt.
+
+337
+00:23:45,240 --> 00:23:48,360
+And or Bob has to wait.
+
+338
+00:23:48,360 --> 00:23:56,440
+But the difference in waiting is this is a relative time lock, so that Bob has to wait
+
+339
+00:23:56,440 --> 00:24:01,200
+100 blocks after he broadcasts this transaction.
+
+340
+00:24:01,200 --> 00:24:06,960
+Whereas in this case, Bob has to wait until height 500,000, regardless of when he broadcasts
+
+341
+00:24:06,960 --> 00:24:08,080
+this transaction.
+
+342
+00:24:08,080 --> 00:24:13,640
+So it may be that he can broadcast this transaction and immediately spend by signing here, because
+
+343
+00:24:13,640 --> 00:24:15,680
+that time has passed.
+
+344
+00:24:15,680 --> 00:24:19,520
+So it seems like a small distinction, but it's actually pretty important for this to
+
+345
+00:24:19,520 --> 00:24:21,400
+be just absolute time.
+
+346
+00:24:21,400 --> 00:24:25,240
+So that's how an HDLC works.
+
+347
+00:24:25,240 --> 00:24:28,920
+This output, this output's Alice's, no question.
+
+348
+00:24:28,920 --> 00:24:30,760
+This output should be Bob's.
+
+349
+00:24:30,760 --> 00:24:37,600
+And by should, I mean something's gone wrong, something's gone pretty seriously wrong if
+
+350
+00:24:37,600 --> 00:24:39,040
+Alice takes this money.
+
+351
+00:24:39,040 --> 00:24:40,440
+This only is due to fraud.
+
+352
+00:24:40,440 --> 00:24:45,760
+And fraud is not in a legal defined sense, but we can think of basically, this is always
+
+353
+00:24:45,760 --> 00:24:49,520
+going to be Alice's, this is approximately always going to be Bob's.
+
+354
+00:24:49,520 --> 00:24:51,920
+This one we're really not sure.
+
+355
+00:24:51,920 --> 00:24:56,320
+This can fail, and it's not due to any malice.
+
+356
+00:24:56,320 --> 00:24:58,960
+It should be Alice's.
+
+357
+00:24:58,960 --> 00:25:03,920
+You're trying to pay Alice here, but it may well be the case that Bob takes it back.
+
+358
+00:25:03,920 --> 00:25:05,360
+And that's not due to fraud.
+
+359
+00:25:05,360 --> 00:25:09,920
+That's just due to computers crashing, or networks not working right, or something like
+
+360
+00:25:09,920 --> 00:25:10,920
+that.
+
+361
+00:25:10,920 --> 00:25:17,680
+This can sort of innocently be broadcast and go back to Bob, whereas this can't really.
+
+362
+00:25:17,680 --> 00:25:21,560
+Any questions about the HDLC, basic idea?
+
+363
+00:25:21,560 --> 00:25:28,600
+So Alice needs to know the secret, or Bob has to wait until a certain time.
+
+364
+00:25:28,600 --> 00:25:35,040
+So the cross chain swaps is basically the same as a routed payment in Lightning.
+
+365
+00:25:35,040 --> 00:25:40,200
+Before we said, Alice has a channel with Bob, Bob has a channel with Carol, and now
+
+366
+00:25:40,200 --> 00:25:44,800
+Alice wants to pay Carol without opening a new channel.
+
+367
+00:25:44,800 --> 00:25:49,440
+In the case of Lightning where it's all on the same blockchain, Alice could open a payment
+
+368
+00:25:49,440 --> 00:25:52,720
+channel to Carol and spend directly that way.
+
+369
+00:25:52,720 --> 00:25:57,120
+In the case where these two are different blockchains, you can't actually do that.
+
+370
+00:25:57,120 --> 00:26:01,520
+You can't say, oh, I'm going to, there's no defined channel that will link two different
+
+371
+00:26:01,520 --> 00:26:03,880
+blockchains.
+
+372
+00:26:03,880 --> 00:26:09,200
+The other aspect is, although this can work with three parties, in the case of swaps,
+
+373
+00:26:09,200 --> 00:26:15,640
+you're generally not saying, hey, Bob, I will pay you five doge coins if you pay Carol
+
+374
+00:26:15,640 --> 00:26:17,120
+100 vert coins.
+
+375
+00:26:17,120 --> 00:26:20,240
+You're usually saying, if you pay me 100 vert coins.
+
+376
+00:26:20,240 --> 00:26:26,680
+So yeah, usually it's Alice sending to Bob who's sending back to Alice.
+
+377
+00:26:26,680 --> 00:26:30,760
+It still works if this is the third party, Carol, but it sort of doesn't make as much
+
+378
+00:26:30,760 --> 00:26:36,040
+sense because generally you're saying, hey, I'll give you this if you give me that.
+
+379
+00:26:36,040 --> 00:26:39,000
+So in this case, we have two different blockchains.
+
+380
+00:26:39,000 --> 00:26:43,080
+We've actually reduced the number of parties where it's just Alice and Bob, but we've got
+
+381
+00:26:43,080 --> 00:26:44,080
+two different blockchains.
+
+382
+00:26:44,080 --> 00:26:47,520
+We've got doge coin, which I think is like yellow, right, and then vert coin is like
+
+383
+00:26:47,520 --> 00:26:48,520
+greenish.
+
+384
+00:26:48,520 --> 00:26:52,600
+You can't, oh, because they don't have segue.
+
+385
+00:26:52,600 --> 00:26:57,200
+Well, say doge coin upgrades pretty soon.
+
+386
+00:26:57,200 --> 00:27:00,600
+So you could, but you'd have to write a lot of code to deal with that, yeah.
+
+387
+00:27:01,440 --> 00:27:02,840
+It's way easier to just merge in.
+
+388
+00:27:02,840 --> 00:27:06,840
+They don't want to check sequence where I fight along.
+
+389
+00:27:06,840 --> 00:27:10,240
+There's probably ways around it, but yeah, there's just upgrades.
+
+390
+00:27:10,240 --> 00:27:11,240
+Who's in charge of doge?
+
+391
+00:27:11,240 --> 00:27:12,240
+I don't know.
+
+392
+00:27:12,240 --> 00:27:14,400
+Yeah, tell them the upgrade.
+
+393
+00:27:14,400 --> 00:27:20,160
+So a lot of these altcoins, they sort of, they have sort of archeological aspects to
+
+394
+00:27:20,160 --> 00:27:24,080
+them where you can see where they branched off of the main Bitcoin code base because
+
+395
+00:27:24,080 --> 00:27:28,200
+a lot of times they don't get updated because no one's really working on them.
+
+396
+00:27:28,200 --> 00:27:31,760
+In spite no one really working on them or looking at them, they can still be worth a
+
+397
+00:27:31,760 --> 00:27:36,360
+billion dollars, as I think doge was a few months ago.
+
+398
+00:27:36,360 --> 00:27:40,400
+But so sometimes they catch up and they're like, oh, let's take all the code from Bitcoin
+
+399
+00:27:40,400 --> 00:27:43,920
+that they've developed from the last few years and apply it.
+
+400
+00:27:43,920 --> 00:27:47,320
+Sometimes the opposite happens where an altcoin will make something cool and people in Bitcoin
+
+401
+00:27:47,320 --> 00:27:52,120
+will merge it in, but it's generally the opposite direction.
+
+402
+00:27:52,120 --> 00:28:01,160
+So you've got these two channels that have been set up and Alice wants to sell her dogecoin
+
+403
+00:28:01,160 --> 00:28:03,120
+and buy a Bitcoin.
+
+404
+00:28:03,120 --> 00:28:10,320
+So you have the same HDLC construction where Alice, what's interesting in this case that
+
+405
+00:28:10,320 --> 00:28:13,880
+it's the same person on both sides, so there's actually some optimizations you can do.
+
+406
+00:28:13,880 --> 00:28:16,320
+But forget those for a second.
+
+407
+00:28:16,320 --> 00:28:21,920
+Alice computes a random number R, hashes it to make H. She sends it to herself, which
+
+408
+00:28:21,920 --> 00:28:23,740
+doesn't really make any sense in this case.
+
+409
+00:28:23,740 --> 00:28:26,600
+So you can skip that stuff.
+
+410
+00:28:26,600 --> 00:28:33,920
+Alice already knows H and already knows R. But Alice doesn't have to be Alice, right?
+
+411
+00:28:33,920 --> 00:28:35,760
+It could be Carol.
+
+412
+00:28:35,760 --> 00:28:39,600
+There's optimizations that you can do when they're the same person, but anyway.
+
+413
+00:28:39,600 --> 00:28:45,640
+So she constructs an HDLC to Bob and says, OK, if Bob knows R, he gets this money.
+
+414
+00:28:45,640 --> 00:28:49,480
+Otherwise, Alice gets it after 5 o'clock.
+
+415
+00:28:49,520 --> 00:28:55,120
+Bob says, OK, I don't know R, so I can't get these dogecoins.
+
+416
+00:28:55,120 --> 00:29:03,560
+Bob then forwards it to Alice and saying, OK, if Alice knows R, she gets the coins.
+
+417
+00:29:03,560 --> 00:29:09,200
+If Bob waits till after 4 o'clock, he gets the coins.
+
+418
+00:29:09,200 --> 00:29:11,840
+So it's sort of like, why make this construction?
+
+419
+00:29:11,840 --> 00:29:19,440
+It actually still makes sense because even though Bob knows that Alice knows R, Alice
+
+420
+00:29:19,680 --> 00:29:28,000
+will have to reveal R in order to take the coins.
+
+421
+00:29:28,000 --> 00:29:31,200
+So it's saying, OK, you need to know R. And you need to not just know R, but you
+
+422
+00:29:31,200 --> 00:29:32,320
+have to show everyone.
+
+423
+00:29:32,320 --> 00:29:34,760
+Because the actual script says, OK, you
+
+424
+00:29:34,760 --> 00:29:38,960
+need to know the preimage of this 20-byte hash.
+
+425
+00:29:38,960 --> 00:29:43,360
+And when you actually spend, you have to put that preimage in the blockchain.
+
+426
+00:29:43,360 --> 00:29:47,560
+You have to put it in your input for your transaction, and then Bob can see it.
+
+427
+00:29:47,560 --> 00:29:52,560
+So the idea is, if Alice closes this channel on vert coin, takes the coins by
+
+428
+00:29:52,560 --> 00:29:56,640
+using R, Bob will know R, and Bob will know it's the same R that he can use to
+
+429
+00:29:56,640 --> 00:30:01,040
+take the coins on the dogecoin network.
+
+430
+00:30:01,040 --> 00:30:04,480
+OK, so you add these two HDLCs.
+
+431
+00:30:04,480 --> 00:30:06,160
+You then clear them out.
+
+432
+00:30:06,160 --> 00:30:11,600
+So instead of revealing R on the blockchain, Alice can just reveal R
+
+433
+00:30:11,600 --> 00:30:13,680
+directly to Bob.
+
+434
+00:30:13,680 --> 00:30:18,160
+And say, OK, I'm clearing out this HDLC because here's R. You know that I can do
+
+435
+00:30:18,160 --> 00:30:20,960
+this, so just give me the coins.
+
+436
+00:30:20,960 --> 00:30:26,240
+You also know R, so you can take the coins yourself if I don't cooperate on that end.
+
+437
+00:30:26,240 --> 00:30:27,240
+But hopefully she does.
+
+438
+00:30:27,240 --> 00:30:30,960
+So then you get rid of the HDLC, and now it's back down to two outputs.
+
+439
+00:30:30,960 --> 00:30:32,120
+There.
+
+440
+00:30:32,120 --> 00:30:38,000
+And then Bob says, OK, I've lost the vert coin.
+
+441
+00:30:38,000 --> 00:30:42,200
+And I haven't really gotten the dogecoin yet, but I know I can close the channel and
+
+442
+00:30:42,200 --> 00:30:43,200
+take it if need be.
+
+443
+00:30:43,200 --> 00:30:45,600
+And then Bob goes to Alice.
+
+444
+00:30:45,600 --> 00:30:50,720
+She already knows R, but look, you know that I know R. Let's clear this.
+
+445
+00:30:50,720 --> 00:30:53,720
+And then Alice can just send the coins that way.
+
+446
+00:30:53,720 --> 00:30:58,720
+OK, so any questions about this setup?
+
+447
+00:30:58,720 --> 00:30:59,720
+Yes?
+
+448
+00:30:59,720 --> 00:31:06,720
+Because there's latency, can Alice, investor Bob, basically take the vert coin and go for
+
+449
+00:31:06,720 --> 00:31:10,320
+Bob as a chance to get the doge, basically screw Bob?
+
+450
+00:31:10,320 --> 00:31:11,320
+Yeah.
+
+451
+00:31:11,680 --> 00:31:14,640
+Well, that's why you have different times here.
+
+452
+00:31:14,640 --> 00:31:21,440
+So yes, that is possible, that you could get to this step, and then Alice goes offline
+
+453
+00:31:21,440 --> 00:31:23,640
+and shuts the channels down, closes the channels.
+
+454
+00:31:23,640 --> 00:31:32,120
+But the idea is that Bob can grab these coins back after 4 PM, whereas Alice has to wait
+
+455
+00:31:32,120 --> 00:31:36,800
+until 5 PM to grab these coins back.
+
+456
+00:31:36,800 --> 00:31:45,120
+So if Alice closes and tries to wait till right before 4 PM, and then immediately grab
+
+457
+00:31:45,120 --> 00:31:51,080
+these coins, Bob's actually OK, because Bob says, OK, well, you grabbed the vert coins,
+
+458
+00:31:51,080 --> 00:31:57,560
+but I actually have another hour until I have an hour to reveal R where you're not able
+
+459
+00:31:57,560 --> 00:32:00,000
+to get these coins back.
+
+460
+00:32:00,000 --> 00:32:03,360
+So having this incrementing time can help against that.
+
+461
+00:32:04,000 --> 00:32:09,120
+Because it's an hour is probably not enough.
+
+462
+00:32:09,120 --> 00:32:14,240
+The trade-offs to having these times is if you have it very far in the future with very
+
+463
+00:32:14,240 --> 00:32:18,600
+large gaps, those HDLCs can get stuck there.
+
+464
+00:32:18,600 --> 00:32:25,160
+And if Alice just says, look, I'm leaving this third output in the transaction, that
+
+465
+00:32:25,160 --> 00:32:26,160
+can be annoying.
+
+466
+00:32:26,160 --> 00:32:30,600
+Or if it gets stuck on chain, it might take a long time to get it back.
+
+467
+00:32:30,600 --> 00:32:34,800
+So you want it long enough times that you don't worry about these timing attacks where
+
+468
+00:32:34,800 --> 00:32:39,560
+someone immediately broadcasts, and now you only have an hour, and maybe the blockchain
+
+469
+00:32:39,560 --> 00:32:48,080
+is congested versus the annoyance of, oh, it closed, and now I have to wait until 5 PM.
+
+470
+00:32:48,080 --> 00:32:50,160
+So those are the trade-offs there.
+
+471
+00:32:50,160 --> 00:32:51,160
+Any other questions?
+
+472
+00:32:51,160 --> 00:32:52,160
+OK.
+
+473
+00:32:52,160 --> 00:32:53,160
+OK.
+
+474
+00:32:53,160 --> 00:33:03,880
+So cross-chain swaps.
+
+475
+00:33:03,880 --> 00:33:08,680
+H can be revealed, sorry, R. Well, H goes into either chain.
+
+476
+00:33:08,680 --> 00:33:16,600
+R is then revealed on either chain so that both parties need to watch both blockchains.
+
+477
+00:33:16,600 --> 00:33:21,120
+This sort of makes sense, right, in that the channels are on two different blockchains,
+
+478
+00:33:21,120 --> 00:33:25,360
+and both parties have a channel on each.
+
+479
+00:33:25,360 --> 00:33:29,040
+So the receiver doesn't need to be an initiator, so it doesn't have to be Alice on both sides,
+
+480
+00:33:29,040 --> 00:33:32,540
+but in most cases, I think it probably will be.
+
+481
+00:33:32,540 --> 00:33:38,520
+So yeah, Alice has a Bitcoin channel, Alice also has a Dogecoin channel, as does Bob,
+
+482
+00:33:38,520 --> 00:33:41,040
+so they need to be operating on both networks.
+
+483
+00:33:41,040 --> 00:33:48,520
+There are possibilities where if you had, say, this was Carol, and she sent to Dave using
+
+484
+00:33:48,600 --> 00:33:57,480
+Litecoin, so if you had Alice, Bob, Carol, Dave, Doge, Vertcoin, Litecoin, Alice would
+
+485
+00:33:57,480 --> 00:34:01,680
+not have to know about anything but Dogecoin, right?
+
+486
+00:34:01,680 --> 00:34:08,000
+So you actually only have to worry about the networks that you have channels in, even
+
+487
+00:34:08,000 --> 00:34:14,880
+though there are secrets that could appear in other, well, no, sorry, that's not true.
+
+488
+00:34:14,880 --> 00:34:20,120
+So if this is Carol, Alice does have to look at Vertcoin, because the Vertcoin network
+
+489
+00:34:20,120 --> 00:34:26,480
+could show things, so you have to look at one additional chain, right?
+
+490
+00:34:26,480 --> 00:34:34,120
+So that's one of the issues with cross-chain swaps, where you may, you may be routing through
+
+491
+00:34:34,120 --> 00:34:36,640
+a network that you're not aware of, essentially.
+
+492
+00:34:36,640 --> 00:34:39,680
+I don't think that's that likely in practice, right?
+
+493
+00:34:39,680 --> 00:34:46,480
+So it could be, I'll send you five Dogecoins if you send her 20 Litecoins, and then you
+
+494
+00:34:46,480 --> 00:34:50,000
+send back Dogecoins to this other place, but it's possible.
+
+495
+00:34:50,000 --> 00:34:51,000
+Yes?
+
+496
+00:34:51,000 --> 00:34:54,240
+I just want to make sure that I don't understand this.
+
+497
+00:34:54,240 --> 00:35:00,280
+So when they're both Alice, essentially, that scenario is Alice is exchanging Dogecoin
+
+498
+00:35:00,280 --> 00:35:01,280
+for Vertcoin.
+
+499
+00:35:01,280 --> 00:35:02,280
+Yes.
+
+500
+00:35:02,280 --> 00:35:09,000
+And then if that's, if on the right is Carol, that's saying Alice is going to pay Carol
+
+501
+00:35:09,000 --> 00:35:13,640
+in Dogecoin, even though she's receiving Vertcoin.
+
+502
+00:35:13,640 --> 00:35:14,640
+Yeah.
+
+503
+00:35:14,640 --> 00:35:15,640
+Right.
+
+504
+00:35:15,640 --> 00:35:19,640
+Carol receives Vertcoin, Alice loses Dogecoin, so there's an exchange, correct?
+
+505
+00:35:19,640 --> 00:35:20,640
+Yeah.
+
+506
+00:35:20,640 --> 00:35:27,080
+So it's like you're paying, yeah, like you have to order something that you're receiving.
+
+507
+00:35:27,080 --> 00:35:28,080
+Yeah, yeah.
+
+508
+00:35:28,080 --> 00:35:31,720
+So like you go to some other, you know, you go to England, you pay with your credit card,
+
+509
+00:35:31,720 --> 00:35:37,280
+you lose dollars, but they get pounds, and there's some, somehow there's an exchanger
+
+510
+00:35:37,280 --> 00:35:38,280
+in the middle.
+
+511
+00:35:38,280 --> 00:35:39,280
+Right.
+
+512
+00:35:39,280 --> 00:35:41,840
+And so from Bob's perspective, it works the same either way, he's getting more Dogecoins
+
+513
+00:35:41,840 --> 00:35:42,840
+and losing Vertcoins.
+
+514
+00:35:42,840 --> 00:35:49,920
+So Bob needs to have a lot of, well, he just underscales what he needs from Vertcoins.
+
+515
+00:35:49,920 --> 00:35:50,920
+Right, right.
+
+516
+00:35:50,920 --> 00:35:55,160
+So it's possible that you set up this by initially funding it.
+
+517
+00:35:55,160 --> 00:35:59,080
+So Alice says, I have a ton of Dogecoins, Alice creates this channel and she has like
+
+518
+00:35:59,080 --> 00:36:01,840
+a hundred Dogecoins and Bob has zero.
+
+519
+00:36:01,840 --> 00:36:06,160
+And same with Vertcoin, Bob could have a lot of them and say, okay, I have 20 Vertcoins
+
+520
+00:36:06,160 --> 00:36:11,600
+and Alice has zero, and then we can make those payments in that direction.
+
+521
+00:36:11,600 --> 00:36:17,600
+You can pay them, you know, so actually in all the software now, I think there's only
+
+522
+00:36:17,600 --> 00:36:23,720
+single funded channels, because having both parties funded at the same time is kind of,
+
+523
+00:36:23,720 --> 00:36:28,760
+it's software-wise a little harder, and it's also like interface-wise going to be complicated
+
+524
+00:36:28,760 --> 00:36:34,760
+because how do you know when to match someone's funding, right?
+
+525
+00:36:34,760 --> 00:36:39,120
+So usually what you do is you say, I'm Alice, hey Bob, what's your public key?
+
+526
+00:36:39,120 --> 00:36:40,120
+Give me a new public key.
+
+527
+00:36:40,120 --> 00:36:44,840
+Okay, I'm going to construct this channel here, sign this, and Bob's like, okay.
+
+528
+00:36:44,840 --> 00:36:48,880
+And Bob has like nothing, no money at stake when this process happens.
+
+529
+00:36:48,880 --> 00:36:52,000
+And then Bob also creates a channel with Alice saying, okay, I'm going to put a bunch of
+
+530
+00:36:52,000 --> 00:36:53,440
+Vertcoin in this channel.
+
+531
+00:36:53,440 --> 00:36:58,320
+And they usually start with all the money on one side, so they can then trade.
+
+532
+00:36:58,320 --> 00:37:02,000
+Okay, other questions, that's good.
+
+533
+00:37:02,000 --> 00:37:08,080
+Yeah, so they have to look at these different channels on different blockchains in order
+
+534
+00:37:08,080 --> 00:37:09,800
+to make sure this works.
+
+535
+00:37:09,800 --> 00:37:12,120
+There's still a lot of open questions here.
+
+536
+00:37:12,120 --> 00:37:13,720
+How do you actually trade?
+
+537
+00:37:13,720 --> 00:37:17,520
+Like this is really good for trade execution, but what about discovery?
+
+538
+00:37:17,520 --> 00:37:22,760
+So the current exchange is they're not just, you know, put all your money in here and then
+
+539
+00:37:22,840 --> 00:37:29,440
+ask for it back, there's that middle step where like you find all the other parties.
+
+540
+00:37:29,440 --> 00:37:36,720
+So post the orders on the blockchain and maybe, there's problems, I mean, it's not too crazy
+
+541
+00:37:36,720 --> 00:37:39,040
+an idea, but there's some problems with it, right?
+
+542
+00:37:39,040 --> 00:37:43,520
+If you just say, hey, I want to sell Dogecoins and I want to buy Vertcoins and you sort of
+
+543
+00:37:43,520 --> 00:37:47,400
+put that in an opera turn on the blockchain, well, it's non-binding, right?
+
+544
+00:37:47,400 --> 00:37:49,440
+You don't have to actually do anything.
+
+545
+00:37:49,440 --> 00:37:56,560
+It can be front running where the orders can go in the wrong sequence or in time and it's
+
+546
+00:37:56,560 --> 00:38:02,720
+not scalable because if everyone's posting orders on the blockchain, that can take up
+
+547
+00:38:02,720 --> 00:38:06,160
+a lot of space, probably more so than actual transactions.
+
+548
+00:38:06,160 --> 00:38:13,000
+I don't know what, I mean, I'm sure maybe, like total number of orders placed on a order
+
+549
+00:38:13,000 --> 00:38:17,080
+book versus total number of actual order executions.
+
+550
+00:38:17,840 --> 00:38:22,200
+There's a lot more orders that then end up getting canceled because in most exchanges
+
+551
+00:38:22,200 --> 00:38:26,560
+that I've seen, and I believe this is the case in like regular New York Stock Exchange
+
+552
+00:38:26,560 --> 00:38:31,720
+kind of things, you can say, hey, I want to sell this at this price and then a few minutes
+
+553
+00:38:31,720 --> 00:38:32,960
+later you say, yeah, I changed my mind.
+
+554
+00:38:32,960 --> 00:38:34,400
+I don't want to sell it at that price anymore.
+
+555
+00:38:34,400 --> 00:38:38,600
+The price has moved and I've changed my mind and a lot of times, yeah, yeah.
+
+556
+00:38:38,600 --> 00:38:43,480
+Your exchange runs about 100 messages for every execute trade.
+
+557
+00:38:44,440 --> 00:38:47,560
+About 1% of the actual trades get executed.
+
+558
+00:38:47,560 --> 00:38:53,600
+Yeah, that sounds probably about the same as in a lot of Bitcoin exchanges.
+
+559
+00:38:53,600 --> 00:38:59,360
+Usually in the Bitcoin exchanges, they don't charge you to post an order and then take
+
+560
+00:38:59,360 --> 00:39:00,680
+it back.
+
+561
+00:39:00,680 --> 00:39:06,640
+That's free, whereas the trade actually executing, usually they have some kind of fee.
+
+562
+00:39:06,640 --> 00:39:11,640
+Posting the orders themselves on the blockchain seems like a cool idea, but you've gotten
+
+563
+00:39:11,640 --> 00:39:14,720
+out of the scalability problem of all these transactions, now it's probably 100 times
+
+564
+00:39:14,720 --> 00:39:20,520
+worse because you're all, and front running could also be tricky because the blockchain
+
+565
+00:39:20,520 --> 00:39:24,920
+does provide sequence and timing, but it's up to the miners.
+
+566
+00:39:24,920 --> 00:39:29,600
+So if you have a 10 minute window, during that 10 minute window, the miners can basically
+
+567
+00:39:29,600 --> 00:39:32,800
+shuffle things around however they want.
+
+568
+00:39:32,800 --> 00:39:36,280
+And so if the miner is also trading, they can see, oh, I see all these different orders.
+
+569
+00:39:36,280 --> 00:39:41,360
+I will match these orders and let those happen afterwards.
+
+570
+00:39:41,360 --> 00:39:43,080
+So this is an issue.
+
+571
+00:39:43,080 --> 00:39:46,120
+So there's a bunch of different models people are looking at.
+
+572
+00:39:46,120 --> 00:39:51,600
+And to be clear here, this is not something that really, I don't want to say it doesn't
+
+573
+00:39:51,600 --> 00:39:52,600
+exist yet.
+
+574
+00:39:52,600 --> 00:39:53,600
+It sort of does.
+
+575
+00:39:53,600 --> 00:39:59,720
+There are these decentralized exchanges popping up, mostly on the Ethereum network right now
+
+576
+00:39:59,720 --> 00:40:01,660
+because then it's not actually cross chain.
+
+577
+00:40:01,660 --> 00:40:08,160
+You can have cross asset because there's all these ERC20 tokens, but the cross chain swaps
+
+578
+00:40:08,160 --> 00:40:10,360
+themselves are a bit more complicated to program.
+
+579
+00:40:10,360 --> 00:40:17,480
+So I don't know of any live, not main net operation like this.
+
+580
+00:40:17,480 --> 00:40:21,520
+So one model would be you have a central order book and a central counterparty.
+
+581
+00:40:21,520 --> 00:40:24,920
+So the exchange says, OK, we're still the exchange.
+
+582
+00:40:24,920 --> 00:40:26,360
+We still have a website.
+
+583
+00:40:26,360 --> 00:40:31,600
+We still have order buys and sells and stuff like that.
+
+584
+00:40:31,600 --> 00:40:35,160
+And not only that, but the exchange is one side of every trade.
+
+585
+00:40:35,160 --> 00:40:37,960
+So they say, OK, open a channel with us.
+
+586
+00:40:37,960 --> 00:40:38,960
+Put all your vert coins in.
+
+587
+00:40:38,960 --> 00:40:40,160
+Put all your doge coins in.
+
+588
+00:40:40,160 --> 00:40:44,320
+And then we'll open a different channel with you and we'll put lite coins in it.
+
+589
+00:40:44,320 --> 00:40:48,880
+And if you trade with us, but then what they can do is they can say, well, we're not actually
+
+590
+00:40:48,880 --> 00:40:55,200
+going to trade unless there's someone else performing a similar opposite trade.
+
+591
+00:40:55,200 --> 00:40:56,520
+And then they can keep the spread.
+
+592
+00:40:56,520 --> 00:41:01,400
+So they say, OK, we're selling vert coin at this rate and buying it at this other slightly
+
+593
+00:41:01,400 --> 00:41:03,520
+different rate.
+
+594
+00:41:03,520 --> 00:41:06,640
+So that seems the most feasible.
+
+595
+00:41:06,640 --> 00:41:13,480
+I would venture that that's going to happen first because it's not too crazy.
+
+596
+00:41:13,480 --> 00:41:16,600
+But it has similar centralization to the current model.
+
+597
+00:41:16,600 --> 00:41:18,640
+But there is less counterparty risk.
+
+598
+00:41:18,640 --> 00:41:24,560
+So if you are worried about an exchange shutting down and running off with all your doge coin,
+
+599
+00:41:24,560 --> 00:41:25,560
+this can help.
+
+600
+00:41:25,560 --> 00:41:28,640
+Say, OK, well, I have a channel with my doge coin in it and a channel with my vert coin
+
+601
+00:41:28,640 --> 00:41:29,640
+in it.
+
+602
+00:41:29,640 --> 00:41:33,360
+And I can sell some doge coin, get some vert coin from the exchange, and I still have
+
+603
+00:41:33,360 --> 00:41:34,880
+a nice order book.
+
+604
+00:41:34,880 --> 00:41:37,720
+It doesn't solve any kind of front-running problem.
+
+605
+00:41:37,720 --> 00:41:40,000
+The exchange can still order things how they want.
+
+606
+00:41:40,000 --> 00:41:42,880
+And the exchange can still shut down.
+
+607
+00:41:42,880 --> 00:41:48,640
+But it's much more difficult for the exchange to somehow steal your coins, which is a problem
+
+608
+00:41:48,640 --> 00:41:50,760
+now.
+
+609
+00:41:50,760 --> 00:41:51,760
+Another model.
+
+610
+00:41:51,760 --> 00:41:54,360
+You can say, well, we have a central order book.
+
+611
+00:41:54,360 --> 00:42:00,280
+So the exchange still exists and aggregates all the orders of everyone who wants to buy
+
+612
+00:42:00,280 --> 00:42:02,040
+and sell.
+
+613
+00:42:02,360 --> 00:42:06,120
+There's multiple counterparties that you interact with directly.
+
+614
+00:42:06,120 --> 00:42:11,120
+So the exchange says, OK, I'm E. And I will tell Alice about Bob.
+
+615
+00:42:11,120 --> 00:42:17,360
+Alice says, hey, I want to sell doge coin and buy vert coin at this rate.
+
+616
+00:42:17,360 --> 00:42:20,840
+And then the exchange tells Alice and Bob, OK, you guys matched.
+
+617
+00:42:20,840 --> 00:42:23,280
+Bob, you want to sell vert coin.
+
+618
+00:42:23,280 --> 00:42:24,480
+Alice, you want to buy it.
+
+619
+00:42:24,480 --> 00:42:28,720
+Here, connect to each other and perform this trade.
+
+620
+00:42:28,720 --> 00:42:33,160
+This is cooler, but there's questions in that if you're
+
+621
+00:42:33,160 --> 00:42:36,120
+connecting to many counterparties, it's costly.
+
+622
+00:42:36,120 --> 00:42:39,240
+You have to open a new channel, and that is on chain.
+
+623
+00:42:39,240 --> 00:42:42,040
+Also, how do you enforce trade execution?
+
+624
+00:42:42,040 --> 00:42:48,600
+If it's a trade on a current exchange, and you say, OK, I want to buy bitcoins,
+
+625
+00:42:48,600 --> 00:42:50,600
+and you click, OK, it just happened.
+
+626
+00:42:50,600 --> 00:42:52,040
+They aren't even your bitcoins.
+
+627
+00:42:52,040 --> 00:42:53,640
+You don't really have control of them.
+
+628
+00:42:53,640 --> 00:42:57,360
+So when you say you want to do something, they actually execute it.
+
+629
+00:42:57,360 --> 00:43:00,760
+In this case, if they don't have a channel with you,
+
+630
+00:43:00,760 --> 00:43:03,880
+they just are observing the trade occur.
+
+631
+00:43:03,880 --> 00:43:08,280
+So they're saying, OK, Alice and Bob do this.
+
+632
+00:43:08,280 --> 00:43:11,720
+It might not even be possible to enforce.
+
+633
+00:43:11,720 --> 00:43:14,680
+You'd have to have some kind of penalties if Bob says, hey,
+
+634
+00:43:14,680 --> 00:43:18,200
+Alice said she was going to sell, but then didn't.
+
+635
+00:43:18,200 --> 00:43:22,400
+Or Bob complains, things like that.
+
+636
+00:43:22,400 --> 00:43:25,520
+So there's a lot of ideas here.
+
+637
+00:43:25,520 --> 00:43:29,200
+Another is, OK, if you're building channels,
+
+638
+00:43:29,200 --> 00:43:31,680
+each channel that you build has these on chain costs
+
+639
+00:43:31,680 --> 00:43:33,640
+and takes quite a bit of time.
+
+640
+00:43:33,640 --> 00:43:38,080
+So maybe you could have a multi-hop network from different coins.
+
+641
+00:43:38,080 --> 00:43:43,720
+So instead of just Alice, Bob, Alice, you've got Dave and Carol.
+
+642
+00:43:43,720 --> 00:43:47,520
+And as long as I'm connected to someone in this network,
+
+643
+00:43:47,520 --> 00:43:51,080
+I can route payments to them, and they can route payments to me
+
+644
+00:43:51,080 --> 00:43:52,440
+via different channels.
+
+645
+00:43:52,480 --> 00:43:56,480
+So I'm connected to this multi-coin network kind of mesh.
+
+646
+00:43:56,480 --> 00:43:57,480
+That would be really cool.
+
+647
+00:44:00,280 --> 00:44:02,320
+It's not implemented.
+
+648
+00:44:02,320 --> 00:44:04,160
+It's not even really researched that well yet.
+
+649
+00:44:04,160 --> 00:44:07,120
+So these are sort of ideas.
+
+650
+00:44:07,120 --> 00:44:08,360
+But that would be really cool.
+
+651
+00:44:08,360 --> 00:44:09,920
+Then you wouldn't need as much liquidity.
+
+652
+00:44:09,920 --> 00:44:13,840
+So one of the issues with the central counterparty model
+
+653
+00:44:13,840 --> 00:44:16,000
+is the exchange still needs to have a bunch of money.
+
+654
+00:44:16,000 --> 00:44:18,480
+They still need to have a bunch of doge coins and vert coins
+
+655
+00:44:18,480 --> 00:44:21,680
+in order to be a counterparty to every trade.
+
+656
+00:44:21,680 --> 00:44:24,480
+And then the question is, well, where do those come from?
+
+657
+00:44:24,480 --> 00:44:28,720
+And if you say, oh, well, it comes from customers,
+
+658
+00:44:28,720 --> 00:44:32,080
+well, now that's back into the custodial model,
+
+659
+00:44:32,080 --> 00:44:37,160
+where they still have coins that aren't really theirs.
+
+660
+00:44:37,160 --> 00:44:41,480
+You could say, well, and what I'm guessing is going to happen,
+
+661
+00:44:41,480 --> 00:44:44,280
+is they're going to say, well, we charge a spread
+
+662
+00:44:44,280 --> 00:44:46,800
+and we'll accept investors.
+
+663
+00:44:46,800 --> 00:44:50,520
+And so if you want to invest in this exchange,
+
+664
+00:44:50,520 --> 00:44:53,080
+give us a bunch of doge coin, give us a bunch of vert coin,
+
+665
+00:44:53,080 --> 00:44:58,320
+we will then use it to trade with different parties.
+
+666
+00:44:58,320 --> 00:44:59,920
+And then we'll keep some kind of spread.
+
+667
+00:44:59,920 --> 00:45:03,680
+And then, hey, you got a return on your invested doge coin.
+
+668
+00:45:03,680 --> 00:45:05,160
+You get more doge coin at the end.
+
+669
+00:45:05,160 --> 00:45:07,840
+And then you can withdraw it.
+
+670
+00:45:07,840 --> 00:45:09,880
+I think this is still better than the current model,
+
+671
+00:45:09,880 --> 00:45:12,320
+where you leave a whole bunch of coins on the exchange
+
+672
+00:45:12,320 --> 00:45:14,800
+and you get nothing.
+
+673
+00:45:14,800 --> 00:45:18,560
+Now you can choose, OK, do I want to give them my coins
+
+674
+00:45:18,560 --> 00:45:19,880
+and take that counterparty risk,
+
+675
+00:45:19,880 --> 00:45:22,600
+but I get some return in exchange for that risk?
+
+676
+00:45:22,600 --> 00:45:25,320
+Or do I just want to trade without counterparty risk?
+
+677
+00:45:25,320 --> 00:45:28,400
+So another problem with that model,
+
+678
+00:45:28,400 --> 00:45:30,960
+but it's probably what will happen.
+
+679
+00:45:30,960 --> 00:45:33,960
+This doesn't have that issue in that there
+
+680
+00:45:33,960 --> 00:45:35,480
+is no central counterparty who needs
+
+681
+00:45:35,480 --> 00:45:36,760
+to have a bunch of coins.
+
+682
+00:45:36,760 --> 00:45:38,280
+I'm trading directly with the people
+
+683
+00:45:38,280 --> 00:45:39,680
+who own the coins and want to sell.
+
+684
+00:45:39,680 --> 00:45:40,180
+Yeah?
+
+685
+00:45:40,180 --> 00:45:42,880
+My question is, even if you have this central book
+
+686
+00:45:42,880 --> 00:45:45,800
+in multiple counterparties, would there still
+
+687
+00:45:45,800 --> 00:45:50,440
+be these trader nodes that are going to go out there
+
+688
+00:45:50,440 --> 00:45:53,800
+and essentially become the same thing?
+
+689
+00:45:53,800 --> 00:45:55,120
+Like, they're going to be well-funded.
+
+690
+00:45:55,120 --> 00:45:57,760
+They're going to take fees by doing
+
+691
+00:45:57,760 --> 00:45:59,000
+always different transactions.
+
+692
+00:45:59,000 --> 00:46:01,840
+And they're going to get bigger and bigger.
+
+693
+00:46:01,840 --> 00:46:06,440
+Yeah, I guess the only distinction is, so yes,
+
+694
+00:46:06,440 --> 00:46:10,240
+over the not even long term, medium term,
+
+695
+00:46:10,240 --> 00:46:13,320
+as a user interface, they'll look the same, right?
+
+696
+00:46:13,320 --> 00:46:15,800
+Because whether it's the exchange itself saying,
+
+697
+00:46:15,800 --> 00:46:17,400
+OK, I'm aggregating.
+
+698
+00:46:17,400 --> 00:46:18,440
+Everyone deposit.
+
+699
+00:46:18,440 --> 00:46:19,560
+I've got a ton of capital.
+
+700
+00:46:19,560 --> 00:46:21,200
+I'm going to be a counterparty of these trades
+
+701
+00:46:21,200 --> 00:46:25,280
+and market maker versus, oh, there's no defined market
+
+702
+00:46:25,280 --> 00:46:27,960
+maker, but the people with a lot of money
+
+703
+00:46:27,960 --> 00:46:31,480
+or who are really trying to do this end up in that position.
+
+704
+00:46:31,480 --> 00:46:34,720
+I guess the only difference is, in this case,
+
+705
+00:46:34,720 --> 00:46:37,640
+the counterparty is also running the order book.
+
+706
+00:46:37,640 --> 00:46:40,400
+And in this case, they may be different, right?
+
+707
+00:46:40,400 --> 00:46:42,760
+There's an order book server, and then
+
+708
+00:46:42,760 --> 00:46:44,920
+there's this big counterparty who has a ton of money
+
+709
+00:46:44,920 --> 00:46:46,840
+who's doing all the trades.
+
+710
+00:46:46,840 --> 00:46:50,600
+So does that make much of a difference?
+
+711
+00:46:50,600 --> 00:46:51,100
+Yes?
+
+712
+00:46:51,100 --> 00:46:53,400
+In the history of markets, the second example
+
+713
+00:46:53,400 --> 00:46:55,600
+is the one you see more, right?
+
+714
+00:46:55,600 --> 00:46:57,760
+New York Stock Exchange, London Stock Exchange.
+
+715
+00:46:57,760 --> 00:47:03,960
+So the first model has the centralized party
+
+716
+00:47:03,960 --> 00:47:07,640
+collecting huge economic rents because they're centralized,
+
+717
+00:47:07,640 --> 00:47:09,760
+which is kind of interesting where big loans are supposed
+
+718
+00:47:09,760 --> 00:47:10,760
+to be decentralized.
+
+719
+00:47:11,200 --> 00:47:13,400
+Yeah.
+
+720
+00:47:13,400 --> 00:47:17,720
+Yeah, so this probably ends up with a small number
+
+721
+00:47:17,720 --> 00:47:20,920
+of pretty big nodes, mostly because the efficiency, right?
+
+722
+00:47:20,920 --> 00:47:23,760
+If you're connecting to 100 different counterparties
+
+723
+00:47:23,760 --> 00:47:26,280
+and you never actually trade with any of them,
+
+724
+00:47:26,280 --> 00:47:28,560
+it's very costly to build those channels,
+
+725
+00:47:28,560 --> 00:47:31,440
+and which they probably have analogies to, in real life,
+
+726
+00:47:31,440 --> 00:47:34,160
+it's costly to maintain these relationships
+
+727
+00:47:34,160 --> 00:47:35,920
+with all these different companies and stuff.
+
+728
+00:47:35,920 --> 00:47:37,800
+It's much more efficient if we just all
+
+729
+00:47:37,800 --> 00:47:39,360
+meet under this button wood tree.
+
+730
+00:47:41,680 --> 00:47:44,720
+It's a different issue in that enforcing trade execution.
+
+731
+00:47:44,720 --> 00:47:47,840
+You might not have legal, you might not
+
+732
+00:47:47,840 --> 00:47:49,800
+know who any of these people are legally,
+
+733
+00:47:49,800 --> 00:47:52,960
+so you have some kind of penalties or some kind of proofs
+
+734
+00:47:52,960 --> 00:47:57,240
+that the trade occurred the correct way, things like that.
+
+735
+00:47:57,240 --> 00:47:57,740
+Yeah?
+
+736
+00:47:57,740 --> 00:48:05,960
+In enforcing a banal, the way the trades are set up,
+
+737
+00:48:05,960 --> 00:48:07,040
+do you need to enforce them?
+
+738
+00:48:07,040 --> 00:48:10,360
+Or before you enter into them, do you already know what
+
+739
+00:48:11,160 --> 00:48:19,800
+So the example is Alice goes to a server, right?
+
+740
+00:48:19,800 --> 00:48:23,640
+So you have an exchange, but this exchange
+
+741
+00:48:23,640 --> 00:48:25,160
+is only the order book, right?
+
+742
+00:48:25,160 --> 00:48:28,000
+So there's a little buy and sell kind of things.
+
+743
+00:48:28,000 --> 00:48:34,920
+And then Alice says, OK, I want to buy VTC.
+
+744
+00:48:34,920 --> 00:48:36,040
+And then this is Alice.
+
+745
+00:48:36,040 --> 00:48:41,000
+Bob says, OK, I want to buy, what was it, Dogecoin?
+
+746
+00:48:43,800 --> 00:48:46,120
+Then the exchange says, oh, you guys crossed, right?
+
+747
+00:48:46,120 --> 00:48:48,560
+You want to buy VTC at a rate that he's
+
+748
+00:48:48,560 --> 00:48:52,200
+willing to sell at, or slightly higher, or whatever.
+
+749
+00:48:52,200 --> 00:48:54,280
+So trade, right?
+
+750
+00:48:54,280 --> 00:48:57,440
+So the exchange tells both people, hey, you matched.
+
+751
+00:48:57,440 --> 00:49:00,280
+Now you have to trade.
+
+752
+00:49:00,280 --> 00:49:02,680
+And then as soon as AACs, oh, you matched,
+
+753
+00:49:02,680 --> 00:49:04,880
+you have to trade, Alice disappears.
+
+754
+00:49:04,880 --> 00:49:08,120
+It says, oh, I didn't mean to, right?
+
+755
+00:49:08,120 --> 00:49:12,560
+So the exchange only can provide information.
+
+756
+00:49:12,560 --> 00:49:16,120
+They can't actually force Alice and Bob to do the trade,
+
+757
+00:49:16,120 --> 00:49:18,040
+is the problem.
+
+758
+00:49:18,040 --> 00:49:23,320
+I guess you can broadcast your potential trade.
+
+759
+00:49:23,320 --> 00:49:25,520
+There's information for somebody to come in at those.
+
+760
+00:49:25,520 --> 00:49:30,240
+So if you do like that, because that's a specific price,
+
+761
+00:49:30,240 --> 00:49:33,440
+you're actually publishing what you would need to actually
+
+762
+00:49:34,080 --> 00:49:35,280
+keep the trade.
+
+763
+00:49:35,280 --> 00:49:39,240
+So that, yeah, at least in Bitcoin,
+
+764
+00:49:39,240 --> 00:49:41,360
+I don't know how to do that, because you
+
+765
+00:49:41,360 --> 00:49:43,800
+need to know who your counterparty is in order
+
+766
+00:49:43,800 --> 00:49:47,680
+to either use these channels, or even if it were on chain,
+
+767
+00:49:47,680 --> 00:49:49,880
+you have to share these secret, it's
+
+768
+00:49:49,880 --> 00:49:51,960
+interactive with your counterparty.
+
+769
+00:49:51,960 --> 00:49:55,000
+So at least in Bitcoin, I don't know a way
+
+770
+00:49:55,000 --> 00:50:00,160
+to say Alice is posting her buy, vert coin order in a way
+
+771
+00:50:00,160 --> 00:50:02,000
+that anyone can then go and fill it
+
+772
+00:50:02,040 --> 00:50:06,320
+without additional interactivity from Alice.
+
+773
+00:50:06,320 --> 00:50:07,760
+There might be, I think there's ways
+
+774
+00:50:07,760 --> 00:50:10,600
+to do that in Ethereum for Ethereum tokens,
+
+775
+00:50:10,600 --> 00:50:13,840
+and there are people who have written software like that.
+
+776
+00:50:13,840 --> 00:50:17,240
+But in the Bitcoin model, there might be a way to do it.
+
+777
+00:50:17,240 --> 00:50:20,160
+We haven't figured it out.
+
+778
+00:50:20,160 --> 00:50:23,320
+So it's sort of, you put in your orders,
+
+779
+00:50:23,320 --> 00:50:28,240
+they return and say, OK, trade, and now they
+
+780
+00:50:28,240 --> 00:50:29,440
+have to continue to interact.
+
+781
+00:50:29,440 --> 00:50:32,680
+So it's pretty straightforward for Bob or Alice
+
+782
+00:50:32,680 --> 00:50:35,560
+to just unplug her computer right at that point.
+
+783
+00:50:35,560 --> 00:50:38,440
+And that introduces timing issues
+
+784
+00:50:38,440 --> 00:50:43,160
+where Alice just puts in all these fake trades.
+
+785
+00:50:43,160 --> 00:50:45,160
+Maybe they're kind of out there.
+
+786
+00:50:45,160 --> 00:50:47,280
+But sometimes the market moves during the time
+
+787
+00:50:47,280 --> 00:50:52,520
+between I put my trade in and the execution comes back.
+
+788
+00:50:52,520 --> 00:50:55,920
+And so I unplug most of them, I ignore most of them,
+
+789
+00:50:55,920 --> 00:50:59,400
+but the ones that are beneficial actually go through with.
+
+790
+00:51:00,160 --> 00:51:03,160
+Well, yeah.
+
+791
+00:51:03,160 --> 00:51:06,520
+So yeah, so I don't, yeah.
+
+792
+00:51:06,520 --> 00:51:08,080
+The difference is you're saying these are not
+
+793
+00:51:08,080 --> 00:51:13,360
+live hot bids and hot offers, meaning executable.
+
+794
+00:51:13,360 --> 00:51:16,760
+They had another step for their executable.
+
+795
+00:51:16,760 --> 00:51:19,600
+So this is a new form of spoofing.
+
+796
+00:51:19,600 --> 00:51:24,040
+This spoofing goes on in the US swaps market all the time
+
+797
+00:51:24,040 --> 00:51:26,680
+because they're not live bids and offers.
+
+798
+00:51:26,680 --> 00:51:30,400
+But in the market where there's executable bids and offers,
+
+799
+00:51:30,400 --> 00:51:31,840
+that's in the station.
+
+800
+00:51:31,840 --> 00:51:33,320
+This is not caught.
+
+801
+00:51:33,320 --> 00:51:35,880
+It's very seriously canceled.
+
+802
+00:51:35,880 --> 00:51:37,760
+Right, I guess so hot in this case
+
+803
+00:51:37,760 --> 00:51:43,600
+would be if Bob gets, if Alice's offer contains
+
+804
+00:51:43,600 --> 00:51:46,800
+all the information needed by Bob to execute the trade,
+
+805
+00:51:46,800 --> 00:51:48,520
+then it would be sort of hot in that sense.
+
+806
+00:51:48,520 --> 00:51:50,560
+And that Bob doesn't have to interact with Alice
+
+807
+00:51:50,560 --> 00:51:53,080
+anymore to execute.
+
+808
+00:51:53,080 --> 00:51:56,000
+With these constructs, with the cross-chain swaps
+
+809
+00:51:56,000 --> 00:51:59,760
+using these channels, you still have to talk to each other.
+
+810
+00:51:59,760 --> 00:52:02,040
+Bob needs to, you know, Alice, Bob generates,
+
+811
+00:52:02,040 --> 00:52:05,160
+no, Alice generates the r value, shares the hash with Bob.
+
+812
+00:52:05,160 --> 00:52:06,920
+They're talking to each other.
+
+813
+00:52:06,920 --> 00:52:10,080
+So we don't know if someone figures out a cool way to do it,
+
+814
+00:52:10,080 --> 00:52:13,080
+then great, that will solve this issue.
+
+815
+00:52:13,080 --> 00:52:14,360
+But yeah.
+
+816
+00:52:14,360 --> 00:52:19,560
+Is 0x and rate or relay, are they caught or considered?
+
+817
+00:52:19,560 --> 00:52:22,480
+I believe 0x and x is from what I've read.
+
+818
+00:52:22,480 --> 00:52:27,640
+I don't know about how rate R relay works.
+
+819
+00:52:27,640 --> 00:52:31,240
+But 0x, yeah, you post, you basically,
+
+820
+00:52:31,240 --> 00:52:34,160
+your order is executable by any party
+
+821
+00:52:34,160 --> 00:52:37,520
+without further input from you.
+
+822
+00:52:37,520 --> 00:52:39,040
+But it also has scaling issues.
+
+823
+00:52:39,040 --> 00:52:41,480
+So that's a good segue to the next part,
+
+824
+00:52:41,480 --> 00:52:44,800
+which is having some kind of distributed order book, where
+
+825
+00:52:44,800 --> 00:52:46,800
+there is no central order book.
+
+826
+00:52:46,800 --> 00:52:48,600
+There is no central counterparty.
+
+827
+00:52:48,600 --> 00:52:51,960
+The whole thing is a big mesh network kind of thing.
+
+828
+00:52:51,960 --> 00:52:53,760
+That would be really cool.
+
+829
+00:52:53,760 --> 00:52:57,680
+That seems the furthest out in terms of, how do you do this?
+
+830
+00:52:57,680 --> 00:52:58,960
+I mean, people are working on it,
+
+831
+00:52:58,960 --> 00:53:02,320
+but it seems hard to make practical in that,
+
+832
+00:53:02,320 --> 00:53:03,880
+how do you ensure fairness, right?
+
+833
+00:53:03,880 --> 00:53:05,720
+Who's ordering these things?
+
+834
+00:53:05,720 --> 00:53:07,120
+And you could say, well, the blockchain
+
+835
+00:53:07,120 --> 00:53:09,280
+is ordering these things, but that ends up
+
+836
+00:53:09,280 --> 00:53:11,440
+being that the miners order it.
+
+837
+00:53:11,440 --> 00:53:15,160
+So if Alice is buying Vertcoin, she's like, OK,
+
+838
+00:53:15,160 --> 00:53:18,200
+I'm buying Vertcoin at a price of five.
+
+839
+00:53:18,200 --> 00:53:19,840
+And then he says, OK, I'll buy Doge
+
+840
+00:53:19,840 --> 00:53:23,800
+at a price of, basically, you cross
+
+841
+00:53:23,800 --> 00:53:28,040
+and you have an order where there's some kind of overlap.
+
+842
+00:53:28,040 --> 00:53:30,040
+The miner can say, OK, well, I'll instead
+
+843
+00:53:30,040 --> 00:53:32,960
+ignore this order, execute my own,
+
+844
+00:53:32,960 --> 00:53:37,640
+and then execute with this guy and take the spread.
+
+845
+00:53:37,640 --> 00:53:40,040
+Because the miner really gets to sequence things,
+
+846
+00:53:40,040 --> 00:53:41,240
+however they want.
+
+847
+00:53:41,240 --> 00:53:43,880
+The blockchain does provide ordering,
+
+848
+00:53:43,880 --> 00:53:45,080
+but at the block level.
+
+849
+00:53:45,080 --> 00:53:47,360
+Within a block, it's totally up to the miner.
+
+850
+00:53:47,400 --> 00:53:50,840
+So the miners could swap things around.
+
+851
+00:53:50,840 --> 00:53:53,400
+But yeah, how do you ensure fairness in terms of timing?
+
+852
+00:53:53,400 --> 00:53:55,680
+How do you ensure enforced trade execution?
+
+853
+00:53:55,680 --> 00:53:58,360
+And probably the biggest for a distributed order book
+
+854
+00:53:58,360 --> 00:54:01,200
+is just the scalability of the orders.
+
+855
+00:54:01,200 --> 00:54:05,200
+You probably don't want to put all the orders on a blockchain
+
+856
+00:54:05,200 --> 00:54:09,320
+because it just ends up being a ton of data.
+
+857
+00:54:09,320 --> 00:54:13,120
+So you have to have some kind of broadcast network where
+
+858
+00:54:13,120 --> 00:54:14,440
+you've got these orders.
+
+859
+00:54:14,440 --> 00:54:17,760
+They probably should have some way to expire.
+
+860
+00:54:17,760 --> 00:54:23,200
+But an expiry is also an issue in that, how do you make,
+
+861
+00:54:23,200 --> 00:54:26,280
+how do you ensure that, hey, I'm canceling this order,
+
+862
+00:54:26,280 --> 00:54:29,880
+how do you ensure that the cancellation actually propagates?
+
+863
+00:54:29,880 --> 00:54:32,680
+If someone can say, OK, I've got pretty good control
+
+864
+00:54:32,680 --> 00:54:36,560
+of the network, and I can just block these order cancellations
+
+865
+00:54:36,560 --> 00:54:39,040
+and wait and then execute.
+
+866
+00:54:39,040 --> 00:54:42,920
+So this is sort of, there's papers, there's ideas,
+
+867
+00:54:42,920 --> 00:54:45,120
+but it's kind of out there.
+
+868
+00:54:47,960 --> 00:54:51,480
+OK, so that's basically, yeah, that was it.
+
+869
+00:54:51,480 --> 00:54:52,720
+It's a little earlier.
+
+870
+00:54:52,720 --> 00:54:56,840
+But yeah, this is basically the stuff for today.
+
+871
+00:54:56,840 --> 00:54:58,760
+The idea works, right, the cross-chain swaps.
+
+872
+00:54:58,760 --> 00:55:01,760
+But there's still a lot of issues in terms of, OK,
+
+873
+00:55:01,760 --> 00:55:03,800
+how do you actually get these to work?
+
+874
+00:55:03,800 --> 00:55:06,720
+How do you build a scalable trading platform?
+
+875
+00:55:06,720 --> 00:55:08,440
+And there aren't really any yet.
+
+876
+00:55:08,440 --> 00:55:12,480
+There are some things on Ethereum that work OK.
+
+877
+00:55:12,480 --> 00:55:14,440
+The fees end up being kind of high.
+
+878
+00:55:14,440 --> 00:55:16,640
+And it's also Ethereum, where it's not
+
+879
+00:55:16,640 --> 00:55:18,560
+between different blockchains, right?
+
+880
+00:55:18,560 --> 00:55:20,240
+It's all running on the Ethereum network,
+
+881
+00:55:20,240 --> 00:55:22,800
+and the Ethereum network allows you to specify,
+
+882
+00:55:22,800 --> 00:55:24,440
+well, this is actually something else.
+
+883
+00:55:24,440 --> 00:55:25,880
+This isn't Ether.
+
+884
+00:55:25,880 --> 00:55:28,560
+You can do that in Bitcoin, but so there
+
+885
+00:55:28,560 --> 00:55:33,560
+are protocols in Bitcoin like Omni and Mastercoin and things
+
+886
+00:55:33,560 --> 00:55:36,200
+where you could sort of create different assets
+
+887
+00:55:36,200 --> 00:55:38,440
+by using op return.
+
+888
+00:55:38,440 --> 00:55:40,680
+And basically, all of those have moved to Ethereum now,
+
+889
+00:55:40,680 --> 00:55:44,560
+because Ethereum's much nicer design for those things.
+
+890
+00:55:44,560 --> 00:55:45,960
+And most of the Bitcoin developers
+
+891
+00:55:45,960 --> 00:55:49,800
+are sort of like, great, now all these non-Bitcoin transaction
+
+892
+00:55:49,800 --> 00:55:52,600
+data have left.
+
+893
+00:55:52,600 --> 00:55:55,440
+And Bitcoin is just focused on moving Bitcoin around.
+
+894
+00:55:55,440 --> 00:55:57,200
+Yeah, so the basic idea works, there's
+
+895
+00:55:57,200 --> 00:55:58,880
+still a lot of unsolved questions.
+
+896
+00:55:58,880 --> 00:56:01,120
+Further research required, which is great to hear
+
+897
+00:56:01,120 --> 00:56:03,760
+when you're a researcher.
+
+898
+00:56:03,760 --> 00:56:05,640
+And there's people working on this here.
+
+899
+00:56:05,640 --> 00:56:08,760
+I'm working with an MNG student on cross-chain swaps
+
+900
+00:56:08,760 --> 00:56:09,400
+this semester.
+
+901
+00:56:09,440 --> 00:56:10,960
+There's other people working on all sorts
+
+902
+00:56:10,960 --> 00:56:13,040
+of decentralized exchange things.
+
+903
+00:56:13,040 --> 00:56:14,560
+Neha is also very interested in it.
+
+904
+00:56:14,560 --> 00:56:19,520
+So if you want to work with Neha, that's a chance.
+
+905
+00:56:19,520 --> 00:56:21,160
+And yeah, I think it'll be big, right?
+
+906
+00:56:21,160 --> 00:56:23,520
+Because if you look at these exchanges,
+
+907
+00:56:23,520 --> 00:56:26,000
+there's a lot of profit.
+
+908
+00:56:26,000 --> 00:56:28,440
+So like, I don't know, a year or two ago,
+
+909
+00:56:28,440 --> 00:56:30,680
+you look at like Poloniex, they were making like a million
+
+910
+00:56:30,680 --> 00:56:32,200
+dollars a day.
+
+911
+00:56:32,200 --> 00:56:37,280
+Just there's so much volume, and they have very few employees.
+
+912
+00:56:37,600 --> 00:56:41,080
+And they're like, I think the market
+
+913
+00:56:41,080 --> 00:56:43,840
+is getting sort of more established now in terms
+
+914
+00:56:43,840 --> 00:56:46,360
+of it's going to be larger players and stuff like that.
+
+915
+00:56:46,360 --> 00:56:49,600
+But it was pretty much like Wild Wild West a few years ago,
+
+916
+00:56:49,600 --> 00:56:51,400
+where you're just like, I'm going to open an exchange,
+
+917
+00:56:51,400 --> 00:56:54,880
+and I don't even need a bank account.
+
+918
+00:56:54,880 --> 00:56:57,600
+The big exchanges that have bank accounts,
+
+919
+00:56:57,600 --> 00:56:59,800
+I feel like are less profitable.
+
+920
+00:56:59,800 --> 00:57:01,640
+So like Coinbase makes a lot of revenue,
+
+921
+00:57:01,640 --> 00:57:05,160
+but they have a lot of fees, like a lot of costs.
+
+922
+00:57:05,160 --> 00:57:06,560
+They have a ton of employees.
+
+923
+00:57:06,560 --> 00:57:08,120
+They have a ton of lawyers.
+
+924
+00:57:08,120 --> 00:57:10,280
+They have to worry about banks.
+
+925
+00:57:10,280 --> 00:57:13,440
+Whereas if you're like Poloniex, well, Poloniex is now,
+
+926
+00:57:13,440 --> 00:57:17,400
+yeah, it lasted for like a year or two where they could do that.
+
+927
+00:57:17,400 --> 00:57:19,640
+But if you're just some random altcoin exchange,
+
+928
+00:57:19,640 --> 00:57:21,080
+you don't need a bank account, right?
+
+929
+00:57:21,080 --> 00:57:23,600
+You say, look, I'm an exchange where you can trade
+
+930
+00:57:23,600 --> 00:57:26,480
+Dogecoin and Vercoin, and that's it.
+
+931
+00:57:26,480 --> 00:57:28,080
+There's no dollars involved.
+
+932
+00:57:28,080 --> 00:57:30,280
+So those kind of places, they can open up
+
+933
+00:57:30,280 --> 00:57:33,320
+on any server, anywhere in the world.
+
+934
+00:57:33,320 --> 00:57:35,160
+They don't even need to be companies.
+
+935
+00:57:35,160 --> 00:57:39,560
+They can just be someone's server.
+
+936
+00:57:39,560 --> 00:57:42,360
+And the fact that they have custody
+
+937
+00:57:42,360 --> 00:57:45,840
+means they keep getting shut down or just running off
+
+938
+00:57:45,840 --> 00:57:50,040
+with money, like Cripsy, well, Cripsy was that guy, right?
+
+939
+00:57:50,040 --> 00:57:52,520
+Yeah, well, he's doing an exchange
+
+940
+00:57:52,520 --> 00:57:55,200
+while he's on a possible bank account.
+
+941
+00:57:55,200 --> 00:57:55,700
+Yeah.
+
+942
+00:57:55,700 --> 00:57:57,160
+Spend all the money with it.
+
+943
+00:57:57,160 --> 00:57:57,660
+Right.
+
+944
+00:57:57,660 --> 00:58:03,120
+So, and then he like said, I remember there was a blog post
+
+945
+00:58:03,120 --> 00:58:04,880
+where he just sort of said he did that,
+
+946
+00:58:04,880 --> 00:58:09,840
+and it was just like, yeah, we were making fees and stuff,
+
+947
+00:58:09,840 --> 00:58:10,560
+so it was OK.
+
+948
+00:58:10,560 --> 00:58:12,680
+We thought we'd just say top it up.
+
+949
+00:58:12,680 --> 00:58:15,720
+And then it's like whether it's huge or gross,
+
+950
+00:58:15,720 --> 00:58:20,560
+like just diverge, unfortunately, and it just went to zero.
+
+951
+00:58:20,560 --> 00:58:22,800
+But it was just an amazing blog post where it's like, wait,
+
+952
+00:58:22,800 --> 00:58:24,960
+you're just admitting to a whole bunch of crimes here.
+
+953
+00:58:24,960 --> 00:58:27,240
+Like, you probably shouldn't have written this.
+
+954
+00:58:27,240 --> 00:58:30,280
+And then he fled to China, but I think they got him.
+
+955
+00:58:30,280 --> 00:58:33,440
+He's in jail now or something.
+
+956
+00:58:33,440 --> 00:58:38,000
+Anyway, so there's a lot of pretty bad actors
+
+957
+00:58:38,000 --> 00:58:40,240
+in the exchange space.
+
+958
+00:58:40,240 --> 00:58:43,520
+It's not well run generally, but there's
+
+959
+00:58:43,520 --> 00:58:46,080
+enormous amounts of profit, which to me
+
+960
+00:58:46,080 --> 00:58:47,880
+seems like in an efficiency, right?
+
+961
+00:58:47,880 --> 00:58:49,800
+Wait, why are these people making $1 million a day
+
+962
+00:58:49,800 --> 00:58:53,080
+for something that is sort of just running automatically
+
+963
+00:58:53,080 --> 00:58:53,880
+on this computer?
+
+964
+00:58:53,880 --> 00:58:57,480
+That seems like right for disruption.
+
+965
+00:58:57,480 --> 00:58:59,600
+And so there's a lot of people interested in, OK,
+
+966
+00:58:59,600 --> 00:59:01,160
+how do we decentralize the exchanges,
+
+967
+00:59:01,200 --> 00:59:06,520
+make them less trust involved, less risk involved,
+
+968
+00:59:06,520 --> 00:59:10,640
+and probably make less money than Poloniex or OKcoin
+
+969
+00:59:10,640 --> 00:59:11,520
+or whatever.
+
+970
+00:59:11,520 --> 00:59:15,080
+But that's sort of better because in exchange
+
+971
+00:59:15,080 --> 00:59:17,400
+where there's less profitability means more people
+
+972
+00:59:17,400 --> 00:59:20,320
+are going to want to trade on it because there's lower fees.
+
+973
+00:59:20,320 --> 00:59:23,520
+So there's a lot of research into this.
+
+974
+00:59:23,520 --> 00:59:26,320
+I think it's pretty cool.
+
+975
+00:59:26,320 --> 00:59:29,880
+So next class on Wednesday, I'll talk about discrete log
+
+976
+00:59:29,880 --> 00:59:35,200
+contracts, which share some of these issues.
+
+977
+00:59:35,200 --> 00:59:37,360
+It's a different way to execute a trade,
+
+978
+00:59:37,360 --> 00:59:40,080
+but it doesn't really define how you find people
+
+979
+00:59:40,080 --> 00:59:41,920
+to execute that trade.
+
+980
+00:59:41,920 --> 00:59:44,720
+I personally am more interested in the discrete log contract
+
+981
+00:59:44,720 --> 00:59:47,720
+stuff, probably because I came up with it,
+
+982
+00:59:47,720 --> 00:59:51,960
+but also because I'm not that excited about altcoins
+
+983
+00:59:51,960 --> 00:59:54,080
+in general.
+
+984
+00:59:54,080 --> 00:59:55,440
+I don't know, people like altcoins,
+
+985
+00:59:55,440 --> 00:59:57,760
+but I don't really feel like, oh,
+
+986
+00:59:57,760 --> 01:00:00,000
+we need to have all these different altcoins that
+
+987
+01:00:00,000 --> 01:00:04,640
+sort of act like money, which is mostly what
+
+988
+01:00:04,640 --> 01:00:06,840
+cross-chain swap let you do.
+
+989
+01:00:06,840 --> 01:00:09,160
+So the discrete log contract has the same issues
+
+990
+01:00:09,160 --> 01:00:12,120
+with how do you find each other.
+
+991
+01:00:12,120 --> 01:00:14,920
+And it's mostly a scalability thing.
+
+992
+01:00:14,920 --> 01:00:18,120
+You can do this sort of OTC where you talk in a chat room
+
+993
+01:00:18,120 --> 01:00:21,000
+and you sort of know each other and you trade that way.
+
+994
+01:00:21,000 --> 01:00:22,480
+And that's the level it is right now,
+
+995
+01:00:22,480 --> 01:00:24,320
+but how to scale it up is another question.
+

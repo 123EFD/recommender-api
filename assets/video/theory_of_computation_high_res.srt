@@ -1,0 +1,1772 @@
+1
+00:00:00,000 --> 00:00:26,000
+Hi, folks.
+
+2
+00:00:26,000 --> 00:00:29,000
+Why don't we get started?
+
+3
+00:00:29,000 --> 00:00:33,000
+Welcome back.
+
+4
+00:00:33,000 --> 00:00:37,000
+Good to see you all here.
+
+5
+00:00:37,000 --> 00:00:44,000
+So I am going to first,
+
+6
+00:00:44,000 --> 00:00:50,000
+well, we'll recap with what we did last time and what we're going to do today.
+
+7
+00:00:50,000 --> 00:00:52,000
+I'll talk a little bit about the problem set.
+
+8
+00:00:52,000 --> 00:00:56,000
+And we'll also have a break as requested halfway through.
+
+9
+00:00:56,000 --> 00:00:58,000
+So I want to jump in.
+
+10
+00:00:58,000 --> 00:01:05,000
+What we did last time was we introduced finite besides introducing the course.
+
+11
+00:01:05,000 --> 00:01:07,000
+We introduced finite automata in regular languages,
+
+12
+00:01:07,000 --> 00:01:11,000
+which are the languages that the finite automata can recognize.
+
+13
+00:01:11,000 --> 00:01:15,000
+We talked about these regular operations.
+
+14
+00:01:15,000 --> 00:01:21,000
+And then building those allow us to build what we call our regular expressions.
+
+15
+00:01:21,000 --> 00:01:24,000
+These are ways of describing languages.
+
+16
+00:01:24,000 --> 00:01:30,000
+So we have finite automata can describe languages and regular expressions can describe languages.
+
+17
+00:01:30,000 --> 00:01:34,000
+And one of our goals is to show that those two systems are equivalent to one another,
+
+18
+00:01:34,000 --> 00:01:38,000
+even though they look rather different at first glance.
+
+19
+00:01:38,000 --> 00:01:43,000
+So to move in that direction,
+
+20
+00:01:43,000 --> 00:01:48,000
+we first proved we're going to prove closure properties for all of the,
+
+21
+00:01:48,000 --> 00:01:52,000
+for the class of regular languages over these regular operations.
+
+22
+00:01:52,000 --> 00:01:59,000
+So we'll show that what we already showed that any two regular languages have their union also being regular.
+
+23
+00:01:59,000 --> 00:02:01,000
+And we'll show that for the other two operations as well.
+
+24
+00:02:01,000 --> 00:02:05,000
+So let's just look ahead to what we're going to do today.
+
+25
+00:02:05,000 --> 00:02:07,000
+We're going to introduce an important concept,
+
+26
+00:02:07,000 --> 00:02:11,000
+which is going to be a theme throughout the course called non-determinism.
+
+27
+00:02:11,000 --> 00:02:17,000
+And we having that as a tool that we can use,
+
+28
+00:02:17,000 --> 00:02:22,000
+we'll be able to show closure under concatenation and star,
+
+29
+00:02:22,000 --> 00:02:25,000
+finishing up what we started to do last time.
+
+30
+00:02:25,000 --> 00:02:36,000
+And then we'll use those closure constructions to show how to convert regular expressions to finite finite automata.
+
+31
+00:02:36,000 --> 00:02:43,000
+And that's going to be halfway to our goal of showing that the two systems are equivalent to one one another.
+
+32
+00:02:43,000 --> 00:02:48,000
+And the following lecture, we will show how to do the conversion in the other direction.
+
+33
+00:02:48,000 --> 00:02:56,000
+So I thought we would just jump in then and look at return to the material of the course.
+
+34
+00:02:56,000 --> 00:03:03,000
+As you remember, we were looking at the closure properties for the class of regular languages.
+
+35
+00:03:03,000 --> 00:03:05,000
+We started doing that.
+
+36
+00:03:05,000 --> 00:03:09,000
+And if you recall, hopefully we did closure under union.
+
+37
+00:03:09,000 --> 00:03:16,000
+And then we tried to do closure under concatenation, which I have shown here on the slide,
+
+38
+00:03:16,000 --> 00:03:21,000
+you know, the proof attempt that we tried to do last time.
+
+39
+00:03:21,000 --> 00:03:29,000
+And let's just review that quickly because I think that's going to be helpful to see how to fix the problem that came up.
+
+40
+00:03:29,000 --> 00:03:36,000
+So if you remember, we had a, you know, we're given two regular languages, a one and a two,
+
+41
+00:03:36,000 --> 00:03:42,000
+and we're trying to show that the concatenation language, a one, a two is also regular.
+
+42
+00:03:42,000 --> 00:03:49,000
+And so the way we, you know, the way we go about all of these things is, you know, we assume that a one and a two are regular.
+
+43
+00:03:49,000 --> 00:03:58,000
+So that means we have machines, finite automata for a one and a two, we'll call them M one and M two that recognize a one and a two respectively.
+
+44
+00:03:59,000 --> 00:04:09,000
+And then what we need to do in order to show the concatenation is regular is to make a finite automaton would recognize as the concatenation.
+
+45
+00:04:09,000 --> 00:04:12,000
+And we try to do that last time.
+
+46
+00:04:12,000 --> 00:04:21,000
+So if you remember that concatenation machine M, we're calling it, what is it supposed to do?
+
+47
+00:04:21,000 --> 00:04:25,000
+It's supposed to accept its input if it's in the concatenation language.
+
+48
+00:04:25,000 --> 00:04:35,000
+And that means that the input can be split into two parts, X and Y, where X is in the A language and Y is in the B line and in the,
+
+49
+00:04:35,000 --> 00:04:40,000
+Y is accepted by M one and X is accepted by M one and Y is accepted by M two.
+
+50
+00:04:40,000 --> 00:04:42,000
+Sorry, garble that up.
+
+51
+00:04:42,000 --> 00:04:45,000
+So X should be an A one and Y should be an A two.
+
+52
+00:04:45,000 --> 00:04:48,000
+If you can split W that way, then M should accept it.
+
+53
+00:04:48,000 --> 00:04:57,000
+So M has to make, figure out if there's some way to split the input so that the first machine accepts the first part, the second machine accepts the second part.
+
+54
+00:04:57,000 --> 00:05:12,000
+And the idea that we came up with for doing that was to take these two machines, build them in to a new machine M,
+
+55
+00:05:13,000 --> 00:05:23,000
+and then connect the accepting states for M to the start state, connect the accepting states for M one to the start state for M two,
+
+56
+00:05:23,000 --> 00:05:34,000
+because the idea would be that if M one has accepted an initial part, you want, then you want to pass control to M two to accept the rest.
+
+57
+00:05:34,000 --> 00:05:50,000
+But as we observed, that doesn't quite work because the first place to split W after you found an initial part that's accepted by M one may not be the right place because the remainder may not be accepted by M two.
+
+58
+00:05:50,000 --> 00:05:58,000
+You might have been better off waiting until you found another place that M one accepted later on in the string say over here.
+
+59
+00:05:58,000 --> 00:06:10,000
+And then by splitting it over there, then maybe you do get successfully find that the remainder is accepted by M two, whereas if you try to split it, you know, the first place, the remainder wouldn't have been accepted by M two.
+
+60
+00:06:10,000 --> 00:06:20,000
+So all you need to do, you know, M has to know is there some place to split the input so that, you know, you can get both parts accepted by the respective machines.
+
+61
+00:06:20,000 --> 00:06:26,000
+The problem is, is that M might need to know the future in order to know where to make the split.
+
+62
+00:06:26,000 --> 00:06:30,000
+And it doesn't have access to the future. So what do we do.
+
+63
+00:06:30,000 --> 00:06:43,000
+So what we're going to do is introduce a new concept that will allow us to basically get the effect of M one in the sort of being able to see the future.
+
+64
+00:06:43,000 --> 00:06:49,000
+And that new concept is going to be very important for us throughout the term. It's called non determinism.
+
+65
+00:06:49,000 --> 00:06:55,000
+And so we're going to introduce a new kind of finite automaton called a non deterministic finite automaton.
+
+66
+00:06:55,000 --> 00:07:03,000
+And first we'll look at that and then we'll see how that fits in with the previous deterministic finite automaton that we introduced last time.
+
+67
+00:07:03,000 --> 00:07:08,000
+So here's an example, but always good to start off with an example.
+
+68
+00:07:08,000 --> 00:07:18,000
+Here is a picture of a non deterministic finite automaton looks very similar at first glance to a to the former kind the deterministic finite automaton.
+
+69
+00:07:18,000 --> 00:07:23,000
+But if you look a little carefully you see that there are some key differences.
+
+70
+00:07:23,000 --> 00:07:28,000
+The most important difference is that
+
+71
+00:07:28,000 --> 00:07:32,000
+the in state q one, for example,
+
+72
+00:07:32,000 --> 00:07:44,000
+in the machines that we introduced last time, there had to be exactly one way to go on each possible input symbol so you knew how to you know how to follow along through the machine as it's computing.
+
+73
+00:07:44,000 --> 00:07:46,000
+Here there are two ways to go.
+
+74
+00:07:46,000 --> 00:07:51,000
+In q one you can either stay in q one or you can go to q two.
+
+75
+00:07:51,000 --> 00:07:56,000
+That's the essence of non determinism. There could be many ways to proceed.
+
+76
+00:07:56,000 --> 00:08:02,000
+And furthermore on q one, if you get a B, then there's nowhere to go.
+
+77
+00:08:02,000 --> 00:08:09,000
+So, um, that's also possible within non determinism there could be.
+
+78
+00:08:09,000 --> 00:08:13,000
+So let's let's just start looking at these features.
+
+79
+00:08:13,000 --> 00:08:25,000
+There are multiple paths forward, but multiple paths possible, you might be able to have one as we had before or many ways to go at each step or maybe zero ways to go at each step.
+
+80
+00:08:25,000 --> 00:08:32,000
+It's all legitimate for a non deterministic machine which doing a non deterministic computation.
+
+81
+00:08:32,000 --> 00:08:40,000
+Another difference if you look carefully is that we're allowing here the empty string to appear on a transition.
+
+82
+00:08:40,000 --> 00:08:52,000
+That's perhaps a little less essential to the spirit of non determinism, but it's going to turn out to be a convenience when we actually apply non determinism to build machines.
+
+83
+00:08:52,000 --> 00:08:56,000
+Let's see very shortly.
+
+84
+00:08:56,000 --> 00:09:01,000
+Now, if there are many different ways to go.
+
+85
+00:09:01,000 --> 00:09:05,000
+And some of those ways to go might have different outcomes.
+
+86
+00:09:05,000 --> 00:09:16,000
+You know, as we remember from before, we accepted the input if you end up in an accept state, and we rejected the input if you end up not in an accept state in a non accepting state then you reject.
+
+87
+00:09:16,000 --> 00:09:21,000
+But now there might be several different ways to go.
+
+88
+00:09:21,000 --> 00:09:27,000
+And we'll do an example in a minute, but there might be several different ways to go and they might disagree.
+
+89
+00:09:27,000 --> 00:09:31,000
+Some of them might accept other ones might reject. And so then what do you do.
+
+90
+00:09:31,000 --> 00:09:43,000
+Well, in that case, acceptance always overrules rejection. That's the essence of non determinism, the way we're the way we're setting it up.
+
+91
+00:09:43,000 --> 00:09:53,000
+You may ask why that is and you know, sort of the spirit of that will become clear and in due course, but right now just take it as a rule.
+
+92
+00:09:53,000 --> 00:09:58,000
+When we're having a non deterministic machine acceptance overrules rejection.
+
+93
+00:09:58,000 --> 00:10:07,000
+So as long as there is one accepting computer, one, one of the possible ways to go ends up at an accept. We say the whole thing is accepted.
+
+94
+00:10:07,000 --> 00:10:14,000
+The only way could possibly reject if all of the possible ways to go end up at rejection, end up at a non accept state.
+
+95
+00:10:14,000 --> 00:10:18,000
+So we'll see example of well, I think we're going to do an example right now. Yeah.
+
+96
+00:10:18,000 --> 00:10:26,000
+So we take for example, this machine and one now on an input AB.
+
+97
+00:10:26,000 --> 00:10:31,000
+And we're going to process the symbols one by one just like we did before.
+
+98
+00:10:31,000 --> 00:10:36,000
+But now to follow along, there might be several different ways to go.
+
+99
+00:10:36,000 --> 00:10:50,000
+So if we take the, the first symbol a, and we run the machine so the machine is starts at the start state as before.
+
+100
+00:10:50,000 --> 00:10:57,000
+But now when a comes in, and there might be two now there are two different ways to go so we're going to keep track of both of them.
+
+101
+00:10:57,000 --> 00:11:12,000
+If the machine reads an a, you can think of it as think of it as being in two states now simultaneously, it can be in state q1, and it can be in state q2. So those are two different possible places, it could be at this moment.
+
+102
+00:11:12,000 --> 00:11:24,000
+Okay, now, now we read the next symbol, the be, and from a be you take all of each of the places where the machine could be.
+
+103
+00:11:25,000 --> 00:11:37,000
+And you then apply reading a be the next symbol to each of those from each of those states where the machine could be in from the previous symbol.
+
+104
+00:11:37,000 --> 00:11:46,000
+So the machine could be in q1 and q2 after reading an a now we apply a be well q1 on a be goes nowhere.
+
+105
+00:11:47,000 --> 00:11:57,000
+So, you think of that branch, if you will, of the computation as just dying off, it has nowhere to go, it just vanishes.
+
+106
+00:11:57,000 --> 00:12:12,000
+However, when you are in the other possibility which was state q2 on a be does allow does have a place to go. So that the machine is now going to go from q2 to q3.
+
+107
+00:12:12,000 --> 00:12:28,000
+On that branch of the computation which reading on reading a be, and then it has coming out of q3, there are two symbols there's an a and an empty string symbol.
+
+108
+00:12:28,000 --> 00:12:34,000
+Now on an a machine would have to read an a in order to transition along that arrow.
+
+109
+00:12:34,000 --> 00:12:49,000
+But on when there's an empty symbol on the arrow, that means the machine can go along that arrow for free without even reading anything as long as it gets to q3, it can automatically jump to q4.
+
+110
+00:12:50,000 --> 00:12:55,000
+And so, once it has read a be and gone to q3.
+
+111
+00:12:55,000 --> 00:12:58,000
+Now,
+
+112
+00:12:58,000 --> 00:13:12,000
+it can either stay in q3, or it can re it can go along the empty transition and go to q4. So again, it is going to be a non deterministic step at this point.
+
+113
+00:13:12,000 --> 00:13:28,000
+The essence of having a empty transition is that there's going to be non determinism that's why we didn't introduce that for deterministic automata, because you don't have to transition along an empty string transition.
+
+114
+00:13:28,000 --> 00:13:38,000
+You can stay where you are, or you can go along the empty string transition without reading any input and go over to the next state, which in this case is q4.
+
+115
+00:13:38,000 --> 00:13:43,000
+We have to see where we are after reading an a we're in states q122.
+
+116
+00:13:43,000 --> 00:13:54,000
+But now we have to reading a be we're in states q3 and q4 as possibilities. And then we, and now we're at the end of the input, and we look and see what we got.
+
+117
+00:13:54,000 --> 00:14:05,000
+If any one of the states as possibilities that we are right now at the end of the string is an accept state, then we say overall the machine has accepted.
+
+118
+00:14:05,000 --> 00:14:13,000
+That corresponds to what we said over here before, except the input if some path leads to an accept.
+
+119
+00:14:13,000 --> 00:14:22,000
+So if any way of proceeding through these, you know, non deterministic choices will lead you to an accept, then you will say we want to accept the input.
+
+120
+00:14:22,000 --> 00:14:26,000
+Okay, so this input here is accepted.
+
+121
+00:14:26,000 --> 00:14:32,000
+Let's do another example. Suppose we have the input a a instead of a b.
+
+122
+00:14:32,000 --> 00:14:37,000
+You know, after the first day as before we're in states q122 as possibilities.
+
+123
+00:14:37,000 --> 00:14:39,000
+Now we read an a again.
+
+124
+00:14:39,000 --> 00:14:48,000
+Now the one that's on state q1 that possibility q1 possibility after reading an a it again branches to q122.
+
+125
+00:14:48,000 --> 00:14:58,000
+So when we know after reading the second a we're going to be in at least q122. Now how about the the state that had been, you know, on q2 on reading an a
+
+126
+00:14:58,000 --> 00:15:07,000
+the one from before after reading the first day you're in q2 now reading the second a there's nowhere to go. So that one just gets removed.
+
+127
+00:15:07,000 --> 00:15:15,000
+So after reading a a we remain in states q122 as possibilities.
+
+128
+00:15:15,000 --> 00:15:18,000
+Neither of those are accept states.
+
+129
+00:15:18,000 --> 00:15:24,000
+So therefore, on input a a the machine rejects.
+
+130
+00:15:24,000 --> 00:15:26,000
+Okay.
+
+131
+00:15:26,000 --> 00:15:30,000
+Let's just do a couple of more and then I'll ask you to do one.
+
+132
+00:15:30,000 --> 00:15:39,000
+So, we have a b a as an input let's see what happens then. So, we have a.
+
+133
+00:15:39,000 --> 00:15:43,000
+Remember after reading a b a b.
+
+134
+00:15:43,000 --> 00:15:52,000
+The machine is in the two states q3 q4 as possibilities that's what we had from from the first example.
+
+135
+00:15:52,000 --> 00:16:08,000
+So after reading a b we're in states q3 q4. Now we read another a the q the q4 on an a has nowhere to go effect has nowhere to go on any input so no matter what comes in after your in state q4 that branch dies.
+
+136
+00:16:08,000 --> 00:16:18,000
+But on q3, which is another one of the possibilities reading an a, it can follow along just transition because that's one of the labels on that transition is a.
+
+137
+00:16:18,000 --> 00:16:37,000
+The transition reading an a, which is the last symbol in the string. And so now after a b a, you are in only state q4 as a possibility, but that happens to be an accept state. So the machine accepts.
+
+138
+00:16:37,000 --> 00:16:42,000
+Okay, and now lastly, what happens, let's take our final examples.
+
+139
+00:16:42,000 --> 00:16:46,000
+What happens if we have a b b.
+
+140
+00:16:46,000 --> 00:17:01,000
+So, you know, as remember before, when we were after reading a b, that was the first example, we were in states q3 q4 as possibilities. Now we read a b will neither of those states have anywhere to go on a b.
+
+141
+00:17:01,000 --> 00:17:08,000
+So now all threads all branches of the computation die off.
+
+142
+00:17:08,000 --> 00:17:21,000
+And at this point, the machine is totally dead it has no no active possibilities left. So certainly it's going to reject this input, because none of the active states there are no active states are accepting states.
+
+143
+00:17:21,000 --> 00:17:33,000
+And in fact, if you looked at anything that came later, they would anything that extended the string a b b would also be rejected because once the machine had all all all possibilities have died off.
+
+144
+00:17:33,000 --> 00:17:40,000
+There's no way for them to come back to life on any extensions. So with that.
+
+145
+00:17:40,000 --> 00:17:54,000
+Oh, here's an important point before I am going to jump to a check in on you. But I think one thing that, you know, might be on your mind about this non determinism is how does how do we actually, what is that how does that correspond to reality.
+
+146
+00:17:54,000 --> 00:17:58,000
+Well, it doesn't.
+
+147
+00:17:58,000 --> 00:18:05,000
+We're not intending for non determinism as we're defining it to correspond to a physical device.
+
+148
+00:18:05,000 --> 00:18:18,000
+But nevertheless, as you'll see, it's a very mathematically useful concept of this non determinism, and it's going to be playing a big role throughout the subject as will as will experience it during the rest of the term.
+
+149
+00:18:18,000 --> 00:18:29,000
+With that, I'm going to have a little check in it's going to give I'm going to ask you to consider what happens on one of the inputs. So here we go. What does it do on input a a b.
+
+150
+00:18:29,000 --> 00:18:37,000
+So here's the machine you can look at it and I'm going to post it hopefully there's a poll here for me to give it to you.
+
+151
+00:18:37,000 --> 00:18:43,000
+So you can give me your input.
+
+152
+00:18:43,000 --> 00:18:53,000
+What does the machine do on input a a b.
+
+153
+00:18:53,000 --> 00:18:57,000
+Most of you have answered.
+
+154
+00:18:57,000 --> 00:19:01,000
+Again, you're not going to penalize for getting the wrong answer.
+
+155
+00:19:01,000 --> 00:19:07,000
+But hopefully, you'll get the right answer.
+
+156
+00:19:07,000 --> 00:19:12,000
+Anyway, let's just take a look here. So time is up.
+
+157
+00:19:12,000 --> 00:19:18,000
+Let's end the polling and share the results.
+
+158
+00:19:18,000 --> 00:19:26,000
+So the majority of you majority have gotten the correct answer, which is a machine does accept a a b.
+
+159
+00:19:26,000 --> 00:19:41,000
+Because you know when you have a so if you if you like I'll show you the path that corresponds to accepting you go a a b and then empty string.
+
+160
+00:19:41,000 --> 00:19:53,000
+And so that sequence of steps is one of the non deterministic possibilities that the machine can follow.
+
+161
+00:19:53,000 --> 00:20:01,000
+And that shows that the machine does accept the input a a b. You know you can think about it the way we did it before.
+
+162
+00:20:01,000 --> 00:20:13,000
+And also, you know, if you read an a it's in the two possibilities q1 q2, you read a second day again in the possibilities q1 q2. Now you read a be it's into possibilities q3 q4.
+
+163
+00:20:13,000 --> 00:20:26,000
+And that's it a a b. So now you read the be it's in possibly q3 q4 q4 is an accepting state that overrules the non accepting state, and so the machine accepts.
+
+164
+00:20:26,000 --> 00:20:45,000
+And you'll understand this. So if you didn't get it right. Go back and think about what way you slipped up. Okay, because this is, you know, the, you know, this is just getting work just getting warmed up here, it's going to get it's going to get a lot hard.
+
+165
+00:20:45,000 --> 00:20:49,000
+Okay, so stop sharing the results.
+
+166
+00:20:49,000 --> 00:20:52,000
+And so let's continue.
+
+167
+00:20:53,000 --> 00:21:03,000
+We just as we did last time we can formally define a fine, not deterministic finite automata. Here's the picture again.
+
+168
+00:21:03,000 --> 00:21:12,000
+Okay, so it looks a lot like the case we had before the deterministic finite automata or DFA as we'll call them.
+
+169
+00:21:12,000 --> 00:21:24,000
+It's a five tuple. So I've sort of written down little reminders for what those components of that five tuple are that list of five, five components.
+
+170
+00:21:24,000 --> 00:21:40,000
+So they're all the same as before states alphabet transition function start state and accepting states so that the formal definition looks definition looks exactly the same except the structure of the transition function.
+
+171
+00:21:40,000 --> 00:21:47,000
+So now, before, if you remember, you had a state and an input symbol, and you got back a state.
+
+172
+00:21:47,000 --> 00:22:01,000
+Now we have something more complicated looking. We have a state and an input symbol, but it, you know, it's instead of just Sigma, it's Sigma sub epsilon and that that's a shorthand for Sigma Union epsilon.
+
+173
+00:22:01,000 --> 00:22:12,000
+And that's a way my way of saying that you're allowed to have on your transition arrows, either an input symbol or an empty string.
+
+174
+00:22:12,000 --> 00:22:21,000
+So the transition function has to tell you what to do when you have empty string coming in as well. So that would be part of your table for the transition function.
+
+175
+00:22:21,000 --> 00:22:35,000
+Now, over here, what's going on over here. Well now, instead of just producing a single state, you know, when you've read for example in a on from q one, there's a whole set of possibilities.
+
+176
+00:22:35,000 --> 00:22:39,000
+So here, we have what's called the power set.
+
+177
+00:22:39,000 --> 00:22:56,000
+That's the set of subsets of the collection q. So here we're going to produce an entire subset of states, instead of just one state coming out, there might be a subset of possible states that you can go to.
+
+178
+00:22:56,000 --> 00:23:02,000
+So the power set of q is a set of subsets of q.
+
+179
+00:23:02,000 --> 00:23:07,000
+So that's what this notation means.
+
+180
+00:23:07,000 --> 00:23:24,000
+This is something that I'm hopefully presenting to you as a bit of a reminder you've seen this somewhere else before, but please make sure you understand the notation and going forward because we'll be doing less hand holding as we start moving forward.
+
+181
+00:23:24,000 --> 00:23:29,000
+Okay, so just let's take a look at the end one example here.
+
+182
+00:23:29,000 --> 00:23:41,000
+Just to illustrate the illustrate what's going on. When you're in state q one reading an a. Now you get a whole set of possibilities which in this case is q one and q two.
+
+183
+00:23:41,000 --> 00:23:46,000
+Whereas if you're reading a be what would be that set.
+
+184
+00:23:46,000 --> 00:23:54,000
+Coming out of q one what's the set of possible successor states. Well there are none. So it's the empty set.
+
+185
+00:23:54,000 --> 00:24:01,000
+This is hopefully your understanding the notation here. So now here's I think really important.
+
+186
+00:24:01,000 --> 00:24:12,000
+How do we understand not determinism intuitively speaking, and there are multiple different ways, which each has their value under different circumstances.
+
+187
+00:24:12,000 --> 00:24:27,000
+One way is thinking about non determinism as a kind of parallelism. So every time the machine has a non deterministic choice to make whether there's more than one outcome, you think of the machine as
+
+188
+00:24:27,000 --> 00:24:38,000
+branching forking new threads of the parallel computation at that stage where it makes entire copy of itself when there's a choice of possibilities.
+
+189
+00:24:38,000 --> 00:24:45,000
+And then each of those independently proceeds to read the rest of the input as separate threads of the computation.
+
+190
+00:24:45,000 --> 00:24:56,000
+So if you're familiar with parallel computing, this should be reasonably familiar to you. The only key thing to remember is that as this thing forks number of possibilities.
+
+191
+00:24:56,000 --> 00:25:09,000
+Acceptance rule is that if any one of those possibilities gets to an accept that the end of the input, it raises a flag and says accept and that overrules everybody else.
+
+192
+00:25:09,000 --> 00:25:13,000
+So acceptance dominates.
+
+193
+00:25:13,000 --> 00:25:24,000
+So another way of looking at it is the mathematical view where you can imagine and we're going to use all these so it's you really need to understand them all the mathematical view is
+
+194
+00:25:24,000 --> 00:25:30,000
+you can think of the computation as kind of a tree of possibilities.
+
+195
+00:25:30,000 --> 00:25:40,000
+So you've started off at the very beginning sort of at the root of the computation, which is that when it really begins, but every time there's a non deterministic branching that occurs.
+
+196
+00:25:40,000 --> 00:25:56,000
+The tree has that node of the tree has multiple children coming out of that node. And so the different threads of the computation correspond to different branches of that tree.
+
+197
+00:25:56,000 --> 00:26:01,000
+And now you're going to accept if any one of those branches leads to an accepting state.
+
+198
+00:26:01,000 --> 00:26:11,000
+We're obviously somewhat similar to what we had before, but it's I think it's a little bit of a different perspective on what not how how to think about non determinism.
+
+199
+00:26:11,000 --> 00:26:19,000
+And the last one is going to sound a little weird. But actually I think for people who are in the business.
+
+200
+00:26:19,000 --> 00:26:21,000
+It's the one they use the most.
+
+201
+00:26:21,000 --> 00:26:27,000
+And that's the magical way of thinking about non determinism.
+
+202
+00:26:28,000 --> 00:26:35,000
+And that is when the machine has non deterministic choices to make.
+
+203
+00:26:35,000 --> 00:26:48,000
+You think of the machine as magically guessing the correct one at every stage and the correct one being the one that will eventually lead it to accept.
+
+204
+00:26:48,000 --> 00:26:55,000
+Okay, so you can think of the machine as guessing, which is the right way to go.
+
+205
+00:26:55,000 --> 00:27:04,000
+If there is some way right way to go it always guesses right of course if the machine ends up rejecting because there is no right way to go then it doesn't matter there is no good guess.
+
+206
+00:27:04,000 --> 00:27:10,000
+But if there is some good guess will think of the machine is taking that good guess and going that way.
+
+207
+00:27:10,000 --> 00:27:11,000
+Okay.
+
+208
+00:27:11,000 --> 00:27:17,000
+So, um, now here is very important thing. We introduced this new model.
+
+209
+00:27:18,000 --> 00:27:23,000
+The, the non deterministic fundamental time on top of time NFA.
+
+210
+00:27:23,000 --> 00:27:28,000
+It turns out to be, even though it looks more powerful because has this non determinism.
+
+211
+00:27:28,000 --> 00:27:44,000
+It isn't any more powerful it can do exactly the same class of languages, the regular languages, and we'll shoot to show that with the serum here that if an NFI and if an NFA recognizes a, then a is regular.
+
+212
+00:27:45,000 --> 00:27:53,000
+So, we'll prove that by showing how to convert an NFA to an equivalent DFA, which does the same language.
+
+213
+00:27:53,000 --> 00:28:07,000
+So we can take an NFA that has a non determinism and find another DFA which doesn't have non determinism but does the same language. It accepts exactly the same strength, even though it lacks that non deterministic capability.
+
+214
+00:28:07,000 --> 00:28:14,000
+And it can be extremely useful, by the way, and for example, in showing that closure under concatenation.
+
+215
+00:28:14,000 --> 00:28:29,000
+Okay, so, you know, in this presentation here, I'm going to ignore the epsilon transitions, because once you get the idea for how to do this you could figure out how to how to incorporate them and they just make things a little more complicated.
+
+216
+00:28:29,000 --> 00:28:38,000
+So let's just focus on the key aspect of non determinism, which is that the machine could have several ways to go at any point in time.
+
+217
+00:28:38,000 --> 00:28:42,000
+There could be several next states on an input.
+
+218
+00:28:42,000 --> 00:28:56,000
+Okay, now the idea for the construction, so we're going to take, we're going to start with a non deterministic machine M, and we're going to build a deterministic machine M prime, which does exactly the same thing.
+
+219
+00:28:56,000 --> 00:29:03,000
+And the way M prime works is it's going to do what you would do if you were simulating M.
+
+220
+00:29:03,000 --> 00:29:08,000
+What would you do? This is what we were doing as I was explaining it to you.
+
+221
+00:29:08,000 --> 00:29:17,000
+If you were simulating M, every time you get an input symbol, you just keep track of what is the set of possible states at that point in time.
+
+222
+00:29:17,000 --> 00:29:35,000
+And that's what the DFA is going to do. It's going to have to keep track of which possible set of states the NFA could be in at the point on that input where we are right now.
+
+223
+00:29:35,000 --> 00:29:50,000
+And then, as you get the next symbol, the DFA is going to have to update things to keep track of the next set of states the NFA could be in at this point, just like you would do.
+
+224
+00:29:50,000 --> 00:29:59,000
+And so here's a kind of a picture, and how do we implement that?
+
+225
+00:29:59,000 --> 00:30:13,000
+So here's the NFA that we're starting with M, and we're going to make here the DFA, but in order to remember which set of states that DFA could be in at a given point.
+
+226
+00:30:13,000 --> 00:30:26,000
+Maybe it's the set of states that M could be in, which set of states the NFA could be in at a given time, so maybe M the NFA could be in at some point, state Q3 and Q7.
+
+227
+00:30:26,000 --> 00:30:35,000
+The way the DFA keeps track of that, it's going to have a state for every possible subset of states of the NFA.
+
+228
+00:30:35,000 --> 00:30:46,000
+That's how it remembers which subset of states the NFA is in. That's the way DFA's work. They have a separate state for each possibility that they need to keep track of.
+
+229
+00:30:46,000 --> 00:30:54,000
+And the possibilities here are the different subsets of states that the NFA could be in at a given point.
+
+230
+00:30:54,000 --> 00:31:09,000
+So corresponding to this subset, to these two possibilities Q3, Q7, the DFA is going to have a state with the subset Q3, Q7, and it's going to, for every possible subset here, there's going to be a different state of M prime.
+
+231
+00:31:09,000 --> 00:31:13,000
+So M prime is going to be bigger.
+
+232
+00:31:13,000 --> 00:31:30,000
+Okay, so quickly the construction of M, the states of M prime now, Q prime, are going to be the power set, the set of subsets of states from the original machine M.
+
+233
+00:31:30,000 --> 00:31:46,000
+And the, now we have to look at how the transition function of the DFA, the primed machines are the DFA's, the DFA machine. So these are the prime, the deterministic components.
+
+234
+00:31:47,000 --> 00:32:06,000
+So delta prime, when it has a subset that, you know, something like this has one of its states which corresponds to a subset of states of M and a reason input symbol, you just have to do the updating the way you would naturally do.
+
+235
+00:32:06,000 --> 00:32:21,000
+You're going to look at every state in R, look at where that can go under A, so there's a bunch of sets there, and look at all the possible states that could be in one of those subsets, and that's the set of states that you could be in.
+
+236
+00:32:21,000 --> 00:32:26,000
+That's going to be the new set of states and that's going to be the new state of M prime.
+
+237
+00:32:26,000 --> 00:32:45,000
+Okay, so it's going to be the subset corresponding to all of the states that could be in when you apply the transition function of the nondeterministic machine to one of the states in the subset of states that the nondeterministic machine could be in.
+
+238
+00:32:45,000 --> 00:32:55,000
+Okay, it's a little bit of a mouthful, you know, you could, I suggest you look at this if you didn't quite get it after the fact. Good to understand.
+
+239
+00:32:55,000 --> 00:33:11,000
+The starting state for the NFA, not for the DFA, I'm sorry, is going to be which subset now we're going to start off with. It's going to be the subset corresponding to just the start state of M,
+
+240
+00:33:11,000 --> 00:33:24,000
+and the accepting states are going to be of the deterministic machine are going to be all of the subsets that have at least one accepting state from the NFA.
+
+241
+00:33:24,000 --> 00:33:34,000
+Okay, so I hope you got that because I'm going to be going to be another little check in here, which is I'm going to ask you how big is M prime how many states is M prime have.
+
+242
+00:33:34,000 --> 00:33:41,000
+I told you what those states are. So just go think about that.
+
+243
+00:33:41,000 --> 00:33:48,000
+Let's check in to if M has n states, how many states is M prime have by this construction.
+
+244
+00:33:48,000 --> 00:33:59,000
+Okay, so let's launch the next poll.
+
+245
+00:33:59,000 --> 00:34:02,000
+Okay, five seconds.
+
+246
+00:34:02,000 --> 00:34:07,000
+I think we're almost done here. Good.
+
+247
+00:34:07,000 --> 00:34:10,000
+Share results.
+
+248
+00:34:10,000 --> 00:34:15,000
+I know if sharing results is a good thing. I'm not trying to make you, if you didn't get the right answer.
+
+249
+00:34:15,000 --> 00:34:24,000
+Because most of the people did get the right answer. We didn't get the right answer trying to make you feel bad, but I do think you should. It's a little bit of suggestion, you know that you need to review some basic concepts.
+
+250
+00:34:24,000 --> 00:34:33,000
+So the basic concept here is if you have a collection, you have a set of states, how many subsets are there, and the number of subsets is going to be exponential.
+
+251
+00:34:33,000 --> 00:34:40,000
+So if you have a collection of n elements, the number of subsets of those n elements is two to the end.
+
+252
+00:34:40,000 --> 00:34:48,000
+That's the fact we're using here. And that's why M prime has two to the end states if M had n states.
+
+253
+00:34:49,000 --> 00:34:54,000
+And that's, you know, you should make sure you understand why that is.
+
+254
+00:34:54,000 --> 00:34:59,000
+Alright, so with that,
+
+255
+00:34:59,000 --> 00:35:02,000
+as requested, we're going to have a little break.
+
+256
+00:35:02,000 --> 00:35:08,000
+And that break is going to last us exactly
+
+257
+00:35:08,000 --> 00:35:15,000
+five minutes.
+
+258
+00:35:15,000 --> 00:35:25,000
+So we will return in five minutes. I'm going to be prompt. I give you a little timer here so please.
+
+259
+00:35:25,000 --> 00:35:35,000
+I'm going to begin it right at right when this is over.
+
+260
+00:35:35,000 --> 00:35:37,000
+Okay.
+
+261
+00:35:37,000 --> 00:35:53,000
+Almost almost ready.
+
+262
+00:35:53,000 --> 00:35:58,000
+I hope you're all refreshed and ready for the second half.
+
+263
+00:35:58,000 --> 00:36:10,000
+Now, now that we have non determinism, we're going to use that as a tool to prove the closure properties that we were aiming for, for starting from last lecture.
+
+264
+00:36:10,000 --> 00:36:12,000
+Okay.
+
+265
+00:36:12,000 --> 00:36:17,000
+So remember, we let's look at closure under union.
+
+266
+00:36:17,000 --> 00:36:36,000
+Now we already did that. But I'm going to do it again. But this time using non determinism and you'll see how powerful non determinism, non determinism, non determinism is because it's going to allow us to do it kind of almost with no effort.
+
+267
+00:36:36,000 --> 00:36:39,000
+We'll start off the way we did before.
+
+268
+00:36:39,000 --> 00:36:48,000
+I'm going to start off with two DFAs, but actually these could be NFAs even.
+
+269
+00:36:48,000 --> 00:37:00,000
+But let's say we started with the two DFAs for the two languages a one and a two, and we're going to construct the NFA record. Now we're going to construct an NFA recognizing the union.
+
+270
+00:37:00,000 --> 00:37:10,000
+And that's good enough because we already know that we can convert NFAs to DFAs. And therefore they do, they do regular languages too.
+
+271
+00:37:10,000 --> 00:37:17,000
+Okay. So now here are the two DFAs that do the languages a one and a two.
+
+272
+00:37:17,000 --> 00:37:31,000
+And what I'm going to do is I'm going to put them together into a bag of states, which is going to be M, the NFA, that's going to do the union language.
+
+273
+00:37:31,000 --> 00:37:41,000
+So remember what does, what does M supposed to do M is supposed to accept its input, if either M one or M to accept. So how is it going to do that.
+
+274
+00:37:41,000 --> 00:37:56,000
+What it's going to do, we're going to add a new state to M, which is going to branch under epsilon transitions and now you can start to see how useful these epsilon transitions are going to be for us going to branch under epsilon transitions to the two original
+
+275
+00:37:56,000 --> 00:37:59,000
+start states of M one and M two. And we're done.
+
+276
+00:37:59,000 --> 00:38:02,000
+Why?
+
+277
+00:38:02,000 --> 00:38:09,000
+Well now, non deterministically as we get an input w coming in to M.
+
+278
+00:38:09,000 --> 00:38:20,000
+And at the very beginning, even just right after it gets going, the very first thing that happens is it's going to branch to M one and also branch to M two non deterministically as two possibilities.
+
+279
+00:38:20,000 --> 00:38:29,000
+And then inside M one and M two, it's going to actually start reading the input, and each one is going to be now following along.
+
+280
+00:38:29,000 --> 00:38:38,000
+And so kind of originally, the, the states corresponding to reading those input symbols.
+
+281
+00:38:38,000 --> 00:38:50,000
+And am, as a combination of M one and M two is going to have a possibility for for one state and M one and once one state and M two.
+
+282
+00:38:50,000 --> 00:39:10,000
+It's going to have those combined into one into one package. And now if either at the end of the input, if either of these end up at an accepting state, then M is going to accept as a non deterministic finite automaton because
+
+283
+00:39:10,000 --> 00:39:19,000
+that's how non determinism works. You accept if either if any one of the branches ended up accepting, which is just what you need for non determine for union.
+
+284
+00:39:19,000 --> 00:39:32,000
+So we're doing union one either one of these two would be accepting and then the non determinism just is built conveniently to allow us to do the union almost, you know, for free.
+
+285
+00:39:32,000 --> 00:39:38,000
+So you can again thinking about non determinism as terms of parallelism.
+
+286
+00:39:38,000 --> 00:39:46,000
+You could think of it, the non deterministic machine is running in parallel M one and M two on the input.
+
+287
+00:39:46,000 --> 00:39:55,000
+And if either one of them ends up accepting and will accept, or you can think about it in terms of that guessing that I referred to before.
+
+288
+00:39:56,000 --> 00:40:10,000
+Which means that as M is getting it when it's just about to read these the first symbols of its input, it guesses, whether that's going to be an input accepted by M one or an input accepted by M two.
+
+289
+00:40:10,000 --> 00:40:20,000
+Again, the magic of non determinism is that it always guesses right. So that input happens to be some an input that's going to be wreck, going to be accepted by M two.
+
+290
+00:40:20,000 --> 00:40:27,000
+And is going to guess that M two is the right way to follow and it's going to go in the M two direction.
+
+291
+00:40:27,000 --> 00:40:32,000
+Because non determinism, the magic is, you always guess right.
+
+292
+00:40:32,000 --> 00:40:37,000
+Wish that was true in real life would make exams a lot easier.
+
+293
+00:40:37,000 --> 00:40:44,000
+Anyway, so now let's see how we can use that to do closure under concatenation.
+
+294
+00:40:44,000 --> 00:40:53,000
+Okay, so now we're going to actually have a picture very similar to the one we had originally, but now using non determinism we can make a work.
+
+295
+00:40:53,000 --> 00:40:59,000
+So here we have the two machines doing the two languages a one and a two.
+
+296
+00:40:59,000 --> 00:41:06,000
+And we're going to combine them into one bigger machine and as shown.
+
+297
+00:41:06,000 --> 00:41:24,000
+Remember, what M is supposed to do is accept its input. If there's some way of splitting that input, such that the first half is accepted by the M one and the second part is accepted by M two way we're going to get that effect is by
+
+298
+00:41:24,000 --> 00:41:39,000
+putting in a transit empty empty transitions epsilon trend transitions going from the starts of the accept states of M one to the start state of M two.
+
+299
+00:41:40,000 --> 00:41:45,000
+So these were the original accepting states of M one.
+
+300
+00:41:45,000 --> 00:42:04,000
+And now they're going to be declassified as accepting states, but they're going to have new transitions empty transitions attached to them, which allow them to branch to M two without reading any input.
+
+301
+00:42:04,000 --> 00:42:08,000
+So intuitively speaking, this is going to do the right thing.
+
+302
+00:42:08,000 --> 00:42:23,000
+Because once M one has accepted some part of W, then you can non deterministically branch to M two.
+
+303
+00:42:24,000 --> 00:42:28,000
+And you're going to be start processing inside M two.
+
+304
+00:42:28,000 --> 00:42:43,000
+And the point is is I kind of jumped ahead of myself is that the reason why it fixes the problem we had before is that the epsilon transitions are don't machine does not have to take them.
+
+305
+00:42:43,000 --> 00:42:56,000
+It can stay where it is as one non deterministic option, or it can move along the epsilon transition without reading any input as another non deterministic option.
+
+306
+00:42:56,000 --> 00:43:13,000
+So it's using this non determinism now to both stay in M one to continue reading more of the input and to jump into M two to start processing what might be the second half or the second part of the input, which M two accepts.
+
+307
+00:43:13,000 --> 00:43:21,000
+And you can think of it in terms of the guessing is that the machine is guessing where to make that split.
+
+308
+00:43:21,000 --> 00:43:36,000
+Once it found an initial part that's accepted by M one, it guesses that this is the right split point, and that passes to M two, but there might be other guesses that it could make, you know, corresponding to other possibilities.
+
+309
+00:43:37,000 --> 00:43:39,000
+And so,
+
+310
+00:43:39,000 --> 00:44:01,000
+with non determinism it always guesses right if there is some way to split the string into two parts accepted by M one and M two, the machine will make that good guess and then M one will accept the first part and M two will accept us with the second part, and we'll get am accepting that whole string
+
+311
+00:44:01,000 --> 00:44:10,000
+together. And so that is the solution to our puzzle for how do we do closure under concatenation.
+
+312
+00:44:10,000 --> 00:44:24,000
+Okay, I hope that came through because this is, this is, you know, we're just getting going with non determinism we're going to be using non determinism a lot and you, it's going to, you're going to need to get very comfortable with it.
+
+313
+00:44:24,000 --> 00:44:26,000
+Okay.
+
+314
+00:44:26,000 --> 00:44:29,000
+Now let's do closure under star.
+
+315
+00:44:29,000 --> 00:44:34,000
+And closure under star works very similarly.
+
+316
+00:44:34,000 --> 00:44:48,000
+But now we're just going to have a single language of a is regular so was a star so they're not a pair of languages because a star is a unary operation, applying to just a single language.
+
+317
+00:44:48,000 --> 00:45:02,000
+So we have a DFA recognizing a, in order to show that a star is regular, we have to construct a machine that recognizes a star and machine we're going to construct is as before, and then an NFA.
+
+318
+00:45:02,000 --> 00:45:16,000
+Okay, so here is M, the DFA for a, and we're going to build an NFA M prime that recognizes a star.
+
+319
+00:45:16,000 --> 00:45:22,000
+And let's think now, what does it mean to recognize a star.
+
+320
+00:45:22,000 --> 00:45:31,000
+So when should m, you know, if I'm going to give you an input, when is it in the star language, what does m prime have to do.
+
+321
+00:45:31,000 --> 00:45:39,000
+Remember what star is star means you can take as many copies of you lot as you like of strings in the original language and that's in the star language.
+
+322
+00:45:39,000 --> 00:45:49,000
+So to determine if something's in the star language, you have to see, can I break it up into pieces, which are all in the original language.
+
+323
+00:45:49,000 --> 00:46:06,000
+So, so you want to see, can I take my input w and cut it up into a bunch of pieces for in this case, where each of those pieces are members of a the members of the original language.
+
+324
+00:46:06,000 --> 00:46:10,000
+So that's what that's what m prime job is.
+
+325
+00:46:10,000 --> 00:46:18,000
+It has its input and wants to know, can I cut that input up into pieces, each of which are accepted by the original machine.
+
+326
+00:46:18,000 --> 00:46:19,000
+M.
+
+327
+00:46:19,000 --> 00:46:21,000
+That's what m prime does.
+
+328
+00:46:21,000 --> 00:46:36,000
+And if you think about it, you know, a little bit, really what's happening is that as soon as am so you know m prime is going to be simulating and that's why I like to think about this as having M inside.
+
+329
+00:46:36,000 --> 00:46:44,000
+So, you know, you're going to run if you were going to be doing this yourself, you're going to take w you're going to run it for a while you'll see, Oh, m is accepted.
+
+330
+00:46:44,000 --> 00:46:51,000
+Now I have to start m over again to see if it accepts on the next segment.
+
+331
+00:46:51,000 --> 00:47:03,000
+So every time m accepts, you're going to restart m to see if it accepts another another segment and so you by doing that you're going to be cutting w up into different segments, which are each of which is accepted by m.
+
+332
+00:47:03,000 --> 00:47:14,000
+Of course, it's never totally clear whether you should, for any given segment you should cut it there or we should wait a little longer and find another place a later place to cut.
+
+333
+00:47:14,000 --> 00:47:25,000
+But that's exactly the same problem that we had before with concatenation, and we saw that using non determinism and we're going to solve it again using non determinism.
+
+334
+00:47:25,000 --> 00:47:36,000
+So, the way we're going to get that effect of starting the machine over again once once it's accepted is by adding in
+
+335
+00:47:36,000 --> 00:47:48,000
+epsilon transitions that go from the start states back to the from the accept state back to the start state.
+
+336
+00:47:48,000 --> 00:48:07,000
+Now, every time m has accepted, it has an option not a not a requirement but has an option, it can either stay continuing to process, or it could restart making a cut at that point, and trying to see if there's yet a different a second
+
+337
+00:48:07,000 --> 00:48:12,000
+another segment of the input that's going to be that it's going to accept.
+
+338
+00:48:12,000 --> 00:48:17,000
+This is basically the whole thing with one little
+
+339
+00:48:17,000 --> 00:48:25,000
+problem that we need to deal with, and that is
+
+340
+00:48:25,000 --> 00:48:31,000
+we need to make sure that m prime
+
+341
+00:48:31,000 --> 00:48:41,000
+accepts the empty string, because remember the empty string is always a member of the starred language.
+
+342
+00:48:41,000 --> 00:48:57,000
+And as it's written right now, we're going to be requiring there to be at least one copy of one at least one segment, we're not taking into account the possibility of no segments, which is the empty string.
+
+343
+00:48:57,000 --> 00:49:03,000
+And the way we're going to get that is well mean one thing.
+
+344
+00:49:04,000 --> 00:49:19,000
+So, you know, we're missing the empty string right now. So how do we fix it basically, you know, we're just going to take the construction we have, you know, on on the screen, and we're going to adjust it to to add in the empty string because it's possibly
+
+345
+00:49:19,000 --> 00:49:24,000
+missing. One way to do that, which is tempting, but
+
+346
+00:49:24,000 --> 00:49:28,000
+wrong is to
+
+347
+00:49:28,000 --> 00:49:37,000
+make the start state of m an accepting state for m prime. So we could have we could have made this an accepting state to.
+
+348
+00:49:37,000 --> 00:49:42,000
+And now m prime is also going to accept the empty string. That's the good news.
+
+349
+00:49:42,000 --> 00:49:47,000
+The problem is that
+
+350
+00:49:47,000 --> 00:49:56,000
+the start state might be playing some other role in m besides just being the start there might be times when m comes back to the start state.
+
+351
+00:49:56,000 --> 00:50:07,000
+You know, later on, and if we make the start state the accept an accept state, it's going to start suddenly start accepting a bunch of other things to which might not be intended.
+
+352
+00:50:07,000 --> 00:50:25,000
+So it's a bad idea to make the start state and accept state. Instead, we'll take the simple solution alternative of adding a new start state, which will never be returned to under any circumstances and make that a new start and accept
+
+353
+00:50:25,000 --> 00:50:38,000
+state as well. So here we'll have to make this additional modification. So as I'm saying, this is what we need to do. And we will do that is by adding a new start state, which is also an accept state to make sure it accepts the empty string.
+
+354
+00:50:38,000 --> 00:50:42,000
+And then that also can branch
+
+355
+00:50:42,000 --> 00:50:46,000
+to start off m as before.
+
+356
+00:50:46,000 --> 00:50:57,000
+If the string that's input is not the empty string. And so then m prime is actually going to have to do some work to see if it can be cut up as it was going as it was doing before.
+
+357
+00:50:57,000 --> 00:51:07,000
+So that's the proof of closure under star. I'm not going to do it anything beyond what I've just described these proofs by picture are convincing enough, I hope.
+
+358
+00:51:07,000 --> 00:51:17,000
+And if not, you know, you should they are explained in somewhat more detail, somewhat more formally in the textbook, but for the lecture, this is where I'm going to stop with these these two arguments.
+
+359
+00:51:17,000 --> 00:51:24,000
+And so now, oh yeah, one quick check in on this.
+
+360
+00:51:24,000 --> 00:51:31,000
+So if m has n states, how many states is m prime have by this construction.
+
+361
+00:51:31,000 --> 00:51:41,000
+So let's do really these are, I'm not intended to be very hard, more just to keep you awake.
+
+362
+00:51:41,000 --> 00:51:49,000
+So how many states does m prime have.
+
+363
+00:51:49,000 --> 00:51:51,000
+Okay.
+
+364
+00:51:51,000 --> 00:51:55,000
+Maybe a little too easy even for a check in.
+
+365
+00:51:55,000 --> 00:51:58,000
+Yeah, everybody's getting this one.
+
+366
+00:51:58,000 --> 00:52:01,000
+Because all you did was add we added one new state.
+
+367
+00:52:01,000 --> 00:52:11,000
+So the answer is as you have, I think should pretty much everybody is observing that it's just the, it's, it's number B.
+
+368
+00:52:11,000 --> 00:52:15,000
+So I'm going to end the polling. I'm going to share the results.
+
+369
+00:52:15,000 --> 00:52:22,000
+And everybody got that one. And so let's continue on.
+
+370
+00:52:23,000 --> 00:52:42,000
+And so the very last thing we're going to do today and show you how to convert regular expressions to NFAs, thereby showing that every language that you can describe with a regular expression is a regular language.
+
+371
+00:52:42,000 --> 00:52:52,000
+On Tuesday, we'll show how to do the conversion in the other direction and show thereby showing that these two methods of describing languages are equivalent to one another.
+
+372
+00:52:52,000 --> 00:53:03,000
+So here's our theorem. If ours is a regular expression and a is the language is a set of strings that like that regular expression describes, then a is regular.
+
+373
+00:53:03,000 --> 00:53:06,000
+Okay.
+
+374
+00:53:06,000 --> 00:53:11,000
+So we're going to show how to convert.
+
+375
+00:53:11,000 --> 00:53:17,000
+The strategy is to convert our to an equivalent NFAM.
+
+376
+00:53:17,000 --> 00:53:31,000
+And so we have to think about remember these regular expressions that we introduced last time. These are these expressions that look like, you know, a B union B star, something like that.
+
+377
+00:53:31,000 --> 00:53:41,000
+So built up out of the regular operations from from the from the primitive regular expressions that don't have any operations that we're calling atomic.
+
+378
+00:53:41,000 --> 00:53:54,000
+So if ours an atomic regular expression, it just looks like either just a single symbol or an empty string symbol or a an empty language symbol.
+
+379
+00:53:54,000 --> 00:54:01,000
+Or R can be a composite regular expression.
+
+380
+00:54:01,000 --> 00:54:03,000
+Whoops.
+
+381
+00:54:03,000 --> 00:54:07,000
+We're having a little.
+
+382
+00:54:07,000 --> 00:54:18,000
+Yeah, so, so we have two possibilities here are as either atomic or composite. And so let's look at what the equivalent expression is in each case.
+
+383
+00:54:18,000 --> 00:54:27,000
+So if R is just the single letter regular expression, that's a totally literally legitimate regular expression just the regular expression one.
+
+384
+00:54:27,000 --> 00:54:32,000
+So that just describes the language of the string one.
+
+385
+00:54:32,000 --> 00:54:40,000
+So we have to make a an NFA, which accepts, which recognizes just that language accepts only the string one.
+
+386
+00:54:40,000 --> 00:54:52,000
+So it's a very simple NFA, it just starts in the start state. And on that single symbol, it branches to an accept state, and there were no other transitions allowed.
+
+387
+00:54:52,000 --> 00:55:01,000
+So if you get anything else coming in, besides that one that that string which is just that one symbol, the NFA is going to reject it.
+
+388
+00:55:01,000 --> 00:55:13,000
+And if it goes, if it's too long, if, if, you know, if it gets a coming in, well, there's no way to go on from this accepting state on an a so the machine is just going to die.
+
+389
+00:55:13,000 --> 00:55:18,000
+It has to be in an accept state at the end of the input.
+
+390
+00:55:18,000 --> 00:55:27,000
+How about a, you know, why don't you think for yourself for a minute, how do we make an NFA which accepts only the empty string and no other strings.
+
+391
+00:55:27,000 --> 00:55:32,000
+There's just one state with an NFA, just this one here.
+
+392
+00:55:32,000 --> 00:55:42,000
+The machine is going to start off in the start state which is also immediately an accept state so it accepts the empty string. But if anything else comes in there's nowhere to go in the machine dots.
+
+393
+00:55:42,000 --> 00:55:49,000
+So this machine accepts just the empty string or its language is the language with one element the empty string.
+
+394
+00:55:49,000 --> 00:55:59,000
+How about the empty language. Well, here's a here's an NFA which has no accepting state so it can't be accepting anything.
+
+395
+00:55:59,000 --> 00:56:04,000
+Now, if we have a composite regular expression.
+
+396
+00:56:04,000 --> 00:56:08,000
+We're already finished, because we showed how to build up.
+
+397
+00:56:08,000 --> 00:56:36,000
+We showed constructions, which give us closure under union concatenation and star, and those constructions are going to enable us to build up the NFAs that do the language of these more complex regular expressions built up out of the NFAs that do the individual parts.
+
+398
+00:56:36,000 --> 00:56:51,000
+So if we already have NFAs that do R1 and R2, then the closure under union construction gives us an NFA that does R1 union R2 as a language.
+
+399
+00:56:51,000 --> 00:57:07,000
+So I'm going to do, I hope that's clear but I'm going to do an example which I'll hopefully illustrate it and it's going to show you basically what I'm giving you is an automatic procedure for converting a regular expression into an equivalent NFA.
+
+400
+00:57:07,000 --> 00:57:23,000
+So let's just see if for the that that procedure in opera in action, which is really just following this recipe that I described for you. So here is a regular expression a union AB star.
+
+401
+00:57:23,000 --> 00:57:28,000
+So this is a regular expression. It's some language, whatever it is, I don't care.
+
+402
+00:57:28,000 --> 00:57:41,000
+But I want to make an NFA which recognizes that same language. And the way I'm going to do that is first build NFA for the components.
+
+403
+00:57:41,000 --> 00:57:51,000
+The sub expressions of this regular expression and then combine them using our closure constructions to be
+
+404
+00:57:51,000 --> 00:57:59,000
+to be NFAs for larger and larger sub expressions until I get the NFA. That's the equivalent of the entire expression.
+
+405
+00:57:59,000 --> 00:58:09,000
+So let's just see how that goes. So the very most primitive parts of the smallest sub expressions here are just the sub expressions for a and for B.
+
+406
+00:58:09,000 --> 00:58:17,000
+So here's the one for it just just for a. So this is the NFA which
+
+407
+00:58:17,000 --> 00:58:21,000
+recognizes the language which is just the one string a.
+
+408
+00:58:21,000 --> 00:58:26,000
+Here's the NFA for just whose language is just the one string B.
+
+409
+00:58:26,000 --> 00:58:34,000
+And now I want an NFA which is which accepts only the string AB.
+
+410
+00:58:34,000 --> 00:58:45,000
+Now, of course, you could just do that by hand yourself. It's simple enough. But what I'm arguing is that we can do this automatically using the closure construction for
+
+411
+00:58:45,000 --> 00:58:53,000
+concatenation because really there's a hidden concatenation symbol. This is the A concatenate B.
+
+412
+00:58:53,000 --> 00:59:02,000
+So now for AB, I'm going to take the thing from A and the part from B.
+
+413
+00:59:02,000 --> 00:59:11,000
+So these two things that I had from before and use the concatenation construction to combine them.
+
+414
+00:59:11,000 --> 00:59:21,000
+You see that. So now I have automatically a an NFA which does the language whose string is just AB the just the AB string.
+
+415
+00:59:21,000 --> 00:59:29,000
+And it's not the simplest NFA you can make a simpler one. But the virtue of this one is that I got it automatically
+
+416
+00:59:29,000 --> 00:59:39,000
+just by following the closure construction. So now I'm going to do a more complex one just the inside here a union AB.
+
+417
+00:59:40,000 --> 00:59:47,000
+So what the way I'm going to build that is from the two parts the A part and the AB part, you know, the A part and the AB part.
+
+418
+00:59:47,000 --> 00:59:59,000
+So here's the A part. Here's the AB part AB part I've already got those from before it's really kind of approved by induction here but you know I think it's simple enough we don't have to use that language.
+
+419
+00:59:59,000 --> 01:00:15,000
+So we have, you know, the A part the AB part, and now we are going to apply the the closure under union construction to combine those into one machine and remember how that worked.
+
+420
+01:00:15,000 --> 01:00:20,000
+We had a new symbol here which branches under empty string to the previous.
+
+421
+01:00:20,000 --> 01:00:31,000
+I'm adding a new start state which branches to the original start states under empty empty transition. And now this is a an NFA for this language a union AB.
+
+422
+01:00:31,000 --> 01:00:38,000
+And lastly now we're one step away from getting the star of this and how are we going to do that.
+
+423
+01:00:38,000 --> 01:00:45,000
+We're going to take this thing here and apply the construction for the star closure.
+
+424
+01:00:45,000 --> 01:00:57,000
+And that's going to be an NFA which does a union AB star which is what we wanted in the first place. So, first we're going to bring that one down with because we've already built that one.
+
+425
+01:00:57,000 --> 01:01:03,000
+And now remember how we built the closure under star.
+
+426
+01:01:03,000 --> 01:01:15,000
+We made this the accepting states return back to the the start state, and we added a new start state to make sure we got the empty string in there that transition to the original star state under epsilon.
+
+427
+01:01:15,000 --> 01:01:23,000
+Okay, so that's all I wanted to say for today's lecture. Let's do a quick review.
+
+428
+01:01:23,000 --> 01:01:32,000
+Very important concept non determinism and and not deterministic finite automata. We prove their equivalent in power.
+
+429
+01:01:32,000 --> 01:01:40,000
+Showed the class of regular languages closed under concatenation and star. We show it had to do conversion of regular expressions to NFAs.
+
+430
+01:01:40,000 --> 01:01:48,000
+So, I think that is it for today's lecture and
+
+431
+01:01:48,000 --> 01:01:51,000
+thank you both for being here.
+
+432
+01:01:51,000 --> 01:01:57,000
+I mean, I'll try to answer a few of these.
+
+433
+01:01:57,000 --> 01:02:03,000
+Why does concatenation have order. Well, because it's an ordered construction.
+
+434
+01:02:03,000 --> 01:02:11,000
+Is there a simple way to prove closure under concatenation without using non determinism. No.
+
+435
+01:02:11,000 --> 01:02:17,000
+Why are the empty strings at the accept state can't be at any state.
+
+436
+01:02:17,000 --> 01:02:25,000
+I don't know if star may copies of any part of the input. No, it's only you have to, you have to think about what's going on.
+
+437
+01:02:25,000 --> 01:02:35,000
+Having you don't want to, you have to branch back to beginning only on an accept, because that means you found a piece that's in the original language.
+
+438
+01:02:35,000 --> 01:02:45,000
+Is there an automaton that can add some, some or subtract memory automata. Well, depends what you mean by all that.
+
+439
+01:02:46,000 --> 01:02:54,000
+Certainly there are more powerful machines that we're going to study the finite automata. So,
+
+440
+01:02:54,000 --> 01:03:02,000
+but yes, there is an even finite automata can add and subtract. If you present the input in the right way.
+
+441
+01:03:02,000 --> 01:03:06,000
+I refer you to the first problem on the homework.
+
+442
+01:03:06,000 --> 01:03:12,000
+So I think I'm going to check out then.
+
+443
+01:03:12,000 --> 01:03:15,000
+Take care everybody. Bye bye.
+

@@ -1,0 +1,5552 @@
+1
+00:00:00,000 --> 00:00:02,440
+The following content is provided under a Creative
+
+2
+00:00:02,440 --> 00:00:03,760
+Commons license.
+
+3
+00:00:03,760 --> 00:00:06,040
+Your support will help MIT OpenCourseWare
+
+4
+00:00:06,040 --> 00:00:10,040
+continue to offer high-quality educational resources for free.
+
+5
+00:00:10,040 --> 00:00:12,680
+To make a donation or to view additional materials
+
+6
+00:00:12,680 --> 00:00:16,640
+from hundreds of MIT courses, visit MIT OpenCourseWare
+
+7
+00:00:16,640 --> 00:00:17,600
+at ocw.mit.edu.
+
+8
+00:00:25,600 --> 00:00:27,560
+The first thing I would like to tell you,
+
+9
+00:00:27,560 --> 00:00:30,640
+which I did not mention the last time,
+
+10
+00:00:30,640 --> 00:00:34,560
+that in the reading assignment, the syllabus that we handed out,
+
+11
+00:00:34,560 --> 00:00:36,840
+and by the way, does everybody have one?
+
+12
+00:00:36,840 --> 00:00:39,960
+If you don't, we have some extras here.
+
+13
+00:00:39,960 --> 00:00:40,880
+You all have one.
+
+14
+00:00:40,880 --> 00:00:41,720
+Good.
+
+15
+00:00:41,720 --> 00:00:47,360
+Anyway, as you can see on the first page,
+
+16
+00:00:47,360 --> 00:00:52,600
+there is a section called preparatory reading.
+
+17
+00:00:52,600 --> 00:00:57,520
+So I would recommend that if you can,
+
+18
+00:00:57,520 --> 00:01:01,040
+to each time read this recommended reading, which
+
+19
+00:01:01,040 --> 00:01:04,920
+is available, of course, on the internet,
+
+20
+00:01:04,920 --> 00:01:10,160
+and that will make it easier for you to follow the lecture.
+
+21
+00:01:10,160 --> 00:01:14,800
+Because this course, as both in vision and in audition,
+
+22
+00:01:14,800 --> 00:01:18,400
+relies on imparting a great many facts
+
+23
+00:01:18,400 --> 00:01:21,320
+about the work use of these two systems.
+
+24
+00:01:21,320 --> 00:01:26,640
+And it's easier to be able to memorize these facts
+
+25
+00:01:26,640 --> 00:01:30,080
+by doing the preparatory reading if you can.
+
+26
+00:01:30,080 --> 00:01:32,800
+All right, so today, then, what we are going to do
+
+27
+00:01:32,800 --> 00:01:34,000
+is we're going to initially start
+
+28
+00:01:34,000 --> 00:01:37,080
+to talk about the layout of the visual system.
+
+29
+00:01:37,080 --> 00:01:40,560
+And then we're going to talk about the retina
+
+30
+00:01:40,560 --> 00:01:42,360
+for much of the course.
+
+31
+00:01:42,360 --> 00:01:44,240
+At the very end, we'll talk a little bit
+
+32
+00:01:44,240 --> 00:01:47,520
+about the lateral geniculate nucleus.
+
+33
+00:01:47,520 --> 00:01:49,880
+In each case, I will try to tell you
+
+34
+00:01:49,880 --> 00:01:52,680
+about how some people have thought about things
+
+35
+00:01:52,680 --> 00:01:57,640
+and what the progression is of the discoveries that
+
+36
+00:01:57,640 --> 00:01:59,880
+had been made about the visual system.
+
+37
+00:01:59,880 --> 00:02:02,420
+It is certainly an area of research
+
+38
+00:02:02,420 --> 00:02:05,320
+which has been incredibly successful
+
+39
+00:02:05,320 --> 00:02:09,800
+and has resulted in quite a number of Nobel prizes
+
+40
+00:02:09,800 --> 00:02:12,080
+for the discoveries that individuals
+
+41
+00:02:12,080 --> 00:02:16,160
+had made in uncovering the workings of this system.
+
+42
+00:02:16,160 --> 00:02:19,120
+Furthermore, many of the uncoverings
+
+43
+00:02:19,120 --> 00:02:26,360
+that investigators had done came about as incredible surprises
+
+44
+00:02:26,360 --> 00:02:30,520
+because so many of the findings were quite unexpected.
+
+45
+00:02:30,520 --> 00:02:38,080
+And I will try to point these things out during the course.
+
+46
+00:02:38,080 --> 00:02:40,440
+And my section, as I've mentioned before,
+
+47
+00:02:40,440 --> 00:02:42,880
+will consist of 12 lectures.
+
+48
+00:02:42,880 --> 00:02:47,800
+And then that will be followed on October 23
+
+49
+00:02:47,800 --> 00:02:49,600
+by a midterm exam.
+
+50
+00:02:49,600 --> 00:02:52,040
+And again, to reiterate, that's going
+
+51
+00:02:52,040 --> 00:02:56,240
+to consist of a series of multiple-choice questions.
+
+52
+00:02:56,240 --> 00:02:59,800
+And then following that, we'll move on
+
+53
+00:02:59,800 --> 00:03:07,360
+to talk about the auditory system that Chris Brown is going
+
+54
+00:03:07,360 --> 00:03:09,200
+to be presenting to you.
+
+55
+00:03:09,200 --> 00:03:11,960
+All right, so the first thing I want
+
+56
+00:03:11,960 --> 00:03:15,360
+to do then is to talk about the basic wiring
+
+57
+00:03:15,360 --> 00:03:18,720
+of the visual system, which in itself
+
+58
+00:03:18,720 --> 00:03:22,840
+has yielded a number of unexpected surprises
+
+59
+00:03:22,840 --> 00:03:25,440
+and also raised some interesting questions.
+
+60
+00:03:25,440 --> 00:03:27,960
+So what I want to start with, first of all,
+
+61
+00:03:27,960 --> 00:03:31,680
+is that when you look at some animals that
+
+62
+00:03:31,680 --> 00:03:37,200
+have sideways-looking eyes, like the rabbit and most amphibia,
+
+63
+00:03:37,200 --> 00:03:40,160
+the two eyes look out in two different directions,
+
+64
+00:03:40,160 --> 00:03:41,760
+to the left and to the right.
+
+65
+00:03:41,760 --> 00:03:45,520
+And that enables them to see a very large portion
+
+66
+00:03:45,520 --> 00:03:48,080
+of the visual field.
+
+67
+00:03:48,080 --> 00:03:52,720
+And when that is the case, as in this picture shown here
+
+68
+00:03:52,720 --> 00:03:55,720
+for the rabbit, what you find is that there's only
+
+69
+00:03:55,720 --> 00:04:01,880
+a small area which is seen by both eyes.
+
+70
+00:04:01,880 --> 00:04:06,960
+But then when we look at higher mammals,
+
+71
+00:04:06,960 --> 00:04:09,120
+and particularly primates and humans,
+
+72
+00:04:09,120 --> 00:04:12,040
+what you find that there was a huge change
+
+73
+00:04:12,040 --> 00:04:16,480
+in the course of evolution bringing the eyes to the front.
+
+74
+00:04:16,480 --> 00:04:21,440
+Now, that change is very interesting.
+
+75
+00:04:21,440 --> 00:04:24,680
+And we can ask, why on earth did that happen?
+
+76
+00:04:24,680 --> 00:04:28,920
+Because it meant that, obviously, a human cannot see
+
+77
+00:04:28,920 --> 00:04:33,560
+behind themselves where these rabbits can see a much larger
+
+78
+00:04:33,560 --> 00:04:35,240
+portion of the visual field.
+
+79
+00:04:35,240 --> 00:04:38,920
+And so you sacrifice the ability to see all the way
+
+80
+00:04:38,920 --> 00:04:44,240
+around the world for being able to see with both eyes
+
+81
+00:04:44,240 --> 00:04:45,400
+to the front.
+
+82
+00:04:45,400 --> 00:04:48,160
+And so the question is, why did this happen?
+
+83
+00:04:48,160 --> 00:04:51,360
+Now, we are going to discuss this in some detail,
+
+84
+00:04:51,360 --> 00:04:55,000
+because one of the prime reasons, I believe at least,
+
+85
+00:04:55,000 --> 00:04:59,000
+that this has happened is to be able to process information
+
+86
+00:04:59,000 --> 00:05:03,520
+about depth better than it can be done by rabbits
+
+87
+00:05:03,520 --> 00:05:04,680
+and other animals.
+
+88
+00:05:04,680 --> 00:05:06,960
+And so when we talk about depth perception,
+
+89
+00:05:06,960 --> 00:05:10,720
+we are going to deal with this issue in more detail.
+
+90
+00:05:10,720 --> 00:05:16,080
+Now, if you look at an animal like a rabbit, what you find
+
+91
+00:05:16,080 --> 00:05:22,440
+and also animals, which, as I've mentioned already,
+
+92
+00:05:22,440 --> 00:05:26,360
+sorry, I'm going backwards here, that you also
+
+93
+00:05:26,360 --> 00:05:27,960
+have an efficient amphibia.
+
+94
+00:05:27,960 --> 00:05:30,160
+You have these sideways-looking eyes.
+
+95
+00:05:30,160 --> 00:05:34,880
+And now we can ask the question, how do these two eyes
+
+96
+00:05:34,880 --> 00:05:37,720
+make their connections through the ganglion cells
+
+97
+00:05:37,720 --> 00:05:40,640
+to the central nervous system?
+
+98
+00:05:40,640 --> 00:05:43,480
+And that, in fact, was quite an issue at one time,
+
+99
+00:05:43,480 --> 00:05:47,000
+believe it or not, before anatomical techniques
+
+100
+00:05:47,000 --> 00:05:49,640
+became more sophisticated.
+
+101
+00:05:49,640 --> 00:05:52,080
+And the reason it became an issue is
+
+102
+00:05:52,080 --> 00:05:57,200
+because it was discovered predominantly actually
+
+103
+00:05:57,200 --> 00:06:00,920
+by Kahal, who I have mentioned had received the Nobel Prize
+
+104
+00:06:00,920 --> 00:06:04,760
+for the beautiful work he had done on not only the vision,
+
+105
+00:06:04,760 --> 00:06:11,720
+but in general about the nervous system in 1906 with Golgi.
+
+106
+00:06:11,720 --> 00:06:14,960
+He discovered, as did several other investigators,
+
+107
+00:06:14,960 --> 00:06:20,240
+that the optic nerve crosses over at the so-called chiasm.
+
+108
+00:06:20,240 --> 00:06:22,840
+And so the input from the left eye
+
+109
+00:06:22,840 --> 00:06:25,480
+projects into the right half of the brain
+
+110
+00:06:25,480 --> 00:06:28,160
+and from the right eye to the left half of the brain.
+
+111
+00:06:28,160 --> 00:06:29,920
+And that became a huge issue.
+
+112
+00:06:29,920 --> 00:06:32,520
+Why on earth would this happen?
+
+113
+00:06:32,520 --> 00:06:36,280
+And we are going to deal with this repeatedly.
+
+114
+00:06:36,280 --> 00:06:39,760
+It's a very interesting issue.
+
+115
+00:06:39,760 --> 00:06:43,400
+And even more interesting is the fact
+
+116
+00:06:43,400 --> 00:06:47,080
+that when the eyes move to the front, what happened
+
+117
+00:06:47,080 --> 00:06:52,640
+is that this kind of connection became much more complicated.
+
+118
+00:06:52,640 --> 00:06:55,880
+But before I do that, let me just say a few more words here.
+
+119
+00:06:55,880 --> 00:06:59,360
+First of all, that in fission amphibia,
+
+120
+00:06:59,360 --> 00:07:03,160
+you have a huge structure called the optic tectum, which
+
+121
+00:07:03,160 --> 00:07:10,440
+is the primary visual processing center in the brain.
+
+122
+00:07:10,440 --> 00:07:13,960
+And there is also the lateral genital nucleus
+
+123
+00:07:13,960 --> 00:07:15,920
+of the thalamus in these animals,
+
+124
+00:07:15,920 --> 00:07:19,600
+but that's quite small and not very well developed.
+
+125
+00:07:19,600 --> 00:07:23,120
+And there is a cortex in these animals,
+
+126
+00:07:23,120 --> 00:07:25,880
+but it is, again, a primitive area
+
+127
+00:07:25,880 --> 00:07:28,640
+compared to primates, for example.
+
+128
+00:07:28,640 --> 00:07:31,880
+And the lateral genital nucleus projects to the cortex.
+
+129
+00:07:31,880 --> 00:07:34,160
+So the left cortex in these animals
+
+130
+00:07:34,160 --> 00:07:36,000
+gets input from the right eye.
+
+131
+00:07:36,000 --> 00:07:39,200
+And the obverse is the case for the right cortex.
+
+132
+00:07:39,200 --> 00:07:41,400
+And so consequently, this cortex
+
+133
+00:07:41,400 --> 00:07:43,120
+sees this part of the visual field
+
+134
+00:07:43,120 --> 00:07:46,160
+and this cortex sees this part of the visual field.
+
+135
+00:07:46,160 --> 00:07:49,360
+It's almost like an inversion.
+
+136
+00:07:49,360 --> 00:07:53,560
+Now, we come to what happened as a result of the eyes
+
+137
+00:07:53,560 --> 00:07:55,400
+moving to the front.
+
+138
+00:07:55,440 --> 00:07:59,240
+And the eyes move to the front in the course of evolution
+
+139
+00:07:59,240 --> 00:08:04,800
+that necessitated a major rewiring in the visual system.
+
+140
+00:08:04,800 --> 00:08:08,360
+So that's what we are going to look at next, because that's
+
+141
+00:08:08,360 --> 00:08:10,040
+us, all right?
+
+142
+00:08:10,040 --> 00:08:13,520
+So what we have here then, we have the two eyes
+
+143
+00:08:13,520 --> 00:08:14,960
+looking to the front.
+
+144
+00:08:14,960 --> 00:08:17,440
+And imagine that these two eyes now looking at something.
+
+145
+00:08:17,440 --> 00:08:18,840
+There's a dot here.
+
+146
+00:08:18,840 --> 00:08:21,280
+And both eyes are looking at the same dot
+
+147
+00:08:21,280 --> 00:08:24,280
+so that you only see a single dot.
+
+148
+00:08:24,280 --> 00:08:27,400
+So now what happens is really something surprising.
+
+149
+00:08:27,400 --> 00:08:33,520
+What happens is that the, let me interrupt for a second
+
+150
+00:08:33,520 --> 00:08:37,080
+and tell you that imagine that you cut your eye,
+
+151
+00:08:37,080 --> 00:08:39,400
+I mean, don't do it, but imagine that you
+
+152
+00:08:39,400 --> 00:08:43,160
+cut your eye vertically in half, each eye, OK?
+
+153
+00:08:43,160 --> 00:08:46,560
+And that means that each eye has, if you will,
+
+154
+00:08:46,560 --> 00:08:50,240
+a nasal half and a temporal half, all right?
+
+155
+00:08:50,240 --> 00:08:51,960
+So here we have the two eyes.
+
+156
+00:08:51,960 --> 00:08:53,400
+Here's the left eye.
+
+157
+00:08:53,400 --> 00:08:59,960
+And what we have is a nasal half projects across.
+
+158
+00:08:59,960 --> 00:09:04,400
+And the same thing is true for the right eye, projects across.
+
+159
+00:09:04,400 --> 00:09:07,600
+But now if you look at the temporal hemiratne,
+
+160
+00:09:07,600 --> 00:09:10,680
+hemiratne, remember, that's the word for it,
+
+161
+00:09:10,680 --> 00:09:12,800
+something very interesting happens.
+
+162
+00:09:12,800 --> 00:09:16,200
+The temporal hemiratne don't cross over,
+
+163
+00:09:16,200 --> 00:09:18,480
+but they remain on the same side.
+
+164
+00:09:18,480 --> 00:09:23,320
+So we have a color code here that the red parts
+
+165
+00:09:23,320 --> 00:09:26,760
+project across, and the black parts also
+
+166
+00:09:26,760 --> 00:09:29,680
+project across from one eye, but stay
+
+167
+00:09:29,680 --> 00:09:32,280
+ipsilateral for the other eye.
+
+168
+00:09:32,280 --> 00:09:35,320
+So you say, my god, why did this happen?
+
+169
+00:09:35,320 --> 00:09:37,840
+What on earth is going on?
+
+170
+00:09:37,840 --> 00:09:41,520
+And then if you study this, you realize
+
+171
+00:09:41,520 --> 00:09:47,000
+that this is actually one of the few truly logical things
+
+172
+00:09:47,000 --> 00:09:49,040
+that you encounter when you study the brain.
+
+173
+00:09:49,040 --> 00:09:51,600
+Many of the things you study in the brain
+
+174
+00:09:51,600 --> 00:09:55,840
+don't seem to be too logical, because in the force of evolution,
+
+175
+00:09:55,840 --> 00:09:59,520
+you have to change things in very peculiar subtle ways
+
+176
+00:09:59,520 --> 00:10:00,560
+to make things work.
+
+177
+00:10:00,560 --> 00:10:04,000
+You couldn't just redo the whole system from scratch.
+
+178
+00:10:04,000 --> 00:10:05,840
+But this is certainly a logical one,
+
+179
+00:10:05,840 --> 00:10:08,680
+and I'll explain it to you in just a minute.
+
+180
+00:10:08,680 --> 00:10:14,200
+OK, so now what we do next is that, again, we
+
+181
+00:10:14,200 --> 00:10:16,520
+have the two-level genically nuclei,
+
+182
+00:10:16,520 --> 00:10:19,080
+but now these are in the thalamus.
+
+183
+00:10:19,080 --> 00:10:23,040
+These two nuclei have grown tremendously in size
+
+184
+00:10:23,040 --> 00:10:26,440
+and became much more important in visual processing,
+
+185
+00:10:26,440 --> 00:10:30,440
+as did then the cortex.
+
+186
+00:10:30,440 --> 00:10:34,320
+This process, by the way, is called encephalization.
+
+187
+00:10:34,320 --> 00:10:37,320
+So in primitive animals, you have very small cortex,
+
+188
+00:10:37,320 --> 00:10:39,320
+and then in the course of evolution, the cortex
+
+189
+00:10:39,320 --> 00:10:42,040
+grew and grew and grew and grew and became
+
+190
+00:10:42,040 --> 00:10:44,760
+a more and more important structure
+
+191
+00:10:44,760 --> 00:10:48,720
+in being able to analyze just about anything
+
+192
+00:10:48,720 --> 00:10:51,120
+and certainly analyze vision.
+
+193
+00:10:51,120 --> 00:10:55,400
+Now here we have a cortical area in the posterior part
+
+194
+00:10:55,400 --> 00:10:58,720
+of the brain, as I pointed out to you the last time.
+
+195
+00:10:58,720 --> 00:11:01,800
+And what we have is a whole series of visual areas
+
+196
+00:11:01,800 --> 00:11:04,200
+in the cortex.
+
+197
+00:11:04,200 --> 00:11:07,240
+Most central one, I guess, would be area V1,
+
+198
+00:11:07,240 --> 00:11:10,240
+the primary so-called primary visual cortex,
+
+199
+00:11:10,240 --> 00:11:14,080
+to which the lateral genically it projects most profusely.
+
+200
+00:11:14,080 --> 00:11:18,200
+Then we have a whole bunch of other visual areas,
+
+201
+00:11:18,200 --> 00:11:21,720
+as we'll discuss in more detail later on.
+
+202
+00:11:21,720 --> 00:11:26,520
+And then what happens is that we have several other cortical
+
+203
+00:11:26,520 --> 00:11:27,080
+areas.
+
+204
+00:11:27,080 --> 00:11:29,360
+The cortex, I think all of you know that,
+
+205
+00:11:29,360 --> 00:11:35,200
+is divided into four lobes, the frontal, temporal, parietal,
+
+206
+00:11:35,200 --> 00:11:38,820
+and the rear one is called the occipital lobes.
+
+207
+00:11:38,820 --> 00:11:42,760
+Now the visual areas that you see in the back here
+
+208
+00:11:42,760 --> 00:11:46,200
+make extensive interconnections and connections
+
+209
+00:11:46,200 --> 00:11:50,080
+to these other lobes in the brain
+
+210
+00:11:50,080 --> 00:11:53,400
+to be able to analyze the visual scene.
+
+211
+00:11:53,400 --> 00:11:56,880
+Now in addition, what we have still,
+
+212
+00:11:56,880 --> 00:11:58,600
+as we had in more primitive animals,
+
+213
+00:11:58,600 --> 00:12:01,360
+we have a superior colliculus, actually two of them,
+
+214
+00:12:01,360 --> 00:12:02,520
+one on each side.
+
+215
+00:12:02,520 --> 00:12:05,000
+And then we have another set of areas
+
+216
+00:12:05,000 --> 00:12:08,280
+called the terminal nuclei, the nucleus of the optic tract,
+
+217
+00:12:08,280 --> 00:12:12,440
+about which we'll just talk a little bit,
+
+218
+00:12:12,440 --> 00:12:16,200
+because they are specializing in certain visual functions,
+
+219
+00:12:16,200 --> 00:12:19,560
+but not nearly as compelling and interesting
+
+220
+00:12:19,560 --> 00:12:24,080
+as the work that has been done in the cortical areas
+
+221
+00:12:24,080 --> 00:12:25,920
+and in the superior colliculi.
+
+222
+00:12:25,920 --> 00:12:27,520
+So this is the arrangement.
+
+223
+00:12:27,520 --> 00:12:29,400
+But now we want to understand, why
+
+224
+00:12:29,400 --> 00:12:32,720
+do we have this strange connection here?
+
+225
+00:12:32,720 --> 00:12:37,480
+So to understand that, what we are going to talk about
+
+226
+00:12:37,480 --> 00:12:41,960
+is the so-called choropter or the Wieth-Miller circle.
+
+227
+00:12:41,960 --> 00:12:42,840
+Now what does that?
+
+228
+00:12:42,840 --> 00:12:46,000
+Some clever guy came up with this observation.
+
+229
+00:12:46,000 --> 00:12:50,680
+They made a circle that goes through the nodal point of the eye,
+
+230
+00:12:50,680 --> 00:12:54,920
+and its diameter depends on where you are fixating.
+
+231
+00:12:54,920 --> 00:12:57,480
+So fixating here, all right?
+
+232
+00:12:57,480 --> 00:13:01,760
+And so in this case, the red area,
+
+233
+00:13:01,760 --> 00:13:04,880
+which is your left visual hemifield,
+
+234
+00:13:04,880 --> 00:13:08,680
+impinges on the nasal retina of the left eye
+
+235
+00:13:08,680 --> 00:13:10,840
+and the temporal retina of the other eye.
+
+236
+00:13:10,840 --> 00:13:14,360
+So if you have an object here, all right,
+
+237
+00:13:14,360 --> 00:13:20,120
+that hits corresponding retinal elements in the two eyes.
+
+238
+00:13:20,120 --> 00:13:21,920
+And that is the basic rule.
+
+239
+00:13:21,920 --> 00:13:26,520
+Anywhere along this choropter, a spot
+
+240
+00:13:26,520 --> 00:13:31,000
+will activate corresponding regions in the two eyes.
+
+241
+00:13:31,000 --> 00:13:35,000
+And then what happens is that those corresponding points
+
+242
+00:13:35,000 --> 00:13:39,400
+go to the same location in the lateral geniculate nucleus
+
+243
+00:13:39,400 --> 00:13:42,760
+and the superior coliculus and in the visual cortex.
+
+244
+00:13:42,760 --> 00:13:44,800
+So the logic of this arrangement
+
+245
+00:13:44,800 --> 00:13:49,080
+is to be able to have the two eyes have
+
+246
+00:13:49,080 --> 00:13:53,120
+inputs to corresponding points in the brain.
+
+247
+00:13:53,120 --> 00:13:58,000
+That way you can see something uniform and clear
+
+248
+00:13:58,000 --> 00:13:59,680
+rather than seeing double.
+
+249
+00:13:59,680 --> 00:14:03,760
+So that is then the arrangement that you have in primates.
+
+250
+00:14:03,760 --> 00:14:06,400
+Now just to anticipate a little bit,
+
+251
+00:14:06,400 --> 00:14:09,520
+whenever images fall inside or outside the circle,
+
+252
+00:14:09,520 --> 00:14:12,000
+they do fall on non-correspondent points.
+
+253
+00:14:12,000 --> 00:14:13,320
+And that will have something to do.
+
+254
+00:14:13,320 --> 00:14:16,920
+And I keep you just curious about that for the time being
+
+255
+00:14:16,920 --> 00:14:20,640
+about how we process depth.
+
+256
+00:14:20,640 --> 00:14:25,040
+And that is the mechanism that is involved.
+
+257
+00:14:25,040 --> 00:14:26,200
+It's called stereopsis.
+
+258
+00:14:26,200 --> 00:14:28,680
+I've mentioned that very briefly the last time.
+
+259
+00:14:28,680 --> 00:14:34,720
+OK, so that then summarizes the basic connections
+
+260
+00:14:34,720 --> 00:14:35,840
+of the system.
+
+261
+00:14:35,840 --> 00:14:37,840
+And then what we are going to do next
+
+262
+00:14:37,840 --> 00:14:39,440
+is we're going to go to the retina
+
+263
+00:14:39,440 --> 00:14:43,800
+and look at it in more details about how the retina is made.
+
+264
+00:14:43,800 --> 00:14:47,760
+And then we will go in successive steps to higher areas,
+
+265
+00:14:47,760 --> 00:14:49,880
+sometimes going back and forth, to try
+
+266
+00:14:49,880 --> 00:14:53,560
+to understand visual processing in general.
+
+267
+00:14:53,560 --> 00:14:58,280
+All right, so now let's begin by looking at the eye.
+
+268
+00:14:58,280 --> 00:15:04,440
+Now I don't expect you to know all these names here.
+
+269
+00:15:04,440 --> 00:15:07,680
+But you should remember, of course, the lens and the cornea.
+
+270
+00:15:07,680 --> 00:15:09,040
+I know that already.
+
+271
+00:15:09,040 --> 00:15:10,480
+You know the iris, right?
+
+272
+00:15:10,480 --> 00:15:11,120
+What's the iris?
+
+273
+00:15:13,480 --> 00:15:21,080
+OK, now what do we base our views on the color of the eye?
+
+274
+00:15:21,080 --> 00:15:27,080
+When you say somebody has blue eyes or somebody has brown eyes,
+
+275
+00:15:27,080 --> 00:15:32,360
+it's based on the fact of what the coloring is of the iris.
+
+276
+00:15:32,360 --> 00:15:33,560
+Now what's the iris?
+
+277
+00:15:33,560 --> 00:15:39,320
+The iris can get bigger and smaller
+
+278
+00:15:39,320 --> 00:15:44,800
+to control the size of the opening into the lens.
+
+279
+00:15:44,800 --> 00:15:46,080
+All right?
+
+280
+00:15:46,080 --> 00:15:50,040
+It's much like what you have in cameras
+
+281
+00:15:50,040 --> 00:15:53,760
+where you have the so-called f-stop, right?
+
+282
+00:15:53,760 --> 00:15:58,640
+So if you have a large number, say f-16 in a camera,
+
+283
+00:15:58,640 --> 00:16:01,960
+that is set to 16 if you do it manually
+
+284
+00:16:01,960 --> 00:16:03,480
+or when it's bright out there.
+
+285
+00:16:03,480 --> 00:16:07,440
+But when it's dim out there, like we have in this camera here,
+
+286
+00:16:07,440 --> 00:16:11,160
+you have the lens wide open because it's pretty dark in here.
+
+287
+00:16:11,160 --> 00:16:17,840
+Then you have a low f-stop, like an f-4 or even lower,
+
+288
+00:16:17,840 --> 00:16:22,560
+to allow more light to come in, to more photons to enter the eye.
+
+289
+00:16:22,560 --> 00:16:25,640
+Now, next is here's the lens.
+
+290
+00:16:25,640 --> 00:16:29,160
+And the fascinating thing about the lens
+
+291
+00:16:29,160 --> 00:16:32,600
+is that in the eye, the lens is totally different
+
+292
+00:16:32,600 --> 00:16:37,440
+from the way it is in a camera.
+
+293
+00:16:37,440 --> 00:16:40,760
+Now, maybe by now, many of you don't even
+
+294
+00:16:40,760 --> 00:16:43,000
+know the details about a camera.
+
+295
+00:16:43,000 --> 00:16:45,240
+But one of the details, of course,
+
+296
+00:16:45,240 --> 00:16:53,720
+is that to bring an image into focus,
+
+297
+00:16:53,720 --> 00:16:57,360
+you have to adjust the distance of the lens
+
+298
+00:16:57,360 --> 00:17:02,120
+from the film onto which the image projects.
+
+299
+00:17:02,120 --> 00:17:06,640
+So the closer an image, the further out the lens has to go.
+
+300
+00:17:06,640 --> 00:17:10,880
+Now, if that were the case in animals and humans,
+
+301
+00:17:10,880 --> 00:17:12,680
+you would have a super bulging eye.
+
+302
+00:17:12,680 --> 00:17:14,200
+So when you look at something closely,
+
+303
+00:17:14,200 --> 00:17:15,680
+the eye would go out like that.
+
+304
+00:17:15,680 --> 00:17:17,520
+And that would be really disturbing.
+
+305
+00:17:17,520 --> 00:17:23,880
+So that is not the case because what happened instead
+
+306
+00:17:23,880 --> 00:17:28,800
+is something very clever that you don't see in cameras, which
+
+307
+00:17:28,800 --> 00:17:33,120
+is that you have this lens here, which is, at least
+
+308
+00:17:33,120 --> 00:17:42,760
+in younger people, is an organ that can vary in thickness.
+
+309
+00:17:42,760 --> 00:17:49,160
+So you have here some muscles, the ciliary muscles, which
+
+310
+00:17:49,160 --> 00:17:53,720
+can adjust the thickness of this lens
+
+311
+00:17:53,720 --> 00:17:58,680
+to allow it to focus properly on the retina.
+
+312
+00:17:58,680 --> 00:18:01,720
+Now, here the retina is going all around.
+
+313
+00:18:01,720 --> 00:18:04,440
+It's against the inner wall of the eye, as you all know that,
+
+314
+00:18:04,440 --> 00:18:06,360
+of course.
+
+315
+00:18:06,360 --> 00:18:11,800
+And to explain how this is done then very crudely,
+
+316
+00:18:11,800 --> 00:18:12,680
+here we have it.
+
+317
+00:18:12,680 --> 00:18:14,800
+If you're an object really near, you
+
+318
+00:18:14,800 --> 00:18:18,360
+want the lens to be thick to properly focus the image
+
+319
+00:18:18,360 --> 00:18:20,080
+on the retina.
+
+320
+00:18:20,080 --> 00:18:22,720
+And if the image is far, you have
+
+321
+00:18:22,720 --> 00:18:30,440
+to thin the lens to get the proper focus on the retina.
+
+322
+00:18:30,440 --> 00:18:33,920
+So that's how the lens works, at least
+
+323
+00:18:33,920 --> 00:18:35,120
+when you're reasonably young.
+
+324
+00:18:35,120 --> 00:18:38,120
+But then when you get older, what happens
+
+325
+00:18:38,120 --> 00:18:46,480
+is that the lens becomes progressively stiffer and stiffer.
+
+326
+00:18:46,480 --> 00:18:50,440
+And because of that, you have to start wearing glasses.
+
+327
+00:18:50,440 --> 00:18:56,280
+Now, in the olden days, they used to have lenses which came
+
+328
+00:18:56,280 --> 00:18:59,120
+in two parts, bifocals.
+
+329
+00:18:59,120 --> 00:19:00,400
+So if you look in the upper part,
+
+330
+00:19:00,400 --> 00:19:01,520
+you could look in the distance.
+
+331
+00:19:01,520 --> 00:19:04,320
+If you look in the lower part, you could look close.
+
+332
+00:19:04,320 --> 00:19:07,240
+Nowadays, they have graduated lenses.
+
+333
+00:19:07,240 --> 00:19:10,280
+So if you look in the upper part, you can look far.
+
+334
+00:19:10,280 --> 00:19:11,600
+And if you want to look something,
+
+335
+00:19:11,600 --> 00:19:13,880
+you're going to look down below.
+
+336
+00:19:13,880 --> 00:19:17,200
+And then you can see that in focus.
+
+337
+00:19:17,200 --> 00:19:20,000
+So once you get older, these lenses
+
+338
+00:19:20,000 --> 00:19:22,960
+don't adjust as much, still a little bit.
+
+339
+00:19:22,960 --> 00:19:28,880
+But the proof that this is not that important, thank God,
+
+340
+00:19:28,880 --> 00:19:34,440
+now that we have these graded lenses and we have bifocals,
+
+341
+00:19:34,440 --> 00:19:39,600
+is that there are a lot of people in old age who develop,
+
+342
+00:19:39,600 --> 00:19:41,600
+and sometimes not even in old age.
+
+343
+00:19:41,600 --> 00:19:44,560
+In India, for example, there are a lot
+
+344
+00:19:44,560 --> 00:19:47,840
+of young kids who have cataracts.
+
+345
+00:19:47,840 --> 00:19:48,960
+Now, what is cataracts?
+
+346
+00:19:48,960 --> 00:19:54,400
+Cataracts interferes with the processing of vision
+
+347
+00:19:54,400 --> 00:19:56,840
+through the lens system.
+
+348
+00:19:56,840 --> 00:20:01,880
+Things become unclear because all kinds of blockage
+
+349
+00:20:01,880 --> 00:20:04,000
+occur in the lens itself.
+
+350
+00:20:04,000 --> 00:20:06,680
+So how is that corrected?
+
+351
+00:20:06,680 --> 00:20:09,120
+The way that's corrected nowadays,
+
+352
+00:20:09,120 --> 00:20:13,320
+that you have what is called cataract surgery.
+
+353
+00:20:13,320 --> 00:20:13,760
+Got it?
+
+354
+00:20:13,760 --> 00:20:16,240
+Cataract surgery.
+
+355
+00:20:16,240 --> 00:20:19,880
+So what they do then is they actually, literally,
+
+356
+00:20:19,880 --> 00:20:23,560
+remove the lens from the eye.
+
+357
+00:20:23,560 --> 00:20:30,640
+And they put in a fixed lens made out of plastic or glass.
+
+358
+00:20:30,640 --> 00:20:34,280
+And then, obviously, since there's no adjustment,
+
+359
+00:20:34,280 --> 00:20:38,680
+you do have to wear glasses to look at things far away
+
+360
+00:20:38,680 --> 00:20:40,240
+and look at things close.
+
+361
+00:20:40,240 --> 00:20:44,640
+And most of the time, those would be graduated lenses.
+
+362
+00:20:44,640 --> 00:20:48,400
+And so people who have cataract surgery
+
+363
+00:20:48,400 --> 00:20:52,520
+can see extremely well, certainly a lot, lot better
+
+364
+00:20:52,520 --> 00:20:57,880
+than having to try to deal with lenses that have cataracts.
+
+365
+00:20:57,880 --> 00:20:59,840
+All right, now, there's one other point
+
+366
+00:20:59,840 --> 00:21:03,520
+I want to make about the eye here before we move on.
+
+367
+00:21:03,520 --> 00:21:04,920
+Maybe two points.
+
+368
+00:21:04,920 --> 00:21:09,440
+One is that about this part of the eye,
+
+369
+00:21:09,440 --> 00:21:14,160
+that you have here your so-called iris.
+
+370
+00:21:14,160 --> 00:21:18,560
+And what do you call what's in the center of the iris?
+
+371
+00:21:18,560 --> 00:21:20,160
+Pupil, very good.
+
+372
+00:21:20,160 --> 00:21:23,280
+Now, what is the color of the pupil?
+
+373
+00:21:26,280 --> 00:21:29,240
+In most people, it's black, right?
+
+374
+00:21:29,240 --> 00:21:30,160
+Why is it black?
+
+375
+00:21:30,160 --> 00:21:32,760
+How come the pupil is black?
+
+376
+00:21:32,760 --> 00:21:33,800
+Any thoughts about that?
+
+377
+00:21:35,920 --> 00:21:37,960
+OK, well, let me tell you.
+
+378
+00:21:37,960 --> 00:21:42,520
+And I think what I'll do is actually I'll move on.
+
+379
+00:21:42,520 --> 00:21:47,440
+First, I'll leave this unanswered for just a few minutes.
+
+380
+00:21:47,440 --> 00:21:50,440
+This I've shown you before, which
+
+381
+00:21:50,440 --> 00:21:53,320
+is another amazing thing about the eye,
+
+382
+00:21:53,320 --> 00:21:57,160
+is, namely, that in the fovea, you
+
+383
+00:21:57,160 --> 00:22:03,520
+have something like 200,000 cones per square millimeter.
+
+384
+00:22:03,520 --> 00:22:05,960
+200,000.
+
+385
+00:22:05,960 --> 00:22:11,080
+As you go 5 degrees out, it reduces 10 fold to 20,000.
+
+386
+00:22:11,080 --> 00:22:15,200
+And then you go 10 degrees, it reduces by half.
+
+387
+00:22:15,200 --> 00:22:18,200
+So because of this very high density,
+
+388
+00:22:18,200 --> 00:22:22,200
+I've mentioned this before, in the fovea,
+
+389
+00:22:22,200 --> 00:22:24,560
+you have high acuity.
+
+390
+00:22:24,560 --> 00:22:26,160
+And that is one of the prime reasons
+
+391
+00:22:26,160 --> 00:22:28,440
+you have to move your eye around so that you
+
+392
+00:22:28,440 --> 00:22:31,360
+can see things in fine detail.
+
+393
+00:22:31,360 --> 00:22:36,480
+All right, so now let's take another step here
+
+394
+00:22:36,480 --> 00:22:40,360
+and look at the retina itself.
+
+395
+00:22:40,360 --> 00:22:42,920
+And let me, first of all, point out to you
+
+396
+00:22:42,920 --> 00:22:47,920
+I have reversed the image here to have it right side up.
+
+397
+00:22:47,920 --> 00:22:49,840
+The light actually comes in from the bottom,
+
+398
+00:22:49,840 --> 00:22:54,800
+goes through all these cells until it hits the photoreceptors.
+
+399
+00:22:54,800 --> 00:22:56,360
+Here are the photoreceptors.
+
+400
+00:22:56,360 --> 00:22:59,400
+And at the closest point to the eye,
+
+401
+00:22:59,400 --> 00:23:05,760
+what we have is called the pigment epithelium.
+
+402
+00:23:05,760 --> 00:23:08,400
+OK, so what's the pigment epithelium?
+
+403
+00:23:08,400 --> 00:23:12,600
+The pigment epithelium is a single layer of cells
+
+404
+00:23:12,600 --> 00:23:16,240
+that are pigmented to such a degree
+
+405
+00:23:16,240 --> 00:23:19,240
+that when photons come into the eye
+
+406
+00:23:19,240 --> 00:23:24,020
+and get to the pigment epithelium,
+
+407
+00:23:24,020 --> 00:23:28,560
+they get absorbed just like a black surface
+
+408
+00:23:28,560 --> 00:23:33,120
+that you see as a black surface absorbs the photons
+
+409
+00:23:33,120 --> 00:23:35,320
+and doesn't reflect them.
+
+410
+00:23:35,320 --> 00:23:41,000
+So because of that, there is no reflection back out.
+
+411
+00:23:41,000 --> 00:23:48,520
+And that explains why the pupil looks black, OK?
+
+412
+00:23:48,520 --> 00:23:51,880
+Because the light that comes into the eye
+
+413
+00:23:51,880 --> 00:23:55,080
+doesn't reflect back out.
+
+414
+00:23:55,080 --> 00:23:57,120
+Now there's a good reason for that,
+
+415
+00:23:57,120 --> 00:24:01,120
+because if it were to reflect back out, it would scatter
+
+416
+00:24:01,120 --> 00:24:07,160
+and it would activate many more photoreceptors than it should.
+
+417
+00:24:07,160 --> 00:24:09,800
+And because of that, you get blurred vision.
+
+418
+00:24:09,800 --> 00:24:11,840
+Now how do we know this?
+
+419
+00:24:11,840 --> 00:24:13,760
+All right.
+
+420
+00:24:13,760 --> 00:24:20,320
+Can you think of any one or any species of animal
+
+421
+00:24:20,320 --> 00:24:24,320
+where the pigment epithelium is not black?
+
+422
+00:24:28,000 --> 00:24:29,360
+OK, in cat.
+
+423
+00:24:29,360 --> 00:24:32,560
+OK, so there are some animals.
+
+424
+00:24:32,560 --> 00:24:35,080
+You see mostly in animals that specialize
+
+425
+00:24:35,080 --> 00:24:42,000
+in nocturnal vision that have a pigment epithelium which
+
+426
+00:24:42,000 --> 00:24:47,240
+actually has purposefully reflecting molecules in it.
+
+427
+00:24:47,240 --> 00:24:51,360
+For them, this is called actually the terpetum.
+
+428
+00:24:51,360 --> 00:24:57,080
+And the purpose of that is to improve your ability
+
+429
+00:24:57,080 --> 00:25:00,920
+to see so that the photons activate the photoreceptors
+
+430
+00:25:00,920 --> 00:25:05,200
+not only in one direction, but also when they bounce back.
+
+431
+00:25:05,200 --> 00:25:08,680
+Now the terpetum is arranged in such a way in most animals
+
+432
+00:25:08,680 --> 00:25:10,920
+that it doesn't freely scatter the light,
+
+433
+00:25:10,920 --> 00:25:14,240
+but scatters it in a fairly directional manner.
+
+434
+00:25:14,240 --> 00:25:16,880
+And because of that, you can see pretty well.
+
+435
+00:25:16,880 --> 00:25:21,480
+Now, I'm sure that many of you have noticed
+
+436
+00:25:21,480 --> 00:25:28,160
+that when you drive at night in a deserted area
+
+437
+00:25:28,160 --> 00:25:32,800
+in the United States, which are decreasing, of course,
+
+438
+00:25:32,800 --> 00:25:39,840
+you can see sometimes deer on the highway or rabbits,
+
+439
+00:25:39,840 --> 00:25:41,240
+for that matter.
+
+440
+00:25:41,240 --> 00:25:43,880
+And when you see them, it looks like they
+
+441
+00:25:43,880 --> 00:25:49,040
+have two flashlights projecting at you.
+
+442
+00:25:49,040 --> 00:25:53,160
+It's almost scary, but it also helps you
+
+443
+00:25:53,160 --> 00:25:56,440
+by being able to avoid hitting them.
+
+444
+00:25:56,440 --> 00:26:01,000
+Now that's because they have that reflecting terpetum.
+
+445
+00:26:01,000 --> 00:26:03,680
+Let's look at a different example.
+
+446
+00:26:03,680 --> 00:26:08,480
+What other human can you think of who
+
+447
+00:26:08,480 --> 00:26:12,640
+does not have a black pigment epithelium?
+
+448
+00:26:12,640 --> 00:26:16,200
+Or, for that matter, some animals as well, yes?
+
+449
+00:26:16,200 --> 00:26:17,160
+Very good.
+
+450
+00:26:17,160 --> 00:26:18,680
+Albinos.
+
+451
+00:26:18,680 --> 00:26:19,920
+Now what's albinos?
+
+452
+00:26:19,920 --> 00:26:23,640
+Albinos are individuals or animals
+
+453
+00:26:23,640 --> 00:26:30,760
+who lack pigments in their skin and, of course,
+
+454
+00:26:30,760 --> 00:26:32,600
+in their retinae.
+
+455
+00:26:32,600 --> 00:26:39,840
+So if you look at the eye of an albino,
+
+456
+00:26:39,840 --> 00:26:42,440
+actually their pupil is not black.
+
+457
+00:26:42,440 --> 00:26:46,280
+Their pupil is reddish.
+
+458
+00:26:46,280 --> 00:26:47,000
+Very good.
+
+459
+00:26:47,000 --> 00:26:48,600
+Why is it reddish?
+
+460
+00:26:48,600 --> 00:26:59,280
+Because you have thousands of, in the retinae rightal law,
+
+461
+00:26:59,280 --> 00:27:03,320
+especially mostly on the outside here as well,
+
+462
+00:27:03,320 --> 00:27:06,760
+you have blood vessels.
+
+463
+00:27:06,760 --> 00:27:10,200
+And the blood vessels, since they carry blood,
+
+464
+00:27:10,200 --> 00:27:13,760
+when light reflects from them, they will have a reddish color
+
+465
+00:27:13,760 --> 00:27:20,640
+to them, and thereby endow, if you will, the pupil
+
+466
+00:27:20,640 --> 00:27:23,120
+with a reddish color.
+
+467
+00:27:23,120 --> 00:27:27,840
+Now the proof that the main function of the pigment
+
+468
+00:27:27,840 --> 00:27:30,960
+epithelium is to absorb the incoming light
+
+469
+00:27:30,960 --> 00:27:33,760
+to prevent scattering is in the fact
+
+470
+00:27:33,760 --> 00:27:38,000
+that albinos that lack this pigment epithelium
+
+471
+00:27:38,000 --> 00:27:41,000
+have very poor vision.
+
+472
+00:27:41,000 --> 00:27:45,520
+They often have vision to 20 over 200 or something,
+
+473
+00:27:45,520 --> 00:27:51,160
+because the light scatters from the epithelium, which
+
+474
+00:27:51,160 --> 00:27:54,080
+is no longer pigmented in these people,
+
+475
+00:27:54,080 --> 00:27:58,400
+and activates many photoreceptors,
+
+476
+00:27:58,400 --> 00:28:03,960
+thereby reducing the ability to see things clearly and sharply.
+
+477
+00:28:03,960 --> 00:28:07,960
+All right, so now let's go through this retina here.
+
+478
+00:28:08,000 --> 00:28:13,680
+First of all, we have the rods and the cones.
+
+479
+00:28:13,680 --> 00:28:18,360
+Now this brings me to a very interesting story, at least
+
+480
+00:28:18,360 --> 00:28:21,960
+for me an interesting story.
+
+481
+00:28:21,960 --> 00:28:32,560
+Back in the 19th century, there was a person whose name was,
+
+482
+00:28:32,560 --> 00:28:36,320
+let's see, his name was Max Schulze.
+
+483
+00:28:36,320 --> 00:28:38,840
+I'm trying to remember when he lived.
+
+484
+00:28:38,840 --> 00:28:45,440
+He lived from 1825 to 1874.
+
+485
+00:28:45,440 --> 00:28:50,720
+He developed some new anatomical procedures.
+
+486
+00:28:50,720 --> 00:28:57,080
+And as I mentioned before, whenever new techniques emerge
+
+487
+00:28:57,080 --> 00:29:00,040
+or invented, it's likely that you're
+
+488
+00:29:00,040 --> 00:29:03,440
+going to make some interesting new discoveries.
+
+489
+00:29:03,440 --> 00:29:11,320
+And so he was the first person by then looking at the retina
+
+490
+00:29:11,320 --> 00:29:13,360
+and looking at the photoreceptors,
+
+491
+00:29:13,360 --> 00:29:18,440
+that he said, my god, there are two different kinds of cones.
+
+492
+00:29:18,440 --> 00:29:19,280
+I shouldn't say cones.
+
+493
+00:29:19,280 --> 00:29:21,600
+Two different kinds of photoreceptors,
+
+494
+00:29:21,600 --> 00:29:26,120
+the rods and the cones, all right?
+
+495
+00:29:26,120 --> 00:29:29,640
+The rods were sort of like the name implies rods,
+
+496
+00:29:29,640 --> 00:29:33,360
+and the cones were sort of, as the name implies, conish.
+
+497
+00:29:33,360 --> 00:29:35,160
+Looking, OK?
+
+498
+00:29:35,160 --> 00:29:37,560
+So he looked at that and looked at that and said, my god,
+
+499
+00:29:37,560 --> 00:29:43,480
+why on earth would we have in most animals, rods, and cones?
+
+500
+00:29:43,480 --> 00:29:44,960
+What is their function?
+
+501
+00:29:44,960 --> 00:29:46,960
+This was a totally new discovery.
+
+502
+00:29:46,960 --> 00:29:50,400
+And when he first published this, nobody believed him.
+
+503
+00:29:50,400 --> 00:29:52,400
+They said, oh, they just vary randomly,
+
+504
+00:29:52,400 --> 00:29:56,880
+and some are more rod-like, some are more cone-like.
+
+505
+00:29:56,880 --> 00:30:00,000
+But it's just the same photoreceptors.
+
+506
+00:30:00,000 --> 00:30:02,680
+So he, of course, did not accept that.
+
+507
+00:30:03,240 --> 00:30:06,000
+He saw, by being very careful about it,
+
+508
+00:30:06,000 --> 00:30:09,000
+that it was two definitely different classes,
+
+509
+00:30:09,000 --> 00:30:12,040
+just like it is in this picture.
+
+510
+00:30:12,040 --> 00:30:14,960
+And so he began to ask the question, why on earth
+
+511
+00:30:14,960 --> 00:30:16,800
+do we have this?
+
+512
+00:30:16,800 --> 00:30:20,240
+So imagine yourself in the 19th century
+
+513
+00:30:20,240 --> 00:30:22,840
+coming up with this incredible discovery
+
+514
+00:30:22,840 --> 00:30:26,440
+and trying to figure out why we have them.
+
+515
+00:30:26,440 --> 00:30:28,880
+Now, if you're a really good scientist,
+
+516
+00:30:28,880 --> 00:30:31,280
+then you start to think analytically.
+
+517
+00:30:31,280 --> 00:30:33,960
+And so what did he do?
+
+518
+00:30:33,960 --> 00:30:36,040
+I'm so impressed to this day.
+
+519
+00:30:36,040 --> 00:30:39,840
+He said, well, let me take a closer look at the retina
+
+520
+00:30:39,840 --> 00:30:45,280
+and see how the rods and the cones are distributed
+
+521
+00:30:45,280 --> 00:30:47,040
+on the retinal surface.
+
+522
+00:30:47,040 --> 00:30:52,840
+And he discovered, to go back to the previous slide,
+
+523
+00:30:52,840 --> 00:30:57,040
+that there is a small region here, the fovea,
+
+524
+00:30:57,040 --> 00:30:59,520
+where there are only cones.
+
+525
+00:30:59,520 --> 00:31:00,840
+There are no rods.
+
+526
+00:31:00,840 --> 00:31:03,840
+I'll now show you a better picture of that in a minute.
+
+527
+00:31:03,840 --> 00:31:08,240
+And he said, my god, if that's the case,
+
+528
+00:31:08,240 --> 00:31:10,720
+there must be something different about the way
+
+529
+00:31:10,720 --> 00:31:14,560
+we see in the fovea than we can see in areas
+
+530
+00:31:14,560 --> 00:31:17,600
+where we have lots of rods.
+
+531
+00:31:17,600 --> 00:31:19,440
+So what did he discover?
+
+532
+00:31:19,440 --> 00:31:24,600
+He discovered that in the fovea,
+
+533
+00:31:24,600 --> 00:31:28,800
+we don't see too well at night.
+
+534
+00:31:28,800 --> 00:31:32,400
+And the basis of that, he concluded
+
+535
+00:31:32,400 --> 00:31:36,880
+that the rods are for night vision.
+
+536
+00:31:36,880 --> 00:31:40,320
+Now, this was absolutely incredible.
+
+537
+00:31:40,320 --> 00:31:43,200
+There's only one sad part in this story,
+
+538
+00:31:43,200 --> 00:31:51,920
+which is that this discovery was made in the early 19th century
+
+539
+00:31:51,920 --> 00:31:56,600
+before the Nobel Prize was initiated.
+
+540
+00:31:56,600 --> 00:31:59,680
+Because had the Nobel Prize been initiated
+
+541
+00:31:59,680 --> 00:32:02,560
+before he made this discovery, there's no question
+
+542
+00:32:02,560 --> 00:32:06,400
+that he would have received the Nobel Prize for it.
+
+543
+00:32:06,400 --> 00:32:09,600
+It's such an incredible magnitude of discovery.
+
+544
+00:32:09,600 --> 00:32:11,720
+All right, so let's go back here, then.
+
+545
+00:32:11,720 --> 00:32:14,040
+And I pointed out the rods and the cones
+
+546
+00:32:14,040 --> 00:32:15,640
+and the pigment epithelium.
+
+547
+00:32:15,640 --> 00:32:17,720
+Now, let's go through here.
+
+548
+00:32:17,720 --> 00:32:20,200
+And I'll tell you about the rest of the elements.
+
+549
+00:32:20,200 --> 00:32:24,800
+And then, this time and also in several subsequent sessions,
+
+550
+00:32:24,800 --> 00:32:27,200
+we will talk about some of these elements
+
+551
+00:32:27,200 --> 00:32:32,240
+in much more detail, especially about the retinal ganglion
+
+552
+00:32:32,240 --> 00:32:32,800
+cells.
+
+553
+00:32:32,800 --> 00:32:37,440
+So anyway, when you come here to the next stage here,
+
+554
+00:32:37,440 --> 00:32:41,240
+we have the so-called horizontal cells and bipolar cells.
+
+555
+00:32:41,240 --> 00:32:43,760
+It's been established that the photoreceptors
+
+556
+00:32:43,760 --> 00:32:47,000
+connect with both of these.
+
+557
+00:32:47,000 --> 00:32:50,360
+And then, the bipolar cells connect
+
+558
+00:32:50,360 --> 00:32:52,320
+into the inner portion of the retina,
+
+559
+00:32:52,320 --> 00:32:54,240
+just as I'll show you in a minute.
+
+560
+00:32:54,240 --> 00:32:58,520
+Now, this region here is called the OPL.
+
+561
+00:32:58,520 --> 00:33:02,280
+And that's easy to remember, outer plexiform layer.
+
+562
+00:33:02,280 --> 00:33:05,360
+Now, then, when you get into the deeper parts of the retina,
+
+563
+00:33:05,360 --> 00:33:09,480
+you have the so-called emercrine cells and ganglion cells.
+
+564
+00:33:09,480 --> 00:33:13,320
+And they reside in the inner plexiform layer.
+
+565
+00:33:13,320 --> 00:33:21,440
+Now, it is the ganglion cells that project out of the eye
+
+566
+00:33:21,440 --> 00:33:26,320
+and then project, as we had shown you,
+
+567
+00:33:26,320 --> 00:33:32,360
+to various regions in the brain, most notably,
+
+568
+00:33:32,360 --> 00:33:34,400
+that we're going to talk about today,
+
+569
+00:33:34,400 --> 00:33:36,200
+the lateral geniculate nucleus.
+
+570
+00:33:39,560 --> 00:33:42,240
+Now, let me also point out at this stage.
+
+571
+00:33:42,240 --> 00:33:42,740
+Let me see.
+
+572
+00:33:42,740 --> 00:33:43,920
+Do I have a picture of that?
+
+573
+00:33:44,320 --> 00:33:51,480
+I'll point out to you some numbers.
+
+574
+00:33:51,480 --> 00:33:56,720
+Here is an enlarged, highly simplified view of rods.
+
+575
+00:33:56,720 --> 00:34:02,520
+Now, the rods are constructed in an incredibly complex way.
+
+576
+00:34:02,520 --> 00:34:06,040
+They have these individual so-called disks.
+
+577
+00:34:06,040 --> 00:34:10,000
+And within each of these disks, there are about 1,000 of them.
+
+578
+00:34:10,000 --> 00:34:12,720
+I only have 25 here, I think, of 24.
+
+579
+00:34:12,720 --> 00:34:17,080
+There are about 1,000 of these in each rod.
+
+580
+00:34:17,080 --> 00:34:21,120
+And within each of these disks, you
+
+581
+00:34:21,120 --> 00:34:24,360
+have about 10,000 rhodopsin molecules.
+
+582
+00:34:27,320 --> 00:34:30,280
+There are several kinds of opcins, so-called.
+
+583
+00:34:30,280 --> 00:34:33,080
+Rhodopsins are the ones that you see in rods.
+
+584
+00:34:33,080 --> 00:34:37,000
+Then there are different kinds of opcins in cones.
+
+585
+00:34:37,000 --> 00:34:43,520
+And these are the photosensitive molecules
+
+586
+00:34:43,520 --> 00:34:48,640
+in your receptors so that when a photon comes in and connects
+
+587
+00:34:48,640 --> 00:34:54,320
+with and hits one of these molecules, they change shape.
+
+588
+00:34:54,320 --> 00:34:56,480
+And the simplest way of thinking about this
+
+589
+00:34:56,480 --> 00:35:00,400
+is to say that these molecules, these rhodopsin molecules,
+
+590
+00:35:00,400 --> 00:35:03,360
+come in two different shapes.
+
+591
+00:35:03,360 --> 00:35:09,840
+And these two different shapes are what we call very simply
+
+592
+00:35:09,840 --> 00:35:16,320
+those that are open and those that are sort of closed,
+
+593
+00:35:16,320 --> 00:35:19,040
+if you'll be describing the molecular shape.
+
+594
+00:35:19,040 --> 00:35:21,280
+And the easiest way to think of them
+
+595
+00:35:21,280 --> 00:35:23,920
+is that they are bleached or unbleached.
+
+596
+00:35:23,920 --> 00:35:27,800
+And so there are millions of these molecules.
+
+597
+00:35:27,800 --> 00:35:33,760
+And what is it, 10 million in each rod?
+
+598
+00:35:33,760 --> 00:35:37,360
+And you know how many rods there are in the average eye?
+
+599
+00:35:37,360 --> 00:35:41,840
+About 120 million, OK?
+
+600
+00:35:41,840 --> 00:35:44,880
+And about 5 or 6 million cones.
+
+601
+00:35:44,880 --> 00:35:46,880
+I mean, you're talking about unbelievable numbers.
+
+602
+00:35:46,880 --> 00:35:49,160
+It's just hard to comprehend.
+
+603
+00:35:49,160 --> 00:35:52,560
+But at any rate, the molecules here then
+
+604
+00:35:52,560 --> 00:35:57,720
+are in two different states, bleached and unbleached.
+
+605
+00:35:57,720 --> 00:36:01,920
+What that means is when a molecule shifts from being
+
+606
+00:36:01,920 --> 00:36:06,360
+unbleached to bleached as a result of a photon hitting it,
+
+607
+00:36:06,360 --> 00:36:14,000
+that changes the overall, I'm talking about, of course,
+
+608
+00:36:14,000 --> 00:36:18,520
+hundreds of molecules typically, the overall degree
+
+609
+00:36:18,520 --> 00:36:22,080
+of de- and hyperpolarization of the cell.
+
+610
+00:36:22,080 --> 00:36:25,200
+And that will then determine whether this cell is going
+
+611
+00:36:25,200 --> 00:36:27,520
+to communicate the next elements below.
+
+612
+00:36:27,520 --> 00:36:31,400
+And I'll describe that in much more detail in just a minute.
+
+613
+00:36:31,400 --> 00:36:35,640
+But it gives you an idea of how unbelievably complex this is.
+
+614
+00:36:35,640 --> 00:36:37,600
+Yet another complexity is that you
+
+615
+00:36:37,600 --> 00:36:41,400
+have this huge number of rods, OK?
+
+616
+00:36:41,400 --> 00:36:45,360
+But if you think about it, would these rods
+
+617
+00:36:45,360 --> 00:36:51,840
+be there in each, sorry, in these rods,
+
+618
+00:36:51,840 --> 00:36:57,600
+would each of these disks persist for a lifetime?
+
+619
+00:36:57,600 --> 00:37:01,440
+I know, say the average lifetime is 80 or 90 years.
+
+620
+00:37:01,440 --> 00:37:06,240
+Would these same guys exist in the eye all the time?
+
+621
+00:37:06,240 --> 00:37:07,680
+Well, the answer is no.
+
+622
+00:37:07,680 --> 00:37:11,320
+What happens is there's yet another process, amazingly,
+
+623
+00:37:11,320 --> 00:37:18,520
+that replaces in steps these disks in the rods.
+
+624
+00:37:19,120 --> 00:37:22,280
+Usually a few disks have a few days.
+
+625
+00:37:22,280 --> 00:37:29,440
+So it's a constant dynamic process keeping your rods,
+
+626
+00:37:29,440 --> 00:37:33,640
+if not your whole body, young, so to speak.
+
+627
+00:37:33,640 --> 00:37:34,360
+All right.
+
+628
+00:37:34,360 --> 00:37:36,480
+So anyway, this gives you sort of a crude sense
+
+629
+00:37:36,480 --> 00:37:39,560
+of a complexity of this system.
+
+630
+00:37:39,560 --> 00:37:43,160
+But now we are going to shift over and talk
+
+631
+00:37:43,840 --> 00:37:51,200
+and talk about the retinal ganglion cells.
+
+632
+00:37:51,200 --> 00:37:52,600
+And then we'll come back and we'll
+
+633
+00:37:52,600 --> 00:37:57,000
+talk about in a bit more detail about the pre-retinal
+
+634
+00:37:57,000 --> 00:37:58,560
+ganglionic elements.
+
+635
+00:37:58,560 --> 00:38:04,760
+Here is a set of pictures created by a wonderful scientist
+
+636
+00:38:04,760 --> 00:38:10,280
+called Poyak showing you different classes of types,
+
+637
+00:38:10,280 --> 00:38:12,920
+if you will, of retinal ganglion cells.
+
+638
+00:38:12,920 --> 00:38:18,240
+The top row here had been named because of the small size
+
+639
+00:38:18,240 --> 00:38:24,480
+and the small dendritic arbors had been named midget cells.
+
+640
+00:38:24,480 --> 00:38:29,680
+Whereas these ones below, some of them at least,
+
+641
+00:38:29,680 --> 00:38:32,800
+are much, much bigger and have much larger dendritic arbors,
+
+642
+00:38:32,800 --> 00:38:36,200
+as you can see here, have been called parasol cells.
+
+643
+00:38:36,200 --> 00:38:38,320
+And why they've been called parasol cells
+
+644
+00:38:38,320 --> 00:38:41,160
+I'll explain to you in just a minute.
+
+645
+00:38:41,160 --> 00:38:47,320
+Now this set of pictures was created by the Golgi stain
+
+646
+00:38:47,320 --> 00:38:53,520
+that I mentioned to you before that was invented by Golgi
+
+647
+00:38:53,520 --> 00:38:57,760
+and extensively studied by Cajal.
+
+648
+00:38:57,760 --> 00:38:59,400
+And for this incredible work, they
+
+649
+00:38:59,400 --> 00:39:02,000
+had done a lot of it on the retina.
+
+650
+00:39:02,000 --> 00:39:06,600
+They received the Nobel Prize in 1906.
+
+651
+00:39:06,600 --> 00:39:10,760
+So what this disclosed then, an initial view,
+
+652
+00:39:10,760 --> 00:39:14,480
+was that there are different classes of retinal ganglion
+
+653
+00:39:14,480 --> 00:39:15,160
+cells.
+
+654
+00:39:15,160 --> 00:39:17,440
+And so therefore, the big question came up,
+
+655
+00:39:17,440 --> 00:39:19,680
+why do we have different classes of cells
+
+656
+00:39:19,680 --> 00:39:21,680
+like the retinal ganglion cells?
+
+657
+00:39:21,680 --> 00:39:23,360
+What do they do?
+
+658
+00:39:23,360 --> 00:39:26,280
+Well, initially, some people, again, which is good,
+
+659
+00:39:26,280 --> 00:39:29,040
+I think one should be resistant to change in new ideas
+
+660
+00:39:29,040 --> 00:39:31,160
+until they were really proven well.
+
+661
+00:39:35,440 --> 00:39:38,600
+Some people argued that eyes just continue.
+
+662
+00:39:38,600 --> 00:39:42,200
+But then it became evident that these
+
+663
+00:39:42,200 --> 00:39:44,400
+are indeed different classes.
+
+664
+00:39:44,400 --> 00:39:48,120
+And I will present some evidence to prove that.
+
+665
+00:39:48,120 --> 00:39:49,840
+So there are actually quite a number
+
+666
+00:39:49,840 --> 00:39:52,000
+of different classes of retinal ganglion cells
+
+667
+00:39:52,000 --> 00:39:53,800
+that perform different jobs.
+
+668
+00:39:53,800 --> 00:39:55,320
+We're going to try to understand what
+
+669
+00:39:55,320 --> 00:39:57,600
+are the different jobs they perform.
+
+670
+00:39:57,600 --> 00:39:59,640
+And we're going to concentrate mostly
+
+671
+00:39:59,640 --> 00:40:04,400
+on these midget and parasol cells
+
+672
+00:40:04,400 --> 00:40:08,520
+because they by far are the most numerous in the retina.
+
+673
+00:40:08,520 --> 00:40:13,200
+And make a major, major contribution to all of vision.
+
+674
+00:40:13,200 --> 00:40:17,960
+All right, so now let's look at the physiology
+
+675
+00:40:17,960 --> 00:40:19,560
+of retinal ganglion cells.
+
+676
+00:40:19,560 --> 00:40:21,800
+Now that we know we have these different kinds of ganglion
+
+677
+00:40:21,800 --> 00:40:26,040
+cells, how do we find out what they do?
+
+678
+00:40:26,040 --> 00:40:30,840
+Well, what was recognized in the early portions
+
+679
+00:40:30,840 --> 00:40:38,480
+of the 20th century, that to find out what these cells do
+
+680
+00:40:38,480 --> 00:40:42,520
+one needs to study their activity.
+
+681
+00:40:42,520 --> 00:40:44,800
+And to study their activity, what
+
+682
+00:40:44,800 --> 00:40:49,640
+was developed after many different trials
+
+683
+00:40:49,640 --> 00:40:53,960
+is to either record from individual axons
+
+684
+00:40:53,960 --> 00:40:58,280
+or to use a microelectrode that you could put into the eye
+
+685
+00:40:58,280 --> 00:41:02,720
+and record from individual cells and see what they do.
+
+686
+00:41:02,720 --> 00:41:08,120
+Well, the first person who did this was Kaffir Hartlein.
+
+687
+00:41:08,120 --> 00:41:09,800
+And for the beautiful work he had done,
+
+688
+00:41:09,800 --> 00:41:13,680
+he received the Nobel Prize in 1967.
+
+689
+00:41:13,680 --> 00:41:17,640
+Now what he did, he was a tremendous surgeon.
+
+690
+00:41:17,640 --> 00:41:20,280
+And so what he did, he did this in primitive animals
+
+691
+00:41:20,280 --> 00:41:25,840
+like frogs, he would take the optic nerve
+
+692
+00:41:25,840 --> 00:41:30,960
+and he would dissect one fiber from the optic nerve,
+
+693
+00:41:30,960 --> 00:41:34,280
+hook it up, and record electrically from it.
+
+694
+00:41:34,280 --> 00:41:36,160
+And then what he would do, he would
+
+695
+00:41:36,160 --> 00:41:39,920
+shine a light into the eye, move it around
+
+696
+00:41:39,920 --> 00:41:45,880
+until the cell generated action potentials.
+
+697
+00:41:45,880 --> 00:41:48,960
+That was just a very small region because, as I've mentioned,
+
+698
+00:41:48,960 --> 00:41:52,120
+each cell in the retina, each ganglion cell,
+
+699
+00:41:52,120 --> 00:41:57,000
+only sees a teeny, teeny little portion of the visual field.
+
+700
+00:41:57,000 --> 00:41:59,480
+So that's how he did his experiments.
+
+701
+00:41:59,480 --> 00:42:02,440
+And he made some really remarkable discoveries
+
+702
+00:42:02,440 --> 00:42:05,760
+which further then were elaborated
+
+703
+00:42:05,760 --> 00:42:07,640
+by using slightly different methods.
+
+704
+00:42:07,640 --> 00:42:09,320
+A slightly different method, first of all,
+
+705
+00:42:09,320 --> 00:42:13,080
+was to put a microelectrode into the eye.
+
+706
+00:42:13,080 --> 00:42:14,960
+And I've mentioned that to you before.
+
+707
+00:42:14,960 --> 00:42:20,640
+The initial microelectrode was a very fine tube of glass
+
+708
+00:42:20,640 --> 00:42:23,720
+which was heated and then pulled until the tip was only
+
+709
+00:42:23,720 --> 00:42:27,400
+about a micron in diameter, which enabled you
+
+710
+00:42:27,400 --> 00:42:31,240
+to record from individual cells in the retina
+
+711
+00:42:31,240 --> 00:42:34,280
+or for that matter anywhere in the brain.
+
+712
+00:42:34,280 --> 00:42:37,000
+Now, another change in the methods that emerged
+
+713
+00:42:37,000 --> 00:42:44,160
+is that instead of shining light directly into the eye,
+
+714
+00:42:44,160 --> 00:42:49,560
+people use reflected light because in the world, most
+
+715
+00:42:49,560 --> 00:42:51,360
+of what we see is reflected light.
+
+716
+00:42:51,360 --> 00:42:53,440
+We don't get, of course, nowadays this
+
+717
+00:42:53,440 --> 00:42:57,160
+has changed a little bit because we have computers
+
+718
+00:42:57,160 --> 00:43:02,920
+and we have a TV which was set up in such a way as to mimic
+
+719
+00:43:02,920 --> 00:43:05,520
+reflected light, if you will.
+
+720
+00:43:05,520 --> 00:43:08,480
+But in the natural world, for the most part,
+
+721
+00:43:08,480 --> 00:43:11,240
+we see reflected light.
+
+722
+00:43:11,240 --> 00:43:14,080
+All right, so when this was done,
+
+723
+00:43:14,080 --> 00:43:18,280
+this initial work that was done by Keffer Heartline, for which
+
+724
+00:43:18,280 --> 00:43:22,720
+she received a Nobel Prize, that he discovered
+
+725
+00:43:22,720 --> 00:43:27,880
+three major classes of cells based on that recording of his,
+
+726
+00:43:27,880 --> 00:43:30,520
+which he called, first of all, on-cells,
+
+727
+00:43:30,520 --> 00:43:35,240
+secondly off-cells, and the thirdly, on-off cells.
+
+728
+00:43:35,240 --> 00:43:37,360
+Now, the on-cells were those which
+
+729
+00:43:37,360 --> 00:43:40,960
+when you shone light into their so-called receptive field
+
+730
+00:43:40,960 --> 00:43:44,040
+area, they would discharge vigorously.
+
+731
+00:43:44,040 --> 00:43:46,680
+You turn the light on here, and you
+
+732
+00:43:46,680 --> 00:43:49,800
+can see the on-cell fires.
+
+733
+00:43:49,800 --> 00:43:52,200
+An off-cell, on the other hand, fired
+
+734
+00:43:52,200 --> 00:43:57,200
+when you turned off the light using this particular method.
+
+735
+00:43:57,200 --> 00:44:00,640
+And on-off cells were those which fired both to the onset
+
+736
+00:44:00,640 --> 00:44:02,680
+and the termination of the light.
+
+737
+00:44:02,680 --> 00:44:04,760
+And that's why they were called and are still
+
+738
+00:44:04,760 --> 00:44:08,880
+called to this day on and off cells.
+
+739
+00:44:08,880 --> 00:44:11,400
+So that was an incredible discovery
+
+740
+00:44:11,400 --> 00:44:17,720
+and has created a major evolution in the study
+
+741
+00:44:17,720 --> 00:44:20,800
+of the visual system.
+
+742
+00:44:20,800 --> 00:44:27,760
+All right, so now, doing this kind of work in more detail,
+
+743
+00:44:27,760 --> 00:44:33,160
+using especially mostly reflected light,
+
+744
+00:44:33,160 --> 00:44:37,480
+several other major discoveries were made.
+
+745
+00:44:37,480 --> 00:44:42,600
+A fellow at Harvard in his later years, originally
+
+746
+00:44:42,600 --> 00:44:44,960
+at Johns Hopkins, did experiments
+
+747
+00:44:44,960 --> 00:44:49,480
+carefully studying the receptive field structure
+
+748
+00:44:49,480 --> 00:44:50,480
+of these cells.
+
+749
+00:44:50,480 --> 00:44:53,440
+He would record, in this case, with microelectrodes
+
+750
+00:44:53,440 --> 00:44:57,280
+from a single cell, a gamma ganglion cell,
+
+751
+00:44:57,280 --> 00:45:00,440
+and then see how it responded when you fiddled around
+
+752
+00:45:00,440 --> 00:45:03,400
+with the light in the receptive field.
+
+753
+00:45:03,400 --> 00:45:05,920
+So imagine, then, that the eye is fixed.
+
+754
+00:45:05,920 --> 00:45:07,040
+It's looking out.
+
+755
+00:45:07,040 --> 00:45:09,400
+You're putting an electrode into, in this case,
+
+756
+00:45:09,400 --> 00:45:11,840
+into the eye or wherever you put it.
+
+757
+00:45:11,840 --> 00:45:15,640
+And then you can use lights, maybe like a projector,
+
+758
+00:45:15,640 --> 00:45:19,280
+move it around to find out where the receptive field is.
+
+759
+00:45:19,280 --> 00:45:22,600
+And then you can present, say, a small spot of light,
+
+760
+00:45:22,600 --> 00:45:25,320
+or you make it a big spot, make it different colors,
+
+761
+00:45:25,320 --> 00:45:26,680
+and so on and so on.
+
+762
+00:45:26,680 --> 00:45:30,400
+So when this was done, a remarkable discovery
+
+763
+00:45:30,400 --> 00:45:36,720
+was made by Kufler, namely that the so-called on and off
+
+764
+00:45:36,720 --> 00:45:40,640
+cells were not just responding to the onset
+
+765
+00:45:40,640 --> 00:45:42,400
+and termination of light.
+
+766
+00:45:42,400 --> 00:45:46,600
+Instead, what they did was they responded vigorously
+
+767
+00:45:46,600 --> 00:45:50,440
+to a small spot in the center of the so-called receptive field.
+
+768
+00:45:50,440 --> 00:45:53,440
+But if you use a large spot like that,
+
+769
+00:45:53,440 --> 00:45:57,000
+there was much less of a response.
+
+770
+00:45:57,000 --> 00:45:59,440
+And that was true also for the off cells
+
+771
+00:45:59,440 --> 00:46:01,120
+and for the on-off cells.
+
+772
+00:46:01,120 --> 00:46:04,320
+So the surround we can think of as being inhibitory
+
+773
+00:46:04,320 --> 00:46:06,360
+with respect to the center.
+
+774
+00:46:06,360 --> 00:46:10,960
+And so the big question was, why on earth
+
+775
+00:46:10,960 --> 00:46:15,080
+did this complex arrangement evolve
+
+776
+00:46:15,080 --> 00:46:19,280
+of having cells that have not only an excitatory center
+
+777
+00:46:19,280 --> 00:46:22,440
+but also have an inhibitory surround?
+
+778
+00:46:22,440 --> 00:46:25,080
+And now I'm going to let you think about this for a minute.
+
+779
+00:46:25,080 --> 00:46:29,080
+And eventually, I will tell you as to why we
+
+780
+00:46:29,080 --> 00:46:31,160
+have this organization.
+
+781
+00:46:31,160 --> 00:46:33,680
+Because we are going to devote a whole session
+
+782
+00:46:33,680 --> 00:46:38,960
+to the on and off systems and also a complete session
+
+783
+00:46:38,960 --> 00:46:40,720
+to the midget and parasol cells.
+
+784
+00:46:40,720 --> 00:46:43,680
+And that's when we are going to discuss this in detail.
+
+785
+00:46:43,880 --> 00:46:49,240
+The important thing, as you learn about these things,
+
+786
+00:46:49,240 --> 00:46:52,160
+is to be an active thinker.
+
+787
+00:46:52,160 --> 00:46:54,760
+And if something comes up and say, well, why did this happen?
+
+788
+00:46:54,760 --> 00:46:55,600
+Why did that happen?
+
+789
+00:46:55,600 --> 00:46:56,160
+Why is this?
+
+790
+00:46:56,160 --> 00:46:56,960
+Why is that?
+
+791
+00:46:56,960 --> 00:46:58,880
+When you actively think about that,
+
+792
+00:46:58,880 --> 00:47:00,680
+then it becomes interesting.
+
+793
+00:47:00,680 --> 00:47:03,480
+And also, once the answers come, it
+
+794
+00:47:03,480 --> 00:47:07,720
+becomes insightful and exciting to understand it.
+
+795
+00:47:07,720 --> 00:47:14,760
+OK, so now, a series of investigators
+
+796
+00:47:14,760 --> 00:47:22,800
+did experiments in which they did labeling of just the cell
+
+797
+00:47:22,800 --> 00:47:26,880
+bodies in the retina and did what is called a hole mount.
+
+798
+00:47:26,880 --> 00:47:28,040
+What's a hole mount?
+
+799
+00:47:28,040 --> 00:47:30,240
+You take the retina, you flatten it out,
+
+800
+00:47:30,240 --> 00:47:35,040
+then you look at this whole layout through a microscope.
+
+801
+00:47:35,040 --> 00:47:36,840
+And if you label them these cells,
+
+802
+00:47:36,840 --> 00:47:39,680
+and this was a so-called nistel stain that
+
+803
+00:47:39,680 --> 00:47:45,800
+stains the cell bodies, but doesn't stain the processes
+
+804
+00:47:45,800 --> 00:47:48,800
+like the dendrites or the exons, what they found
+
+805
+00:47:48,800 --> 00:47:51,480
+was that if you did this quantitatively,
+
+806
+00:47:51,480 --> 00:47:56,080
+they could distinguish three very distinct different
+
+807
+00:47:56,080 --> 00:47:58,040
+classes of cells.
+
+808
+00:47:58,040 --> 00:48:00,040
+Turned out later that there were more than three.
+
+809
+00:48:00,040 --> 00:48:02,840
+But in this case, just doing it crudely like that,
+
+810
+00:48:02,840 --> 00:48:04,240
+you can see those big cells.
+
+811
+00:48:04,240 --> 00:48:06,480
+That one, that one, that one, that one, that one,
+
+812
+00:48:06,480 --> 00:48:07,800
+and so on.
+
+813
+00:48:07,800 --> 00:48:10,600
+Maybe one out of seven or eight in this sample
+
+814
+00:48:10,600 --> 00:48:12,040
+are these huge cells.
+
+815
+00:48:12,040 --> 00:48:15,000
+And then you have some smaller cells,
+
+816
+00:48:15,000 --> 00:48:17,640
+and then you also have some tiny cells.
+
+817
+00:48:17,640 --> 00:48:19,600
+And if you did this quantitatively,
+
+818
+00:48:19,600 --> 00:48:25,880
+they argued that they formed distinct, separate populations.
+
+819
+00:48:25,880 --> 00:48:28,520
+They were not a continuum.
+
+820
+00:48:28,520 --> 00:48:31,160
+So then, that, of course, is a basic requirement
+
+821
+00:48:31,160 --> 00:48:35,600
+to prove that, indeed, these are different classes of cells
+
+822
+00:48:35,600 --> 00:48:38,640
+that probably perform different jobs.
+
+823
+00:48:38,640 --> 00:48:42,520
+So what can you do to prove this further?
+
+824
+00:48:42,520 --> 00:48:46,400
+Well, subsequent to this kind of work,
+
+825
+00:48:46,400 --> 00:48:51,040
+people began to look at another interesting question
+
+826
+00:48:51,040 --> 00:48:55,280
+about how these retinal ganglion cells send their signals
+
+827
+00:48:55,280 --> 00:48:57,800
+to the central nervous system.
+
+828
+00:48:57,800 --> 00:48:59,920
+And it's been discovered not just in the retina,
+
+829
+00:48:59,920 --> 00:49:06,880
+but in many other parts of the human and animal body
+
+830
+00:49:06,880 --> 00:49:16,160
+that the rapidity with which an axon can send its action
+
+831
+00:49:16,160 --> 00:49:19,880
+potentials down from one location to the next,
+
+832
+00:49:19,880 --> 00:49:26,440
+from the cell body, say, to the axon terminals,
+
+833
+00:49:26,440 --> 00:49:30,680
+is very much depends on the size of the cell
+
+834
+00:49:30,680 --> 00:49:33,040
+and the size of the axon.
+
+835
+00:49:33,040 --> 00:49:38,200
+So if you have a small cell and a very thin axon,
+
+836
+00:49:38,200 --> 00:49:42,240
+the conduction is slower than if you have a big cell
+
+837
+00:49:42,240 --> 00:49:44,280
+and a big axon.
+
+838
+00:49:44,280 --> 00:49:47,640
+So if that's the case, people argued
+
+839
+00:49:47,640 --> 00:49:52,600
+that if you were to take the optic nerve
+
+840
+00:49:52,600 --> 00:49:57,200
+and stimulate it at one site and a little base down,
+
+841
+00:49:57,200 --> 00:50:01,600
+maybe back towards the retina, record
+
+842
+00:50:01,600 --> 00:50:05,680
+and see what kind of overall general, not action potentials,
+
+843
+00:50:05,680 --> 00:50:08,440
+but overall activation takes place.
+
+844
+00:50:08,440 --> 00:50:13,200
+And when that was done, amazing discovery was made.
+
+845
+00:50:13,200 --> 00:50:18,960
+In this case, you can see we have two major dips here.
+
+846
+00:50:18,960 --> 00:50:20,680
+This is time.
+
+847
+00:50:20,680 --> 00:50:22,760
+Here is electrical stimulation.
+
+848
+00:50:22,760 --> 00:50:26,480
+Here is the activation of hundreds and hundreds of fibers.
+
+849
+00:50:26,480 --> 00:50:29,960
+And it shows that they form distinct groups, a very rapidly
+
+850
+00:50:29,960 --> 00:50:32,880
+conducting group, a slow conducting group,
+
+851
+00:50:32,880 --> 00:50:36,480
+and a very slow, more diffuse group.
+
+852
+00:50:36,480 --> 00:50:41,400
+So then it was subsequent, I'll talk about that later,
+
+853
+00:50:41,400 --> 00:50:44,800
+it was subsequently established that these very rapidly
+
+854
+00:50:44,800 --> 00:50:52,720
+conducting axons come from the so-called parasol cells.
+
+855
+00:50:52,720 --> 00:50:56,400
+The medium conducting ones come from the midget cells.
+
+856
+00:50:56,400 --> 00:50:57,560
+All right?
+
+857
+00:50:57,560 --> 00:51:00,680
+I'll tell you exactly how that was established.
+
+858
+00:51:00,680 --> 00:51:03,520
+But now that has become a solid fact.
+
+859
+00:51:03,520 --> 00:51:04,160
+OK.
+
+860
+00:51:04,160 --> 00:51:07,800
+So now, if you go back to the anatomy of these cell types,
+
+861
+00:51:07,800 --> 00:51:13,920
+if you look at them at equivalent distances
+
+862
+00:51:13,920 --> 00:51:19,560
+of eccentricity, OK, 1, 3, and 5.7 degrees,
+
+863
+00:51:19,560 --> 00:51:24,240
+here are examples of the midget cell dendritic arbors.
+
+864
+00:51:24,240 --> 00:51:25,360
+So again, this is a whole mind.
+
+865
+00:51:25,360 --> 00:51:29,000
+You're looking straight down at the cell, all right?
+
+866
+00:51:29,000 --> 00:51:34,320
+You can see these are very, very constricted dendritic arbors.
+
+867
+00:51:34,320 --> 00:51:36,960
+Now, by contrast, the parasol cells
+
+868
+00:51:36,960 --> 00:51:41,640
+have much, much larger, three times larger in diameter
+
+869
+00:51:41,640 --> 00:51:43,360
+dendritic arbors.
+
+870
+00:51:43,360 --> 00:51:46,480
+And now I can tell you, which I deferred before,
+
+871
+00:51:46,480 --> 00:51:48,760
+is that if you look at these, the reason
+
+872
+00:51:48,760 --> 00:51:51,800
+they're called parasol cells is what?
+
+873
+00:51:51,800 --> 00:51:57,040
+Because it looks like an umbrella, OK?
+
+874
+00:51:57,040 --> 00:51:59,440
+So this looks like an umbrella.
+
+875
+00:51:59,440 --> 00:52:01,480
+And of course, that's parasol.
+
+876
+00:52:01,480 --> 00:52:04,360
+So that's why they are called parasol cells.
+
+877
+00:52:04,360 --> 00:52:06,520
+And these guys, most of us interesting,
+
+878
+00:52:06,520 --> 00:52:08,560
+are called midget cells because they're midget.
+
+879
+00:52:08,560 --> 00:52:09,920
+They're small.
+
+880
+00:52:09,920 --> 00:52:13,360
+All right, so that then established,
+
+881
+00:52:13,360 --> 00:52:15,960
+this work was done just 20 years ago,
+
+882
+00:52:15,960 --> 00:52:18,480
+it was established that you have indeed
+
+883
+00:52:18,480 --> 00:52:22,280
+these two very, very distinct populations of cells.
+
+884
+00:52:22,280 --> 00:52:26,680
+So now the big question came up, why do we have on and off
+
+885
+00:52:26,680 --> 00:52:27,400
+cells?
+
+886
+00:52:27,400 --> 00:52:29,840
+Why do we have midget and parasol cells?
+
+887
+00:52:29,840 --> 00:52:32,280
+And as I say, we are going to discuss this in considerable
+
+888
+00:52:32,280 --> 00:52:33,240
+detail.
+
+889
+00:52:33,240 --> 00:52:36,400
+But let me just give you a crude introduction.
+
+890
+00:52:36,400 --> 00:52:39,080
+If you look at the parasol cell, obviously,
+
+891
+00:52:39,080 --> 00:52:41,400
+because of the huge dendritic arbors,
+
+892
+00:52:41,400 --> 00:52:46,120
+they have large, relatively speaking, much larger receptor
+
+893
+00:52:46,120 --> 00:52:49,280
+feels three times bigger than midget cells.
+
+894
+00:52:49,280 --> 00:52:54,400
+The midget cells are so specific that each cell
+
+895
+00:52:54,400 --> 00:52:58,120
+in central retina, its input for the excitatory center
+
+896
+00:52:58,120 --> 00:53:00,920
+from just one single cone.
+
+897
+00:53:00,920 --> 00:53:03,400
+Now, what does that mean?
+
+898
+00:53:03,400 --> 00:53:06,520
+But I didn't emphasize before, but I'm sure you all
+
+899
+00:53:06,520 --> 00:53:10,520
+know that we have three major classes of cones, which
+
+900
+00:53:10,520 --> 00:53:14,520
+some people call red, green, and blue.
+
+901
+00:53:14,520 --> 00:53:17,760
+And then when you say that, the real aficionados say,
+
+902
+00:53:17,760 --> 00:53:19,880
+come on, you can't say that.
+
+903
+00:53:19,880 --> 00:53:23,480
+You're supposed to say short, medium, and long wavelength
+
+904
+00:53:23,480 --> 00:53:24,840
+sensitive neurons.
+
+905
+00:53:24,840 --> 00:53:26,960
+But we'll just call them red, green, and blue.
+
+906
+00:53:26,960 --> 00:53:32,760
+Now, the reason then is that the center of one class of midget
+
+907
+00:53:32,760 --> 00:53:34,880
+cells gets included only from red cones,
+
+908
+00:53:34,880 --> 00:53:37,760
+another from green cones, and some from blue cones.
+
+909
+00:53:37,760 --> 00:53:39,920
+I'll show that in more detail in a minute.
+
+910
+00:53:39,920 --> 00:53:43,000
+So we have these three subtypes.
+
+911
+00:53:43,000 --> 00:53:46,560
+And so therefore, we can say that the midget cells,
+
+912
+00:53:46,560 --> 00:53:48,400
+because they're so teeny, they should
+
+913
+00:53:48,400 --> 00:53:50,600
+be able to see fine detail.
+
+914
+00:53:50,600 --> 00:53:53,600
+And because of this wiring, they should
+
+915
+00:53:53,600 --> 00:53:55,760
+be able to tell you about color.
+
+916
+00:53:55,760 --> 00:53:58,720
+By contrast, if you look at the parasol cells,
+
+917
+00:53:58,720 --> 00:54:03,040
+they get a mix of inputs, both in the center and the surround.
+
+918
+00:54:03,040 --> 00:54:06,080
+So it's unlikely that they can tell you about color.
+
+919
+00:54:06,080 --> 00:54:09,000
+And we'll examine that in much more detail soon.
+
+920
+00:54:09,000 --> 00:54:11,160
+All right, so now, the other interesting thing
+
+921
+00:54:11,160 --> 00:54:14,960
+about this system is it makes you speculate as to why we have
+
+922
+00:54:14,960 --> 00:54:17,320
+them, and we'll elaborate on that,
+
+923
+00:54:17,320 --> 00:54:19,800
+is that the midget system, when you turn on the light,
+
+924
+00:54:19,800 --> 00:54:23,280
+when you shine a small spot in the center receptive field,
+
+925
+00:54:23,280 --> 00:54:26,400
+gives you a fairly sustained response for the brief time
+
+926
+00:54:26,400 --> 00:54:29,400
+that was maybe a second or two.
+
+927
+00:54:29,400 --> 00:54:32,760
+But the parasol system gives you only a burst,
+
+928
+00:54:32,760 --> 00:54:36,920
+like that, instead of a sustained response.
+
+929
+00:54:36,920 --> 00:54:38,200
+So think about that.
+
+930
+00:54:38,200 --> 00:54:40,760
+Say, why would we have two systems which are not
+
+931
+00:54:40,760 --> 00:54:44,040
+only different in size, but also different in the profile
+
+932
+00:54:44,040 --> 00:54:46,240
+of their responses?
+
+933
+00:54:46,240 --> 00:54:48,840
+And then, once you have this question in your mind,
+
+934
+00:54:48,840 --> 00:54:52,120
+then you'll be eager to find out when we talk about that time
+
+935
+00:54:52,120 --> 00:54:53,640
+after next.
+
+936
+00:54:53,640 --> 00:54:56,520
+OK, so now let's go back to the beginning here
+
+937
+00:54:56,520 --> 00:54:58,120
+and talk about the photoreceptors
+
+938
+00:54:58,120 --> 00:55:04,800
+in just a bit more detail, so we can get a better picture of it.
+
+939
+00:55:04,800 --> 00:55:07,640
+Here, as I've mentioned to you before, in the fovea,
+
+940
+00:55:07,640 --> 00:55:13,280
+you have very, very tightly packed cone photoreceptors.
+
+941
+00:55:13,280 --> 00:55:16,000
+They're almost hexagonal in shape rather than round.
+
+942
+00:55:16,000 --> 00:55:18,120
+They're so tightly packed.
+
+943
+00:55:18,120 --> 00:55:20,440
+But then, when you go five degrees out,
+
+944
+00:55:20,440 --> 00:55:25,200
+you first of all see that the cones got to be much larger.
+
+945
+00:55:25,200 --> 00:55:28,960
+And now, you have an intermixture of rods there
+
+946
+00:55:28,960 --> 00:55:31,800
+that you can see.
+
+947
+00:55:31,800 --> 00:55:35,000
+So in this region, you can process
+
+948
+00:55:35,000 --> 00:55:37,520
+both information at low illumination levels
+
+949
+00:55:37,520 --> 00:55:40,360
+and high illumination levels, whereas here,
+
+950
+00:55:40,360 --> 00:55:47,680
+as Kaffir Hotline had proven, you can only
+
+951
+00:55:47,680 --> 00:55:52,520
+see under fairly right normal illumination conditions.
+
+952
+00:55:57,040 --> 00:56:01,120
+OK, so now, if you go even further out in the retina,
+
+953
+00:56:01,120 --> 00:56:03,040
+this is a beautiful three-dimensional looking
+
+954
+00:56:03,040 --> 00:56:07,120
+picture, this shows the rods and the cones in the periphery.
+
+955
+00:56:07,120 --> 00:56:09,840
+Many, many more rods per unit area,
+
+956
+00:56:09,840 --> 00:56:13,520
+and the cones have gotten even bigger.
+
+957
+00:56:13,520 --> 00:56:17,600
+And so obviously, the ability for the cones
+
+958
+00:56:17,600 --> 00:56:24,000
+to process fine information has been degraded as a result.
+
+959
+00:56:24,000 --> 00:56:26,560
+Now again, as I've mentioned to you before,
+
+960
+00:56:26,560 --> 00:56:31,640
+we have in humans, there are about 120 million rods,
+
+961
+00:56:31,640 --> 00:56:35,520
+now five million cones, in each retina.
+
+962
+00:56:35,520 --> 00:56:38,680
+OK, so now, if you look at the overall distribution,
+
+963
+00:56:38,680 --> 00:56:40,440
+this is not too important, you can
+
+964
+00:56:40,440 --> 00:56:44,080
+see that as you go away from the fovea,
+
+965
+00:56:44,080 --> 00:56:48,280
+there's a very rapid decline in the number of cones.
+
+966
+00:56:48,280 --> 00:56:51,000
+That's a hash line.
+
+967
+00:56:51,000 --> 00:56:54,920
+And then there are no rods in the fovea,
+
+968
+00:56:54,920 --> 00:56:57,600
+but they increase rapidly, and then they fall off.
+
+969
+00:56:57,600 --> 00:57:00,360
+So that's the overall distribution.
+
+970
+00:57:00,360 --> 00:57:03,440
+And therefore, you can see fine detail in the center,
+
+971
+00:57:03,440 --> 00:57:08,560
+and you're very sensitive for night vision,
+
+972
+00:57:08,560 --> 00:57:14,960
+and not in a far periphery, but sort of in the mid section
+
+973
+00:57:14,960 --> 00:57:21,800
+here, anywhere between 20 and 40 degrees from the fovea.
+
+974
+00:57:21,800 --> 00:57:25,480
+Now let me remind you, because I'm sure you know all this
+
+975
+00:57:25,480 --> 00:57:27,000
+already, a few facts.
+
+976
+00:57:32,480 --> 00:57:34,880
+Some of this, I will just write down a couple of these things.
+
+977
+00:57:34,880 --> 00:57:42,560
+First of all, what is a degree of visual angle?
+
+978
+00:57:42,560 --> 00:57:44,680
+That's a good question.
+
+979
+00:57:44,680 --> 00:57:47,080
+What does it mean on the retinal surface?
+
+980
+00:57:47,080 --> 00:57:50,640
+Just let me give you an interesting mnemonic.
+
+981
+00:57:50,640 --> 00:57:53,680
+If you stick out your arm like that,
+
+982
+00:57:53,680 --> 00:57:56,200
+and you look at your thumbnail, that
+
+983
+00:57:56,200 --> 00:58:00,720
+imprints one degree of visual angle on the retinal surface.
+
+984
+00:58:01,440 --> 00:58:03,800
+OK?
+
+985
+00:58:03,800 --> 00:58:08,880
+Now we are going to talk a lot about very small measurements.
+
+986
+00:58:08,880 --> 00:58:11,640
+And so when we talk about small measurements,
+
+987
+00:58:11,640 --> 00:58:14,320
+I mentioned already that the tip of a microelectro
+
+988
+00:58:14,320 --> 00:58:15,920
+is about one micron.
+
+989
+00:58:15,920 --> 00:58:18,280
+And what is a micron?
+
+990
+00:58:18,280 --> 00:58:19,720
+Anybody know?
+
+991
+00:58:19,720 --> 00:58:20,200
+Yes?
+
+992
+00:58:20,200 --> 00:58:22,760
+10 to the negative 6.
+
+993
+00:58:22,760 --> 00:58:24,600
+10 to the negative 6.
+
+994
+00:58:24,600 --> 00:58:25,560
+OK.
+
+995
+00:58:25,560 --> 00:58:31,320
+One micron is 1,000th of a millimeter.
+
+996
+00:58:31,320 --> 00:58:31,820
+OK?
+
+997
+00:58:34,680 --> 00:58:37,880
+Now, talking about that in terms of millimeters, which
+
+998
+00:58:37,880 --> 00:58:41,120
+you are going to do a lot, that's the greatest convention,
+
+999
+00:58:41,120 --> 00:58:46,800
+we need to also know what is the relationship between inches
+
+1000
+00:58:46,800 --> 00:58:50,240
+and millimeters and centimeters.
+
+1001
+00:58:50,240 --> 00:58:51,960
+OK, so if you take one inch.
+
+1002
+00:58:56,560 --> 00:58:59,680
+You all know what an inch is, I guess.
+
+1003
+00:58:59,680 --> 00:59:01,560
+Roughly, if you look at your thumbnail again,
+
+1004
+00:59:01,560 --> 00:59:03,800
+it's maybe a little bit under an inch.
+
+1005
+00:59:03,800 --> 00:59:05,360
+OK?
+
+1006
+00:59:05,360 --> 00:59:15,240
+Now, one inch equals 2.54 millimeters.
+
+1007
+00:59:15,240 --> 00:59:16,760
+OK?
+
+1008
+00:59:16,760 --> 00:59:20,280
+So that's a very interesting mnemonic to remember.
+
+1009
+00:59:20,280 --> 00:59:23,640
+So whenever you look at various things
+
+1010
+00:59:23,640 --> 00:59:27,200
+and try to understand size, you may
+
+1011
+00:59:27,200 --> 00:59:32,200
+need to make that conversion, especially if you have always
+
+1012
+00:59:32,200 --> 00:59:34,800
+thought about things in terms of inches.
+
+1013
+00:59:34,800 --> 00:59:35,300
+Yes?
+
+1014
+00:59:35,300 --> 00:59:37,200
+I think you mentored centimeters.
+
+1015
+00:59:37,200 --> 00:59:37,700
+What?
+
+1016
+00:59:37,700 --> 00:59:39,400
+Did you mean to write centimeters?
+
+1017
+00:59:42,440 --> 00:59:44,520
+You're right.
+
+1018
+00:59:44,520 --> 00:59:48,080
+2.5 centimeters.
+
+1019
+00:59:48,080 --> 00:59:51,080
+Yeah, 254 millimeters.
+
+1020
+00:59:51,080 --> 00:59:51,960
+You're right.
+
+1021
+00:59:51,960 --> 00:59:53,600
+OK, sorry about that.
+
+1022
+00:59:53,600 --> 00:59:56,480
+Very good, thank you for pointing that out.
+
+1023
+00:59:56,480 --> 01:00:00,680
+OK, so now, what we are going to do next
+
+1024
+01:00:00,680 --> 01:00:02,920
+is we're going to move on, and I'll
+
+1025
+01:00:02,920 --> 01:00:08,080
+tell you another clever experiment that had been done.
+
+1026
+01:00:08,080 --> 01:00:10,520
+These people here, McCrane and all,
+
+1027
+01:00:10,520 --> 01:00:13,720
+developed a method which enabled them to selectively
+
+1028
+01:00:13,720 --> 01:00:17,560
+label the blue cells in the retina.
+
+1029
+01:00:17,560 --> 01:00:19,680
+And this shows a picture of that.
+
+1030
+01:00:19,680 --> 01:00:22,920
+All the rest of them are red and green cells.
+
+1031
+01:00:23,600 --> 01:00:38,720
+So only one out of eight cones is in the foveal area,
+
+1032
+01:00:38,720 --> 01:00:39,880
+near foveal area.
+
+1033
+01:00:39,880 --> 01:00:43,080
+I should say this is both the foveal and the periphoveal,
+
+1034
+01:00:43,080 --> 01:00:47,360
+is black, the rest of them are red and green cones.
+
+1035
+01:00:47,720 --> 01:00:50,000
+OK?
+
+1036
+01:00:50,000 --> 01:00:54,920
+Now, let's become specific about the facts here,
+
+1037
+01:00:54,920 --> 01:00:58,800
+and tell you first of all that one degree, roughly one
+
+1038
+01:00:58,800 --> 01:01:02,240
+degree, which I pointed out is like a thumb,
+
+1039
+01:01:02,240 --> 01:01:09,040
+it comprises 200 micro on the retinal surface.
+
+1040
+01:01:09,040 --> 01:01:17,200
+The inter-cone distance in the foveal is only 2.4 micro,
+
+1041
+01:01:17,200 --> 01:01:24,480
+whereas per square millimeter, I already mentioned this,
+
+1042
+01:01:24,480 --> 01:01:28,840
+you have about 200,000 cones.
+
+1043
+01:01:28,840 --> 01:01:32,680
+You go out five degrees, that reduces 10-fold.
+
+1044
+01:01:32,680 --> 01:01:36,080
+And then, this I pointed out to you several times,
+
+1045
+01:01:36,080 --> 01:01:38,040
+that's a good thing to remember.
+
+1046
+01:01:38,040 --> 01:01:39,680
+And one thing I haven't mentioned before
+
+1047
+01:01:39,680 --> 01:01:43,720
+is that if you look at a 12-front ladder, I,
+
+1048
+01:01:43,720 --> 01:01:47,080
+when you look at it at 23 centimeters,
+
+1049
+01:01:47,080 --> 01:01:48,880
+that activates about 80 cones.
+
+1050
+01:01:48,880 --> 01:01:50,960
+So that gives you sort of a handle
+
+1051
+01:01:50,960 --> 01:01:54,560
+on what is the nature of activation there.
+
+1052
+01:01:54,560 --> 01:01:56,240
+And I already said that several times,
+
+1053
+01:01:56,240 --> 01:01:59,520
+namely that each rod has 1,000 discs,
+
+1054
+01:01:59,520 --> 01:02:05,840
+and each disc in it has 10,000 molecules.
+
+1055
+01:02:05,840 --> 01:02:06,680
+OK.
+
+1056
+01:02:06,680 --> 01:02:11,400
+And as I've just mentioned, one out of eight cones is blue,
+
+1057
+01:02:11,400 --> 01:02:13,600
+the other are fairly equally numbered,
+
+1058
+01:02:13,600 --> 01:02:16,240
+but varies from person to person.
+
+1059
+01:02:16,240 --> 01:02:16,680
+OK.
+
+1060
+01:02:16,680 --> 01:02:27,520
+So now, we are going to tell you about yet another experiment.
+
+1061
+01:02:27,520 --> 01:02:30,520
+And in this, this is an incredibly clever experiment
+
+1062
+01:02:30,520 --> 01:02:35,360
+that was carried out by Ursula Drager.
+
+1063
+01:02:35,360 --> 01:02:37,840
+At that time, when she did this beautiful experiment,
+
+1064
+01:02:37,840 --> 01:02:40,960
+she did this at Harvard, at Harvard Medical School.
+
+1065
+01:02:40,960 --> 01:02:43,040
+And what she did was this.
+
+1066
+01:02:43,040 --> 01:02:49,720
+She took the words fiat lux, put it on a screen,
+
+1067
+01:02:49,720 --> 01:02:54,400
+and exposed it to a dark-adapted animal,
+
+1068
+01:02:54,400 --> 01:02:56,880
+and the animal being a mouse.
+
+1069
+01:02:56,880 --> 01:02:57,760
+OK.
+
+1070
+01:02:57,760 --> 01:03:00,560
+And then, her procedure enabled her
+
+1071
+01:03:00,560 --> 01:03:04,760
+to label, using a monoclonal antibody label,
+
+1072
+01:03:04,760 --> 01:03:09,440
+those cells that had been activated by fiat lux.
+
+1073
+01:03:09,440 --> 01:03:10,280
+OK.
+
+1074
+01:03:10,280 --> 01:03:14,080
+So this is then what she, this is the actual retina,
+
+1075
+01:03:14,080 --> 01:03:18,520
+flat-mount retina, showing you what had been activated.
+
+1076
+01:03:18,520 --> 01:03:20,960
+Now, that's remarkable, beautiful.
+
+1077
+01:03:20,960 --> 01:03:26,120
+And she came and gave a talk here at MIT maybe about 15
+
+1078
+01:03:26,120 --> 01:03:28,840
+years ago.
+
+1079
+01:03:28,840 --> 01:03:31,720
+And when she presented this picture,
+
+1080
+01:03:31,720 --> 01:03:36,520
+one of the students, it wasn't any of you, I guess,
+
+1081
+01:03:36,520 --> 01:03:39,880
+raised her hand and was very upset.
+
+1082
+01:03:40,880 --> 01:03:43,440
+But, but, but, but, but.
+
+1083
+01:03:43,440 --> 01:03:46,040
+And so Ursula said, yes?
+
+1084
+01:03:46,040 --> 01:03:50,000
+So what do you think this patient, this subject asked?
+
+1085
+01:03:50,000 --> 01:03:53,880
+This listener asked.
+
+1086
+01:03:53,880 --> 01:03:56,480
+Well, this was a very active thinker.
+
+1087
+01:03:56,480 --> 01:04:00,320
+This person said, but, but, but, was this image
+
+1088
+01:04:00,320 --> 01:04:03,000
+right set up on the retinal surface?
+
+1089
+01:04:03,000 --> 01:04:04,760
+That was a question.
+
+1090
+01:04:04,760 --> 01:04:08,720
+And Ursula Drager said, no, it was upside down.
+
+1091
+01:04:08,720 --> 01:04:13,040
+I just rotated it 180 degrees so you can see it.
+
+1092
+01:04:13,040 --> 01:04:14,960
+All right.
+
+1093
+01:04:14,960 --> 01:04:21,680
+Well, interestingly enough, there were times
+
+1094
+01:04:21,680 --> 01:04:23,400
+when this became an issue.
+
+1095
+01:04:23,400 --> 01:04:27,200
+First of all, before, people knew about lenses,
+
+1096
+01:04:27,200 --> 01:04:29,440
+and that lenses turn images upside down.
+
+1097
+01:04:30,400 --> 01:04:39,160
+And, and secondly, because many people
+
+1098
+01:04:39,160 --> 01:04:42,560
+didn't believe that the images are upside on the retina.
+
+1099
+01:04:42,560 --> 01:04:44,440
+I mean, if images are upside down on the retina,
+
+1100
+01:04:44,440 --> 01:04:47,200
+they're upside down on the, on your brain,
+
+1101
+01:04:47,200 --> 01:04:51,280
+and yet the world is right side up.
+
+1102
+01:04:51,280 --> 01:04:52,240
+What's going on?
+
+1103
+01:04:52,240 --> 01:04:59,840
+So I would say about eight or 10 years ago,
+
+1104
+01:04:59,840 --> 01:05:09,480
+I was asked to review a paper for a high-visibility journal.
+
+1105
+01:05:09,480 --> 01:05:12,120
+I can't name the journal.
+
+1106
+01:05:12,120 --> 01:05:19,400
+In which the investigator very, very vociferously
+
+1107
+01:05:19,400 --> 01:05:23,040
+proclaimed that we have all been wrong
+
+1108
+01:05:23,040 --> 01:05:26,680
+and that the images are right set up on the retina after all.
+
+1109
+01:05:26,680 --> 01:05:29,080
+So what was his proof?
+
+1110
+01:05:29,080 --> 01:05:35,720
+Well, his proof was that he took an ox eye, a slotted ox's eye,
+
+1111
+01:05:35,720 --> 01:05:38,440
+and cut out a little piece in the back of the eye
+
+1112
+01:05:38,440 --> 01:05:41,840
+and put a translucent piece of paper over it,
+
+1113
+01:05:41,840 --> 01:05:44,880
+and then presented a stimulus out there.
+
+1114
+01:05:44,880 --> 01:05:47,560
+And when you looked at the back of the eye,
+
+1115
+01:05:48,040 --> 01:05:50,880
+the translucent part, the image was right side up.
+
+1116
+01:05:50,880 --> 01:05:53,680
+A little bit blurred, but right side up.
+
+1117
+01:05:53,680 --> 01:05:57,920
+And so he felt that he proved that images are right side up
+
+1118
+01:05:57,920 --> 01:06:00,080
+on the retina after all.
+
+1119
+01:06:00,080 --> 01:06:03,680
+Well, I was flabbergasted, and it took me quite a while
+
+1120
+01:06:03,680 --> 01:06:07,400
+to figure out why this guy got what he got,
+
+1121
+01:06:07,400 --> 01:06:09,680
+because he'd obviously got what he got.
+
+1122
+01:06:09,680 --> 01:06:12,760
+So can you guys think of any reason for this?
+
+1123
+01:06:12,760 --> 01:06:14,040
+How come he got what he got?
+
+1124
+01:06:14,480 --> 01:06:16,800
+Wait, what did he do?
+
+1125
+01:06:16,800 --> 01:06:22,840
+He took the eye, and the back he cut out a little opening,
+
+1126
+01:06:22,840 --> 01:06:25,200
+and put a transparency over it.
+
+1127
+01:06:25,200 --> 01:06:29,760
+So then anything came in there, you could see what
+
+1128
+01:06:29,760 --> 01:06:33,640
+would have been normally on the retina surface.
+
+1129
+01:06:33,640 --> 01:06:34,920
+I mean, it was a clever experiment.
+
+1130
+01:06:34,920 --> 01:06:37,040
+No question about that.
+
+1131
+01:06:37,040 --> 01:06:39,960
+So what was wrong with the experiment?
+
+1132
+01:06:39,960 --> 01:06:41,680
+Well, I'll tell you.
+
+1133
+01:06:41,680 --> 01:06:43,520
+What was wrong with the experiment
+
+1134
+01:06:43,520 --> 01:06:46,880
+goes back to what I told you before about the way
+
+1135
+01:06:46,880 --> 01:06:50,480
+the lens works.
+
+1136
+01:06:50,480 --> 01:06:53,920
+The lens works so that when you look at something close,
+
+1137
+01:06:53,920 --> 01:06:58,560
+the muscles of the lens are such that it makes the lens fat.
+
+1138
+01:06:58,560 --> 01:07:07,440
+And when the muscles relax, it makes the lens thick.
+
+1139
+01:07:07,440 --> 01:07:09,200
+Sorry, thin.
+
+1140
+01:07:09,200 --> 01:07:14,840
+So that means, just to be graphic about it,
+
+1141
+01:07:14,840 --> 01:07:19,240
+is that if you have a thick lens,
+
+1142
+01:07:19,240 --> 01:07:23,920
+you have a short focal length.
+
+1143
+01:07:23,920 --> 01:07:28,800
+And if you have a thin lens, you have a much longer focal
+
+1144
+01:07:28,800 --> 01:07:31,440
+length like that.
+
+1145
+01:07:31,440 --> 01:07:40,520
+So now, if you look at the back of the eye here,
+
+1146
+01:07:40,520 --> 01:07:43,680
+where the photoreceptors are, in this case,
+
+1147
+01:07:43,680 --> 01:07:45,480
+it looks like it's with the upside down.
+
+1148
+01:07:45,480 --> 01:07:47,640
+But if they were in the same distance here,
+
+1149
+01:07:47,640 --> 01:07:50,360
+it would be blurred, and it would remain right side up,
+
+1150
+01:07:50,360 --> 01:07:53,600
+just like it is with a magnifying glass.
+
+1151
+01:07:53,600 --> 01:07:59,520
+So what this guy didn't know is the rule of how the muscle works
+
+1152
+01:07:59,520 --> 01:08:03,480
+in the eye to control the lens.
+
+1153
+01:08:03,480 --> 01:08:08,800
+And when the animal was killed, it no longer
+
+1154
+01:08:08,800 --> 01:08:14,240
+had the lens at the proper focal depth.
+
+1155
+01:08:14,240 --> 01:08:16,840
+And therefore, the image was right side up.
+
+1156
+01:08:16,840 --> 01:08:20,040
+So therefore, guess what happened?
+
+1157
+01:08:20,040 --> 01:08:24,240
+I wrote back to this high visibility journal saying,
+
+1158
+01:08:24,240 --> 01:08:29,360
+that this guy is wrong for this reason.
+
+1159
+01:08:29,360 --> 01:08:33,000
+So that was certainly an interesting experience,
+
+1160
+01:08:33,000 --> 01:08:38,840
+and that's why I managed to learn a little bit about how
+
+1161
+01:08:38,840 --> 01:08:44,640
+the lens works in the eye, which is a remarkable way it works,
+
+1162
+01:08:44,640 --> 01:08:46,520
+since it's so totally different from what
+
+1163
+01:08:46,520 --> 01:08:49,840
+we are familiar with when it comes to cameras.
+
+1164
+01:08:49,840 --> 01:08:55,800
+OK, so now let's go to the next step, one down
+
+1165
+01:08:55,800 --> 01:09:00,960
+from your photoreceptors.
+
+1166
+01:09:00,960 --> 01:09:03,880
+And we come to the so-called bipolar cells.
+
+1167
+01:09:03,880 --> 01:09:07,360
+Here's a series of pictures of the so-called cat bipolar
+
+1168
+01:09:07,360 --> 01:09:08,360
+cells.
+
+1169
+01:09:08,360 --> 01:09:11,680
+And what was discovered is that the bipolar cells,
+
+1170
+01:09:11,680 --> 01:09:13,800
+here in the outer plexiform layer,
+
+1171
+01:09:13,800 --> 01:09:16,560
+they connect with the photoreceptors.
+
+1172
+01:09:16,560 --> 01:09:20,000
+And the inner plexiform layer, their external projections,
+
+1173
+01:09:20,000 --> 01:09:28,720
+are such that in the upper layer here, which is IPL layer A,
+
+1174
+01:09:28,720 --> 01:09:33,080
+the cells there are off cells.
+
+1175
+01:09:33,080 --> 01:09:35,960
+And the ones that project below this here
+
+1176
+01:09:35,960 --> 01:09:37,760
+are the so-called on cells.
+
+1177
+01:09:37,760 --> 01:09:42,120
+So there's a separation of the so-called on and off cells
+
+1178
+01:09:42,120 --> 01:09:46,000
+at the bipolar cell level in the manner in which they connect.
+
+1179
+01:09:46,000 --> 01:09:50,120
+And so therefore, those ganglion cells that connect with these
+
+1180
+01:09:50,120 --> 01:09:51,520
+are off ganglion cells.
+
+1181
+01:09:51,520 --> 01:09:57,120
+And those that connect with these are on ganglion cells.
+
+1182
+01:09:57,120 --> 01:10:00,760
+All right, so that's basically out of the bipolar cells.
+
+1183
+01:10:00,760 --> 01:10:03,040
+And then when you come to the horizontal cells,
+
+1184
+01:10:03,040 --> 01:10:05,760
+here's an example, a beautiful example,
+
+1185
+01:10:05,760 --> 01:10:12,680
+of a proscienielo-labeled horizontal cell.
+
+1186
+01:10:12,680 --> 01:10:15,840
+And if that is then analyzed in detail,
+
+1187
+01:10:15,840 --> 01:10:17,600
+it looks something like this.
+
+1188
+01:10:17,600 --> 01:10:24,480
+This particular cell has 15 connections
+
+1189
+01:10:24,480 --> 01:10:27,720
+with the photoreceptors.
+
+1190
+01:10:27,720 --> 01:10:30,280
+And these cells, I might as well anticipate.
+
+1191
+01:10:30,280 --> 01:10:32,520
+We'll talk about that in more detail later.
+
+1192
+01:10:32,520 --> 01:10:36,440
+They play a central role in providing the surrounding
+
+1193
+01:10:36,440 --> 01:10:38,760
+inhibition that I described to you
+
+1194
+01:10:38,760 --> 01:10:41,080
+for those retinal ganglion cells.
+
+1195
+01:10:41,080 --> 01:10:43,880
+Then if you proceed to the amocrine cells,
+
+1196
+01:10:43,880 --> 01:10:45,960
+and again, things are so complicated,
+
+1197
+01:10:45,960 --> 01:10:51,000
+the numerous, numerous amocrine cells, different types.
+
+1198
+01:10:51,000 --> 01:10:52,680
+And they have been studied extensively.
+
+1199
+01:10:52,680 --> 01:10:55,480
+They're more than 20.
+
+1200
+01:10:55,480 --> 01:10:59,160
+And here's a clever experiment I thought I'd point out to you.
+
+1201
+01:10:59,160 --> 01:11:03,560
+What you can do here, if you look at the so-called cholinergic
+
+1202
+01:11:03,560 --> 01:11:06,720
+amocrine cells, that's one class,
+
+1203
+01:11:06,720 --> 01:11:10,000
+you can selectively label them because they're cholinergic.
+
+1204
+01:11:10,000 --> 01:11:13,520
+And here's an example of what all those lighter blue ones
+
+1205
+01:11:14,120 --> 01:11:16,440
+are your cholinergic cells.
+
+1206
+01:11:16,440 --> 01:11:19,680
+And then what you can do, you can put this under a microscope.
+
+1207
+01:11:19,680 --> 01:11:22,160
+And then you can lower a microelectrode
+
+1208
+01:11:22,160 --> 01:11:25,160
+into one of these cells, just like I've done here.
+
+1209
+01:11:25,160 --> 01:11:26,680
+And if you look at this closely, this
+
+1210
+01:11:26,680 --> 01:11:28,360
+is not the best of pictures.
+
+1211
+01:11:28,360 --> 01:11:32,160
+This is the labeled, again, close to a yellow labeled cell,
+
+1212
+01:11:32,160 --> 01:11:33,160
+amocrine cell.
+
+1213
+01:11:33,160 --> 01:11:35,320
+You can see it has all these processes.
+
+1214
+01:11:35,320 --> 01:11:37,920
+So then if you look at this on the microscope
+
+1215
+01:11:37,920 --> 01:11:42,840
+on the high quality, you can draw these out.
+
+1216
+01:11:42,840 --> 01:11:45,520
+And this is what they look like.
+
+1217
+01:11:45,520 --> 01:11:48,400
+So this is a cholinergic cell.
+
+1218
+01:11:48,400 --> 01:11:49,680
+This is another type.
+
+1219
+01:11:49,680 --> 01:11:54,080
+It's just called A2, which has a lot to do with rods.
+
+1220
+01:11:54,080 --> 01:11:56,600
+And then we have another class called open immunergic.
+
+1221
+01:11:56,600 --> 01:11:58,720
+I'm not going to go into detail about it.
+
+1222
+01:11:58,720 --> 01:12:01,000
+But you can see that each of these now,
+
+1223
+01:12:01,000 --> 01:12:04,600
+scientific methods enabled you to specify
+
+1224
+01:12:04,600 --> 01:12:06,560
+what these amocrine cells are like.
+
+1225
+01:12:06,560 --> 01:12:08,520
+And the basis of that, people have come up
+
+1226
+01:12:08,520 --> 01:12:12,240
+with ideas what the amocrine system does.
+
+1227
+01:12:13,080 --> 01:12:18,200
+Now we come to the crux of things in the last few minutes.
+
+1228
+01:12:18,200 --> 01:12:21,120
+We're going to talk about the electrical responses
+
+1229
+01:12:21,120 --> 01:12:22,800
+in the retina.
+
+1230
+01:12:22,800 --> 01:12:27,120
+Now this is going to be, again, fairly complicated.
+
+1231
+01:12:27,120 --> 01:12:32,520
+This work, again, remarkable work, which in my view
+
+1232
+01:12:32,520 --> 01:12:37,560
+merits a Nobel Prize, but it has not yet been awarded,
+
+1233
+01:12:37,560 --> 01:12:40,560
+to John Dowling at Harvard.
+
+1234
+01:12:44,160 --> 01:12:47,480
+And let me just introduce this by telling you
+
+1235
+01:12:47,480 --> 01:12:51,120
+how they went about this experiment.
+
+1236
+01:12:51,120 --> 01:12:55,280
+They realize that the cells in the retina are very, very small.
+
+1237
+01:12:55,280 --> 01:12:59,560
+And so it's very difficult to record from them intercellulately.
+
+1238
+01:12:59,560 --> 01:13:03,320
+You have to do that if you want to be able to label them
+
+1239
+01:13:03,320 --> 01:13:04,640
+anatomically.
+
+1240
+01:13:04,640 --> 01:13:09,120
+And so they looked around for a species of animal
+
+1241
+01:13:09,120 --> 01:13:12,720
+that had large cells in the retina.
+
+1242
+01:13:12,720 --> 01:13:14,760
+And they discovered after a lot of search
+
+1243
+01:13:14,760 --> 01:13:20,200
+that the so-called mud puppy and the necturus maculosis
+
+1244
+01:13:20,200 --> 01:13:25,840
+is an animal that has unusually large retinal ganglion cells.
+
+1245
+01:13:25,840 --> 01:13:29,280
+Then they developed a technique of removing the eye
+
+1246
+01:13:29,280 --> 01:13:33,280
+from this animal and putting it into a dish,
+
+1247
+01:13:33,280 --> 01:13:35,680
+because that makes it real stable.
+
+1248
+01:13:35,680 --> 01:13:39,400
+And then they were able to put an electrode in there,
+
+1249
+01:13:39,400 --> 01:13:42,560
+define what the cells did functionally
+
+1250
+01:13:42,560 --> 01:13:46,480
+by shining light on and looking at their activity.
+
+1251
+01:13:46,480 --> 01:13:50,200
+And then they were able to label the cell
+
+1252
+01:13:50,200 --> 01:13:52,400
+by injecting a labeling substance.
+
+1253
+01:13:52,400 --> 01:13:54,960
+So that's what they did.
+
+1254
+01:13:54,960 --> 01:13:58,040
+So here is the description of that arrangement.
+
+1255
+01:13:58,040 --> 01:14:01,600
+Here you have an inverted mud puppy retina.
+
+1256
+01:14:01,600 --> 01:14:04,280
+And here you have a DC recording electrode.
+
+1257
+01:14:04,280 --> 01:14:06,760
+And what you do then, you look at it in a oscilloscope.
+
+1258
+01:14:06,760 --> 01:14:13,760
+And at this point, the cell is entered by the DC recording.
+
+1259
+01:14:13,760 --> 01:14:16,840
+And then once it's inside, cells inside are negatively
+
+1260
+01:14:16,840 --> 01:14:21,120
+charged with respect to the surround, usually
+
+1261
+01:14:21,120 --> 01:14:23,880
+up to about 70 millivolts.
+
+1262
+01:14:23,880 --> 01:14:26,400
+In this case, I have 50 millivolts labeled.
+
+1263
+01:14:26,400 --> 01:14:27,920
+And so once you're inside the cell,
+
+1264
+01:14:27,920 --> 01:14:30,880
+you see a sudden drop to a minus level.
+
+1265
+01:14:30,880 --> 01:14:34,280
+And then if the cell discharges an action potential,
+
+1266
+01:14:34,280 --> 01:14:38,600
+then you see that, of course, in the oscilloscope.
+
+1267
+01:14:38,600 --> 01:14:41,400
+And then you can study this cell in all kinds of detail
+
+1268
+01:14:41,400 --> 01:14:44,640
+as to how it responds, what it responds, and so on,
+
+1269
+01:14:44,640 --> 01:14:47,520
+to determine what its characteristics are.
+
+1270
+01:14:47,520 --> 01:14:50,000
+So then, when they did that, they
+
+1271
+01:14:50,000 --> 01:14:52,120
+made the following central discoveries.
+
+1272
+01:14:52,120 --> 01:14:55,400
+They discovered, first of all, that receptors
+
+1273
+01:14:55,400 --> 01:14:58,360
+all hyperpolarized the light.
+
+1274
+01:14:58,360 --> 01:15:03,560
+Now, this is the opposite of what you would have thought,
+
+1275
+01:15:03,560 --> 01:15:07,200
+because the principle of the way cells operate,
+
+1276
+01:15:07,200 --> 01:15:09,240
+and I'm sure you know all this, but I will also
+
+1277
+01:15:09,240 --> 01:15:13,040
+describe it in a bit more detail in a minute,
+
+1278
+01:15:13,040 --> 01:15:18,440
+cells, when they hyperpolarize, they
+
+1279
+01:15:18,440 --> 01:15:24,240
+are less likely to cause a release in neurotransmitters.
+
+1280
+01:15:24,240 --> 01:15:28,480
+If they depolarize, they will increase
+
+1281
+01:15:28,480 --> 01:15:34,440
+the likelihood of neurotransmitters being released.
+
+1282
+01:15:34,440 --> 01:15:38,280
+And by the way, the neurotransmitter for these receptors
+
+1283
+01:15:38,280 --> 01:15:39,720
+is glutamate.
+
+1284
+01:15:39,720 --> 01:15:45,920
+And also, which I should emphasize here,
+
+1285
+01:15:45,920 --> 01:15:49,480
+is that the receptors never give action potentials.
+
+1286
+01:15:49,480 --> 01:15:52,200
+They only give graded potentials.
+
+1287
+01:15:52,200 --> 01:15:54,240
+And that's also true for the horizontal cells
+
+1288
+01:15:54,240 --> 01:15:56,160
+and the bipolar cells.
+
+1289
+01:15:56,160 --> 01:15:59,480
+Now, they found that all receptors
+
+1290
+01:15:59,480 --> 01:16:02,160
+hyperpolarized the light, meaning
+
+1291
+01:16:02,160 --> 01:16:05,880
+that they activate subsequent elements in the retina
+
+1292
+01:16:05,880 --> 01:16:09,320
+when it gets darker out there, rather than when it gets lighter.
+
+1293
+01:16:09,320 --> 01:16:11,840
+Which is the opposite that we all would have expected.
+
+1294
+01:16:14,600 --> 01:16:16,520
+Same thing for the horizontal cells.
+
+1295
+01:16:16,520 --> 01:16:18,960
+But then, when you come to bipolar cells,
+
+1296
+01:16:18,960 --> 01:16:22,200
+suddenly you find that there are two different classes.
+
+1297
+01:16:22,200 --> 01:16:26,480
+One class which mimics what the receptors do.
+
+1298
+01:16:26,480 --> 01:16:29,120
+The other class that does the opposite.
+
+1299
+01:16:29,120 --> 01:16:31,800
+And so the bipolar cells of these two types,
+
+1300
+01:16:31,800 --> 01:16:36,960
+this type has called sine conserving synapses.
+
+1301
+01:16:36,960 --> 01:16:40,040
+And this type has sine inverting synapses.
+
+1302
+01:16:43,600 --> 01:16:47,400
+Now, anachronous cells come in various types.
+
+1303
+01:16:47,400 --> 01:16:49,160
+And some give action potentials.
+
+1304
+01:16:49,160 --> 01:16:51,760
+And ganglion cells all give action potentials.
+
+1305
+01:16:51,760 --> 01:16:54,640
+So to go through this again, all receptors
+
+1306
+01:16:54,640 --> 01:16:57,280
+hyperpolarized the light, horizontal cells,
+
+1307
+01:16:57,280 --> 01:17:03,960
+or hyperpolarized the light, bipolar cells hyperpolarized
+
+1308
+01:17:03,960 --> 01:17:05,960
+and have depolarized.
+
+1309
+01:17:05,960 --> 01:17:07,720
+Now, this is accomplished by the way.
+
+1310
+01:17:07,720 --> 01:17:10,000
+I'll go into that in more detail later.
+
+1311
+01:17:10,000 --> 01:17:13,920
+By virtue of having different kinds
+
+1312
+01:17:13,920 --> 01:17:19,800
+of neurotransmitter receptor sites.
+
+1313
+01:17:19,800 --> 01:17:21,560
+And I'll talk about that in a lot of detail
+
+1314
+01:17:21,560 --> 01:17:24,120
+when you talk about the unenolved cells.
+
+1315
+01:17:24,120 --> 01:17:25,760
+OK, and then we have the anachronous cells,
+
+1316
+01:17:25,760 --> 01:17:27,240
+some hyperpolarized, some depolarized,
+
+1317
+01:17:27,240 --> 01:17:28,920
+and some give action potentials.
+
+1318
+01:17:28,920 --> 01:17:32,560
+And all ganglion cells give action potentials.
+
+1319
+01:17:32,560 --> 01:17:35,440
+So that is a major, major discovery.
+
+1320
+01:17:35,440 --> 01:17:38,360
+And not only major, but totally unexpected
+
+1321
+01:17:38,360 --> 01:17:41,000
+from what one would have thought.
+
+1322
+01:17:41,440 --> 01:17:46,520
+So now, let me just explain this in a bit more detail.
+
+1323
+01:17:46,520 --> 01:17:52,800
+If you go inside a cell, then if the cell is activated,
+
+1324
+01:17:52,800 --> 01:17:57,240
+it can be either get what you see
+
+1325
+01:17:57,240 --> 01:17:59,800
+as an excitatory postsynaptic potential, which
+
+1326
+01:17:59,800 --> 01:18:01,960
+goes from minus to what's plus.
+
+1327
+01:18:01,960 --> 01:18:05,880
+Or you can get an IPSP, an inhibitory postsynaptic
+
+1328
+01:18:05,880 --> 01:18:07,120
+potential.
+
+1329
+01:18:07,120 --> 01:18:10,240
+And this discovery was made by Echols,
+
+1330
+01:18:10,240 --> 01:18:12,760
+which was a remarkably discovery in which he received
+
+1331
+01:18:12,760 --> 01:18:17,240
+the Nobel Prize some years back.
+
+1332
+01:18:17,240 --> 01:18:21,200
+All right, so now, if we look at those cells which
+
+1333
+01:18:21,200 --> 01:18:23,160
+give action potentials, what happens
+
+1334
+01:18:23,160 --> 01:18:24,960
+is when you get an EPSP, that's why
+
+1335
+01:18:24,960 --> 01:18:28,200
+it's called excitatory postsynaptic potential,
+
+1336
+01:18:28,200 --> 01:18:31,360
+then you increase the likelihood that an action
+
+1337
+01:18:31,360 --> 01:18:33,280
+potential is generated.
+
+1338
+01:18:33,280 --> 01:18:37,040
+That will send its signal down the axon
+
+1339
+01:18:37,040 --> 01:18:42,000
+to the next location of the cells.
+
+1340
+01:18:42,000 --> 01:18:44,960
+All right, so that's the basic process.
+
+1341
+01:18:44,960 --> 01:18:47,840
+So again, to reiterate, photoreceptors hyperpolarize
+
+1342
+01:18:47,840 --> 01:18:49,080
+the light.
+
+1343
+01:18:49,080 --> 01:18:51,240
+Therefore, glutamate is released when
+
+1344
+01:18:51,240 --> 01:18:54,320
+there is a decrease in illumination,
+
+1345
+01:18:54,320 --> 01:18:58,280
+the opposite of what anyone would have expected.
+
+1346
+01:18:58,280 --> 01:19:02,720
+All right, so that, I think, brings us
+
+1347
+01:19:02,720 --> 01:19:04,320
+to what I wanted to cover today.
+
+1348
+01:19:04,320 --> 01:19:06,360
+I'll wait until next time to talk
+
+1349
+01:19:06,360 --> 01:19:09,440
+about the lateral genetic net nucleus, which is very brief.
+
+1350
+01:19:09,440 --> 01:19:12,640
+But let me go through the photoreceptor basics again.
+
+1351
+01:19:12,640 --> 01:19:16,480
+All photoreceptors hyperpolarize the light.
+
+1352
+01:19:16,480 --> 01:19:20,760
+Depolarization of the photoreceptor releases glutamate.
+
+1353
+01:19:20,760 --> 01:19:24,480
+Photon absorption by the photopigment results
+
+1354
+01:19:24,480 --> 01:19:28,320
+in isomerization of the chromophore from 11, 6 to 11
+
+1355
+01:19:28,320 --> 01:19:29,000
+trends.
+
+1356
+01:19:29,000 --> 01:19:32,520
+This is what I told you to think about in a very simple
+
+1357
+01:19:32,520 --> 01:19:40,560
+fashion to say that the photoreceptor molecules,
+
+1358
+01:19:40,560 --> 01:19:46,000
+rhodopsin in this case, either is bleached or unbleached.
+
+1359
+01:19:46,000 --> 01:19:49,080
+So once it's bleached, further light has no effect on it.
+
+1360
+01:19:49,080 --> 01:19:53,080
+And at any point, given whatever the level of illumination is,
+
+1361
+01:19:53,080 --> 01:19:56,600
+a certain percentage of these rhodopsin molecules
+
+1362
+01:19:56,600 --> 01:19:59,280
+are bleached, and a certain percentage is unbleached.
+
+1363
+01:19:59,280 --> 01:20:03,160
+The darker it is, the more are unbleached.
+
+1364
+01:20:03,160 --> 01:20:06,120
+All right, then we have these two classes
+
+1365
+01:20:06,120 --> 01:20:08,200
+that we talked about, the on and the off cells
+
+1366
+01:20:08,200 --> 01:20:11,120
+that we will discuss in some detail.
+
+1367
+01:20:11,120 --> 01:20:14,080
+The synaptic junction of bipolar is assigned conserving,
+
+1368
+01:20:14,080 --> 01:20:15,320
+as I had just said.
+
+1369
+01:20:15,320 --> 01:20:18,840
+And that of the unbipolar is assigned inverting.
+
+1370
+01:20:18,840 --> 01:20:22,840
+Now, the unbipolar receptor is, I should mention that now,
+
+1371
+01:20:22,840 --> 01:20:29,080
+and I will deal with it in detail, is called the M-glue R6.
+
+1372
+01:20:29,080 --> 01:20:31,960
+Its activation leads to closing of channels
+
+1373
+01:20:31,960 --> 01:20:34,080
+causing hyperpolarization.
+
+1374
+01:20:34,080 --> 01:20:38,000
+So that's the basic layout, then, of the photoreceptors.
+
+1375
+01:20:38,000 --> 01:20:42,160
+And I will now stop at this point.
+
+1376
+01:20:42,160 --> 01:20:44,000
+And next time, you'll talk a little bit
+
+1377
+01:20:44,000 --> 01:20:47,760
+about the nitrogenic nucleus.
+
+1378
+01:20:47,760 --> 01:20:50,640
+And then we're going to move on to talk about the cortex.
+
+1379
+01:20:50,640 --> 01:20:54,320
+And then if you look at your assignment sheet,
+
+1380
+01:20:54,320 --> 01:20:58,080
+then you can see here that on September 16th,
+
+1381
+01:20:58,080 --> 01:21:00,480
+we're going to talk about the on and off channels.
+
+1382
+01:21:00,480 --> 01:21:02,560
+And then we'll deal in more detail
+
+1383
+01:21:02,560 --> 01:21:04,840
+with these rather complex things, which
+
+1384
+01:21:04,840 --> 01:21:08,040
+are pretty hard to remember about hyperpolarization,
+
+1385
+01:21:08,040 --> 01:21:12,560
+depolarization, glutamate, glutamate, receptor sites,
+
+1386
+01:21:12,560 --> 01:21:13,360
+and so on.
+
+1387
+01:21:13,360 --> 01:21:15,120
+OK?
+
+1388
+01:21:15,120 --> 01:21:16,760
+Thank you.
+

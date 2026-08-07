@@ -1,0 +1,1184 @@
+1
+00:00:00,000 --> 00:00:06,360
+Welcome back to Medical Engineering.
+
+2
+00:00:06,360 --> 00:00:11,000
+And today we want to continue our little excursion through the theory.
+
+3
+00:00:11,000 --> 00:00:15,400
+But you'll see that we'll get much more applied in the next couple of videos.
+
+4
+00:00:15,400 --> 00:00:23,400
+Because in the next two videos we want to talk about actual 2D signal processing.
+
+5
+00:00:23,400 --> 00:00:29,040
+And the first thing that we want to look at is an introduction into 2D image processing.
+
+6
+00:00:29,040 --> 00:00:36,400
+And we'll start with simple operations and expand them to linear systems theory and filters.
+
+7
+00:00:36,400 --> 00:00:41,480
+And then in a second step we will look into non-linear systems.
+
+8
+00:00:41,480 --> 00:00:45,200
+So I hope you enjoy the 2D image processing with me.
+
+9
+00:00:59,040 --> 00:01:16,760
+So here we are with the medical engineering systems.
+
+10
+00:01:16,760 --> 00:01:20,840
+And today the topic will be image processing.
+
+11
+00:01:20,840 --> 00:01:24,880
+So let's have a look at the basics of image processing.
+
+12
+00:01:24,880 --> 00:01:30,440
+Now an image is essentially a 2D function.
+
+13
+00:01:30,440 --> 00:01:36,520
+And you can think of the image as a function that essentially is on a grid space where
+
+14
+00:01:36,520 --> 00:01:42,760
+you could say essentially every column and every row is a function or a signal as we've
+
+15
+00:01:42,760 --> 00:01:44,320
+discussed earlier.
+
+16
+00:01:44,320 --> 00:01:50,600
+And now we have to expand the space and to be able to work with these 2D signals.
+
+17
+00:01:50,600 --> 00:01:53,520
+Here on the right hand side you see an visualization.
+
+18
+00:01:53,520 --> 00:02:00,040
+And you can see here that we have the red function which is essentially one column.
+
+19
+00:02:00,040 --> 00:02:04,640
+And this is a sequence of values that you can see here plotted.
+
+20
+00:02:04,640 --> 00:02:09,080
+And we also have the blue function which is essentially one row and it's again a sequence
+
+21
+00:02:09,080 --> 00:02:11,280
+of values.
+
+22
+00:02:11,280 --> 00:02:16,960
+Together these gray values here in this example form a 2D image.
+
+23
+00:02:16,960 --> 00:02:23,920
+Now you see the lady here that is actually Lena and this is one of the first images that
+
+24
+00:02:23,920 --> 00:02:26,160
+was used for image processing.
+
+25
+00:02:26,160 --> 00:02:33,960
+It actually originates from a magazine that was published in November 1972.
+
+26
+00:02:33,960 --> 00:02:40,320
+So at that time there were not so many scanners and digital images available.
+
+27
+00:02:40,320 --> 00:02:44,560
+It happened that one of those images were scanned.
+
+28
+00:02:44,560 --> 00:02:50,120
+So they took a subsection of one of the largest images that they could find in the magazine.
+
+29
+00:02:50,120 --> 00:02:56,840
+They scanned it and actually this image became kind of iconic and has been used in image
+
+30
+00:02:56,840 --> 00:02:59,680
+processing over and over again.
+
+31
+00:02:59,680 --> 00:03:06,160
+So Lena became extremely popular and she has also been invited although she didn't know
+
+32
+00:03:06,160 --> 00:03:09,960
+about her fans in the image processing community.
+
+33
+00:03:09,960 --> 00:03:17,040
+So she has been invited actually to a couple of conferences and she is still being welcomed
+
+34
+00:03:17,040 --> 00:03:20,960
+warmheartedly on various conferences.
+
+35
+00:03:20,960 --> 00:03:26,920
+And today people still use this image in order to test their algorithms.
+
+36
+00:03:26,920 --> 00:03:33,240
+Well actually there's many other image sets that people experiment with now but sometimes
+
+37
+00:03:33,240 --> 00:03:37,520
+for nostalgic reasons this image is still being used.
+
+38
+00:03:37,520 --> 00:03:43,720
+Note that only this subsection that we are showing here is being used and the full image
+
+39
+00:03:43,720 --> 00:03:50,000
+is not being commonly used in the image processing community.
+
+40
+00:03:50,000 --> 00:03:55,600
+So just that you don't get the wrong impression it was just one of the images that was lying
+
+41
+00:03:55,600 --> 00:04:02,040
+around and that they had access to and they decided to use the subsection of the image.
+
+42
+00:04:02,040 --> 00:04:04,600
+Well what's the digital image?
+
+43
+00:04:04,600 --> 00:04:11,280
+So let's go back and think of our function space and what you can see here is a highly
+
+44
+00:04:11,280 --> 00:04:12,720
+magnified image.
+
+45
+00:04:12,720 --> 00:04:20,400
+So this is just showing a couple of black and gray dots and what you see here is that
+
+46
+00:04:20,400 --> 00:04:26,520
+essentially every color every shade of gray is associated to a value.
+
+47
+00:04:26,520 --> 00:04:32,160
+So the gray that you can see here it's a light gray so it's associated to the value 200 and
+
+48
+00:04:32,160 --> 00:04:38,560
+the dark color the black is associated in this example to the color 35.
+
+49
+00:04:38,560 --> 00:04:46,560
+So essentially every shade of gray is associated to a number and this number originated from
+
+50
+00:04:46,560 --> 00:04:51,200
+a sampling process as we discussed in the last video.
+
+51
+00:04:51,200 --> 00:04:56,960
+Obviously these are the images that are used to introduce image processing what we will
+
+52
+00:04:56,960 --> 00:05:01,960
+work with much more frequently of course medical images.
+
+53
+00:05:01,960 --> 00:05:09,160
+And one thing that is very peculiar about medical images is that they often have more
+
+54
+00:05:09,160 --> 00:05:15,160
+gray values more shades of gray that you can actually show at the same time on your monitor
+
+55
+00:05:15,160 --> 00:05:18,960
+and actually more than you can perceive.
+
+56
+00:05:18,960 --> 00:05:28,760
+So the human visual system can approximately differentiate 256 different shades of gray.
+
+57
+00:05:28,760 --> 00:05:33,440
+You cannot differentiate more or the average human being cannot differentiate more and
+
+58
+00:05:33,440 --> 00:05:41,120
+if you display them you will see that they appear as a continuous color gradient or gray
+
+59
+00:05:41,120 --> 00:05:44,660
+or gray value gradient on your screen.
+
+60
+00:05:44,660 --> 00:05:50,760
+So in order to be able to visualize all of the information that is in the medical image
+
+61
+00:05:50,760 --> 00:05:53,040
+we have to use tricks.
+
+62
+00:05:53,040 --> 00:05:58,520
+One trick that you could come up with is using different gamma values and you see them here
+
+63
+00:05:58,640 --> 00:06:04,560
+we can do a gamma correction which is a non-linear scaling of the gray values and if we would
+
+64
+00:06:04,560 --> 00:06:12,720
+do so we would be able to focus more on the skull or on the brain and change the color
+
+65
+00:06:12,720 --> 00:06:14,400
+values.
+
+66
+00:06:14,400 --> 00:06:18,880
+This however is not so frequently used in medical imaging.
+
+67
+00:06:18,880 --> 00:06:23,800
+What is much more common is so called window leveling.
+
+68
+00:06:23,800 --> 00:06:30,160
+So here we have an example of a CT image and we know that houndsfield units denoted
+
+69
+00:06:30,160 --> 00:06:38,240
+as HU here are associated to different materials and on the left hand side and the right hand
+
+70
+00:06:38,240 --> 00:06:44,480
+side you see exactly the same image but displayed in a different window level.
+
+71
+00:06:44,480 --> 00:06:52,440
+So minus a thousand houndsfield units is air and plus a thousand houndsfield units is bone
+
+72
+00:06:52,440 --> 00:06:58,560
+or contrast agent and you see here that we can visualize all of the materials on the
+
+73
+00:06:58,560 --> 00:07:05,680
+left hand side ranging from air up to contrast agent that you can see in the heart and the
+
+74
+00:07:05,680 --> 00:07:13,160
+bones and then on the right hand side image waterish materials such as water and soft
+
+75
+00:07:13,160 --> 00:07:20,560
+tissues are around zero houndsfield units and if we pick a fresh out that is above zero
+
+76
+00:07:20,560 --> 00:07:26,000
+houndsfield units only the contrast agent and the bone will be visible.
+
+77
+00:07:26,000 --> 00:07:31,800
+So what you see in this image is the contrast agent in the heart and the bones and you see
+
+78
+00:07:31,800 --> 00:07:37,800
+that this is an interventional scan so there is still some residual artifact that you see
+
+79
+00:07:37,800 --> 00:07:45,240
+at the bottom of the scan and this was caused by truncation at the end of the volume.
+
+80
+00:07:45,240 --> 00:07:52,560
+So also sometimes these scans have associated artifacts and you have to know about the problems
+
+81
+00:07:52,560 --> 00:07:58,580
+that can arise in the scanning process in order not to misread the information here.
+
+82
+00:07:58,580 --> 00:08:06,400
+So for sure there is no ring like bone structure at the bottom of the scan here but this is
+
+83
+00:08:06,400 --> 00:08:12,160
+artificially created by the reconstruction method and if you're reading these images
+
+84
+00:08:12,160 --> 00:08:15,720
+if you're interpreting these images you have to know about this.
+
+85
+00:08:15,720 --> 00:08:21,960
+Obviously there is a wide range of variations that you can pick for windowing and thresholding
+
+86
+00:08:21,960 --> 00:08:28,280
+and this is why I have a short video where we are playing with the window and threshold
+
+87
+00:08:28,280 --> 00:08:30,120
+in different settings.
+
+88
+00:08:42,160 --> 00:09:12,120
+So what you see is that the image is actually composed of different gray values.
+
+89
+00:09:12,120 --> 00:09:20,320
+Now what I'm showing here is called a histogram and a histogram is essentially a kind of probability
+
+90
+00:09:20,320 --> 00:09:27,680
+distribution because you count the frequency the occurrence of every gray value.
+
+91
+00:09:27,680 --> 00:09:37,680
+So on the left hand side example we have gray values from 0 to 255 so 256 different shades
+
+92
+00:09:37,680 --> 00:09:48,160
+of gray and you can see on the y-axis how often that how often that respective color
+
+93
+00:09:48,160 --> 00:09:52,360
+or gray value appeared in the image.
+
+94
+00:09:52,360 --> 00:09:59,360
+So the histogram doesn't contain the spatial information anymore but it tells you which
+
+95
+00:09:59,360 --> 00:10:03,360
+gray value occurs how frequently.
+
+96
+00:10:03,360 --> 00:10:08,960
+Now if we change the window and level what we're essentially doing is we're adjusting
+
+97
+00:10:08,960 --> 00:10:16,960
+the histogram and here on the right hand side you can see a rescaling of the same histogram
+
+98
+00:10:16,960 --> 00:10:19,820
+to only 16 bins.
+
+99
+00:10:19,820 --> 00:10:27,440
+So here we have pooled neighboring gray values in order to reduce the number of gray values
+
+100
+00:10:27,440 --> 00:10:30,280
+in that particular image.
+
+101
+00:10:30,280 --> 00:10:35,600
+Basically this would have a large impact on the displayed image and you could immediately
+
+102
+00:10:35,600 --> 00:10:39,560
+see that I adjusted the number of gray values.
+
+103
+00:10:39,560 --> 00:10:43,920
+So this is something that we won't do in the following.
+
+104
+00:10:43,920 --> 00:10:46,480
+Now let's go back to our example image.
+
+105
+00:10:46,480 --> 00:10:52,320
+So here you see our famous Lennar and if you look at the associated histogram here on the
+
+106
+00:10:52,320 --> 00:11:00,000
+right hand side you see that actually not all of the 256 gray values actually appear
+
+107
+00:11:00,000 --> 00:11:01,600
+in the image.
+
+108
+00:11:01,600 --> 00:11:08,160
+So you see that there is a short area with very low gray values and very high gray values
+
+109
+00:11:08,160 --> 00:11:15,480
+where the frequency is zero so they never appear in the image and you can see also that
+
+110
+00:11:15,480 --> 00:11:22,880
+our Lennar well the image impression is kind of okay but she could use a little bit more
+
+111
+00:11:22,880 --> 00:11:25,280
+contrast right.
+
+112
+00:11:25,280 --> 00:11:29,600
+So this is where histogram equalization comes in.
+
+113
+00:11:29,600 --> 00:11:37,040
+In histogram equalization the idea is that we want to optimally use all of the associated
+
+114
+00:11:37,040 --> 00:11:39,120
+gray values.
+
+115
+00:11:39,120 --> 00:11:44,320
+What we're doing here is we're showing the cumulative density function which means that
+
+116
+00:11:44,320 --> 00:11:49,840
+we're essentially computing the integral over the histogram.
+
+117
+00:11:49,840 --> 00:11:57,640
+So at every point in the cumulative density function I am showing the addition of all
+
+118
+00:11:57,640 --> 00:12:02,860
+the values from the zero of bin to the current bin.
+
+119
+00:12:02,860 --> 00:12:09,440
+So this can be computed essentially with a for loop where you then add up all of the
+
+120
+00:12:09,440 --> 00:12:14,160
+previous values and write them into the respective bin.
+
+121
+00:12:14,160 --> 00:12:20,800
+Now if I normalize this with the total number of pixels in the image you will see that we
+
+122
+00:12:20,800 --> 00:12:24,840
+get values between zero and one.
+
+123
+00:12:24,840 --> 00:12:31,560
+If you look at the left hand side image you see the cumulative density function of our
+
+124
+00:12:31,560 --> 00:12:38,360
+original image and you can also see the plateaus at the very low values and at the very high
+
+125
+00:12:38,360 --> 00:12:44,280
+values where we don't have any change in gray values anymore because these gray values
+
+126
+00:12:44,280 --> 00:12:47,560
+simply do not occur in the image.
+
+127
+00:12:47,560 --> 00:12:53,520
+Now the idea of histogram equalization is that you transform this cumulative density
+
+128
+00:12:53,520 --> 00:12:57,440
+function on the left into the one on the right.
+
+129
+00:12:57,440 --> 00:13:04,960
+So we want to linearize the entire cumulative density function which essentially means that
+
+130
+00:13:04,960 --> 00:13:12,640
+we try to achieve a more or less uniform distribution of the gray values.
+
+131
+00:13:12,640 --> 00:13:20,920
+There is algorithms to do so and in particular they then introduce small gaps in the histogram
+
+132
+00:13:20,920 --> 00:13:25,640
+such that all of the gray values are being used.
+
+133
+00:13:25,640 --> 00:13:30,960
+So you could say this is very similar to what we are achieving when we apply the window
+
+134
+00:13:30,960 --> 00:13:33,040
+leveling.
+
+135
+00:13:33,040 --> 00:13:40,680
+Now here you can see a histogram that has been equalized and now the contrast of the
+
+136
+00:13:40,680 --> 00:13:46,520
+image has been improved and you can see that our lowest gray value is now really zero and
+
+137
+00:13:46,520 --> 00:13:51,160
+the highest gray value is really 255.
+
+138
+00:13:51,160 --> 00:13:56,080
+Let's compare the two images and here you can clearly see that the right hand side image
+
+139
+00:13:56,080 --> 00:14:02,000
+has a much better contrast than the left hand side image.
+
+140
+00:14:02,000 --> 00:14:08,520
+Good so these are the very basics of image processing and now we want to go ahead and
+
+141
+00:14:08,520 --> 00:14:13,320
+look what we can achieve with linear systems theory.
+
+142
+00:14:13,320 --> 00:14:19,280
+And one thing that can be very nicely achieved is computing derivatives.
+
+143
+00:14:19,280 --> 00:14:25,280
+Now at the derivative of a function if you look at the definition this is essentially
+
+144
+00:14:25,280 --> 00:14:35,040
+the limit of the function plus a small value at the position x and then you subtract the
+
+145
+00:14:35,040 --> 00:14:41,280
+original value at position x from that and divide by the small value h.
+
+146
+00:14:41,280 --> 00:14:48,760
+If you now have the limit of h towards zero you get the continuous derivative.
+
+147
+00:14:48,760 --> 00:14:52,760
+Now the problem that we have is that we are in a discrete space.
+
+148
+00:14:52,760 --> 00:14:59,040
+In a discrete space we cannot assign values of h that are lower than one because they
+
+149
+00:14:59,040 --> 00:15:04,560
+would be zero and then our whole computation would simply collapse to zero.
+
+150
+00:15:04,560 --> 00:15:11,160
+So what we do is we then choose different variants of doing a single a step size of
+
+151
+00:15:11,160 --> 00:15:15,800
+one and then you come up with the solution shown here at the bottom.
+
+152
+00:15:15,800 --> 00:15:25,720
+So you can for example take the value of one for h then you add one to the function f of
+
+153
+00:15:25,720 --> 00:15:30,240
+x and subtract f of x from that.
+
+154
+00:15:30,240 --> 00:15:33,040
+This would be the forward difference.
+
+155
+00:15:33,040 --> 00:15:38,560
+There is the backward difference where you set h to minus one so you subtract one then
+
+156
+00:15:38,560 --> 00:15:45,640
+the two flip and you have f of x minus f of x minus one.
+
+157
+00:15:45,640 --> 00:15:50,920
+So the problem with those two approaches is that you are essentially computing the derivative
+
+158
+00:15:50,920 --> 00:15:55,400
+at the position x plus 0.5.
+
+159
+00:15:55,400 --> 00:16:00,160
+So you are kind of shifting the coordinate system and you wouldn't be in the original
+
+160
+00:16:00,160 --> 00:16:06,400
+coordinate system which is the reason why very frequently there is also central differences
+
+161
+00:16:06,400 --> 00:16:12,840
+and the central difference then simply takes the pixel on the right hand side and subtracts
+
+162
+00:16:12,840 --> 00:16:17,840
+pixel on the left hand side of the current position of the image.
+
+163
+00:16:17,840 --> 00:16:23,600
+This is interesting because it allows us to compute image derivatives.
+
+164
+00:16:23,600 --> 00:16:27,800
+Now why would we be interested in image derivatives?
+
+165
+00:16:27,800 --> 00:16:34,440
+Well let's look at an example and here you can see the derivatives in x and y direction
+
+166
+00:16:34,440 --> 00:16:39,480
+and what you see very nicely here is that the edges pop up.
+
+167
+00:16:39,480 --> 00:16:46,040
+So edges in our image are locations of very high gradients.
+
+168
+00:16:46,040 --> 00:16:52,080
+So here you have either in x or y directions very high derivatives.
+
+169
+00:16:52,080 --> 00:17:00,560
+So one idea for example to detect edges is to compute the derivative and x and y direction
+
+170
+00:17:00,560 --> 00:17:03,900
+and then compute the magnitude of the two.
+
+171
+00:17:03,900 --> 00:17:10,700
+So because you have a two dimensional function you will be introducing a gradient that is
+
+172
+00:17:10,700 --> 00:17:15,220
+also two dimensional because you compute the derivatives in x and y direction and then
+
+173
+00:17:15,220 --> 00:17:22,860
+you take the norm for example the L2 norm of this gradient and this way you can determine
+
+174
+00:17:22,860 --> 00:17:26,220
+the magnitude and detect edges.
+
+175
+00:17:26,220 --> 00:17:32,700
+Also interesting is that you can also compute the direction and then you could compute the
+
+176
+00:17:32,700 --> 00:17:41,460
+angle of the edges which then allows you also to detect edges of a certain orientation.
+
+177
+00:17:41,460 --> 00:17:49,540
+So this is a very very common application for linear systems and a good way of how we
+
+178
+00:17:49,540 --> 00:17:55,660
+can actually compute edges in an image.
+
+179
+00:17:55,660 --> 00:17:59,620
+This brings us back to image filtering and linear systems theory.
+
+180
+00:17:59,620 --> 00:18:07,540
+So you remember that a filter can be applied to an image and this filter has very similar
+
+181
+00:18:07,540 --> 00:18:12,220
+properties as we already have discussed in the 1D case.
+
+182
+00:18:12,220 --> 00:18:17,440
+So the filters are linear and they are shift invariant.
+
+183
+00:18:17,440 --> 00:18:25,620
+So this is a linear shift invariant system which means that it can be entirely described
+
+184
+00:18:25,620 --> 00:18:28,140
+by convolution.
+
+185
+00:18:28,140 --> 00:18:35,140
+And therefore we will need a 2D convolution and now you can see here that we have some
+
+186
+00:18:35,140 --> 00:18:43,900
+function k which is a filter kernel and the filter kernel now takes the role of the impulse
+
+187
+00:18:43,900 --> 00:18:50,540
+response that we talked about earlier in our systems theory.
+
+188
+00:18:50,540 --> 00:18:57,340
+So now we have suddenly 2D impulse responses and these can be written up in a discrete
+
+189
+00:18:57,340 --> 00:19:01,820
+fashion and then we end up with filter kernels.
+
+190
+00:19:01,820 --> 00:19:08,380
+For some functions they can be described in a very compact way such as for the derivative
+
+191
+00:19:08,380 --> 00:19:13,580
+we've seen that every point of the image we essentially have to take the left neighbor
+
+192
+00:19:13,580 --> 00:19:21,180
+and the right neighbor subtract the two from each other and then we get exactly the derivative
+
+193
+00:19:21,180 --> 00:19:23,580
+in that particular direction.
+
+194
+00:19:23,580 --> 00:19:31,220
+So that's interesting because we've just seen that computing a derivative can be performed
+
+195
+00:19:31,220 --> 00:19:38,780
+by convolution and for a derivative we can determine a kernel that is performing the
+
+196
+00:19:38,780 --> 00:19:40,740
+derivative.
+
+197
+00:19:40,740 --> 00:19:48,780
+So this means that computing derivatives is something that can be explained by a linear
+
+198
+00:19:48,780 --> 00:19:51,220
+shift invariant system.
+
+199
+00:19:51,220 --> 00:19:55,060
+So that's actually pretty useful and you will see that throughout your studies this
+
+200
+00:19:55,060 --> 00:20:00,460
+will have many many applications and it's also very useful for example for solving partial
+
+201
+00:20:00,460 --> 00:20:02,940
+differential equations.
+
+202
+00:20:02,940 --> 00:20:09,260
+So you will see this will come up over and over again in your studies.
+
+203
+00:20:09,260 --> 00:20:14,300
+Here we will now only stick to the discrete version and the nice thing with the discrete
+
+204
+00:20:14,300 --> 00:20:20,220
+version is that we can write these up as these filter kernels and you will see that this
+
+205
+00:20:20,220 --> 00:20:28,980
+then takes the form of very small masks for several filters such as the derivative filter.
+
+206
+00:20:28,980 --> 00:20:34,900
+A side remark of course linear systems theory applies and also the fundamental properties
+
+207
+00:20:34,900 --> 00:20:44,260
+apply which means that if you have a filter kernel and you convert it into Fourier domain
+
+208
+00:20:44,260 --> 00:20:48,940
+and you have the image and you convert it to 2D Fourier domain then you just have to
+
+209
+00:20:48,940 --> 00:20:56,260
+multiply the two point wise and convert back and you do exactly a convolution.
+
+210
+00:20:56,260 --> 00:21:02,300
+Now for the simple filters that we have here in this set of slides this would be rather
+
+211
+00:21:02,300 --> 00:21:08,140
+excessive because typically the kernels are very small they are like one by three or three
+
+212
+00:21:08,140 --> 00:21:10,060
+by three or five by five.
+
+213
+00:21:10,060 --> 00:21:15,000
+These are really compact kernels and there it doesn't make sense to compute the complete
+
+214
+00:21:15,000 --> 00:21:16,420
+Fourier transform.
+
+215
+00:21:16,420 --> 00:21:22,500
+But sometimes you have kernels with very large extent in spatial domain and there it makes
+
+216
+00:21:22,500 --> 00:21:27,140
+sense to make use of the Fourier properties here.
+
+217
+00:21:27,140 --> 00:21:32,740
+Also you will see that the 2D Fourier space is something that comes up in this class again
+
+218
+00:21:32,740 --> 00:21:34,860
+and again.
+
+219
+00:21:34,860 --> 00:21:38,500
+Now what's actually a 2D Fourier space?
+
+220
+00:21:38,500 --> 00:21:44,700
+You remember that when we are computing the 1D Fourier transform we essentially take a
+
+221
+00:21:44,700 --> 00:21:53,580
+signal of a fixed frequency and then we multiply it point wise with the signal that we want
+
+222
+00:21:53,580 --> 00:22:00,980
+to process sum everything up and we get the coefficient for that particular frequency.
+
+223
+00:22:00,980 --> 00:22:09,820
+Now in the 2D case this is slightly different because now our 2D waves have to be described
+
+224
+00:22:09,820 --> 00:22:16,340
+also in 2D which means that it's not just the frequency of the wave but they also have
+
+225
+00:22:16,340 --> 00:22:17,580
+an orientation.
+
+226
+00:22:17,580 --> 00:22:23,780
+So they are essentially sine and cosine wave fronts that have a particular orientation
+
+227
+00:22:23,780 --> 00:22:31,140
+and you can see that they are printed here the base functions on this set of slides and
+
+228
+00:22:31,140 --> 00:22:37,700
+they vary in orientation and in frequency so the frequency you can determine by looking
+
+229
+00:22:37,700 --> 00:22:43,340
+essentially from one valley to the next valley so that's the wavelength and this is associated
+
+230
+00:22:43,340 --> 00:22:47,820
+to one over the wavelength will give you the frequency.
+
+231
+00:22:47,820 --> 00:22:54,300
+So what you see in this image now is that we can compute one point in the 2D Fourier
+
+232
+00:22:54,300 --> 00:23:02,580
+transform by taking one of the wave fronts that you see with different orientations multiplying
+
+233
+00:23:02,580 --> 00:23:10,060
+the entire image point wise with this wave front and summing everything up this will
+
+234
+00:23:10,060 --> 00:23:14,500
+then give you exactly one point in 2D Fourier space.
+
+235
+00:23:14,500 --> 00:23:21,260
+So this is actually quite expensive to compute because we have to instantiate all those wave
+
+236
+00:23:21,260 --> 00:23:27,060
+fronts then we have to multiply them point wise with the image and add everything up
+
+237
+00:23:27,060 --> 00:23:31,540
+and then you just got one point in the 2D Fourier space.
+
+238
+00:23:31,540 --> 00:23:37,660
+Also see that the farther you go away from the center the shorter the wavelength gets
+
+239
+00:23:37,660 --> 00:23:43,540
+and the higher the frequency and the closer you get to the center the longer the wavelength
+
+240
+00:23:43,540 --> 00:23:46,020
+and the lower the frequency.
+
+241
+00:23:46,020 --> 00:23:52,060
+Also note that depending on the orientation the direction that you're at the orientation
+
+242
+00:23:52,060 --> 00:23:55,380
+of the wave front changes.
+
+243
+00:23:55,380 --> 00:24:01,460
+Now if you look at this image then you can also see very easily that if you would be
+
+244
+00:24:01,460 --> 00:24:08,980
+rotating the image then essentially you're also rotating the 2D Fourier space.
+
+245
+00:24:08,980 --> 00:24:16,540
+So if you have a rotation in the spatial domain this will also be a rotation in 2D Fourier
+
+246
+00:24:16,540 --> 00:24:18,540
+space.
+
+247
+00:24:18,540 --> 00:24:20,460
+That's quite interesting to see right?
+
+248
+00:24:20,460 --> 00:24:25,140
+So keep that in mind if you want to go to Fourier space you have to compute those wave
+
+249
+00:24:25,140 --> 00:24:29,780
+fronts, multiply them point wise with each other and add them up and if you want to go
+
+250
+00:24:29,780 --> 00:24:33,140
+back it's the same as we discussed earlier.
+
+251
+00:24:33,140 --> 00:24:38,980
+So you take the coefficient at that particular point in the 2D Fourier transform you multiply
+
+252
+00:24:38,980 --> 00:24:46,660
+this with the complete 2D wave front and then you repeat that for all of the points in the
+
+253
+00:24:46,660 --> 00:24:49,900
+2D Fourier space and add everything up.
+
+254
+00:24:49,900 --> 00:24:53,940
+And this way you get the original image again.
+
+255
+00:25:19,900 --> 00:25:32,020
+Okay so let's return to our example and now let's discuss the filter kernel.
+
+256
+00:25:32,020 --> 00:25:38,660
+So the filter kernel here for the derivative filter of the central difference is simply
+
+257
+00:25:38,660 --> 00:25:41,740
+this 3 by 1 matrix.
+
+258
+00:25:41,740 --> 00:25:49,460
+So you simply have the derivative with respect to x written up here so you take minus 1 times
+
+259
+00:25:49,460 --> 00:25:58,980
+f of x minus 1y plus 0 times f of xy plus 1 times f of x plus 1y.
+
+260
+00:25:58,980 --> 00:26:05,860
+And this is now the impulse response the filter kernel that you have to convolve with in order
+
+261
+00:26:05,860 --> 00:26:10,260
+to generate a derivative in x direction.
+
+262
+00:26:10,260 --> 00:26:18,460
+So for computing the derivative in y direction you have to transpose the kernel and then
+
+263
+00:26:18,460 --> 00:26:23,580
+you get the solution here on the top right which will be able to compute the derivative
+
+264
+00:26:23,580 --> 00:26:25,940
+in x direction.
+
+265
+00:26:25,940 --> 00:26:33,540
+By the way there is also second order derivatives and the second order derivatives can be determined
+
+266
+00:26:33,540 --> 00:26:42,700
+also in discrete fashion and here this is simply the convolution of the kernel with itself.
+
+267
+00:26:42,700 --> 00:26:53,180
+So if you convolve the x kernel with itself you get exactly the 1 minus 2 1 and if you
+
+268
+00:26:53,180 --> 00:27:01,540
+look at the shape of for example a Gaussian and its second order derivative then you can
+
+269
+00:27:01,540 --> 00:27:09,540
+see that you get these Mexican head type of functions and this is also represented here
+
+270
+00:27:09,540 --> 00:27:13,780
+in the second order derivative kernels.
+
+271
+00:27:13,780 --> 00:27:20,340
+Also if you want to compute the y direction then it is simply the transpose of this kernel.
+
+272
+00:27:20,340 --> 00:27:25,380
+There is a couple of more kernels that we can come up with and here for example there
+
+273
+00:27:25,380 --> 00:27:27,740
+is the mean filter.
+
+274
+00:27:27,740 --> 00:27:34,140
+So here you have a neighborhood of 3 by 3 so in total 9 so you take a kernel impulse
+
+275
+00:27:34,140 --> 00:27:41,220
+response that is simply 1 over 9 at every position in that image.
+
+276
+00:27:41,220 --> 00:27:45,420
+This is then also called the box filter.
+
+277
+00:27:45,420 --> 00:27:51,420
+There is also discrete approximations of the Gaussian and one example here is shown on
+
+278
+00:27:51,420 --> 00:27:59,340
+the right hand side so this is a 5 by 5 kernel and if you look at this and think about how
+
+279
+00:27:59,340 --> 00:28:05,740
+the shape looks like you can see that this is a discrete approximation of a Gaussian
+
+280
+00:28:05,740 --> 00:28:12,260
+bell in this discrete 5 by 5 neighborhood.
+
+281
+00:28:12,260 --> 00:28:19,620
+Now if you take those filter kernels and apply them to the image you can observe the
+
+282
+00:28:19,620 --> 00:28:26,140
+following so both the mean and the Gaussian they are blur filters so they reduce noise
+
+283
+00:28:26,140 --> 00:28:32,180
+but also reduce the resolution of the image so you can take the image on the left hand
+
+284
+00:28:32,180 --> 00:28:37,060
+side and produce an image like on the right hand side here.
+
+285
+00:28:37,060 --> 00:28:43,780
+There is actually many different kernels you can try and I also prepared a short video
+
+286
+00:28:43,780 --> 00:28:52,020
+where we explore the use of a blur filter as well as a derivative filter using image
+
+287
+00:28:52,020 --> 00:28:58,900
+day and I think this is something that you can very easily test with the software that
+
+288
+00:28:58,900 --> 00:29:05,780
+we are also using in the exercises so I would recommend to actually play around with eclipse
+
+289
+00:29:05,780 --> 00:29:11,660
+and image day when you are writing these plugins and also give a short at the different functionalities
+
+290
+00:29:11,660 --> 00:29:17,620
+of image day you will find that this is really useful and many of the things that you find
+
+291
+00:29:17,620 --> 00:29:24,620
+in Photoshop or other image processing software toolboxes they can be rather easily be implemented
+
+292
+00:29:24,620 --> 00:29:30,820
+on your own using filter kernels blurring sharpening and so on are essentially linear
+
+293
+00:29:30,820 --> 00:29:56,420
+shift and variant filter kernels and can be expressed by convolution.
+
+294
+00:30:00,820 --> 00:30:22,380
+So I hope you enjoyed this little video here and I would be very delighted to see you again
+
+295
+00:30:22,380 --> 00:30:29,660
+in the next video when we are discussing non-linear filters so thank you very much for watching
+
+296
+00:30:29,660 --> 00:30:30,940
+and bye bye.
+

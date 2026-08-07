@@ -1,0 +1,3144 @@
+1
+00:00:00,000 --> 00:00:12,800
+Welcome everybody. I'm very happy to pick up where Marvin left off last week. I'm Jonathan
+
+2
+00:00:12,800 --> 00:00:18,640
+and I have the distinct pleasure to today tell you about how to scale Gaussian processes
+
+3
+00:00:18,640 --> 00:00:27,200
+to large data sets. And what we'll see today is that we'll use a lot of the tools that
+
+4
+00:00:27,200 --> 00:00:35,800
+we've developed last week. In particular, last week we talked about the textbook way
+
+5
+00:00:35,800 --> 00:00:42,280
+to solve linear systems using the Tulaski decomposition and we applied that to 2P regression.
+
+6
+00:00:42,280 --> 00:00:47,440
+Today to give you context where we are in the course, today we're essentially developing
+
+7
+00:00:47,440 --> 00:00:53,680
+the modern way to solve such linear systems with kernel matrices and apply that to scale
+
+8
+00:00:53,680 --> 00:01:00,280
+Gaussian processes. And then next week we'll give you the probabilistic numerics interpretation.
+
+9
+00:01:00,280 --> 00:01:08,120
+So how do I learn about the machines that I use to build learning machines? So next week
+
+10
+00:01:08,120 --> 00:01:12,120
+we'll be the learning machines view. Today we'll be kind of the preparation for that.
+
+11
+00:01:12,120 --> 00:01:16,960
+Now I'll start to use language that interprets these numerical methods as learning methods
+
+12
+00:01:16,960 --> 00:01:26,440
+as well. Alright, so today GPs on large data sets will do that by using iterative methods
+
+13
+00:01:26,440 --> 00:01:31,960
+to solve linear systems. We'll see in particular that these methods can be viewed as learning
+
+14
+00:01:31,960 --> 00:01:36,440
+algorithms for the matrix inverse which is the primary object that we need to compute
+
+15
+00:01:36,440 --> 00:01:42,800
+the GP posterior. And then we'll develop a method to do quadratic time as opposed to
+
+16
+00:01:43,040 --> 00:01:49,040
+cubic time inference for GPs. And finally at the very end I'll give you kind of a hint
+
+17
+00:01:49,040 --> 00:01:53,880
+at that you can actually do this faster in linear time in the size of the data set but
+
+18
+00:01:53,880 --> 00:01:58,600
+that might come with some drawbacks and then we'll talk more about that next lecture.
+
+19
+00:01:58,600 --> 00:02:03,160
+Okay, so now that we've situated us, please during the lecture at any point if you don't
+
+20
+00:02:03,160 --> 00:02:07,560
+understand anything just ask me, I'll do my best to answer and with that let's get into
+
+21
+00:02:07,560 --> 00:02:13,680
+it. Okay, quick recap about Gaussian processes. Talked about them last week a little bit.
+
+22
+00:02:13,680 --> 00:02:20,080
+Why do we kind of focus on them as a base case so much? So the main goal for regression
+
+23
+00:02:20,080 --> 00:02:24,440
+is we are trying to learn an unknown function in this case f star from a training data set
+
+24
+00:02:24,440 --> 00:02:31,440
+of examples, right? Kind of the basic example of regression and what do we want from our
+
+25
+00:02:31,440 --> 00:02:36,720
+model if you do regression? Ideally maybe the most important thing is we wanted to generalize
+
+26
+00:02:36,720 --> 00:02:41,440
+to data that we do not have in our training to the set. But there might be some other
+
+27
+00:02:41,440 --> 00:02:45,920
+goals as well alongside this generalization goal. So second of all, we might want our
+
+28
+00:02:45,920 --> 00:02:50,640
+model to be sufficiently simple or interpretable that we can actually understand what's going
+
+29
+00:02:50,640 --> 00:02:56,280
+on after training, what the model has actually learned. Then third, we really would also
+
+30
+00:02:56,280 --> 00:03:00,560
+like to know how much to trust the prediction, right? If you just get a point estimate, we
+
+31
+00:03:00,560 --> 00:03:06,200
+might be not actually sure how much we should trust in that point estimate is that a good
+
+32
+00:03:06,200 --> 00:03:12,760
+prediction far away from the data. And then finally, we really want this to be fast, right?
+
+33
+00:03:12,760 --> 00:03:17,720
+It doesn't help us if our model trains for, let's say, 300 days, then we can't use that
+
+34
+00:03:17,720 --> 00:03:23,760
+really well in practice. And GPs are really kind of the prime example where we can hit
+
+35
+00:03:23,760 --> 00:03:28,240
+all of these points. So for example, of course you want generalization that's just what we
+
+36
+00:03:28,240 --> 00:03:32,720
+need for regression, but then GPs in some way are simple and interpretable because we
+
+37
+00:03:32,760 --> 00:03:37,800
+can reason about what the kernel kind of encodes, what assumptions about the data. We get an
+
+38
+00:03:37,800 --> 00:03:42,920
+uncertainty estimate that tells us how much we should trust the prediction, assuming our
+
+39
+00:03:42,920 --> 00:03:48,480
+model is correct. And then finally, as we learned last week, it's actually very expensive
+
+40
+00:03:48,480 --> 00:03:51,440
+to train them and do inference, right? So what do we do about that last point? And that's
+
+41
+00:03:51,440 --> 00:03:56,800
+what we'll deal with today. Alright, so just as a reminder, this is what the Gaussian process
+
+42
+00:03:56,880 --> 00:04:04,240
+posterior looks like in the mean. We have kind of an error term between the data and our prior
+
+43
+00:04:04,240 --> 00:04:10,480
+mean, our prior prediction that gets scaled by the inverse of the Gram matrix. You can think of
+
+44
+00:04:10,480 --> 00:04:17,440
+that as how strict should I interpret this error? So if my uncertainty, my prior uncertainty is
+
+45
+00:04:17,440 --> 00:04:25,160
+very large, maybe it's fine if I'm far away from the true data, right? But if my uncertainty is
+
+46
+00:04:25,200 --> 00:04:31,840
+actually very concentrated, I should make a big update to be closer to the training data. And
+
+47
+00:04:31,840 --> 00:04:39,120
+then the covariance evaluated at data points also involves this inversion of a matrix of the size
+
+48
+00:04:39,120 --> 00:04:44,720
+of the data set. Now really, GPU regression actually is two parts, right? It's not just
+
+49
+00:04:44,720 --> 00:04:49,520
+computing the posterior. We also need to find the kernel hyperparameters. So do model selection
+
+50
+00:04:49,560 --> 00:04:56,240
+in a way. So this would be your training loop during deep learning, for example. And the loss that
+
+51
+00:04:56,240 --> 00:05:06,880
+we optimize for GPs is the log marginal likelihood. So given this kernel hyperparameter or these
+
+52
+00:05:06,880 --> 00:05:13,160
+kernel hyperparameters, how likely is it that the data were generated from this model? And you can
+
+53
+00:05:13,160 --> 00:05:17,760
+see that if we underfit, for example, here the length scale of the model is actually much wider
+
+54
+00:05:17,880 --> 00:05:21,800
+than the true length scale that generated the data in black from the true function in gray dashed
+
+55
+00:05:22,800 --> 00:05:29,000
+versus the opposite end of the spectrum here, our length scale of the kernel. So the distance in
+
+56
+00:05:29,000 --> 00:05:35,640
+which we assume data points to be related is much too short and we kind of overfit, right? We should
+
+57
+00:05:35,640 --> 00:05:41,880
+expect to be actually, as we move away from a training data point very quickly, our model says
+
+58
+00:05:41,880 --> 00:05:47,720
+we don't actually know anything about where the true function was. Okay, so those are the two
+
+59
+00:05:47,720 --> 00:05:52,640
+tasks. And last week, we talked about the Juleski decomposition. So this is a reminder of the
+
+60
+00:05:52,640 --> 00:05:58,840
+Juleski decomposition. Sorry, for GPU regression, what we need is we need to do linear solves with
+
+61
+00:05:58,840 --> 00:06:04,640
+this Gramian size of the data set, the kernel matrix plus a noise. And we need to do that both
+
+62
+00:06:04,640 --> 00:06:12,960
+for the posterior mean and then for the covariance as well, depending on how many data points we
+
+63
+00:06:13,000 --> 00:06:18,560
+evaluate at here and data points. And then for model selection, we need the log determinant. We
+
+64
+00:06:18,560 --> 00:06:25,040
+just saw that right here, the complexity term, kind of a regularization. And then we also need
+
+65
+00:06:25,040 --> 00:06:29,920
+its gradient if you do gradient based hyperparameter optimization to find the hyperparameters. And last
+
+66
+00:06:29,920 --> 00:06:34,320
+week, we developed that you can use a Juleski decomposition for this, right? Is this great
+
+67
+00:06:34,320 --> 00:06:38,880
+problem solved, right? Does everything compute the log determinant, computes linear solves? Perfect.
+
+68
+00:06:39,840 --> 00:06:44,320
+Here's an illustration of that. On the left, we have a kernel matrix. I believe this is a
+
+69
+00:06:44,320 --> 00:06:53,280
+Matern 3 half kernel. And you get these Juleski factors, L and L transpose. Now, just as a quick
+
+70
+00:06:53,280 --> 00:06:58,560
+aside, kernel matrices don't always look this nicely ordered, right? This is the one dimensional
+
+71
+00:06:58,560 --> 00:07:03,360
+data set where the data is actually, you can order the data just from smallest value to largest
+
+72
+00:07:03,360 --> 00:07:07,200
+value. But in general, for high dimensional data sets, or if your data set is just not ordered,
+
+73
+00:07:07,760 --> 00:07:12,240
+the kernel matrix doesn't necessarily look the structured because the correlation between
+
+74
+00:07:12,240 --> 00:07:16,720
+two data points depends on their distance. And two data points that I order next to each other
+
+75
+00:07:16,720 --> 00:07:26,080
+don't have to be proximal in input space. Okay. But here's a big issue with the Juleski decomposition.
+
+76
+00:07:26,080 --> 00:07:30,880
+And you might have seen that in the homework already. I asked you to use your GP implementation
+
+77
+00:07:30,960 --> 00:07:37,440
+to train on a large data set, 100,000 data points, and you should have probably found this,
+
+78
+00:07:38,000 --> 00:07:43,200
+depending on your system, right? You're not going to be able to form even form that kernel matrix
+
+79
+00:07:43,200 --> 00:07:49,520
+in memory because it takes about 80 gigabytes. So maybe you have a very, very big machine with
+
+80
+00:07:49,520 --> 00:07:55,200
+a lot of RAM and you have 80 gigabytes of RAM, then you'll probably still face this problem.
+
+81
+00:07:56,160 --> 00:08:07,280
+A modern CPU, excuse me, has about one gigaflop per second. So 10 to the nine floating point
+
+82
+00:08:07,280 --> 00:08:14,400
+operations per second. If we plug that into the number of operations we need for the Juleski
+
+83
+00:08:14,400 --> 00:08:20,000
+decomposition, one over three times n cubed, random size of the data set, it'll take you about
+
+84
+00:08:20,640 --> 00:08:26,400
+83 hours to do that, more than a little overhead. Okay. That's kind of not acceptable.
+
+85
+00:08:27,760 --> 00:08:31,840
+Later in the lecture, I'll show you what I did this morning. You can do this in seven and a half
+
+86
+00:08:31,840 --> 00:08:39,200
+minutes to desirable accuracy. Okay. So clearly the Juleski decomposition is prohibitive both in
+
+87
+00:08:39,200 --> 00:08:45,600
+time and space for large data sets that we might care about. What can we do instead? We'll talk about
+
+88
+00:08:45,600 --> 00:08:51,120
+iterative methods today and we'll try to reduce the complexity to squared in the number of data
+
+89
+00:08:51,120 --> 00:08:58,000
+points. You've already seen this as well. This is again the Juleski decomposition and now I only
+
+90
+00:08:58,000 --> 00:09:05,440
+show a couple of columns in the low rank, sorry, a couple of columns in the Juleski factor which
+
+91
+00:09:05,440 --> 00:09:11,280
+gives me a low rank approximation for the kernel matrix. If I do I iterations of the Juleski
+
+92
+00:09:11,280 --> 00:09:17,280
+in its iterative form, that's a rank I matrix. But that's not really what we need for GP regression,
+
+93
+00:09:17,280 --> 00:09:23,600
+right? We need an approximation to the inverse, not the kernel matrix itself. So is there a way
+
+94
+00:09:24,640 --> 00:09:29,520
+that we can also interpret the iterative formulation of the Juleski where we stop it early
+
+95
+00:09:30,720 --> 00:09:35,760
+as an approximation to the precision matrix is another name for the inverse of the kernel matrix.
+
+96
+00:09:36,720 --> 00:09:41,440
+Can we do this, right? Can we approximate the linear solves here,
+
+97
+00:09:44,400 --> 00:09:51,600
+down here, with the inverse Gramian which is I plotted here somehow by a matrix that's called
+
+98
+00:09:51,600 --> 00:10:00,720
+CI such that somehow if I apply the matrix CI to a some vector that this is close to the linear
+
+99
+00:10:00,720 --> 00:10:07,360
+solve with the kernel matrix. All right, let's take a closer look at this iterative form of the
+
+100
+00:10:07,360 --> 00:10:12,240
+Juleski decomposition on the left here that we've seen last time. So just as a reminder,
+
+101
+00:10:12,240 --> 00:10:16,880
+we put in a symmetric positive definite matrix A, in our case that's just the kernel matrix plus
+
+102
+00:10:16,880 --> 00:10:23,680
+the noise. And we get out a lower triangular factor and if we stop it after I iterations,
+
+103
+00:10:23,680 --> 00:10:30,240
+that only has I columns that are non-zero. And then we get an approximation to the kernel matrix.
+
+104
+00:10:30,240 --> 00:10:35,840
+So what happens here? So really there's only two things going on kind of down here.
+
+105
+00:10:36,880 --> 00:10:41,120
+A prime is sort of like the residual, the part of the kernel matrix that we haven't learned.
+
+106
+00:10:41,760 --> 00:10:48,400
+You can see that by you can reformulate that as just A minus the current approximation of the matrix
+
+107
+00:10:48,960 --> 00:10:52,720
+Li times Li transpose. So this is kind of a matrix residual, let's call it.
+
+108
+00:10:53,840 --> 00:10:58,160
+And then there's a second thing going on where as Marvin developed last week,
+
+109
+00:10:59,120 --> 00:11:04,480
+this step here, you can interpret as multiplying this residual with a vector,
+
+110
+00:11:05,200 --> 00:11:09,760
+in this case the unit vector up to scaling that selects a data point of the kernel matrix. That
+
+111
+00:11:09,760 --> 00:11:14,880
+just selects a column of the matrix. And depending on how you choose these, you might get a worse or
+
+112
+00:11:14,880 --> 00:11:23,840
+better approximation after I iterations less than N. Okay, now can we kind of rewrite this
+
+113
+00:11:23,840 --> 00:11:27,760
+algorithm by tracking a few more quantities to also get an inverse approximation out of this?
+
+114
+00:11:28,800 --> 00:11:34,320
+First, our goal is to find such a Ci, an inverse approximation,
+
+115
+00:11:35,520 --> 00:11:41,760
+and we know we have this matrix approximation Li times Li transpose. Can we somehow kind of
+
+116
+00:11:42,320 --> 00:11:48,000
+wrangle our algorithm to also get an inverse approximation? And what we could do, for example,
+
+117
+00:11:48,000 --> 00:11:52,960
+if I just take this equation and I multiply from the left and right with A inverse,
+
+118
+00:11:53,760 --> 00:11:59,120
+right, then obviously on the right side I have A inverse here, and on the left side I have my
+
+119
+00:11:59,120 --> 00:12:08,320
+Cholesky factors that I multiply from the left with A inverse. Now that didn't really get me
+
+120
+00:12:08,320 --> 00:12:15,040
+much because I'm trying to solve or I'm trying to invert the matrix A, so if to get an approximation
+
+121
+00:12:15,040 --> 00:12:19,200
+for the inverse, I need the inverse itself that doesn't really solve the problem, but let's see
+
+122
+00:12:19,200 --> 00:12:24,560
+what actually the entries of this matrix look like. So clearly the Ci is actually a low rank
+
+123
+00:12:24,560 --> 00:12:31,760
+matrix, right, because Li and Li transpose are both only have i columns, and the last column
+
+124
+00:12:32,480 --> 00:12:39,280
+is just A inverse times this Li vector that we constructed in step seven, and we just put into
+
+125
+00:12:39,280 --> 00:12:48,320
+the next column of the Cholesky factor. Okay, so if I just evaluate or just plug in the formula for
+
+126
+00:12:48,320 --> 00:12:54,000
+Li, which is just A prime times this scaled unit vector, remember A prime is kind of the residual,
+
+127
+00:12:54,000 --> 00:13:01,600
+the thing that we haven't learned about A, and I plug in my definition for the residual, right,
+
+128
+00:13:01,600 --> 00:13:05,680
+that's the matrix itself minus the part that I've learned in the last iteration,
+
+129
+00:13:07,200 --> 00:13:11,920
+and then I multiply A inverse into this, so I get an identity matrix here, that's what you can see
+
+130
+00:13:11,920 --> 00:13:19,600
+here, and then I get A inverse times Li minus one, and then I can also just introduce an identity
+
+131
+00:13:19,600 --> 00:13:25,680
+matrix on the right hand side by adding A inverse times A, okay, and now what I have in here is
+
+132
+00:13:25,680 --> 00:13:32,960
+just A inverse times Li minus one times A inverse times Li minus one transposed, but that's just
+
+133
+00:13:33,920 --> 00:13:39,520
+the inverse approximation from the previous iteration, so now I've reduced this last column
+
+134
+00:13:40,080 --> 00:13:45,920
+of this Cholesky factor to something that I computed in the previous iteration, so I can
+
+135
+00:13:45,920 --> 00:13:50,960
+recursively also construct the inverse approximation, and that inverse approximation is actually also
+
+136
+00:13:50,960 --> 00:13:58,080
+low rank in the same way that I construct the low rank approximation to the matrix A, okay,
+
+137
+00:13:58,080 --> 00:14:03,440
+so really the Cholesky is actually also an approximate matrix inversion algorithm,
+
+138
+00:14:04,400 --> 00:14:11,600
+okay, so now I added some terms into this Cholesky to kind of show what we need to track
+
+139
+00:14:11,600 --> 00:14:18,080
+to compute this inverse approximation as well, so first of all, we select a unit vector that
+
+140
+00:14:18,080 --> 00:14:23,200
+corresponds to selecting a data point if we do, if A is a kernel matrix, and let's call that action,
+
+141
+00:14:24,880 --> 00:14:31,600
+then I do a bunch of stuff, and let's focus on the bottom party first, so you've seen that
+
+142
+00:14:32,560 --> 00:14:40,000
+here we update the matrix residual, and now I've found a way to also compute this
+
+143
+00:14:43,520 --> 00:14:50,640
+approximation to the inverse Ci, okay, and by definition of Ci we said it was A inverse times Li,
+
+144
+00:14:51,280 --> 00:14:56,960
+A inverse times Li transpose, I can rewrite this update also in terms of Ci, and what we'll find
+
+145
+00:14:56,960 --> 00:15:05,040
+is that if I just, you know, take out A out of this, of these parentheses, I just get A times
+
+146
+00:15:05,040 --> 00:15:12,880
+A inverse minus Ci times A, so in here is the residual for the inverse matrix, in the same way
+
+147
+00:15:12,880 --> 00:15:19,600
+that out here, right, I have A minus some low rank factor, low rank approximation, in here I have A
+
+148
+00:15:19,600 --> 00:15:24,640
+inverse minus some low rank approximation of inverse, so hidden in here is kind of this, this
+
+149
+00:15:24,720 --> 00:15:30,000
+residual, and then if I multiply A in from the right I get this I minus Ci A factor,
+
+150
+00:15:30,880 --> 00:15:38,000
+and now that pops up again up here in the algorithm, so I modify my action a little bit
+
+151
+00:15:38,000 --> 00:15:45,040
+with this factor here, and then I multiply with this modified vector Di with the matrix A, and if
+
+152
+00:15:45,040 --> 00:15:49,600
+I do that what I essentially do is take this residual matrix, right, A times this factor
+
+153
+00:15:50,240 --> 00:15:56,160
+times the unit vector EI, so that's the observation that you previously did in Scholesky, let's take
+
+154
+00:15:56,160 --> 00:16:12,720
+a step back, that's this right, residual times EI, question? So for us, sorry, for us residual is
+
+155
+00:16:13,360 --> 00:16:24,640
+the thing that we care about minus our approximation, okay, all right, so we have a way to
+
+156
+00:16:26,480 --> 00:16:31,520
+modify our action to get some vector D, and it turns out that this inverse approximation is just
+
+157
+00:16:31,520 --> 00:16:38,320
+at each iteration I add an outer product of these vectors Di, okay, and we see that down here as well,
+
+158
+00:16:38,320 --> 00:16:45,760
+right, now this I minus Ci minus 1 times A times EI just gets replaced by the vector Di,
+
+159
+00:16:46,480 --> 00:16:50,720
+and let's do a quick complexity analysis, is that actually more expensive than doing the
+
+160
+00:16:50,720 --> 00:16:57,440
+Scholesky by itself? We know that the Scholesky periteration takes over n squared, and let's take
+
+161
+00:16:57,440 --> 00:17:05,840
+a look at the actions, at the kind of computations that we added, okay, so here we have a matrix
+
+162
+00:17:05,840 --> 00:17:10,320
+vector multiplication and another matrix vector multiplication that's still n squared, in this
+
+163
+00:17:10,320 --> 00:17:15,760
+eta I normalization constant step, we also just do matrix vector multiplication, and then down here
+
+164
+00:17:16,400 --> 00:17:22,160
+this is a low-rank matrix, so we can actually just track the low-rank factors by saving,
+
+165
+00:17:22,160 --> 00:17:27,680
+storing the Di's, or even if we multiply this out with an outer product, this is also just over
+
+166
+00:17:27,680 --> 00:17:35,040
+n squared, okay, so periteration you just pay n squared to do this, so asymptotically it's just
+
+167
+00:17:35,120 --> 00:17:43,600
+as expensive as if we just approximated the matrix itself, all right, let's take a look at what
+
+168
+00:17:43,600 --> 00:17:50,560
+this looks like if you apply to Gaussian process regression, so remember for just computing the
+
+169
+00:17:50,560 --> 00:17:58,480
+posterior we need these two matrix inverses of the kernel matrix size n by n, now we have an
+
+170
+00:17:58,480 --> 00:18:03,680
+approximation to this inverse, so what happens if you just replace that with this inverse approximation?
+
+171
+00:18:05,120 --> 00:18:09,440
+We get this, so this is three iterations of the partial Cholesky, partial because we don't
+
+172
+00:18:09,440 --> 00:18:17,120
+run it to convergence, and the data points that we selected or the unit vectors for our actions
+
+173
+00:18:17,120 --> 00:18:22,160
+are just selecting the data points in blue here, so in sequence from the left to right the first
+
+174
+00:18:22,160 --> 00:18:29,360
+three, now clearly not the greatest approximation, right, like basically back here we haven't learned
+
+175
+00:18:29,360 --> 00:18:37,680
+anything about the true function in gray dashed, now you might notice also that this
+
+176
+00:18:37,680 --> 00:18:42,720
+kind of looks like GPU regression if you only did GPU regression on the first three data points,
+
+177
+00:18:43,600 --> 00:18:52,560
+right, and in fact doing the partial Cholesky with no noise is equivalent to GPU regression
+
+178
+00:18:52,560 --> 00:18:56,640
+if you're, and you're selecting the data points that your pivoting strategy selects,
+
+179
+00:18:56,640 --> 00:19:02,960
+so your unit vectors, and if you add noise it's almost the same not quite, okay, so you can think
+
+180
+00:19:02,960 --> 00:19:08,080
+of the partial Cholesky as something like doing GPU regression but conditioning only on a few data
+
+181
+00:19:08,080 --> 00:19:18,400
+points, so last time we already saw that it really matters what pivots you choose or in other language
+
+182
+00:19:18,400 --> 00:19:21,680
+what unit vectors you choose, what data points you select, right, it's just all names for the
+
+183
+00:19:21,680 --> 00:19:27,520
+different thing, all the same, all different names for the same thing, and it turns out that
+
+184
+00:19:29,680 --> 00:19:37,840
+here that's also the case, so on the left I just chose, I think this is 10 iterations
+
+185
+00:19:37,840 --> 00:19:45,200
+of the partial Cholesky, and as unit vectors as actions I chose those actions that selected
+
+186
+00:19:45,200 --> 00:19:50,240
+the first 10 data points on the left here, and you can see that in this region myogliol
+
+187
+00:19:50,240 --> 00:19:58,320
+have learned the true posterior mean in black quite well, all the way over here we essentially
+
+188
+00:19:58,320 --> 00:20:05,280
+have learned nothing about the true posterior that we're trying to approximate, now on the right
+
+189
+00:20:05,280 --> 00:20:10,080
+I just chose a random order for the actions, so a random selection of data points that I
+
+190
+00:20:10,800 --> 00:20:15,200
+consider a random selection of columns of the kernel matrix that I look at in the partial
+
+191
+00:20:15,200 --> 00:20:20,400
+Cholesky, and you can see that this looks much better, right, the posterior is much closer to
+
+192
+00:20:20,400 --> 00:20:26,400
+the true posterior in dashed and black lines, and also you can imagine that we've learned quite a
+
+193
+00:20:26,400 --> 00:20:32,480
+lot more about the function and we're much more certain about where it is, so this choice of data
+
+194
+00:20:32,480 --> 00:20:37,760
+points not only matters for approximating the kernel matrix, in particular it also matters if
+
+195
+00:20:37,760 --> 00:20:44,480
+you approximate the inverse and thus for GP approximation, okay, so you can think of this
+
+196
+00:20:44,560 --> 00:20:50,160
+selection of actions, the selection of unit vectors for the Cholesky as a kind of act of learning,
+
+197
+00:20:50,880 --> 00:20:57,440
+in the sense that if I had a strategy that while I do this at each iteration picks kind of better
+
+198
+00:20:57,440 --> 00:21:02,480
+data points to condition on, I can actually learn much faster as is exemplified here by the random
+
+199
+00:21:02,480 --> 00:21:08,000
+order, but you could also think of a different strategy that selects data points in a smarter
+
+200
+00:21:08,000 --> 00:21:15,120
+way, and we'll see that later, okay, so the selection of data points that you choose really
+
+201
+00:21:15,120 --> 00:21:19,120
+matters for how quickly you converge to this inverse approximation and thus to the GP posterior,
+
+202
+00:21:20,960 --> 00:21:24,320
+so how do we do this smarter, can we find better actions to do this,
+
+203
+00:21:26,400 --> 00:21:32,240
+so on the left there's another illustration of this, so inside the partial Cholesky there's a step
+
+204
+00:21:32,240 --> 00:21:37,600
+where we take the residual a prime, so the thing that we haven't, or the part of the matrix that
+
+205
+00:21:37,600 --> 00:21:49,120
+we haven't learned yet, that we can rewrite via this, so via this part where we correct our action
+
+206
+00:21:49,760 --> 00:21:55,360
+with the inverse approximation from the previous step, and this looks like this, so this is the
+
+207
+00:21:55,360 --> 00:22:04,000
+residual after also ten iterations of the partial Cholesky, and every time I select, I chose a unit
+
+208
+00:22:04,000 --> 00:22:08,720
+vector that selects one of these data points, and you can see that most of the data points here have
+
+209
+00:22:08,720 --> 00:22:13,360
+been selected, the ones here and the ones down here, I think those are maybe 30 data points or
+
+210
+00:22:13,360 --> 00:22:19,440
+something like that, so in each step I choose a data point and the residual of the matrix look like
+
+211
+00:22:19,440 --> 00:22:24,880
+this, but why do I have to restrict myself to a vector that looks like this, the operation,
+
+212
+00:22:25,520 --> 00:22:31,680
+the cooperation cost per iteration is squared in the number of data points anyways, so I can
+
+213
+00:22:31,680 --> 00:22:35,760
+afford a matrix vector multiplication here, I can choose any vector, I don't have to select a column,
+
+214
+00:22:36,480 --> 00:22:40,880
+so what if we found a better vector with some different entries, maybe even more than one,
+
+215
+00:22:42,400 --> 00:22:49,040
+to more quickly approximate the kernel matrix or the inverse, which we just learned is kind of the
+
+216
+00:22:49,120 --> 00:22:54,640
+same, and here I chose some strategy that I'm going to tell you about in a moment, and clearly,
+
+217
+00:22:54,640 --> 00:22:59,280
+just visually, you can see that it's more close to the true matrix, the true kernel matrix,
+
+218
+00:23:00,320 --> 00:23:05,200
+so what's a better way, more efficient way, to choose these actions?
+
+219
+00:23:07,520 --> 00:23:13,280
+Okay, so this is the second part of the talk, and we'll talk about a method called the method of
+
+220
+00:23:13,280 --> 00:23:18,560
+conjugate gradients that's originally been designed to solve linear systems as they pop up, for example,
+
+221
+00:23:18,560 --> 00:23:24,800
+in GP regression, with symmetric positive definite matrices, kernel matrices are symmetric positive
+
+222
+00:23:24,800 --> 00:23:29,280
+definite, so that's great, and now we'll dive in kind of a little bit to the classic view of
+
+223
+00:23:29,280 --> 00:23:37,840
+how this method works, and then I'll pull you back into this view of actually learning about
+
+224
+00:23:37,840 --> 00:23:45,840
+the matrix, or learning about the inverse as we've already seen, okay, so method of conjugate
+
+225
+00:23:45,840 --> 00:23:53,120
+gradients. Our goal is to solve a linear system AX equals B, so A you can always just think of as
+
+226
+00:23:53,120 --> 00:24:00,800
+a kernel matrix for our purposes, and you want to do that with ideally very few matrix vector
+
+227
+00:24:00,800 --> 00:24:06,480
+multiplies, so just a few quadratic cost operations on the size of the dataset to quickly approximate
+
+228
+00:24:06,480 --> 00:24:12,160
+the posterior. Now, a different way of thinking about this problem AX equals B, where A is a
+
+229
+00:24:12,160 --> 00:24:18,480
+matrix and B is a vector of size n, you can rephrase this as a quadratic optimization problem,
+
+230
+00:24:18,480 --> 00:24:25,200
+and let me show you how that works, so take this quadratic function, where the argument X is a
+
+231
+00:24:25,200 --> 00:24:33,760
+vector of size n, if you take its gradient, then setting the gradient to zero, so solving this,
+
+232
+00:24:33,760 --> 00:24:39,920
+or optimizing this quadratic, which is a convex optimization problem, so as a global minimum,
+
+233
+00:24:42,160 --> 00:24:48,240
+is actually equivalent to solving the linear system AX equals B, okay, so taking the gradient
+
+234
+00:24:48,240 --> 00:24:53,760
+of this, just this AX minus B, setting it to zero means the equivalent to AX equals B,
+
+235
+00:24:55,200 --> 00:25:02,000
+and now I can also define something, another residual here, which is B minus AX, so if I
+
+236
+00:25:02,000 --> 00:25:10,080
+plug in something for X, that tells me how well I've solved the system, or equivalently is my
+
+237
+00:25:10,080 --> 00:25:16,880
+current negative gradient of this system, okay, so it points in the direction of steepest descent,
+
+238
+00:25:17,440 --> 00:25:22,400
+so what's your favorite optimization algorithm, just shout it out,
+
+239
+00:25:25,360 --> 00:25:27,360
+nobody has a favorite optimization algorithm,
+
+240
+00:25:30,720 --> 00:25:35,040
+all right, so what if you just throw gradient descent at this problem, right, why not,
+
+241
+00:25:35,120 --> 00:25:40,720
+gradient descent is super easy, we can compute the gradient, it's just B minus AX for the
+
+242
+00:25:40,720 --> 00:25:47,120
+current position X, why don't we do gradient descent, all right, so here on the right in blue,
+
+243
+00:25:47,120 --> 00:25:53,440
+these contour lines are the acupotential lines, so at which the function has the same value,
+
+244
+00:25:54,240 --> 00:26:02,960
+so the blue contour lines are the function f of X, the minimum, so the solution is here, X,
+
+245
+00:26:03,920 --> 00:26:08,160
+which is equivalently the minimizer of this function, and as we just learned,
+
+246
+00:26:08,160 --> 00:26:14,800
+the solution to this linear system, so if I do gradient descent, I follow the direction of steepest
+
+247
+00:26:14,800 --> 00:26:21,040
+descent, what I get is the green line here, so I start at X zero here, the direction, the green
+
+248
+00:26:21,040 --> 00:26:27,840
+line is orthogonal to the acupotential lines, take one step, and I can actually minimize
+
+249
+00:26:28,480 --> 00:26:34,240
+the one-dimensional quadratic along this distance in closed form, so I land here, right, if I
+
+250
+00:26:34,240 --> 00:26:38,000
+step any further, I would actually increase my function value again, so that's great, and then
+
+251
+00:26:38,000 --> 00:26:42,800
+I do it a bunch of times, so one, two, three, four, five, maybe six times, six steps, fine, right,
+
+252
+00:26:44,480 --> 00:26:51,280
+so one observation here, these gradient steps for this quadratic are always orthogonal to each
+
+253
+00:26:51,280 --> 00:26:59,680
+other in the Euclidean inner product, okay, can I do any better? Anybody have any ideas?
+
+254
+00:27:05,360 --> 00:27:12,160
+What if I slightly modify the directions that I walk in, not to be orthogonal with respect to the
+
+255
+00:27:12,160 --> 00:27:22,000
+Euclidean inner product, so the inner product that induces the two norm, but that are orthogonal
+
+256
+00:27:22,000 --> 00:27:30,080
+with respect to the A norm, where A is our matrix, okay, what does that look like? So here in red,
+
+257
+00:27:30,080 --> 00:27:39,360
+we have one example of this, I take one step, and then the next step is orthogonal in the geometry
+
+258
+00:27:39,360 --> 00:27:44,400
+that's induced by these blue lines, so what does that mean? Imagine you could squish this
+
+259
+00:27:45,360 --> 00:27:49,520
+landscape, this blue landscape such that the blue lines are actually a circle, okay,
+
+260
+00:27:49,520 --> 00:27:57,760
+you could squish everything, in this squished space, what the red path does is it takes right
+
+261
+00:27:57,760 --> 00:28:06,640
+angle steps, okay, now of course we don't have the squished kind of space, we have this elongated
+
+262
+00:28:06,640 --> 00:28:11,120
+space, so in this elongated space, taking orthogonal steps, it actually seems to be a fine idea,
+
+263
+00:28:11,120 --> 00:28:17,440
+but takes six steps, versus if I take right angle steps in the squished space, it seems to be just
+
+264
+00:28:17,440 --> 00:28:23,520
+take two steps, and that's actually a general result that you can show here, that if you follow
+
+265
+00:28:23,520 --> 00:28:27,520
+such conjugate directions, let's call them conjugate being another word for orthogonal
+
+266
+00:28:27,520 --> 00:28:33,760
+in an arbitrary inner product, perfect in an arbitrary inner product, I can converge in at
+
+267
+00:28:33,760 --> 00:28:40,560
+most n steps, and now let's do a slight modification of this, because for the first step we don't have
+
+268
+00:28:41,520 --> 00:28:45,600
+decided yet where we should go, right, we can go in any direction, why don't we just take
+
+269
+00:28:45,600 --> 00:28:50,480
+our gradient, negative gradient as a first step, walk into the direction of steepest descent,
+
+270
+00:28:50,480 --> 00:28:57,760
+and then just modify our steps always to satisfy this conjugacy condition, for which we then know
+
+271
+00:28:57,760 --> 00:29:01,840
+we can actually converge for these two-dimensional problems in exactly two steps, in
+
+272
+00:29:02,720 --> 00:29:09,440
+exact arithmetic, okay, so that's the idea, and this is what the algorithm looks like, so
+
+273
+00:29:10,880 --> 00:29:15,520
+don't get too intimidated by all the symbols, I just want you to kind of get the gist of what
+
+274
+00:29:16,240 --> 00:29:21,520
+the individual steps do in this graphic, okay, so I'm just going to explain kind of the high-level
+
+275
+00:29:21,520 --> 00:29:26,880
+parts of this, and it's not super important to know exactly how to derive these steps, we'll
+
+276
+00:29:26,880 --> 00:29:34,960
+do that next lecture in a more general form, so my algorithm gets a matrix A, a vector B,
+
+277
+00:29:34,960 --> 00:29:40,000
+and an initial guess for the solution x0, I have some stopping criterion, for example,
+
+278
+00:29:40,000 --> 00:29:46,640
+based on the gradient, right, the gradient norm, if that's zero, we're at the end here,
+
+279
+00:29:47,840 --> 00:29:52,240
+and then in the beginning I compute the residual, which we just learned is just a negative gradient,
+
+280
+00:29:52,240 --> 00:29:58,960
+right, so I compute the steepest descent direction, then to actually figure out in which
+
+281
+00:29:58,960 --> 00:30:03,040
+look, in which direction I should search, in which direction I should walk, called search
+
+282
+00:30:03,040 --> 00:30:08,720
+direction, I take my negative gradient, step ri minus one, and then I do some correction,
+
+283
+00:30:08,720 --> 00:30:12,480
+and that correction in this case depends on the previous step, so that's the intuition that
+
+284
+00:30:13,120 --> 00:30:18,960
+when I take a gradient step in green here, and I can't take the next gradient step, I have to
+
+285
+00:30:18,960 --> 00:30:24,240
+slightly correct it for what I've done previously, okay, so that's this correction part here, this
+
+286
+00:30:24,240 --> 00:30:30,000
+minus, depending on the previous search direction, and then finally, based on the search direction,
+
+287
+00:30:30,000 --> 00:30:34,240
+I can update my estimate for the solution with some step length, and the step length
+
+288
+00:30:34,960 --> 00:30:40,080
+is the exact minimizer along this direction, and you can see here, by the acupotential lines,
+
+289
+00:30:40,080 --> 00:30:44,720
+if I would walk farther, I would actually increase the function value again, okay, so this is the
+
+290
+00:30:45,360 --> 00:30:50,320
+minimum along this direction, all right, so this is the method of conjugate gradients, great,
+
+291
+00:30:52,080 --> 00:30:56,880
+but remember, we're looking for a method that approximates the inverse,
+
+292
+00:30:56,880 --> 00:31:01,600
+because we don't only have to solve one linear system for the mean, but also multiple ones
+
+293
+00:31:02,800 --> 00:31:09,120
+for the posterior covariance, right, because we have this right hand side is a kernel evaluated
+
+294
+00:31:09,680 --> 00:31:16,080
+at the training data set and new data points, okay, so can we also do the same thing or similar
+
+295
+00:31:16,080 --> 00:31:23,680
+thing as we did for the partial Scholaski by interpreting this CG method as one that also
+
+296
+00:31:23,680 --> 00:31:28,880
+constructs an approximation to the inverse, and the answer is yes, of course, otherwise,
+
+297
+00:31:28,880 --> 00:31:37,680
+I wouldn't be telling you, so now we also want a matrix CI that approximates the inverse
+
+298
+00:31:38,640 --> 00:31:43,280
+from this method, and we'll see that this is also low rank in the same way that it was low rank
+
+299
+00:31:43,280 --> 00:31:48,720
+for the partial Scholaski, and in black, I just carried over the steps and maybe slightly
+
+300
+00:31:48,720 --> 00:31:53,840
+reformulated them, so let's take a look at that, so here for the search direction, sorry,
+
+301
+00:31:54,960 --> 00:32:00,000
+in the beginning, I compute the residual again, same thing, and then I just call that residual
+
+302
+00:32:00,080 --> 00:32:11,200
+my action, okay, SI, and now correcting this residual as we did here turns out we can write as
+
+303
+00:32:12,160 --> 00:32:18,000
+just the residual itself minus the correction that depends on the previous inverse approximation,
+
+304
+00:32:18,000 --> 00:32:25,840
+okay, so this term here that looks very complicated can rewrite with the same structure as we had
+
+305
+00:32:25,840 --> 00:32:34,560
+for the partial Scholaski, that's the conjugacy correction, and it turns out that the, this
+
+306
+00:32:34,560 --> 00:32:41,200
+search direction, if we take the outer product up to scaling and sum that up, that turns out to be
+
+307
+00:32:41,200 --> 00:32:46,480
+this inverse approximation, and to give you an intuition, sort of a very high-level intuition
+
+308
+00:32:46,480 --> 00:32:55,200
+of why that works, so if I take this form of the approximation of the inverse, and I multiply
+
+309
+00:32:56,080 --> 00:33:02,320
+the right-hand side vector B, right, up here, it kind of should make, or if this was consistent,
+
+310
+00:33:02,320 --> 00:33:07,680
+this inverse approximation with my solution estimate XI, it should be the case that if I
+
+311
+00:33:07,680 --> 00:33:13,360
+multiply CI, the inverse approximation with B, I should get XI, right, otherwise I'm actually
+
+312
+00:33:13,360 --> 00:33:17,600
+sort of developing two different estimates for the solution of this linear system,
+
+313
+00:33:17,600 --> 00:33:24,160
+so it only makes sense if the CI actually is equal to XI if I multiply it with the right-hand side,
+
+314
+00:33:24,160 --> 00:33:32,080
+because it's an approximation to the inverse, so now we know that the update for the solution
+
+315
+00:33:32,080 --> 00:33:36,720
+estimate involves this conjugate direction DI, right, that's the update up to scaling,
+
+316
+00:33:37,680 --> 00:33:42,880
+so this matrix CI here, if that is to make sense, has to,
+
+317
+00:33:46,000 --> 00:33:52,640
+or if it's low-rank, has to have the form all previous search directions stacked into columns
+
+318
+00:33:53,280 --> 00:33:58,480
+times all the vectors stacked into rows, because then I get a linear combination
+
+319
+00:33:58,480 --> 00:34:03,360
+of these search directions DI as updates here, and that's exactly the form that we see here,
+
+320
+00:34:04,080 --> 00:34:12,400
+we get one DI times row vector DI transposed per iteration, so I realize that that's a lot to take
+
+321
+00:34:12,400 --> 00:34:16,480
+in, but it's actually not so important to understand where this comes from, because we're doing that
+
+322
+00:34:16,480 --> 00:34:24,240
+next week, but think of what I want you to get is this intuition here, okay, I can select actions
+
+323
+00:34:24,960 --> 00:34:28,800
+that actually solve this linear system very quickly, and we'll see that in a moment,
+
+324
+00:34:29,200 --> 00:34:37,200
+okay, quick comparison to the partial Sholesky that we saw before, you'll recognize now a bunch of
+
+325
+00:34:37,200 --> 00:34:43,200
+things here, right, here we selected a unit vector as an action, here we're selecting the residual
+
+326
+00:34:43,200 --> 00:34:53,760
+or negative gradient, here we're slightly modifying our action, doing the same thing over here for
+
+327
+00:34:53,760 --> 00:35:00,000
+the residual to get the search direction, we're estimating an inverse here with a low-rank,
+
+328
+00:35:00,000 --> 00:35:07,600
+actually rank one update, same thing over here, now of course for the Sholesky we didn't actually
+
+329
+00:35:07,600 --> 00:35:12,160
+solve a specific linear system, so we didn't have a step where we estimate a solution,
+
+330
+00:35:12,160 --> 00:35:17,920
+but actually we could compute the solution here as well by doing the same thing, multiplying
+
+331
+00:35:17,920 --> 00:35:22,000
+the inverse approximation with the right hand side, okay, so these algorithms are actually very
+
+332
+00:35:22,000 --> 00:35:29,760
+similar, we just typically understand them from very different angles, okay, so let's compare
+
+333
+00:35:29,760 --> 00:35:35,600
+them for GP inference, so we just again replace the kernel matrix inverse with this CI the inverse
+
+334
+00:35:35,600 --> 00:35:40,320
+approximation, and on the left here we have the partial Sholesky for tenor durations with
+
+335
+00:35:40,320 --> 00:35:47,520
+randomly sampled data points, you can see that now where we pick data points the uncertainty is
+
+336
+00:35:47,520 --> 00:35:54,640
+contracted, and here is conjugate gradient which automatically we don't even have to specify what
+
+337
+00:35:54,640 --> 00:36:00,640
+data points to pick because of this residual action strategy, actually is much more contracted
+
+338
+00:36:00,640 --> 00:36:05,600
+and matches the true posterior and black dashed lines and the true posterior mean and black much
+
+339
+00:36:05,600 --> 00:36:11,840
+better, right, the red is our approximation, the black is what we want, so this intuitively kind
+
+340
+00:36:11,840 --> 00:36:18,640
+of shows that the method of conjugate gradient seems to converge much much faster, and why like
+
+341
+00:36:18,640 --> 00:36:25,920
+what is this interpretation of this these actions, so the actions you can think of as probing the
+
+342
+00:36:25,920 --> 00:36:31,600
+matrix that we care about that we want to invert in a certain way, and however you structure that
+
+343
+00:36:31,600 --> 00:36:38,160
+action probes the matrix in a different way, so here for this GP approximation we kind of probe
+
+344
+00:36:38,160 --> 00:36:41,840
+at this point, then we probe at this point, then we probe at this point, and then at this point,
+
+345
+00:36:41,840 --> 00:36:50,960
+and the GP approximation contracts around for CG our residual vector in general probes were our
+
+346
+00:36:50,960 --> 00:36:58,160
+estimate of the posterior mean is still far away from the data set, so it probes globally at every
+
+347
+00:36:58,160 --> 00:37:04,160
+single data point in general and scaled with how far away I am from the data point, that's exactly
+
+348
+00:37:04,160 --> 00:37:12,640
+what the residual is, if you take a look back here it's for GPs it's the data B is a data Y
+
+349
+00:37:12,640 --> 00:37:18,960
+minus the kernel matrix times the representables, so that's the intuition why this works so well
+
+350
+00:37:18,960 --> 00:37:26,720
+for GPs, so notice I'm already using terms that you might know from kind of other machine learning
+
+351
+00:37:26,720 --> 00:37:31,040
+courses, action in terms of deciding where to evaluate or where to observe,
+
+352
+00:37:33,760 --> 00:37:44,000
+learning about the inverse matrix, and we'll see a lot more of this language later, okay, so we saw that
+
+353
+00:37:44,000 --> 00:37:59,920
+apologies, there we go, so we kind of intuitively or based on this picture it seems like the method
+
+354
+00:37:59,920 --> 00:38:04,000
+of conjugate gradients converges much faster, but actually how fast does it converge, right,
+
+355
+00:38:04,880 --> 00:38:08,800
+and now I have to take a quick numerics interlude to actually analyze this,
+
+356
+00:38:09,360 --> 00:38:15,120
+for those of you that haven't been in contact with numerics too much here's a quick slide for the
+
+357
+00:38:15,120 --> 00:38:19,360
+three most important concepts from your numerics lecture, I hope I'm not stepping on anybody's
+
+358
+00:38:19,360 --> 00:38:28,240
+toes here, so the first one is machine precision, whenever we're working on a computer and not just
+
+359
+00:38:28,240 --> 00:38:34,000
+in abstract mathematics there's unavoidable rounding error because I can only store my
+
+360
+00:38:34,000 --> 00:38:40,320
+numbers on my machine up to a certain precision, so I call that here just the floating point
+
+361
+00:38:40,320 --> 00:38:46,320
+rounding error fl of some theoretical quantity x that I can store on my machine as x tilde,
+
+362
+00:38:47,760 --> 00:38:55,120
+now whenever I have such a distortion on my disk and I apply some operation to it, for example
+
+363
+00:38:55,760 --> 00:39:00,160
+solve a linear system and I store my matrix and my right hand side on my computer,
+
+364
+00:39:00,160 --> 00:39:07,200
+those are suddenly slightly distorted potentially, and if I apply the exact algorithm for inversion,
+
+365
+00:39:07,200 --> 00:39:12,480
+so the theoretical mathematical operation that inverts that matrix, I still have unavoidable
+
+366
+00:39:12,480 --> 00:39:17,200
+error that gets introduced, right, because my inputs are slightly distorted, so also my outputs
+
+367
+00:39:17,200 --> 00:39:22,880
+get distorted, this bigger white circle here, and one way to measure this unavoidable error
+
+368
+00:39:22,880 --> 00:39:28,480
+amplification through the mathematical operation that I'm trying to implement in an algorithm,
+
+369
+00:39:29,440 --> 00:39:32,880
+for the case of solving the new systems, that is called the condition number,
+
+370
+00:39:34,960 --> 00:39:38,960
+so it's technically it's unavoidable relative error amplification, but you can think of it as
+
+371
+00:39:38,960 --> 00:39:44,880
+just unavoidable error amplification, and that turns out to be the maximum, the largest eigenvalue
+
+372
+00:39:45,920 --> 00:39:51,360
+divided by the smallest eigenvalue in absolute terms, okay, so kind of the, if you think of
+
+373
+00:39:51,360 --> 00:39:57,840
+the matrix representing a quadratic function as we had just a few slides ago, here the blue lines,
+
+374
+00:39:58,720 --> 00:40:06,480
+in this case, how elongated this quadratic is in its largest elongation direction divided by its
+
+375
+00:40:06,480 --> 00:40:13,200
+smallest elongation direction, sorry, the other way around, smallest divided by largest,
+
+376
+00:40:14,080 --> 00:40:18,080
+but it's the largest eigenvalue divided by smallest, okay, and then there's a second
+
+377
+00:40:18,080 --> 00:40:22,960
+quantity and this is just as a service, now what happens if I actually try to implement
+
+378
+00:40:22,960 --> 00:40:28,240
+this theoretical mathematical operation in an algorithm, I've had like the conjugate gradient
+
+379
+00:40:28,240 --> 00:40:34,000
+method or the Cholesky, then there's additional error coming from this implementation, maybe
+
+380
+00:40:34,000 --> 00:40:41,680
+doing a rounding in between, or just not being true to the true mathematical operation, and if
+
+381
+00:40:41,680 --> 00:40:46,880
+then my error is not too large, not too far away from this unavoidable amplification, I call that
+
+382
+00:40:46,880 --> 00:40:55,600
+stability, okay, now for example the Cholesky is a stable algorithm, so if you solve a linear
+
+383
+00:40:55,600 --> 00:41:01,680
+system on your computer with a Cholesky decomposition, the error you should expect is on the order of
+
+384
+00:41:02,320 --> 00:41:08,080
+the condition number depending on what norm you measured in, okay, so if that's really large,
+
+385
+00:41:08,800 --> 00:41:12,880
+no algorithm in the world is going to be able to solve that linear system to machine precision,
+
+386
+00:41:13,840 --> 00:41:20,960
+machine precision, so double precision is roughly 10 to the minus 16, okay, so if my condition
+
+387
+00:41:20,960 --> 00:41:26,160
+number is 10 to the 16, good luck finding an algorithm that's going to solve that linear system
+
+388
+00:41:26,160 --> 00:41:33,840
+to some precision that you desired that's smaller than one, okay, all right, so now we can analyze
+
+389
+00:41:33,840 --> 00:41:39,680
+the convergence behavior of the method of conjugate gradients, here on the left here I have a system
+
+390
+00:41:39,680 --> 00:41:45,440
+with a kernel matrix that has a thousand data points and has a moderately large condition
+
+391
+00:41:45,440 --> 00:41:54,320
+number, 10 to the 5, and in the x-axis I have the number of iterations I run for CG, and on the y-axis
+
+392
+00:41:54,320 --> 00:42:00,640
+I have the error in a norm, so that's the true solution of the linear system minus my approximation
+
+393
+00:42:01,440 --> 00:42:08,480
+in a norm, and it turns out that, so first of all let's observe that we can't actually reach the
+
+394
+00:42:09,760 --> 00:42:14,560
+double machine precision accuracy at roughly 10 to the minus 16 because our condition number is
+
+395
+00:42:14,560 --> 00:42:22,560
+pretty large, now it's not exactly that we can just add, you know, five orders of magnitude to this
+
+396
+00:42:22,560 --> 00:42:26,880
+because technically this is in two norm and this is in a norm, but certainly we cannot reach 10 to
+
+397
+00:42:26,880 --> 00:42:34,480
+the minus 16 here, when it turns out for this method of conjugate gradients the convergence
+
+398
+00:42:34,480 --> 00:42:40,000
+rate, so how quickly it converges to the true solution is given by this condition number
+
+399
+00:42:40,000 --> 00:42:48,160
+of the matrix A, by the largest divided by the smallest eigenvalue to some power i, so if A is
+
+400
+00:42:48,160 --> 00:42:52,000
+very close to one, does this converge fast or slow?
+
+401
+00:43:03,680 --> 00:43:10,320
+If A is close, sorry, if the condition number of A is close to one, does this term decrease fast
+
+402
+00:43:10,320 --> 00:43:26,000
+with i or slow with i? What is the numerator if kappa of i is close to one? Just shout it out.
+
+403
+00:43:28,560 --> 00:43:31,760
+Close to zero, okay, what about the denominator?
+
+404
+00:43:32,720 --> 00:43:43,440
+Close to two, so this is almost what? So if now I take that to a power, does that decrease fast or slow?
+
+405
+00:43:45,440 --> 00:43:54,640
+Compared to if, let's say kappa of A is a million, what is the fraction here, roughly?
+
+406
+00:43:56,880 --> 00:44:01,360
+Almost one, so what converges faster if kappa is a million or if kappa is one?
+
+407
+00:44:02,160 --> 00:44:08,560
+One, right? Because then this thing here is almost zero, so this arrow decreases really fast, okay?
+
+408
+00:44:09,600 --> 00:44:13,520
+Because if this is a million, then this is almost one, and if it's one, it doesn't decrease at all.
+
+409
+00:44:14,240 --> 00:44:20,800
+So the closer to one we are, the slower we converge. So here, I should expect actually not such fast
+
+410
+00:44:20,800 --> 00:44:25,600
+convergence, right? The condition number is quite large. Turns out it converges still quite okay in
+
+411
+00:44:25,600 --> 00:44:30,560
+a few hundred iterations relative to the problem size, a thousand, that's not too bad. By the way,
+
+412
+00:44:30,560 --> 00:44:35,120
+I only chose such a small problem here because I actually need to compute the true solution
+
+413
+00:44:35,120 --> 00:44:40,320
+to evaluate this, right? So I need to be able to compute a Chulaski to get a solution that's
+
+414
+00:44:40,320 --> 00:44:47,840
+within unavoidable error. So we can see that CG converges fast if the condition number of my
+
+415
+00:44:47,840 --> 00:44:53,360
+system is small. But does that mean it converges fast for all cases that we care about, for example,
+
+416
+00:44:54,080 --> 00:45:00,800
+for the kernel matrices? Here, similar example, a thousand data points, A is a kernel matrix,
+
+417
+00:45:00,800 --> 00:45:08,560
+and I vary the damping for the observation noise of my model. I increase it from red to blue,
+
+418
+00:45:08,560 --> 00:45:13,200
+sorry, I decrease it from red to blue, so I assume less and less noise in my observations.
+
+419
+00:45:14,080 --> 00:45:20,640
+And you can see that the convergence of CG actually slows down as I decrease the observation
+
+420
+00:45:20,640 --> 00:45:31,280
+noise. And the reason is, let's take a look. Here's the kernel matrix, k plus sigma squared i,
+
+421
+00:45:31,920 --> 00:45:38,720
+k is an SPD matrix, or at least symmetric positive semi-definite because it's a kernel matrix. So we
+
+422
+00:45:38,720 --> 00:45:44,880
+can do an eigen decomposition where q are the eigenvectors and lambda is a diagonal matrix
+
+423
+00:45:44,880 --> 00:45:50,160
+with the eigenvalues on the diagonal. Now we can find an eigen decomposition where q
+
+424
+00:45:50,160 --> 00:45:55,920
+has orthogonal eigenvectors, actually often normal eigenvectors. So I can just introduce
+
+425
+00:45:55,920 --> 00:46:02,800
+an identity matrix here, q times q transposes identity. And I can pull in the sigma squared i
+
+426
+00:46:03,680 --> 00:46:10,640
+to actually find the eigenvalues of k plus sigma squared i. And they are the eigenvalues of k,
+
+427
+00:46:10,640 --> 00:46:16,000
+lambda is a diagonal matrix with the eigenvalues, where each eigenvalue gets a sigma squared added
+
+428
+00:46:16,000 --> 00:46:21,360
+to it. So now if I want to compute the condition number of this kernel matrix in the beginning,
+
+429
+00:46:22,160 --> 00:46:26,080
+I just need the largest eigenvalue of the kernel matrix, sorry, if this damped kernel
+
+430
+00:46:26,080 --> 00:46:29,360
+matrix in the beginning, I just need the largest eigenvalue of the kernel matrix without damping
+
+431
+00:46:30,160 --> 00:46:34,080
+plus the damping. And now you can see what happens if I
+
+432
+00:46:34,640 --> 00:46:41,920
+take sigma squared to be very, very small. What happens if I take sigma squared to zero
+
+433
+00:46:41,920 --> 00:46:45,040
+to what does this term converge? Just shout.
+
+434
+00:46:47,920 --> 00:46:52,000
+Take this term, let sigma squared go to zero. What does it converge to?
+
+435
+00:46:56,240 --> 00:47:03,680
+Just the condition number of k, right, lambda max of k divided by lambda min of k. It turns out
+
+436
+00:47:03,680 --> 00:47:08,720
+that for most kernels, these are very, very different numbers. Such matrices are very,
+
+437
+00:47:08,720 --> 00:47:15,200
+very badly conditioned. So lambda max is much larger than lambda min. So if I increase sigma
+
+438
+00:47:15,200 --> 00:47:19,520
+squared, the opposite happens, right? In the extreme case, if I let that go to infinity,
+
+439
+00:47:19,520 --> 00:47:24,320
+then this converges to one. Obviously, then I assume that I have very large observation noise,
+
+440
+00:47:24,320 --> 00:47:27,520
+so I don't learn anything about my problem. So this is kind of tradeoff going on.
+
+441
+00:47:28,880 --> 00:47:32,160
+The more noise I assume, the easier my numerical problem gets,
+
+442
+00:47:32,160 --> 00:47:35,600
+but the less I actually learn about the function that I'm trying to learn.
+
+443
+00:47:37,040 --> 00:47:41,760
+And to give you an intuition why this condition number of k is large,
+
+444
+00:47:43,520 --> 00:47:47,520
+the condition number is something like the largest eigenvalue divided by the smallest
+
+445
+00:47:47,520 --> 00:47:53,120
+eigenvalue. Now, if I have two data points in my dataset that are the same,
+
+446
+00:47:54,640 --> 00:47:59,600
+two rows in my kernel matrix are the same, right? Because the row of a kernel matrix are
+
+447
+00:47:59,600 --> 00:48:05,360
+the kernel evaluated at the current data point and all other data points. So if I have two rows,
+
+448
+00:48:05,360 --> 00:48:11,440
+where I have the same data points, I just have the same rows. And obviously, then that matrix has
+
+449
+00:48:12,800 --> 00:48:18,240
+a zero eigenvalue, low rank, right? Doesn't have, sorry, has rank less than n. And if it has
+
+450
+00:48:19,360 --> 00:48:26,400
+rank less than n, then this eigenvalue has to be zero. So as data points get closer to each other,
+
+451
+00:48:26,400 --> 00:48:30,480
+the condition number of a kernel matrix blows up and close to each other is relative to the
+
+452
+00:48:30,480 --> 00:48:35,520
+kernel length scale. So if observation noise is small, so sigma squared, let's say is very close to
+
+453
+00:48:35,520 --> 00:48:43,440
+zero and I have close data points in input space, I have a problem because then CG converges slowly.
+
+454
+00:48:44,800 --> 00:48:52,160
+So what can we do about this? The answer to this is preconditioning. So assume we have a
+
+455
+00:48:52,160 --> 00:48:58,080
+computational tractable approximation P to the matrix A. So we know something about this matrix,
+
+456
+00:48:58,080 --> 00:49:03,440
+in this case, the kernel matrix. And we assume that the storing this matrix is rather cheap
+
+457
+00:49:03,440 --> 00:49:08,560
+relative to storing the matrix A. We can actually efficiently evaluate its inverse,
+
+458
+00:49:10,320 --> 00:49:16,800
+or pseudo inverse, and maybe we even know it's determined. So we know a lot about this
+
+459
+00:49:16,800 --> 00:49:22,080
+matrix that's approximately A. And the idea is we solve an equivalent linear system where we
+
+460
+00:49:22,080 --> 00:49:28,160
+just multiply from the left with P inverse. And this system still has the same solution x, right?
+
+461
+00:49:28,160 --> 00:49:34,240
+I haven't changed anything except that I multiply from the left, but this equation still holds.
+
+462
+00:49:34,240 --> 00:49:41,440
+So x is still a solution to the linear system P inverse A as a matrix and P inverse B at the
+
+463
+00:49:41,440 --> 00:49:46,960
+right-hand side. And now if I can choose my preconditioner such that this condition number is
+
+464
+00:49:46,960 --> 00:49:51,120
+much, much, much smaller than the condition of the original matrix, I've gained a lot, right?
+
+465
+00:49:51,120 --> 00:49:55,600
+Because I've replaced my original problem with an easier to solve problem where my method CG
+
+466
+00:49:55,600 --> 00:50:00,720
+converges much faster. And the intuition you should have about this preconditioner is it's
+
+467
+00:50:00,720 --> 00:50:05,600
+like prior knowledge about my problem. I sort of know something about this system that I'm trying
+
+468
+00:50:05,600 --> 00:50:12,960
+to solve that makes it easier for me to solve in the same way that I'll say I take a probabilistic
+
+469
+00:50:12,960 --> 00:50:18,880
+learning method if my prior is very concentrated around the true quantity that I'm trying to infer,
+
+470
+00:50:18,880 --> 00:50:24,080
+I can learn very quickly or I don't have to actually collect a lot of data. And preconditioning is
+
+471
+00:50:24,080 --> 00:50:29,680
+the same intuition. And geometrically what preconditioning does is this is a 2D linear system
+
+472
+00:50:29,680 --> 00:50:36,960
+again with interpretation as an optimization of a quadratic where blue lines are the counter lines
+
+473
+00:50:36,960 --> 00:50:40,960
+and I have a large eigenvalue and a small eigenvalue. That's why it's kind of elongated.
+
+474
+00:50:42,720 --> 00:50:49,040
+Now if I have a, if my precondition is just the inverse itself, it immediately snaps the matrix
+
+475
+00:50:49,040 --> 00:50:54,720
+A to an identity matrix. And I don't have to do anything because it just says x equals P inverse
+
+476
+00:50:54,720 --> 00:51:01,360
+B and I have a solution. So P kind of transforms my problem in such a way that it's slightly
+
+477
+00:51:01,360 --> 00:51:08,000
+closer to the identity matrix and then easy to solve. And it turns out that because of this property
+
+478
+00:51:08,000 --> 00:51:15,200
+here that the condition of the system gets lowered, it actually accelerates CG. And in final precision
+
+479
+00:51:15,200 --> 00:51:23,360
+actually makes it also more stable but we won't go into that. Okay, so let's try to get an intuition
+
+480
+00:51:23,680 --> 00:51:29,280
+for how we can use this form of prior information. And I use that term loosely next next time we'll
+
+481
+00:51:29,280 --> 00:51:38,640
+make it precise to quickly excel to solve linear systems quickly for GP regression. Okay, so if I
+
+482
+00:51:38,640 --> 00:51:42,480
+now use CG with a precondition, it's actually very simple. The only thing I have to change is
+
+483
+00:51:43,200 --> 00:51:47,600
+I don't look into the direction of steepest descent r i minus one, so the residual or
+
+484
+00:51:47,600 --> 00:51:57,040
+negative gradient, but I slightly warp that based on this precondition. And what happens is here's
+
+485
+00:51:57,040 --> 00:52:02,560
+again number of iterations of CG in log space and the error in a norm to the true solution.
+
+486
+00:52:04,240 --> 00:52:09,920
+As I increase the quality of my precondition right here, I'll explain the type of precondition
+
+487
+00:52:09,920 --> 00:52:14,880
+in a moment, you can see that I actually converge faster, right? The error decreases and this is
+
+488
+00:52:14,880 --> 00:52:20,960
+in log space, so I need a factor two orders of, sorry, more order of magnitude fewer iterations
+
+489
+00:52:20,960 --> 00:52:28,960
+for this problem is again a kernel matrix. How do we get such a preconditioner? Well, we can actually
+
+490
+00:52:28,960 --> 00:52:33,280
+use the partial Scholesky that we already introduced here. So one way to precondition
+
+491
+00:52:33,280 --> 00:52:43,280
+kernel matrices is to approximately approximate the kernel matrix K at the noise and then this
+
+492
+00:52:43,280 --> 00:52:47,680
+is a low rank approximation of rank L, right? I just run the partial Scholesky for a few iterations
+
+493
+00:52:48,960 --> 00:52:55,120
+and then I can store this thing in, it's just L vectors of size n, so it's O of nL which is
+
+494
+00:52:55,760 --> 00:53:04,000
+cheap compared to the size of the matrix. And this is a low rank plus diagonal preconditioner,
+
+495
+00:53:04,000 --> 00:53:08,000
+so as you learned last week, you can invert it via the matrix inversion lemma.
+
+496
+00:53:08,960 --> 00:53:14,560
+Okay, so you can also compute the inverse, p inverse here very quickly and last week we learned
+
+497
+00:53:14,560 --> 00:53:19,440
+that's O of nL squared, so even linear time and we can afford quadratic time for iteration.
+
+498
+00:53:20,480 --> 00:53:23,920
+So that's also the precondition that we used up here. Yeah.
+
+499
+00:53:38,800 --> 00:53:52,880
+It's true, you have that, so you could even construct an even better preconditioner
+
+500
+00:53:52,880 --> 00:53:57,360
+by selecting better data points. Very true. But it turns out even, you know, doing a very
+
+501
+00:53:57,360 --> 00:54:01,600
+dumb strategy just randomly sampling really accelerates my method. And the issue is if
+
+502
+00:54:01,600 --> 00:54:05,840
+I would just run CG without preconditioning, it doesn't converge as fast because of the
+
+503
+00:54:05,840 --> 00:54:09,600
+convergence statement. Okay, so somehow that's a really good method but we have to warm start it
+
+504
+00:54:09,600 --> 00:54:15,680
+maybe a little bit to get that benefit. That's kind of the intuition. Okay, so now let's try that
+
+505
+00:54:15,680 --> 00:54:20,000
+out. Here's a large-scale linear solve and I promised you in the very beginning that I'm gonna
+
+506
+00:54:20,720 --> 00:54:26,880
+reduce the time of 83 hours of solving a large-scale linear system with 100,000 data points
+
+507
+00:54:26,880 --> 00:54:35,520
+to about seven minutes. Here's such a data set, matrix of size 100,000. This is a kernel matrix,
+
+508
+00:54:35,520 --> 00:54:41,760
+is a maternal 3 half kernel. I use a preconditioner, I run it, departs Cholesky for 20 iterations,
+
+509
+00:54:41,760 --> 00:54:47,440
+that takes about one and a half minutes on my machine upstairs. And then I run the precondition
+
+510
+00:54:47,440 --> 00:54:54,640
+Cholesky. And what you see is that the residual converges to about 10 to the minus 8, 10 to the
+
+511
+00:54:54,640 --> 00:55:02,240
+minus 9 in 60 iterations. Okay, so actually we could have stopped this even earlier maybe in about
+
+512
+00:55:02,240 --> 00:55:07,520
+three minutes and would have gotten a very accurate solution. Now one quick side note,
+
+513
+00:55:07,520 --> 00:55:12,800
+I'm not showing the error in A norm here because I would have to compute the exact solution but I
+
+514
+00:55:12,800 --> 00:55:17,600
+can't do that because the system is too large. Right, so I can only show you the residual norm
+
+515
+00:55:17,600 --> 00:55:22,960
+but that's the proxy that we use to track how accurate we are. And the residual norm is almost
+
+516
+00:55:22,960 --> 00:55:29,200
+the same thing as the error in A norm, it's the error in A transpose A norm. Okay, so you can see
+
+517
+00:55:29,200 --> 00:55:37,840
+that, I can now do, I can compute a GP posterior for a 100,000 data point data set in maybe seven
+
+518
+00:55:37,840 --> 00:55:45,520
+minutes on my desktop machine upstairs. Now you might ask, well I have to do more than one solve,
+
+519
+00:55:45,520 --> 00:55:50,800
+right, I have to maybe during hyper parameter optimization do multiple solves. Actually,
+
+520
+00:55:51,440 --> 00:55:56,800
+you might be able to reuse preconditioners for this or if you actually have multiple systems
+
+521
+00:55:56,800 --> 00:56:00,000
+then you need to solve this cost also on mortises because you only have to compute the
+
+522
+00:56:00,000 --> 00:56:07,760
+preconditioner once. Okay, but what about hyper parameter optimization? I've only told you how
+
+523
+00:56:07,760 --> 00:56:11,360
+to solve linear systems, I haven't told you anything about how we actually do hyper parameter
+
+524
+00:56:11,360 --> 00:56:16,640
+optimization. Portulowski, Mavin told you they can just compute the log determinant by taking the
+
+525
+00:56:16,640 --> 00:56:24,880
+product of the diagonal of the lower triangular factor. How do we do this for CG?
+
+526
+00:56:27,520 --> 00:56:35,280
+We need to, remember, we need one optimize, we want to find parameters theta of the kernel
+
+527
+00:56:35,280 --> 00:56:42,400
+like the length scale to optimize the log marginal likelihood that's our loss or objective function.
+
+528
+00:56:43,200 --> 00:56:49,440
+So we need to evaluate the loss to kind of check how good we are and most importantly we need to
+
+529
+00:56:49,440 --> 00:56:54,720
+compute its gradient so we can actually optimize with a gradient based optimizer. So it turns out
+
+530
+00:56:55,280 --> 00:57:01,360
+the gradient of the log marginal likelihood here remember it has a fit term here that involves
+
+531
+00:57:01,360 --> 00:57:06,240
+a linear system solve and a log determinant. If I take the gradient with respect to the
+
+532
+00:57:06,240 --> 00:57:12,880
+hyper parameters I get this term for the fit so that's again two linear system solves
+
+533
+00:57:14,960 --> 00:57:20,720
+with the data and a trace term here as the derivative of the log determinant of the kernel
+
+534
+00:57:20,720 --> 00:57:28,080
+matrix that also involves a linear system solve. So we have two costly operations to do this
+
+535
+00:57:28,080 --> 00:57:34,480
+hyper parameter optimization. We need to solve linear systems, k hat inverse times a vector,
+
+536
+00:57:35,120 --> 00:57:42,880
+most of the time it's the data minus our prior mean and in this case it's also a linear system
+
+537
+00:57:42,880 --> 00:57:47,920
+solved with the derivative of the kernel matrix but we solved this. We can use CG, that seems to
+
+538
+00:57:47,920 --> 00:57:52,560
+be really fast, we have to precondition fine but actually we can scale that up to as you just saw
+
+539
+00:57:52,560 --> 00:57:59,840
+100,000 data points. But what do we do about these things? We also have to compute traces.
+
+540
+00:57:59,840 --> 00:58:04,160
+Arguably maybe we could say we can get away with not evaluating the log marginal likelihood and just
+
+541
+00:58:04,160 --> 00:58:08,960
+terminate when our gradients are vanishing right maybe that's fine but that still involves the
+
+542
+00:58:08,960 --> 00:58:15,280
+trace of a linear system solve. Now how do we compute these traces?
+
+543
+00:58:18,320 --> 00:58:24,720
+Let's take a step back and look at the definition. So the trace of a matrix is the sum of its diagonal
+
+544
+00:58:25,440 --> 00:58:32,000
+okay so the sum over the diagonal elements aii one way I could write this using matrix vector
+
+545
+00:58:32,000 --> 00:58:37,520
+multiplication is just multiply from the left and right with unit vectors that select the diagonal
+
+546
+00:58:37,520 --> 00:58:47,440
+element right. Actually it's also equivalent to the sum of the eigenvalues but this is the thing
+
+547
+00:58:47,440 --> 00:58:54,400
+that we want to look at for now. But our problem is we can't afford cubic computation, we can't afford
+
+548
+00:58:54,400 --> 00:59:01,440
+n matrix vector multiplies because that would be n times n squared cubic. We want to ideally
+
+549
+00:59:01,440 --> 00:59:09,040
+approximate this thing to high accuracy with l much fewer than n matrix vector multiplies because
+
+550
+00:59:09,040 --> 00:59:14,720
+if we can do that we can solve the near systems with small number of iterations i and we can
+
+551
+00:59:14,720 --> 00:59:19,840
+compute traces with a small number of iterations l and hopefully i plus l is much smaller than n
+
+552
+00:59:20,480 --> 00:59:25,280
+then we found a method that approximates gush process regression in quadratic time
+
+553
+00:59:25,280 --> 00:59:34,160
+on very large scale data sets as we just saw. So let's make an observation about this trace of
+
+554
+00:59:34,160 --> 00:59:43,680
+a matrix. Say we had an orthogonal matrix z so that c times z transposed is just the identity
+
+555
+00:59:43,680 --> 00:59:49,680
+matrix then we can just rewrite the trace of a as the trace of a times its identity matrix
+
+556
+00:59:49,680 --> 00:59:56,400
+we're just introducing a one and by trace rotation i can just pull this matrix to the front
+
+557
+00:59:56,400 --> 01:00:03,440
+and i get the trace of z transpose az and if i just use the definition of the trace as selecting
+
+558
+01:00:03,440 --> 01:00:09,840
+kind of the diagonal elements what i get is it's selecting z i transpose az i or i get terms that
+
+559
+01:00:09,840 --> 01:00:16,000
+are z i transpose az i and that's also actually the proof for this being the sum of the eigenvalues
+
+560
+01:00:16,000 --> 01:00:22,800
+because if you choose often normal eigenvectors for this you just get back the eigenvalues right
+
+561
+01:00:22,800 --> 01:00:31,440
+because a z i if z i is an eigenvector is lambda i times the eigenvector and z i transpose z i is
+
+562
+01:00:31,440 --> 01:00:37,760
+just one because it's an orthonormal system okay but that still doesn't get it get us all the way
+
+563
+01:00:37,760 --> 01:00:45,760
+there because that's still n actually two n matrix sorry n matrix vector multiplications okay crap
+
+564
+01:00:46,800 --> 01:00:54,640
+well what do we do if we don't know what to do why don't we just randomize why don't we just draw
+
+565
+01:00:55,840 --> 01:01:02,880
+a small number of random vectors with a certain distribution in this case zero mean and covariance
+
+566
+01:01:02,880 --> 01:01:07,760
+such that if i scale it with the square root of the dimension i get the identity covariance
+
+567
+01:01:08,720 --> 01:01:15,280
+maybe i can hope that that's actually a good approximation of this thing up here and let's
+
+568
+01:01:15,280 --> 01:01:23,440
+see whether that works the trace of a i again can introduce just an identity matrix now i
+
+569
+01:01:23,440 --> 01:01:30,880
+posit that the covariance of square root of n times z i equals the identity identity then this
+
+570
+01:01:30,880 --> 01:01:39,200
+square root of n gets squared and pulled out traces linear i get an n up here and the trace of a times
+
+571
+01:01:39,200 --> 01:01:45,520
+the covariance of z i but the covariance of z i is nothing but the expected value of its square
+
+572
+01:01:45,520 --> 01:01:51,360
+for vectors that z i times z i transpose minus the squared of the expectation but the expectation is
+
+573
+01:01:51,360 --> 01:02:00,240
+zero so i just get the first term here and now i can pull out sorry i can pull in since the expectation
+
+574
+01:02:00,240 --> 01:02:09,200
+is linear my matrix a so i get a times z i z i transpose i can flip the expectation and the
+
+575
+01:02:09,200 --> 01:02:16,800
+trace because they're both linear and i can do trace rotation to pull up the z i transpose to the
+
+576
+01:02:16,800 --> 01:02:24,400
+front so they get the trace of a scalar now and of that the expectation now the trace of a scalar
+
+577
+01:02:24,400 --> 01:02:31,520
+is just the scalar itself so n times the expectation of this quadratic form z i transpose a z i and
+
+578
+01:02:32,640 --> 01:02:39,920
+now i can approximate this expectation with Monte Carlo so i only draw l random vectors
+
+579
+01:02:39,920 --> 01:02:47,040
+to get an approximation of this trace that's the idea the intuition you can take from up here
+
+580
+01:02:47,040 --> 01:02:51,840
+right if i just choose a bunch of z i maybe that's already a good approximation to the trace
+
+581
+01:02:51,840 --> 01:03:00,640
+and that's the idea of this randomized approximation so now i found a way to also reduce this problem
+
+582
+01:03:00,640 --> 01:03:05,440
+of trace estimation to matrix vector multiplication which is the operation that i know is quadratic
+
+583
+01:03:05,440 --> 01:03:10,320
+time i can really do really fast on the computer and hopefully i only need a small number of these
+
+584
+01:03:10,320 --> 01:03:20,880
+random vectors but i don't need a small number of random vectors here is a plot that shows the
+
+585
+01:03:20,880 --> 01:03:29,280
+number of random vectors on the x-axis for the estimation of the log determinant now remember
+
+586
+01:03:29,280 --> 01:03:34,560
+last time you saw that you can rewrite the log determinant as a trace i'll show you that again
+
+587
+01:03:34,560 --> 01:03:39,680
+one second here the log determinant of the kernel matrix you can rewrite as the trace
+
+588
+01:03:39,680 --> 01:03:46,080
+of the matrix logarithm of the kernel matrix so if i could evaluate the logarithm of the
+
+589
+01:03:46,080 --> 01:03:50,400
+kernel matrix i could just do this trace estimation strategy that we just outlined
+
+590
+01:03:53,360 --> 01:03:57,120
+let's assume we can just compute this function of a kernel matrix for us it's always
+
+591
+01:03:57,120 --> 01:04:02,880
+the log if you care about the log determinant and not care so much that we also have to estimate
+
+592
+01:04:02,880 --> 01:04:09,760
+this in the middle let's just say we can do that and what you'll find is here if i look at the number
+
+593
+01:04:09,760 --> 01:04:14,640
+of random vectors that i take for my Monte Carlo estimate the estimate for the log determinant
+
+594
+01:04:14,640 --> 01:04:18,480
+that i get through the stochastic trace estimate actually has a lot of variance at the beginning
+
+595
+01:04:18,480 --> 01:04:23,360
+right you can see that i'm qualitatively pretty far away from the true value in gray dashed
+
+596
+01:04:24,320 --> 01:04:29,760
+that i want to estimate and i literally need tens of thousands of random vectors
+
+597
+01:04:29,760 --> 01:04:36,400
+and this is actually a problem of size 10 000 so i found a strategy to solve my issue problem
+
+598
+01:04:36,400 --> 01:04:42,320
+that is just as expensive as Cholesky which i can't do on large datasets so crap right what do i do
+
+599
+01:04:43,120 --> 01:04:49,680
+well this is a property of Monte Carlo estimators that they just converge at this rather slow
+
+600
+01:04:49,680 --> 01:04:55,520
+speed one over the square root of the number of random vectors or random samples this is going
+
+601
+01:04:55,520 --> 01:04:59,200
+to be an issue because it really slows down my hyper parameter optimization and i just simply
+
+602
+01:04:59,200 --> 01:05:07,120
+can't afford to do that so what can you do you can again use something that we already know
+
+603
+01:05:08,640 --> 01:05:12,960
+we have a preconditioner for our linear system solve so we know something about
+
+604
+01:05:12,960 --> 01:05:19,360
+approximately how the kernel matrix looks like and it's inverse can we use that to solve this
+
+605
+01:05:19,360 --> 01:05:26,160
+issue here you can do that by if you look at the log determinant you can introduce a one
+
+606
+01:05:26,160 --> 01:05:31,040
+identity matrix by just producing the preconditioner you can think of a partial Cholesky here if you
+
+607
+01:05:31,040 --> 01:05:39,040
+want and it's inverse and then using the rules of the matrix logarithm i can pull out this log
+
+608
+01:05:39,040 --> 01:05:43,040
+determinant of the preconditioner and we assume that that was known right so we have some part
+
+609
+01:05:43,040 --> 01:05:50,480
+about this log determinant k hat that we already know and then i get a residual here again that's
+
+610
+01:05:50,480 --> 01:05:54,880
+something like you know the trace of the difference between the matrix logarithms
+
+611
+01:05:55,600 --> 01:06:01,600
+and you can already see that if the preconditioner p hat gets close to k hat this term becomes very
+
+612
+01:06:01,600 --> 01:06:06,720
+insignificant right and my log determinant of of the preconditioner is very close to the true log
+
+613
+01:06:06,720 --> 01:06:15,040
+determinant so the strategy is use the part that you've not that we know our prior information
+
+614
+01:06:15,040 --> 01:06:19,920
+pull it out and estimate this trace back here via the stochastic trace estimate
+
+615
+01:06:21,840 --> 01:06:27,600
+and we can do that and what we'll find if you do that is that the estimator converges much much
+
+616
+01:06:27,600 --> 01:06:32,240
+quicker literally a difference between tens of random vectors and tens of thousands of random
+
+617
+01:06:32,240 --> 01:06:39,040
+vectors to reach a qualitatively similar level and that's the same kind of behavior you expect
+
+618
+01:06:39,040 --> 01:06:43,200
+from cg right if you have a good preconditioner you convert much much faster as we saw previously
+
+619
+01:06:43,360 --> 01:06:49,440
+but turns out you can also use the same information that you have about the matrix also for this
+
+620
+01:06:50,080 --> 01:06:50,880
+trace estimation
+
+621
+01:06:53,840 --> 01:06:58,000
+now for the gradient of the log determinant you can do the same thing you just differentiate
+
+622
+01:06:58,000 --> 01:07:04,080
+once through this thing and all the quantities that you need are available for example through
+
+623
+01:07:04,080 --> 01:07:07,600
+automatic differentiation if you have a if you implement this and let's say pi torch
+
+624
+01:07:08,560 --> 01:07:14,000
+and you recover and this is not super important you recover the same rate at which the preconditioner
+
+625
+01:07:14,000 --> 01:07:18,560
+approach of the kernel matrix for this estimate to get a speed up and qualitatively you see this
+
+626
+01:07:18,560 --> 01:07:22,960
+here right you tends to 100 random vectors is what we need to get the same error level
+
+627
+01:07:25,520 --> 01:07:33,360
+and this is how g pi torch which is the most popular library in pi tor python for gashu
+
+628
+01:07:33,840 --> 01:07:40,480
+processes works internally so it uses cg if you just use a vanilla exact gashu process from g pi
+
+629
+01:07:40,480 --> 01:07:48,400
+torch uses cg to compute the linear system solves precondition cg and then it uses this preconditioned
+
+630
+01:07:48,400 --> 01:07:54,480
+log determinant estimation and derivative of the log determinant estimation to do hyper parameter
+
+631
+01:07:54,480 --> 01:08:02,240
+optimization and with that you can scale to data sets these are all data sets on the x axis from
+
+632
+01:08:02,240 --> 01:08:08,480
+the UCI machine learning repository i think some of them are not but they have data set data set
+
+633
+01:08:08,480 --> 01:08:16,320
+sizes between 25 000 and a million data points here and now this is on a gpu because even matrix
+
+634
+01:08:16,320 --> 01:08:22,000
+vector multiplies get significantly difficult if um your system is just large enough but you can
+
+635
+01:08:22,000 --> 01:08:28,720
+paralyze them easily so with these strategies that we just showed you you can you know within
+
+636
+01:08:29,680 --> 01:08:37,360
+about an hour train on a data set with roughly 250 280 000 data points and up to a day for a
+
+637
+01:08:37,360 --> 01:08:43,600
+million data points if you have gpu's available okay and internally that works exactly how i just
+
+638
+01:08:43,600 --> 01:08:49,840
+showed you now just to give you a notice about what pretraining and not pretraining is pretraining is
+
+639
+01:08:49,840 --> 01:08:56,000
+just sample a small data set of the data set that you're training on to get hyper parameters that are
+
+640
+01:08:56,000 --> 01:08:59,200
+approximately good and then start from there start optimizing from there
+
+641
+01:09:01,920 --> 01:09:11,920
+yeah
+
+642
+01:09:13,280 --> 01:09:23,120
+so so the question was can i explain again how essentially this part right why do we get this
+
+643
+01:09:23,120 --> 01:09:30,240
+increase in the rate so clearly if the preconditioner if it's a low rank preconditioner it depends on
+
+644
+01:09:30,240 --> 01:09:35,280
+the rank l of the low rank part if that gets close to k hat this part goes to zero right
+
+645
+01:09:36,640 --> 01:09:42,960
+but to actually figure out how good our estimate is turns out this contribution depends on how
+
+646
+01:09:42,960 --> 01:09:47,920
+quickly the preconditioner converges to the kernel matrix yeah could imagine that you need to take a
+
+647
+01:09:47,920 --> 01:09:52,320
+lot of pre computation to get a good estimate of the kernel matrix then that would not help you very
+
+648
+01:09:52,320 --> 01:09:57,200
+much because it's very costly to do that if this thing converges very very quickly to the kernel
+
+649
+01:09:57,200 --> 01:10:03,120
+matrix you can invest very small amount of pre computation to do this variance reduction strategy
+
+650
+01:10:03,120 --> 01:10:08,240
+to this quicker convergence strategy okay and it turns out that if typically you know something
+
+651
+01:10:08,240 --> 01:10:14,720
+about how fast your preconditioner converges and you inherit this rate specifically also for the
+
+652
+01:10:14,720 --> 01:10:18,480
+Monte Carlo estimate so instead of one over square root of the number of random vectors you converge
+
+653
+01:10:18,560 --> 01:10:24,240
+with a speedup that's polynomial sometimes even exponential and what that means is you know
+
+654
+01:10:24,960 --> 01:10:27,440
+you converge to the true value much much much faster
+
+655
+01:10:30,960 --> 01:10:38,960
+okay so now you know how you can do this large scale with iterative approaches
+
+656
+01:10:40,480 --> 01:10:45,200
+you can scale Gaussian processes to large data sets let's do a quick
+
+657
+01:10:45,200 --> 01:10:51,280
+recap and of observations before we move to the final part so you've seen that we kind of used
+
+658
+01:10:51,280 --> 01:10:56,640
+language of iterative solvers choose these things called actions which are vectors that essentially
+
+659
+01:10:56,640 --> 01:11:05,600
+determine how to observe my matrix my kernel matrix in our case this choice of how to observe
+
+660
+01:11:05,600 --> 01:11:10,800
+the kernel matrix through the matrix vector multiply really affects how fast we converge
+
+661
+01:11:11,600 --> 01:11:16,320
+okay you saw that because cg which used the different strategies used residual vectors
+
+662
+01:11:16,320 --> 01:11:21,600
+converge much much faster in just a few steps relative to the problem size which was
+
+663
+01:11:22,720 --> 01:11:26,640
+a hundred thousand for the example that I showed we had about what's 60 80 iterations
+
+664
+01:11:28,800 --> 01:11:33,680
+now choosing these actions can kind of be interpreted as the solver choosing itself what
+
+665
+01:11:33,680 --> 01:11:37,200
+to observe about the numerical problem in this case solving the linear system
+
+666
+01:11:38,000 --> 01:11:43,440
+problem and we know that if you if you put in more information about our problem if you already know
+
+667
+01:11:44,080 --> 01:11:51,520
+an approximate inverse of the matrix through a preconditioner we can accelerate these methods
+
+668
+01:11:51,520 --> 01:11:57,840
+either for linear system solve like for cg or for this precondition log determinant estimation
+
+669
+01:11:58,480 --> 01:12:05,680
+through this stochastic trace system so in conclusion for these to develop fast numerical
+
+670
+01:12:05,680 --> 01:12:10,640
+algorithms for these for the Gaussian process case you really need some sort of domain expertise
+
+671
+01:12:10,640 --> 01:12:15,840
+in the sense that these solvers need to know something about the problem that they're solving
+
+672
+01:12:16,560 --> 01:12:21,200
+through the precondition ideally or through the choice of actions to quickly converge if you just
+
+673
+01:12:21,200 --> 01:12:27,360
+do naively part of Cholesky you saw that that didn't really look like the g posterior if you
+
+674
+01:12:27,360 --> 01:12:32,640
+just selected the data points in order so the algorithms themselves need to know something
+
+675
+01:12:32,640 --> 01:12:39,600
+about the problem to converge fast but we can tell them how to collect that information to
+
+676
+01:12:39,600 --> 01:12:48,960
+warm start themselves but can we do this even faster I said now we have a method that uses a
+
+677
+01:12:48,960 --> 01:12:53,760
+small number of quadratic operations matrix vector multiplies to scale to large data sets
+
+678
+01:12:55,040 --> 01:13:00,880
+but can we do this even faster in linear time in the size of the data set so
+
+679
+01:13:01,840 --> 01:13:07,840
+our inference method scales not with the problem size for the power of two but just with the problem
+
+680
+01:13:07,840 --> 01:13:16,640
+size itself so this idea is actually a little bit older than the iterative methods approach
+
+681
+01:13:18,160 --> 01:13:22,400
+not the specific idea but the idea of linear time gp inference and I'll show you kind of the most
+
+682
+01:13:22,400 --> 01:13:29,360
+modern version of it and here again this is just to give you a kind of a slight quick overview we
+
+683
+01:13:29,360 --> 01:13:36,800
+won't go too deep into this so one observation you can make about any data set basically
+
+684
+01:13:38,640 --> 01:13:45,040
+specifically the low dimensional that the data points in them are often quite similar
+
+685
+01:13:45,040 --> 01:13:48,560
+that you often have data points that are quite redundant you get training examples where the
+
+686
+01:13:48,560 --> 01:13:53,120
+example that you get is similar to one that you've seen previously now wouldn't it be great
+
+687
+01:13:54,080 --> 01:13:59,840
+if we could compress that data into a smaller training data set let's call it inducing inputs
+
+688
+01:13:59,840 --> 01:14:05,120
+because it's induced from the training data that kind of summarizes the training data in a in a
+
+689
+01:14:05,120 --> 01:14:12,000
+way right so if I have a million data points what if I could find a hundred or a thousand
+
+690
+01:14:12,000 --> 01:14:19,920
+data points that just really well summarize the data that I have in my data set so the idea is
+
+691
+01:14:20,000 --> 01:14:24,880
+we can do this through something called variational approximation so we directly approximate the
+
+692
+01:14:24,880 --> 01:14:31,920
+posterior instead of using numerical algorithms to compute the mathematical operations in the
+
+693
+01:14:31,920 --> 01:14:39,440
+posterior okay so this is changing the model for your Gaussian process so you're not actually doing
+
+694
+01:14:39,440 --> 01:14:44,320
+gp regression anymore and approximating that but you're using a different model to get as close as
+
+695
+01:14:44,400 --> 01:14:49,840
+possible to the Gaussian process posterior and one way to do this is called stochastic
+
+696
+01:14:49,840 --> 01:14:56,880
+variational Gaussian processes and what they do is they posit a different Gaussian process
+
+697
+01:14:57,520 --> 01:15:05,440
+that depends on z these inducing inputs the summary of the training data and the posterior here
+
+698
+01:15:06,400 --> 01:15:10,800
+looks very similar to the one you know for gps right so let's ignore this correction term for a
+
+699
+01:15:10,800 --> 01:15:17,440
+moment then this part here looks like gp regression without noise on these inducing inputs because we
+
+700
+01:15:17,440 --> 01:15:22,960
+have kernel function evaluated new data points and then here kernel matrix evaluated all the
+
+701
+01:15:22,960 --> 01:15:36,160
+inducing inputs inverted times something and for the kernel we have prior kernel minus an update
+
+702
+01:15:36,160 --> 01:15:42,160
+term that again involves something that is the kernel matrix evaluated at the inducing inputs
+
+703
+01:15:42,160 --> 01:15:47,680
+inverted so if we had no noise this looks almost like standard gp regression just on the inducing
+
+704
+01:15:47,680 --> 01:15:56,160
+inputs now it turns out that for this to be kind of smart you actually have a correction term and
+
+705
+01:15:56,160 --> 01:16:01,120
+you can already think about that actually the observation noise pops up nowhere here right
+
+706
+01:16:01,120 --> 01:16:07,920
+so how does that enter turns out it enters here so there are two more parameters of this term one is
+
+707
+01:16:07,920 --> 01:16:15,840
+the vector mu here and then this correction term kind of dampens the adds more uncertainty
+
+708
+01:16:18,000 --> 01:16:23,440
+so i have three things that i can modify to get a good approximation to my Gaussian process posterior
+
+709
+01:16:23,440 --> 01:16:30,400
+that is the summary of the training data this vector mu here that plays a role like the
+
+710
+01:16:30,400 --> 01:16:37,040
+observations the label vector and a term that adds additional uncertainty through sigma here
+
+711
+01:16:38,480 --> 01:16:44,960
+and what we can do is we can evaluate the KL divergence which is the statistical distance
+
+712
+01:16:44,960 --> 01:16:50,880
+between the approximation and the true gp posterior and we can do that
+
+713
+01:16:51,120 --> 01:17:01,280
+to optimize the summary of the training data the vector that represents kind of our observations
+
+714
+01:17:01,280 --> 01:17:07,200
+at z and this additional uncertainty term that corrects for that we are only looking at a small
+
+715
+01:17:07,200 --> 01:17:14,960
+data set a small summary data set and we can do this in o of i squared n and
+
+716
+01:17:19,040 --> 01:17:20,720
+sorry i lost the moff pointer
+
+717
+01:17:24,400 --> 01:17:26,800
+and let's take a look at how this comes about
+
+718
+01:17:37,440 --> 01:17:44,000
+so in black you can see that we have to invert the kernel matrix at the inducing inputs
+
+719
+01:17:45,520 --> 01:17:50,240
+we only have i inducing inputs a small number maybe a thousand instead of a hundred thousand
+
+720
+01:17:50,800 --> 01:17:55,920
+data points so this inverse is really cheap because it's only of size i by i
+
+721
+01:17:57,920 --> 01:18:01,440
+any other terms that we find in there are just
+
+722
+01:18:01,440 --> 01:18:09,360
+evaluating the kernel matrix at these i data points and then maybe at the training
+
+723
+01:18:09,360 --> 01:18:17,440
+data set during training okay so all the operations that we need are either i cubed
+
+724
+01:18:19,520 --> 01:18:24,800
+or i squared times n because n is the size of the training data
+
+725
+01:18:25,760 --> 01:18:26,960
+so
+
+726
+01:18:30,720 --> 01:18:35,760
+where the one exception is evaluating with the one exception being
+
+727
+01:18:39,600 --> 01:18:44,240
+evaluating the kernel matrix at the entire training to set but that doesn't pop up during
+
+728
+01:18:44,240 --> 01:18:51,680
+optimization of this so the idea is summarize the training data find a direct approximation
+
+729
+01:18:51,680 --> 01:18:58,240
+to the posterior and that direct approximation only takes o of i squared n
+
+730
+01:19:00,960 --> 01:19:03,200
+great right should we forget about iterative methods now
+
+731
+01:19:10,400 --> 01:19:15,040
+so there's different ways you can do this the the the reason for the naming stochastic here
+
+732
+01:19:15,040 --> 01:19:19,600
+is typically you do something like batched optimization or sgd so you can really quickly
+
+733
+01:19:19,680 --> 01:19:22,720
+optimize this with your favorite optimizer typically
+
+734
+01:19:28,640 --> 01:19:34,160
+so the most expensive operation is asymptotically in this but there's you know a number of optimization
+
+735
+01:19:34,160 --> 01:19:40,480
+steps that you do but the most expensive operation in the training data set size is n okay
+
+736
+01:19:42,000 --> 01:19:46,000
+remember for iterative methods we also have to do a hyper parameter optimization so we also have
+
+737
+01:19:46,000 --> 01:19:50,800
+to solve multiple problems that create a complexity for one for each hyper parameter optimization
+
+738
+01:19:50,800 --> 01:19:56,240
+step but the number of hyper parameter optimization steps is typically way way way smaller than the
+
+739
+01:19:56,240 --> 01:20:09,280
+problem size okay so great right now i spent maybe an hour telling you about iterative methods and
+
+740
+01:20:09,360 --> 01:20:13,840
+now i'm telling you you shouldn't use them well this is what happens
+
+741
+01:20:15,840 --> 01:20:22,320
+for example if you do stochastic variational Gaussian processes so here in blue is the exact
+
+742
+01:20:22,320 --> 01:20:30,800
+gp on this small data set so that we can visualize it in black x's are the observations so these are
+
+743
+01:20:30,800 --> 01:20:37,360
+our training data in blue light blue is the uncertainty of the exact gp
+
+744
+01:20:39,360 --> 01:20:45,680
+and in gray lines here are the inducing inputs so this is where we initialize our summary of the
+
+745
+01:20:45,680 --> 01:20:51,920
+training data set here's a summary to the point here here here here here and here and here now
+
+746
+01:20:51,920 --> 01:20:58,880
+during optimization i said we optimize both the mean as these parameters mu and and sigma
+
+747
+01:20:58,880 --> 01:21:06,160
+but also the inducing inputs and you can see here as i optimize here is where i start these
+
+748
+01:21:06,160 --> 01:21:09,920
+inducing inputs find a location that summarizes the data set well
+
+749
+01:21:13,440 --> 01:21:16,800
+but there's one issue if you look at the
+
+750
+01:21:19,040 --> 01:21:26,800
+uncertainty quantification away from the inducing the inputs it's very very different
+
+751
+01:21:26,800 --> 01:21:32,720
+from the true Gaussian process from the exact Gaussian process right and even where i have
+
+752
+01:21:32,720 --> 01:21:40,400
+inducing inputs my posterior mean doesn't necessarily approximate the true exact posterior mean well
+
+753
+01:21:41,280 --> 01:21:45,760
+now for iterative methods i haven't shown you such a i have shown you such plots but i have also
+
+754
+01:21:45,760 --> 01:21:52,240
+quantified how close it is right to the true solution so the question is is this a problem
+
+755
+01:21:52,240 --> 01:21:57,040
+for these linear time methods and how much of a problem is it for iterative methods the one thing
+
+756
+01:21:57,040 --> 01:22:00,400
+we have going for us with iterative methods is we can online
+
+757
+01:22:04,640 --> 01:22:09,120
+control the accuracy of our approximation right we can just keep running the method until we
+
+758
+01:22:09,120 --> 01:22:16,560
+have no more time and then stop and that's how accurate our gp approximation is the inducing
+
+759
+01:22:16,560 --> 01:22:22,960
+point method typically you have to set the number of inducing points a priority for your data set
+
+760
+01:22:23,600 --> 01:22:27,600
+and then you do you optimize them now you can run the optimizer for however long you want but
+
+761
+01:22:27,600 --> 01:22:32,240
+the number of inducing points take the same so you have to kind of control the fidelity of your
+
+762
+01:22:32,240 --> 01:22:38,480
+approximation before you start optimizing so but what if this is just way faster right
+
+763
+01:22:41,040 --> 01:22:46,640
+we saw that the the theoretical complexity is way faster and we see now this has an
+
+764
+01:22:46,640 --> 01:22:50,560
+issue with uncertainty quantification so the question that i leave you with today
+
+765
+01:22:51,440 --> 01:22:56,640
+is can we design a method where we can trust the uncertainty quantification
+
+766
+01:22:57,680 --> 01:23:03,600
+just as much doing any part of the approximation no matter how much computation we've done
+
+767
+01:23:03,600 --> 01:23:08,240
+whenever we stop can we trust the uncertainty here clearly we cannot trust the uncertainty
+
+768
+01:23:08,240 --> 01:23:12,640
+quantification of our method right it's way far away from the exact gp assuming our model is correct
+
+769
+01:23:12,720 --> 01:23:22,960
+all right with that i'll summarize
+
+770
+01:23:24,800 --> 01:23:30,000
+we've seen that clearly scaling Gaussian processes to large data sets requires approximation
+
+771
+01:23:30,000 --> 01:23:36,000
+they are memory and time complexity costs associated with it iterative methods like the
+
+772
+01:23:36,000 --> 01:23:41,840
+part of Cholesky CG enable us to approximate the posterior and do hyper parameter optimization
+
+773
+01:23:41,840 --> 01:23:47,440
+in quadratic time in the size of the data set there's also an interpretation of these methods
+
+774
+01:23:47,440 --> 01:23:53,360
+as active learning algorithms and we like that precise next time preconditioning is a way to
+
+775
+01:23:53,360 --> 01:23:58,400
+accelerate these methods and that's can be interpreted as a form of prior information
+
+776
+01:23:58,400 --> 01:24:03,120
+something i already know about the problem that i put in to make my method faster to learn faster
+
+777
+01:24:04,000 --> 01:24:09,440
+and then finally sparse gp approximations enable inference in linear time so way faster
+
+778
+01:24:10,160 --> 01:24:16,480
+but there might be an issue of uncertainty quantification right and really for gps that's
+
+779
+01:24:16,480 --> 01:24:20,640
+the entire point why we use Gaussian processes because we want to be you know want to know
+
+780
+01:24:21,760 --> 01:24:28,560
+how much we should trust our prediction okay so next week i'll actually make that precise
+
+781
+01:24:28,560 --> 01:24:33,200
+in what way are these iterative methods actually learning machines in what ways are the tools we
+
+782
+01:24:33,200 --> 01:24:40,720
+use to approximate learning algorithms like the Gaussian process learning algorithms in themselves
+
+783
+01:24:40,720 --> 01:24:44,960
+and i won't only use kind of language that alludes to that but i'll actually show you exactly
+
+784
+01:24:46,160 --> 01:24:50,240
+and with that i'll close today five minutes early so that's perfect for you to now fill out the
+
+785
+01:24:52,240 --> 01:24:56,960
+feedback form i very much appreciate that and if you have any questions raise your hand i'm happy
+
+786
+01:24:56,960 --> 01:25:06,720
+to answer anything to the best of my ability thank you
+

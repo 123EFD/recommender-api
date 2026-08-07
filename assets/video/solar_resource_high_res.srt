@@ -1,0 +1,5980 @@
+1
+00:00:00,000 --> 00:00:02,480
+The following content is provided under a Creative
+
+2
+00:00:02,480 --> 00:00:03,880
+Commons license.
+
+3
+00:00:03,880 --> 00:00:06,920
+Your support will help MIT OpenCourseWare continue to
+
+4
+00:00:06,920 --> 00:00:10,560
+offer high quality educational resources for free.
+
+5
+00:00:10,560 --> 00:00:13,480
+To make a donation or view additional materials from
+
+6
+00:00:13,480 --> 00:00:17,400
+hundreds of MIT courses, visit MIT OpenCourseWare at
+
+7
+00:00:17,400 --> 00:00:18,640
+ocw.mit.edu.
+
+8
+00:00:26,160 --> 00:00:28,920
+And I think we're about ready to get started.
+
+9
+00:00:28,920 --> 00:00:32,160
+So welcome, folks, for lecture number two of Fundamentals
+
+10
+00:00:32,160 --> 00:00:35,520
+Affordable Takes, focused on the solar resource.
+
+11
+00:00:35,520 --> 00:00:36,960
+What I wanted to do to get everybody in the mood of
+
+12
+00:00:36,960 --> 00:00:39,920
+thinking about the sun is pass around a few balls.
+
+13
+00:00:39,920 --> 00:00:43,600
+So this is really A, to limber you all up.
+
+14
+00:00:43,600 --> 00:00:46,640
+But B, whoops, there we go.
+
+15
+00:00:46,640 --> 00:00:49,120
+All right, don't let it fall.
+
+16
+00:00:49,120 --> 00:00:49,640
+There you go.
+
+17
+00:00:49,640 --> 00:00:51,440
+I know Ashley's got solid hands.
+
+18
+00:00:51,440 --> 00:00:52,840
+All right, here's one.
+
+19
+00:00:52,840 --> 00:00:54,320
+Pass that around as well.
+
+20
+00:00:54,320 --> 00:00:55,920
+Get a few more.
+
+21
+00:00:55,920 --> 00:00:58,160
+There, there.
+
+22
+00:00:58,200 --> 00:01:01,040
+And lastly, right up the middle.
+
+23
+00:01:01,040 --> 00:01:01,840
+There you go.
+
+24
+00:01:01,840 --> 00:01:06,400
+OK, so today's lecture is really about the solar resource.
+
+25
+00:01:06,400 --> 00:01:09,440
+And as we go through, it kind of helps to have a sphere in
+
+26
+00:01:09,440 --> 00:01:13,160
+your hand, since oftentimes we perceive the world as being
+
+27
+00:01:13,160 --> 00:01:16,760
+flat, no fault of our own.
+
+28
+00:01:16,760 --> 00:01:19,680
+Locally, one can approximate it as a flat body.
+
+29
+00:01:19,680 --> 00:01:22,440
+That's certainly a good possibility.
+
+30
+00:01:22,440 --> 00:01:24,280
+Wouldn't mind passing these out to your friends as well.
+
+31
+00:01:24,280 --> 00:01:25,520
+Thanks.
+
+32
+00:01:25,520 --> 00:01:27,760
+But in reality, if we really want to understand the solar
+
+33
+00:01:27,760 --> 00:01:30,360
+resource, we really have to begin understanding or
+
+34
+00:01:30,360 --> 00:01:34,560
+thinking in terms of spheres and in terms of circles or, in
+
+35
+00:01:34,560 --> 00:01:36,360
+most cases, ellipses.
+
+36
+00:01:36,360 --> 00:01:38,920
+And so we're going to dive into the solar resource.
+
+37
+00:01:38,920 --> 00:01:41,200
+Before we really dive in in detail into the solar resource,
+
+38
+00:01:41,200 --> 00:01:43,680
+I wanted to give you feedback to your surveys.
+
+39
+00:01:43,680 --> 00:01:46,040
+So you did a background assessment survey, a census,
+
+40
+00:01:46,040 --> 00:01:48,640
+if you will, and filled out a number of questions last
+
+41
+00:01:48,640 --> 00:01:50,040
+class about your backgrounds.
+
+42
+00:01:50,040 --> 00:01:52,600
+And I wanted to provide you the feedback, the consolidated
+
+43
+00:01:52,600 --> 00:01:55,080
+information, because it's really telling about who your
+
+44
+00:01:55,080 --> 00:01:56,600
+colleagues are.
+
+45
+00:01:56,600 --> 00:02:00,800
+This right here is a little bit of a snapshot of expertise
+
+46
+00:02:00,800 --> 00:02:03,400
+and current career trajectory.
+
+47
+00:02:03,400 --> 00:02:06,400
+So the self-defined expertise on the bottom left is really, I
+
+48
+00:02:06,400 --> 00:02:08,160
+think, the most telling parameter.
+
+49
+00:02:08,160 --> 00:02:10,440
+For the undergrads here, you may define yourself by your
+
+50
+00:02:10,440 --> 00:02:11,200
+major today.
+
+51
+00:02:11,200 --> 00:02:13,680
+But when you graduate and go on to grad school, you might
+
+52
+00:02:13,680 --> 00:02:15,560
+say, for example, do your undergrad in physics and then
+
+53
+00:02:15,560 --> 00:02:17,320
+do your graduate school in mechanical engineering, but
+
+54
+00:02:17,320 --> 00:02:19,680
+still consider yourself a physicist at heart.
+
+55
+00:02:19,680 --> 00:02:21,680
+And so that's why I ask this question here.
+
+56
+00:02:21,680 --> 00:02:23,560
+What is your self-defined expertise, because there are
+
+57
+00:02:23,600 --> 00:02:26,080
+several graduate students who have changed fields, if you
+
+58
+00:02:26,080 --> 00:02:28,040
+will, from undergrad to graduate school?
+
+59
+00:02:28,040 --> 00:02:30,840
+Most people in the audience, by and large, consider
+
+60
+00:02:30,840 --> 00:02:34,320
+themselves engineers, either material science engineers or
+
+61
+00:02:34,320 --> 00:02:35,840
+mechanical engineers.
+
+62
+00:02:35,840 --> 00:02:38,480
+Chemistry is strong as well.
+
+63
+00:02:38,480 --> 00:02:42,240
+And then we have about 10 different departments here
+
+64
+00:02:42,240 --> 00:02:43,960
+represented.
+
+65
+00:02:43,960 --> 00:02:45,680
+And that's really cool.
+
+66
+00:02:45,680 --> 00:02:48,440
+It's going to manifest itself in the class projects.
+
+67
+00:02:48,440 --> 00:02:50,640
+And you'll see the diversity of different inputs and
+
+68
+00:02:50,640 --> 00:02:53,280
+perspectives from your colleagues.
+
+69
+00:02:53,280 --> 00:02:55,880
+The degree in progress, undergrad, grad is about
+
+70
+00:02:55,880 --> 00:03:00,680
+split 1 third, 2 thirds, undergrad and grad.
+
+71
+00:03:00,680 --> 00:03:02,200
+ASP is Advanced Studies Program.
+
+72
+00:03:02,200 --> 00:03:04,360
+So these are folks coming in from industry who are actually
+
+73
+00:03:04,360 --> 00:03:05,000
+here in the classroom.
+
+74
+00:03:05,000 --> 00:03:07,480
+Some of your colleagues in the class are folks who are in
+
+75
+00:03:07,480 --> 00:03:11,360
+industry and perhaps have real-world PV experience.
+
+76
+00:03:11,360 --> 00:03:17,240
+Several of the people here in the class as well have
+
+77
+00:03:17,240 --> 00:03:19,960
+gained expertise in solar with their hobbies, with their
+
+78
+00:03:19,960 --> 00:03:22,520
+work, some have installed solar panels, other ones have
+
+79
+00:03:22,520 --> 00:03:24,600
+done research or are doing research in solar.
+
+80
+00:03:24,600 --> 00:03:25,920
+So it's a pretty diverse group.
+
+81
+00:03:25,920 --> 00:03:28,360
+And some are as well members of the solar car team, which is
+
+82
+00:03:28,360 --> 00:03:31,240
+rolling out its new model a few days time.
+
+83
+00:03:31,240 --> 00:03:34,760
+In terms of learning methods, it was pretty well split between
+
+84
+00:03:34,760 --> 00:03:37,680
+hands-on labs, field trips, and guest lectures.
+
+85
+00:03:37,680 --> 00:03:40,520
+And I'll get back to that in a few slides.
+
+86
+00:03:40,520 --> 00:03:43,240
+In terms of class project interest, there was a strong
+
+87
+00:03:43,240 --> 00:03:45,600
+interest in working with pre-established projects.
+
+88
+00:03:45,600 --> 00:03:47,320
+So we've listened to that.
+
+89
+00:03:47,320 --> 00:03:49,280
+This is pretty consistent with previous years.
+
+90
+00:03:49,280 --> 00:03:51,600
+And so we have several pre-prepared class projects
+
+91
+00:03:51,600 --> 00:03:52,960
+ready for you.
+
+92
+00:03:52,960 --> 00:03:55,360
+And a few of you had an interest in the self-designed
+
+93
+00:03:55,360 --> 00:03:55,840
+project.
+
+94
+00:03:55,840 --> 00:03:57,080
+I'd like to talk to you.
+
+95
+00:03:57,080 --> 00:03:59,600
+I'd like to begin developing those ideas as soon as
+
+96
+00:03:59,600 --> 00:04:03,880
+possible so that when we start assembling teams, if you do
+
+97
+00:04:03,880 --> 00:04:06,080
+have a strong idea for a class project, we can begin
+
+98
+00:04:06,080 --> 00:04:08,000
+crafting that and molding that starting now.
+
+99
+00:04:08,000 --> 00:04:10,360
+So please come up and have a chat with me after class or
+
+100
+00:04:10,360 --> 00:04:13,480
+during office hours or during recitation.
+
+101
+00:04:13,480 --> 00:04:17,240
+These are your learning objectives defined by you.
+
+102
+00:04:17,240 --> 00:04:20,720
+And they range, I tried to give it some continuum
+
+103
+00:04:20,720 --> 00:04:23,240
+spectrum from natural sciences to social sciences and
+
+104
+00:04:23,240 --> 00:04:24,880
+engineering in the middle.
+
+105
+00:04:24,880 --> 00:04:29,600
+And obviously, this is more of a loop than a linear line.
+
+106
+00:04:29,600 --> 00:04:31,760
+But bear with me.
+
+107
+00:04:31,760 --> 00:04:33,440
+There was a strong interest in fundamentals.
+
+108
+00:04:33,440 --> 00:04:35,920
+And that's certainly, I think, what the core of the class
+
+109
+00:04:35,920 --> 00:04:38,520
+is about, at least the first third of the class.
+
+110
+00:04:38,520 --> 00:04:41,000
+Going in terms of size of the bubble, these are the number
+
+111
+00:04:41,000 --> 00:04:43,440
+of people who listed a particular topic as a great
+
+112
+00:04:43,440 --> 00:04:44,760
+interest to them.
+
+113
+00:04:44,760 --> 00:04:48,080
+Economics and market, systems and grid, current
+
+114
+00:04:48,080 --> 00:04:50,200
+technologies, emerging technologies.
+
+115
+00:04:50,240 --> 00:04:53,680
+And so listening to all of this, we are in the process of
+
+116
+00:04:53,680 --> 00:04:56,120
+preparing for you some guest lectures and field trips based
+
+117
+00:04:56,120 --> 00:04:57,640
+on this feedback right here.
+
+118
+00:04:57,640 --> 00:05:01,560
+We have already lined up a field trip to a local PV
+
+119
+00:05:01,560 --> 00:05:05,000
+research laboratory that produces modules like this one
+
+120
+00:05:05,000 --> 00:05:08,320
+right here, only much, much bigger, and has strong
+
+121
+00:05:08,320 --> 00:05:10,400
+collaboration with existing companies, startup companies
+
+122
+00:05:10,400 --> 00:05:12,960
+in the area, as well as more established companies.
+
+123
+00:05:12,960 --> 00:05:15,080
+So that'll be a lot of fun.
+
+124
+00:05:15,080 --> 00:05:17,240
+And we're currently in the process of arranging other
+
+125
+00:05:17,240 --> 00:05:20,040
+field trips and guest lectures to match this
+
+126
+00:05:20,040 --> 00:05:20,760
+feedback right here.
+
+127
+00:05:20,760 --> 00:05:21,440
+So thank you.
+
+128
+00:05:21,440 --> 00:05:24,600
+We'll mold the course, shape it, craft it to
+
+129
+00:05:24,600 --> 00:05:26,720
+fit your interests.
+
+130
+00:05:26,720 --> 00:05:29,960
+So to hop into the solar resource, and without further
+
+131
+00:05:29,960 --> 00:05:32,800
+do, the subject of today, and the motivation for wearing
+
+132
+00:05:32,800 --> 00:05:36,200
+this tie, is really the solar resource, the sun.
+
+133
+00:05:36,200 --> 00:05:37,240
+This is where it all starts.
+
+134
+00:05:37,240 --> 00:05:39,720
+If we're to understand PV photovoltaics, the conversion
+
+135
+00:05:39,720 --> 00:05:42,240
+of sunlight into electricity, it starts from the sun.
+
+136
+00:05:42,240 --> 00:05:45,040
+And so spending some good time thinking about the sun is
+
+137
+00:05:45,040 --> 00:05:46,560
+really, really important.
+
+138
+00:05:46,600 --> 00:05:49,080
+And it will avoid the embarrassing situation.
+
+139
+00:05:49,080 --> 00:05:51,440
+How many of you have been at a shopping center, walking
+
+140
+00:05:51,440 --> 00:05:55,440
+along, and a little child is asking his parent, dad, why
+
+141
+00:05:55,440 --> 00:05:57,880
+is the sky blue, or why is the such and such?
+
+142
+00:05:57,880 --> 00:06:00,160
+And the answer is you'll hear just make you want to tear
+
+143
+00:06:00,160 --> 00:06:02,960
+your ears out, and say, my goodness.
+
+144
+00:06:02,960 --> 00:06:05,400
+So part of this is just general knowledge, it's getting
+
+145
+00:06:05,400 --> 00:06:07,680
+a feel for the world and the universe, and asking those
+
+146
+00:06:07,680 --> 00:06:10,280
+questions again that the little children will ask, but that
+
+147
+00:06:10,280 --> 00:06:13,080
+we forget to ask as we move on with our lives, right?
+
+148
+00:06:13,080 --> 00:06:17,200
+OK, so moving forward, the learning objectives for today
+
+149
+00:06:17,200 --> 00:06:18,640
+are these right here.
+
+150
+00:06:18,640 --> 00:06:20,920
+By the end of the lecture, and hopefully you already have a
+
+151
+00:06:20,920 --> 00:06:23,080
+good sense of this based on your readings already, and I'll
+
+152
+00:06:23,080 --> 00:06:26,600
+quiz you on that in a second, verbally, we want to be able to
+
+153
+00:06:26,600 --> 00:06:29,160
+quantify the available solar resource relative to human
+
+154
+00:06:29,160 --> 00:06:31,960
+energy needs and other fuel sources.
+
+155
+00:06:31,960 --> 00:06:36,520
+We want to recognize and plot air mass 0 and air mass 1.5
+
+156
+00:06:36,520 --> 00:06:40,000
+solar spectra, and describe the physical origins.
+
+157
+00:06:40,000 --> 00:06:43,040
+We want to describe how a solar insulation maps, these are
+
+158
+00:06:43,040 --> 00:06:46,120
+solar resource maps, in other words, how much sunlight is
+
+159
+00:06:46,120 --> 00:06:47,160
+available.
+
+160
+00:06:47,160 --> 00:06:51,040
+And we want to be able to estimate a solar resource
+
+161
+00:06:51,040 --> 00:06:54,760
+amount locally at a specific spot on the planet.
+
+162
+00:06:54,760 --> 00:06:58,160
+We want to list the causes of variation and intermittency of
+
+163
+00:06:58,160 --> 00:07:00,760
+the solar resource, and quantify their time constant and
+
+164
+00:07:00,760 --> 00:07:01,680
+magnitude.
+
+165
+00:07:01,680 --> 00:07:03,440
+In other words, we want to be able to discern what are the
+
+166
+00:07:03,440 --> 00:07:06,280
+big effects and what are the ones that don't really matter.
+
+167
+00:07:06,280 --> 00:07:08,720
+We want to be able to estimate the land area needed to provide
+
+168
+00:07:08,720 --> 00:07:11,680
+sufficient solar resource for a project, whether it's a house,
+
+169
+00:07:11,720 --> 00:07:14,040
+a car, a village, a country, a world.
+
+170
+00:07:14,040 --> 00:07:16,080
+And a lot of this will be on your homework assignment.
+
+171
+00:07:16,080 --> 00:07:19,400
+So we'll give you the tools here, but then ask you to
+
+172
+00:07:19,400 --> 00:07:20,200
+address those questions.
+
+173
+00:07:20,200 --> 00:07:22,120
+And for those of you who have already picked up your piece
+
+174
+00:07:22,120 --> 00:07:24,640
+at number one, you'll see relevant questions.
+
+175
+00:07:24,640 --> 00:07:25,640
+Where's this?
+
+176
+00:07:29,360 --> 00:07:33,240
+Did anybody recognize this right here?
+
+177
+00:07:33,240 --> 00:07:37,320
+I start rambling off names.
+
+178
+00:07:37,320 --> 00:07:41,280
+What city has Pennsylvania Avenue, Independence Ave,
+
+179
+00:07:41,320 --> 00:07:42,000
+Washington, DC?
+
+180
+00:07:42,000 --> 00:07:45,200
+This is right outside of the National Air and Space Museum.
+
+181
+00:07:45,200 --> 00:07:49,200
+What this little girl here is pointing to is the sun.
+
+182
+00:07:49,200 --> 00:07:53,000
+And then we have Mercury, Venus, Earth, Mars, and so forth.
+
+183
+00:07:53,000 --> 00:07:55,160
+So it's essentially a solar system to scale.
+
+184
+00:07:55,160 --> 00:08:00,120
+As you walk out of the Air and Space Museum and walk down
+
+185
+00:08:00,120 --> 00:08:02,360
+the street, you'll be passing the different bodies in our
+
+186
+00:08:02,360 --> 00:08:03,560
+solar system.
+
+187
+00:08:03,560 --> 00:08:06,600
+And so just as a quick little review to kind of get us
+
+188
+00:08:06,600 --> 00:08:09,160
+situated and to ask the questions that little kiddies
+
+189
+00:08:09,160 --> 00:08:12,480
+might ask us, how far is it from the earth to the sun?
+
+190
+00:08:15,800 --> 00:08:19,440
+About 100 million miles, yeah, 93 million miles.
+
+191
+00:08:19,440 --> 00:08:22,680
+Less or minus somewhere in the range of maybe a percent or
+
+192
+00:08:22,680 --> 00:08:26,840
+so, a few percent, depending on what time of year we are,
+
+193
+00:08:26,840 --> 00:08:28,680
+since we're in a little bit of an elliptical orbit.
+
+194
+00:08:28,680 --> 00:08:32,200
+Good, so that's the distance to the sun.
+
+195
+00:08:32,200 --> 00:08:35,000
+It'd be about 150 million kilometers.
+
+196
+00:08:35,000 --> 00:08:38,840
+How long does it take light to travel that distance?
+
+197
+00:08:38,840 --> 00:08:41,240
+About eight minutes, eight and a third minutes, right?
+
+198
+00:08:41,240 --> 00:08:44,360
+So it takes a little bit for the light to reach us.
+
+199
+00:08:44,360 --> 00:08:46,560
+Good, some more questions.
+
+200
+00:08:46,560 --> 00:08:51,680
+How far are the other planets in our solar system to the sun?
+
+201
+00:08:51,680 --> 00:08:54,400
+Just going in order from Mercury out.
+
+202
+00:08:54,400 --> 00:08:56,200
+It's to get us situated here.
+
+203
+00:08:56,200 --> 00:08:58,520
+If we are at any point planning and throwing up
+
+204
+00:08:58,520 --> 00:09:00,720
+satellites and sending them to other planets, this is a good
+
+205
+00:09:00,720 --> 00:09:03,520
+thing to kind of keep in the back of our minds.
+
+206
+00:09:03,520 --> 00:09:07,040
+So if we define an astronomical unit, not in terms of our
+
+207
+00:09:07,040 --> 00:09:09,280
+national debt, but in terms of the distance from the earth to
+
+208
+00:09:09,280 --> 00:09:12,880
+the sun, that's an astronomical unit.
+
+209
+00:09:12,880 --> 00:09:18,080
+Mercury would be somewhere around 0.4, Venus 0.7, Mars 1.5.
+
+210
+00:09:18,080 --> 00:09:20,200
+So that's all kind of in our neighborhood, right?
+
+211
+00:09:20,200 --> 00:09:22,000
+And then from Mars to Jupiter, there's a bit of a jump.
+
+212
+00:09:22,000 --> 00:09:23,800
+It goes from 1.5 to 5.
+
+213
+00:09:23,800 --> 00:09:25,640
+Then from Jupiter to Saturn, it's 10.
+
+214
+00:09:25,640 --> 00:09:28,680
+Well, sorry, 10 is the distance from Saturn to the sun.
+
+215
+00:09:28,680 --> 00:09:31,640
+And then 30 and then 40.
+
+216
+00:09:31,640 --> 00:09:33,120
+Sorry, 10, 20, 30, 40.
+
+217
+00:09:33,120 --> 00:09:34,960
+So it goes, Jupiter is 5.
+
+218
+00:09:34,960 --> 00:09:38,000
+Saturn 10, Uranus would be 20.
+
+219
+00:09:38,000 --> 00:09:40,440
+Neptune 30, Pluto 40.
+
+220
+00:09:40,440 --> 00:09:41,920
+Pluto, planet, sort of.
+
+221
+00:09:41,920 --> 00:09:44,280
+So it's easy to remember those numbers, because it goes
+
+222
+00:09:44,280 --> 00:09:45,160
+5, 10, 20.
+
+223
+00:09:45,160 --> 00:09:46,960
+That's just essentially a sequence of doubling.
+
+224
+00:09:46,960 --> 00:09:49,400
+And then 10, 20, 30, 40.
+
+225
+00:09:49,400 --> 00:09:51,640
+I'm giving you approximate numbers here, but that's
+
+226
+00:09:51,640 --> 00:09:53,640
+something just to keep in mind, all in terms of
+
+227
+00:09:53,640 --> 00:09:54,560
+astronomical units.
+
+228
+00:09:54,560 --> 00:09:57,360
+So in case a little kid comes up and asks you, you can spread
+
+229
+00:09:57,360 --> 00:09:59,800
+out the answer.
+
+230
+00:09:59,800 --> 00:10:02,200
+Let's talk about the sun.
+
+231
+00:10:02,200 --> 00:10:04,960
+This is just a review of our readings right here.
+
+232
+00:10:04,960 --> 00:10:07,600
+This was a representation of the sun and the earth
+
+233
+00:10:07,600 --> 00:10:08,800
+moving around.
+
+234
+00:10:08,800 --> 00:10:11,720
+And what is solstice and equinox?
+
+235
+00:10:11,720 --> 00:10:13,120
+What do those refer to?
+
+236
+00:10:17,240 --> 00:10:20,240
+What is the equinox?
+
+237
+00:10:20,240 --> 00:10:22,880
+Equinox of light and dark.
+
+238
+00:10:22,880 --> 00:10:25,800
+Yeah, equal amount of light and dark throughout pretty much
+
+239
+00:10:25,800 --> 00:10:28,920
+all the world, except if you're really standing on the
+
+240
+00:10:28,920 --> 00:10:30,880
+tippy top in the bottom.
+
+241
+00:10:30,880 --> 00:10:33,600
+So equal amount of light and dark throughout the world on
+
+242
+00:10:33,600 --> 00:10:34,400
+that particular day.
+
+243
+00:10:34,400 --> 00:10:39,400
+So the day and the night have the same amount of length.
+
+244
+00:10:39,400 --> 00:10:41,920
+If you move over into this region right here, this would
+
+245
+00:10:41,920 --> 00:10:44,680
+be a region of our northern hemisphere summer, southern
+
+246
+00:10:44,680 --> 00:10:47,400
+hemisphere winter, over here, vice versa.
+
+247
+00:10:47,400 --> 00:10:55,280
+And the solstice would be the shortest or the longest day of
+
+248
+00:10:55,280 --> 00:10:57,800
+the year, depending on what side you're on.
+
+249
+00:10:57,800 --> 00:11:02,080
+So in the northern hemisphere, the June solstice would be the
+
+250
+00:11:02,080 --> 00:11:03,160
+summer solstice for us.
+
+251
+00:11:03,160 --> 00:11:04,720
+It would be the longest day.
+
+252
+00:11:04,720 --> 00:11:06,600
+And if you're in the southern hemisphere, it would be the
+
+253
+00:11:06,600 --> 00:11:07,480
+shortest day.
+
+254
+00:11:07,480 --> 00:11:09,040
+Depending on what time zone you're in, there might be a
+
+255
+00:11:09,040 --> 00:11:12,880
+variation of one day hither or two.
+
+256
+00:11:12,880 --> 00:11:14,120
+Good.
+
+257
+00:11:14,120 --> 00:11:18,320
+And what are the seasons caused by?
+
+258
+00:11:18,320 --> 00:11:20,520
+What is this kind of tilt right here?
+
+259
+00:11:20,520 --> 00:11:23,000
+What is that called?
+
+260
+00:11:23,000 --> 00:11:24,080
+Declination angle.
+
+261
+00:11:24,080 --> 00:11:26,880
+And approximately how much is that?
+
+262
+00:11:27,760 --> 00:11:28,760
+23.45.
+
+263
+00:11:28,760 --> 00:11:29,960
+So 23 and 1 half degrees.
+
+264
+00:11:29,960 --> 00:11:31,120
+Good.
+
+265
+00:11:31,120 --> 00:11:35,160
+And we can visualize all of this on the PVCD ROM, on the
+
+266
+00:11:35,160 --> 00:11:35,920
+website.
+
+267
+00:11:35,920 --> 00:11:37,760
+So this was part of your signed reading.
+
+268
+00:11:37,760 --> 00:11:41,320
+And here's the earth going around the sun in this
+
+269
+00:11:41,320 --> 00:11:42,720
+representation.
+
+270
+00:11:42,720 --> 00:11:44,760
+Likewise, if you want to take one of your balls and just
+
+271
+00:11:44,760 --> 00:11:48,760
+kind of imagine being on one of those surfaces, you see the
+
+272
+00:11:48,760 --> 00:11:49,880
+diurnal rotation here.
+
+273
+00:11:49,880 --> 00:11:53,120
+It's spinning around its axis and as well the seasonal
+
+274
+00:11:53,120 --> 00:11:56,320
+variation as it spins around the sun.
+
+275
+00:11:56,320 --> 00:11:58,920
+That's important for a number of reasons.
+
+276
+00:11:58,920 --> 00:12:02,040
+That will determine how much sunlight is normally
+
+277
+00:12:02,040 --> 00:12:04,120
+incident on the planet.
+
+278
+00:12:04,120 --> 00:12:07,360
+If you are normally incident, if you're at this exact spot
+
+279
+00:12:07,360 --> 00:12:09,720
+right here, you're receiving the sunlight full on.
+
+280
+00:12:09,720 --> 00:12:13,320
+But if you're up here somewhere, your surface normal is
+
+281
+00:12:13,320 --> 00:12:16,000
+pointing, some vector pointing out like that, you're only
+
+282
+00:12:16,000 --> 00:12:18,960
+going to be receiving the cosine theta of that amount of
+
+283
+00:12:18,960 --> 00:12:20,520
+sun.
+
+284
+00:12:20,520 --> 00:12:23,720
+So if you're in extreme example, if you're right here,
+
+285
+00:12:23,720 --> 00:12:25,280
+you're not going to get any.
+
+286
+00:12:25,280 --> 00:12:26,760
+But if you're in this part right here, you're going to
+
+287
+00:12:26,760 --> 00:12:30,000
+get cosine of 0, which would be 1.
+
+288
+00:12:30,000 --> 00:12:31,480
+So you get the full amount of sun.
+
+289
+00:12:31,480 --> 00:12:33,880
+And likewise, as you move through the angles here.
+
+290
+00:12:33,880 --> 00:12:36,040
+So it's important to understand what the relative
+
+291
+00:12:36,040 --> 00:12:38,880
+angle is between our surface normal and the vector
+
+292
+00:12:38,880 --> 00:12:40,720
+pointing at the sun.
+
+293
+00:12:40,720 --> 00:12:42,480
+That varies as a function of season.
+
+294
+00:12:42,480 --> 00:12:44,880
+It varies as a function of time of day.
+
+295
+00:12:44,880 --> 00:12:49,680
+And obviously over the entire earth, you can define the
+
+296
+00:12:49,680 --> 00:12:52,320
+precise amount of sunlight coming in, the precise solar
+
+297
+00:12:52,320 --> 00:12:54,720
+resource by a series of trig formulae.
+
+298
+00:12:54,840 --> 00:12:55,760
+It gets pretty complex.
+
+299
+00:12:55,760 --> 00:12:57,800
+And this website will actually walk you through it, if
+
+300
+00:12:57,800 --> 00:13:00,000
+you're so interested.
+
+301
+00:13:00,000 --> 00:13:02,320
+Now, this is all review, since folks have all done the
+
+302
+00:13:02,320 --> 00:13:03,760
+background reading, right?
+
+303
+00:13:03,760 --> 00:13:05,000
+All done the background reading.
+
+304
+00:13:05,000 --> 00:13:07,120
+Expect you to before class.
+
+305
+00:13:07,120 --> 00:13:10,120
+Let me ask you a few trickier questions just to see if our
+
+306
+00:13:10,120 --> 00:13:12,520
+creative juices are really moving at this early time of
+
+307
+00:13:12,520 --> 00:13:13,960
+day.
+
+308
+00:13:13,960 --> 00:13:17,080
+When would be the shortest day of the year?
+
+309
+00:13:17,080 --> 00:13:17,800
+Let's start there.
+
+310
+00:13:17,800 --> 00:13:20,520
+The shortest day of the year is approximately December 22nd
+
+311
+00:13:20,520 --> 00:13:21,880
+in the salsas.
+
+312
+00:13:21,880 --> 00:13:27,560
+When is the latest sunrise?
+
+313
+00:13:27,560 --> 00:13:29,320
+And when is the earliest sunset?
+
+314
+00:13:32,840 --> 00:13:34,840
+You might need to pick up your little ball and rotate it
+
+315
+00:13:34,840 --> 00:13:35,840
+around.
+
+316
+00:13:38,440 --> 00:13:42,040
+Does anybody have a, even just a gut sense, would it be on
+
+317
+00:13:42,040 --> 00:13:42,600
+the salsas?
+
+318
+00:13:42,600 --> 00:13:44,200
+How many people think it's going to be exactly on the
+
+319
+00:13:44,200 --> 00:13:45,240
+salsas?
+
+320
+00:13:45,240 --> 00:13:47,040
+Let's see, earliest sunset.
+
+321
+00:13:47,040 --> 00:13:48,880
+How many people think that the earliest sunset's going to be
+
+322
+00:13:48,880 --> 00:13:51,640
+a little bit before the salsas?
+
+323
+00:13:51,640 --> 00:13:53,400
+How many people think a little bit after the salsas?
+
+324
+00:13:53,400 --> 00:13:54,840
+I know people don't really know.
+
+325
+00:13:54,840 --> 00:13:59,320
+The reality is that the earliest sunset would be a
+
+326
+00:13:59,320 --> 00:14:04,080
+little bit before the salsas here, and the latest sunrise
+
+327
+00:14:04,080 --> 00:14:06,800
+would be a little bit after the salsas.
+
+328
+00:14:06,800 --> 00:14:09,040
+And it flips in summertime.
+
+329
+00:14:09,040 --> 00:14:15,720
+It would be, let's see, the earliest sunrise and the
+
+330
+00:14:15,720 --> 00:14:20,880
+latest sunset before and after the salsas, respectively.
+
+331
+00:14:20,880 --> 00:14:23,640
+And you can kind of think about that in terms of what is the
+
+332
+00:14:23,640 --> 00:14:26,000
+solar noon?
+
+333
+00:14:26,000 --> 00:14:30,240
+The solar noon is when the sun is directly overhead relative
+
+334
+00:14:30,240 --> 00:14:34,600
+to our chronological noon, which is, I would say, less
+
+335
+00:14:34,600 --> 00:14:37,920
+dependent on the specific angle of the Earth relative to the
+
+336
+00:14:37,920 --> 00:14:41,120
+sun as it moves around this trajectory.
+
+337
+00:14:41,120 --> 00:14:42,760
+Let's get more into that in recitation.
+
+338
+00:14:42,760 --> 00:14:44,760
+I sense since there wasn't much traction there, I don't
+
+339
+00:14:44,760 --> 00:14:47,120
+want to dwell.
+
+340
+00:14:47,120 --> 00:14:49,320
+OK.
+
+341
+00:14:49,360 --> 00:14:51,240
+Good, good, good.
+
+342
+00:14:51,240 --> 00:14:53,280
+OK.
+
+343
+00:14:53,280 --> 00:14:59,560
+Let's think a little bit more in terms of the trajectory of
+
+344
+00:14:59,560 --> 00:15:01,920
+the sun later on as we move through some of the
+
+345
+00:15:01,920 --> 00:15:02,920
+introductory material.
+
+346
+00:15:02,920 --> 00:15:05,080
+I don't want to dwell too much.
+
+347
+00:15:05,080 --> 00:15:08,560
+I want to give a little bit of review since I'm sensing that
+
+348
+00:15:08,560 --> 00:15:09,880
+not everybody did the readings.
+
+349
+00:15:09,880 --> 00:15:11,440
+I expect you to do the readings, folks.
+
+350
+00:15:11,440 --> 00:15:13,240
+So let's keep with me here.
+
+351
+00:15:13,240 --> 00:15:14,680
+So a touch of history.
+
+352
+00:15:14,680 --> 00:15:19,240
+Since that was requested, I decided to launch a little bit
+
+353
+00:15:19,240 --> 00:15:22,680
+into a history of the study of the sun.
+
+354
+00:15:22,680 --> 00:15:27,080
+Philosophers, going back to what I suppose most would
+
+355
+00:15:27,080 --> 00:15:30,320
+consider early India, studied the sun.
+
+356
+00:15:30,320 --> 00:15:34,240
+There were some writings of some of the earlier
+
+357
+00:15:34,240 --> 00:15:36,360
+philosophers that were recorded.
+
+358
+00:15:36,360 --> 00:15:39,560
+Some have interpreted these writings as being indicative of
+
+359
+00:15:39,560 --> 00:15:40,960
+perhaps heliocentric models.
+
+360
+00:15:40,960 --> 00:15:42,760
+These are poetry, folks.
+
+361
+00:15:42,760 --> 00:15:47,640
+It's a very different style of communication than what we
+
+362
+00:15:47,640 --> 00:15:49,480
+have today of technical writing.
+
+363
+00:15:49,480 --> 00:15:51,600
+So it's difficult for us to discern, or difficult for me
+
+364
+00:15:51,600 --> 00:15:55,000
+at least to discern when I read the lines verbatim, if
+
+365
+00:15:55,000 --> 00:15:59,320
+this is really somebody thinking about the heliocentric
+
+366
+00:15:59,320 --> 00:16:02,760
+model, or whether this is somebody just describing the
+
+367
+00:16:02,760 --> 00:16:04,320
+universe and the best of their abilities.
+
+368
+00:16:07,960 --> 00:16:11,320
+The real beginnings of heliocentric models began in
+
+369
+00:16:11,320 --> 00:16:13,800
+the third century before the Common Era.
+
+370
+00:16:14,680 --> 00:16:17,720
+And the notions of interstellar distances
+
+371
+00:16:17,720 --> 00:16:20,240
+estimated in a similar manner to what we just walked
+
+372
+00:16:20,240 --> 00:16:21,200
+through today.
+
+373
+00:16:21,200 --> 00:16:23,680
+Estimating the distance between the earth and the sun, and
+
+374
+00:16:23,680 --> 00:16:27,000
+then using that as a measure, or a yardstick, with which to
+
+375
+00:16:27,000 --> 00:16:30,440
+measure the distances to the other planets began somewhere
+
+376
+00:16:30,440 --> 00:16:31,920
+during that time.
+
+377
+00:16:31,920 --> 00:16:35,360
+Likewise, these writings of old made their way to the
+
+378
+00:16:35,360 --> 00:16:36,040
+Middle East.
+
+379
+00:16:36,040 --> 00:16:40,120
+And in the 10th and 11th centuries of the Common Era,
+
+380
+00:16:40,200 --> 00:16:44,400
+the Middle East, the Arab world was really where science
+
+381
+00:16:44,400 --> 00:16:46,480
+and technology was at.
+
+382
+00:16:46,480 --> 00:16:51,160
+And these days, Europe was still largely mild in the
+
+383
+00:16:51,160 --> 00:16:53,640
+Middle Ages, starting to emerge in a few places.
+
+384
+00:16:53,640 --> 00:16:57,840
+But by and large, the carriers of civilization in the Western
+
+385
+00:16:57,840 --> 00:17:01,680
+world were really centered in some of the Arab
+
+386
+00:17:01,680 --> 00:17:03,040
+cities in the Middle East.
+
+387
+00:17:03,040 --> 00:17:09,520
+And al-Biruni in particular was very avid at applying
+
+388
+00:17:09,520 --> 00:17:11,480
+methods of astronomical observation, in
+
+389
+00:17:11,480 --> 00:17:15,280
+particular to aid travel, but in the process discovering a
+
+390
+00:17:15,280 --> 00:17:19,240
+thing or two about our known universe.
+
+391
+00:17:19,240 --> 00:17:22,320
+And of course, finally, Johannes Kepler in Europe,
+
+392
+00:17:22,320 --> 00:17:27,440
+once it starts to emerge from the Middle Ages, with really
+
+393
+00:17:27,440 --> 00:17:30,920
+taking observations from other scientists who very
+
+394
+00:17:30,920 --> 00:17:33,480
+carefully plotted out the position of the different
+
+395
+00:17:33,480 --> 00:17:36,640
+bodies, he came up with some of the mathematical models that
+
+396
+00:17:36,640 --> 00:17:40,360
+described the motion of the planets through the skies, and
+
+397
+00:17:40,360 --> 00:17:43,400
+is largely credited with developing a series of laws
+
+398
+00:17:43,400 --> 00:17:46,160
+that define interplanetary motion.
+
+399
+00:17:46,160 --> 00:17:49,040
+So a couple of interesting things to note is that
+
+400
+00:17:49,040 --> 00:17:50,920
+international collaboration was really essential.
+
+401
+00:17:50,920 --> 00:17:53,520
+These ideas didn't develop in isolation.
+
+402
+00:17:53,520 --> 00:17:56,520
+They were flowing throughout the world.
+
+403
+00:17:56,520 --> 00:17:58,840
+It's important to know that many of the scientists were
+
+404
+00:17:58,840 --> 00:18:01,120
+well-traveled polyglots, meaning they spoke different
+
+405
+00:18:01,120 --> 00:18:03,480
+languages, and that's how they were able to interpret the
+
+406
+00:18:03,480 --> 00:18:05,880
+texts and readings of other people.
+
+407
+00:18:05,880 --> 00:18:08,200
+And it's also to note that parallel astronomical
+
+408
+00:18:08,200 --> 00:18:11,600
+developments were happening in other regions of the world,
+
+409
+00:18:11,600 --> 00:18:14,480
+the Far East, Mesoamerica, and so forth.
+
+410
+00:18:14,480 --> 00:18:19,600
+And so obviously there may have been some communication, I
+
+411
+00:18:19,600 --> 00:18:23,800
+would say rather sparse, especially with the Far East.
+
+412
+00:18:23,800 --> 00:18:28,240
+But there was a fair amount of communication between these
+
+413
+00:18:28,240 --> 00:18:30,680
+regions here, and you can imagine writings or ideas
+
+414
+00:18:30,680 --> 00:18:34,240
+traveling from word of mouth along trade routes.
+
+415
+00:18:34,240 --> 00:18:37,120
+So there was some communication.
+
+416
+00:18:37,120 --> 00:18:38,360
+So back to our learning objectives.
+
+417
+00:18:38,360 --> 00:18:41,000
+Today we're about to quantify the available solar resource
+
+418
+00:18:41,000 --> 00:18:43,680
+relative to human energies and other fuel sources.
+
+419
+00:18:43,680 --> 00:18:44,320
+So let's do that.
+
+420
+00:18:44,320 --> 00:18:45,720
+We'll jump right into one of the slides I
+
+421
+00:18:45,720 --> 00:18:47,200
+showed you last time.
+
+422
+00:18:47,200 --> 00:18:49,400
+This is in terms of TerraWatts Ave.
+
+423
+00:18:49,400 --> 00:18:52,760
+TerraWatts is a unit of power, a very big one.
+
+424
+00:18:52,760 --> 00:18:55,240
+Terra is 10 to the 12.
+
+425
+00:18:55,240 --> 00:18:58,480
+And you can see here the resource of the sun relative to
+
+426
+00:18:58,480 --> 00:19:01,200
+the wind energy resource space relative to human energy
+
+427
+00:19:01,200 --> 00:19:01,960
+needs.
+
+428
+00:19:01,960 --> 00:19:05,000
+If we just consider the resource falling on the Earth's
+
+429
+00:19:05,000 --> 00:19:07,920
+surface as opposed to that falling in the outer atmosphere,
+
+430
+00:19:07,920 --> 00:19:10,800
+there's a little bit of a discount, but we're still very
+
+431
+00:19:10,800 --> 00:19:12,680
+large compared to human energy use.
+
+432
+00:19:12,680 --> 00:19:16,280
+And if we redefine our units from TerraWatts into HECs,
+
+433
+00:19:16,280 --> 00:19:19,560
+which are human energy consumptions defined in, say,
+
+434
+00:19:19,560 --> 00:19:25,400
+2050, where one HEC is the average, let's say, energy
+
+435
+00:19:25,400 --> 00:19:31,120
+burn rate of 2050, you can see here that these numbers are
+
+436
+00:19:31,120 --> 00:19:33,440
+a few orders of magnitude larger than what our human
+
+437
+00:19:33,440 --> 00:19:34,280
+energy needs are.
+
+438
+00:19:34,280 --> 00:19:38,520
+So if you were able to capture only 1% of all of the solar
+
+439
+00:19:38,520 --> 00:19:42,040
+resource falling on the Earth's crust, we would be
+
+440
+00:19:42,040 --> 00:19:44,160
+actually in pretty good shape.
+
+441
+00:19:44,160 --> 00:19:48,480
+And 1% of the total land area on the Earth's crust, I
+
+442
+00:19:48,480 --> 00:19:50,800
+believe somewhere between 1% and 2% of the United States is
+
+443
+00:19:50,800 --> 00:19:53,560
+covered in asphalt right now for roads.
+
+444
+00:19:53,560 --> 00:19:56,760
+So this could be on houses, on rooftops, on buildings, and
+
+445
+00:19:56,760 --> 00:19:57,560
+so forth.
+
+446
+00:19:57,560 --> 00:20:02,000
+We wouldn't necessarily have to exclusively repave virgin
+
+447
+00:20:02,000 --> 00:20:05,440
+farmland with solar panels.
+
+448
+00:20:05,440 --> 00:20:07,880
+So going back to quantifying the solar power, we have our
+
+449
+00:20:07,880 --> 00:20:09,040
+sun.
+
+450
+00:20:09,040 --> 00:20:11,600
+We're going to start by quantifying the solar resource
+
+451
+00:20:11,600 --> 00:20:14,000
+by assuming that the sun is a black body.
+
+452
+00:20:14,000 --> 00:20:17,640
+The same way that hot objects emit light, say, for example,
+
+453
+00:20:17,640 --> 00:20:21,520
+when you turn up your stove and you have a very warm glow
+
+454
+00:20:21,520 --> 00:20:25,880
+coming out of it, the sun is as well a hot body, a black
+
+455
+00:20:25,880 --> 00:20:27,360
+body, sorry, very hot as well.
+
+456
+00:20:27,360 --> 00:20:28,880
+Somewhere around 6,000 Kelvin.
+
+457
+00:20:28,880 --> 00:20:32,600
+And the total radiated power is given by Stefan
+
+458
+00:20:32,600 --> 00:20:35,520
+Boltzmann's law here in the following way, where we have
+
+459
+00:20:35,520 --> 00:20:38,720
+temperature to the fourth and the temperature is somewhere
+
+460
+00:20:38,720 --> 00:20:40,480
+around 6,000 Kelvin.
+
+461
+00:20:40,480 --> 00:20:43,480
+And so we have this power being radiated out at the surface
+
+462
+00:20:43,480 --> 00:20:44,320
+of the sun.
+
+463
+00:20:44,320 --> 00:20:48,600
+And then as it travels outward, it becomes, you could say,
+
+464
+00:20:48,600 --> 00:20:51,920
+diluted in effect, because the total surface area of that
+
+465
+00:20:51,920 --> 00:20:55,040
+sphere is increasing, obviously, as r squared.
+
+466
+00:20:55,040 --> 00:20:57,760
+And so by the time that that light reaches the earth, it's
+
+467
+00:20:57,760 --> 00:21:00,800
+only a very small cross-section, or very small solid
+
+468
+00:21:00,800 --> 00:21:04,640
+angle, to be more precise, of the sun's surface that is
+
+469
+00:21:04,640 --> 00:21:08,000
+radiating directly at the earth right here, because this in
+
+470
+00:21:08,000 --> 00:21:09,880
+the absence of scattering centers in the universe that
+
+471
+00:21:09,880 --> 00:21:13,080
+might reflect or bounce the light back toward the earth.
+
+472
+00:21:13,080 --> 00:21:15,360
+And you can calculate the total power incident on the earth
+
+473
+00:21:15,360 --> 00:21:17,240
+by that simple formula right there.
+
+474
+00:21:17,240 --> 00:21:20,120
+What is the radius of the earth?
+
+475
+00:21:20,120 --> 00:21:22,760
+Again, one of these simple numbers you should kind of
+
+476
+00:21:22,800 --> 00:21:25,600
+have in your head, 6,370 kilometers,
+
+477
+00:21:25,600 --> 00:21:27,040
+somewhere in that order.
+
+478
+00:21:27,040 --> 00:21:31,440
+And so you can begin estimating here the total power
+
+479
+00:21:31,440 --> 00:21:32,960
+and the order of magnitude.
+
+480
+00:21:32,960 --> 00:21:35,680
+It's going to be tiny compared to the total power that the sun
+
+481
+00:21:35,680 --> 00:21:38,000
+is radiating, thankfully, or else we'd be
+
+482
+00:21:38,000 --> 00:21:39,240
+pretty hot right now.
+
+483
+00:21:39,240 --> 00:21:45,400
+So the average power coming from the sun on the surface of
+
+484
+00:21:45,400 --> 00:21:49,920
+the outer atmosphere is around 1366 watts per square meter.
+
+485
+00:21:49,920 --> 00:21:52,200
+Who's heard of 1366 before?
+
+486
+00:21:52,200 --> 00:21:53,040
+Yeah, you've heard about it?
+
+487
+00:21:53,040 --> 00:21:55,160
+All right, you know where the number comes from now.
+
+488
+00:21:55,160 --> 00:21:56,920
+It's pretty wonky.
+
+489
+00:21:56,920 --> 00:22:00,120
+1366 is a startup company, a spin-off of MIT,
+
+490
+00:22:00,120 --> 00:22:02,360
+focused on solar energy.
+
+491
+00:22:02,360 --> 00:22:06,680
+OK, and so that's at the equinox, which we just learned
+
+492
+00:22:06,680 --> 00:22:10,920
+is occurring somewhere around March 21, September 21,
+
+493
+00:22:10,920 --> 00:22:13,520
+coming up soon, celebration.
+
+494
+00:22:13,520 --> 00:22:15,960
+The ratio of the surface areas of the spheres is really
+
+495
+00:22:15,960 --> 00:22:18,040
+something to keep in mind right there.
+
+496
+00:22:18,040 --> 00:22:22,080
+OK, so we've quantified the available resource relative
+
+497
+00:22:22,080 --> 00:22:23,320
+to human energy needs.
+
+498
+00:22:23,320 --> 00:22:27,080
+Now we have to come up with some language that we use to
+
+499
+00:22:27,080 --> 00:22:29,840
+describe the sunlight moving through the atmosphere of the
+
+500
+00:22:29,840 --> 00:22:32,720
+Earth and reaching the surface of the Earth, right?
+
+501
+00:22:32,720 --> 00:22:35,400
+So we're going to use what's called the air mass convention,
+
+502
+00:22:35,400 --> 00:22:36,720
+or AM convention.
+
+503
+00:22:36,720 --> 00:22:39,560
+AM stands for air mass.
+
+504
+00:22:39,560 --> 00:22:41,640
+Even without knowing much about how the light is absorbed
+
+505
+00:22:41,640 --> 00:22:43,920
+or how to quantify it mathematically, we can assume
+
+506
+00:22:43,920 --> 00:22:47,480
+that our atmosphere contains molecules, it contains
+
+507
+00:22:47,480 --> 00:22:49,520
+particulate matter, and that's going to interact with the
+
+508
+00:22:49,520 --> 00:22:50,400
+light in some ways.
+
+509
+00:22:50,400 --> 00:22:52,560
+Probably going to either absorb or scatter it.
+
+510
+00:22:52,560 --> 00:22:54,680
+And so as the light passes through our atmosphere, there's
+
+511
+00:22:54,680 --> 00:22:56,240
+going to be some absorption.
+
+512
+00:22:56,240 --> 00:22:58,680
+And the greater the distance, the greater the optical
+
+513
+00:22:58,680 --> 00:23:00,960
+path length through the atmosphere, the more absorption
+
+514
+00:23:00,960 --> 00:23:02,520
+and more scattering there will be.
+
+515
+00:23:02,520 --> 00:23:06,080
+And so we use air mass, or AM convention, to define the
+
+516
+00:23:06,080 --> 00:23:08,560
+path length or the path distance through the atmosphere.
+
+517
+00:23:08,560 --> 00:23:11,160
+AM0 would mean the outer atmosphere.
+
+518
+00:23:11,160 --> 00:23:13,920
+AM1 would be essentially just going straight through,
+
+519
+00:23:13,920 --> 00:23:17,080
+normal incidence, so that the direction of the trajectory
+
+520
+00:23:17,080 --> 00:23:20,200
+of the light is parallel to the surface normal of the
+
+521
+00:23:20,200 --> 00:23:21,560
+Earth at that location.
+
+522
+00:23:21,560 --> 00:23:24,000
+And then air mass 1.5 and so forth is as we increase the
+
+523
+00:23:24,000 --> 00:23:27,400
+angle of the entry of light relative to the surface normal.
+
+524
+00:23:27,400 --> 00:23:29,760
+So in other words, as we go further from the equator to
+
+525
+00:23:29,760 --> 00:23:31,720
+northern latitudes, that air mass number is
+
+526
+00:23:31,720 --> 00:23:32,960
+going to go up, up, up.
+
+527
+00:23:32,960 --> 00:23:35,880
+OK, we'll explain it with a few graphs and figures and a few
+
+528
+00:23:35,880 --> 00:23:36,720
+slides.
+
+529
+00:23:36,720 --> 00:23:39,360
+So we have our atmospheric absorption.
+
+530
+00:23:39,360 --> 00:23:42,000
+When you just glance at the Earth and these beautiful
+
+531
+00:23:42,000 --> 00:23:45,360
+pictures taken from outer space, we can see very
+
+532
+00:23:45,360 --> 00:23:47,200
+obviously the clouds present.
+
+533
+00:23:47,200 --> 00:23:50,240
+And more importantly, if we were to zoom in on one of
+
+534
+00:23:50,240 --> 00:23:56,680
+these regions right here, we would see this blueish hue
+
+535
+00:23:56,680 --> 00:23:59,880
+coming from our atmosphere, which is scattering
+
+536
+00:23:59,880 --> 00:24:02,440
+preferentially the shorter wavelengths of light.
+
+537
+00:24:02,440 --> 00:24:05,440
+And more importantly, this radius right here is somewhere
+
+538
+00:24:05,440 --> 00:24:07,880
+in the order of 6,370 kilometers.
+
+539
+00:24:07,880 --> 00:24:12,040
+And this thin atmospheric shell is in the order of 30.
+
+540
+00:24:12,040 --> 00:24:15,920
+So that's why you don't really see too much of a ring
+
+541
+00:24:15,960 --> 00:24:18,200
+around the planet from this distance.
+
+542
+00:24:18,200 --> 00:24:19,240
+So atmospheric effects.
+
+543
+00:24:19,240 --> 00:24:22,840
+Let's try to bin them into discrete buckets.
+
+544
+00:24:22,840 --> 00:24:25,640
+This is a simplification, but it helps us gain a foothold
+
+545
+00:24:25,640 --> 00:24:26,280
+in understanding.
+
+546
+00:24:26,280 --> 00:24:28,720
+And then from there, we can make our understanding a bit
+
+547
+00:24:28,720 --> 00:24:30,040
+more complex.
+
+548
+00:24:30,040 --> 00:24:33,120
+So we have incoming solar radiation coming from here.
+
+549
+00:24:33,120 --> 00:24:37,440
+We have a number now that's 342 watts per square meter.
+
+550
+00:24:37,440 --> 00:24:41,560
+Why is that number so much lower than the 1366 that we
+
+551
+00:24:41,560 --> 00:24:42,720
+were just talking about?
+
+552
+00:24:46,920 --> 00:24:47,920
+OK.
+
+553
+00:24:52,920 --> 00:24:57,520
+Yeah, so this is meant to be an average over the entire day.
+
+554
+00:24:57,520 --> 00:24:59,160
+One fixed point along the ground, right?
+
+555
+00:24:59,160 --> 00:25:01,840
+So as we're rotating around, we have at least half of the day
+
+556
+00:25:01,840 --> 00:25:03,520
+normally when we don't have sunlight.
+
+557
+00:25:03,520 --> 00:25:07,840
+And then there's, let's say, the cosine theta angle is not
+
+558
+00:25:07,840 --> 00:25:09,200
+one at all times.
+
+559
+00:25:09,200 --> 00:25:11,240
+It's very rarely one.
+
+560
+00:25:11,240 --> 00:25:14,000
+And so this is a bit of a discounted incoming solar
+
+561
+00:25:14,000 --> 00:25:16,600
+radiation, essentially a time average solar radiation for
+
+562
+00:25:16,600 --> 00:25:20,520
+a given patch of the planet over a typical day.
+
+563
+00:25:20,520 --> 00:25:22,920
+And so we have a variety of processes here.
+
+564
+00:25:22,920 --> 00:25:25,200
+We have reflection off of clouds.
+
+565
+00:25:25,200 --> 00:25:27,160
+That's pretty clear to see from here.
+
+566
+00:25:27,160 --> 00:25:29,160
+Looks nice and white.
+
+567
+00:25:29,160 --> 00:25:32,560
+We have some absorbed by the atmosphere, typically in
+
+568
+00:25:32,560 --> 00:25:35,720
+rotational or vibrational modes of molecules up in the
+
+569
+00:25:35,720 --> 00:25:39,400
+outer atmosphere, sometimes by particulate matter as well.
+
+570
+00:25:39,400 --> 00:25:42,920
+And then we have the amount that is absorbed here by the
+
+571
+00:25:42,920 --> 00:25:45,360
+surface, of course, reflected as well.
+
+572
+00:25:45,360 --> 00:25:47,800
+And so the amount that's incident on the surface or
+
+573
+00:25:47,800 --> 00:25:50,360
+coming down to us is what we can actually use to
+
+574
+00:25:50,360 --> 00:25:52,000
+make solar energy.
+
+575
+00:25:52,000 --> 00:25:53,360
+And this is an average, right?
+
+576
+00:25:53,360 --> 00:25:55,880
+Because sometimes the cloud cover is a lot greater.
+
+577
+00:25:55,880 --> 00:25:59,000
+And for that particular day, we will have a lot less
+
+578
+00:25:59,000 --> 00:26:02,120
+resource striking the ground at a given time.
+
+579
+00:26:02,120 --> 00:26:05,760
+This over here, this is all mostly infrared, right?
+
+580
+00:26:05,760 --> 00:26:08,840
+Where this is visible coming in once the light gets absorbed
+
+581
+00:26:08,840 --> 00:26:11,480
+and then gets re-emitted, usually gets re-emitted in
+
+582
+00:26:11,480 --> 00:26:14,640
+a longer wavelength light, or the infrared light.
+
+583
+00:26:14,640 --> 00:26:19,240
+And this is the stuff that gets absorbed by greenhouse
+
+584
+00:26:19,240 --> 00:26:21,920
+gases and then re-emitted equiangularly, and some of
+
+585
+00:26:21,920 --> 00:26:24,720
+it makes its way back to the Earth.
+
+586
+00:26:24,720 --> 00:26:26,240
+OK, so air mass.
+
+587
+00:26:26,240 --> 00:26:30,080
+Let's define that so that we have a common language that we
+
+588
+00:26:30,080 --> 00:26:33,000
+can use to describe the solar resource from place to place.
+
+589
+00:26:33,000 --> 00:26:34,720
+So again, this is the sun.
+
+590
+00:26:34,720 --> 00:26:37,320
+This is the surface right here.
+
+591
+00:26:37,320 --> 00:26:41,000
+And let's imagine that the angle between the incident
+
+592
+00:26:41,000 --> 00:26:44,600
+sunlight and the surface normal is 0, such that the
+
+593
+00:26:44,600 --> 00:26:47,040
+cosine theta term is 1.
+
+594
+00:26:47,040 --> 00:26:50,800
+Air mass here at this point on the surface of the Earth is
+
+595
+00:26:50,800 --> 00:26:53,280
+going to be AM1.
+
+596
+00:26:53,280 --> 00:26:56,680
+So we call it air mass 1 if the sun is literally directly
+
+597
+00:26:56,680 --> 00:26:59,560
+overhead.
+
+598
+00:26:59,560 --> 00:27:01,480
+What did we learn about the declination angle of the
+
+599
+00:27:01,480 --> 00:27:02,080
+Earth?
+
+600
+00:27:02,080 --> 00:27:04,920
+It's about 23 and a half degrees, right?
+
+601
+00:27:04,920 --> 00:27:06,440
+How far north are we?
+
+602
+00:27:06,440 --> 00:27:09,920
+What is our latitude here in Boston?
+
+603
+00:27:09,920 --> 00:27:11,720
+41, 42-ish, right?
+
+604
+00:27:11,720 --> 00:27:19,760
+So let's, for simplicity, say that here in Boston, our
+
+605
+00:27:19,760 --> 00:27:26,280
+latitude of Boston Logan Airport is approximately 41
+
+606
+00:27:26,280 --> 00:27:28,360
+degrees north.
+
+607
+00:27:28,360 --> 00:27:36,760
+And let's say that the declination of our planet
+
+608
+00:27:36,760 --> 00:27:41,160
+is approximately 23 and a half degrees.
+
+609
+00:27:41,160 --> 00:27:46,560
+So what would be the angle of the sun in the sky if you were
+
+610
+00:27:46,560 --> 00:27:49,720
+to lie on your back in the middle of the summer
+
+611
+00:27:49,720 --> 00:27:52,920
+solstice and the middle of the winter solstice, and you're
+
+612
+00:27:52,920 --> 00:27:56,440
+lying straight on your back looking up at solar noon, what
+
+613
+00:27:56,440 --> 00:27:59,440
+would the angle of the sun in the sky be relative to the
+
+614
+00:27:59,440 --> 00:28:01,080
+surface normal?
+
+615
+00:28:01,080 --> 00:28:03,760
+How far south would the sun be?
+
+616
+00:28:03,760 --> 00:28:07,200
+Imagine that this is 0 degrees and that's 90, right?
+
+617
+00:28:07,200 --> 00:28:10,200
+So relative to this angle right here, where would the sun be
+
+618
+00:28:10,200 --> 00:28:11,600
+in the sky?
+
+619
+00:28:11,600 --> 00:28:13,440
+Why don't you turn to your neighbor right now and
+
+620
+00:28:13,440 --> 00:28:18,360
+discuss on the summer solstice, the winter solstice.
+
+621
+00:28:18,360 --> 00:28:20,040
+Come up with some set of angles there.
+
+622
+00:28:26,440 --> 00:28:36,560
+All right, folks, what did we come up with?
+
+623
+00:28:36,560 --> 00:28:39,960
+This is our little human being, you, in Boston.
+
+624
+00:28:39,960 --> 00:28:42,320
+This is south, and that's north.
+
+625
+00:28:42,320 --> 00:28:45,280
+And we're at the solar noon in the winter solstice and the
+
+626
+00:28:45,280 --> 00:28:46,360
+summer solstice.
+
+627
+00:28:46,360 --> 00:28:48,200
+So here's you.
+
+628
+00:28:48,200 --> 00:28:50,160
+This is directly above.
+
+629
+00:28:50,160 --> 00:28:52,240
+So let's say if you're lying on your back and looking
+
+630
+00:28:52,240 --> 00:28:55,440
+straight up, that's the surface normal of the earth.
+
+631
+00:28:55,440 --> 00:28:58,800
+In the summer at solar noon, the sun would be at what angle
+
+632
+00:28:58,800 --> 00:29:02,920
+relative to the surface normal of the earth?
+
+633
+00:29:02,920 --> 00:29:04,480
+17 and 1 half somewhere around there.
+
+634
+00:29:04,480 --> 00:29:06,760
+And how did you get that number?
+
+635
+00:29:06,760 --> 00:29:08,080
+Subtract those two, right?
+
+636
+00:29:08,080 --> 00:29:10,240
+So you get 41 minus 23 and 1 half.
+
+637
+00:29:10,240 --> 00:29:14,320
+You're somewhere around 17, 18 somewhere around there.
+
+638
+00:29:14,320 --> 00:29:17,800
+So we'll call it 18 degrees in summer, again, relative to
+
+639
+00:29:17,800 --> 00:29:19,280
+the surface normal.
+
+640
+00:29:19,280 --> 00:29:23,920
+And in winter time, what does that work out to be?
+
+641
+00:29:25,440 --> 00:29:27,360
+64 and 1 half, similar logic, right?
+
+642
+00:29:27,360 --> 00:29:30,320
+So we'll call it 65 degrees in winter.
+
+643
+00:29:30,320 --> 00:29:30,920
+Good.
+
+644
+00:29:30,920 --> 00:29:34,720
+So what does that work out to be in terms of air mass for
+
+645
+00:29:34,720 --> 00:29:35,800
+winter and summer?
+
+646
+00:29:38,480 --> 00:29:40,440
+Quick engineering approximation, I'm going to say that
+
+647
+00:29:40,440 --> 00:29:42,560
+in summer it's approximately air mass one, but you can
+
+648
+00:29:42,560 --> 00:29:43,440
+calculate it real quick.
+
+649
+00:29:43,440 --> 00:29:47,240
+Somebody with a calculator want to plug those in?
+
+650
+00:29:47,240 --> 00:29:51,200
+And roughly two in winter, right?
+
+651
+00:29:51,200 --> 00:29:52,280
+OK.
+
+652
+00:29:52,280 --> 00:29:55,760
+We're going to get into scattering of light in next
+
+653
+00:29:55,760 --> 00:29:56,920
+lecture, actually.
+
+654
+00:29:56,920 --> 00:29:59,560
+And we'll see why that matters in terms, especially of
+
+655
+00:29:59,560 --> 00:30:02,320
+getting sunburned, since the shorter wavelengths, the
+
+656
+00:30:02,320 --> 00:30:05,880
+ultraviolet, are more sensitive to the path length.
+
+657
+00:30:05,880 --> 00:30:08,120
+OK.
+
+658
+00:30:08,120 --> 00:30:08,760
+Good.
+
+659
+00:30:08,760 --> 00:30:09,160
+Very good.
+
+660
+00:30:09,160 --> 00:30:13,120
+So we have pretty much a gut sense now of where the sun
+
+661
+00:30:13,120 --> 00:30:14,200
+is in the sky.
+
+662
+00:30:14,200 --> 00:30:17,880
+And as it moves from summer to winter, from our perspective,
+
+663
+00:30:17,880 --> 00:30:21,440
+it follows a little bit of a sinusoidal path, right?
+
+664
+00:30:21,440 --> 00:30:24,720
+It stays in summer for a long period of time up here.
+
+665
+00:30:24,720 --> 00:30:27,280
+And then it moves pretty quickly down here and stays here.
+
+666
+00:30:27,280 --> 00:30:30,760
+So versus time, the angle of the sun in the sky is
+
+667
+00:30:30,760 --> 00:30:34,280
+following a sine curve, or a cosine curve, if you will.
+
+668
+00:30:34,280 --> 00:30:38,520
+And so right now, the sun is actually close to the middle.
+
+669
+00:30:38,520 --> 00:30:40,160
+We're in September 13.
+
+670
+00:30:40,160 --> 00:30:42,840
+The solstice is coming up in a week's time.
+
+671
+00:30:42,840 --> 00:30:46,640
+And so the slope of that sine curve is at a maximum, right
+
+672
+00:30:46,640 --> 00:30:47,600
+about now.
+
+673
+00:30:47,600 --> 00:30:52,160
+And so the amount of time that the day will change in length
+
+674
+00:30:52,160 --> 00:30:55,680
+is changing at its greatest point right now in the year.
+
+675
+00:30:55,680 --> 00:30:57,280
+And so you really begin to notice it if you start
+
+676
+00:30:57,280 --> 00:30:58,360
+paying attention.
+
+677
+00:30:58,360 --> 00:31:01,960
+Or if you go to weather.com and start looking up how long is
+
+678
+00:31:01,960 --> 00:31:03,720
+today's day going to last?
+
+679
+00:31:03,720 --> 00:31:05,480
+When is the sunset tomorrow?
+
+680
+00:31:05,480 --> 00:31:07,440
+I don't know about you folks, but I like to cycle.
+
+681
+00:31:07,440 --> 00:31:11,240
+And when I'm doing my evening rides, I'm noticing it now
+
+682
+00:31:11,240 --> 00:31:13,520
+that I have to start earlier and earlier if I want to put in,
+
+683
+00:31:13,520 --> 00:31:14,960
+say, 30 or 40 miles.
+
+684
+00:31:14,960 --> 00:31:16,880
+I'm not going to be able to make it home in time.
+
+685
+00:31:17,760 --> 00:31:21,240
+So that's the sun and how it relates to you in your daily
+
+686
+00:31:21,240 --> 00:31:23,160
+lives.
+
+687
+00:31:23,160 --> 00:31:25,200
+We're going to get back to this in a minute.
+
+688
+00:31:25,200 --> 00:31:26,040
+So keep this in mind.
+
+689
+00:31:26,040 --> 00:31:28,560
+Don't let it out of your ram.
+
+690
+00:31:28,560 --> 00:31:31,800
+Let's talk about the actual solar spectrum for a minute.
+
+691
+00:31:31,800 --> 00:31:35,840
+This is the sunlight intensity in some very weird units.
+
+692
+00:31:35,840 --> 00:31:36,920
+We'll get to that in a minute.
+
+693
+00:31:36,920 --> 00:31:39,840
+But think of this in terms sort of like the total amount of
+
+694
+00:31:39,840 --> 00:31:41,760
+power in a given bandwidth.
+
+695
+00:31:41,760 --> 00:31:45,440
+So the wavelength right here, the power density in a bandwidth,
+
+696
+00:31:45,440 --> 00:31:47,600
+the wavelength is the wavelength of light.
+
+697
+00:31:47,600 --> 00:31:50,160
+Shown for your convenience here is the visible spectrum.
+
+698
+00:31:50,160 --> 00:31:54,520
+That's mostly what our eye is able to detect in this wavelength
+
+699
+00:31:54,520 --> 00:31:55,520
+range right here.
+
+700
+00:31:55,520 --> 00:31:59,560
+And the sun is emitting over a much broader range of wavelengths.
+
+701
+00:31:59,560 --> 00:32:04,480
+It's emitting following a black body emission source at 6,000
+
+702
+00:32:04,480 --> 00:32:05,160
+Kelvin.
+
+703
+00:32:05,160 --> 00:32:07,240
+And that's in this very difficult to see green line
+
+704
+00:32:07,240 --> 00:32:08,760
+right there.
+
+705
+00:32:08,760 --> 00:32:13,200
+Airmass zero spectrum looks like this, this red line right
+
+706
+00:32:13,200 --> 00:32:13,680
+here.
+
+707
+00:32:13,680 --> 00:32:16,120
+And again, let me remind you that the air mass zero is the
+
+708
+00:32:16,120 --> 00:32:18,280
+light that's falling in the outer atmosphere.
+
+709
+00:32:18,280 --> 00:32:21,360
+There is no Earth atmospheric absorption net.
+
+710
+00:32:21,360 --> 00:32:25,000
+Why do we have these little lines here?
+
+711
+00:32:25,000 --> 00:32:26,920
+You see it's not a perfect black body.
+
+712
+00:32:26,920 --> 00:32:30,480
+We have some, I'll give you a hint, absorption lines.
+
+713
+00:32:30,480 --> 00:32:32,320
+Where is that light being absorbed?
+
+714
+00:32:32,320 --> 00:32:35,160
+Is it the ether between the Earth and the sun?
+
+715
+00:32:35,160 --> 00:32:37,120
+No, it's no ether between the Earth and the sun.
+
+716
+00:32:37,120 --> 00:32:38,760
+Where is that light being absorbed?
+
+717
+00:32:38,760 --> 00:32:40,120
+Hydrogen ions.
+
+718
+00:32:40,120 --> 00:32:41,800
+In the sun itself, right?
+
+719
+00:32:41,800 --> 00:32:45,120
+So these are absorption events occurring in the solar
+
+720
+00:32:45,120 --> 00:32:46,040
+atmosphere.
+
+721
+00:32:46,040 --> 00:32:51,160
+And now if we do air mass one or 1.5, let's push it up a
+
+722
+00:32:51,160 --> 00:32:55,080
+little bit from air mass zero, this is now passing through an
+
+723
+00:32:55,080 --> 00:32:57,440
+angle somewhere around 60 degrees.
+
+724
+00:32:57,440 --> 00:32:58,760
+Now what do we have?
+
+725
+00:32:58,760 --> 00:33:03,280
+We have several absorption lines occurring, right?
+
+726
+00:33:03,280 --> 00:33:07,320
+And these correspond to absorption events where?
+
+727
+00:33:07,320 --> 00:33:08,240
+In the Earth's atmosphere.
+
+728
+00:33:08,240 --> 00:33:09,080
+Exactly.
+
+729
+00:33:09,080 --> 00:33:11,400
+And so we can attribute each of these little absorption
+
+730
+00:33:11,400 --> 00:33:14,360
+lines here to a particular, usually it's a molecule, in
+
+731
+00:33:14,360 --> 00:33:16,080
+the Earth's atmosphere.
+
+732
+00:33:16,080 --> 00:33:19,320
+Note the sensitivity of the human eye in black right here
+
+733
+00:33:19,320 --> 00:33:23,480
+and how well matched it is to the air mass 1.5 spectrum.
+
+734
+00:33:23,480 --> 00:33:25,280
+That's pretty cool.
+
+735
+00:33:25,280 --> 00:33:26,560
+That's pretty cool.
+
+736
+00:33:26,560 --> 00:33:29,960
+OK, so there you have the spectrum.
+
+737
+00:33:29,960 --> 00:33:34,360
+Let's get to these units of power density per bandwidth
+
+738
+00:33:34,360 --> 00:33:35,480
+for a second.
+
+739
+00:33:35,480 --> 00:33:38,000
+The way to think about those units is as follows.
+
+740
+00:33:38,000 --> 00:33:40,000
+Kilowatts per meter squared, OK, get that.
+
+741
+00:33:40,040 --> 00:33:43,320
+It's the amount of power falling on the unit area.
+
+742
+00:33:43,320 --> 00:33:46,440
+Per micron, the reason it's normalized per micron is
+
+743
+00:33:46,440 --> 00:33:48,880
+because the wavelength units right here is in microns.
+
+744
+00:33:48,880 --> 00:33:51,120
+And if you take the product of the two, it makes it pretty
+
+745
+00:33:51,120 --> 00:33:53,240
+easy to calculate the total power density.
+
+746
+00:33:53,240 --> 00:33:56,680
+So if you want to calculate the power density, the total
+
+747
+00:33:56,680 --> 00:34:00,440
+watts per square meter falling on the Earth, say between 0.5
+
+748
+00:34:00,440 --> 00:34:02,920
+and 1 micron, you can calculate the total amount of
+
+749
+00:34:02,920 --> 00:34:05,280
+power by multiplying one versus the other.
+
+750
+00:34:05,280 --> 00:34:07,360
+So that's why they're in this weird unit right here.
+
+751
+00:34:07,360 --> 00:34:09,980
+It's to help you perform calculations, like the ones
+
+752
+00:34:09,980 --> 00:34:11,660
+you'll do in your homework, like the ones you'll do for
+
+753
+00:34:11,660 --> 00:34:13,420
+your class project, and so forth.
+
+754
+00:34:13,420 --> 00:34:16,580
+And it strikes a little bit odd the first time you look at
+
+755
+00:34:16,580 --> 00:34:18,100
+it, but it begins making sense.
+
+756
+00:34:18,100 --> 00:34:20,540
+And you're appreciative of it after a while.
+
+757
+00:34:20,540 --> 00:34:22,420
+There are standard spectra.
+
+758
+00:34:22,420 --> 00:34:23,980
+They're standard reference spectra.
+
+759
+00:34:23,980 --> 00:34:27,620
+Sure, you can go outside and using some form of a
+
+760
+00:34:27,620 --> 00:34:28,300
+spectrophotometer.
+
+761
+00:34:28,300 --> 00:34:31,900
+You can measure the incident solar radiation and map out
+
+762
+00:34:31,900 --> 00:34:35,740
+the spectral irradiance as a function of wavelength.
+
+763
+00:34:35,740 --> 00:34:39,860
+In terms of planning or communicating with other
+
+764
+00:34:39,860 --> 00:34:42,780
+scientists, we typically refer to standards.
+
+765
+00:34:42,780 --> 00:34:45,260
+We use common yardsticks, common metrics, and that
+
+766
+00:34:45,260 --> 00:34:48,460
+facilitates communication, avoids ambiguity, avoids
+
+767
+00:34:48,460 --> 00:34:49,540
+misunderstanding.
+
+768
+00:34:49,540 --> 00:34:53,580
+And so these standards right here, these ASTMs, refer to
+
+769
+00:34:53,580 --> 00:34:56,540
+the particular standards that are used for those solar
+
+770
+00:34:56,540 --> 00:34:57,300
+spectra.
+
+771
+00:34:57,300 --> 00:34:59,260
+And then you're supporting online material at the very
+
+772
+00:34:59,260 --> 00:35:01,660
+end of the lecture slides online.
+
+773
+00:35:01,660 --> 00:35:05,100
+We go into some more detail regarding that for those who
+
+774
+00:35:05,100 --> 00:35:06,860
+are interested.
+
+775
+00:35:06,860 --> 00:35:10,060
+So again, these little absorption lines here correspond
+
+776
+00:35:10,060 --> 00:35:13,460
+to specific atmospheric events, interactions of that
+
+777
+00:35:13,460 --> 00:35:16,660
+particular wavelength of light, with some molecule
+
+778
+00:35:16,660 --> 00:35:19,740
+usually in the atmosphere.
+
+779
+00:35:19,740 --> 00:35:22,900
+We can as well have generalized attenuation due to other
+
+780
+00:35:22,900 --> 00:35:24,140
+scattering mechanisms.
+
+781
+00:35:24,140 --> 00:35:26,580
+Notice right here in the short wavelengths what's
+
+782
+00:35:26,580 --> 00:35:28,540
+happening.
+
+783
+00:35:28,540 --> 00:35:32,060
+From the red to the blue, this light is particularly
+
+784
+00:35:32,060 --> 00:35:33,020
+affected.
+
+785
+00:35:33,020 --> 00:35:36,500
+We have a sharp drop in the shorter wavelengths, and it
+
+786
+00:35:36,500 --> 00:35:39,420
+grows sharper the shorter in wavelength you go.
+
+787
+00:35:39,420 --> 00:35:43,500
+So the attenuation, due to passing through the atmosphere,
+
+788
+00:35:43,500 --> 00:35:47,300
+grows or increases the shorter in wavelength you go.
+
+789
+00:35:47,300 --> 00:35:51,020
+And this is a process generally called Rayleigh
+
+790
+00:35:51,020 --> 00:35:52,420
+scattering.
+
+791
+00:35:52,420 --> 00:35:54,940
+And there is a wavelength to the fourth dependence.
+
+792
+00:35:54,940 --> 00:35:58,700
+So as you go shorter and shorter in wavelength, the
+
+793
+00:35:58,700 --> 00:36:00,860
+likelihood or probability of scattering will increase.
+
+794
+00:36:00,860 --> 00:36:02,380
+Why is that pertinent to us?
+
+795
+00:36:02,380 --> 00:36:04,740
+Well, now you can answer that little child who walks up to
+
+796
+00:36:04,740 --> 00:36:06,860
+you in the shopping mall and says, why is the sky blue?
+
+797
+00:36:06,860 --> 00:36:11,100
+You say, well, there is this elastic scattering mechanism
+
+798
+00:36:11,100 --> 00:36:14,980
+of electromagnetic radiation whereby in a broad spectral
+
+799
+00:36:14,980 --> 00:36:17,780
+event, such as a sun, black body emission, we have the
+
+800
+00:36:17,780 --> 00:36:19,780
+shorter wavelengths that are scattered more.
+
+801
+00:36:19,780 --> 00:36:22,220
+And that's why when we look away from the sun in the other
+
+802
+00:36:22,220 --> 00:36:24,260
+direction, we see those shorter wavelengths that are
+
+803
+00:36:24,260 --> 00:36:25,780
+scattered back to us.
+
+804
+00:36:25,780 --> 00:36:27,420
+That is pertinent for two reasons.
+
+805
+00:36:27,420 --> 00:36:28,940
+A, it makes the sky look blue.
+
+806
+00:36:28,940 --> 00:36:32,180
+Secondly, it's not only the short wavelengths in blue
+
+807
+00:36:32,180 --> 00:36:34,420
+light that we're worried about, but also the ultraviolet
+
+808
+00:36:34,420 --> 00:36:35,580
+radiation.
+
+809
+00:36:35,580 --> 00:36:40,740
+So even on a cloudy day, if there is a few open patches
+
+810
+00:36:40,740 --> 00:36:43,700
+and you can get a scattered light coming in, you can still
+
+811
+00:36:43,700 --> 00:36:44,780
+get sunburn.
+
+812
+00:36:44,780 --> 00:36:48,780
+And secondly, there is a very strong dependence on the
+
+813
+00:36:48,780 --> 00:36:51,860
+path length, the optical path length, the air mass.
+
+814
+00:36:51,860 --> 00:36:54,940
+So if you go further north in latitudes, where your air mass
+
+815
+00:36:54,940 --> 00:36:59,140
+increases, because now, if you think about the atmosphere as
+
+816
+00:36:59,140 --> 00:37:00,700
+being kind of a flat, just give me
+
+817
+00:37:00,700 --> 00:37:02,900
+approximation for a minute, if you think of the earth being
+
+818
+00:37:02,900 --> 00:37:05,620
+flat and the atmosphere being flat, now the path length in
+
+819
+00:37:05,620 --> 00:37:08,380
+winter is much, much greater than the path length in
+
+820
+00:37:08,380 --> 00:37:09,100
+summer.
+
+821
+00:37:09,100 --> 00:37:13,620
+Same sun, just different path length, much more likely to
+
+822
+00:37:13,620 --> 00:37:16,660
+get sunburn in summer than you are in winter.
+
+823
+00:37:16,660 --> 00:37:20,500
+Because the path length is a lot shorter and the amount of
+
+824
+00:37:20,500 --> 00:37:22,980
+short wavelength ultraviolet radiation that will be scattered
+
+825
+00:37:22,980 --> 00:37:26,060
+away is going to be less in the summer than in winter.
+
+826
+00:37:26,060 --> 00:37:28,460
+That's also why if you go south in latitude, for example,
+
+827
+00:37:28,460 --> 00:37:31,260
+from here, say, to Miami, your incidence of getting sunburn is
+
+828
+00:37:31,260 --> 00:37:35,500
+a lot greater, a lot more than the total increase of the
+
+829
+00:37:35,500 --> 00:37:36,620
+visible portion of the spectrum.
+
+830
+00:37:36,620 --> 00:37:40,500
+So the sun might not look that different to you, but your
+
+831
+00:37:40,500 --> 00:37:42,860
+incidence of sunburn events goes up quite a bit.
+
+832
+00:37:42,860 --> 00:37:45,060
+And that is due to Rayleigh scattering.
+
+833
+00:37:45,060 --> 00:37:47,980
+And now, by this point, the little child has already run
+
+834
+00:37:47,980 --> 00:37:49,300
+crying back to the parent.
+
+835
+00:37:49,300 --> 00:37:52,180
+But you have a full satisfaction of knowing how the
+
+836
+00:37:52,180 --> 00:37:53,860
+universe around you is put together.
+
+837
+00:37:53,860 --> 00:37:56,620
+And that actually was a pretty deep problem.
+
+838
+00:37:56,620 --> 00:38:00,940
+It took a long time for at least European scientists to
+
+839
+00:38:00,940 --> 00:38:04,860
+crack that nut and figure out what was going on.
+
+840
+00:38:04,860 --> 00:38:08,260
+Describe how solar installation maps are made and use them to
+
+841
+00:38:08,260 --> 00:38:10,260
+estimate the local solar resource.
+
+842
+00:38:10,260 --> 00:38:12,420
+So we have metrology.
+
+843
+00:38:12,420 --> 00:38:15,060
+We have techniques that we can use to measure the amount of
+
+844
+00:38:15,060 --> 00:38:16,420
+sunlight that is out there.
+
+845
+00:38:16,420 --> 00:38:20,060
+And now we want to apply those in some systematic fashion to
+
+846
+00:38:20,060 --> 00:38:23,580
+measure the average solar resource around the planet,
+
+847
+00:38:23,580 --> 00:38:26,940
+including the oceans, and then use that information to
+
+848
+00:38:26,940 --> 00:38:30,740
+estimate, later on, the land area needed or the size of the
+
+849
+00:38:30,740 --> 00:38:32,780
+array or how many cells we're going to have to string
+
+850
+00:38:32,780 --> 00:38:35,380
+together based on the solar resource locally.
+
+851
+00:38:35,380 --> 00:38:38,460
+So how are these insulation maps made, these maps that we'll
+
+852
+00:38:38,460 --> 00:38:40,860
+use as engineers to size our systems?
+
+853
+00:38:40,860 --> 00:38:43,140
+First off, let me define insulation.
+
+854
+00:38:43,140 --> 00:38:45,860
+This is not insulation, as in stuff you put around the house
+
+855
+00:38:45,860 --> 00:38:47,060
+to keep the heat from going out.
+
+856
+00:38:47,060 --> 00:38:51,020
+This is insulation with an O, a shorthand for incoming solar
+
+857
+00:38:51,020 --> 00:38:53,340
+radiation, insulation at the top there.
+
+858
+00:38:53,340 --> 00:38:55,860
+It's typically given in units of energy per unit area per
+
+859
+00:38:55,860 --> 00:38:57,940
+unit time.
+
+860
+00:38:57,940 --> 00:39:00,500
+So kilowatt hours, that's energy, per meter squared per
+
+861
+00:39:00,500 --> 00:39:01,380
+day.
+
+862
+00:39:01,380 --> 00:39:03,420
+And it's helpful when designing or projecting these PV
+
+863
+00:39:03,420 --> 00:39:04,020
+systems.
+
+864
+00:39:04,020 --> 00:39:06,740
+And it's affected by a bunch of stuff, which we'll get to
+
+865
+00:39:06,740 --> 00:39:07,540
+over the next few slides.
+
+866
+00:39:07,540 --> 00:39:11,180
+So we can measure insulation from the ground.
+
+867
+00:39:11,180 --> 00:39:13,700
+That's a surefire way to do it.
+
+868
+00:39:13,700 --> 00:39:16,940
+This right here is a pyrenometer.
+
+869
+00:39:16,940 --> 00:39:22,020
+Pyro, fire, sun, anode on top of.
+
+870
+00:39:22,020 --> 00:39:26,540
+So anode, cathode, cata, under, ana, above,
+
+871
+00:39:26,540 --> 00:39:28,900
+catatonic, under.
+
+872
+00:39:28,900 --> 00:39:29,820
+So pyrenometer.
+
+873
+00:39:29,820 --> 00:39:33,380
+So it's basically measuring the sun above, measuring the
+
+874
+00:39:33,380 --> 00:39:34,140
+sunlight above.
+
+875
+00:39:34,140 --> 00:39:38,100
+This is a full hemisphere, measuring the sunlight coming
+
+876
+00:39:38,100 --> 00:39:38,900
+in from all angles.
+
+877
+00:39:38,900 --> 00:39:40,460
+There's a small little sensor right here.
+
+878
+00:39:40,460 --> 00:39:41,460
+It's lying flat.
+
+879
+00:39:41,460 --> 00:39:43,740
+And that glasses essentially allowing the light from
+
+880
+00:39:43,740 --> 00:39:46,300
+different angles to get into the sensor.
+
+881
+00:39:46,300 --> 00:39:49,460
+And this is a very narrow, solid angle of the sky.
+
+882
+00:39:49,460 --> 00:39:52,260
+It's probably just looking at the sun, or in a particular
+
+883
+00:39:52,260 --> 00:39:55,100
+direction, rather, plus or minus 2 and 1 half degrees in
+
+884
+00:39:55,100 --> 00:39:56,380
+either direction.
+
+885
+00:39:56,380 --> 00:39:59,860
+So it's a very limited, solid angle of the sky.
+
+886
+00:39:59,860 --> 00:40:02,180
+This one over here would be more appropriate, say, for a
+
+887
+00:40:02,180 --> 00:40:04,860
+flat panel that's receiving scattered light coming in at
+
+888
+00:40:04,860 --> 00:40:06,020
+all angles.
+
+889
+00:40:06,020 --> 00:40:08,300
+This one over here would be more appropriate for a
+
+890
+00:40:08,300 --> 00:40:11,420
+tracking system, especially a concentrator system that's
+
+891
+00:40:11,420 --> 00:40:14,100
+has optics that only accept light in from a very limited
+
+892
+00:40:14,100 --> 00:40:15,060
+solid angle.
+
+893
+00:40:15,060 --> 00:40:17,300
+So imagine you have a lens that has to have light incident
+
+894
+00:40:17,300 --> 00:40:19,540
+to it to focus it on the right spot.
+
+895
+00:40:19,540 --> 00:40:22,260
+And if the sun moves in the wrong spot, or put it another
+
+896
+00:40:22,260 --> 00:40:24,580
+way, if the lens is in the wrong position relative to the
+
+897
+00:40:24,580 --> 00:40:27,580
+incident solar radiation, the light is being focused off of
+
+898
+00:40:27,580 --> 00:40:30,220
+the solar cell, and it doesn't produce any power.
+
+899
+00:40:30,220 --> 00:40:35,700
+So this is a system that's used for measuring the direct
+
+900
+00:40:35,700 --> 00:40:38,380
+solar spectrum, which will be useful for calculating the
+
+901
+00:40:38,380 --> 00:40:40,900
+total output from concentrator systems.
+
+902
+00:40:40,940 --> 00:40:43,500
+And this pyrometer over here is useful for
+
+903
+00:40:43,500 --> 00:40:46,900
+flat panel systems.
+
+904
+00:40:46,900 --> 00:40:50,260
+And we can also measure the total amount of incident
+
+905
+00:40:50,260 --> 00:40:52,860
+solar radiation, total amount of insulation from the sky
+
+906
+00:40:52,860 --> 00:40:54,780
+using satellite imagery.
+
+907
+00:40:54,780 --> 00:40:57,660
+This is an example of a measurement.
+
+908
+00:40:57,660 --> 00:41:00,500
+And this right here is insulation, average insulation,
+
+909
+00:41:00,500 --> 00:41:05,420
+from 0 to 550 watts per square meter taken from a NASA
+
+910
+00:41:05,420 --> 00:41:08,540
+satellite with the NASA Earth Observatory.
+
+911
+00:41:08,580 --> 00:41:11,180
+Very cool website, great place to spend a Friday night if
+
+912
+00:41:11,180 --> 00:41:12,420
+you've done the plans.
+
+913
+00:41:12,420 --> 00:41:16,220
+Just log on here and bunches of maps from snow cover to
+
+914
+00:41:16,220 --> 00:41:19,740
+population density to CO2 being emitted to wildfires
+
+915
+00:41:19,740 --> 00:41:20,580
+around the planet.
+
+916
+00:41:20,580 --> 00:41:22,700
+Anything that a satellite can measure, they're measuring.
+
+917
+00:41:22,700 --> 00:41:26,140
+And the insulation value is one of them.
+
+918
+00:41:26,140 --> 00:41:29,940
+And so we have data from various points.
+
+919
+00:41:29,940 --> 00:41:32,580
+This is the insulation in January.
+
+920
+00:41:32,580 --> 00:41:37,020
+So in January, it's the southern hemisphere's summer,
+
+921
+00:41:37,020 --> 00:41:38,780
+the northern hemisphere's winter.
+
+922
+00:41:38,780 --> 00:41:42,580
+And as a result, we have less insulation up north.
+
+923
+00:41:42,580 --> 00:41:44,060
+We're in the blues.
+
+924
+00:41:44,060 --> 00:41:46,660
+And the southern hemisphere is more in the reds.
+
+925
+00:41:46,660 --> 00:41:48,500
+And of course, the tide turns.
+
+926
+00:41:48,500 --> 00:41:52,260
+In July, we have our summer.
+
+927
+00:41:52,260 --> 00:41:54,420
+And the southern hemisphere has their winter.
+
+928
+00:41:54,420 --> 00:41:56,740
+And the poor folks here in Antarctica have nothing.
+
+929
+00:41:56,740 --> 00:42:00,020
+So a couple of things to note, just already straight off
+
+930
+00:42:00,020 --> 00:42:04,260
+the bat, we're noticing that there's, in general, higher
+
+931
+00:42:04,260 --> 00:42:06,220
+insulation near the equator.
+
+932
+00:42:06,220 --> 00:42:10,620
+The equator passing right through here, approximately.
+
+933
+00:42:10,620 --> 00:42:12,820
+Fun fact, small city up there in the north of Brazil.
+
+934
+00:42:12,820 --> 00:42:14,900
+There's a soccer field that is half in the north and half
+
+935
+00:42:14,900 --> 00:42:16,380
+in the south.
+
+936
+00:42:16,380 --> 00:42:17,420
+That's neither here nor there.
+
+937
+00:42:17,420 --> 00:42:21,180
+We have rainforests up here in the north of Brazil, central
+
+938
+00:42:21,180 --> 00:42:23,580
+Africa, and here in Southeast Asia.
+
+939
+00:42:23,580 --> 00:42:25,540
+And even when the sun is directly overhead, those
+
+940
+00:42:25,540 --> 00:42:28,540
+clouds are preventing some of the sunlight from getting in.
+
+941
+00:42:28,540 --> 00:42:31,580
+And that's why right at the equator itself, we typically
+
+942
+00:42:31,580 --> 00:42:34,580
+have less insulation than we do in the tropics, say,
+
+943
+00:42:34,580 --> 00:42:36,980
+tropic of capricorn, tropic of cancer,
+
+944
+00:42:36,980 --> 00:42:39,380
+tropic of capricorn running straight through
+
+945
+00:42:39,380 --> 00:42:40,980
+Sao Paulo, Brazil, tropic of cancer
+
+946
+00:42:40,980 --> 00:42:43,740
+running through Key West, just to situate yourselves.
+
+947
+00:42:43,740 --> 00:42:47,300
+And the tropics are how far away from the equator?
+
+948
+00:42:47,300 --> 00:42:48,420
+OK, 23 and a half.
+
+949
+00:42:48,420 --> 00:42:50,420
+Good guess.
+
+950
+00:42:50,420 --> 00:42:51,180
+Good.
+
+951
+00:42:51,180 --> 00:42:55,460
+So what we're going to do is now launch into our next
+
+952
+00:42:55,460 --> 00:42:58,660
+learning objective, which is to list the causes of variation
+
+953
+00:42:58,660 --> 00:43:02,300
+and intermittency of the solar resource and quantify the time
+
+954
+00:43:02,300 --> 00:43:03,580
+constants and magnitudes.
+
+955
+00:43:03,580 --> 00:43:07,300
+This is really, really, really, really important.
+
+956
+00:43:07,300 --> 00:43:09,300
+The other stuff is very useful from an engineering point of
+
+957
+00:43:09,300 --> 00:43:12,580
+view, from answering certain questions in your homework.
+
+958
+00:43:12,580 --> 00:43:17,580
+This right here determines, or is one of the singular reasons
+
+959
+00:43:17,580 --> 00:43:21,460
+why solar doesn't behave like a regular fossil fuel source.
+
+960
+00:43:21,460 --> 00:43:24,380
+Why solar does not produce power all the time.
+
+961
+00:43:24,380 --> 00:43:26,540
+It is variable in terms of its power output.
+
+962
+00:43:26,540 --> 00:43:29,660
+Variability generally refers to the fact that we can predict
+
+963
+00:43:29,660 --> 00:43:30,780
+it's coming.
+
+964
+00:43:30,780 --> 00:43:33,500
+It's going to vary, but at least we can predict it's coming.
+
+965
+00:43:33,500 --> 00:43:38,220
+Intermittency, while not a strict definition, the
+
+966
+00:43:38,220 --> 00:43:40,460
+understanding when somebody says intermittency or
+
+967
+00:43:40,460 --> 00:43:43,580
+intermittent power source, the impression that it gives is
+
+968
+00:43:43,580 --> 00:43:47,220
+that it's unpredictable in terms of its variability in
+
+969
+00:43:47,220 --> 00:43:48,340
+its variation.
+
+970
+00:43:48,340 --> 00:43:51,340
+So we've talked a little bit about the variation so far and
+
+971
+00:43:51,340 --> 00:43:52,660
+about the predictable nature of the sun.
+
+972
+00:43:52,660 --> 00:43:55,140
+We've talked about how the sunlight, the solar resource,
+
+973
+00:43:55,140 --> 00:43:57,220
+varies from summer to winter.
+
+974
+00:43:57,220 --> 00:44:01,940
+We've talked about how the solar resource varies as a
+
+975
+00:44:01,940 --> 00:44:04,220
+function of latitude.
+
+976
+00:44:04,220 --> 00:44:07,580
+But now we're going to talk not only in a little bit more
+
+977
+00:44:07,580 --> 00:44:10,980
+depth about that and have a few fun in class exercises to
+
+978
+00:44:10,980 --> 00:44:14,620
+get us really grasping that concept in its entirety, but
+
+979
+00:44:14,620 --> 00:44:18,860
+also talk about some sources of intermittency, which if you
+
+980
+00:44:18,860 --> 00:44:21,580
+have a large amount of solar contributing to the grid and it
+
+981
+00:44:21,580 --> 00:44:24,380
+is intermittent and you have no way of dealing with that,
+
+982
+00:44:24,380 --> 00:44:26,660
+you're going to have fluctuations of energy
+
+983
+00:44:26,660 --> 00:44:30,540
+level on the grid, or power levels, here as a function of
+
+984
+00:44:30,540 --> 00:44:33,140
+time, and that's not going to be good.
+
+985
+00:44:33,140 --> 00:44:35,820
+So in terms of the seasonal variations, in terms of
+
+986
+00:44:35,820 --> 00:44:40,060
+predicting the amount coming from the sun at a given point,
+
+987
+00:44:40,060 --> 00:44:43,420
+I told you it looked a little bit like a sine or cosine
+
+988
+00:44:43,420 --> 00:44:45,220
+wave, and indeed it does.
+
+989
+00:44:45,220 --> 00:44:48,060
+You can calculate those values based on this website right
+
+990
+00:44:48,060 --> 00:44:50,820
+here, just to show you how nifty and cool it is.
+
+991
+00:44:50,820 --> 00:44:53,260
+Our friends at Arizona State University, Stuart Bowden and
+
+992
+00:44:53,260 --> 00:44:56,220
+Christiana Hansberg, really put in a lot of time to make this.
+
+993
+00:44:56,220 --> 00:44:59,020
+You can vary the time or the day of year, right here, for
+
+994
+00:44:59,020 --> 00:45:04,660
+instance, and you can see how the solar resource, this is the
+
+995
+00:45:04,660 --> 00:45:08,220
+direct radiation, kilowatts per meter squared, and this is the
+
+996
+00:45:08,220 --> 00:45:11,380
+time, so if you take the integral of the curve right
+
+997
+00:45:11,380 --> 00:45:12,780
+here, you're going to get what?
+
+998
+00:45:12,780 --> 00:45:13,780
+Units of?
+
+999
+00:45:16,740 --> 00:45:22,020
+Power times time is energy, energy per unit area, right?
+
+1000
+00:45:22,020 --> 00:45:23,700
+So you're going to be able to calculate the total amount of
+
+1001
+00:45:23,700 --> 00:45:28,380
+energy falling on a given area per day, let's say.
+
+1002
+00:45:28,380 --> 00:45:33,020
+So if we look at the size of this little curve in winter, the
+
+1003
+00:45:33,020 --> 00:45:35,660
+total area under this is going to be very small, that's because
+
+1004
+00:45:35,660 --> 00:45:39,940
+the solar resource is very small, and the sun rises late and
+
+1005
+00:45:39,940 --> 00:45:42,020
+sets early in winter.
+
+1006
+00:45:42,020 --> 00:45:46,540
+And as we move towards summer, obviously the total amount of
+
+1007
+00:45:46,540 --> 00:45:50,620
+the solar resource increases, not only it increases because of
+
+1008
+00:45:50,620 --> 00:45:55,460
+this, that we have at solar noon, we have less of a path
+
+1009
+00:45:55,460 --> 00:45:57,620
+through the atmosphere, we have more sunlight reaching
+
+1010
+00:45:57,620 --> 00:46:02,380
+the earth, we have a total increase of the amount reaching
+
+1011
+00:46:02,380 --> 00:46:06,140
+the earth, we also have that cosine theta term here dictating
+
+1012
+00:46:06,140 --> 00:46:10,500
+the, say, the cross-section incident to that sunlight coming
+
+1013
+00:46:10,500 --> 00:46:14,220
+in increasing, and so that's driving this going up, and we
+
+1014
+00:46:14,220 --> 00:46:18,180
+also have a second fact that the time of the day, the total
+
+1015
+00:46:18,180 --> 00:46:20,980
+duration of the day increases, at least in northern latitudes,
+
+1016
+00:46:20,980 --> 00:46:24,820
+and here at around 40, let's say 41 degrees north, here in
+
+1017
+00:46:24,820 --> 00:46:30,100
+Boston, and we have, because of these two effects, a much
+
+1018
+00:46:30,100 --> 00:46:33,900
+larger area underneath that curve, and so as we go through
+
+1019
+00:46:33,900 --> 00:46:38,420
+summer, and now finally to September 13th, and back to
+
+1020
+00:46:38,420 --> 00:46:40,620
+winter, our solar resource goes back down again.
+
+1021
+00:46:40,620 --> 00:46:45,940
+So you can calculate it, you can visualize it, that's cool,
+
+1022
+00:46:45,940 --> 00:46:50,860
+and we can plot the total amount of energy per unit area per
+
+1023
+00:46:50,860 --> 00:46:53,620
+day, essentially the integral under that curve, as a function
+
+1024
+00:46:53,620 --> 00:46:57,860
+of location around the US, around the world, per month,
+
+1025
+00:46:57,860 --> 00:47:00,780
+let's say, right, so this is January, this is kilowatt hours
+
+1026
+00:47:00,780 --> 00:47:03,380
+per meter squared per day, so it's just taking the integral
+
+1027
+00:47:03,380 --> 00:47:09,380
+of the curves measured, so it's accounting for cloudy days,
+
+1028
+00:47:09,380 --> 00:47:12,300
+which kind of has a depressive effect, this is an envelope
+
+1029
+00:47:12,300 --> 00:47:14,740
+function, if you will, the maximum you could get, and of
+
+1030
+00:47:14,740 --> 00:47:16,860
+course local weather patterns will suppress that, drive it
+
+1031
+00:47:16,860 --> 00:47:21,460
+down, so this is the real map of the United States, and you
+
+1032
+00:47:21,460 --> 00:47:24,980
+can see in sunnier areas that are less cloudy, over here, for
+
+1033
+00:47:24,980 --> 00:47:27,940
+example, in Arizona and New Mexico, there is a large solar
+
+1034
+00:47:27,940 --> 00:47:31,540
+resource even in January, Atlanta, which has half of the
+
+1035
+00:47:31,540 --> 00:47:35,740
+number of sunny days per year as Phoenix does, even if it's the
+
+1036
+00:47:35,740 --> 00:47:39,580
+same latitude, is getting about half the solar resource, they
+
+1037
+00:47:39,580 --> 00:47:43,060
+got a short end of the stick, again, this curve right here is
+
+1038
+00:47:43,060 --> 00:47:47,100
+the envelope function, right, and off of that, you can only go
+
+1039
+00:47:47,100 --> 00:47:50,100
+down, you can only decrease the amount of solar resource
+
+1040
+00:47:50,100 --> 00:47:54,500
+actually arriving at our feet here, and so this is in January,
+
+1041
+00:47:54,500 --> 00:47:57,780
+and this is all in the same color scale here, as we move
+
+1042
+00:47:57,780 --> 00:48:01,220
+through the months, so we'll move from January to February to
+
+1043
+00:48:01,220 --> 00:48:07,180
+March, April, May, June, July, August, September, October,
+
+1044
+00:48:07,180 --> 00:48:12,620
+November, December, so you can see across the United States how
+
+1045
+00:48:12,620 --> 00:48:15,340
+the resource is distributed geographically, the general
+
+1046
+00:48:15,340 --> 00:48:18,460
+trend that as you go from south to north, you have a decreasing
+
+1047
+00:48:18,460 --> 00:48:21,380
+solar resource holds, you can also see the influence of local
+
+1048
+00:48:21,380 --> 00:48:25,740
+weather patterns as well for the same latitude, so that's pretty
+
+1049
+00:48:25,740 --> 00:48:29,540
+nifty, and another nifty fact, if you look at the year average
+
+1050
+00:48:29,540 --> 00:48:32,420
+value, annual, this is the annual average value, here in
+
+1051
+00:48:32,420 --> 00:48:35,580
+Boston, we're averaging around 4.5 kilowatt hours per meter
+
+1052
+00:48:35,580 --> 00:48:39,660
+squared per day, Phoenix, Arizona can be upwards of six
+
+1053
+00:48:39,660 --> 00:48:45,900
+somewhere in the outskirts, it's not that bad, it's only a few
+
+1054
+00:48:45,900 --> 00:48:49,220
+tens of percent, it's not that bad, I tell myself, I don't
+
+1055
+00:48:49,220 --> 00:48:52,380
+believe it myself either, but I try to convince myself of that
+
+1056
+00:48:52,380 --> 00:48:53,540
+during winter.
+
+1057
+00:48:53,540 --> 00:48:57,420
+All right, let me show you the seasonal and urinal variations
+
+1058
+00:48:57,420 --> 00:49:00,980
+from, we're increasing the level of sophistication as we go
+
+1059
+00:49:00,980 --> 00:49:03,820
+along, we've assumed you've done your readings, we've started
+
+1060
+00:49:03,820 --> 00:49:06,620
+with some simple examples, and now we're really taking it one
+
+1061
+00:49:06,620 --> 00:49:09,380
+step further, which is to introduce the full 3D model,
+
+1062
+00:49:09,380 --> 00:49:13,740
+and I'm going to do that by use of this really cool app that's
+
+1063
+00:49:13,740 --> 00:49:20,940
+available here, right here, this is you standing on the earth,
+
+1064
+00:49:20,940 --> 00:49:23,620
+and you can drag and pull us around, you can see this north,
+
+1065
+00:49:23,620 --> 00:49:26,540
+south, east and west, so I'm going to pull it up a little bit
+
+1066
+00:49:26,540 --> 00:49:29,660
+just to give us a little bit of perspective, still south is
+
+1067
+00:49:29,660 --> 00:49:32,820
+facing toward us, north is away, the sun will rise in the east
+
+1068
+00:49:32,820 --> 00:49:38,300
+and set in the west, now if I, let's say I pull the date back
+
+1069
+00:49:38,300 --> 00:49:44,340
+to September, so this little tool is so cool because it
+
+1070
+00:49:44,340 --> 00:49:46,860
+recognizes your IP address and situates you at the proper
+
+1071
+00:49:46,860 --> 00:49:49,700
+latitude, so we don't have to touch that at all, it's
+
+1072
+00:49:49,700 --> 00:49:53,300
+approximately right, we're at about 41 degrees, we're right
+
+1073
+00:49:53,300 --> 00:49:56,900
+here in September, and in terms of time of day, we can pretty
+
+1074
+00:49:56,900 --> 00:50:00,820
+much just cycle through the time of day if we like, we could,
+
+1075
+00:50:00,820 --> 00:50:05,660
+for example, start animation, let's see, this is going very
+
+1076
+00:50:05,660 --> 00:50:09,100
+fast right now, I'm going to slow it down, so you can see the
+
+1077
+00:50:09,100 --> 00:50:12,860
+time of day moving right over here, and you can see this,
+
+1078
+00:50:12,860 --> 00:50:16,340
+the relative to our vintage point on the surface of the
+
+1079
+00:50:16,340 --> 00:50:20,060
+earth, this little yellow dot here and this yellow line is
+
+1080
+00:50:20,060 --> 00:50:23,540
+tracing through the path of the sun and the sky, from our
+
+1081
+00:50:23,540 --> 00:50:27,340
+perspective, and so as we go through the seasons, I'm going
+
+1082
+00:50:27,340 --> 00:50:30,260
+to speed it up just a little bit so that we pay more attention
+
+1083
+00:50:30,260 --> 00:50:34,460
+to the position of this yellow line and less attention to the
+
+1084
+00:50:34,500 --> 00:50:36,180
+journal variations, we're paying more attention to the
+
+1085
+00:50:36,180 --> 00:50:38,820
+seasonal variations, I'm going to vary the seasons by force
+
+1086
+00:50:38,820 --> 00:50:43,900
+here, I'm going to go back to July or June, I may, here we go.
+
+1087
+00:50:46,100 --> 00:50:48,940
+Yeah, so there's a number of other lines right here, and
+
+1088
+00:50:48,940 --> 00:50:54,020
+they're all explained very carefully, there's the hour of
+
+1089
+00:50:54,020 --> 00:51:00,180
+ascension, which would be, prime hour circle, yeah, so I
+
+1090
+00:51:00,180 --> 00:51:03,180
+believe, I'd have to go back and double check all of this, but
+
+1091
+00:51:03,180 --> 00:51:06,500
+I believe they relate to the, what would be the sunrise and
+
+1092
+00:51:06,500 --> 00:51:08,940
+sunset of that given day, let's see if our hypothesis is
+
+1093
+00:51:08,940 --> 00:51:13,940
+correct, no, it is not, that would have to be, since it's
+
+1094
+00:51:13,940 --> 00:51:18,420
+varying in a systematic way from January, through the summer
+
+1095
+00:51:18,420 --> 00:51:21,060
+and then back to the winter, I'm imagining this has something
+
+1096
+00:51:21,060 --> 00:51:24,740
+to do with the direction of the sun, relative to the earth,
+
+1097
+00:51:24,740 --> 00:51:28,580
+right, as it traces that ellipse through the sky. So let's pay
+
+1098
+00:51:28,580 --> 00:51:30,580
+attention to that yellow line for a minute, that's the one I
+
+1099
+00:51:30,580 --> 00:51:33,780
+want to attract everybody's attention to. Now we're in June,
+
+1100
+00:51:33,780 --> 00:51:36,460
+so in the height of summer, and relative to this observer right
+
+1101
+00:51:36,460 --> 00:51:39,860
+here, the sun is further up in the sky, just like we traced
+
+1102
+00:51:39,860 --> 00:51:43,780
+out right there. And now as we go to winter, that line drops
+
+1103
+00:51:43,780 --> 00:51:47,060
+closer to the horizon. So a couple of things happen, if we
+
+1104
+00:51:47,060 --> 00:51:49,980
+look like this, for instance, now we're looking straight down
+
+1105
+00:51:49,980 --> 00:51:54,500
+on the observer. In wintertime, the sun will rise in the
+
+1106
+00:51:54,500 --> 00:51:58,380
+southeast, and it will trace this arc through the sky and set
+
+1107
+00:51:58,380 --> 00:52:03,580
+in the southwest over here. In the summertime, the sun will
+
+1108
+00:52:03,580 --> 00:52:11,100
+rise almost in the northeast, north of east, just slightly
+
+1109
+00:52:11,100 --> 00:52:14,500
+north of east. And that's why if you have a north facing
+
+1110
+00:52:14,500 --> 00:52:17,020
+window and you put your little plant on the windowsill, it'll
+
+1111
+00:52:17,020 --> 00:52:19,220
+get a little bit of direct sunlight early in the morning
+
+1112
+00:52:19,220 --> 00:52:22,580
+and late at night, is when the sun is tracing this part or
+
+1113
+00:52:22,580 --> 00:52:25,900
+that part through, it's tracing the sky. So it's worth
+
+1114
+00:52:25,940 --> 00:52:29,460
+sitting down with one of these plots, toying around with it,
+
+1115
+00:52:29,460 --> 00:52:31,780
+getting accustomed to it, and understanding really how the
+
+1116
+00:52:31,780 --> 00:52:34,660
+sun traces this arc throughout the sky relative to our
+
+1117
+00:52:34,660 --> 00:52:37,580
+position right here on the earth. If we shift this further up
+
+1118
+00:52:37,580 --> 00:52:40,900
+north, really interesting things begin to happen. So for
+
+1119
+00:52:40,900 --> 00:52:43,580
+example, my wife is from Sweden. If we go to her hometown
+
+1120
+00:52:43,580 --> 00:52:46,180
+right here, in the middle of summertime, right at the
+
+1121
+00:52:46,180 --> 00:52:51,100
+solstice, you can see the sun traces this awesome route from
+
+1122
+00:52:51,100 --> 00:52:55,020
+north to north, barely leaving the horizon. If we look at
+
+1123
+00:52:55,900 --> 00:52:58,740
+again, from the perspective of the little creature here, that
+
+1124
+00:52:59,380 --> 00:53:03,420
+that yellow arc is really close to the horizon. Maybe it goes
+
+1125
+00:53:03,420 --> 00:53:06,260
+up about that high, but it continues going all the way to
+
+1126
+00:53:06,260 --> 00:53:09,580
+the north. And if you keep going north, it will never set
+
+1127
+00:53:10,220 --> 00:53:13,260
+during the middle of summer, it'll just be light all the
+
+1128
+00:53:13,260 --> 00:53:15,500
+time. And you can see here, it just traces that orbit right
+
+1129
+00:53:15,500 --> 00:53:18,820
+around there. It's all trig folks, we can do it, we can sit
+
+1130
+00:53:18,820 --> 00:53:22,340
+down and we can work through the equations by hand. I did that
+
+1131
+00:53:22,340 --> 00:53:25,180
+once, took me a long time, I didn't learn that much. I
+
+1132
+00:53:25,180 --> 00:53:28,620
+would, I would instead advise you to go to one of these
+
+1133
+00:53:28,660 --> 00:53:31,780
+simulations right here, but to understand all the inputs into
+
+1134
+00:53:31,780 --> 00:53:34,420
+it, all the different components, right, the fact that the
+
+1135
+00:53:34,420 --> 00:53:37,100
+sun, the earth is moving around the sun as a declination
+
+1136
+00:53:37,100 --> 00:53:41,500
+angle, seasonal variations and so forth. Very useful tool, you
+
+1137
+00:53:41,500 --> 00:53:48,860
+have the website link right here. And, and yeah. So from this
+
+1138
+00:53:48,860 --> 00:53:52,700
+tool, actually, one last tiny, tiny thing, from this tool
+
+1139
+00:53:52,700 --> 00:53:57,460
+right here, we can understand why, okay, this isn't, this is
+
+1140
+00:53:57,500 --> 00:54:02,500
+real stretch and forgive me, social scientists in the room
+
+1141
+00:54:02,500 --> 00:54:05,980
+for doing this, but I have to project a little bit of science
+
+1142
+00:54:05,980 --> 00:54:14,300
+onto human behavior. How far west is Madrid from GMT? Madrid,
+
+1143
+00:54:14,300 --> 00:54:18,740
+Spain. It's three degrees west of the, of the Great Meridian,
+
+1144
+00:54:18,900 --> 00:54:21,620
+right? So the line that divides the east and the west
+
+1145
+00:54:21,660 --> 00:54:25,500
+hemisphere is three degrees west. But it is one time zone
+
+1146
+00:54:26,460 --> 00:54:31,380
+earlier than London, right? So it's in the same time zone as
+
+1147
+00:54:31,380 --> 00:54:37,460
+Germany and all the other cities that are east of London. And
+
+1148
+00:54:37,460 --> 00:54:40,300
+this is just for convenience factor. If you're traveling from
+
+1149
+00:54:40,300 --> 00:54:43,020
+one continental European country to the other, it just makes
+
+1150
+00:54:43,020 --> 00:54:45,020
+sense to have everything be on the same time zone, you get to
+
+1151
+00:54:45,020 --> 00:54:47,620
+work at the same time, sort of pick up the phone, call somebody
+
+1152
+00:54:48,140 --> 00:54:53,220
+you're doing business. Now, relative to everybody else in
+
+1153
+00:54:53,220 --> 00:54:57,820
+Europe, though, is the sun setting later or earlier? If
+
+1154
+00:54:57,820 --> 00:55:01,540
+you're that far west in your time zone? Later, right? So the
+
+1155
+00:55:01,540 --> 00:55:05,340
+sun is setting later, if you're there. So if you're eating,
+
+1156
+00:55:05,420 --> 00:55:07,380
+according to the sun, not according to what your watch
+
+1157
+00:55:07,380 --> 00:55:09,580
+is saying, but if you're if you're choosing to eat dinner,
+
+1158
+00:55:09,740 --> 00:55:13,340
+when the sun is setting, when will your watch say, Oh, my
+
+1159
+00:55:13,340 --> 00:55:15,940
+goodness, it's really late. When you're in Berlin or when
+
+1160
+00:55:15,940 --> 00:55:21,220
+you're in Madrid, when you're in Madrid, right? So again, I'm
+
+1161
+00:55:21,220 --> 00:55:24,980
+not saying that this is the sole reason for social behavior
+
+1162
+00:55:24,980 --> 00:55:27,100
+being a little different on the beer in peninsula, since
+
+1163
+00:55:27,100 --> 00:55:29,500
+Portugal also eats very late in there in the same time zone as
+
+1164
+00:55:29,500 --> 00:55:32,500
+London. But it could be a contributing factor, right? The
+
+1165
+00:55:32,500 --> 00:55:36,700
+sun is still up in the sky when it's 5pm in winter, let's say,
+
+1166
+00:55:36,700 --> 00:55:41,300
+and we're in Germany, it's set long time ago. So these are just
+
+1167
+00:55:41,300 --> 00:55:44,260
+little things to keep in mind an easy way to calculate that an
+
+1168
+00:55:44,260 --> 00:55:47,260
+easy way to calculate that when is the solar noon, you look at
+
+1169
+00:55:47,260 --> 00:55:49,780
+the earth more or less like we're looking at this right now,
+
+1170
+00:55:49,780 --> 00:55:54,220
+we have 360 degrees, we divide that into in the 24 time zones.
+
+1171
+00:55:54,980 --> 00:55:58,700
+And then we say, Okay, about 15 degrees each, right? And then
+
+1172
+00:55:58,700 --> 00:56:02,180
+we can begin counting from there. If in Boston, we're 41
+
+1173
+00:56:02,180 --> 00:56:05,660
+degrees north, but we're 71 degrees west, right, we can say,
+
+1174
+00:56:05,660 --> 00:56:08,860
+Okay, we should be for GMT minus five, we should be at around
+
+1175
+00:56:09,140 --> 00:56:12,700
+75 degrees. And so we're a little earlier. So we do things a
+
+1176
+00:56:12,700 --> 00:56:14,980
+little earlier around here than what the solar noon should be
+
+1177
+00:56:15,020 --> 00:56:17,820
+telling us to do things. Wake up a little earlier, go to bed a
+
+1178
+00:56:17,820 --> 00:56:19,820
+little earlier. And that's why students like, you're like,
+
+1179
+00:56:19,820 --> 00:56:21,980
+Dang, there's no nightlife around here. Not saying that's
+
+1180
+00:56:21,980 --> 00:56:25,700
+the only reason, but it could be a contributing factor. Whereas
+
+1181
+00:56:25,700 --> 00:56:29,500
+the opposite happens when you're far west in your time zone.
+
+1182
+00:56:30,140 --> 00:56:34,060
+Okay, so again, just trying to wrap our heads around the solar
+
+1183
+00:56:34,060 --> 00:56:37,340
+resource and around the world around us so that we can answer
+
+1184
+00:56:37,340 --> 00:56:38,940
+that little child in the shopping mall when they come with
+
+1185
+00:56:38,940 --> 00:56:40,660
+questions. What are these?
+
+1186
+00:56:43,700 --> 00:56:47,580
+Solar trash compactors, right? At the Student Center, Anastasia
+
+1187
+00:56:47,580 --> 00:56:50,980
+is right over there. Duncan Donuts is there, right? So these
+
+1188
+00:56:50,980 --> 00:56:54,860
+are solar panels mounted on the tops of those. And what the
+
+1189
+00:56:54,860 --> 00:56:58,340
+solar is doing is charging a battery inside. Once the trash
+
+1190
+00:56:58,340 --> 00:57:01,540
+reaches a critical level, sensors triggered, it stops you
+
+1191
+00:57:01,540 --> 00:57:05,100
+from opening this bin, and it compacts the trash, right, and
+
+1192
+00:57:05,100 --> 00:57:08,380
+then releases and allows you to open and put more stuff in. And
+
+1193
+00:57:08,380 --> 00:57:11,020
+what it does is it minimizes the number of times between trash
+
+1194
+00:57:11,060 --> 00:57:15,500
+pickups. If labor is a large portion of the cost of trash
+
+1195
+00:57:16,340 --> 00:57:20,380
+management of waste of refuse management, then it eliminates
+
+1196
+00:57:20,380 --> 00:57:23,620
+some of the labor, transferring it instead to the technology. And
+
+1197
+00:57:23,620 --> 00:57:27,620
+so installing these at the Student Center, I had a little bit
+
+1198
+00:57:27,620 --> 00:57:36,380
+of a pet peeve. So you have the angle of the sun right here,
+
+1199
+00:57:36,380 --> 00:57:40,780
+which we just walked through 18 degrees in summer. And it just
+
+1200
+00:57:40,820 --> 00:57:43,820
+so happened to work out that, and these numbers were
+
+1201
+00:57:43,820 --> 00:57:46,100
+approximate, this was me going with my kind of engineering
+
+1202
+00:57:46,100 --> 00:57:48,620
+sense, that's about 45 degrees, count the number of paces,
+
+1203
+00:57:48,860 --> 00:57:53,660
+equilateral triangle, estimate the height of there. But in the
+
+1204
+00:57:53,660 --> 00:57:57,300
+middle of summertime, when you are at the solstice, there is no
+
+1205
+00:57:57,740 --> 00:58:00,340
+direct sunlight hitting this trash can because of that
+
+1206
+00:58:00,340 --> 00:58:04,060
+overhang way up there. That's not a problem for this particular
+
+1207
+00:58:04,060 --> 00:58:06,740
+trash collector, since those panels are way oversized for the
+
+1208
+00:58:06,740 --> 00:58:10,340
+amount of energy that the trash collector actually needs. And
+
+1209
+00:58:10,500 --> 00:58:13,100
+there is a fair amount of what we call diffuse sunlight, meaning
+
+1210
+00:58:13,100 --> 00:58:15,700
+sunlight being scattered off of other things. That's why this
+
+1211
+00:58:15,700 --> 00:58:18,740
+portion of the image looks white. It wouldn't look white if
+
+1212
+00:58:18,740 --> 00:58:21,220
+there was no diffuse scattered black pitch black, if there was
+
+1213
+00:58:21,220 --> 00:58:23,740
+no nothing to scatter the light off, like an outer space,
+
+1214
+00:58:23,740 --> 00:58:26,580
+there's nothing to scatter. That's why it looks like a black
+
+1215
+00:58:26,580 --> 00:58:30,140
+night. But instead, there's a large amount of diffuse light,
+
+1216
+00:58:30,140 --> 00:58:31,980
+there is still some sunlight reaching it. And since the
+
+1217
+00:58:31,980 --> 00:58:35,700
+panels are way oversized, and the system is over engineered, it
+
+1218
+00:58:35,700 --> 00:58:38,780
+still manages to acquire enough energy to compact the trash, and
+
+1219
+00:58:38,780 --> 00:58:41,980
+it doesn't have a catastrophic stop. But it was an example of
+
+1220
+00:58:42,260 --> 00:58:45,940
+somebody not really thinking much about the direction or the
+
+1221
+00:58:46,340 --> 00:58:48,980
+angle of the sun in the sky, they probably installed it
+
+1222
+00:58:48,980 --> 00:58:51,660
+sometime around March, right when the snow started to melt, and
+
+1223
+00:58:51,660 --> 00:58:55,780
+the sun was right around here. Right. And so you were the angle
+
+1224
+00:58:55,780 --> 00:58:59,140
+was around there, and it made it into the trash collectors, but
+
+1225
+00:58:59,180 --> 00:59:03,860
+you know, as the summer came along, it got shaded. So it's
+
+1226
+00:59:03,860 --> 00:59:07,020
+something to keep in mind when doing a solar installation, it
+
+1227
+00:59:07,020 --> 00:59:10,300
+is important to calculate these things. And I just pick out one
+
+1228
+00:59:10,300 --> 00:59:13,100
+small example. I'd encourage you to walk through I was going to
+
+1229
+00:59:13,140 --> 00:59:15,700
+have that be a small little in class example. But since we're
+
+1230
+00:59:15,700 --> 00:59:21,140
+running short on time, I'll just give it to you like that. Okay,
+
+1231
+00:59:21,180 --> 00:59:25,660
+fixed versus tracking systems. So if the sun is moving as a
+
+1232
+00:59:25,660 --> 00:59:29,860
+function of season and as a function of time of day, throughout
+
+1233
+00:59:29,860 --> 00:59:33,380
+the sky, and we can see that very nicely, again, to our demo
+
+1234
+00:59:33,420 --> 00:59:39,820
+right here. So if the sun is actually moving, one embodiment
+
+1235
+00:59:39,860 --> 00:59:42,820
+would say, Okay, I know more or less what the sun is going to
+
+1236
+00:59:42,820 --> 00:59:44,980
+do as a function of season, forget that the urinal
+
+1237
+00:59:44,980 --> 00:59:47,860
+variations, but just a seasonal variations. I know that the sun
+
+1238
+00:59:47,860 --> 00:59:50,620
+is going to be on average somewhere around here, somewhere
+
+1239
+00:59:50,620 --> 00:59:55,340
+around my latitude. So if I point my panel at latitude tilt,
+
+1240
+00:59:56,620 --> 01:00:01,580
+right, since this angle was what was it, 41 plus 23, this
+
+1241
+01:00:01,620 --> 01:00:05,460
+angle is 41 minus 23. So this one be right around 41 latitude.
+
+1242
+01:00:05,940 --> 01:00:10,460
+So if I aim my solar panels at latitude tilt, then I'm going to
+
+1243
+01:00:10,460 --> 01:00:13,140
+get, on average, some pretty decent power throughout the
+
+1244
+01:00:13,140 --> 01:00:16,820
+year. I'll have a little less in winter, a little more in
+
+1245
+01:00:16,820 --> 01:00:20,180
+summer, because well, just because of the amount of solar
+
+1246
+01:00:20,180 --> 01:00:24,900
+resources available. But I'll be I'll be all right. At most, I'll
+
+1247
+01:00:24,900 --> 01:00:30,020
+be off by 23 and a half degrees. You can do that. And that's
+
+1248
+01:00:30,060 --> 01:00:32,940
+called fixed latitude tilt. And typically, you'll face the
+
+1249
+01:00:32,940 --> 01:00:36,060
+panels south approximately. We'll get to that in a minute.
+
+1250
+01:00:36,100 --> 01:00:38,060
+Depends on local weather patterns. If you have fog in the
+
+1251
+01:00:38,060 --> 01:00:39,820
+morning, for instance, you want to face them a little to the
+
+1252
+01:00:39,820 --> 01:00:45,500
+west. But but we'll face them south and a latitude tilt. Or we
+
+1253
+01:00:45,500 --> 01:00:48,540
+can decide, no, let's actually track the sun throughout the
+
+1254
+01:00:48,540 --> 01:00:51,420
+sky throughout the day. And so we'll start in the east in the
+
+1255
+01:00:51,420 --> 01:00:54,100
+morning and have it rotating through on one axis tracker
+
+1256
+01:00:54,220 --> 01:00:56,980
+throughout the day, or we can have a two axis tracker where it
+
+1257
+01:00:56,980 --> 01:00:59,420
+rotates to follow the sun throughout the seasons as well,
+
+1258
+01:00:59,580 --> 01:01:02,260
+kind of a north south tilt. And that's what's plotted right
+
+1259
+01:01:02,260 --> 01:01:09,500
+here. This is a quick, a quick approximation of the fixed one
+
+1260
+01:01:09,500 --> 01:01:13,180
+axis and two axis trackers for a given system in Boston, using a
+
+1261
+01:01:13,180 --> 01:01:16,700
+simulation tool called PV Watts. There's a link to that. It's
+
+1262
+01:01:17,140 --> 01:01:19,460
+based on the National Renewable Energy Laboratory website.
+
+1263
+01:01:19,580 --> 01:01:22,460
+There's a link to that at the end of the slides. But this shows
+
+1264
+01:01:22,460 --> 01:01:25,940
+you the total system output in terms of kilowatt hours, in
+
+1265
+01:01:25,940 --> 01:01:30,620
+terms of hours per day. I think, yeah, it's a little bit of an
+
+1266
+01:01:30,620 --> 01:01:34,460
+odd units there in the y axis, but it shows you the the
+
+1267
+01:01:34,460 --> 01:01:36,900
+relative gain that you would get by going to a one axis and
+
+1268
+01:01:36,900 --> 01:01:40,060
+then finally a two axis tracker. So in many places, it makes
+
+1269
+01:01:40,060 --> 01:01:42,740
+sense to go to a one axis tracker, since especially you
+
+1270
+01:01:42,740 --> 01:01:46,020
+broaden out the peak near the peak hours of the day, and
+
+1271
+01:01:46,020 --> 01:01:49,700
+that's that's really good. But not always does it make sense
+
+1272
+01:01:49,700 --> 01:01:51,820
+financially to go to two axis tracker, you're adding another
+
+1273
+01:01:51,820 --> 01:01:54,020
+motor onto that thing, it's really not gaining you that
+
+1274
+01:01:54,020 --> 01:01:57,740
+much. Obviously, you have to calculate it out yourself for
+
+1275
+01:01:57,740 --> 01:02:00,820
+that specific location. But by and large, a generality, one
+
+1276
+01:02:00,820 --> 01:02:04,180
+axis tracker makes sense for a flat panel. Now, if you have a
+
+1277
+01:02:04,180 --> 01:02:06,700
+concentrator lens in the front, and it has to be looking
+
+1278
+01:02:06,700 --> 01:02:08,780
+directly at the sun, then you're kind of forced to go to two
+
+1279
+01:02:08,780 --> 01:02:12,660
+axis tracker. Okay, and there you have your total system output,
+
+1280
+01:02:12,660 --> 01:02:16,140
+which is just the integral under the curve over the entire
+
+1281
+01:02:16,140 --> 01:02:20,700
+year. So definitions should have done this before, but direct
+
+1282
+01:02:20,700 --> 01:02:23,300
+sunlight looking directly at the sun and then diffuse sunlight
+
+1283
+01:02:23,300 --> 01:02:26,300
+or scattered light coming off of other things, right? So the
+
+1284
+01:02:26,300 --> 01:02:31,020
+few sunlight would be coming from the other angles in other
+
+1285
+01:02:31,060 --> 01:02:33,900
+directions in the sky. The direct sunlight would pretty much be
+
+1286
+01:02:33,940 --> 01:02:38,460
+at the sun, plus or minus a few degrees. And we have different
+
+1287
+01:02:38,460 --> 01:02:42,980
+ways of measuring the, the, this would be flat plate up there on
+
+1288
+01:02:42,980 --> 01:02:45,940
+the upper left is this flat plate facing south latitude tilt,
+
+1289
+01:02:45,980 --> 01:02:48,260
+just like we said, it's facing south in the United States,
+
+1290
+01:02:48,260 --> 01:02:51,180
+that's good. Latitude tilt, meaning it's tilted at our
+
+1291
+01:02:51,180 --> 01:02:53,780
+latitude. So if we go from the southern tip of Florida and
+
+1292
+01:02:53,780 --> 01:02:58,020
+Texas up to the northern tip of Minnesota, we'll be tilting it
+
+1293
+01:02:58,260 --> 01:03:02,140
+more and more toward the south like this going from Texas to
+
+1294
+01:03:02,260 --> 01:03:07,780
+Minnesota, right from Texas to Minnesota. And so latitude tilt
+
+1295
+01:03:07,820 --> 01:03:11,900
+facing south flat plate. This is essentially accumulating all of
+
+1296
+01:03:11,900 --> 01:03:14,900
+the sunlight, the direct and the scattered light, because it's
+
+1297
+01:03:14,900 --> 01:03:18,580
+all being collected by that flat plate there. This map, on the
+
+1298
+01:03:18,580 --> 01:03:21,780
+other hand, is for a two axis tracker. And it's looking at the
+
+1299
+01:03:21,780 --> 01:03:24,900
+sun plus or minus two and a half degrees. And so it's really
+
+1300
+01:03:24,900 --> 01:03:29,140
+only picking up this right here out of the sky. And when it's
+
+1301
+01:03:29,140 --> 01:03:32,100
+sunny all the time, you're golden, you're tracking the sun,
+
+1302
+01:03:32,100 --> 01:03:35,060
+you're actually getting more energy than you would if you just
+
+1303
+01:03:35,060 --> 01:03:37,900
+had a flat plate, because the cosine theta angle is changing
+
+1304
+01:03:37,900 --> 01:03:40,340
+throughout the day if you have a flat plate. When the sun is in
+
+1305
+01:03:40,340 --> 01:03:43,660
+the morning time, you have a flat plate like this. So if my
+
+1306
+01:03:43,660 --> 01:03:46,540
+sunlight is coming in like this, and I do cosine theta of the
+
+1307
+01:03:46,540 --> 01:03:48,980
+angle, I'm only getting very small amount of the incident
+
+1308
+01:03:48,980 --> 01:03:52,580
+sunlight projected onto this plate right here. Whereas in the
+
+1309
+01:03:52,580 --> 01:03:55,620
+middle of the day, now cosine theta is one, I get the full
+
+1310
+01:03:55,620 --> 01:03:59,940
+sunlight. But if I have, for instance, a tracker, I would be
+
+1311
+01:03:59,940 --> 01:04:03,420
+able to face this panel, do east and then track it throughout
+
+1312
+01:04:03,420 --> 01:04:06,980
+the day. And that's where I'd get this additional energy boost
+
+1313
+01:04:06,980 --> 01:04:10,740
+here in the mornings, right, right there, from the tracking
+
+1314
+01:04:10,780 --> 01:04:15,340
+system. So if I have a tracker, I get a big gain in the places
+
+1315
+01:04:15,340 --> 01:04:18,660
+that have a lot of direct sun. And if I'm only looking at a
+
+1316
+01:04:18,660 --> 01:04:20,980
+very small solid angle of the sky, if I'm only looking at say
+
+1317
+01:04:20,980 --> 01:04:24,580
+this little portion of the sun, on cloudy days, most of the
+
+1318
+01:04:24,580 --> 01:04:27,580
+sunlight is coming off of the diffuse light, not from the sun.
+
+1319
+01:04:28,260 --> 01:04:31,420
+If I have a flat plate, I win. If I have a concentrator, I lose
+
+1320
+01:04:31,940 --> 01:04:35,420
+on a cloudy day. And so that's why in some of the regions of
+
+1321
+01:04:35,420 --> 01:04:38,940
+the United States that are notoriously cloudy, I won't point
+
+1322
+01:04:38,940 --> 01:04:42,940
+to anyone in particular, it's actually better for non
+
+1323
+01:04:42,980 --> 01:04:45,860
+concentrating solar in terms of total energy output. And in
+
+1324
+01:04:45,860 --> 01:04:48,620
+other regions of the United States, where we have a lot of
+
+1325
+01:04:48,620 --> 01:04:52,180
+sunny days, you start having two axis trackers making sense.
+
+1326
+01:04:52,860 --> 01:04:55,620
+And it's just really the ratio of these two maps. This one,
+
+1327
+01:04:55,620 --> 01:04:58,620
+which is flat plate, and that one, which is concentrator, you
+
+1328
+01:04:58,620 --> 01:05:03,380
+see over here, we win if we go for the concentrator. And over
+
+1329
+01:05:03,380 --> 01:05:07,980
+here, we get more energy out, oopsie, more energy out if we
+
+1330
+01:05:08,020 --> 01:05:12,340
+use the flat plate. Now that's just energy. Obviously costs
+
+1331
+01:05:12,380 --> 01:05:15,620
+and economics factors in what it what it takes to install it.
+
+1332
+01:05:17,820 --> 01:05:22,620
+Okay. And weather patterns, I promise I'd get back to this.
+
+1333
+01:05:23,620 --> 01:05:27,020
+Interesting to note that right near the equator, we have this
+
+1334
+01:05:27,300 --> 01:05:32,580
+drop of the installation. And there are these beautiful maps
+
+1335
+01:05:32,660 --> 01:05:36,700
+put out by again, by this NASA Earth Observatory that show you
+
+1336
+01:05:36,700 --> 01:05:39,740
+the cloud fraction coverage of particular spots around the
+
+1337
+01:05:39,740 --> 01:05:42,060
+planet. And you can see that right near the equator, is
+
+1338
+01:05:42,060 --> 01:05:46,100
+typically we have these beautiful tropical forests. And
+
+1339
+01:05:46,100 --> 01:05:50,420
+those are obviously the high cloud cover in those regions is
+
+1340
+01:05:50,420 --> 01:05:53,060
+blocking out some of the sun. And likewise, you can see that
+
+1341
+01:05:53,060 --> 01:05:55,980
+dichotomy between Phoenix and Atlanta, same latitude again,
+
+1342
+01:05:56,180 --> 01:05:58,860
+but Atlanta having a higher cloud coverage than Phoenix and
+
+1343
+01:05:58,860 --> 01:06:03,620
+hence, a lower solar resource, a lower installation. So you see
+
+1344
+01:06:03,620 --> 01:06:06,620
+all this kind of ties together. That's all predictable, in a
+
+1345
+01:06:06,620 --> 01:06:10,780
+sense. This is unpredictable, at a local level, at for one
+
+1346
+01:06:10,780 --> 01:06:14,180
+system, right? If the sun is tracing its route through the
+
+1347
+01:06:14,180 --> 01:06:16,700
+sky, and you have that envelope function, that you've just
+
+1348
+01:06:16,700 --> 01:06:18,780
+spent so much effort calculating out with all your trig
+
+1349
+01:06:18,780 --> 01:06:21,220
+functions, and the computer simulation, the code that you've
+
+1350
+01:06:21,380 --> 01:06:24,420
+just been given here. And now a cloud comes over some random
+
+1351
+01:06:24,420 --> 01:06:26,860
+cloud that was very hard to predict. And you just have one
+
+1352
+01:06:26,860 --> 01:06:29,620
+panel, one tiny little thing like this, and the cloud goes
+
+1353
+01:06:29,620 --> 01:06:31,780
+over it, boom, all of a sudden, you get a drop in your
+
+1354
+01:06:32,140 --> 01:06:35,860
+instantaneous power output. Boom, drops again, another cloud
+
+1355
+01:06:35,860 --> 01:06:40,180
+drops again, and then a thunderstorm in the afternoon. So
+
+1356
+01:06:40,380 --> 01:06:42,780
+a meteorologist could have told you that this thunderstorm was
+
+1357
+01:06:42,780 --> 01:06:46,740
+coming. But meteorologists would be hard pressed to be able to
+
+1358
+01:06:46,740 --> 01:06:50,060
+predict the evolution of a tiny little cloud over your system.
+
+1359
+01:06:50,580 --> 01:06:54,260
+And so the question is, to what degree are these weather, these
+
+1360
+01:06:54,260 --> 01:06:56,740
+local weather patterns predictable and unpredictable? And
+
+1361
+01:06:56,740 --> 01:07:00,700
+hopefully, some of you over this class will be able to help
+
+1362
+01:07:00,700 --> 01:07:03,900
+answer that question by analyzing data from tens of
+
+1363
+01:07:03,900 --> 01:07:05,740
+thousands of systems that have been installed throughout
+
+1364
+01:07:05,740 --> 01:07:09,980
+California, in local geographical system, for example, in
+
+1365
+01:07:10,180 --> 01:07:13,060
+Los Angeles region, San Francisco region, and so forth. If
+
+1366
+01:07:13,060 --> 01:07:16,220
+you start averaging the curves, the energy outputs as a
+
+1367
+01:07:16,220 --> 01:07:18,900
+function of time from a variety of systems throughout a
+
+1368
+01:07:18,900 --> 01:07:21,540
+neighborhood, you can probably average out the small tiny
+
+1369
+01:07:21,540 --> 01:07:24,780
+clouds. You probably can't average out the thunderstorm. But
+
+1370
+01:07:24,780 --> 01:07:26,860
+you probably could have predicted that the thunderstorm
+
+1371
+01:07:26,860 --> 01:07:31,060
+would have come along, right? And so this is a hot area of
+
+1372
+01:07:31,060 --> 01:07:33,580
+solar research at the systems level is trying to understand
+
+1373
+01:07:33,580 --> 01:07:37,620
+to what degree are PV systems predictable? To what degree can
+
+1374
+01:07:37,620 --> 01:07:41,980
+the power output of a PV system, or an ensemble of PV systems
+
+1375
+01:07:41,980 --> 01:07:45,340
+be predicted in advance? So we don't wind up in a situation
+
+1376
+01:07:45,500 --> 01:07:48,460
+where all of a sudden we have this catastrophic drop of
+
+1377
+01:07:48,460 --> 01:07:52,900
+accumulative PV system output of say 30%. And meanwhile, it's a
+
+1378
+01:07:52,900 --> 01:07:55,380
+hot summer day, everybody's air conditions are going, and we
+
+1379
+01:07:55,380 --> 01:07:58,340
+cause failure of the power grid, kind of worst case scenario.
+
+1380
+01:07:59,780 --> 01:08:02,780
+So this boils down to intermittency with a short time
+
+1381
+01:08:02,820 --> 01:08:06,820
+constants tend to be less predictable, cloud cover, and it's
+
+1382
+01:08:06,820 --> 01:08:10,060
+relevant for predicting power supply reliability. And the
+
+1383
+01:08:10,060 --> 01:08:12,940
+longer time constants tend to be more predictable, the journal
+
+1384
+01:08:12,940 --> 01:08:16,220
+or seasonal variations. And these are relevant to calculating
+
+1385
+01:08:16,220 --> 01:08:19,780
+total energy energy output annually. And oftentimes, when
+
+1386
+01:08:19,780 --> 01:08:22,780
+we just work off of these long time constant variability
+
+1387
+01:08:22,900 --> 01:08:27,100
+issues, we're assuming we have access to easy storage. Right
+
+1388
+01:08:27,100 --> 01:08:29,980
+now, the solar panels on top of my roof, they're producing in
+
+1389
+01:08:29,980 --> 01:08:32,300
+excess of what we're consuming right now, because neither my
+
+1390
+01:08:32,300 --> 01:08:34,780
+wife or at home, and they're injecting that power into the
+
+1391
+01:08:34,780 --> 01:08:37,620
+grid and the grid is serving as our big battery, as our storage
+
+1392
+01:08:37,620 --> 01:08:42,700
+unit. And I'm riding free, I'm a free rider right now, I don't
+
+1393
+01:08:42,700 --> 01:08:46,660
+pay for that service necessarily, I do the end star. But
+
+1394
+01:08:46,660 --> 01:08:52,220
+they're not charging me extra for the service of, of, of using
+
+1395
+01:08:52,220 --> 01:08:57,140
+the grid as my big battery. Another thing to keep in mind is
+
+1396
+01:08:57,140 --> 01:09:01,020
+that we're calculating all of this on the basis of, of
+
+1397
+01:09:01,020 --> 01:09:03,660
+engineering and scientific principles, we're calculating
+
+1398
+01:09:03,660 --> 01:09:07,540
+the solar resource, which is a good important first step. Now,
+
+1399
+01:09:07,540 --> 01:09:10,180
+if we look at the actual solar installations by year and by
+
+1400
+01:09:10,180 --> 01:09:14,220
+country, this is a big table, but follow me on the two
+
+1401
+01:09:14,420 --> 01:09:18,020
+underlined red lines here, DEU that stands for Deutschland,
+
+1402
+01:09:18,060 --> 01:09:23,420
+Germany, and USA. We'll see that Germany has about seven times
+
+1403
+01:09:23,420 --> 01:09:26,700
+more solar installed cumulatively than the United States
+
+1404
+01:09:26,700 --> 01:09:30,900
+does. And yet, if we look at the solar resource in Germany,
+
+1405
+01:09:30,940 --> 01:09:34,700
+relative to the US, this is average annual, same scale,
+
+1406
+01:09:34,740 --> 01:09:38,980
+going from 900 to 1200 kilowatt hours per kilowatt per year, we
+
+1407
+01:09:38,980 --> 01:09:41,460
+can see that there's a lot more sun in the United States than
+
+1408
+01:09:41,460 --> 01:09:44,660
+there is in Germany. So there's something else going on than
+
+1409
+01:09:44,660 --> 01:09:48,180
+just the solar resource. And that's the economics. That's why
+
+1410
+01:09:48,180 --> 01:09:50,580
+we talk about the policy and economics later on in class.
+
+1411
+01:09:50,780 --> 01:09:53,780
+That's why we dedicate a sizable portion later on talking
+
+1412
+01:09:53,780 --> 01:09:59,140
+about that. Lastly, our final learning objective before we halt
+
+1413
+01:09:59,140 --> 01:10:03,260
+for questions and for comments, we need to estimate the land
+
+1414
+01:10:03,260 --> 01:10:05,580
+area needed to provide sufficient solar resource for a
+
+1415
+01:10:05,580 --> 01:10:08,180
+project. And this is really where your homework picks up and
+
+1416
+01:10:08,180 --> 01:10:10,100
+we'll spend some time in recitation walking through
+
+1417
+01:10:10,100 --> 01:10:15,020
+this. But it's important to get your units right. And so I
+
+1418
+01:10:15,020 --> 01:10:19,860
+want to do a quick quiz right now. Think in your minds, which
+
+1419
+01:10:19,860 --> 01:10:25,500
+of these properties corresponds to which units are described by
+
+1420
+01:10:25,500 --> 01:10:28,420
+which units over here on the right. So do kind of a linkage
+
+1421
+01:10:28,420 --> 01:10:30,460
+in your mind, one to one, connect, connect, connect,
+
+1422
+01:10:30,460 --> 01:10:36,020
+connect without looking at your slides. And we'll do it in three,
+
+1423
+01:10:37,020 --> 01:10:43,380
+two, one. Those are your answers, right? So the ones that
+
+1424
+01:10:43,380 --> 01:10:47,300
+usually get confused are power and energy, kilowatts and
+
+1425
+01:10:47,300 --> 01:10:52,100
+kilowatt hours. The way to remember it, the easiest way
+
+1426
+01:10:52,100 --> 01:10:55,220
+to remember it would be to remember that the power time
+
+1427
+01:10:55,220 --> 01:10:58,940
+product is equal to energy. So if you have power, instantaneous
+
+1428
+01:10:58,940 --> 01:11:02,020
+energy burn rate versus time, some plot that looks like this,
+
+1429
+01:11:02,020 --> 01:11:04,300
+if you take the integral of that curve, that's your total
+
+1430
+01:11:04,300 --> 01:11:09,820
+energy. So in terms of units, current voltage, power and
+
+1431
+01:11:09,820 --> 01:11:14,060
+energy, a hairdryer versus a fridge, which is more likely to
+
+1432
+01:11:14,060 --> 01:11:16,620
+blow a fuse and which is more likely to blow your budget?
+
+1433
+01:11:20,540 --> 01:11:22,580
+Hair dryer is more likely to blow a fuse. Why is that?
+
+1434
+01:11:23,540 --> 01:11:24,700
+High voltage.
+
+1435
+01:11:24,700 --> 01:11:27,220
+Yeah, high voltage. Well, high current, really, because
+
+1436
+01:11:27,220 --> 01:11:30,180
+everything's running 120. It's a higher current. It's pushing
+
+1437
+01:11:30,180 --> 01:11:38,820
+the wattage up to around 1500, 1700 watts. And so it's running
+
+1438
+01:11:38,820 --> 01:11:41,900
+close to the 15 amp limit. And the fridge, on the other hand,
+
+1439
+01:11:41,900 --> 01:11:44,980
+is probably in order of magnitude lower. But the fridge is
+
+1440
+01:11:44,980 --> 01:11:47,420
+running all the time, and your hairdryer is only running a few
+
+1441
+01:11:47,460 --> 01:11:51,220
+minutes a day. So in terms of blowing a fuse, it uses a large
+
+1442
+01:11:51,260 --> 01:11:53,940
+amount of power for a very short amount of time, whereas the
+
+1443
+01:11:53,940 --> 01:11:56,500
+fridge uses a smaller amount of power for a longer amount of
+
+1444
+01:11:56,500 --> 01:11:59,860
+time. And the integral under that curve winds up being more
+
+1445
+01:11:59,860 --> 01:12:02,580
+typically than your hairdryer. That's the total amount of
+
+1446
+01:12:02,580 --> 01:12:05,900
+energy. And you pay by the energy, you pay by the kilowatt
+
+1447
+01:12:05,900 --> 01:12:08,540
+hour to your utility company. And that's why it would blow your
+
+1448
+01:12:08,540 --> 01:12:12,660
+budget. Yep, oopsie. So the numbers work out to somewhere
+
+1449
+01:12:12,660 --> 01:12:15,300
+around one kilowatt hour per day for the fridge and about half a
+
+1450
+01:12:15,300 --> 01:12:17,900
+kilowatt hour a day for the hairdryer. A kilowatt hour is
+
+1451
+01:12:17,900 --> 01:12:22,180
+how much in here? 18 cents? Most people pay about 18 cents per
+
+1452
+01:12:22,180 --> 01:12:24,780
+kilowatt hour. And so you can calculate how much it costs to
+
+1453
+01:12:24,780 --> 01:12:27,540
+keep things running in your house. Most of us don't usually
+
+1454
+01:12:27,540 --> 01:12:31,820
+think about that. And last, last, last, last point, in your
+
+1455
+01:12:31,820 --> 01:12:34,380
+homework assignments, you're going to be asked to size out
+
+1456
+01:12:34,380 --> 01:12:37,500
+systems, PV systems, photo will take systems in different parts
+
+1457
+01:12:37,500 --> 01:12:41,060
+of the world. And the easiest way to do that is if we take a
+
+1458
+01:12:41,060 --> 01:12:45,340
+panel, and we say that this panel right here is rated at a
+
+1459
+01:12:45,420 --> 01:12:48,860
+certain amount of power, right? So under peak illumination
+
+1460
+01:12:48,860 --> 01:12:52,500
+conditions, when the panel is seated at incident sunlight, so
+
+1461
+01:12:52,500 --> 01:12:57,180
+the cosine theta term is one. And the solar the incident solar
+
+1462
+01:12:57,180 --> 01:13:01,300
+resource is 1000 watts per square meter. So around and 1.5
+
+1463
+01:13:01,300 --> 01:13:05,180
+conditions. This panel right here would be producing this one's
+
+1464
+01:13:05,180 --> 01:13:08,060
+time, I'll be producing on six watts peak. But most of these
+
+1465
+01:13:08,060 --> 01:13:10,660
+panels over here are producing somewhere around a few hundred
+
+1466
+01:13:10,820 --> 01:13:15,340
+watts peak. And so the panels are rated in terms of what peak?
+
+1467
+01:13:15,700 --> 01:13:18,060
+Because the panel manufacturer doesn't know where you're going
+
+1468
+01:13:18,060 --> 01:13:20,500
+to install them. You can decide that you're going to install it
+
+1469
+01:13:20,500 --> 01:13:22,980
+in Alaska, in which case it's going to produce about half the
+
+1470
+01:13:22,980 --> 01:13:25,980
+energy that if you install it down south in the continental US
+
+1471
+01:13:25,980 --> 01:13:30,620
+and say Arizona, maybe a third of the energy. And so it doesn't
+
+1472
+01:13:30,620 --> 01:13:33,020
+want to rate the panel in terms of the energy output, it's not
+
+1473
+01:13:33,020 --> 01:13:34,900
+going to guarantee that you're going to get a certain energy
+
+1474
+01:13:34,900 --> 01:13:38,060
+output off of the panel. But it'll guarantee that the panel was
+
+1475
+01:13:38,060 --> 01:13:41,060
+rated at a maximum power of such and such under standard
+
+1476
+01:13:41,060 --> 01:13:44,180
+testing conditions. Now that's good because you can generalize
+
+1477
+01:13:44,180 --> 01:13:47,820
+it, which you'll do for your homework. But also as a downside,
+
+1478
+01:13:48,340 --> 01:13:50,940
+because standard testing conditions aren't real world
+
+1479
+01:13:50,940 --> 01:13:53,900
+conditions, the panel isn't always operating at 25 degrees
+
+1480
+01:13:53,900 --> 01:13:56,740
+Celsius. The panel isn't operating always at incident
+
+1481
+01:13:56,740 --> 01:14:02,500
+sunlight normal, right? And so the gap between actually knowing
+
+1482
+01:14:02,500 --> 01:14:05,100
+how much the panel is going to output in terms of its energy
+
+1483
+01:14:05,220 --> 01:14:09,300
+for a specific location and what our calculations, the back of
+
+1484
+01:14:09,300 --> 01:14:14,020
+the envelope calculations will give us, that gap is from an
+
+1485
+01:14:14,020 --> 01:14:15,740
+economics point of view, there's a lot of money to be made
+
+1486
+01:14:15,740 --> 01:14:20,180
+there. If you understand really well how much a given panel
+
+1487
+01:14:20,180 --> 01:14:24,220
+will output, you can then predict to a much finer degree what
+
+1488
+01:14:24,220 --> 01:14:26,820
+you should be charging your customer for installing panels
+
+1489
+01:14:26,820 --> 01:14:30,620
+in a particular location. So there's a lot of work being done
+
+1490
+01:14:30,620 --> 01:14:34,100
+right now more on the business side of pulling the systems
+
+1491
+01:14:34,140 --> 01:14:36,380
+engineers along and trying to increase the accuracy of
+
+1492
+01:14:36,380 --> 01:14:41,220
+predictions. And so with that, I will, I will leave off on this
+
+1493
+01:14:41,220 --> 01:14:44,260
+slide, we can get to it during recitation tomorrow at four. I
+
+1494
+01:14:44,260 --> 01:14:46,180
+welcome your questions here at the front if you have any,
+
+1495
+01:14:46,220 --> 01:14:47,620
+otherwise, I'll see you tomorrow.
+

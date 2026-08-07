@@ -1,0 +1,9276 @@
+1
+00:00:00,000 --> 00:00:06,880
+Okay, so a rough outline for today's class will start off by sort of layering on more
+
+2
+00:00:06,880 --> 00:00:07,880
+and more complexity.
+
+3
+00:00:07,880 --> 00:00:11,920
+We'll start off with a basic idea, which is a Markov process, or a Markov chain, for
+
+4
+00:00:11,920 --> 00:00:14,400
+those of you who might come across this before.
+
+5
+00:00:14,400 --> 00:00:18,160
+And then we'll start to introduce some of the perhaps less familiar ideas, which are
+
+6
+00:00:18,160 --> 00:00:19,720
+central to reinforcement learning.
+
+7
+00:00:19,720 --> 00:00:23,880
+First of all, by adding rewards in to give a Markov reward process, then by adding actions
+
+8
+00:00:23,880 --> 00:00:26,040
+in to give a Markov decision process.
+
+9
+00:00:26,040 --> 00:00:29,880
+And finally, we probably won't have time to actually talk about them, but they're in
+
+10
+00:00:29,880 --> 00:00:32,960
+the lecture notes, but those of you who are interested, there's a lot of extensions to
+
+11
+00:00:32,960 --> 00:00:37,360
+MVPs where we can move beyond these three settings and add in even more complexity like partial
+
+12
+00:00:37,360 --> 00:00:39,360
+observability and so forth.
+
+13
+00:00:39,360 --> 00:00:41,360
+So I'll begin with the basics.
+
+14
+00:00:41,360 --> 00:00:46,760
+I'll try not to kill myself today on any stage.
+
+15
+00:00:46,760 --> 00:00:53,360
+So the basic idea then is we're going to develop this formulaism, the Markov decision process.
+
+16
+00:00:53,360 --> 00:00:55,960
+What we're trying to cover here is if you remember in the last class, we talked about
+
+17
+00:00:55,960 --> 00:00:56,960
+agents and environments.
+
+18
+00:00:56,960 --> 00:01:00,640
+We have an agent, that's our algorithm, and that's the brain that we're trying to build.
+
+19
+00:01:00,640 --> 00:01:01,960
+And it's interacting with some worlds.
+
+20
+00:01:01,960 --> 00:01:05,480
+Some of this might be the real world for a robot, it might be, you know, the trading
+
+21
+00:01:05,480 --> 00:01:09,680
+environment for a trading agent, the factory floor for a factory or whatever.
+
+22
+00:01:09,680 --> 00:01:13,320
+And this environment, we want some description of that environment such that we can understand
+
+23
+00:01:13,320 --> 00:01:17,080
+it, start to apply some tools to it and really understand what it means to do reinforcement
+
+24
+00:01:17,080 --> 00:01:18,520
+learning in that setting.
+
+25
+00:01:18,520 --> 00:01:21,160
+And that's going to be the MDP.
+
+26
+00:01:21,160 --> 00:01:24,160
+And in this case, what we're going to start with is the case, the nice case, where the
+
+27
+00:01:24,160 --> 00:01:25,560
+environment is fully observable.
+
+28
+00:01:25,560 --> 00:01:27,440
+So we're told the state.
+
+29
+00:01:27,440 --> 00:01:30,520
+So this is the case where we see everything that there is to know about that environment,
+
+30
+00:01:30,520 --> 00:01:34,240
+all the relevant information is presented to our agent, nothing is hidden away.
+
+31
+00:01:34,240 --> 00:01:39,280
+And one way to think of this is that the current state that's given to the agent, it sort of
+
+32
+00:01:39,280 --> 00:01:43,800
+completely characterizes this process of the way in which the environment unfolds, depends
+
+33
+00:01:43,800 --> 00:01:50,360
+on some state, and we're told that state, we know that state, it's fully observed.
+
+34
+00:01:50,360 --> 00:01:54,960
+And the nice thing about this formulaism is that really almost all reinforcement learning
+
+35
+00:01:54,960 --> 00:01:58,960
+problems can be formalized in some way as a markup decision process.
+
+36
+00:01:58,960 --> 00:02:02,960
+So if you think about even some of these less familiar cases, for those of you who come
+
+37
+00:02:02,960 --> 00:02:06,160
+across them, these are things which people might not first of all think of as markup
+
+38
+00:02:06,160 --> 00:02:10,920
+decision processes, but the problem of optimal control, where you've got say some differential
+
+39
+00:02:10,920 --> 00:02:15,360
+dynamics describing some fluid and you want to find the optimal way to make your octopus
+
+40
+00:02:15,360 --> 00:02:19,640
+swim through this fluid, how do we actually deal with that?
+
+41
+00:02:19,640 --> 00:02:23,240
+Well there's an extension to MDPs that's actually a continuous markup decision process
+
+42
+00:02:23,240 --> 00:02:25,440
+with continuous actions.
+
+43
+00:02:25,440 --> 00:02:28,800
+Optimal control actually really deals with that case.
+
+44
+00:02:28,800 --> 00:02:33,040
+Again partially observed problems, not only can we think of MDPs to give us some intuition
+
+45
+00:02:33,040 --> 00:02:37,480
+into them, but actually any partially observed problem can be completely converted into an
+
+46
+00:02:37,480 --> 00:02:38,480
+MDP.
+
+47
+00:02:38,480 --> 00:02:42,320
+So it's not the case that these things fall outside of the framework of MDPs, they are
+
+48
+00:02:42,320 --> 00:02:46,400
+MDPs, they really are MDPs, and if you understand the basics, you can solve all of these problems
+
+49
+00:02:46,400 --> 00:02:49,400
+in principle.
+
+50
+00:02:49,400 --> 00:02:52,320
+Some of the simplest cases, which we'll deal with in a later class, or we'll talk about
+
+51
+00:02:52,320 --> 00:02:56,920
+the exploration-exploitation dilemma in reinforcement learning, are what's known as bandits.
+
+52
+00:02:56,920 --> 00:03:00,520
+This is a very common formalism that's used a lot at the moment, where you get just a
+
+53
+00:03:00,520 --> 00:03:04,560
+set of actions, you get to take an action, you get some reward for that action, and that's
+
+54
+00:03:04,560 --> 00:03:06,080
+the end of your task.
+
+55
+00:03:06,080 --> 00:03:10,120
+So this is like the task we talked about last week, where you present an advert to the user
+
+56
+00:03:10,120 --> 00:03:13,480
+on the internet, and that advert either gets clicked on or it doesn't, and you want to
+
+57
+00:03:13,480 --> 00:03:15,360
+be clicked on as much as possible.
+
+58
+00:03:15,360 --> 00:03:19,440
+And actually this is just a markup decision process with only one state.
+
+59
+00:03:19,440 --> 00:03:23,080
+So again, it's a special case of MDPs, if we can solve MDPs, we can solve all of these
+
+60
+00:03:23,080 --> 00:03:24,080
+different cases.
+
+61
+00:03:24,080 --> 00:03:26,640
+So it's really fundamental.
+
+62
+00:03:26,640 --> 00:03:28,600
+So what's the central idea to an MDP?
+
+63
+00:03:28,600 --> 00:03:31,320
+Well, we've really seen this in the last class, but it's such an important concept,
+
+64
+00:03:31,320 --> 00:03:36,440
+I'm just going to flash up this slide again, which is the markup property.
+
+65
+00:03:36,440 --> 00:03:39,320
+And again, the markup property, the central idea which we're trying to understand here
+
+66
+00:03:39,320 --> 00:03:44,400
+is this idea that you have some state, this random variable s, this is characterizing where
+
+67
+00:03:44,400 --> 00:03:47,080
+we are in our environment.
+
+68
+00:03:47,080 --> 00:03:52,400
+And if it has the markup property, then this basically tells us that the future is independent
+
+69
+00:03:52,400 --> 00:03:53,920
+of the past given the present.
+
+70
+00:03:53,920 --> 00:04:00,040
+In other words, what happens next in our environment depends only on our previous state, and not
+
+71
+00:04:00,040 --> 00:04:01,920
+on all the things which came before that.
+
+72
+00:04:01,920 --> 00:04:06,720
+Okay, so the state completely characterizes everything which we need to know, it captures
+
+73
+00:04:06,720 --> 00:04:09,960
+all the relevant information from the history.
+
+74
+00:04:09,960 --> 00:04:14,040
+And once you know this thing, you can essentially, if you have ST, what this tells us is you
+
+75
+00:04:14,040 --> 00:04:16,520
+can throw away everything which came before.
+
+76
+00:04:16,520 --> 00:04:21,640
+So the set of markup processes or the set of states that have this property, it's the
+
+77
+00:04:21,640 --> 00:04:26,960
+set of environments in which everything which we know about the system can be described
+
+78
+00:04:26,960 --> 00:04:31,840
+by this single state at the current time, and we don't need to retain everything that
+
+79
+00:04:31,840 --> 00:04:36,400
+we've ever seen, okay?
+
+80
+00:04:36,400 --> 00:04:42,160
+So one way to understand this is that for any problem with the markup property, for any
+
+81
+00:04:42,160 --> 00:04:47,840
+markup process, if you start in some state S, and you've got some successor state, S
+
+82
+00:04:47,840 --> 00:04:52,240
+prime, then you can actually define the probability that you'll transition from one of those states
+
+83
+00:04:52,240 --> 00:04:53,680
+to the next state.
+
+84
+00:04:53,680 --> 00:04:57,840
+So remember that this state which we are in characterizes everything about what will happen
+
+85
+00:04:57,840 --> 00:04:58,840
+next.
+
+86
+00:04:58,840 --> 00:05:02,560
+So that must mean that there's some well-defined transition probability that tells me that
+
+87
+00:05:02,560 --> 00:05:06,320
+if I was in this state before, there's some probability, given that I was in that state,
+
+88
+00:05:06,320 --> 00:05:08,640
+that I will transition to some next state.
+
+89
+00:05:09,000 --> 00:05:12,600
+There's some probability that if my robot is here, and I give it a little push, then
+
+90
+00:05:12,600 --> 00:05:15,880
+it will fall over to here, or maybe put a foot forward.
+
+91
+00:05:15,880 --> 00:05:20,880
+All of these things are completely characterized by the state it was in before, okay?
+
+92
+00:05:20,880 --> 00:05:26,080
+So this gives us our state transition probabilities, so it's the probability that if I'm in S,
+
+93
+00:05:26,080 --> 00:05:30,800
+I transition to S prime, and that gives us the probability that this random next state
+
+94
+00:05:30,800 --> 00:05:35,280
+will be this particular instantiation of the state S prime, given that the previous state
+
+95
+00:05:35,280 --> 00:05:39,320
+we were in, our current state of time, T, was this S.
+
+96
+00:05:39,320 --> 00:05:44,800
+Now once we have this idea of the transition probability matrix, we can form this into
+
+97
+00:05:44,800 --> 00:05:49,480
+a complete matrix that tells us, essentially, each row of this matrix tells us what would
+
+98
+00:05:49,480 --> 00:05:52,280
+happen for each state that I was in.
+
+99
+00:05:52,280 --> 00:05:56,160
+So if I start in state one, this tells me the probability that I'll end up in state
+
+100
+00:05:56,160 --> 00:06:00,640
+one here, state two here, state three here, all the way up to N states here.
+
+101
+00:06:00,640 --> 00:06:04,160
+So each row of this completely characterizes the transitions from one possible starting
+
+102
+00:06:04,160 --> 00:06:06,960
+place in this Markov process.
+
+103
+00:06:06,960 --> 00:06:11,400
+So this single matrix now gives me the complete structure to this Markov problem, tells me
+
+104
+00:06:11,400 --> 00:06:15,480
+from any state how likely am I to end up in any other state.
+
+105
+00:06:15,480 --> 00:06:19,600
+So you can imagine now that we can follow this through multiple steps and keep sampling
+
+106
+00:06:19,600 --> 00:06:26,040
+from this transition probabilities, and that will give us some draws from this Markov process.
+
+107
+00:06:26,040 --> 00:06:28,640
+So let's try and understand that a little bit more.
+
+108
+00:06:28,640 --> 00:06:33,120
+So now just formally, a Markov process is basically a random process, a process that
+
+109
+00:06:33,120 --> 00:06:36,240
+we're sort of sampling from iteratively.
+
+110
+00:06:36,240 --> 00:06:40,040
+So that basically, our definition for this is going to be it's a sequence of random states.
+
+111
+00:06:40,040 --> 00:06:47,560
+So a sequence of random states, S1, S2, going on in time, that has the Markov property.
+
+112
+00:06:47,560 --> 00:06:51,560
+That's the definition of a Markov process, it's just a sequence of states with a Markov
+
+113
+00:06:51,560 --> 00:06:52,560
+property.
+
+114
+00:06:52,560 --> 00:06:59,080
+And so all it requires to define this thing is a state space, S, this is the set of states
+
+115
+00:06:59,080 --> 00:07:03,800
+which we can be in, and our transition probabilities that characterize how we transition from one
+
+116
+00:07:03,800 --> 00:07:05,920
+state to the next.
+
+117
+00:07:05,920 --> 00:07:09,560
+And now this fully defines the dynamics of this whole system, there's some evolution
+
+118
+00:07:09,560 --> 00:07:13,920
+of our robot through this system, or of our trading agent through this environment, or
+
+119
+00:07:13,920 --> 00:07:16,280
+of our chess playing agent through the rules of the game.
+
+120
+00:07:16,280 --> 00:07:21,560
+All of these things can be defined, no actions yet, no rewards yet, but the dynamics can
+
+121
+00:07:21,560 --> 00:07:25,120
+be fully defined by a state space and a transition probability matrix.
+
+122
+00:07:25,120 --> 00:07:28,160
+Okay, that's the Markov process.
+
+123
+00:07:28,240 --> 00:07:31,080
+So, I think it always helps to make these things concrete.
+
+124
+00:07:31,080 --> 00:07:35,680
+So let's try and make this concrete for you guys.
+
+125
+00:07:35,680 --> 00:07:42,320
+So this is my cartoon illustration of when I imagine it's like to be sitting in my lectures.
+
+126
+00:07:42,320 --> 00:07:45,360
+And so we're just going to imagine there's only three classes you have to sit through.
+
+127
+00:07:45,360 --> 00:07:49,320
+If you get through all three classes then you don't have to manage to pass the class,
+
+128
+00:07:49,320 --> 00:07:51,920
+if only it was that easy, but anyway.
+
+129
+00:07:51,920 --> 00:07:55,560
+But the problem is there's all these distractions along the way, so you start off in the first
+
+130
+00:07:55,560 --> 00:07:59,520
+class and there's a 50% probability you'll make it through to the next class, there's
+
+131
+00:07:59,520 --> 00:08:05,320
+also a 50% probability that you guys will open up your laptops, start looking at Facebook.
+
+132
+00:08:05,320 --> 00:08:09,280
+Now if you look at Facebook, we all know that once you're in Facebook it's a little bit
+
+133
+00:08:09,280 --> 00:08:13,440
+addictive, so there's probably about a .9 probability that you'll just kind of self-transition
+
+134
+00:08:13,440 --> 00:08:17,720
+and keep looking at Facebook, keep looking at Facebook again, and then maybe after you
+
+135
+00:08:17,720 --> 00:08:21,600
+iterate around this thing for a few times there's a .1 probability that you'll actually
+
+136
+00:08:21,600 --> 00:08:26,440
+drop out of this Facebook and get back to the class and listen to the rest of the class.
+
+137
+00:08:26,440 --> 00:08:30,760
+Which point you might make it to the second class, unfortunately, you know, maybe we're
+
+138
+00:08:30,760 --> 00:08:35,360
+talking about something really tedious like Markov processes and then you feel a bit sleepy
+
+139
+00:08:35,360 --> 00:08:41,120
+and so there's maybe a 20% probability you fall asleep, but there's maybe an 80% probability
+
+140
+00:08:41,120 --> 00:08:46,880
+you make it through to the final class, at which point maybe you think, yeah, I'm doing
+
+141
+00:08:46,880 --> 00:08:51,000
+really well and you get a bit excited and go up to the pub.
+
+142
+00:08:51,000 --> 00:08:55,080
+Which means if you go to the pub, you drink a few beers, you might end up either regressing
+
+143
+00:08:55,080 --> 00:08:59,680
+back to class one or class two because of all the things you forget, or if you don't
+
+144
+00:08:59,680 --> 00:09:05,120
+go to the pub there's a 60% chance that you'll pass and then after that you can go to sleep
+
+145
+00:09:05,120 --> 00:09:06,120
+and everyone's happy.
+
+146
+00:09:06,120 --> 00:09:10,480
+And this sleep state represents a terminal state to the Markov process.
+
+147
+00:09:10,480 --> 00:09:13,680
+A terminal state doesn't need any special machinery, you can think of this as just a
+
+148
+00:09:13,680 --> 00:09:17,560
+self-loop and absorbing terminal state, it just needs looping round and round and round.
+
+149
+00:09:17,560 --> 00:09:18,560
+That's what the square represents.
+
+150
+00:09:18,560 --> 00:09:22,800
+By the way, there's a few more seats over here, I think, if anyone wants to just move
+
+151
+00:09:22,800 --> 00:09:26,800
+around, if you're okay, that's fine.
+
+152
+00:09:26,800 --> 00:09:31,960
+Okay, so now that we've got this student Markov chain, let's think about what it means
+
+153
+00:09:31,960 --> 00:09:33,520
+to take samples of this.
+
+154
+00:09:33,520 --> 00:09:34,520
+So what's a sample?
+
+155
+00:09:34,520 --> 00:09:35,520
+A sample is a sequence.
+
+156
+00:09:35,520 --> 00:09:39,840
+It's a sequence of states where we start, for example, in our class one and now we're
+
+157
+00:09:39,840 --> 00:09:44,360
+just going to take samples through the system, for example, one sample might look like this,
+
+158
+00:09:44,360 --> 00:09:49,480
+where we go class one, class two, class three, pass, fall asleep, okay, that's the nice
+
+159
+00:09:49,480 --> 00:09:50,480
+sample.
+
+160
+00:09:50,480 --> 00:09:55,840
+But you might also have another sample that's like class one, Facebook, Facebook again,
+
+161
+00:09:55,840 --> 00:09:59,360
+that's class one, that's class two, and then fall asleep.
+
+162
+00:09:59,360 --> 00:10:04,520
+You might have more complicated samples, some of them might go on and on for quite a long
+
+163
+00:10:04,520 --> 00:10:08,680
+time, these are variable length, each of these you could think of as a random sequence that
+
+164
+00:10:08,680 --> 00:10:13,320
+is sampled from these dynamics, okay, so that's what it means to have a random process is
+
+165
+00:10:13,320 --> 00:10:19,440
+that you get some random sequence that's drawn from a probability distribution over sequences
+
+166
+00:10:19,440 --> 00:10:20,440
+of states.
+
+167
+00:10:20,440 --> 00:10:24,960
+And the fact that it has the Markov property means that it can be described by one of these
+
+168
+00:10:24,960 --> 00:10:29,280
+diagrams, if you like, it can be described by saying from any state there's some probability
+
+169
+00:10:29,280 --> 00:10:35,840
+of transitioning to any other state, is that clear, good, okay.
+
+170
+00:10:35,840 --> 00:10:39,640
+And now we can look at the transition matrix for this problem, so the transition matrix
+
+171
+00:10:39,640 --> 00:10:44,920
+is fully described now over here, the transition matrix basically tells us for any one of these
+
+172
+00:10:44,920 --> 00:10:48,040
+states which we might have been in, what's the probability of transitioning to any other
+
+173
+00:10:48,040 --> 00:10:49,040
+one of these states.
+
+174
+00:10:49,040 --> 00:10:54,840
+So for example, if we consider class two here, and we look across this row here, this row
+
+175
+00:10:54,840 --> 00:10:59,640
+of the transition matrix basically tells us there's a 0.8 probability and 80% chance
+
+176
+00:10:59,640 --> 00:11:06,280
+of transitioning to class three, but if we go across there's also a 20% chance of transitioning
+
+177
+00:11:06,280 --> 00:11:08,200
+to the sleep state.
+
+178
+00:11:08,200 --> 00:11:11,960
+And we look at all of the rows together that fully describes the entire dynamics of the
+
+179
+00:11:11,960 --> 00:11:16,320
+system, and once we have this matrix, we're able to sample repeatedly from this matrix
+
+180
+00:11:16,320 --> 00:11:20,480
+and get our samples of these sequence of states after this Markov process.
+
+181
+00:11:20,480 --> 00:11:22,480
+Okay, question.
+
+182
+00:11:22,480 --> 00:11:28,680
+So these things will only work if the probability is going to stay constant in each state, how
+
+183
+00:11:28,720 --> 00:11:34,120
+do you make it such that if you were to, say, go to Facebook, then you have a reducing
+
+184
+00:11:34,120 --> 00:11:36,120
+probability each time?
+
+185
+00:11:36,120 --> 00:11:40,040
+Okay, so the question is how do we deal with modifications to these probabilities over
+
+186
+00:11:40,040 --> 00:11:41,040
+time?
+
+187
+00:11:41,040 --> 00:11:43,520
+So there's two answers to that.
+
+188
+00:11:43,520 --> 00:11:48,120
+One answer is that you can have a non-stationary Markov process, later we'll have MDP, so
+
+189
+00:11:48,120 --> 00:11:51,680
+non-stationary MDP.
+
+190
+00:11:51,680 --> 00:11:54,640
+In that case, what you can do is use the same kind of algorithms we use for the stationary
+
+191
+00:11:54,640 --> 00:11:58,600
+case, but incrementally adjust your solution algorithm to just kind of track the best solution
+
+192
+00:11:58,600 --> 00:12:00,760
+you've found so far.
+
+193
+00:12:00,760 --> 00:12:04,240
+The other answer is to say, well, the fact that you've got non-stationary dynamics just
+
+194
+00:12:04,240 --> 00:12:06,800
+makes it a more complicated Markov process.
+
+195
+00:12:06,800 --> 00:12:10,560
+But there's some, so you're imagining that there's probabilities that depend on how long
+
+196
+00:12:10,560 --> 00:12:14,160
+you've been in this state and so forth, so now you can augment this state, you can have
+
+197
+00:12:14,160 --> 00:12:18,400
+a more complicated Markov process that has like a counter that tells you how long you've
+
+198
+00:12:18,400 --> 00:12:22,360
+been in this Facebook state, and now you've basically got lots of different states depending
+
+199
+00:12:22,360 --> 00:12:26,440
+on whether you've been in Facebook once or twice or three times, and you can have an
+
+200
+00:12:26,440 --> 00:12:31,320
+infinite set of these, you can have a continuous set of these, all of these things are possible,
+
+201
+00:12:31,320 --> 00:12:36,560
+but they don't change the fundamental structure from this being a Markov process.
+
+202
+00:12:36,560 --> 00:12:40,560
+This is just a particular simple instantiation where we can see everything on one page, but
+
+203
+00:12:40,560 --> 00:12:44,920
+don't let that mislead you into thinking that Markov processes are necessarily small
+
+204
+00:12:44,920 --> 00:12:45,920
+or simple.
+
+205
+00:12:45,920 --> 00:12:49,160
+We can solve very, very complex Markov processes, and the rest of the course we'll see how
+
+206
+00:12:49,160 --> 00:12:54,400
+to solve MDPs, some of them have 10 to the 170 states will be one of the examples we'll
+
+207
+00:12:54,400 --> 00:12:55,400
+do later.
+
+208
+00:12:55,520 --> 00:13:01,840
+These could be very large and complex pieces with a lot of structure to them.
+
+209
+00:13:01,840 --> 00:13:04,920
+So far we haven't really talked about reinforcement learning at all, there's no rewards, there's
+
+210
+00:13:04,920 --> 00:13:08,400
+no action, so let's start to put in some of that machinery now.
+
+211
+00:13:08,400 --> 00:13:12,520
+The first and perhaps most important step is to add rewards, and so one way to think
+
+212
+00:13:12,520 --> 00:13:15,520
+of this is we're now going to create what's called a Markov reward process, which you
+
+213
+00:13:15,520 --> 00:13:18,520
+could think of as like a Markov process with value judgments.
+
+214
+00:13:18,520 --> 00:13:24,280
+There's some value judgments saying how good it is to be in some particular, there's some
+
+215
+00:13:24,280 --> 00:13:28,080
+value judgment saying how much reward will I have accumulated across some particular
+
+216
+00:13:28,080 --> 00:13:31,520
+sequence that we sampled from this Markov process.
+
+217
+00:13:31,520 --> 00:13:35,440
+So all we're going to do to add into our Markov process is we're going to add in two
+
+218
+00:13:35,440 --> 00:13:39,880
+things, so we had our state space S and our transition dynamics P, now what we're going
+
+219
+00:13:39,880 --> 00:13:45,360
+to add in is some reward, a reward function R and a discount factor gamma, and let's just
+
+220
+00:13:45,360 --> 00:13:48,240
+talk about what those are and make sure we understand them.
+
+221
+00:13:48,240 --> 00:13:52,560
+So the reward function first of all, this is something which tells us that if we start
+
+222
+00:13:52,560 --> 00:13:58,480
+in state S, if we're in some state, how much reward do we get from that state only?
+
+223
+00:13:58,480 --> 00:14:02,480
+This is just the immediate reward, how much reward do I get from that state at that moment?
+
+224
+00:14:02,480 --> 00:14:06,760
+And what we care about is maximizing the accumulated sum of these rewards, that's what we care
+
+225
+00:14:06,760 --> 00:14:07,760
+about in reinforcement learning.
+
+226
+00:14:07,760 --> 00:14:11,240
+So for the Markov reward process, we're going to start summing these things together over
+
+227
+00:14:11,240 --> 00:14:12,240
+time.
+
+228
+00:14:12,240 --> 00:14:18,080
+The R for now, it just tells us for one step, at that moment, if we're at time t in state
+
+229
+00:14:18,080 --> 00:14:26,880
+S, at time t plus one, we'll get this reward, it just tells us what will happen next.
+
+230
+00:14:26,880 --> 00:14:31,320
+So if we go back to our student Markov reward process, what we're going to do is we're just
+
+231
+00:14:31,320 --> 00:14:36,960
+going to add in some value judgments now and I'm just going to tell you that maybe you
+
+232
+00:14:36,960 --> 00:14:42,240
+don't enjoy sitting in the class, so let's call that minus two for each class, minus
+
+233
+00:14:42,240 --> 00:14:45,160
+two reward here, minus two, but if you pass at the end of the class, you get this big
+
+234
+00:14:45,160 --> 00:14:48,440
+juicy bonus of plus 10.
+
+235
+00:14:48,440 --> 00:14:53,960
+Facebook, maybe you get like minus one per step as your brain gets drained of any sanity
+
+236
+00:14:53,960 --> 00:14:57,000
+that you used to have before you went onto Facebook, and going to the pub, maybe the
+
+237
+00:14:57,000 --> 00:14:58,880
+beer tastes good and you get plus one.
+
+238
+00:14:58,880 --> 00:15:04,360
+These obviously subjective value judgments we're arbitrarily throwing into this.
+
+239
+00:15:04,360 --> 00:15:10,320
+And then what we care about is the total reward that we're going to get across a whole chain
+
+240
+00:15:10,320 --> 00:15:11,320
+here.
+
+241
+00:15:11,320 --> 00:15:13,880
+We don't just care about how much reward you get for being in one class, we care about
+
+242
+00:15:13,880 --> 00:15:19,200
+the fact that maybe you get minus two here, but if you follow through an entire sequence,
+
+243
+00:15:19,200 --> 00:15:23,440
+you might get minus two plus minus two plus minus two plus ten, and that's your overall
+
+244
+00:15:23,440 --> 00:15:28,440
+reward that you get for that sequence, that sample of the Markov reward process.
+
+245
+00:15:28,440 --> 00:15:31,840
+And so what we talk about is this quantity called the return.
+
+246
+00:15:31,840 --> 00:15:35,480
+So we call it the return G, that's kind of, you can think of as the goal.
+
+247
+00:15:35,480 --> 00:15:41,120
+The goal of reinforcement learning is to maximize the return, so G sort of stands for goal here.
+
+248
+00:15:41,120 --> 00:15:46,720
+And the goal here, the return, is the reward summed over all of the time steps infinitely
+
+249
+00:15:46,720 --> 00:15:52,320
+into the future, and the way that we control this return and make it finite is by using
+
+250
+00:15:52,320 --> 00:15:53,320
+a discount factor.
+
+251
+00:15:53,320 --> 00:15:57,600
+So we basically say we're going to discount by a factor of gamma at each time step going
+
+252
+00:15:57,600 --> 00:15:58,600
+into the future.
+
+253
+00:15:58,600 --> 00:16:03,200
+So we're going to get an immediate reward of R, of Rt plus one here, and then we're
+
+254
+00:16:03,200 --> 00:16:08,360
+going to get gamma, say, you know, point nine times the reward at time step t plus two plus
+
+255
+00:16:08,360 --> 00:16:12,160
+gamma squared, point nine squared times the reward at t plus three, and so on, all the
+
+256
+00:16:12,160 --> 00:16:13,160
+way to infinity.
+
+257
+00:16:13,160 --> 00:16:16,760
+Okay, and that's going to be our goal, our goal is to maximize the sum of all of these
+
+258
+00:16:16,760 --> 00:16:17,760
+rewards.
+
+259
+00:16:17,760 --> 00:16:18,760
+Yeah, question?
+
+260
+00:16:18,760 --> 00:16:22,720
+There's no expectation here, that's a good question, why is there no expectation here?
+
+261
+00:16:22,720 --> 00:16:25,600
+There's no expectation here because we're just talking about a random sample at the
+
+262
+00:16:25,600 --> 00:16:26,600
+moment.
+
+263
+00:16:26,600 --> 00:16:32,600
+So G is random, G is just one sample from our Markov reward process of the rewards that
+
+264
+00:16:32,600 --> 00:16:35,120
+we get going through that sequence.
+
+265
+00:16:35,120 --> 00:16:38,240
+Later in a couple of slides we'll look, we'll introduce the expectation, which is what we
+
+266
+00:16:38,240 --> 00:16:40,640
+actually care about.
+
+267
+00:16:40,640 --> 00:16:44,920
+So this discount factor then has to be something between zero and one, and it tells us if you
+
+268
+00:16:44,920 --> 00:16:49,160
+like the present value of future rewards, it tells you how much I care now about rewards
+
+269
+00:16:49,160 --> 00:16:50,880
+I'll get in the future.
+
+270
+00:16:50,880 --> 00:16:54,480
+So it kind of tells me that if I'm at time step ten, and I know I'm going to get a reward
+
+271
+00:16:54,480 --> 00:16:59,200
+at time step twenty, then I should get discount that an additional ten times, that's ten times
+
+272
+00:16:59,200 --> 00:17:03,360
+steps into the future, so we're going to discount ten more times.
+
+273
+00:17:03,360 --> 00:17:08,280
+So this thing has to be between zero and one, and zero kind of means maximally short-sighted,
+
+274
+00:17:08,280 --> 00:17:12,840
+like if you have a discount factor of zero, you basically zero anything beyond your current
+
+275
+00:17:12,840 --> 00:17:16,360
+time step, and you only look at that first reward, and if you have a discount factor
+
+276
+00:17:16,360 --> 00:17:20,360
+of one, that's maximally far-sighted, where you care about all rewards going infinitely
+
+277
+00:17:20,360 --> 00:17:24,080
+far into the future, and you just assume that your Markov process has the property that
+
+278
+00:17:24,080 --> 00:17:28,400
+eventually these things will all be finite, so you'll get zero, like in our absorbing
+
+279
+00:17:28,400 --> 00:17:33,200
+terminal state, you just get zero, zero, zero at the end.
+
+280
+00:17:33,680 --> 00:17:38,320
+So specifically the value of receiving reward r, k plus one times steps later, is gamma
+
+281
+00:17:38,320 --> 00:17:41,360
+to the k r, we'll just keep discounting again and again.
+
+282
+00:17:41,360 --> 00:17:46,120
+Yeah, let's go back to our fly-out side of problems, like financial problems.
+
+283
+00:17:46,120 --> 00:17:48,800
+Okay, well, I'm going to have a slide on this, so.
+
+284
+00:17:53,960 --> 00:17:55,800
+So really, why should we do this?
+
+285
+00:17:55,800 --> 00:18:01,760
+It's basically, you know, we're somehow introducing a judgment here, which is that we prefer short-term
+
+286
+00:18:01,800 --> 00:18:07,040
+reward to delayed reward, we prefer reward now to reward later, and the amount that we
+
+287
+00:18:07,040 --> 00:18:12,200
+prefer reward now to reward later is given by gamma, so the closer it is to zero, the
+
+288
+00:18:12,200 --> 00:18:16,160
+more we prefer reward now, and the closer it is to one, the more indifferent we are to
+
+289
+00:18:16,160 --> 00:18:18,320
+when those rewards arrive.
+
+290
+00:18:18,320 --> 00:18:19,320
+So why should that be?
+
+291
+00:18:19,320 --> 00:18:21,480
+That was essentially the question, why should we do that?
+
+292
+00:18:21,480 --> 00:18:26,680
+So I'm going to turn that over to the audience, so in most of reinforcement learning, we use
+
+293
+00:18:26,680 --> 00:18:30,640
+a discount factor, so I just want to ask you guys, well, why, why should we do this?
+
+294
+00:18:31,400 --> 00:18:33,400
+Do you want to think of reasons?
+
+295
+00:18:35,400 --> 00:18:36,400
+Okay, great.
+
+296
+00:18:36,400 --> 00:18:38,120
+So someone said there's more uncertainty into the future.
+
+297
+00:18:38,120 --> 00:18:40,200
+I think that's a really great answer, actually.
+
+298
+00:18:40,200 --> 00:18:46,040
+So one reason to use a discount factor is to basically represent the fact that we do not
+
+299
+00:18:46,040 --> 00:18:49,800
+have a perfect model, so if you imagine that we're just building a Markov process to model
+
+300
+00:18:49,800 --> 00:18:53,760
+the environment, we're building this Markov reward process, but we don't have a perfect
+
+301
+00:18:53,760 --> 00:18:58,840
+model of the environment, so we think we've come up with some great plan, we think we
+
+302
+00:18:58,840 --> 00:19:02,360
+know exactly how much reward we're going to get into the future, but if we don't entirely
+
+303
+00:19:02,360 --> 00:19:07,320
+trust our decisions that we make, if we don't entirely trust our evaluations, we might choose
+
+304
+00:19:07,320 --> 00:19:11,840
+to discount because we might say, okay, well, maybe I can take this pot of gold now, or
+
+305
+00:19:11,840 --> 00:19:15,000
+maybe I should really trust my plan and my model that's going to tell me that all these
+
+306
+00:19:15,000 --> 00:19:17,680
+things are going to happen over the next 10 years and then I'll get an even bigger pot
+
+307
+00:19:17,680 --> 00:19:22,600
+of gold, or you have to really trust your model to wait all those time steps and really
+
+308
+00:19:22,600 --> 00:19:26,160
+believe that things are going to turn out just as you planned in order to get that bigger
+
+309
+00:19:26,160 --> 00:19:27,760
+pot of gold later.
+
+310
+00:19:27,800 --> 00:19:32,280
+So uncertainty, I think, is really one of the major kind of intuitive reasons to discount.
+
+311
+00:19:32,280 --> 00:19:33,280
+Any other points?
+
+312
+00:19:33,280 --> 00:19:34,280
+Any other ideas?
+
+313
+00:19:34,280 --> 00:19:35,280
+Yeah?
+
+314
+00:19:35,280 --> 00:19:39,280
+When you're trying to plan for the future, you're very fast, right?
+
+315
+00:19:39,280 --> 00:19:44,280
+So if you have that, some go to infinity, but the tension there is, maybe it's unbounded.
+
+316
+00:19:44,280 --> 00:19:49,280
+So we'd like to keep the people's, when they know that there's going to be some...
+
+317
+00:19:49,280 --> 00:19:50,280
+Right.
+
+318
+00:19:50,280 --> 00:19:52,280
+There are different levels.
+
+319
+00:19:52,280 --> 00:19:53,280
+Okay, absolutely.
+
+320
+00:19:53,280 --> 00:19:57,480
+So to keep the maps bounded, I mean, and actually, so I'll do my first...
+
+321
+00:19:57,720 --> 00:19:58,720
+A couple of slides here.
+
+322
+00:19:58,720 --> 00:20:03,000
+So, I mean, the first reason is just mathematically convenient, and I think, honestly, that's the
+
+323
+00:20:03,000 --> 00:20:06,440
+main reason we do it in the MDP framework for RL.
+
+324
+00:20:06,440 --> 00:20:09,240
+Most of the time, it's just because the maths all works out, it's easy to teach, it's easy
+
+325
+00:20:09,240 --> 00:20:13,600
+to understand, and it avoids these infinite returns.
+
+326
+00:20:13,600 --> 00:20:19,440
+So if you have some cycle in your markup process and you just get rewards again and again and
+
+327
+00:20:19,440 --> 00:20:24,880
+again and again, you need some mechanism to avoid infinity as your evaluation, otherwise
+
+328
+00:20:24,880 --> 00:20:26,360
+the maths just doesn't work out.
+
+329
+00:20:26,360 --> 00:20:29,360
+And there are other mechanisms for dealing with that, which we'll mention briefly.
+
+330
+00:20:29,360 --> 00:20:35,000
+We have the uncertainty, and I just want to go out into a couple of other ideas.
+
+331
+00:20:35,000 --> 00:20:39,600
+So someone mentioned already the idea that financial settings, it's rather natural.
+
+332
+00:20:39,600 --> 00:20:44,480
+So that's a quite specific setting, but in a financial setting, we have this idea of
+
+333
+00:20:44,480 --> 00:20:48,720
+interest rates that you kind of know that money now is worth more than money later, and
+
+334
+00:20:48,720 --> 00:20:52,720
+that's usually built into the definition of what it means to kind of make financial
+
+335
+00:20:52,720 --> 00:20:57,060
+decisions or trading system or whatever.
+
+336
+00:20:57,060 --> 00:21:00,920
+So that's a specific case where there's really a meaning to this, that you can think of gameras
+
+337
+00:21:00,920 --> 00:21:04,200
+like the inverse of the interest rate.
+
+338
+00:21:04,200 --> 00:21:07,760
+But one more point I just want to make is that actually, you know, animals and humans,
+
+339
+00:21:07,760 --> 00:21:09,560
+they actually show a preference for immediate rewards.
+
+340
+00:21:09,560 --> 00:21:14,400
+So people have done tests on humans, and it turns out that humans have not quite an exponential
+
+341
+00:21:14,400 --> 00:21:18,440
+discounting, but they have something like a hyperbolic discounting, but certainly animals
+
+342
+00:21:18,440 --> 00:21:21,600
+and humans do prefer to get reward now than reward later, and so you can think of this
+
+343
+00:21:21,640 --> 00:21:26,640
+as a cognitive model as well of how biological decision-making operates.
+
+344
+00:21:26,640 --> 00:21:31,920
+And finally, I just wanted to mention that if you don't agree with these points, which
+
+345
+00:21:31,920 --> 00:21:35,240
+I think is perfectly legitimate, to say, well, hey, look, you know, the problem I care about
+
+346
+00:21:35,240 --> 00:21:40,720
+really is artificial to introduce a discount factor, I'm only doing it to make it convenient.
+
+347
+00:21:40,720 --> 00:21:44,840
+There are alternatives, and there's undiscounted Markov reward processes.
+
+348
+00:21:44,840 --> 00:21:49,280
+The simplest case being where we know that all sequences terminate.
+
+349
+00:21:49,280 --> 00:21:54,960
+So if we go back to our student MRP, we know that all sequences ended up with, at some
+
+350
+00:21:54,960 --> 00:21:57,600
+point, falling asleep, one way or another.
+
+351
+00:21:57,600 --> 00:22:02,240
+And so if we know that's the case, then all sequences end, or at least end in this absorbing
+
+352
+00:22:02,240 --> 00:22:06,800
+terminal state which keeps getting zero and zero and zero again, and therefore, by definition,
+
+353
+00:22:06,800 --> 00:22:09,360
+all returns are finite.
+
+354
+00:22:09,360 --> 00:22:11,480
+And so then it's fine.
+
+355
+00:22:11,480 --> 00:22:14,480
+There's also a formulation that's in the extended notes for this class, which is the
+
+356
+00:22:14,480 --> 00:22:18,440
+average reward formulation, and there it's possible, even with infinite sequences, to
+
+357
+00:22:18,520 --> 00:22:25,160
+still deal with the undiscounted sort of evaluation of Markov processes and Markov reward processes
+
+358
+00:22:25,160 --> 00:22:26,160
+and MDPs.
+
+359
+00:22:26,160 --> 00:22:31,160
+Just to clarify, not all sequences terminate in the same way that there are infinite sequences,
+
+360
+00:22:31,160 --> 00:22:35,160
+but you can not end up in the same way.
+
+361
+00:22:35,160 --> 00:22:36,160
+No, that's not true.
+
+362
+00:22:36,160 --> 00:22:44,160
+So any single sample which you draw from this Markov process, by definition, is a finite
+
+363
+00:22:44,160 --> 00:22:45,160
+length.
+
+364
+00:22:45,320 --> 00:22:50,040
+There isn't some part of that process where I could just end up in a loop.
+
+365
+00:22:50,040 --> 00:22:58,040
+So any sample which you draw, there is, so it's impossible to draw a sample that's infinite.
+
+366
+00:22:58,040 --> 00:23:01,040
+Like by definition, the sample that you draw will terminate at some point.
+
+367
+00:23:01,040 --> 00:23:03,040
+That's the definition of this process.
+
+368
+00:23:03,040 --> 00:23:08,540
+And so even though the decision process itself contains infinite loops, any single sample
+
+369
+00:23:08,540 --> 00:23:11,320
+that you draw will be a finite length and will terminate, and the only question is at
+
+370
+00:23:11,320 --> 00:23:16,320
+what step it will terminate?
+
+371
+00:23:16,320 --> 00:23:18,320
+Okay.
+
+372
+00:23:18,320 --> 00:23:23,000
+Right, so now someone asked about expectations, and so this brings us to the value function,
+
+373
+00:23:23,000 --> 00:23:26,000
+which is really the central quantity which we're interested in RL.
+
+374
+00:23:26,000 --> 00:23:30,720
+So the value function, this is the quantity we really care about.
+
+375
+00:23:30,720 --> 00:23:32,720
+It's the long-term value of being in a state.
+
+376
+00:23:32,720 --> 00:23:37,800
+So if you're in this state S, so if you're in some concrete state S, how much value will
+
+377
+00:23:37,800 --> 00:23:38,800
+you get from there on?
+
+378
+00:23:38,800 --> 00:23:42,000
+The total reward that you'll get from that state onwards.
+
+379
+00:23:42,000 --> 00:23:45,840
+So formally, it's just the expected return if you start in that state.
+
+380
+00:23:45,840 --> 00:23:50,120
+So if I drop you into this Markov reward process in some state, like if I drop you in class
+
+381
+00:23:50,120 --> 00:23:54,560
+2, how much reward will you get from class 2 to the end until you terminate?
+
+382
+00:23:54,560 --> 00:23:56,440
+That's basically what it's saying.
+
+383
+00:23:56,440 --> 00:23:58,440
+How much reward will you get from then onwards?
+
+384
+00:23:58,440 --> 00:24:02,720
+And we have this expectation because the environment is stochastic.
+
+385
+00:24:03,240 --> 00:24:06,240
+We were in this stochastic Markov process.
+
+386
+00:24:06,240 --> 00:24:10,760
+The evolution of states might go one by one step, one episode, and another way the next
+
+387
+00:24:10,760 --> 00:24:11,760
+episode.
+
+388
+00:24:11,760 --> 00:24:15,560
+What we care about is the expected return over all of those different episodes.
+
+389
+00:24:15,560 --> 00:24:16,560
+And that's the value.
+
+390
+00:24:16,560 --> 00:24:18,480
+That's how good it is to be in any given state.
+
+391
+00:24:18,480 --> 00:24:19,640
+So this is the central quantity.
+
+392
+00:24:19,640 --> 00:24:20,640
+We prefer states.
+
+393
+00:24:20,640 --> 00:24:23,240
+We prefer to be in states that give us more total reward.
+
+394
+00:24:23,240 --> 00:24:27,560
+And so the formulation of our problem is to say, let's first of all just measure that.
+
+395
+00:24:27,560 --> 00:24:31,880
+So in an MRP, there's no concept of maximizing, we're just saying let's just measure how
+
+396
+00:24:31,920 --> 00:24:32,920
+much reward we'll get.
+
+397
+00:24:32,920 --> 00:24:35,920
+But when we get to MDPs, we want to maximize this quantity.
+
+398
+00:24:35,920 --> 00:24:38,920
+Okay, so let's get concrete again.
+
+399
+00:24:38,920 --> 00:24:44,920
+Let's go back to the student Markov chain, actually the student Markov reward process.
+
+400
+00:24:44,920 --> 00:24:47,520
+So the sample returns now.
+
+401
+00:24:47,520 --> 00:24:52,160
+So again, we're going to look at these samples of this process that we've taken, and we could
+
+402
+00:24:52,160 --> 00:24:56,320
+consider a discount factor of gamma equals 0.5.
+
+403
+00:24:56,320 --> 00:25:01,840
+So we basically halve the amount that we care about getting rewards every step.
+
+404
+00:25:01,840 --> 00:25:05,840
+And so this is the definition of our return, the gamma instantiate through the half.
+
+405
+00:25:05,840 --> 00:25:12,840
+And so now if we just look at the value of these guys, so these are basically like the
+
+406
+00:25:12,840 --> 00:25:13,840
+returns here.
+
+407
+00:25:13,840 --> 00:25:19,840
+So you get minus 2 at the first step, minus 2 discounted by a half, minus 2 discounted
+
+408
+00:25:19,840 --> 00:25:20,840
+by a quarter.
+
+409
+00:25:20,840 --> 00:25:24,840
+And then at the end of it, you've got this plus 10 reward for finishing the classes.
+
+410
+00:25:25,360 --> 00:25:27,360
+And that's discounted by an eight.
+
+411
+00:25:27,360 --> 00:25:30,360
+You sum those all together, you get minus 2.25.
+
+412
+00:25:30,360 --> 00:25:35,360
+So that's one sample of the return, so this guy should say G1.
+
+413
+00:25:35,360 --> 00:25:38,360
+And now we've got four different samples here.
+
+414
+00:25:38,360 --> 00:25:46,360
+And the different samples of first four, different sample sequences through this Markov reward
+
+415
+00:25:46,360 --> 00:25:47,360
+process.
+
+416
+00:25:47,360 --> 00:25:48,360
+So what's the value of being in this state?
+
+417
+00:25:48,360 --> 00:25:50,360
+What's the value of the start state?
+
+418
+00:25:50,360 --> 00:25:54,920
+Well, one way to estimate it is you can just take a bunch of samples and just take the
+
+419
+00:25:54,920 --> 00:25:55,920
+average of these values.
+
+420
+00:25:55,920 --> 00:26:00,920
+And that would give you a legitimate estimator for the value function, the value of that
+
+421
+00:26:00,920 --> 00:26:01,920
+state.
+
+422
+00:26:01,920 --> 00:26:03,920
+So the returns are samples, they're random.
+
+423
+00:26:03,920 --> 00:26:08,920
+But the value function is not a random quantity, it's an expectation over these random variables.
+
+424
+00:26:08,920 --> 00:26:10,920
+Okay, is that clear?
+
+425
+00:26:10,920 --> 00:26:22,920
+No, these subscripts are time steps.
+
+426
+00:26:22,920 --> 00:26:30,480
+So G1 is, so here we're basically saying, so the definition, we go back to the definition
+
+427
+00:26:30,480 --> 00:26:38,760
+of return, the definition of return was the return starting at time step t is the rewards
+
+428
+00:26:38,760 --> 00:26:40,560
+from that time step onwards.
+
+429
+00:26:40,560 --> 00:26:46,560
+Okay, so now we're considering a bunch of different returns.
+
+430
+00:26:46,560 --> 00:26:53,960
+We are also starting from S1 equal C1 in this case, but these things actually, the subscripts
+
+431
+00:26:53,960 --> 00:26:56,240
+are time steps.
+
+432
+00:26:56,240 --> 00:27:01,840
+And there are observed things, there's no expectation, because we're essentially saying
+
+433
+00:27:01,840 --> 00:27:03,680
+that we've observed these sequences.
+
+434
+00:27:03,680 --> 00:27:06,560
+These are observed samples of our random process.
+
+435
+00:27:06,560 --> 00:27:10,600
+And if we want to ask about the value function to make an expectation, we're asking, what's
+
+436
+00:27:10,600 --> 00:27:12,320
+the expected return?
+
+437
+00:27:12,320 --> 00:27:16,000
+What's the expected number that's going to pop out of this at the end?
+
+438
+00:27:16,000 --> 00:27:17,000
+What's the average of these numbers?
+
+439
+00:27:17,000 --> 00:27:22,760
+And that's how good it is to be in this first state of the student Markov chain.
+
+440
+00:27:22,760 --> 00:27:26,640
+Okay, so what does this look like?
+
+441
+00:27:26,640 --> 00:27:29,600
+So let's consider a couple of different discount factors.
+
+442
+00:27:29,600 --> 00:27:34,360
+So first of all, this is the maximally short-sighted view of the value function.
+
+443
+00:27:34,360 --> 00:27:37,360
+So this is the value function now for gamma equal 0.
+
+444
+00:27:37,360 --> 00:27:41,080
+This is where we literally don't care about anything except one step of immediate reward.
+
+445
+00:27:41,080 --> 00:27:47,440
+So if we take any given state here, so now if we consider class 2 state here, we know
+
+446
+00:27:47,440 --> 00:27:52,240
+that no matter what we do afterwards, we're going to get the reward of minus 2 at this
+
+447
+00:27:52,240 --> 00:27:53,240
+time step.
+
+448
+00:27:53,240 --> 00:27:56,440
+It doesn't matter that we're going to get these other things and this plus 10 later,
+
+449
+00:27:56,440 --> 00:27:59,400
+that's irrelevant because we're just looking at how much reward we get at this time step
+
+450
+00:27:59,400 --> 00:28:00,400
+onwards.
+
+451
+00:28:00,400 --> 00:28:02,760
+So the value of being in this state is minus 2.
+
+452
+00:28:03,760 --> 00:28:04,760
+That's what we're going to get.
+
+453
+00:28:04,760 --> 00:28:07,760
+We're going to get minus 2 whether we go to sleep or whether we go this way, we're going
+
+454
+00:28:07,760 --> 00:28:08,760
+to get minus 2.
+
+455
+00:28:08,760 --> 00:28:10,760
+That's just the definition of that.
+
+456
+00:28:10,760 --> 00:28:17,320
+However, if we look at a more long-sighted discount factor, so this is at 0.9 now, then
+
+457
+00:28:17,320 --> 00:28:22,040
+the values all change and now we have to consider, well, if I was in this state, I'm going to
+
+458
+00:28:22,040 --> 00:28:26,560
+get a reward of minus 2 now, but then with 0.8 probability, I'm going to transition
+
+459
+00:28:26,560 --> 00:28:31,400
+over here into a situation where I'm going to get additional rewards minus 2 and then
+
+460
+00:28:31,440 --> 00:28:36,600
+plus 10 again and so forth, and when we factor that all together on computer and we'll see
+
+461
+00:28:36,600 --> 00:28:41,880
+how to compute these things later as we go on, the value of this state actually becomes
+
+462
+00:28:41,880 --> 00:28:42,880
+much better.
+
+463
+00:28:42,880 --> 00:28:47,320
+We can get 0.9 reward from this state onwards, averaging over the probability of falling
+
+464
+00:28:47,320 --> 00:28:51,120
+asleep and continuing through to classes.
+
+465
+00:28:51,120 --> 00:28:52,120
+So that's the value.
+
+466
+00:28:52,120 --> 00:28:53,120
+That's the average.
+
+467
+00:28:53,120 --> 00:28:56,520
+Now, the expectation over all of the different paths that we can take through this system
+
+468
+00:28:56,520 --> 00:29:00,360
+and take an average of them, that's the number that summarizes how good it is to be in that
+
+469
+00:29:00,360 --> 00:29:01,360
+state.
+
+470
+00:29:01,360 --> 00:29:04,040
+So that's 0.9 units of reward from then onwards if we start there.
+
+471
+00:29:04,040 --> 00:29:11,680
+If I drop you into that class, 0.9, that's how good you are.
+
+472
+00:29:11,680 --> 00:29:16,800
+So now we're going to talk about maybe the most fundamental relationship in reinforcement
+
+473
+00:29:16,800 --> 00:29:17,800
+learning.
+
+474
+00:29:17,800 --> 00:29:23,160
+I might have come across this in dynamic programming, it's very widely used, and it's called the
+
+475
+00:29:23,160 --> 00:29:24,160
+Bellman equation.
+
+476
+00:29:24,160 --> 00:29:30,200
+And the idea is that the value function sort of obeys this recursive decomposition, and
+
+477
+00:29:30,200 --> 00:29:35,080
+the main idea is very simple, that it basically says that you can take your sequence of rewards
+
+478
+00:29:35,080 --> 00:29:39,640
+from this time step all the way onwards, and you can break it up into two parts, which
+
+479
+00:29:39,640 --> 00:29:43,920
+basically consists of the immediate reward that you're going to get, and then the value
+
+480
+00:29:43,920 --> 00:29:46,320
+that you'll get from that time step onwards.
+
+481
+00:29:46,320 --> 00:29:49,280
+So you break it up into immediate reward, and then from the successor state that you
+
+482
+00:29:49,280 --> 00:29:54,040
+end up in, the value of where you end up, so immediate reward plus the value of where
+
+483
+00:29:54,040 --> 00:29:55,040
+you end up.
+
+484
+00:29:55,040 --> 00:30:00,400
+Now if I'm a robot, I might get an immediate reward of like plus 10, but then I end up
+
+485
+00:30:00,400 --> 00:30:03,120
+in this new state, and the question is how good is it to be in this new state?
+
+486
+00:30:03,120 --> 00:30:07,560
+And so the overall value function of being here is like my 10 points of immediate reward
+
+487
+00:30:07,560 --> 00:30:11,640
+plus the value of where I ended up, and that's what the Bellman equation tells me.
+
+488
+00:30:11,640 --> 00:30:14,920
+So formally if we just step through this, it's very straightforward, so this is our
+
+489
+00:30:14,920 --> 00:30:15,920
+value function.
+
+490
+00:30:15,920 --> 00:30:19,960
+The value function is the expected return, given that I start in a particular state.
+
+491
+00:30:19,960 --> 00:30:23,080
+And that's how we want to know how good is it to be in this state, and it's the expected
+
+492
+00:30:23,120 --> 00:30:25,280
+return if you start in that state.
+
+493
+00:30:25,280 --> 00:30:27,760
+We just unwrap the definition of return.
+
+494
+00:30:27,760 --> 00:30:32,440
+The return is just the sum of these rewards going into the future, discounted.
+
+495
+00:30:32,440 --> 00:30:38,640
+We can break down those sum of rewards into the immediate reward plus the discounted value,
+
+496
+00:30:38,640 --> 00:30:41,080
+the discounted return from the next step.
+
+497
+00:30:41,080 --> 00:30:44,720
+So we've got a discount, we just pull out the discount factor we've got, starting from
+
+498
+00:30:44,720 --> 00:30:50,200
+RT plus 2 plus gamma RT plus 3, and so forth, okay, just pull the factor of gamma out.
+
+499
+00:30:50,200 --> 00:30:55,040
+And now we see that this thing here is just the return from the next time step, the return
+
+500
+00:30:55,040 --> 00:30:57,560
+starting from T plus 2 instead of from T plus 1.
+
+501
+00:30:57,560 --> 00:31:02,360
+So that's this thing here, we say it's the expected immediate reward plus discounted
+
+502
+00:31:02,360 --> 00:31:03,360
+return.
+
+503
+00:31:03,360 --> 00:31:08,800
+And then by the law of iterated expectations, what we can do is basically say the expectation
+
+504
+00:31:08,800 --> 00:31:14,160
+of this return is the same as the expectation of this return, that's called the law of iterated
+
+505
+00:31:14,160 --> 00:31:18,880
+expectations, which gives us this final line here, which tells us that the value function
+
+506
+00:31:18,880 --> 00:31:24,240
+in state S is equal to the expected immediate reward plus the value function of the next
+
+507
+00:31:24,240 --> 00:31:25,240
+state.
+
+508
+00:31:25,240 --> 00:31:26,240
+Yeah, question?
+
+509
+00:31:26,240 --> 00:31:33,240
+I'm slightly confused with the indexes here, like when we start between state S and T,
+
+510
+00:31:33,240 --> 00:31:40,600
+but the time is T, and we encounter the first reward, like T plus 1.
+
+511
+00:31:40,600 --> 00:31:45,840
+Okay, so the question is why do we index the reward at time T plus 1?
+
+512
+00:31:45,840 --> 00:31:47,600
+Actually you'll find both in the literature.
+
+513
+00:31:47,640 --> 00:31:51,480
+We're following the Satin Abate Convention, which indexes rewards at time step T plus
+
+514
+00:31:51,480 --> 00:31:53,920
+1 rather than time step T.
+
+515
+00:31:53,920 --> 00:31:57,360
+This comes from how we think of the boundary between agent and the environment, that the
+
+516
+00:31:57,360 --> 00:32:02,800
+idea is that the action that we take goes into the environment, then a time step happens
+
+517
+00:32:02,800 --> 00:32:09,200
+whilst that we switch our time index after control passes back from the environment to
+
+518
+00:32:09,200 --> 00:32:11,320
+the agent, we're in a new time step.
+
+519
+00:32:11,320 --> 00:32:15,560
+So at that point, everything we receive from the environment has a new time index.
+
+520
+00:32:15,600 --> 00:32:18,640
+So everything after the environment has a time step T plus 1.
+
+521
+00:32:18,640 --> 00:32:21,800
+You might even find that my slides might be slightly inconsistent on this point, so it's
+
+522
+00:32:21,800 --> 00:32:22,800
+a good spot.
+
+523
+00:32:22,800 --> 00:32:23,800
+So I'm sorry if that's the case.
+
+524
+00:32:23,800 --> 00:32:24,800
+Yeah.
+
+525
+00:32:24,800 --> 00:32:27,800
+Actually, if you define it that way, when gamma equals 0, the actual value of the state
+
+526
+00:32:27,800 --> 00:32:32,800
+won't be the immediate reward, because it will be the probability that, like, if you
+
+527
+00:32:32,800 --> 00:32:35,800
+go to the slide, the gamma equals 0, the actual value of the state is going to be different
+
+528
+00:32:35,800 --> 00:32:36,800
+from there, I think.
+
+529
+00:32:36,800 --> 00:32:37,800
+No, that's not true.
+
+530
+00:32:37,800 --> 00:32:38,800
+It's just a difference.
+
+531
+00:32:38,800 --> 00:32:39,800
+It's literally just re-indexing.
+
+532
+00:32:39,800 --> 00:32:40,800
+So you can re-index everything with RT instead of RT plus 1, it's not going to change any
+
+533
+00:32:40,800 --> 00:32:41,800
+format than any of the semantics.
+
+534
+00:32:41,800 --> 00:32:42,800
+It's all the same.
+
+535
+00:32:42,800 --> 00:32:43,800
+So, yeah.
+
+536
+00:32:43,800 --> 00:32:44,800
+In the previous slide, the reward, the zero discounting was the reward in the state that
+
+537
+00:32:44,800 --> 00:32:45,800
+I'm currently in.
+
+538
+00:32:45,800 --> 00:32:46,800
+If you set gamma to zero here, it looks like the reward in the state I'm currently in is
+
+539
+00:32:46,800 --> 00:32:47,800
+the expected reward at the next stage.
+
+540
+00:32:47,800 --> 00:32:48,800
+And just...
+
+541
+00:32:48,800 --> 00:32:49,800
+Yeah.
+
+542
+00:32:49,800 --> 00:32:50,800
+Yeah.
+
+543
+00:32:50,800 --> 00:32:51,800
+Yeah.
+
+544
+00:32:51,800 --> 00:32:52,800
+Yeah.
+
+545
+00:32:52,800 --> 00:32:53,800
+Yeah.
+
+546
+00:32:53,800 --> 00:32:54,800
+Yeah.
+
+547
+00:32:54,800 --> 00:32:55,800
+Yeah.
+
+548
+00:32:55,800 --> 00:32:56,800
+Yeah.
+
+549
+00:32:56,800 --> 00:32:57,800
+Yeah.
+
+550
+00:32:57,800 --> 00:32:58,800
+Yeah.
+
+551
+00:32:58,800 --> 00:32:59,800
+Yeah.
+
+552
+00:32:59,800 --> 00:33:00,800
+Yeah.
+
+553
+00:33:00,800 --> 00:33:01,800
+Yeah.
+
+554
+00:33:01,800 --> 00:33:02,800
+Yeah.
+
+555
+00:33:02,800 --> 00:33:03,800
+Yeah.
+
+556
+00:33:03,800 --> 00:33:04,800
+Yeah.
+
+557
+00:33:04,800 --> 00:33:05,800
+Yeah.
+
+558
+00:33:05,800 --> 00:33:06,800
+Yeah.
+
+559
+00:33:06,800 --> 00:33:07,800
+Yeah.
+
+560
+00:33:07,800 --> 00:33:08,800
+Yeah.
+
+561
+00:33:08,800 --> 00:33:09,800
+Yeah.
+
+562
+00:33:09,800 --> 00:33:10,800
+Yeah.
+
+563
+00:33:10,800 --> 00:33:11,800
+Yeah.
+
+564
+00:33:11,800 --> 00:33:12,800
+Yeah.
+
+565
+00:33:12,800 --> 00:33:13,800
+Yeah.
+
+566
+00:33:13,800 --> 00:33:14,800
+Yeah.
+
+567
+00:33:14,800 --> 00:33:15,800
+Yeah.
+
+568
+00:33:15,800 --> 00:33:16,800
+Yeah.
+
+569
+00:33:16,800 --> 00:33:17,800
+Yeah.
+
+570
+00:33:17,800 --> 00:33:18,800
+Yeah.
+
+571
+00:33:18,800 --> 00:33:19,800
+Yeah.
+
+572
+00:33:19,800 --> 00:33:20,800
+Yeah.
+
+573
+00:33:20,800 --> 00:33:21,800
+So ...
+
+574
+00:33:21,800 --> 00:33:22,800
+Yeah.
+
+575
+00:33:22,800 --> 00:33:23,800
+Yeah.
+
+576
+00:33:23,800 --> 00:33:24,800
+Yeah.
+
+577
+00:33:24,800 --> 00:33:25,800
+Yeah.
+
+578
+00:33:25,800 --> 00:33:26,800
+Yeah.
+
+579
+00:33:26,800 --> 00:33:27,800
+Yeah.
+
+580
+00:33:27,800 --> 00:33:28,800
+Yeah.
+
+581
+00:33:28,800 --> 00:33:29,800
+Yeah.
+
+582
+00:33:29,800 --> 00:33:30,800
+Yeah.
+
+583
+00:33:30,800 --> 00:33:31,800
+Yeah.
+
+584
+00:33:31,800 --> 00:33:32,800
+Yeah.
+
+585
+00:33:32,800 --> 00:33:33,800
+Yes.
+
+586
+00:33:33,800 --> 00:33:34,800
+Yeah.
+
+587
+00:33:34,800 --> 00:33:35,800
+Yeah.
+
+588
+00:33:35,800 --> 00:33:37,520
+It's just a convention, so don't confuse yourselves.
+
+589
+00:33:37,520 --> 00:33:39,440
+It's just a convention.
+
+590
+00:33:39,440 --> 00:33:41,920
+Stick to the very intuitive idea, you move into a state,
+
+591
+00:33:41,920 --> 00:33:43,760
+you get some reward, everything is good.
+
+592
+00:33:50,680 --> 00:33:52,680
+So let's just try and understand this Bellman equation
+
+593
+00:33:52,680 --> 00:33:53,720
+a little bit more.
+
+594
+00:33:53,720 --> 00:33:56,920
+So the Bellman equation, so this is our Bellman equation.
+
+595
+00:33:56,920 --> 00:33:59,920
+The value function now is equal to the expected immediate
+
+596
+00:33:59,920 --> 00:34:02,600
+reward plus discounted value at the next state.
+
+597
+00:34:02,720 --> 00:34:05,840
+Value now, take a step, see what the value is
+
+598
+00:34:05,840 --> 00:34:07,960
+in the state I end up.
+
+599
+00:34:07,960 --> 00:34:11,000
+And that's just like a tautological definition.
+
+600
+00:34:11,000 --> 00:34:12,840
+If we've got our value function correct,
+
+601
+00:34:12,840 --> 00:34:15,600
+it must obey this identity.
+
+602
+00:34:15,600 --> 00:34:17,840
+That's what it means to have a value function.
+
+603
+00:34:17,840 --> 00:34:19,600
+If we don't obey this identity, we haven't found
+
+604
+00:34:19,600 --> 00:34:21,240
+the value function yet.
+
+605
+00:34:21,240 --> 00:34:23,280
+So one way to understand this is by using what we call
+
+606
+00:34:23,280 --> 00:34:25,680
+these backup diagrams here.
+
+607
+00:34:25,680 --> 00:34:29,760
+So these backup diagrams, this is basically showing us,
+
+608
+00:34:29,760 --> 00:34:32,400
+you can think of this as like a one step look ahead search.
+
+609
+00:34:32,440 --> 00:34:35,320
+We start in this state s, and we can look ahead
+
+610
+00:34:35,320 --> 00:34:37,160
+one step if you like.
+
+611
+00:34:37,160 --> 00:34:40,840
+So this state s leads to a value function of a v of s.
+
+612
+00:34:40,840 --> 00:34:43,160
+If we go down to s prime here or here,
+
+613
+00:34:43,160 --> 00:34:45,320
+we're going to have a value function that's v
+
+614
+00:34:45,320 --> 00:34:48,400
+of the successor state, and we're going to get some
+
+615
+00:34:48,400 --> 00:34:49,720
+immediate reward along the way.
+
+616
+00:34:49,720 --> 00:34:51,560
+So this diagram is just kind of showing us that we can
+
+617
+00:34:51,560 --> 00:34:54,000
+think of this as a one step look ahead tree,
+
+618
+00:34:54,000 --> 00:34:56,560
+where you start in this state, you look ahead one step,
+
+619
+00:34:56,560 --> 00:34:59,480
+you integrate over the probability of each of these
+
+620
+00:35:29,480 --> 00:35:40,240
+functions here.
+
+621
+00:35:40,240 --> 00:35:43,200
+So it's a one step look ahead with like this averaging,
+
+622
+00:35:43,200 --> 00:35:45,200
+where we kind of go ahead one step, we average all the
+
+623
+00:35:45,200 --> 00:35:47,120
+possible outcomes together, and that gives us the value
+
+624
+00:35:47,120 --> 00:35:48,680
+function of this step.
+
+625
+00:35:48,680 --> 00:35:50,640
+And that's actually kind of the way that we're going to
+
+626
+00:35:50,640 --> 00:35:52,880
+proceed when we actually start to build algorithms.
+
+627
+00:35:52,880 --> 00:35:54,760
+They're going to do something like this look ahead process,
+
+628
+00:35:54,760 --> 00:35:56,320
+which is why it's useful to have these backup
+
+629
+00:35:56,320 --> 00:35:59,080
+diagrams in mind.
+
+630
+00:35:59,080 --> 00:36:01,000
+OK, so if we think about the value function now,
+
+631
+00:36:01,000 --> 00:36:03,280
+let's just pick out one state.
+
+632
+00:36:03,280 --> 00:36:08,360
+So if we pick out this state here, so this is the
+
+633
+00:36:08,360 --> 00:36:10,480
+class three state.
+
+634
+00:36:10,480 --> 00:36:13,400
+And so I'm just going to tell you that this is going back.
+
+635
+00:36:13,400 --> 00:36:16,720
+I think this is a discount factor of one now.
+
+636
+00:36:16,720 --> 00:36:18,560
+So it's undiscounted.
+
+637
+00:36:18,560 --> 00:36:20,680
+And what we're looking at is what happens if we're in this
+
+638
+00:36:20,680 --> 00:36:23,040
+state with no discounting.
+
+639
+00:36:23,040 --> 00:36:26,200
+So I claimed that this was the value function of this
+
+640
+00:36:26,200 --> 00:36:27,880
+MDP, but how can we verify that?
+
+641
+00:36:27,880 --> 00:36:29,640
+Well, we can use the Bellman equation to verify that.
+
+642
+00:36:29,640 --> 00:36:32,520
+We can say, OK, well, if this value function is 4.3, it
+
+643
+00:36:32,520 --> 00:36:34,920
+should really be equal to doing like a one step look
+
+644
+00:36:34,920 --> 00:36:37,480
+ahead, averaging over all the things which might happen
+
+645
+00:36:37,480 --> 00:36:40,720
+next, and then ending up back here again.
+
+646
+00:36:40,720 --> 00:36:42,400
+So let's see if that's really true.
+
+647
+00:36:42,400 --> 00:36:45,400
+Well, from here, there are two things which could happen.
+
+648
+00:36:45,400 --> 00:36:54,040
+So we could either basically get minus 2 immediate reward
+
+649
+00:36:54,040 --> 00:36:55,320
+no matter what happens.
+
+650
+00:36:55,320 --> 00:36:57,400
+That's just minus 2 here.
+
+651
+00:36:57,400 --> 00:36:59,600
+And then with 0.6 probability, you're going to move
+
+652
+00:36:59,600 --> 00:37:01,760
+through to the next class and end up somewhere
+
+653
+00:37:01,760 --> 00:37:03,400
+with a value of 10.
+
+654
+00:37:03,400 --> 00:37:06,520
+But there's also 0.4 probability that you'll go
+
+655
+00:37:06,520 --> 00:37:08,600
+to the pub, and you'll end up in this state which had a
+
+656
+00:37:08,600 --> 00:37:10,640
+value of 0.8.
+
+657
+00:37:10,640 --> 00:37:12,720
+So if we sum those things together, we get minus 2
+
+658
+00:37:12,720 --> 00:37:18,000
+plus 0.6 times 10 plus 0.4 times 0.8, which to numerical
+
+659
+00:37:18,000 --> 00:37:21,000
+precision is 4.3.
+
+660
+00:37:21,000 --> 00:37:23,680
+And so that's validated the fact that this really is the
+
+661
+00:37:23,680 --> 00:37:24,800
+value of this MDP.
+
+662
+00:37:24,800 --> 00:37:27,680
+And then here, what is this capital power
+
+663
+00:37:27,680 --> 00:37:28,160
+represents?
+
+664
+00:37:28,160 --> 00:37:31,200
+Is this the reward for doing this step?
+
+665
+00:37:31,200 --> 00:37:32,760
+This is?
+
+666
+00:37:32,760 --> 00:37:36,600
+OK, so I think I need to be clear about the rewards.
+
+667
+00:37:36,600 --> 00:37:41,560
+So let me try and explain that whole clearly.
+
+668
+00:37:41,560 --> 00:37:46,440
+What this diagram represents is that you're in some state.
+
+669
+00:37:46,440 --> 00:37:49,520
+When you exit that state, regardless of what you do,
+
+670
+00:37:49,520 --> 00:37:52,720
+you will get the reward indicated by this R.
+
+671
+00:37:53,680 --> 00:37:56,560
+So upon exiting that state, regardless of where you end up,
+
+672
+00:37:56,560 --> 00:37:57,680
+you'll get this minus 2.
+
+673
+00:37:57,680 --> 00:37:59,800
+So we could have duplicated this and written R minus 2
+
+674
+00:37:59,800 --> 00:38:03,000
+here, R minus 2 here, and it could have been on these arcs.
+
+675
+00:38:03,000 --> 00:38:06,200
+And actually, when you define Markov decision processes,
+
+676
+00:38:06,200 --> 00:38:09,440
+which we'll see later, and for Markov reward processes, you
+
+677
+00:38:09,440 --> 00:38:13,000
+can make it dependent on the particular arc that you take.
+
+678
+00:38:13,000 --> 00:38:14,320
+You can make it dependent on the action.
+
+679
+00:38:14,320 --> 00:38:17,240
+You can make it dependent on the successor state.
+
+680
+00:38:17,240 --> 00:38:18,640
+All of these things are possible.
+
+681
+00:38:18,640 --> 00:38:20,280
+This is the simplest formulation.
+
+682
+00:38:20,320 --> 00:38:23,000
+The rewards just depend on the state that you're in.
+
+683
+00:38:23,000 --> 00:38:26,160
+And that state determines how much immediate reward you'll get.
+
+684
+00:38:26,160 --> 00:38:27,520
+And then you have to look at where
+
+685
+00:38:27,520 --> 00:38:29,480
+you ended up to see how much immediate reward you'll
+
+686
+00:38:29,480 --> 00:38:30,960
+get on the next step.
+
+687
+00:38:30,960 --> 00:38:31,880
+So you start here.
+
+688
+00:38:31,880 --> 00:38:32,360
+You exit it.
+
+689
+00:38:32,360 --> 00:38:33,280
+You get minus 2.
+
+690
+00:38:33,280 --> 00:38:34,240
+You get to here.
+
+691
+00:38:34,240 --> 00:38:35,080
+You exit this state.
+
+692
+00:38:35,080 --> 00:38:35,720
+You get minus 2.
+
+693
+00:38:35,720 --> 00:38:36,360
+You exit this state.
+
+694
+00:38:36,360 --> 00:38:37,400
+You get minus 2.
+
+695
+00:38:37,400 --> 00:38:38,840
+You exit this state.
+
+696
+00:38:38,840 --> 00:38:41,120
+You get R equals 0.
+
+697
+00:38:41,120 --> 00:38:41,760
+Sorry, guys.
+
+698
+00:38:41,760 --> 00:38:43,200
+You get plus 10.
+
+699
+00:38:43,200 --> 00:38:43,960
+You exit this state.
+
+700
+00:38:43,960 --> 00:38:46,840
+Repeatedly, you get 0, 0, 0, 0, 0.
+
+701
+00:38:46,840 --> 00:38:47,720
+Yeah, last question.
+
+702
+00:38:47,720 --> 00:38:48,680
+Then I'll move on.
+
+703
+00:38:48,680 --> 00:38:52,320
+Is there a reason why one needs to exit the past state
+
+704
+00:38:52,320 --> 00:38:55,440
+to get the reward of what's done in the future?
+
+705
+00:38:55,440 --> 00:38:57,440
+Yes.
+
+706
+00:38:57,440 --> 00:38:59,360
+Yes, thank you.
+
+707
+00:38:59,360 --> 00:39:02,280
+OK, let's move on.
+
+708
+00:39:02,280 --> 00:39:04,960
+OK, so this Bellman equation, so far we've
+
+709
+00:39:04,960 --> 00:39:08,280
+seen how to spell this out literally state by state.
+
+710
+00:39:08,280 --> 00:39:10,040
+But there's a much more concise formulation,
+
+711
+00:39:10,040 --> 00:39:13,400
+which is using matrices and vectors.
+
+712
+00:39:13,400 --> 00:39:16,760
+So if we just spend a moment to understand that, what we can do
+
+713
+00:39:16,760 --> 00:39:19,760
+is basically use this matrix formulation of the transition
+
+714
+00:39:19,760 --> 00:39:21,320
+matrix, which we've already seen.
+
+715
+00:39:21,320 --> 00:39:22,520
+But now what we're going to do is
+
+716
+00:39:22,520 --> 00:39:25,240
+we're going to introduce a vector representation
+
+717
+00:39:25,240 --> 00:39:28,000
+of the value function, which is the obvious thing.
+
+718
+00:39:28,000 --> 00:39:30,800
+It's basically we form a column vector,
+
+719
+00:39:30,800 --> 00:39:33,160
+where each element of the column vector
+
+720
+00:39:33,160 --> 00:39:37,400
+contains the value function of a specific state for all states
+
+721
+00:39:37,400 --> 00:39:39,520
+from 1 to n.
+
+722
+00:39:39,520 --> 00:39:41,920
+And so now we can write out our Bellman equation very
+
+723
+00:39:41,920 --> 00:39:42,480
+concisely.
+
+724
+00:39:42,480 --> 00:39:44,800
+It's just that the value function that you start with,
+
+725
+00:39:44,800 --> 00:39:46,960
+this column vector here, is equal to,
+
+726
+00:39:46,960 --> 00:39:49,520
+and we're going to do the same thing with the reward function
+
+727
+00:39:49,520 --> 00:39:49,800
+as well.
+
+728
+00:39:49,800 --> 00:39:52,120
+We're going to write out the reward function with one
+
+729
+00:39:52,120 --> 00:39:53,360
+element per state.
+
+730
+00:39:53,360 --> 00:39:56,560
+This tells us how much reward you'll get from exiting state 1,
+
+731
+00:39:56,560 --> 00:39:58,880
+all the way down to how much reward you'll get from exiting state
+
+732
+00:39:58,880 --> 00:40:01,080
+n, so forth.
+
+733
+00:40:01,080 --> 00:40:03,000
+So this is your immediate reward.
+
+734
+00:40:03,000 --> 00:40:06,280
+And then this is how much, this is where you'll transition to.
+
+735
+00:40:06,280 --> 00:40:10,120
+And this is how much value you started with before.
+
+736
+00:40:10,120 --> 00:40:13,760
+So it's basically telling us that in one sweep,
+
+737
+00:40:13,800 --> 00:40:17,280
+we can just look at this thing and say the value of their state
+
+738
+00:40:17,280 --> 00:40:22,880
+is equal to the immediate reward plus the transition matrix.
+
+739
+00:40:22,880 --> 00:40:25,200
+So these are all the places we might transition to.
+
+740
+00:40:25,200 --> 00:40:27,480
+And then this is the value of where we end up.
+
+741
+00:40:27,480 --> 00:40:29,520
+This is the value of after I take this step,
+
+742
+00:40:29,520 --> 00:40:31,520
+I might end up in this state, I might end up in this state,
+
+743
+00:40:31,520 --> 00:40:32,920
+I might end up in this state.
+
+744
+00:40:32,920 --> 00:40:35,160
+And each row of this thing is going
+
+745
+00:40:35,160 --> 00:40:37,120
+to be dot-productive with these values.
+
+746
+00:40:37,120 --> 00:40:40,200
+There's some probability if I'm in this state
+
+747
+00:40:40,200 --> 00:40:42,400
+that I end up in each of these successor states.
+
+748
+00:40:42,400 --> 00:40:44,040
+And then we take the dot product of that
+
+749
+00:40:44,040 --> 00:40:45,920
+with all of the values of where we end up.
+
+750
+00:40:45,920 --> 00:40:48,360
+And that's going to give us this first entry here.
+
+751
+00:40:48,360 --> 00:40:50,120
+So it gives us, literally, it's a way
+
+752
+00:40:50,120 --> 00:40:52,320
+of writing out the entire Bellman equation in one
+
+753
+00:40:52,320 --> 00:40:54,560
+very concise form.
+
+754
+00:40:54,560 --> 00:40:55,120
+OK.
+
+755
+00:40:55,120 --> 00:40:56,120
+Yeah, question?
+
+756
+00:40:56,120 --> 00:41:00,520
+The Bellman equation is number one.
+
+757
+00:41:00,520 --> 00:41:02,680
+Yes, that should be pn1, actually, from the bottom left.
+
+758
+00:41:06,520 --> 00:41:07,200
+OK.
+
+759
+00:41:07,200 --> 00:41:10,720
+So the Bellman equation is a linear equation.
+
+760
+00:41:10,760 --> 00:41:13,240
+As a result, it can be solved directly.
+
+761
+00:41:13,240 --> 00:41:15,240
+It's one of the nice things about linear equations.
+
+762
+00:41:15,240 --> 00:41:18,720
+This is not going to be true once we move to the more complex case
+
+763
+00:41:18,720 --> 00:41:20,440
+with Markov precision processes.
+
+764
+00:41:20,440 --> 00:41:22,960
+It's a nice property of just evaluating the rewards.
+
+765
+00:41:22,960 --> 00:41:24,600
+But once we want to maximize rewards,
+
+766
+00:41:24,600 --> 00:41:26,040
+it's super gets harder.
+
+767
+00:41:26,040 --> 00:41:28,560
+But at this stage, at least, we can solve this directly.
+
+768
+00:41:28,560 --> 00:41:31,720
+Assuming that our matrix is small enough to invert,
+
+769
+00:41:31,720 --> 00:41:34,840
+what we can do is just write out our linear equation now.
+
+770
+00:41:34,840 --> 00:41:37,560
+All we're going to do is collect together the v terms here.
+
+771
+00:41:37,600 --> 00:41:43,560
+So we've got identity times v here and gamma p times v here.
+
+772
+00:41:43,560 --> 00:41:47,200
+So we collect those together on this side, i minus gamma p,
+
+773
+00:41:47,200 --> 00:41:50,720
+v equals r, and then we just invert this matrix.
+
+774
+00:41:50,720 --> 00:41:52,720
+OK.
+
+775
+00:41:52,720 --> 00:41:59,400
+And this is the solution to the MDP.
+
+776
+00:41:59,400 --> 00:42:02,120
+The computational complexity of inverting this matrix
+
+777
+00:42:02,120 --> 00:42:04,880
+is n cubed for n states.
+
+778
+00:42:04,880 --> 00:42:07,600
+So this is not typically a practical solution method
+
+779
+00:42:07,600 --> 00:42:10,040
+for large Markov processes.
+
+780
+00:42:10,040 --> 00:42:11,960
+So what we'll start to look at in subsequent lectures
+
+781
+00:42:11,960 --> 00:42:14,920
+is efficient ways to solve these problems.
+
+782
+00:42:14,920 --> 00:42:17,240
+In particular, this is just going to be a building block.
+
+783
+00:42:17,240 --> 00:42:18,400
+All of the things we've seen so far
+
+784
+00:42:18,400 --> 00:42:20,560
+are just building blocks towards what we really care about,
+
+785
+00:42:20,560 --> 00:42:22,040
+which is making decisions.
+
+786
+00:42:22,040 --> 00:42:23,640
+And so this is just going to be a building block.
+
+787
+00:42:23,640 --> 00:42:25,360
+We need to be able to efficiently figure out
+
+788
+00:42:25,360 --> 00:42:27,200
+what's the value of being in this state.
+
+789
+00:42:27,200 --> 00:42:29,680
+We can't always do this.
+
+790
+00:42:29,680 --> 00:42:32,520
+But it is nice to know that as well, Markov reward processes,
+
+791
+00:42:32,520 --> 00:42:33,840
+we can just invert this thing.
+
+792
+00:42:33,840 --> 00:42:37,520
+And it gives us some intuition into what's going on.
+
+793
+00:42:37,520 --> 00:42:40,240
+So later, we'll talk about the next lecture, in fact.
+
+794
+00:42:40,240 --> 00:42:42,400
+The next class is dynamic programming.
+
+795
+00:42:42,400 --> 00:42:43,960
+That's a very well-known class of methods
+
+796
+00:42:43,960 --> 00:42:46,720
+for basically doing this more efficiently.
+
+797
+00:42:46,720 --> 00:42:48,720
+Then we'll talk about Monte Carlo evaluation
+
+798
+00:42:48,720 --> 00:42:49,880
+and temporal difference learning.
+
+799
+00:42:49,880 --> 00:42:51,400
+That's like the next couple of lectures
+
+800
+00:42:51,400 --> 00:42:55,040
+are basically doing exactly that.
+
+801
+00:42:55,040 --> 00:42:56,040
+Right.
+
+802
+00:42:56,040 --> 00:42:58,800
+So that was sort of the elementary building
+
+803
+00:42:58,800 --> 00:43:01,480
+blocks leading up to this point, which is the MDP.
+
+804
+00:43:01,480 --> 00:43:02,920
+This is the thing which we actually
+
+805
+00:43:02,920 --> 00:43:05,560
+do in reinforcement learning.
+
+806
+00:43:05,560 --> 00:43:07,880
+And so I guess I should pause.
+
+807
+00:43:07,880 --> 00:43:09,800
+Any questions so far?
+
+808
+00:43:09,800 --> 00:43:11,480
+I guess we've been doing them as we go, so.
+
+809
+00:43:15,360 --> 00:43:16,240
+Right.
+
+810
+00:43:16,240 --> 00:43:19,680
+So the MDP, we're basically going to add in one more piece
+
+811
+00:43:19,680 --> 00:43:21,240
+of complexity now, which is actions.
+
+812
+00:43:21,240 --> 00:43:23,440
+So so far, there's been nothing for us to do.
+
+813
+00:43:23,440 --> 00:43:24,680
+I just told you, you get plunked down
+
+814
+00:43:24,680 --> 00:43:28,080
+in your student Markov reward process.
+
+815
+00:43:28,080 --> 00:43:30,040
+And you just randomly sell up all these transitions
+
+816
+00:43:30,040 --> 00:43:31,640
+and get spat out at the other end.
+
+817
+00:43:31,640 --> 00:43:34,000
+You didn't get any, you didn't have any agency.
+
+818
+00:43:34,000 --> 00:43:36,360
+You weren't able to take actions and make decisions.
+
+819
+00:43:36,360 --> 00:43:37,400
+So let's now change that.
+
+820
+00:43:37,400 --> 00:43:38,840
+Let's introduce decisions.
+
+821
+00:43:38,840 --> 00:43:40,560
+So what we're going to do now is basically
+
+822
+00:43:40,560 --> 00:43:42,560
+take our Markov reward process, which
+
+823
+00:43:42,560 --> 00:43:45,560
+was a state space transition matrix, reward function,
+
+824
+00:43:45,560 --> 00:43:48,040
+and discount factor, and add in one more component, which
+
+825
+00:43:48,040 --> 00:43:51,080
+is the action space.
+
+826
+00:43:51,080 --> 00:43:53,880
+So A is now a finite set of actions.
+
+827
+00:43:53,880 --> 00:43:55,280
+In the extensions to the class, you'll
+
+828
+00:43:55,280 --> 00:44:00,160
+see how this can be made continuous or infinite.
+
+829
+00:44:00,160 --> 00:44:02,880
+But now we'll consider the simplest case.
+
+830
+00:44:02,880 --> 00:44:08,120
+This is a discrete set of actions, finite size.
+
+831
+00:44:08,120 --> 00:44:09,560
+And so now what we're going to do is
+
+832
+00:44:09,560 --> 00:44:12,040
+say the transition probability matrix now
+
+833
+00:44:12,040 --> 00:44:14,280
+depends on which action we take.
+
+834
+00:44:14,280 --> 00:44:16,760
+So where you end up is now going to depend
+
+835
+00:44:16,760 --> 00:44:18,240
+on the action that you take.
+
+836
+00:44:18,240 --> 00:44:20,280
+You take, if you move to the left,
+
+837
+00:44:20,280 --> 00:44:22,440
+the probability that you end up in all these different states
+
+838
+00:44:22,440 --> 00:44:25,120
+is going to be different if you choose to move to the right.
+
+839
+00:44:25,120 --> 00:44:27,880
+The wind might blow you different ways in each case,
+
+840
+00:44:27,920 --> 00:44:30,640
+but you have some agency over where you're going to end up.
+
+841
+00:44:30,640 --> 00:44:32,640
+So the way we think of this is that there's just one,
+
+842
+00:44:32,640 --> 00:44:35,760
+in the discrete case, there's like one separate matrix
+
+843
+00:44:35,760 --> 00:44:39,840
+of transition probabilities for each action that you might take.
+
+844
+00:44:39,840 --> 00:44:41,880
+And now we've got this reward function.
+
+845
+00:44:41,880 --> 00:44:45,520
+The reward function, again, may depend on the action.
+
+846
+00:44:45,520 --> 00:44:48,520
+It may also not depend on the action, but in general,
+
+847
+00:44:48,520 --> 00:44:50,480
+this thing can depend on the action.
+
+848
+00:44:50,480 --> 00:44:51,920
+Apart from that, everything is the same.
+
+849
+00:44:51,920 --> 00:44:52,720
+The machinery is the same.
+
+850
+00:44:52,720 --> 00:44:56,840
+We've just introduced actions in the simplest possible way.
+
+851
+00:44:56,840 --> 00:44:58,840
+So what we're going to do is actually
+
+852
+00:44:58,840 --> 00:45:03,200
+redo our student marker process now, but as an MDP,
+
+853
+00:45:03,200 --> 00:45:05,240
+where there's decisions that you can take.
+
+854
+00:45:05,240 --> 00:45:10,200
+So the decisions are now these red labels on the arcs.
+
+855
+00:45:10,200 --> 00:45:12,200
+And so the point now is that you actually
+
+856
+00:45:12,200 --> 00:45:13,680
+have some agency here.
+
+857
+00:45:13,680 --> 00:45:16,000
+And so from this state, you can choose to either study.
+
+858
+00:45:16,000 --> 00:45:19,160
+That's a choice now, so there's no probabilities attached to this.
+
+859
+00:45:19,160 --> 00:45:20,760
+You can choose to study.
+
+860
+00:45:20,760 --> 00:45:24,080
+If you study, you end up in the state.
+
+861
+00:45:24,080 --> 00:45:27,560
+If you choose to go to Facebook, you end up in this state.
+
+862
+00:45:27,560 --> 00:45:29,680
+When you're at Facebook, you can choose to do it again,
+
+863
+00:45:29,680 --> 00:45:32,080
+or you can choose to quit.
+
+864
+00:45:32,080 --> 00:45:34,200
+You can choose to go to sleep here, or to study again.
+
+865
+00:45:34,200 --> 00:45:37,320
+You can choose to study again, or you can choose to go to the pub.
+
+866
+00:45:37,320 --> 00:45:39,600
+If you choose to go to the pub, that's the only place now
+
+867
+00:45:39,600 --> 00:45:41,160
+in that there's any randomness.
+
+868
+00:45:41,160 --> 00:45:43,560
+If you choose to go to the pub, who knows what might happen?
+
+869
+00:45:43,560 --> 00:45:46,520
+Maybe you'll drink one or two beers, not quite sure.
+
+870
+00:45:46,520 --> 00:45:49,880
+So now there's some probability that you'll end up going back
+
+871
+00:45:49,880 --> 00:45:52,480
+to class one, going back to class two,
+
+872
+00:45:52,480 --> 00:45:56,240
+or even going back to class three.
+
+873
+00:45:56,240 --> 00:45:59,600
+So there's a lot more control that you can exert now
+
+874
+00:45:59,600 --> 00:46:01,960
+over your path through this MDP.
+
+875
+00:46:01,960 --> 00:46:03,720
+This is the reality for an agent.
+
+876
+00:46:03,720 --> 00:46:05,720
+And the goal is, the game we're playing now
+
+877
+00:46:05,720 --> 00:46:10,040
+is to try and find the best path through your decision-making
+
+878
+00:46:10,040 --> 00:46:12,920
+process that maximizes the sum of rewards that you get.
+
+879
+00:46:12,920 --> 00:46:16,800
+That's the game that you play in an MDP.
+
+880
+00:46:16,800 --> 00:46:18,760
+So to do that, the first thing we need to talk about
+
+881
+00:46:18,760 --> 00:46:21,320
+is formalizing what it means to make decisions,
+
+882
+00:46:21,320 --> 00:46:22,480
+and to take decisions.
+
+883
+00:46:22,480 --> 00:46:25,360
+And to do that, we define something called the policy.
+
+884
+00:46:25,360 --> 00:46:28,000
+So the policy is basically, we're
+
+885
+00:46:28,000 --> 00:46:29,880
+going to talk about stochastic policies today.
+
+886
+00:46:29,880 --> 00:46:32,880
+And these policies are distributions over actions
+
+887
+00:46:32,880 --> 00:46:34,120
+given states.
+
+888
+00:46:34,120 --> 00:46:37,080
+So in other words, if you're in some state S,
+
+889
+00:46:37,080 --> 00:46:39,160
+this distribution basically gives you the mapping.
+
+890
+00:46:39,160 --> 00:46:42,840
+It says, if I'm in this state, map from that state
+
+891
+00:46:42,840 --> 00:46:44,640
+to some probability of going left
+
+892
+00:46:44,640 --> 00:46:46,200
+and some probability of going right.
+
+893
+00:46:46,200 --> 00:46:48,880
+So this is the thing that tells me, if I'm in class 1,
+
+894
+00:46:48,880 --> 00:46:52,640
+I am going to choose to go to class 2 with probability 0.9.
+
+895
+00:46:52,640 --> 00:46:54,920
+It's going to Facebook with probability 0.1.
+
+896
+00:46:54,920 --> 00:46:56,520
+This is something under the agent's control.
+
+897
+00:46:56,520 --> 00:46:57,800
+It's something we decide.
+
+898
+00:46:57,800 --> 00:47:00,960
+And it's just a stochastic transition matrix.
+
+899
+00:47:00,960 --> 00:47:02,440
+And it's useful to make it stochastic,
+
+900
+00:47:02,440 --> 00:47:04,480
+because that allows us to do things like exploration.
+
+901
+00:47:04,480 --> 00:47:09,320
+So we'll make use of that later in the course.
+
+902
+00:47:09,320 --> 00:47:10,920
+So once you have a policy, it completely
+
+903
+00:47:10,920 --> 00:47:12,480
+defines how that agent will behave.
+
+904
+00:47:12,480 --> 00:47:19,800
+And in an MDP, the policies depend just on the current state.
+
+905
+00:47:19,800 --> 00:47:21,440
+That was the Markov property.
+
+906
+00:47:21,440 --> 00:47:23,080
+Doesn't depend on the history.
+
+907
+00:47:23,080 --> 00:47:27,040
+And as a result, we consider what we call stationary policies.
+
+908
+00:47:27,040 --> 00:47:32,440
+We don't consider all of the policies the same no matter
+
+909
+00:47:32,440 --> 00:47:34,560
+what time step we're in in the MDP.
+
+910
+00:47:34,560 --> 00:47:36,960
+We just have the same policy at each time step.
+
+911
+00:47:36,960 --> 00:47:38,760
+And the only thing that this depends on
+
+912
+00:47:38,760 --> 00:47:40,960
+is the state that we're in, not the time step at which it
+
+913
+00:47:40,960 --> 00:47:42,040
+happened.
+
+914
+00:47:42,080 --> 00:47:44,000
+And that's sufficient to behave optimally,
+
+915
+00:47:44,000 --> 00:47:46,320
+because by definition, we have the Markov property.
+
+916
+00:47:46,320 --> 00:47:48,480
+And this state, S, fully characterizes everything
+
+917
+00:47:48,480 --> 00:47:50,000
+that will happen next.
+
+918
+00:47:50,000 --> 00:47:51,000
+Yeah, question?
+
+919
+00:47:51,000 --> 00:47:54,480
+How do we reward the element here?
+
+920
+00:47:54,480 --> 00:47:56,920
+And I'm sure you want to maximize rewards
+
+921
+00:47:56,920 --> 00:47:59,400
+in terms of the fact that they're not.
+
+922
+00:47:59,400 --> 00:48:02,840
+The question was, why are there no rewards in this equation?
+
+923
+00:48:02,840 --> 00:48:05,360
+And that's because the state, S, fully characterizes
+
+924
+00:48:05,360 --> 00:48:06,680
+your future rewards.
+
+925
+00:48:06,680 --> 00:48:10,480
+So in a Markov reward process or Markov decision process,
+
+926
+00:48:10,480 --> 00:48:12,600
+the Markov property means that S fully characterizes
+
+927
+00:48:12,600 --> 00:48:16,560
+the evolution from this state onwards in the process.
+
+928
+00:48:16,560 --> 00:48:18,880
+And so what you're looking for is the policy, which,
+
+929
+00:48:18,880 --> 00:48:21,200
+given the state you're in, well, you
+
+930
+00:48:21,200 --> 00:48:23,960
+want to pick actions that will get you the most future reward.
+
+931
+00:48:23,960 --> 00:48:25,880
+So all you need to look at is what state am I in
+
+932
+00:48:25,880 --> 00:48:27,560
+and what action should I take next?
+
+933
+00:48:27,560 --> 00:48:29,360
+And we're trying to pick those actions in the way,
+
+934
+00:48:29,360 --> 00:48:32,080
+given that state, that will get us the most future reward.
+
+935
+00:48:32,080 --> 00:48:33,320
+So the rewards are in the future.
+
+936
+00:48:33,320 --> 00:48:35,560
+We don't care about how many rewards we've got in the past.
+
+937
+00:48:35,560 --> 00:48:36,480
+Those rewards have gone now.
+
+938
+00:48:36,480 --> 00:48:37,840
+They've been consumed.
+
+939
+00:48:37,840 --> 00:48:39,360
+All we care about is how much reward
+
+940
+00:48:39,360 --> 00:48:41,240
+we can get from now into the future.
+
+941
+00:48:41,240 --> 00:48:43,880
+So we don't actually care when we try to maximize this thing.
+
+942
+00:48:43,880 --> 00:48:45,960
+We don't care if we currently, if we've already
+
+943
+00:48:45,960 --> 00:48:47,960
+achieved a million reward or minus a million reward.
+
+944
+00:48:47,960 --> 00:48:48,600
+That's irrelevant.
+
+945
+00:48:48,600 --> 00:48:51,760
+What we want to do is maximize the reward from now onwards.
+
+946
+00:48:51,760 --> 00:48:53,480
+That's the way we're going to behave optimally.
+
+947
+00:48:53,480 --> 00:48:56,080
+I would give commission on state information-wise
+
+948
+00:48:56,080 --> 00:48:58,240
+to produce all the information that I would
+
+949
+00:48:58,240 --> 00:48:59,600
+expect to be the reward state.
+
+950
+00:48:59,600 --> 00:49:00,600
+Yes.
+
+951
+00:49:00,600 --> 00:49:01,720
+Yes, exactly.
+
+952
+00:49:04,760 --> 00:49:05,240
+OK.
+
+953
+00:49:05,240 --> 00:49:07,840
+So one important thing to note about the connection
+
+954
+00:49:07,840 --> 00:49:10,400
+between Markov decision processes and Markov reward
+
+955
+00:49:10,400 --> 00:49:15,120
+processes is that we can always recover an MRP or a Markov
+
+956
+00:49:15,120 --> 00:49:17,760
+process from our decision process.
+
+957
+00:49:17,760 --> 00:49:20,120
+So just to understand that, we can
+
+958
+00:49:20,120 --> 00:49:23,560
+think about basically the sample of states that we draw.
+
+959
+00:49:23,560 --> 00:49:26,720
+Like if we have some policy that helps us pick actions,
+
+960
+00:49:26,720 --> 00:49:29,440
+we're just going to draw this sequence of states.
+
+961
+00:49:29,440 --> 00:49:31,080
+And the sequence of states that we draw,
+
+962
+00:49:31,080 --> 00:49:33,120
+when we follow our particular process,
+
+963
+00:49:33,120 --> 00:49:36,000
+is actually a Markov chain, so a Markov process itself.
+
+964
+00:49:36,000 --> 00:49:39,080
+No matter what policy we choose, that policy defines
+
+965
+00:49:39,080 --> 00:49:41,600
+some Markov chain that actually defines our dynamics the way
+
+966
+00:49:41,600 --> 00:49:45,160
+that we're going to move through and evolve through this system.
+
+967
+00:49:45,160 --> 00:49:47,560
+And if we look at the sequence of states and rewards
+
+968
+00:49:47,560 --> 00:49:49,560
+that we receive as we pass through,
+
+969
+00:49:49,560 --> 00:49:52,240
+like once we fix the policy, if you fix the policy
+
+970
+00:49:52,240 --> 00:49:54,560
+and look just at the sequence of states and rewards that you see
+
+971
+00:49:54,560 --> 00:49:57,480
+as you go through this MDP, that sequence
+
+972
+00:49:57,480 --> 00:49:59,760
+is a Markov reward process.
+
+973
+00:49:59,760 --> 00:50:01,320
+And the way to understand that is
+
+974
+00:50:01,320 --> 00:50:04,160
+that we're going to define basically transition dynamics
+
+975
+00:50:04,200 --> 00:50:07,560
+and reward function with just average over our policy.
+
+976
+00:50:07,560 --> 00:50:09,520
+We're just going to average over all the things which
+
+977
+00:50:09,520 --> 00:50:10,520
+happen under our policy.
+
+978
+00:50:10,520 --> 00:50:11,800
+We're going to average over.
+
+979
+00:50:11,800 --> 00:50:13,960
+So we're going to define the transition dynamics
+
+980
+00:50:13,960 --> 00:50:17,360
+to be the average of the transition dynamics for all
+
+981
+00:50:17,360 --> 00:50:19,040
+of the things that we might do.
+
+982
+00:50:19,040 --> 00:50:21,320
+So if we're going to go left with probability 0.5
+
+983
+00:50:21,320 --> 00:50:23,240
+and right with probability 0.5, I'm just
+
+984
+00:50:23,240 --> 00:50:25,880
+going to take 0.5 times the dynamics,
+
+985
+00:50:25,880 --> 00:50:28,200
+or all the probability of going to all the states from here,
+
+986
+00:50:28,200 --> 00:50:30,240
+plus 0.5 times the probability of all the states
+
+987
+00:50:30,240 --> 00:50:32,000
+that I'm going to end up in over here.
+
+988
+00:50:32,000 --> 00:50:34,680
+Sum those together, and those average dynamics
+
+989
+00:50:34,680 --> 00:50:38,680
+define some Markov reward process.
+
+990
+00:50:38,680 --> 00:50:41,760
+So we can always flatten our MDP given our current policy
+
+991
+00:50:41,760 --> 00:50:45,120
+back into a Markov chain.
+
+992
+00:50:45,120 --> 00:50:46,240
+This is just a useful point.
+
+993
+00:50:46,240 --> 00:50:47,240
+It's not like central.
+
+994
+00:50:47,240 --> 00:50:50,000
+So you can come back to this and think about it offline
+
+995
+00:50:50,000 --> 00:50:52,560
+if you like.
+
+996
+00:50:52,560 --> 00:50:55,360
+OK, what is central is the concept of the value function.
+
+997
+00:50:55,360 --> 00:50:56,760
+So we already had the value function
+
+998
+00:50:56,760 --> 00:50:59,120
+for a Markov reward process, but there was no agency there.
+
+999
+00:50:59,120 --> 00:51:00,480
+There was no decisions.
+
+1000
+00:51:00,480 --> 00:51:01,560
+Now we've got this policy.
+
+1001
+00:51:01,600 --> 00:51:02,720
+There's some way that we can choose
+
+1002
+00:51:02,720 --> 00:51:05,040
+to behave in our Markov process.
+
+1003
+00:51:05,040 --> 00:51:07,440
+I might be following this path straight through the student
+
+1004
+00:51:07,440 --> 00:51:10,120
+Markov chain where I collect all the rewards
+
+1005
+00:51:10,120 --> 00:51:11,200
+by going through all the classes,
+
+1006
+00:51:11,200 --> 00:51:14,080
+or I might choose to spend a lot of time on Facebook.
+
+1007
+00:51:14,080 --> 00:51:16,040
+These are going to give different rewards.
+
+1008
+00:51:16,040 --> 00:51:17,840
+There's not one expectation anymore.
+
+1009
+00:51:17,840 --> 00:51:20,640
+There are different expectations depending on how I behave.
+
+1010
+00:51:20,640 --> 00:51:22,720
+And so we subscript our value function
+
+1011
+00:51:22,720 --> 00:51:26,160
+by the policy that we're interested in evaluating.
+
+1012
+00:51:26,160 --> 00:51:31,040
+So v pi of s now tells us how good is it to be in state s
+
+1013
+00:51:31,040 --> 00:51:34,560
+if I'm following policy pi?
+
+1014
+00:51:34,560 --> 00:51:36,000
+So if I'm following the policy that just
+
+1015
+00:51:36,000 --> 00:51:37,440
+goes straight through the classes,
+
+1016
+00:51:37,440 --> 00:51:38,920
+how much reward will I get?
+
+1017
+00:51:38,920 --> 00:51:41,320
+Or if I'm following the policy where I stay on Facebook
+
+1018
+00:51:41,320 --> 00:51:42,960
+for as long as possible, how much reward
+
+1019
+00:51:42,960 --> 00:51:45,800
+will I get from each state on this?
+
+1020
+00:51:45,800 --> 00:51:47,800
+So this basically is defined.
+
+1021
+00:51:47,800 --> 00:51:49,480
+We've just got this expectation here now.
+
+1022
+00:51:49,480 --> 00:51:52,960
+This e pi basically means the expectation
+
+1023
+00:51:52,960 --> 00:51:56,520
+when we sample all actions according to this policy pi.
+
+1024
+00:51:56,520 --> 00:51:59,960
+That's sort of hidden in that e pi notation.
+
+1025
+00:52:00,000 --> 00:52:03,040
+We're also going to define a second type of value function
+
+1026
+00:52:03,040 --> 00:52:05,160
+called the action value function.
+
+1027
+00:52:05,160 --> 00:52:07,240
+So so far we've got the state value function.
+
+1028
+00:52:07,240 --> 00:52:09,320
+This v we call the state value function
+
+1029
+00:52:09,320 --> 00:52:12,560
+that tells us how good is it to be in a particular state s.
+
+1030
+00:52:12,560 --> 00:52:14,880
+We're also going to define the action value function
+
+1031
+00:52:14,880 --> 00:52:17,200
+which tells us how good is it to take a particular action
+
+1032
+00:52:17,200 --> 00:52:18,880
+from a particular state.
+
+1033
+00:52:18,880 --> 00:52:21,360
+And this is the thing which we intuitively care about
+
+1034
+00:52:21,360 --> 00:52:23,560
+when we want to decide which action should I take?
+
+1035
+00:52:23,560 --> 00:52:25,480
+Should I go left or should I go right?
+
+1036
+00:52:25,480 --> 00:52:26,440
+Well, I should choose the one that's
+
+1037
+00:52:26,440 --> 00:52:28,280
+going to give me more reward.
+
+1038
+00:52:28,280 --> 00:52:30,160
+And the way I evaluate these things
+
+1039
+00:52:30,160 --> 00:52:33,000
+is by looking at the action values.
+
+1040
+00:52:33,000 --> 00:52:35,400
+In other words, we're basically going to look at,
+
+1041
+00:52:35,400 --> 00:52:39,120
+so q pi, so for a given policy, for a given way to behave,
+
+1042
+00:52:39,120 --> 00:52:41,040
+we want to know if I'm in this state s
+
+1043
+00:52:41,040 --> 00:52:44,400
+and I take this action a, what's the expected return,
+
+1044
+00:52:44,400 --> 00:52:47,520
+the total reward that I'll get after I've taken that action,
+
+1045
+00:52:47,520 --> 00:52:50,720
+how much reward will I get from that point onwards?
+
+1046
+00:52:50,720 --> 00:52:53,000
+OK, that's the key quantity that we're
+
+1047
+00:52:53,000 --> 00:52:55,120
+going to use to help us optimize our MDP
+
+1048
+00:52:55,120 --> 00:52:58,480
+and pick the best actions.
+
+1049
+00:52:58,480 --> 00:53:00,480
+So let's make this concrete again.
+
+1050
+00:53:00,480 --> 00:53:03,520
+So this is the state value function for the student MDP,
+
+1051
+00:53:03,520 --> 00:53:06,720
+undiscounted, so the discount factor is 1.
+
+1052
+00:53:06,720 --> 00:53:08,920
+And this is just for uniform random behavior.
+
+1053
+00:53:08,920 --> 00:53:10,680
+So we're fixing the policy to say,
+
+1054
+00:53:10,680 --> 00:53:12,520
+we're always, when we've got a choice,
+
+1055
+00:53:12,520 --> 00:53:14,160
+we're always going to randomly pick
+
+1056
+00:53:14,160 --> 00:53:18,000
+50-50 between those choices.
+
+1057
+00:53:18,000 --> 00:53:21,520
+And so this is the value function that we end up with.
+
+1058
+00:53:21,520 --> 00:53:24,760
+We see that we end up thinking it's not very good to start
+
+1059
+00:53:24,760 --> 00:53:26,000
+in this state here because there's
+
+1060
+00:53:26,000 --> 00:53:29,680
+a high probability of ending up in the Facebook state
+
+1061
+00:53:29,680 --> 00:53:31,360
+because we're choosing things 50-50.
+
+1062
+00:53:37,760 --> 00:53:40,320
+Now what we can define is another Bellman equation.
+
+1063
+00:53:40,320 --> 00:53:43,160
+So the Bellman equation, we saw this in the Markov reward
+
+1064
+00:53:43,160 --> 00:53:46,520
+process, and now we're going to define a Bellman equation
+
+1065
+00:53:46,520 --> 00:53:50,720
+for these value functions in the MDP case.
+
+1066
+00:53:50,720 --> 00:53:52,560
+So again, we can use the same idea,
+
+1067
+00:53:52,560 --> 00:53:54,640
+that the value function can be decomposed
+
+1068
+00:53:54,640 --> 00:53:57,560
+into an immediate reward plus the discounted value
+
+1069
+00:53:57,560 --> 00:53:58,360
+at the next state.
+
+1070
+00:53:58,360 --> 00:54:01,000
+So again, there's this idea that wherever you are,
+
+1071
+00:54:01,000 --> 00:54:04,200
+you take one step, and you get your immediate reward
+
+1072
+00:54:04,200 --> 00:54:06,720
+for that step, and then you look at the value of where
+
+1073
+00:54:06,720 --> 00:54:08,800
+you end up, and the sum of those things together
+
+1074
+00:54:08,800 --> 00:54:11,520
+tells you how good it was to be in your original state.
+
+1075
+00:54:11,520 --> 00:54:13,840
+That's still true in an MDP.
+
+1076
+00:54:13,840 --> 00:54:16,240
+Now what we're saying is that you start in this state,
+
+1077
+00:54:16,240 --> 00:54:18,400
+and we know that we're following policy pi,
+
+1078
+00:54:18,400 --> 00:54:19,640
+but the value thing in this state
+
+1079
+00:54:19,640 --> 00:54:22,160
+is still the immediate reward that you get
+
+1080
+00:54:22,200 --> 00:54:25,120
+plus the value of your successor state,
+
+1081
+00:54:25,120 --> 00:54:26,760
+if you know that you're going to follow policy pi
+
+1082
+00:54:26,760 --> 00:54:28,520
+from there onwards.
+
+1083
+00:54:28,520 --> 00:54:32,080
+So we just look at what happened for one step
+
+1084
+00:54:32,080 --> 00:54:34,000
+of following a policy, and then we ask,
+
+1085
+00:54:34,000 --> 00:54:37,040
+how much more reward will I get following that policy?
+
+1086
+00:54:37,040 --> 00:54:38,160
+And we sum those things together,
+
+1087
+00:54:38,160 --> 00:54:40,640
+that gives us the Bellman equation.
+
+1088
+00:54:40,640 --> 00:54:42,600
+We can do the same thing with the action value function,
+
+1089
+00:54:42,600 --> 00:54:45,880
+with these Q values, and this basically tells us,
+
+1090
+00:54:45,880 --> 00:54:50,880
+now, if I'm in one state, and I take an action from there,
+
+1091
+00:54:51,480 --> 00:54:53,800
+then I'll get some immediate reward for that action,
+
+1092
+00:54:53,800 --> 00:54:56,360
+for that specific action, and then I'll look at
+
+1093
+00:54:56,360 --> 00:54:58,080
+where I end up, and I can ask, well,
+
+1094
+00:54:58,080 --> 00:55:01,600
+what's the action value of the state that I end up in
+
+1095
+00:55:01,600 --> 00:55:06,000
+under the action that I would pick from that point onwards?
+
+1096
+00:55:09,960 --> 00:55:12,880
+So let's look at these kind of pictorially
+
+1097
+00:55:12,880 --> 00:55:14,000
+and try and understand them with these
+
+1098
+00:55:14,000 --> 00:55:16,520
+sort of look ahead search diagrams.
+
+1099
+00:55:16,520 --> 00:55:19,080
+So the way to understand this is, first of all,
+
+1100
+00:55:19,080 --> 00:55:21,720
+to understand how V and Q relate to each other.
+
+1101
+00:55:21,720 --> 00:55:23,640
+So if you're in a state value function here,
+
+1102
+00:55:23,640 --> 00:55:27,160
+really what it's saying is that we're gonna average over,
+
+1103
+00:55:27,160 --> 00:55:29,680
+basically we're gonna average over the actions
+
+1104
+00:55:31,520 --> 00:55:33,360
+that we might take.
+
+1105
+00:55:33,360 --> 00:55:36,240
+So the sub-probability that we'll take this action here,
+
+1106
+00:55:36,240 --> 00:55:37,840
+these black dots represent actions,
+
+1107
+00:55:37,840 --> 00:55:40,880
+and these open circles represent states now.
+
+1108
+00:55:40,880 --> 00:55:42,920
+So we're in some state here.
+
+1109
+00:55:42,920 --> 00:55:45,280
+We might take this action here,
+
+1110
+00:55:45,280 --> 00:55:47,080
+we might take this action here.
+
+1111
+00:55:47,080 --> 00:55:48,680
+The probabilities of these things are defined
+
+1112
+00:55:48,800 --> 00:55:49,640
+by our policy.
+
+1113
+00:55:49,640 --> 00:55:51,120
+So this is like the probability I'll go left,
+
+1114
+00:55:51,120 --> 00:55:53,120
+the probability I'll go right.
+
+1115
+00:55:53,120 --> 00:55:55,200
+Over each of those actions we might take,
+
+1116
+00:55:55,200 --> 00:55:57,360
+there's a Q value, there's an action value
+
+1117
+00:55:57,360 --> 00:55:59,120
+telling us how good it is to take that action
+
+1118
+00:55:59,120 --> 00:56:00,640
+from that state.
+
+1119
+00:56:00,640 --> 00:56:02,680
+And so we're doing like a one step look ahead,
+
+1120
+00:56:02,680 --> 00:56:05,160
+saying the state value, how good it is to do this state,
+
+1121
+00:56:05,160 --> 00:56:07,960
+we just look ahead one step, look at the action values,
+
+1122
+00:56:07,960 --> 00:56:10,120
+average them together, and that tells us the value
+
+1123
+00:56:10,120 --> 00:56:12,120
+of being in that state at the top there.
+
+1124
+00:56:14,360 --> 00:56:17,880
+Now let's do the converse, understand the opposite step.
+
+1125
+00:56:17,920 --> 00:56:21,160
+So what happens if we start off taking some action?
+
+1126
+00:56:21,160 --> 00:56:24,760
+So now the root of this tree is a state,
+
+1127
+00:56:24,760 --> 00:56:26,200
+and we're considering a specific action
+
+1128
+00:56:26,200 --> 00:56:27,320
+that we take from that state,
+
+1129
+00:56:27,320 --> 00:56:28,960
+that's this black circle here.
+
+1130
+00:56:28,960 --> 00:56:33,320
+So this is like saying I'm in this particular state here,
+
+1131
+00:56:33,320 --> 00:56:34,800
+and I'm considering, I'm asking the question,
+
+1132
+00:56:34,800 --> 00:56:37,760
+how good is it to go right from that state?
+
+1133
+00:56:38,920 --> 00:56:41,080
+And how good it is, we now have to average
+
+1134
+00:56:41,080 --> 00:56:43,200
+over the dynamics of our MDE,
+
+1135
+00:56:43,200 --> 00:56:45,920
+the environment might blow me over here,
+
+1136
+00:56:46,760 --> 00:56:48,000
+so after I've gone right,
+
+1137
+00:56:48,000 --> 00:56:50,880
+I might get blown to all these different situations,
+
+1138
+00:56:50,880 --> 00:56:52,800
+and we want to ask for each of these situations
+
+1139
+00:56:52,800 --> 00:56:54,640
+I might get blown to, how good is it?
+
+1140
+00:56:54,640 --> 00:56:56,520
+What's the value of being in that situation
+
+1141
+00:56:56,520 --> 00:56:59,920
+following my policy after that point?
+
+1142
+00:56:59,920 --> 00:57:02,040
+We average over all these things,
+
+1143
+00:57:03,040 --> 00:57:07,040
+using the probabilities of our transition dynamics,
+
+1144
+00:57:07,400 --> 00:57:08,880
+we average them together,
+
+1145
+00:57:08,880 --> 00:57:11,040
+and that gives us the action value function
+
+1146
+00:57:11,040 --> 00:57:12,040
+of the roots here.
+
+1147
+00:57:13,040 --> 00:57:13,880
+Okay?
+
+1148
+00:57:16,240 --> 00:57:20,760
+So V is telling us how good is it to be in a particular state,
+
+1149
+00:57:20,760 --> 00:57:22,000
+Q is telling us how good is it
+
+1150
+00:57:22,000 --> 00:57:24,680
+to take a particular action from a given state,
+
+1151
+00:57:24,680 --> 00:57:26,880
+state value function, action value function.
+
+1152
+00:57:29,960 --> 00:57:31,240
+We can put these together now,
+
+1153
+00:57:31,240 --> 00:57:33,560
+so this is basically just stitching together
+
+1154
+00:57:33,560 --> 00:57:36,160
+the two figures from the last two slides,
+
+1155
+00:57:36,160 --> 00:57:38,320
+and now what we'll see is we get like a recursion
+
+1156
+00:57:38,320 --> 00:57:40,840
+that helps us understand V in terms of itself,
+
+1157
+00:57:40,840 --> 00:57:42,880
+and this is how we end up solving
+
+1158
+00:57:42,880 --> 00:57:44,280
+Markov decision processes.
+
+1159
+00:57:45,240 --> 00:57:47,120
+So at the roots of the tree now,
+
+1160
+00:57:47,120 --> 00:57:49,800
+we've got the value function for a particular state,
+
+1161
+00:57:49,800 --> 00:57:51,480
+tells us how good is it to be in this state,
+
+1162
+00:57:51,480 --> 00:57:52,920
+and the way we're gonna understand that
+
+1163
+00:57:52,920 --> 00:57:55,600
+is by doing a two-step look ahead.
+
+1164
+00:57:55,600 --> 00:57:57,120
+So if we look ahead, we could consider
+
+1165
+00:57:57,120 --> 00:57:59,080
+all the actions we might take next,
+
+1166
+00:57:59,080 --> 00:58:00,760
+go left, go right,
+
+1167
+00:58:00,760 --> 00:58:01,800
+we could consider all the things
+
+1168
+00:58:01,800 --> 00:58:03,560
+that the environment might do to us,
+
+1169
+00:58:03,560 --> 00:58:06,320
+might blow me over, it might keep me standing up,
+
+1170
+00:58:06,320 --> 00:58:08,840
+might blow me over, it might keep me standing up,
+
+1171
+00:58:08,840 --> 00:58:10,640
+there are all the things the environment might do,
+
+1172
+00:58:10,640 --> 00:58:12,240
+and then for each of those things the environment might do,
+
+1173
+00:58:12,240 --> 00:58:14,600
+there's some successor state that we'll end up in,
+
+1174
+00:58:14,600 --> 00:58:17,360
+we want to know well how good is it to be in that state
+
+1175
+00:58:17,360 --> 00:58:19,400
+and carry on with my usual policy,
+
+1176
+00:58:19,400 --> 00:58:22,720
+how much reward will I get if I carry on from that point.
+
+1177
+00:58:22,720 --> 00:58:25,200
+Now if we average these things all together,
+
+1178
+00:58:25,200 --> 00:58:26,600
+we're basically averaging in two ways,
+
+1179
+00:58:26,600 --> 00:58:28,440
+now we're averaging over our policy,
+
+1180
+00:58:29,360 --> 00:58:31,960
+we're weighting each of these arcs by the probability
+
+1181
+00:58:31,960 --> 00:58:34,440
+that a policy will select left or right,
+
+1182
+00:58:34,440 --> 00:58:36,320
+we're averaging each of these arcs
+
+1183
+00:58:36,320 --> 00:58:38,960
+by the transition probabilities
+
+1184
+00:58:38,960 --> 00:58:41,520
+that will end up getting blown in one direction or another,
+
+1185
+00:58:41,520 --> 00:58:42,920
+we average it all together,
+
+1186
+00:58:42,920 --> 00:58:44,000
+and that gives us the value of being
+
+1187
+00:58:44,000 --> 00:58:45,840
+in the root of this diagram here,
+
+1188
+00:58:45,840 --> 00:58:48,760
+tells us how good is it to be in a particular state.
+
+1189
+00:58:48,760 --> 00:58:50,360
+So this is the Bellman equation.
+
+1190
+00:58:52,160 --> 00:58:54,440
+You can do exactly the same thing for action values,
+
+1191
+00:58:54,440 --> 00:58:56,040
+there's a recursive relationship,
+
+1192
+00:58:56,040 --> 00:58:57,000
+you can look at this offline,
+
+1193
+00:58:57,000 --> 00:58:58,800
+I don't want to sort of belabor the point,
+
+1194
+00:58:58,800 --> 00:59:01,000
+but it's just stitching the diagram together
+
+1195
+00:59:01,000 --> 00:59:02,160
+the other way around,
+
+1196
+00:59:02,160 --> 00:59:04,200
+and we end up with exactly the same idea
+
+1197
+00:59:04,200 --> 00:59:06,640
+that starting from a particular state in action,
+
+1198
+00:59:06,640 --> 00:59:08,320
+we can now look ahead two steps,
+
+1199
+00:59:08,320 --> 00:59:10,960
+consider where the wind might blow us first now,
+
+1200
+00:59:10,960 --> 00:59:12,720
+and then consider from the state
+
+1201
+00:59:12,720 --> 00:59:14,560
+the wind might blow us to,
+
+1202
+00:59:14,560 --> 00:59:16,000
+which action might I take next?
+
+1203
+00:59:16,000 --> 00:59:18,480
+Am I choose to go left or am I choose to go right?
+
+1204
+00:59:18,480 --> 00:59:20,720
+And now we average over this thing again,
+
+1205
+00:59:20,720 --> 00:59:23,000
+we look at the value of that particular action,
+
+1206
+00:59:23,000 --> 00:59:25,560
+the Q value, average these things all together,
+
+1207
+00:59:25,560 --> 00:59:26,920
+and it tells us something about the Q value
+
+1208
+00:59:26,920 --> 00:59:29,160
+of this start action here.
+
+1209
+00:59:29,160 --> 00:59:32,840
+So the Q value relates to the Q values of the next step,
+
+1210
+00:59:32,840 --> 00:59:34,840
+in this slide, and the previous slide,
+
+1211
+00:59:36,000 --> 00:59:37,440
+the state values here,
+
+1212
+00:59:37,440 --> 00:59:39,680
+relates to the state values of the next step.
+
+1213
+00:59:39,680 --> 00:59:41,920
+So you get these two recursive relationships,
+
+1214
+00:59:41,920 --> 00:59:43,920
+explaining how the value function relates
+
+1215
+00:59:43,920 --> 00:59:45,680
+to itself of the next step.
+
+1216
+00:59:45,680 --> 00:59:46,760
+In all of these cases,
+
+1217
+00:59:46,760 --> 00:59:48,200
+if you just look beneath the map,
+
+1218
+00:59:48,200 --> 00:59:49,840
+the math, it's a very simple idea,
+
+1219
+00:59:49,840 --> 00:59:52,760
+which says the value function at the current time step
+
+1220
+00:59:52,760 --> 00:59:55,080
+is equal to the immediate reward,
+
+1221
+00:59:55,080 --> 00:59:57,280
+plus the value function of where you end up.
+
+1222
+00:59:58,400 --> 00:59:59,920
+That's all these things are saying,
+
+1223
+00:59:59,920 --> 01:00:02,520
+just with different ways of putting together the maths.
+
+1224
+01:00:04,480 --> 01:00:07,360
+Okay, so let's do that for one example
+
+1225
+01:00:07,360 --> 01:00:08,720
+in our student MDP.
+
+1226
+01:00:09,680 --> 01:00:11,080
+We'll move on a little bit.
+
+1227
+01:00:12,240 --> 01:00:15,840
+So here's our student MDP again.
+
+1228
+01:00:15,840 --> 01:00:17,400
+We're gonna consider just one state,
+
+1229
+01:00:17,400 --> 01:00:20,640
+this red state here, so the class three state.
+
+1230
+01:00:20,640 --> 01:00:23,240
+And again, I'm just gonna verify,
+
+1231
+01:00:23,240 --> 01:00:25,160
+we're not kind of compute using this Bellman equation
+
+1232
+01:00:25,160 --> 01:00:27,320
+to compute these value functions.
+
+1233
+01:00:27,320 --> 01:00:29,040
+We're gonna use it to verify
+
+1234
+01:00:29,040 --> 01:00:33,640
+that this indeed does have the value of 7.4, okay?
+
+1235
+01:00:33,640 --> 01:00:34,640
+So how can we verify it?
+
+1236
+01:00:34,640 --> 01:00:37,600
+Well, we can unroll, we can do our look ahead,
+
+1237
+01:00:37,880 --> 01:00:39,760
+and what we're gonna do is we're gonna do our look ahead
+
+1238
+01:00:39,760 --> 01:00:42,000
+for the state value function here.
+
+1239
+01:00:42,000 --> 01:00:44,960
+So we're saying the state value function 7.4
+
+1240
+01:00:44,960 --> 01:00:49,440
+is equal to all the things which we might do from there.
+
+1241
+01:00:49,440 --> 01:00:51,040
+So what are the things we might do from there?
+
+1242
+01:00:51,040 --> 01:00:53,960
+Well, we might study.
+
+1243
+01:00:53,960 --> 01:00:56,920
+Remember, we're doing things 50-50 with the,
+
+1244
+01:00:56,920 --> 01:00:59,400
+for now with 50% chance we choose to study it,
+
+1245
+01:00:59,400 --> 01:01:01,360
+50% chance we go to the pub.
+
+1246
+01:01:01,360 --> 01:01:03,960
+So under that policy where we do everything 50-50,
+
+1247
+01:01:04,800 --> 01:01:08,400
+so yeah, this whole diagram is showing us the value function
+
+1248
+01:01:08,400 --> 01:01:11,720
+for the policy where we choose all of our decisions 50-50.
+
+1249
+01:01:11,720 --> 01:01:14,360
+And under that policy, we start in this state,
+
+1250
+01:01:14,360 --> 01:01:17,200
+there's a 0.5 chance we'll take this arc
+
+1251
+01:01:17,200 --> 01:01:20,560
+and get plus 10 reward, that's this part here.
+
+1252
+01:01:21,720 --> 01:01:26,720
+There's also a 0.5 chance we'll end up taking this arc,
+
+1253
+01:01:26,720 --> 01:01:30,040
+end up in the pub, and the pub might take us
+
+1254
+01:01:30,040 --> 01:01:32,000
+with 0.2 probability over here,
+
+1255
+01:01:32,000 --> 01:01:35,440
+0.4 probability over here, 0.4 probability over here.
+
+1256
+01:01:35,440 --> 01:01:37,880
+And in each of those cases, we'll end up in a different state
+
+1257
+01:01:37,880 --> 01:01:39,320
+with a different value.
+
+1258
+01:01:39,320 --> 01:01:41,960
+So there's a 0.2 chance we'll end up in this value state here
+
+1259
+01:01:41,960 --> 01:01:43,520
+with value minus 1.3,
+
+1260
+01:01:44,640 --> 01:01:46,280
+there's a 0.4 chance we'll end up in this state
+
+1261
+01:01:46,280 --> 01:01:47,880
+with a value of 2.7,
+
+1262
+01:01:47,880 --> 01:01:51,080
+and the 0.4 chance we'll end up in this state here
+
+1263
+01:01:51,080 --> 01:01:53,680
+with a value of 7.4 again and end up where we started.
+
+1264
+01:01:53,680 --> 01:01:56,480
+So you can see this is quite cyclic, this thing.
+
+1265
+01:01:56,480 --> 01:01:58,040
+And so that's this equation here,
+
+1266
+01:01:58,040 --> 01:02:00,000
+we just sum those things together.
+
+1267
+01:02:00,000 --> 01:02:01,600
+So we're summing together this look ahead
+
+1268
+01:02:01,600 --> 01:02:03,920
+of what might happen after one step of taking actions
+
+1269
+01:02:03,920 --> 01:02:06,080
+and one step of where we end up.
+
+1270
+01:02:06,080 --> 01:02:07,800
+And when you add this together,
+
+1271
+01:02:07,800 --> 01:02:10,800
+so one decimal place you get 7.4.
+
+1272
+01:02:11,760 --> 01:02:14,080
+So we've sort of verified that these numbers
+
+1273
+01:02:14,080 --> 01:02:16,120
+are self-consistent for this one state,
+
+1274
+01:02:16,120 --> 01:02:17,760
+you can verify them for all of the other states
+
+1275
+01:02:17,760 --> 01:02:19,560
+and you would discover that this Bellman equation
+
+1276
+01:02:19,560 --> 01:02:20,760
+does indeed hold,
+
+1277
+01:02:20,760 --> 01:02:22,400
+and therefore these numbers do represent
+
+1278
+01:02:22,400 --> 01:02:25,000
+the value function for this end of here.
+
+1279
+01:02:25,000 --> 01:02:27,400
+So that basically tells us now we really know
+
+1280
+01:02:27,400 --> 01:02:29,560
+how good is it to be in each one of these states,
+
+1281
+01:02:29,560 --> 01:02:32,160
+but you really will get 7.4 units of reward
+
+1282
+01:02:32,160 --> 01:02:35,040
+in expectation if you just behave according to this policy.
+
+1283
+01:02:37,000 --> 01:02:38,120
+Okay, is that clear?
+
+1284
+01:02:39,880 --> 01:02:42,920
+Right, so that's all very well,
+
+1285
+01:02:42,920 --> 01:02:45,480
+but it doesn't tell us the best way to behave.
+
+1286
+01:02:45,480 --> 01:02:47,040
+And what we really care about in MDP
+
+1287
+01:02:47,040 --> 01:02:48,880
+is figuring out the best way to behave.
+
+1288
+01:02:51,400 --> 01:02:55,080
+So, okay, just briefly before we do that.
+
+1289
+01:02:55,080 --> 01:02:56,480
+So I briefly introduced earlier,
+
+1290
+01:02:56,480 --> 01:02:58,320
+and I said it wasn't essential,
+
+1291
+01:02:58,320 --> 01:03:02,080
+but this idea that you could flatten any MDP
+
+1292
+01:03:02,080 --> 01:03:03,840
+back into a Markov reward process
+
+1293
+01:03:03,840 --> 01:03:07,000
+by defining these averaged state transition dynamics
+
+1294
+01:03:07,000 --> 01:03:09,400
+and averaged reward function.
+
+1295
+01:03:09,400 --> 01:03:11,960
+And of course, once we've averaged those things,
+
+1296
+01:03:11,960 --> 01:03:13,920
+that gives us a Markov reward process,
+
+1297
+01:03:13,920 --> 01:03:15,760
+we know how to solve those things already.
+
+1298
+01:03:15,760 --> 01:03:17,160
+So at least one way to solve that,
+
+1299
+01:03:17,160 --> 01:03:19,840
+another way to have solved for these numbers
+
+1300
+01:03:19,840 --> 01:03:22,880
+would have been to form these matrices,
+
+1301
+01:03:22,880 --> 01:03:24,960
+form the matrix of our transition probabilities
+
+1302
+01:03:24,960 --> 01:03:26,160
+for all of our actions,
+
+1303
+01:03:26,160 --> 01:03:28,520
+average them together to get our p pi,
+
+1304
+01:03:28,520 --> 01:03:31,200
+average together our immediate rewards to get our r pi,
+
+1305
+01:03:31,200 --> 01:03:33,360
+solve for this equation here,
+
+1306
+01:03:33,360 --> 01:03:36,520
+and that would have sped out our actual value function.
+
+1307
+01:03:36,520 --> 01:03:38,200
+So that's one way to arrive at the solutions,
+
+1308
+01:03:38,200 --> 01:03:40,600
+and we'll look at more efficient ways to do it
+
+1309
+01:03:40,600 --> 01:03:41,800
+on going into the future.
+
+1310
+01:03:45,200 --> 01:03:46,840
+But you should at least understand the idea
+
+1311
+01:03:46,840 --> 01:03:49,160
+that the Bellman equation gives us
+
+1312
+01:03:49,160 --> 01:03:51,400
+a description of the system that we can solve.
+
+1313
+01:03:51,400 --> 01:03:52,440
+Once we solve for this thing,
+
+1314
+01:03:52,440 --> 01:03:54,680
+it tells us exactly what the value function is.
+
+1315
+01:03:54,680 --> 01:03:56,160
+So one linear equation we solve it,
+
+1316
+01:03:56,160 --> 01:03:58,160
+you've got the value function, you're done.
+
+1317
+01:04:01,080 --> 01:04:06,080
+Right, now, for the last half an hour,
+
+1318
+01:04:06,520 --> 01:04:08,720
+I want to talk about the essential problem
+
+1319
+01:04:08,720 --> 01:04:09,560
+we really care about,
+
+1320
+01:04:09,560 --> 01:04:12,400
+which is finding the best behavior in the NDP.
+
+1321
+01:04:12,400 --> 01:04:14,240
+I'll just pause for a moment, just to start.
+
+1322
+01:04:14,240 --> 01:04:15,280
+Sorry, I know there's a lot of material,
+
+1323
+01:04:15,280 --> 01:04:18,640
+so any questions at this point?
+
+1324
+01:04:19,880 --> 01:04:20,720
+People tracking?
+
+1325
+01:04:20,720 --> 01:04:25,560
+Are you going to put the newest ones online?
+
+1326
+01:04:25,560 --> 01:04:27,640
+I'll put the newest ones online immediately afterwards, yeah.
+
+1327
+01:04:27,640 --> 01:04:29,760
+So there's mostly notation change.
+
+1328
+01:04:29,760 --> 01:04:31,680
+Change the notation to match the new addition
+
+1329
+01:04:31,680 --> 01:04:33,000
+of such a combata.
+
+1330
+01:04:33,000 --> 01:04:35,240
+Can you just explain again what happened to the state pub,
+
+1331
+01:04:35,240 --> 01:04:37,480
+which seems to have turned into some other...
+
+1332
+01:04:39,080 --> 01:04:40,360
+It used to be a state, right?
+
+1333
+01:04:40,360 --> 01:04:43,400
+Yeah, so when we moved from the Markov reward process
+
+1334
+01:04:43,400 --> 01:04:44,560
+to the Markov decision process,
+
+1335
+01:04:44,560 --> 01:04:46,800
+we changed the definition of the problem.
+
+1336
+01:04:46,800 --> 01:04:47,920
+So the pub used to be a state,
+
+1337
+01:04:47,920 --> 01:04:49,400
+now it's a decision that we're making.
+
+1338
+01:04:49,400 --> 01:04:51,120
+We're taking a decision now.
+
+1339
+01:04:51,120 --> 01:04:54,600
+So we're making these decisions of whether to go to a pub
+
+1340
+01:04:54,600 --> 01:04:56,160
+or whether to study.
+
+1341
+01:04:56,160 --> 01:04:57,640
+So it's actually a different problem
+
+1342
+01:04:57,640 --> 01:04:59,120
+that we're studying now.
+
+1343
+01:04:59,120 --> 01:05:00,440
+So a pub is an action, yeah.
+
+1344
+01:05:00,440 --> 01:05:01,480
+Here, a pub is an action, yeah.
+
+1345
+01:05:01,480 --> 01:05:03,160
+But it ends up with something which isn't a state,
+
+1346
+01:05:03,160 --> 01:05:05,200
+whereas a study ends up with something which is a state,
+
+1347
+01:05:05,200 --> 01:05:06,040
+so what?
+
+1348
+01:05:06,040 --> 01:05:06,960
+No, everything ends up in a state.
+
+1349
+01:05:06,960 --> 01:05:09,520
+So if you take the pub action,
+
+1350
+01:05:09,520 --> 01:05:11,520
+you end up at this black dot represents
+
+1351
+01:05:11,520 --> 01:05:13,120
+like a chance mode.
+
+1352
+01:05:13,120 --> 01:05:14,360
+Even you can't stay there.
+
+1353
+01:05:14,360 --> 01:05:15,360
+You can't stay there, no.
+
+1354
+01:05:15,360 --> 01:05:16,400
+The action takes you to here,
+
+1355
+01:05:16,400 --> 01:05:18,880
+and the environment immediately transitions you
+
+1356
+01:05:18,920 --> 01:05:22,200
+to here, to here, or to here with these probabilities.
+
+1357
+01:05:22,200 --> 01:05:25,640
+So you can think of this as basically telling you the dynamics.
+
+1358
+01:05:25,640 --> 01:05:28,520
+So if you take this pub action,
+
+1359
+01:05:28,520 --> 01:05:29,960
+you're basically going to be teleported
+
+1360
+01:05:29,960 --> 01:05:31,400
+to here, here, or here.
+
+1361
+01:05:31,400 --> 01:05:33,360
+You'll get a plus one reward along the way,
+
+1362
+01:05:33,360 --> 01:05:35,040
+and the probability of ending up here, here, or here
+
+1363
+01:05:35,040 --> 01:05:36,640
+is given by these numbers.
+
+1364
+01:05:36,640 --> 01:05:37,480
+That's what it means.
+
+1365
+01:05:37,480 --> 01:05:40,000
+Okay, why did you do that?
+
+1366
+01:05:40,000 --> 01:05:41,880
+I don't understand, but why did you now have
+
+1367
+01:05:41,880 --> 01:05:45,760
+this separate sort of transient state?
+
+1368
+01:05:45,760 --> 01:05:47,560
+Because I wanted to illustrate an example
+
+1369
+01:05:47,560 --> 01:05:48,560
+where you have some agency,
+
+1370
+01:05:48,560 --> 01:05:52,480
+we have some control over what happens in the environment,
+
+1371
+01:05:52,480 --> 01:05:55,560
+and now it's a choice whether to go to the pub or not.
+
+1372
+01:05:55,560 --> 01:05:57,560
+And the randomness is now what happens
+
+1373
+01:05:57,560 --> 01:05:58,640
+after you go to the pub.
+
+1374
+01:05:58,640 --> 01:06:00,440
+So all the other states could be considered
+
+1375
+01:06:00,440 --> 01:06:02,880
+to be the same as that, but with just probability
+
+1376
+01:06:02,880 --> 01:06:05,280
+and one of going to there.
+
+1377
+01:06:05,280 --> 01:06:06,560
+Exactly, everything.
+
+1378
+01:06:06,560 --> 01:06:09,160
+You can implicitly imagine there's one of these black dots
+
+1379
+01:06:09,160 --> 01:06:10,400
+in every one of these other arcs.
+
+1380
+01:06:10,400 --> 01:06:12,800
+So if you go to Facebook, there's a black dot here
+
+1381
+01:06:12,800 --> 01:06:15,200
+that says the action is taking you to that black dot,
+
+1382
+01:06:15,200 --> 01:06:16,880
+but that black dot is always taking you here
+
+1383
+01:06:16,880 --> 01:06:17,760
+with probability one.
+
+1384
+01:06:18,760 --> 01:06:22,520
+And actually now, let's say that action
+
+1385
+01:06:22,520 --> 01:06:24,880
+has a reward earlier on,
+
+1386
+01:06:24,880 --> 01:06:28,040
+we were saying only that the state has a reward,
+
+1387
+01:06:28,040 --> 01:06:29,400
+and now that's an action.
+
+1388
+01:06:29,400 --> 01:06:32,360
+Yeah, we go back, this was all in the definition of MDP.
+
+1389
+01:06:33,800 --> 01:06:36,000
+So if we go back to the definition of MDP,
+
+1390
+01:06:36,000 --> 01:06:39,320
+the red highlights here indicate what changed
+
+1391
+01:06:39,320 --> 01:06:41,080
+from the Markov reward process.
+
+1392
+01:06:41,080 --> 01:06:42,160
+And one of the things that's changed
+
+1393
+01:06:42,160 --> 01:06:44,840
+was that the reward function was now indexed
+
+1394
+01:06:44,840 --> 01:06:46,760
+by both state and action.
+
+1395
+01:06:46,760 --> 01:06:50,040
+So the reward does depend on the action you take.
+
+1396
+01:06:50,040 --> 01:06:51,640
+That's the definition on MDP.
+
+1397
+01:06:53,120 --> 01:06:56,120
+Okay, so what you do might affect the immediate reward
+
+1398
+01:06:56,120 --> 01:06:58,040
+you get as well as the state you end up in.
+
+1399
+01:06:58,040 --> 01:07:00,480
+So sometimes there's a cost to the action you take,
+
+1400
+01:07:00,480 --> 01:07:01,320
+that's the simplest case.
+
+1401
+01:07:01,320 --> 01:07:03,120
+Like imagine a trading agent,
+
+1402
+01:07:03,120 --> 01:07:07,400
+you buy a thousand pounds of goods from someone,
+
+1403
+01:07:07,400 --> 01:07:09,760
+that immediately costs you a thousand pounds
+
+1404
+01:07:09,760 --> 01:07:12,720
+compared to the action of do nothing, which costs you zero.
+
+1405
+01:07:12,720 --> 01:07:15,440
+So there's a cost associated with the specific actions,
+
+1406
+01:07:15,440 --> 01:07:17,760
+and they take you to different states.
+
+1407
+01:07:17,760 --> 01:07:19,560
+So that's really the commonest case.
+
+1408
+01:07:21,000 --> 01:07:23,160
+So you should intuitively expect that rewards
+
+1409
+01:07:23,160 --> 01:07:25,680
+have different effects depending on
+
+1410
+01:07:25,680 --> 01:07:27,320
+the particular action you take.
+
+1411
+01:07:27,320 --> 01:07:29,480
+The difference with non-determinism,
+
+1412
+01:07:29,480 --> 01:07:32,560
+really, is to possibly taking an action
+
+1413
+01:07:32,560 --> 01:07:34,200
+but ending up probabilistically
+
+1414
+01:07:34,200 --> 01:07:35,800
+in one of a number of different states.
+
+1415
+01:07:35,800 --> 01:07:38,760
+And MDP is stochastic, and MDP is stochastic.
+
+1416
+01:07:38,760 --> 01:07:40,920
+The stochastic transitions depend
+
+1417
+01:07:40,920 --> 01:07:41,920
+on the action that you take.
+
+1418
+01:07:41,920 --> 01:07:43,280
+So you get to take an action,
+
+1419
+01:07:43,280 --> 01:07:45,400
+the environment gets to throw the dice
+
+1420
+01:07:45,400 --> 01:07:47,160
+and tell you where you end up.
+
+1421
+01:07:47,160 --> 01:07:49,240
+So it's a combination of your actions
+
+1422
+01:07:49,240 --> 01:07:50,920
+and the dice which get rolled by the environment
+
+1423
+01:07:50,920 --> 01:07:53,400
+which determine what happens next.
+
+1424
+01:07:53,400 --> 01:07:54,240
+Okay, good.
+
+1425
+01:08:05,000 --> 01:08:08,960
+Okay, so now let's talk about
+
+1426
+01:08:08,960 --> 01:08:12,200
+how to find the best possible solution to the MDP.
+
+1427
+01:08:12,200 --> 01:08:13,440
+So what we really want,
+
+1428
+01:08:13,440 --> 01:08:15,400
+we don't really care about how much reward
+
+1429
+01:08:15,400 --> 01:08:17,840
+we'll get following this crazy 50-50 policy
+
+1430
+01:08:17,840 --> 01:08:21,360
+in the student Markov chain.
+
+1431
+01:08:21,360 --> 01:08:22,960
+What we care about is finding the best path
+
+1432
+01:08:22,960 --> 01:08:23,840
+through the system.
+
+1433
+01:08:23,840 --> 01:08:26,680
+In general, you want to find the optimal way
+
+1434
+01:08:26,680 --> 01:08:28,520
+to solve your problem.
+
+1435
+01:08:28,520 --> 01:08:30,600
+And so let's define what that really means now.
+
+1436
+01:08:30,600 --> 01:08:32,560
+And so we're gonna start with value functions.
+
+1437
+01:08:32,560 --> 01:08:35,720
+We're basically going to say this V star,
+
+1438
+01:08:35,720 --> 01:08:38,120
+the optimal state value function, V star,
+
+1439
+01:08:38,120 --> 01:08:41,040
+is the maximum value function over all policies.
+
+1440
+01:08:43,000 --> 01:08:44,760
+So what we're saying is there's all kinds
+
+1441
+01:08:44,760 --> 01:08:47,040
+of different policies we could follow in our Markov chain.
+
+1442
+01:08:47,040 --> 01:08:49,000
+And what we care about is the best of those.
+
+1443
+01:08:49,000 --> 01:08:51,080
+We care about understanding what's the maximum possible
+
+1444
+01:08:51,080 --> 01:08:54,280
+amount of reward that you can extract from the system.
+
+1445
+01:08:54,280 --> 01:08:55,240
+There's all these different ways
+
+1446
+01:08:55,240 --> 01:08:57,840
+you can traverse the system.
+
+1447
+01:08:57,840 --> 01:08:58,800
+Each of your different policies
+
+1448
+01:08:58,800 --> 01:09:01,160
+is gonna lead to a different evolution.
+
+1449
+01:09:01,160 --> 01:09:03,120
+Stochastic evolution, we care about which of those
+
+1450
+01:09:03,120 --> 01:09:05,840
+is going to lead to the most reward in expectation.
+
+1451
+01:09:05,840 --> 01:09:08,880
+That's, V star tells you not what the best policy was,
+
+1452
+01:09:08,880 --> 01:09:10,760
+but what's the maximum possible reward
+
+1453
+01:09:10,800 --> 01:09:12,640
+that you can extract from the system.
+
+1454
+01:09:13,800 --> 01:09:15,640
+Similarly, the optimal action value function,
+
+1455
+01:09:15,640 --> 01:09:18,800
+Q star, tells you the maximum amount of reward
+
+1456
+01:09:18,800 --> 01:09:22,920
+you can extract starting in state S and taking action A.
+
+1457
+01:09:22,920 --> 01:09:25,840
+So given that you actually commit to a particular action,
+
+1458
+01:09:25,840 --> 01:09:27,200
+what's the most possible reward
+
+1459
+01:09:27,200 --> 01:09:28,920
+you can get from that point onwards?
+
+1460
+01:09:28,920 --> 01:09:30,240
+They start in some state,
+
+1461
+01:09:30,240 --> 01:09:31,640
+you know that you can take the left,
+
+1462
+01:09:31,640 --> 01:09:33,400
+but what's the maximum possible reward
+
+1463
+01:09:33,400 --> 01:09:35,240
+you can get after you've moved left?
+
+1464
+01:09:37,560 --> 01:09:39,680
+And what's really important about this guy here
+
+1465
+01:09:39,720 --> 01:09:42,760
+is that if you know Q star, then you're basically done.
+
+1466
+01:09:42,760 --> 01:09:44,200
+If you want to know the optimal way
+
+1467
+01:09:44,200 --> 01:09:46,520
+to behave in your MDP, what would you do?
+
+1468
+01:09:46,520 --> 01:09:48,120
+Well, if someone told you
+
+1469
+01:09:48,120 --> 01:09:49,880
+the maximum possible amount of reward
+
+1470
+01:09:49,880 --> 01:09:51,720
+you could get over all policies
+
+1471
+01:09:51,720 --> 01:09:53,960
+given every action that you might take.
+
+1472
+01:09:53,960 --> 01:09:55,400
+So this is basically telling you,
+
+1473
+01:09:55,400 --> 01:09:57,240
+under all different ways you could behave,
+
+1474
+01:09:57,240 --> 01:10:00,800
+if you go left, you might get 70 units of reward,
+
+1475
+01:10:00,800 --> 01:10:03,400
+but under all different policies, if you go right,
+
+1476
+01:10:03,400 --> 01:10:05,360
+you can get 80 units of reward.
+
+1477
+01:10:05,360 --> 01:10:06,200
+Well, what do you do?
+
+1478
+01:10:06,200 --> 01:10:07,040
+Which way do you go?
+
+1479
+01:10:07,040 --> 01:10:08,600
+You go right, you get 80 units of reward
+
+1480
+01:10:08,600 --> 01:10:10,360
+rather than 70 units of reward.
+
+1481
+01:10:10,360 --> 01:10:13,440
+So this immediately tells you the right action to take.
+
+1482
+01:10:13,440 --> 01:10:14,880
+If you have Q star, you're done.
+
+1483
+01:10:14,880 --> 01:10:16,480
+You can kind of declare victory.
+
+1484
+01:10:16,480 --> 01:10:18,000
+You've got the quantities necessary
+
+1485
+01:10:18,000 --> 01:10:20,360
+to behave optimally within your MDP.
+
+1486
+01:10:20,360 --> 01:10:25,360
+So we could say informally that MDP is solved
+
+1487
+01:10:25,640 --> 01:10:27,880
+when we know this optimal value function.
+
+1488
+01:10:27,880 --> 01:10:31,880
+So solving an MDP, you could think of as finding Q star.
+
+1489
+01:10:34,400 --> 01:10:35,680
+So let's just look at that.
+
+1490
+01:10:35,680 --> 01:10:37,360
+What is the optimal value function here?
+
+1491
+01:10:37,360 --> 01:10:39,240
+So again, we're gonna look at the undiscounted case
+
+1492
+01:10:39,240 --> 01:10:41,520
+just to keep the numbers simple.
+
+1493
+01:10:41,520 --> 01:10:43,160
+And in this case, it should be fairly intuitive.
+
+1494
+01:10:43,160 --> 01:10:46,280
+You can kind of even work this out just by eyeballing it,
+
+1495
+01:10:46,280 --> 01:10:48,920
+that if you're in this state here,
+
+1496
+01:10:48,920 --> 01:10:51,440
+should you go to the pub, should you study?
+
+1497
+01:10:51,440 --> 01:10:53,920
+Well, if you study, you're gonna get this plus 10
+
+1498
+01:10:53,920 --> 01:10:55,600
+big juicy reward and go to sleep.
+
+1499
+01:10:55,600 --> 01:10:57,080
+So that turns out to be the optimal value.
+
+1500
+01:10:57,080 --> 01:11:00,320
+We'll see more formally how to derive that in a minute.
+
+1501
+01:11:00,320 --> 01:11:02,280
+If we go back up one state here,
+
+1502
+01:11:02,280 --> 01:11:04,920
+we can either go to sleep and get a reward of zero
+
+1503
+01:11:04,920 --> 01:11:06,720
+along the way, or we can study and end up
+
+1504
+01:11:06,840 --> 01:11:09,720
+in this nice juicy state with a value of 10,
+
+1505
+01:11:09,720 --> 01:11:11,720
+and get minus two along the way.
+
+1506
+01:11:11,720 --> 01:11:13,680
+So the value of being here is eight.
+
+1507
+01:11:14,720 --> 01:11:16,040
+We back up one state again.
+
+1508
+01:11:16,040 --> 01:11:18,360
+We can see the value of being in this state is six,
+
+1509
+01:11:18,360 --> 01:11:20,440
+because after a reward of minus two,
+
+1510
+01:11:20,440 --> 01:11:23,360
+we'll end up in this state with eight.
+
+1511
+01:11:23,360 --> 01:11:25,400
+So that's the optimal value that you can actually get.
+
+1512
+01:11:25,400 --> 01:11:27,800
+This is V star in this MDP.
+
+1513
+01:11:27,800 --> 01:11:31,240
+It tells you how good it is to be in each of these states.
+
+1514
+01:11:31,240 --> 01:11:33,720
+And that tells you the most possible juice
+
+1515
+01:11:33,720 --> 01:11:35,640
+you can extract from this MDP.
+
+1516
+01:11:35,640 --> 01:11:37,800
+It doesn't yet tell you how to behave in it.
+
+1517
+01:11:37,800 --> 01:11:40,480
+To do that, there's two things you can do.
+
+1518
+01:11:41,720 --> 01:11:45,640
+Well, what we do is we basically define our Q stars now.
+
+1519
+01:11:45,640 --> 01:11:48,400
+In order to figure out what's the best action to take,
+
+1520
+01:11:48,400 --> 01:11:50,320
+we look at our action value function.
+
+1521
+01:11:50,320 --> 01:11:52,720
+So the action value function is now labeling these arcs
+
+1522
+01:11:52,720 --> 01:11:54,560
+with what's the value of each arc.
+
+1523
+01:11:54,560 --> 01:11:56,880
+So it's saying what's the optimal value of each arc.
+
+1524
+01:11:56,880 --> 01:11:58,000
+So we know, for example,
+
+1525
+01:11:58,000 --> 01:12:01,080
+the optimal value of this arc here, that's 10.
+
+1526
+01:12:01,080 --> 01:12:01,920
+You're just gonna take this,
+
+1527
+01:12:01,920 --> 01:12:03,880
+you're gonna get the plus 10 reward, you'll be done.
+
+1528
+01:12:03,880 --> 01:12:06,160
+So that's the value of this arc here.
+
+1529
+01:12:06,160 --> 01:12:07,440
+The value of this arc here,
+
+1530
+01:12:08,600 --> 01:12:12,080
+we know that you're gonna basically get minus two
+
+1531
+01:12:12,080 --> 01:12:13,240
+for taking that arc.
+
+1532
+01:12:13,240 --> 01:12:14,440
+And you're gonna end up in a state
+
+1533
+01:12:14,440 --> 01:12:16,720
+that's gonna get you 10 units of reward.
+
+1534
+01:12:16,720 --> 01:12:18,800
+So the value of this arc is eight.
+
+1535
+01:12:18,800 --> 01:12:20,360
+The value of this arc is zero.
+
+1536
+01:12:21,600 --> 01:12:23,560
+So now we can actually be able to make decisions.
+
+1537
+01:12:23,560 --> 01:12:26,320
+We can choose what's the optimal decision to take from here.
+
+1538
+01:12:26,320 --> 01:12:27,920
+Well, clearly you would pick eight above zero.
+
+1539
+01:12:27,920 --> 01:12:30,120
+So you would choose to take this arc over here.
+
+1540
+01:12:30,920 --> 01:12:33,280
+Similarly, oh yeah, over here,
+
+1541
+01:12:33,280 --> 01:12:36,320
+we didn't talk about the arc that goes down to the pub.
+
+1542
+01:12:36,320 --> 01:12:38,000
+And the value of this arc,
+
+1543
+01:12:38,000 --> 01:12:40,040
+and we'll see how to compute this in a minute,
+
+1544
+01:12:40,040 --> 01:12:41,880
+is actually 8.4.
+
+1545
+01:12:41,880 --> 01:12:43,800
+But once you've got this value,
+
+1546
+01:12:43,800 --> 01:12:45,960
+you can say, so this arc is basically averaging
+
+1547
+01:12:45,960 --> 01:12:47,880
+over all the things which might happen next,
+
+1548
+01:12:47,880 --> 01:12:49,800
+and looking at the value of six, eight, and 10,
+
+1549
+01:12:49,800 --> 01:12:51,100
+and weighing them.
+
+1550
+01:12:52,040 --> 01:12:53,200
+And so now you can choose between,
+
+1551
+01:12:53,200 --> 01:12:54,200
+well, should I go into a state
+
+1552
+01:12:54,200 --> 01:12:58,640
+that gives me a reward of 10 units going onwards?
+
+1553
+01:12:58,640 --> 01:12:59,840
+Or should I go to the pub,
+
+1554
+01:12:59,840 --> 01:13:01,760
+where I get this nice plus one reward now,
+
+1555
+01:13:01,760 --> 01:13:03,880
+and then still have a chance to get my 10?
+
+1556
+01:13:03,880 --> 01:13:04,880
+Well, you have to weigh them up,
+
+1557
+01:13:04,880 --> 01:13:06,320
+and it depends on the discount factor
+
+1558
+01:13:06,320 --> 01:13:07,560
+and all these other things.
+
+1559
+01:13:07,560 --> 01:13:10,120
+In this case, we see that this arc has a value of 10.
+
+1560
+01:13:10,120 --> 01:13:11,920
+This arc has a value of 8.4.
+
+1561
+01:13:11,920 --> 01:13:12,920
+So fortunately, it turns out,
+
+1562
+01:13:12,920 --> 01:13:15,000
+I'm not recommending that you all go and drink beer,
+
+1563
+01:13:15,000 --> 01:13:17,960
+and you stay and listen to the course.
+
+1564
+01:13:17,960 --> 01:13:18,800
+Yeah, question.
+
+1565
+01:13:18,800 --> 01:13:20,120
+There was a question earlier about,
+
+1566
+01:13:20,120 --> 01:13:21,960
+in the minute, how many units it doesn't happen,
+
+1567
+01:13:21,960 --> 01:13:24,960
+but what happens then if you have a positive cycle?
+
+1568
+01:13:24,960 --> 01:13:26,120
+Say it published plus 100,
+
+1569
+01:13:26,120 --> 01:13:27,960
+if you've been to the pub and studied in person,
+
+1570
+01:13:27,960 --> 01:13:29,800
+or?
+
+1571
+01:13:29,840 --> 01:13:32,600
+So I was talking about a Markov chain at that point.
+
+1572
+01:13:32,600 --> 01:13:37,200
+Okay, so, yeah.
+
+1573
+01:13:37,200 --> 01:13:38,880
+So if you've got,
+
+1574
+01:13:38,880 --> 01:13:42,400
+there are technical conditions under which
+
+1575
+01:13:42,400 --> 01:13:44,600
+reasonably defined Markov decision processes
+
+1576
+01:13:44,600 --> 01:13:46,560
+are guaranteed to terminate.
+
+1577
+01:13:46,560 --> 01:13:47,840
+So if you want to find out more about that,
+
+1578
+01:13:47,840 --> 01:13:50,760
+there's a great book by Bert Seacast.
+
+1579
+01:13:50,760 --> 01:13:52,320
+He goes into all the technical conditions
+
+1580
+01:13:52,320 --> 01:13:55,480
+under which Markov decision processes are well-defined.
+
+1581
+01:13:55,480 --> 01:13:56,360
+What we're going to talk about
+
+1582
+01:13:56,360 --> 01:13:57,840
+is largely the discounted case,
+
+1583
+01:13:57,840 --> 01:13:58,880
+because it's simpler.
+
+1584
+01:13:58,880 --> 01:14:00,200
+So in the discounted case,
+
+1585
+01:14:00,200 --> 01:14:02,120
+you don't need to worry about any of that stuff.
+
+1586
+01:14:02,120 --> 01:14:04,720
+So if you do want to kind of remove discount factors
+
+1587
+01:14:04,720 --> 01:14:07,680
+and consider the case
+
+1588
+01:14:07,680 --> 01:14:09,480
+where you don't have discounting at all,
+
+1589
+01:14:09,480 --> 01:14:10,960
+then you need to consider what happens
+
+1590
+01:14:10,960 --> 01:14:12,720
+if you have infinite cycles and so forth,
+
+1591
+01:14:12,720 --> 01:14:15,440
+and there's two ways to deal with that.
+
+1592
+01:14:15,440 --> 01:14:17,320
+One of which is to look at all the technical conditions,
+
+1593
+01:14:17,320 --> 01:14:20,720
+make sure your MDP satisfies those technical conditions.
+
+1594
+01:14:20,720 --> 01:14:23,280
+The second case is basically to
+
+1595
+01:14:25,040 --> 01:14:27,960
+actually use the average reward version
+
+1596
+01:14:28,200 --> 01:14:29,040
+of reinforcement learning,
+
+1597
+01:14:29,040 --> 01:14:31,480
+which is in the extension to this class.
+
+1598
+01:14:31,480 --> 01:14:35,640
+If you have a large enough reward on a certain edge
+
+1599
+01:14:35,640 --> 01:14:36,760
+for the first example,
+
+1600
+01:14:36,760 --> 01:14:39,320
+even with a certain gamma,
+
+1601
+01:14:39,320 --> 01:14:40,880
+there's nothing to put in plus power.
+
+1602
+01:14:40,880 --> 01:14:41,720
+Yes.
+
+1603
+01:14:41,720 --> 01:14:44,720
+Yeah, even if you put a gamma on the next one.
+
+1604
+01:14:44,720 --> 01:14:46,960
+And then you go around and...
+
+1605
+01:14:46,960 --> 01:14:47,960
+Yeah, I should have added...
+
+1606
+01:14:47,960 --> 01:14:49,600
+So there were some technical conditions
+
+1607
+01:14:49,600 --> 01:14:50,520
+to my answer earlier,
+
+1608
+01:14:50,520 --> 01:14:54,760
+which were with certain probability transitions.
+
+1609
+01:14:54,760 --> 01:14:56,800
+So with the transition probabilities we had before,
+
+1610
+01:14:56,800 --> 01:15:00,960
+it wasn't possible to have infinite sequences.
+
+1611
+01:15:00,960 --> 01:15:04,360
+Of course, if you have a self-cycle with probability one,
+
+1612
+01:15:04,360 --> 01:15:06,680
+that does have an infinite cycle
+
+1613
+01:15:06,680 --> 01:15:08,080
+that can be drawn from that sample.
+
+1614
+01:15:08,080 --> 01:15:09,240
+So you have to have...
+
+1615
+01:15:09,240 --> 01:15:12,240
+If you want to deal with discounts of one,
+
+1616
+01:15:12,240 --> 01:15:13,320
+there's machinery you need,
+
+1617
+01:15:13,320 --> 01:15:14,320
+and let's not worry about that.
+
+1618
+01:15:14,320 --> 01:15:16,480
+Things are much easier when we have discounting.
+
+1619
+01:15:16,480 --> 01:15:17,320
+Okay.
+
+1620
+01:15:17,320 --> 01:15:18,880
+There wasn't this name because you knew the word.
+
+1621
+01:15:18,880 --> 01:15:19,720
+Yes, yes, sorry.
+
+1622
+01:15:19,720 --> 01:15:24,520
+So it's in all his books,
+
+1623
+01:15:25,400 --> 01:15:27,080
+so Neurodynamic Programming is there,
+
+1624
+01:15:27,080 --> 01:15:29,680
+but he has his new edition.
+
+1625
+01:15:29,680 --> 01:15:31,600
+Probably the best place to look is volume two
+
+1626
+01:15:31,600 --> 01:15:35,480
+of his new edition of his dynamic programming.
+
+1627
+01:15:35,480 --> 01:15:36,320
+Yes.
+
+1628
+01:15:36,320 --> 01:15:37,160
+What's that volume?
+
+1629
+01:15:37,160 --> 01:15:39,680
+Yes, I think it's volume two that has this in.
+
+1630
+01:15:42,800 --> 01:15:45,600
+Okay, so we've talked about optimal value function.
+
+1631
+01:15:45,600 --> 01:15:46,440
+That doesn't...
+
+1632
+01:15:46,440 --> 01:15:48,000
+So what we really care about,
+
+1633
+01:15:48,000 --> 01:15:49,080
+what's the thing we really care about?
+
+1634
+01:15:49,080 --> 01:15:51,520
+We care about the optimal policy.
+
+1635
+01:15:51,520 --> 01:15:53,040
+So the optimal policy,
+
+1636
+01:15:53,040 --> 01:15:54,600
+we need to understand what that really means.
+
+1637
+01:15:54,600 --> 01:15:57,480
+What's the best possible way to behave in an MDP?
+
+1638
+01:15:57,480 --> 01:15:58,560
+So we've talked about policies.
+
+1639
+01:15:58,560 --> 01:16:01,080
+A policy is just like a stochastic mapping
+
+1640
+01:16:01,080 --> 01:16:03,520
+and mapping from states to actions that we take.
+
+1641
+01:16:03,520 --> 01:16:04,520
+And now we want to understand
+
+1642
+01:16:04,520 --> 01:16:06,520
+well, what's the best one of these things?
+
+1643
+01:16:06,520 --> 01:16:07,640
+So far, we've just talked about
+
+1644
+01:16:07,640 --> 01:16:09,440
+how much juice we can extract from the system.
+
+1645
+01:16:09,440 --> 01:16:11,320
+What's the maximum amount of reward we can get?
+
+1646
+01:16:11,320 --> 01:16:13,640
+We haven't yet talked about the policy itself.
+
+1647
+01:16:14,760 --> 01:16:16,920
+And so to understand what it means to be optimal,
+
+1648
+01:16:16,920 --> 01:16:19,400
+we need to define a notion of optimality.
+
+1649
+01:16:19,400 --> 01:16:20,240
+And to do that,
+
+1650
+01:16:20,240 --> 01:16:22,080
+we need to know what it means for one policy
+
+1651
+01:16:22,080 --> 01:16:23,680
+to be better than another policy.
+
+1652
+01:16:24,520 --> 01:16:26,200
+And so what we do is we actually define
+
+1653
+01:16:26,200 --> 01:16:28,480
+just a partial ordering over policies.
+
+1654
+01:16:28,480 --> 01:16:31,120
+So this partial ordering basically tells us,
+
+1655
+01:16:31,120 --> 01:16:33,680
+let's consider two policies,
+
+1656
+01:16:33,680 --> 01:16:35,200
+pi and pi prime.
+
+1657
+01:16:36,080 --> 01:16:37,760
+So these are two arbitrary policies.
+
+1658
+01:16:37,760 --> 01:16:39,360
+And we're just gonna define this greater than
+
+1659
+01:16:39,360 --> 01:16:41,640
+or equal to operator.
+
+1660
+01:16:41,640 --> 01:16:44,560
+This is gonna be some partial ordering over policy space.
+
+1661
+01:16:44,560 --> 01:16:46,680
+It basically tells us the intuitive thing.
+
+1662
+01:16:46,680 --> 01:16:50,000
+Now one policy is better than another policy.
+
+1663
+01:16:50,000 --> 01:16:52,720
+If the value function for that policy
+
+1664
+01:16:52,720 --> 01:16:54,200
+is greater than the value function
+
+1665
+01:16:54,200 --> 01:16:56,240
+for the other policy in all states.
+
+1666
+01:16:58,480 --> 01:17:02,280
+So greater than or equal to in both cases.
+
+1667
+01:17:02,280 --> 01:17:04,480
+So what this means is that it can't be worse.
+
+1668
+01:17:04,480 --> 01:17:06,760
+That it's not possible to say a policy
+
+1669
+01:17:06,760 --> 01:17:07,840
+is better than another policy.
+
+1670
+01:17:07,840 --> 01:17:10,480
+If it's actually worse than that policy in one state.
+
+1671
+01:17:10,480 --> 01:17:12,440
+Has to be at least as good in all states
+
+1672
+01:17:12,440 --> 01:17:14,320
+for us to say that it's greater than or equal
+
+1673
+01:17:14,320 --> 01:17:16,040
+in the partial ordering.
+
+1674
+01:17:16,040 --> 01:17:18,080
+Okay, and then there's this very important theorem
+
+1675
+01:17:18,080 --> 01:17:20,160
+which you'll find in Putnam and all the important texts
+
+1676
+01:17:20,160 --> 01:17:21,600
+on NDPs.
+
+1677
+01:17:22,960 --> 01:17:26,760
+And this basically tells us that for any MDP,
+
+1678
+01:17:26,760 --> 01:17:30,120
+any MDP at all, there is an optimal policy
+
+1679
+01:17:30,120 --> 01:17:33,840
+that is better than or equal to all other policies.
+
+1680
+01:17:33,840 --> 01:17:34,680
+So you should think about that.
+
+1681
+01:17:34,680 --> 01:17:36,520
+It's like, wow, okay, this is a good thing.
+
+1682
+01:17:36,520 --> 01:17:38,320
+You don't end up with this weird situation
+
+1683
+01:17:38,320 --> 01:17:40,960
+where sometimes you need to think about
+
+1684
+01:17:42,000 --> 01:17:43,840
+taking this policy for a little bit of the MDP
+
+1685
+01:17:43,840 --> 01:17:45,520
+and this other policy for a little bit of the MDP
+
+1686
+01:17:45,520 --> 01:17:47,360
+and that that combination might be better.
+
+1687
+01:17:47,360 --> 01:17:49,400
+There's always one unique policy.
+
+1688
+01:17:49,400 --> 01:17:52,320
+Sorry, there's always at least one optimal policy,
+
+1689
+01:17:52,320 --> 01:17:54,440
+pi star, not necessarily unique,
+
+1690
+01:17:54,440 --> 01:17:57,120
+that is better than or equal to all other policies.
+
+1691
+01:17:57,120 --> 01:17:59,120
+So there is always an optimal policy.
+
+1692
+01:17:59,120 --> 01:18:02,360
+You can, this pi star tells you one way to behave in your MDP
+
+1693
+01:18:02,360 --> 01:18:05,360
+that will extract the maximum juice from that MDP.
+
+1694
+01:18:05,360 --> 01:18:08,360
+And we've already seen that that's true from the Q star.
+
+1695
+01:18:08,360 --> 01:18:11,080
+Like if you have Q star and you pick the action
+
+1696
+01:18:11,080 --> 01:18:13,460
+that chooses the arc with the biggest Q star,
+
+1697
+01:18:13,460 --> 01:18:15,800
+that gives you one such policy.
+
+1698
+01:18:15,800 --> 01:18:17,640
+Okay, but the theorem basically tells you
+
+1699
+01:18:17,640 --> 01:18:18,960
+that that's true for any MDP,
+
+1700
+01:18:18,960 --> 01:18:20,360
+that this really is the best thing
+
+1701
+01:18:20,360 --> 01:18:21,600
+that you could find with the MDP.
+
+1702
+01:18:21,600 --> 01:18:23,640
+There's not gonna be some other thing that's better
+
+1703
+01:18:23,640 --> 01:18:26,520
+just by there's not like some weird averaging policy
+
+1704
+01:18:26,520 --> 01:18:28,120
+that's gonna do better than this.
+
+1705
+01:18:29,280 --> 01:18:31,080
+Furthermore, it is possible to have
+
+1706
+01:18:31,080 --> 01:18:33,280
+more than one optimal policy.
+
+1707
+01:18:33,280 --> 01:18:35,280
+So it's possible that, for example, the simplest case
+
+1708
+01:18:35,280 --> 01:18:38,160
+is that imagine there's one action in your MDP
+
+1709
+01:18:38,160 --> 01:18:39,880
+where there's two separate actions
+
+1710
+01:18:39,880 --> 01:18:41,600
+that take you to the same state.
+
+1711
+01:18:41,600 --> 01:18:43,680
+Doesn't really matter which one of those you take.
+
+1712
+01:18:43,680 --> 01:18:45,840
+You're gonna end up in the same state.
+
+1713
+01:18:45,840 --> 01:18:47,600
+They both can be optimal.
+
+1714
+01:18:47,600 --> 01:18:49,000
+Doesn't matter which one of those you choose,
+
+1715
+01:18:49,000 --> 01:18:51,400
+you're gonna get the same optimal value out of this MDP
+
+1716
+01:18:51,400 --> 01:18:53,360
+whether you go left or go right.
+
+1717
+01:18:53,360 --> 01:18:56,160
+Okay, so there can be more than one optimal policy,
+
+1718
+01:18:56,160 --> 01:18:59,400
+but if they are optimal, then all optimal policies
+
+1719
+01:18:59,400 --> 01:19:01,440
+achieve, they extract the same amount of reward
+
+1720
+01:19:01,440 --> 01:19:03,720
+from the system, they get the same amount of juice.
+
+1721
+01:19:03,720 --> 01:19:06,280
+So the value functions for those policies are the same.
+
+1722
+01:19:08,680 --> 01:19:11,960
+Specifically, the amount of value that they get
+
+1723
+01:19:11,960 --> 01:19:14,240
+can be given by the optimal value function,
+
+1724
+01:19:14,240 --> 01:19:16,640
+by the optimal action value function, yeah.
+
+1725
+01:19:18,080 --> 01:19:23,080
+Okay, so the value of pi star is actually
+
+1726
+01:19:23,400 --> 01:19:26,440
+exactly the optimal value function that we defined earlier.
+
+1727
+01:19:26,440 --> 01:19:28,200
+So the V star and the Q star that we defined
+
+1728
+01:19:28,200 --> 01:19:31,120
+in the previous slides are precisely the numbers
+
+1729
+01:19:31,120 --> 01:19:35,360
+that you extract if you try to evaluate the optimal policy.
+
+1730
+01:19:35,360 --> 01:19:37,120
+So if you look at how good the optimal policy is,
+
+1731
+01:19:37,120 --> 01:19:39,280
+then it is indeed the maximum amount
+
+1732
+01:19:39,280 --> 01:19:41,240
+that we thought we could get out of the system.
+
+1733
+01:19:41,240 --> 01:19:43,000
+So this is like a sanity theorem,
+
+1734
+01:19:43,000 --> 01:19:45,480
+like all the things you would hope to be true are true,
+
+1735
+01:19:45,480 --> 01:19:46,800
+and everything is sane,
+
+1736
+01:19:46,800 --> 01:19:48,760
+and there is this thing called an optimal policy,
+
+1737
+01:19:48,760 --> 01:19:50,080
+and it does give you the maximum amount
+
+1738
+01:19:50,080 --> 01:19:53,200
+you can get from your MDP, okay.
+
+1739
+01:19:54,160 --> 01:19:56,200
+So how do we find this thing?
+
+1740
+01:19:56,200 --> 01:19:57,760
+Well, we've already seen this intuitively,
+
+1741
+01:19:57,760 --> 01:20:00,640
+so this is just writing it down in equations,
+
+1742
+01:20:00,640 --> 01:20:02,920
+it's just saying that all we need is,
+
+1743
+01:20:02,920 --> 01:20:05,480
+you solve for Q star, and then you pick the action
+
+1744
+01:20:05,480 --> 01:20:07,120
+that gives you the most Q star.
+
+1745
+01:20:07,120 --> 01:20:11,080
+So in every state, what you do, if you're in state S,
+
+1746
+01:20:11,080 --> 01:20:14,360
+well, you just pick the action A with probability one
+
+1747
+01:20:14,360 --> 01:20:16,920
+that maximizes Q star, and that is the action
+
+1748
+01:20:16,920 --> 01:20:19,160
+that will give you maximum possible reward.
+
+1749
+01:20:20,560 --> 01:20:24,080
+And there is always a deterministic optimal policy.
+
+1750
+01:20:25,040 --> 01:20:26,360
+So not only is there an optimal policy,
+
+1751
+01:20:26,360 --> 01:20:28,400
+there's a deterministic optimal policy,
+
+1752
+01:20:28,400 --> 01:20:31,240
+and this gives you one such deterministic optimal policy.
+
+1753
+01:20:33,520 --> 01:20:35,760
+Okay, and the good thing about this is,
+
+1754
+01:20:35,760 --> 01:20:37,760
+you know, once we've got Q star, we're done.
+
+1755
+01:20:37,760 --> 01:20:39,360
+The game is solved, we're happy.
+
+1756
+01:20:40,360 --> 01:20:44,840
+So let's do this one last time back at our student MDP.
+
+1757
+01:20:44,840 --> 01:20:47,880
+So now what we're gonna look at is the optimal policy.
+
+1758
+01:20:48,920 --> 01:20:51,640
+So now what we're looking at is these arcs,
+
+1759
+01:20:51,640 --> 01:20:53,680
+remember, represent the actions that we can take,
+
+1760
+01:20:53,680 --> 01:20:55,760
+like we can study or we can go to Facebook,
+
+1761
+01:20:55,760 --> 01:20:59,200
+we can study or we can go to the pub.
+
+1762
+01:20:59,200 --> 01:21:02,400
+And these red arcs now are highlighting
+
+1763
+01:21:02,400 --> 01:21:05,720
+the optimal action value, the optimal policy,
+
+1764
+01:21:05,720 --> 01:21:09,000
+pi star, is highlighted in red here.
+
+1765
+01:21:09,000 --> 01:21:11,360
+This is the undiscounted case again.
+
+1766
+01:21:11,360 --> 01:21:14,440
+So it's just this simple path all the way through our
+
+1767
+01:21:14,440 --> 01:21:15,840
+studying and studying and studying again,
+
+1768
+01:21:15,840 --> 01:21:17,560
+that we've already identified.
+
+1769
+01:21:17,560 --> 01:21:19,280
+But we can see that it must be the case again
+
+1770
+01:21:19,280 --> 01:21:21,480
+just by looking at the Q star values,
+
+1771
+01:21:21,480 --> 01:21:24,120
+which are also highlighted in seeing that the optimal
+
+1772
+01:21:24,120 --> 01:21:26,520
+policy is always the one that picks,
+
+1773
+01:21:26,520 --> 01:21:27,960
+you know, but whenever you've got two choices,
+
+1774
+01:21:27,960 --> 01:21:29,880
+it picks the one with the highest Q.
+
+1775
+01:21:29,880 --> 01:21:31,760
+So specifically over here,
+
+1776
+01:21:31,760 --> 01:21:34,320
+we've got the choice between Q star equals 10.
+
+1777
+01:21:35,240 --> 01:21:38,880
+For studying again, Q star equals 8.4 for going to the pub.
+
+1778
+01:21:38,920 --> 01:21:40,320
+So the optimal policy, the red arc,
+
+1779
+01:21:40,320 --> 01:21:42,480
+is the one that maximizes that and gets us
+
+1780
+01:21:42,480 --> 01:21:44,480
+the most reward going into the future.
+
+1781
+01:21:47,520 --> 01:21:51,920
+Okay, so how do we arrive at this Q star in practice?
+
+1782
+01:21:51,920 --> 01:21:54,480
+How do we actually arrive at
+
+1783
+01:21:54,480 --> 01:21:55,800
+figuring out these Q star values?
+
+1784
+01:21:55,800 --> 01:21:57,560
+These Q star values, we've seen time and again,
+
+1785
+01:21:57,560 --> 01:21:58,400
+they're central.
+
+1786
+01:21:58,400 --> 01:22:00,120
+This is the central quantity we're trying to figure out
+
+1787
+01:22:00,120 --> 01:22:02,840
+so that we can just bang, hit the right action
+
+1788
+01:22:02,840 --> 01:22:05,320
+without even any look ahead or further thought.
+
+1789
+01:22:06,600 --> 01:22:08,120
+So once we have Q star, we're done.
+
+1790
+01:22:08,160 --> 01:22:10,360
+We've solved the MDP, but how do we arrive at Q star?
+
+1791
+01:22:10,360 --> 01:22:12,160
+So intuitively, what did we do?
+
+1792
+01:22:12,160 --> 01:22:13,720
+Well, we kind of worked our way backwards.
+
+1793
+01:22:13,720 --> 01:22:16,320
+We started off at this final state.
+
+1794
+01:22:16,320 --> 01:22:18,920
+We looked at the value of taking this arc,
+
+1795
+01:22:18,920 --> 01:22:21,000
+which was kind of trivially 10.
+
+1796
+01:22:21,000 --> 01:22:22,680
+You go to here, you finish,
+
+1797
+01:22:22,680 --> 01:22:24,240
+you get plus 10 along the way.
+
+1798
+01:22:24,240 --> 01:22:25,400
+And then we worked our way backwards
+
+1799
+01:22:25,400 --> 01:22:27,120
+and we kind of did this look ahead,
+
+1800
+01:22:27,120 --> 01:22:28,840
+with a one step look ahead, where we started here
+
+1801
+01:22:28,840 --> 01:22:30,400
+and we said, okay, we start here,
+
+1802
+01:22:30,400 --> 01:22:32,400
+you look ahead one step, you end up with 10,
+
+1803
+01:22:33,720 --> 01:22:35,280
+work your way backwards.
+
+1804
+01:22:35,280 --> 01:22:37,120
+And that working backwards is precisely
+
+1805
+01:22:37,120 --> 01:22:39,920
+what we get out of a Bellman equation.
+
+1806
+01:22:39,920 --> 01:22:41,120
+So now what we're going to talk about
+
+1807
+01:22:41,120 --> 01:22:43,640
+is a Bellman optimality equation.
+
+1808
+01:22:43,640 --> 01:22:44,800
+So if you just open the textbook
+
+1809
+01:22:44,800 --> 01:22:47,200
+and hear about the Bellman equation for MDPs,
+
+1810
+01:22:47,200 --> 01:22:48,080
+they're talking about this one,
+
+1811
+01:22:48,080 --> 01:22:49,520
+not the one we looked at before.
+
+1812
+01:22:49,520 --> 01:22:50,800
+It's the Bellman optimality equation.
+
+1813
+01:22:50,800 --> 01:22:51,680
+This is the one that tells you
+
+1814
+01:22:51,680 --> 01:22:54,080
+how to really solve your MDP.
+
+1815
+01:22:54,080 --> 01:22:55,920
+The one that tells you how do you relate
+
+1816
+01:22:55,920 --> 01:22:58,240
+the optimal value function to itself.
+
+1817
+01:22:58,240 --> 01:23:01,080
+So before we looked at the Bellman expectation equation
+
+1818
+01:23:01,080 --> 01:23:05,040
+for MDPs, which told us how V pi related to itself.
+
+1819
+01:23:05,040 --> 01:23:07,520
+So we looked at, for example,
+
+1820
+01:23:07,520 --> 01:23:09,400
+under this average behavior policy
+
+1821
+01:23:09,400 --> 01:23:12,720
+where you might go right or left with equal probability,
+
+1822
+01:23:12,720 --> 01:23:14,360
+how did the values relate to themselves?
+
+1823
+01:23:14,360 --> 01:23:16,040
+Now we're looking at really the optimal values.
+
+1824
+01:23:16,040 --> 01:23:17,000
+We're looking at the best things.
+
+1825
+01:23:17,000 --> 01:23:18,000
+We're looking at these,
+
+1826
+01:23:19,680 --> 01:23:21,880
+something like these red highlighted guys,
+
+1827
+01:23:21,880 --> 01:23:24,000
+like the values in these circles now,
+
+1828
+01:23:24,000 --> 01:23:25,280
+six, six, eight, 10.
+
+1829
+01:23:25,280 --> 01:23:27,600
+The maximum amount of juice you can get from your system,
+
+1830
+01:23:27,600 --> 01:23:30,360
+how does that number relate to itself?
+
+1831
+01:23:30,360 --> 01:23:32,960
+And what we can do is do like a one step look ahead again.
+
+1832
+01:23:32,960 --> 01:23:34,880
+And so the way to understand this is again,
+
+1833
+01:23:35,000 --> 01:23:36,760
+as one step look ahead, you start in,
+
+1834
+01:23:36,760 --> 01:23:38,440
+you can ask, well, what's the optimal value
+
+1835
+01:23:38,440 --> 01:23:40,120
+of being in some state?
+
+1836
+01:23:40,120 --> 01:23:42,320
+Well, you can consider each of the actions
+
+1837
+01:23:42,320 --> 01:23:44,200
+that you might take.
+
+1838
+01:23:44,200 --> 01:23:47,120
+We'll take you to one of these chance nodes here,
+
+1839
+01:23:47,120 --> 01:23:48,400
+one of these action nodes.
+
+1840
+01:23:49,400 --> 01:23:52,520
+And we can say, when we reach that action,
+
+1841
+01:23:52,520 --> 01:23:54,760
+we can look at the action value.
+
+1842
+01:23:54,760 --> 01:23:57,360
+This is the red arc, the number on the red arc.
+
+1843
+01:23:57,360 --> 01:23:59,360
+We can say this had a number on the red arc,
+
+1844
+01:23:59,360 --> 01:24:01,680
+which was eight and this had a number on the red arc,
+
+1845
+01:24:01,680 --> 01:24:03,520
+which was 10 or whatever it was.
+
+1846
+01:24:03,520 --> 01:24:05,320
+And now what we do is instead of taking
+
+1847
+01:24:05,320 --> 01:24:06,560
+the average of these guys,
+
+1848
+01:24:06,560 --> 01:24:08,600
+we take the max over these guys.
+
+1849
+01:24:08,600 --> 01:24:10,040
+So we're basically saying,
+
+1850
+01:24:10,040 --> 01:24:13,120
+look at the value of each of the actions you can take
+
+1851
+01:24:13,120 --> 01:24:14,320
+and pick the max of them.
+
+1852
+01:24:14,320 --> 01:24:15,520
+And that's going to tell you how good it is
+
+1853
+01:24:15,520 --> 01:24:16,800
+to be in this state here.
+
+1854
+01:24:17,760 --> 01:24:19,720
+It's simply the max of all the Q values.
+
+1855
+01:24:20,920 --> 01:24:22,120
+If I can go left, I can go right.
+
+1856
+01:24:22,120 --> 01:24:23,800
+I look at how much reward I get in each case
+
+1857
+01:24:23,800 --> 01:24:26,000
+and I pick the one that gives me the most.
+
+1858
+01:24:27,800 --> 01:24:30,240
+So the value function of a state is the max
+
+1859
+01:24:30,240 --> 01:24:32,760
+of the Q values of each of the actions
+
+1860
+01:24:32,760 --> 01:24:34,240
+you can take from that state.
+
+1861
+01:24:35,480 --> 01:24:36,320
+Okay.
+
+1862
+01:24:38,120 --> 01:24:39,920
+Now we're going to do the other half.
+
+1863
+01:24:39,920 --> 01:24:42,000
+So remember we had V going to Q,
+
+1864
+01:24:42,000 --> 01:24:43,600
+now we're going to do Q going to V.
+
+1865
+01:24:44,680 --> 01:24:45,880
+So now we want to know, well,
+
+1866
+01:24:45,880 --> 01:24:47,840
+how good is one of those red arcs in that diagram?
+
+1867
+01:24:47,840 --> 01:24:50,600
+How do we know what the optimal value is
+
+1868
+01:24:50,600 --> 01:24:51,760
+for being in a particular state
+
+1869
+01:24:51,760 --> 01:24:53,240
+and taking a particular action?
+
+1870
+01:24:53,240 --> 01:24:55,720
+How do we know that the study arc
+
+1871
+01:24:55,720 --> 01:24:57,840
+has a particular optimal value to it?
+
+1872
+01:24:57,840 --> 01:25:00,560
+Well, again, we can do a one step look ahead.
+
+1873
+01:25:00,560 --> 01:25:01,560
+But now we're looking ahead
+
+1874
+01:25:01,680 --> 01:25:02,960
+of what the dynamics might do,
+
+1875
+01:25:02,960 --> 01:25:04,200
+what the environment might do to us,
+
+1876
+01:25:04,200 --> 01:25:05,200
+where the wind might blow us.
+
+1877
+01:25:05,200 --> 01:25:06,600
+We don't control this.
+
+1878
+01:25:06,600 --> 01:25:07,640
+This is like going to the pub
+
+1879
+01:25:07,640 --> 01:25:09,680
+and then we don't know what will happen in the pub.
+
+1880
+01:25:09,680 --> 01:25:11,520
+It's a crazy place and we might end up
+
+1881
+01:25:11,520 --> 01:25:13,960
+in all of these different situations.
+
+1882
+01:25:13,960 --> 01:25:16,080
+And each of those states that we end up in
+
+1883
+01:25:16,080 --> 01:25:17,240
+has some optimal value.
+
+1884
+01:25:18,160 --> 01:25:20,320
+So we kind of, this is like an inductive argument.
+
+1885
+01:25:20,320 --> 01:25:23,600
+We sort of assume that we know inductively
+
+1886
+01:25:23,600 --> 01:25:25,120
+the optimal value of each of those states
+
+1887
+01:25:25,120 --> 01:25:26,320
+that we might end up in.
+
+1888
+01:25:27,320 --> 01:25:30,120
+And if we know the value of each of those states
+
+1889
+01:25:30,120 --> 01:25:31,280
+that we might end up in,
+
+1890
+01:25:31,320 --> 01:25:32,960
+we just need to average over them now.
+
+1891
+01:25:32,960 --> 01:25:33,800
+There's no max here.
+
+1892
+01:25:33,800 --> 01:25:35,920
+We don't get to pick where the wind blows us.
+
+1893
+01:25:35,920 --> 01:25:37,480
+We have to average over all the things
+
+1894
+01:25:37,480 --> 01:25:38,960
+the environment might do to us.
+
+1895
+01:25:38,960 --> 01:25:41,600
+And that tells us how good our action is.
+
+1896
+01:25:41,600 --> 01:25:44,960
+So our action is the optimal action value.
+
+1897
+01:25:44,960 --> 01:25:46,560
+It's just the immediate reward
+
+1898
+01:25:46,560 --> 01:25:49,320
+plus the average over all the probability
+
+1899
+01:25:49,320 --> 01:25:50,720
+that the wind might blow us left,
+
+1900
+01:25:50,720 --> 01:25:53,240
+the probability that the wind might blow us right,
+
+1901
+01:25:53,240 --> 01:25:55,920
+multiplied by the optimal value of being in that state.
+
+1902
+01:25:57,320 --> 01:25:58,160
+Okay?
+
+1903
+01:25:58,360 --> 01:26:03,360
+And again, what we can do is put those two pieces together.
+
+1904
+01:26:03,960 --> 01:26:05,360
+When you put those two pieces together,
+
+1905
+01:26:05,360 --> 01:26:07,160
+you have a recursive relationship
+
+1906
+01:26:07,160 --> 01:26:09,520
+that relates V star to itself.
+
+1907
+01:26:09,520 --> 01:26:12,200
+So this gives us an equation that we can solve.
+
+1908
+01:26:12,200 --> 01:26:13,040
+Okay?
+
+1909
+01:26:13,040 --> 01:26:14,760
+So this is now about two step look ahead.
+
+1910
+01:26:14,760 --> 01:26:18,880
+We're looking ahead over the actions we can take here
+
+1911
+01:26:18,880 --> 01:26:20,520
+and maximizing over those.
+
+1912
+01:26:20,520 --> 01:26:23,200
+And we're also looking ahead over the dice
+
+1913
+01:26:23,200 --> 01:26:24,880
+that the environment might roll.
+
+1914
+01:26:24,880 --> 01:26:26,360
+And we don't maximize over the dice.
+
+1915
+01:26:26,360 --> 01:26:27,920
+We don't control the dice.
+
+1916
+01:26:27,960 --> 01:26:29,280
+Instead, we average over the dice
+
+1917
+01:26:29,280 --> 01:26:30,520
+that the environment can roll.
+
+1918
+01:26:30,520 --> 01:26:32,120
+We'll do this two step look ahead
+
+1919
+01:26:32,120 --> 01:26:34,280
+over our actions from this state
+
+1920
+01:26:34,280 --> 01:26:36,160
+and all the things the environment might do to us.
+
+1921
+01:26:36,160 --> 01:26:39,320
+And then we look at the optimal value of where we end up.
+
+1922
+01:26:39,320 --> 01:26:40,760
+We back these things all the way up
+
+1923
+01:26:40,760 --> 01:26:43,720
+and that tells us how good it is to be in this state here.
+
+1924
+01:26:43,720 --> 01:26:47,360
+So that's the Bellman optimality equation of V star.
+
+1925
+01:26:51,760 --> 01:26:52,600
+Okay.
+
+1926
+01:26:53,440 --> 01:26:58,440
+So finally, just before we give one last example,
+
+1927
+01:27:00,760 --> 01:27:03,280
+we can do the same thing flipping the diagram around
+
+1928
+01:27:03,280 --> 01:27:04,800
+and starting with the action values.
+
+1929
+01:27:04,800 --> 01:27:07,760
+And this is to arrive at a recursive relationship
+
+1930
+01:27:07,760 --> 01:27:09,840
+between the Q star values and themselves.
+
+1931
+01:27:09,840 --> 01:27:11,400
+So this isn't really saying anything different
+
+1932
+01:27:11,400 --> 01:27:12,240
+to the previous slide.
+
+1933
+01:27:12,240 --> 01:27:15,080
+It's just like a reordering of the same idea.
+
+1934
+01:27:15,080 --> 01:27:17,440
+And the reordering tells us that if we start,
+
+1935
+01:27:17,440 --> 01:27:20,160
+and we want to know how good is one of these arcs,
+
+1936
+01:27:20,160 --> 01:27:21,880
+how good is it to be in a particular state
+
+1937
+01:27:21,880 --> 01:27:23,600
+and take a particular action.
+
+1938
+01:27:23,600 --> 01:27:27,400
+Now, we first of all consider where the wind will blow us.
+
+1939
+01:27:27,400 --> 01:27:32,240
+We average over the dice which the environment's rolling.
+
+1940
+01:27:32,240 --> 01:27:35,760
+And wherever the dice roll, we get to make a decision.
+
+1941
+01:27:35,760 --> 01:27:37,480
+So wherever the wind blows us,
+
+1942
+01:27:37,480 --> 01:27:40,560
+we get to decide pick one action after that
+
+1943
+01:27:40,560 --> 01:27:43,400
+and we get to maximize over the decisions we take.
+
+1944
+01:27:43,400 --> 01:27:45,960
+So we average over the dice that we roll
+
+1945
+01:27:45,960 --> 01:27:48,200
+and we maximize over the decisions we take.
+
+1946
+01:27:48,200 --> 01:27:49,600
+And for each of these leaves,
+
+1947
+01:27:49,600 --> 01:27:51,360
+we consider the action value,
+
+1948
+01:27:51,360 --> 01:27:53,880
+the optimal action value, like how good is it to be
+
+1949
+01:27:53,880 --> 01:27:55,960
+in this state taking this particular action
+
+1950
+01:27:55,960 --> 01:27:57,840
+or in this state taking this action.
+
+1951
+01:27:57,840 --> 01:28:00,400
+We back that up all the way to the beginning
+
+1952
+01:28:00,400 --> 01:28:04,040
+and that tells us the Q value of the root of this diagram.
+
+1953
+01:28:04,040 --> 01:28:05,400
+Okay.
+
+1954
+01:28:05,400 --> 01:28:07,320
+So let's make that concrete
+
+1955
+01:28:07,320 --> 01:28:10,040
+by picking one state in this diagram.
+
+1956
+01:28:10,040 --> 01:28:13,960
+Probably stick to the teeth of this student MDP by now.
+
+1957
+01:28:15,000 --> 01:28:17,440
+Anyway, I promise it won't come up too much again.
+
+1958
+01:28:18,440 --> 01:28:22,160
+So here we start off in this state.
+
+1959
+01:28:23,360 --> 01:28:27,240
+We consider, we have two possible actions that we can take.
+
+1960
+01:28:28,440 --> 01:28:30,040
+So this one's rather straightforward.
+
+1961
+01:28:30,040 --> 01:28:32,600
+There's no noise that in the environment,
+
+1962
+01:28:32,600 --> 01:28:34,200
+we're not considering any dice rolls.
+
+1963
+01:28:34,200 --> 01:28:35,440
+It's just like people said before,
+
+1964
+01:28:35,440 --> 01:28:37,440
+implicitly there's like a,
+
+1965
+01:28:37,440 --> 01:28:39,400
+the environment always rolls the same way
+
+1966
+01:28:39,400 --> 01:28:41,480
+and takes us here if we take this action.
+
+1967
+01:28:41,480 --> 01:28:43,240
+The environment always rolls the dice the same way
+
+1968
+01:28:43,240 --> 01:28:44,440
+to take us here.
+
+1969
+01:28:44,440 --> 01:28:46,120
+So we're just looking ahead one step
+
+1970
+01:28:46,120 --> 01:28:48,640
+by saying that the value of this state, six,
+
+1971
+01:28:48,640 --> 01:28:50,760
+and this is V star of this state, six,
+
+1972
+01:28:50,760 --> 01:28:54,680
+is equal to the max over all the things we can do here
+
+1973
+01:28:56,160 --> 01:28:59,000
+of the value function of where we end up.
+
+1974
+01:28:59,000 --> 01:29:00,480
+So we know that inductively,
+
+1975
+01:29:00,480 --> 01:29:02,560
+if we assume that these other values are correct,
+
+1976
+01:29:02,560 --> 01:29:04,760
+then we assume that this has an optimal value of six,
+
+1977
+01:29:04,760 --> 01:29:06,600
+this has an optimal value of eight.
+
+1978
+01:29:06,600 --> 01:29:08,840
+So if we maximize over all the things we can do,
+
+1979
+01:29:08,840 --> 01:29:09,760
+we see that that,
+
+1980
+01:29:14,360 --> 01:29:16,040
+oh yeah, there's a minus two along the way as well.
+
+1981
+01:29:17,040 --> 01:29:19,480
+So you can either get minus one
+
+1982
+01:29:19,480 --> 01:29:23,040
+followed by ending up in a state with six.
+
+1983
+01:29:23,040 --> 01:29:25,840
+So this has a value of five.
+
+1984
+01:29:25,840 --> 01:29:27,160
+If we take this arc,
+
+1985
+01:29:27,160 --> 01:29:29,560
+so Q star of this arc is five,
+
+1986
+01:29:29,560 --> 01:29:32,240
+or this way we get minus two from our eight,
+
+1987
+01:29:32,240 --> 01:29:33,560
+and we get six.
+
+1988
+01:29:33,560 --> 01:29:36,360
+So we choose to go this way and our value function is six.
+
+1989
+01:29:40,000 --> 01:29:42,200
+So how do we solve this in practice?
+
+1990
+01:29:42,200 --> 01:29:44,880
+So previously we saw that we had these Bellman equations
+
+1991
+01:29:44,880 --> 01:29:46,440
+with expectations that we could just solve
+
+1992
+01:29:46,440 --> 01:29:48,440
+by doing matrix inversion.
+
+1993
+01:29:48,440 --> 01:29:50,560
+So that's very appealing for those of you like MATLAB
+
+1994
+01:29:50,560 --> 01:29:54,200
+and these nice tools where you can just type in your matrix,
+
+1995
+01:29:54,200 --> 01:29:57,600
+type in your vector representing the rewards,
+
+1996
+01:29:57,600 --> 01:30:00,840
+and bam, do your matrix inversion, you're done.
+
+1997
+01:30:00,840 --> 01:30:01,960
+Unfortunately, that doesn't work
+
+1998
+01:30:01,960 --> 01:30:04,520
+for optimizing the Bellman optimality equation
+
+1999
+01:30:04,520 --> 01:30:06,720
+because we have these nonlinear equations now.
+
+2000
+01:30:07,720 --> 01:30:11,280
+We've got a max in addition to our expectation,
+
+2001
+01:30:11,280 --> 01:30:13,160
+and we have to solve for this equation
+
+2002
+01:30:13,160 --> 01:30:15,480
+that relates V star to itself or Q star to itself
+
+2003
+01:30:15,480 --> 01:30:17,840
+with a max of these expectations.
+
+2004
+01:30:17,840 --> 01:30:20,760
+So in general, there's no close form to this thing,
+
+2005
+01:30:20,760 --> 01:30:22,440
+and we have to be smarter.
+
+2006
+01:30:22,440 --> 01:30:23,400
+And how do we be smarter?
+
+2007
+01:30:23,400 --> 01:30:26,040
+Well, using iterative solution methods,
+
+2008
+01:30:26,040 --> 01:30:29,360
+of which the best known examples are value iteration,
+
+2009
+01:30:29,360 --> 01:30:33,280
+policy iteration, which we'll talk about in the next class.
+
+2010
+01:30:33,280 --> 01:30:34,800
+These are dynamic programming methods
+
+2011
+01:30:34,800 --> 01:30:38,600
+for iterative dissolving these recursive equations,
+
+2012
+01:30:38,600 --> 01:30:40,200
+and Q learning, which we'll talk about
+
+2013
+01:30:40,200 --> 01:30:41,400
+in our subsequent lecture.
+
+2014
+01:30:42,400 --> 01:30:43,240
+That's awesome.
+
+2015
+01:30:43,240 --> 01:30:44,560
+The matrix solution itself
+
+2016
+01:30:44,560 --> 01:30:46,640
+is implicitly iterative underneath.
+
+2017
+01:30:46,640 --> 01:30:50,320
+You don't get away from doing any sort of iterative calculation.
+
+2018
+01:30:50,320 --> 01:30:53,240
+I mean, to solve that matrix equation,
+
+2019
+01:30:53,240 --> 01:30:55,440
+it's in order, I think, you properly will have
+
+2020
+01:30:55,440 --> 01:30:57,840
+to iterate in some sense to get a solution.
+
+2021
+01:30:59,480 --> 01:31:01,720
+Well, I mean, there's computation required
+
+2022
+01:31:01,720 --> 01:31:05,480
+to solve the matrix, and there's steps to that computation,
+
+2023
+01:31:05,480 --> 01:31:06,880
+but it's not.
+
+2024
+01:31:06,880 --> 01:31:08,680
+So by iterative solution method,
+
+2025
+01:31:08,680 --> 01:31:12,200
+we mean something more like where you have an equation
+
+2026
+01:31:12,200 --> 01:31:15,440
+which you iteratively apply at each step,
+
+2027
+01:31:15,440 --> 01:31:17,560
+you can apply the next step of that update.
+
+2028
+01:31:17,560 --> 01:31:19,080
+So you start with some estimate,
+
+2029
+01:31:19,080 --> 01:31:21,400
+you update your estimate towards a new estimate, and so forth.
+
+2030
+01:31:21,400 --> 01:31:22,920
+Now, of course, there are iterative approaches
+
+2031
+01:31:22,920 --> 01:31:25,320
+to matrix inversion, like the Sherman Morrison trick,
+
+2032
+01:31:25,320 --> 01:31:29,120
+which can be applied to reinforcement learning as well.
+
+2033
+01:31:29,120 --> 01:31:30,960
+So there are cases where the matrix inversion
+
+2034
+01:31:30,960 --> 01:31:35,280
+can be reduced in complexity from n cubed to n squared.
+
+2035
+01:31:35,280 --> 01:31:36,640
+Those are special cases,
+
+2036
+01:31:36,760 --> 01:31:39,240
+as I'm talking about the general approach here.
+
+2037
+01:31:39,240 --> 01:31:41,120
+So yes and no.
+
+2038
+01:31:44,080 --> 01:31:49,080
+Okay, so just about out of time,
+
+2039
+01:31:49,400 --> 01:31:51,960
+I think I want to really just take questions
+
+2040
+01:31:51,960 --> 01:31:53,200
+and make sure people are following
+
+2041
+01:31:53,200 --> 01:31:56,560
+rather than going into the extensions in any great detail.
+
+2042
+01:31:56,560 --> 01:31:58,840
+So this is a great time,
+
+2043
+01:31:58,840 --> 01:32:01,080
+if you feel that something was unclear,
+
+2044
+01:32:01,080 --> 01:32:03,960
+and now's your chance to ask.
+
+2045
+01:32:04,960 --> 01:32:07,120
+Otherwise, I'm just going to assume that,
+
+2046
+01:32:07,120 --> 01:32:11,040
+you know, that's all the notes were incredibly perfectly clear
+
+2047
+01:32:11,040 --> 01:32:12,080
+and everyone understood everything,
+
+2048
+01:32:12,080 --> 01:32:14,120
+which I'm very confident is not true.
+
+2049
+01:32:14,120 --> 01:32:14,960
+Yes, please.
+
+2050
+01:32:14,960 --> 01:32:17,000
+So we should have an imperfect moment
+
+2051
+01:32:17,000 --> 01:32:19,120
+or a missing information.
+
+2052
+01:32:19,120 --> 01:32:22,840
+I don't know how that translates to a diagram of the end
+
+2053
+01:32:22,840 --> 01:32:24,800
+which we would have missing moment,
+
+2054
+01:32:24,800 --> 01:32:27,120
+or what you have to do in the solution,
+
+2055
+01:32:27,120 --> 01:32:29,000
+where you should have a 51,
+
+2056
+01:32:29,000 --> 01:32:32,680
+or the one with, you know, enlivening by someone.
+
+2057
+01:32:32,680 --> 01:32:33,640
+Okay, so it's a great question.
+
+2058
+01:32:33,640 --> 01:32:35,880
+So the question is, you know, in reality,
+
+2059
+01:32:36,880 --> 01:32:38,680
+the MDP is just a model.
+
+2060
+01:32:38,680 --> 01:32:40,880
+We're trying to model some real phenomenon
+
+2061
+01:32:40,880 --> 01:32:43,360
+out in the world, some real environment.
+
+2062
+01:32:43,360 --> 01:32:47,080
+How do we represent the fact that our model is imperfect?
+
+2063
+01:32:47,080 --> 01:32:49,440
+We're actually going to have a class on
+
+2064
+01:32:49,440 --> 01:32:52,000
+where we'll talk about model-based reinforcement learning.
+
+2065
+01:32:52,000 --> 01:32:52,840
+If there's time,
+
+2066
+01:32:52,840 --> 01:32:56,000
+I'll talk about some of the approaches to uncertainty.
+
+2067
+01:32:56,000 --> 01:32:58,360
+So some of the classical approaches to uncertainty
+
+2068
+01:32:58,360 --> 01:33:02,720
+include explicitly representing the uncertainty in the MDP.
+
+2069
+01:33:02,720 --> 01:33:04,280
+So you could be Bayesian, for example,
+
+2070
+01:33:04,280 --> 01:33:08,520
+have some posterior estimate of what the MDP dynamics are,
+
+2071
+01:33:08,520 --> 01:33:11,760
+and then solve not just one single MDP,
+
+2072
+01:33:11,760 --> 01:33:13,960
+but a whole distribution over MDPs,
+
+2073
+01:33:13,960 --> 01:33:16,920
+and find the policy that's optimal with respect to all of them.
+
+2074
+01:33:16,920 --> 01:33:18,960
+That's computationally very difficult.
+
+2075
+01:33:18,960 --> 01:33:22,000
+Another approach is to actually factor in the uncertainty
+
+2076
+01:33:22,000 --> 01:33:24,240
+in your representation of what's going on in the world
+
+2077
+01:33:24,240 --> 01:33:26,080
+into your MDP itself.
+
+2078
+01:33:26,080 --> 01:33:28,320
+So you'll say you're in a state where,
+
+2079
+01:33:28,320 --> 01:33:30,680
+not only am I in a state where my robot's here,
+
+2080
+01:33:30,720 --> 01:33:32,960
+but I'm in a state where my robot's here,
+
+2081
+01:33:32,960 --> 01:33:36,200
+and I think that the world has these dynamics,
+
+2082
+01:33:36,200 --> 01:33:37,760
+or I'm in a state where the robot's here,
+
+2083
+01:33:37,760 --> 01:33:40,240
+and I've seen these observations so far,
+
+2084
+01:33:40,240 --> 01:33:42,400
+which implicitly tell me something about the uncertainty
+
+2085
+01:33:42,400 --> 01:33:44,640
+of what's going on in the MDP.
+
+2086
+01:33:45,800 --> 01:33:47,840
+So that can be much more tractable.
+
+2087
+01:33:47,840 --> 01:33:49,520
+You don't necessarily need to explicitly reason
+
+2088
+01:33:49,520 --> 01:33:52,280
+about all the uncertainty in the environment,
+
+2089
+01:33:52,280 --> 01:33:54,280
+but it's maybe a little less intuitive
+
+2090
+01:33:54,280 --> 01:33:56,640
+to understand the form of the uncertainty.
+
+2091
+01:33:56,640 --> 01:33:58,440
+The uncertainty isn't made explicit.
+
+2092
+01:33:59,320 --> 01:34:00,560
+And then maybe the only other thing to say,
+
+2093
+01:34:00,560 --> 01:34:01,520
+which we already touched on,
+
+2094
+01:34:01,520 --> 01:34:04,920
+is that sometimes it's sufficient to just say,
+
+2095
+01:34:04,920 --> 01:34:08,280
+well, except that our model is imperfect,
+
+2096
+01:34:08,280 --> 01:34:10,480
+and use a discount factor to capture the fact
+
+2097
+01:34:10,480 --> 01:34:12,200
+that we've got some uncertainty.
+
+2098
+01:34:12,200 --> 01:34:15,000
+You can also make the discount factor variable
+
+2099
+01:34:15,000 --> 01:34:17,040
+to represent the fact that you're more uncertain
+
+2100
+01:34:17,040 --> 01:34:18,280
+in some states than others.
+
+2101
+01:34:18,280 --> 01:34:19,800
+So you don't have to have 0.9 everywhere.
+
+2102
+01:34:19,800 --> 01:34:22,040
+You could have 0.9 in one state,
+
+2103
+01:34:22,040 --> 01:34:23,560
+0.99 in another state,
+
+2104
+01:34:23,560 --> 01:34:27,280
+representing how bad your model is in that situation.
+
+2105
+01:34:27,280 --> 01:34:29,000
+So it's a very active research area.
+
+2106
+01:34:29,000 --> 01:34:30,400
+I think it's a great question.
+
+2107
+01:34:31,520 --> 01:34:32,520
+Yeah.
+
+2108
+01:34:32,520 --> 01:34:35,320
+So everything we've shown us today
+
+2109
+01:34:35,320 --> 01:34:40,320
+seems to sort of get towards maximizing reward.
+
+2110
+01:34:40,720 --> 01:34:44,600
+But is there anything implicit in there
+
+2111
+01:34:44,600 --> 01:34:48,040
+that would also have a consideration of risk?
+
+2112
+01:34:48,040 --> 01:34:53,040
+So if you, you might be interested in maximizing your reward
+
+2113
+01:34:54,640 --> 01:34:56,520
+at a future time in choosing that policy,
+
+2114
+01:34:56,520 --> 01:34:58,480
+but there might be some chance
+
+2115
+01:34:58,600 --> 01:34:59,900
+of choosing that policy,
+
+2116
+01:35:00,760 --> 01:35:04,560
+you know, that there's also an increased risk.
+
+2117
+01:35:05,800 --> 01:35:07,720
+Okay, so the question is,
+
+2118
+01:35:07,720 --> 01:35:09,760
+everything's just talking about maximizing reward
+
+2119
+01:35:09,760 --> 01:35:11,360
+and expectations of those reward
+
+2120
+01:35:11,360 --> 01:35:13,120
+without explicitly considering risk
+
+2121
+01:35:13,120 --> 01:35:15,400
+or variance of those returns.
+
+2122
+01:35:16,560 --> 01:35:18,720
+So I think the correct answer to that
+
+2123
+01:35:18,720 --> 01:35:21,960
+is to say that you can always transform any MDP
+
+2124
+01:35:23,000 --> 01:35:24,760
+with no risk into,
+
+2125
+01:35:24,760 --> 01:35:27,000
+so if there's some amount that you care about your risk,
+
+2126
+01:35:27,000 --> 01:35:28,520
+like let's say that there's a cost
+
+2127
+01:35:28,520 --> 01:35:32,720
+that depends on the variance of your returns,
+
+2128
+01:35:32,720 --> 01:35:36,440
+there is another MDP which has a different reward function
+
+2129
+01:35:36,440 --> 01:35:40,280
+that already factors in the variance of those rewards
+
+2130
+01:35:40,280 --> 01:35:41,640
+into the actual reward that you see
+
+2131
+01:35:41,640 --> 01:35:43,440
+at the end of your trajectory.
+
+2132
+01:35:43,440 --> 01:35:46,280
+So that can be implicit in this model
+
+2133
+01:35:46,280 --> 01:35:47,880
+you've shown us deliberately?
+
+2134
+01:35:47,880 --> 01:35:50,680
+There is a transformation of any risk sensitive MDP
+
+2135
+01:35:50,680 --> 01:35:51,800
+into another MDP.
+
+2136
+01:35:51,800 --> 01:35:54,920
+However, that transformation can be quite complex.
+
+2137
+01:35:54,920 --> 01:35:56,040
+So you might need to remember
+
+2138
+01:35:56,040 --> 01:35:57,320
+all the things that you've seen so far
+
+2139
+01:35:57,320 --> 01:35:59,840
+and it can be a more complicated MDP
+
+2140
+01:35:59,840 --> 01:36:01,480
+that you end up having to solve.
+
+2141
+01:36:01,480 --> 01:36:03,120
+So that's the first answer.
+
+2142
+01:36:03,120 --> 01:36:05,200
+The second answer is to say that a bunch of people
+
+2143
+01:36:05,200 --> 01:36:07,680
+do specifically consider risk sensitive MDPs
+
+2144
+01:36:07,680 --> 01:36:09,680
+where you don't just consider expectations,
+
+2145
+01:36:09,680 --> 01:36:12,000
+but you consider what's the variance of those rewards
+
+2146
+01:36:12,000 --> 01:36:13,600
+at the end of the day.
+
+2147
+01:36:13,600 --> 01:36:17,160
+So there's a bunch of work out there
+
+2148
+01:36:17,160 --> 01:36:19,200
+and I'm happy to give you pointers to that
+
+2149
+01:36:19,200 --> 01:36:20,200
+if you're interested.
+
+2150
+01:36:21,360 --> 01:36:22,360
+Any other questions?
+
+2151
+01:36:23,360 --> 01:36:25,360
+Okay, one more and then I just want to say
+
+2152
+01:36:25,360 --> 01:36:27,360
+a couple of words before everyone piles up.
+
+2153
+01:36:27,360 --> 01:36:30,360
+Oh, yeah, sorry, this guy was actually waiting for longer to say.
+
+2154
+01:36:30,360 --> 01:36:35,360
+Some example, for instance, I mean, obviously,
+
+2155
+01:36:35,360 --> 01:36:37,360
+there are two parts, balance,
+
+2156
+01:36:37,360 --> 01:36:39,360
+and it's only just pure mass.
+
+2157
+01:36:39,360 --> 01:36:40,360
+And in the last situation, for instance,
+
+2158
+01:36:40,360 --> 01:36:43,360
+in finance, where somebody will actually balance it,
+
+2159
+01:36:43,360 --> 01:36:45,360
+you know, in terms of arbitration.
+
+2160
+01:36:45,360 --> 01:36:47,360
+But in terms of like real creation,
+
+2161
+01:36:47,360 --> 01:36:49,360
+a real situation, like the robot,
+
+2162
+01:36:49,360 --> 01:36:51,360
+or like a private unit,
+
+2163
+01:36:51,360 --> 01:36:53,360
+what does it mean to, you know,
+
+2164
+01:36:55,360 --> 01:36:56,360
+Okay, so the question is,
+
+2165
+01:36:56,360 --> 01:36:58,360
+what's the intuition behind the Bellman equation
+
+2166
+01:36:58,360 --> 01:37:00,360
+in some real example?
+
+2167
+01:37:00,360 --> 01:37:03,360
+So if we take the Atari game as an example,
+
+2168
+01:37:03,360 --> 01:37:05,360
+so the Bellman optimality equation,
+
+2169
+01:37:05,360 --> 01:37:06,360
+let's focus on that one,
+
+2170
+01:37:06,360 --> 01:37:09,360
+that's the crux of where we got to,
+
+2171
+01:37:09,360 --> 01:37:12,360
+the Q star or V star is telling you,
+
+2172
+01:37:12,360 --> 01:37:14,360
+you know, what's the maximum amount of score you can get,
+
+2173
+01:37:14,360 --> 01:37:15,360
+you know, you're in this screen here,
+
+2174
+01:37:15,360 --> 01:37:18,360
+what's the maximum score you can get from this screen here?
+
+2175
+01:37:18,360 --> 01:37:20,360
+And the intuition is that all you need to do
+
+2176
+01:37:20,360 --> 01:37:22,360
+to get that maximum score,
+
+2177
+01:37:22,360 --> 01:37:24,360
+this is called the principle of optimality.
+
+2178
+01:37:24,360 --> 01:37:25,360
+So the principle of optimality tells you
+
+2179
+01:37:25,360 --> 01:37:27,360
+that the way to get the maximum score
+
+2180
+01:37:27,360 --> 01:37:29,360
+is to behave optimally for one step,
+
+2181
+01:37:29,360 --> 01:37:30,360
+and then to behave optimally
+
+2182
+01:37:30,360 --> 01:37:32,360
+for the remainder of your trajectory.
+
+2183
+01:37:32,360 --> 01:37:34,360
+Okay, if you behave optimally
+
+2184
+01:37:34,360 --> 01:37:35,360
+for the remainder of your trajectory,
+
+2185
+01:37:35,360 --> 01:37:36,360
+that's the value function
+
+2186
+01:37:36,360 --> 01:37:38,360
+from the state that you end up in.
+
+2187
+01:37:38,360 --> 01:37:39,360
+And so now all you need to do
+
+2188
+01:37:39,360 --> 01:37:40,360
+is to figure out,
+
+2189
+01:37:40,360 --> 01:37:42,360
+well, how do I behave optimally for one step?
+
+2190
+01:37:42,360 --> 01:37:44,360
+And the way that you behave optimally for one step
+
+2191
+01:37:44,360 --> 01:37:47,360
+is to maximize over those optimal value functions
+
+2192
+01:37:47,360 --> 01:37:49,360
+in the places you might end up in.
+
+2193
+01:37:49,360 --> 01:37:51,360
+So it's like you might move your,
+
+2194
+01:37:51,360 --> 01:37:53,360
+you might move Pac-Man to the left,
+
+2195
+01:37:53,360 --> 01:37:56,360
+and you might move Pac-Man to the right.
+
+2196
+01:37:56,360 --> 01:37:58,360
+If you move Pac-Man to the right,
+
+2197
+01:37:58,360 --> 01:38:01,360
+and you can get 100 points of optimal value
+
+2198
+01:38:01,360 --> 01:38:02,360
+from that point onwards,
+
+2199
+01:38:02,360 --> 01:38:04,360
+or so moving to the right,
+
+2200
+01:38:04,360 --> 01:38:05,360
+you might get plus 10,
+
+2201
+01:38:05,360 --> 01:38:08,360
+and then 100 points of optimal value afterwards.
+
+2202
+01:38:08,360 --> 01:38:10,360
+Moving to the left, you might get plus 20,
+
+2203
+01:38:10,360 --> 01:38:13,360
+but then only 50 points of optimal value afterwards.
+
+2204
+01:38:13,360 --> 01:38:15,360
+And so the intuition is that
+
+2205
+01:38:15,360 --> 01:38:18,360
+just by breaking down your trajectory
+
+2206
+01:38:18,360 --> 01:38:19,360
+into these two parts,
+
+2207
+01:38:19,360 --> 01:38:20,360
+into the optimal decision at one step,
+
+2208
+01:38:20,360 --> 01:38:22,360
+and the optimal decision from there onwards,
+
+2209
+01:38:22,360 --> 01:38:23,360
+you can describe what it means
+
+2210
+01:38:23,360 --> 01:38:26,360
+to have optimal dynamics for the whole problem.
+
+2211
+01:38:26,360 --> 01:38:27,360
+Okay.
+
+2212
+01:38:27,360 --> 01:38:28,360
+One more question,
+
+2213
+01:38:28,360 --> 01:38:29,360
+and I just want to say a couple of words
+
+2214
+01:38:29,360 --> 01:38:30,360
+about the extensions,
+
+2215
+01:38:30,360 --> 01:38:31,360
+but without any details at all,
+
+2216
+01:38:31,360 --> 01:38:33,360
+so don't get scared.
+
+2217
+01:38:33,360 --> 01:38:34,360
+Yes?
+
+2218
+01:38:34,360 --> 01:38:47,360
+So, if you have a million states,
+
+2219
+01:38:47,360 --> 01:38:48,360
+and a million actions per state,
+
+2220
+01:38:48,360 --> 01:38:49,360
+you have a large MDP,
+
+2221
+01:38:49,360 --> 01:38:51,360
+and so now you're asking how do you,
+
+2222
+01:38:51,360 --> 01:38:53,360
+how do you actually solve the MDP
+
+2223
+01:38:53,360 --> 01:38:55,360
+to find the optimal value function?
+
+2224
+01:38:55,360 --> 01:38:56,360
+Is that the question?
+
+2225
+01:38:56,360 --> 01:38:57,360
+Was the question,
+
+2226
+01:38:57,360 --> 01:38:58,360
+how do you solve it,
+
+2227
+01:38:58,360 --> 01:39:02,360
+or how do you decide on the immediate rewards?
+
+2228
+01:39:03,360 --> 01:39:05,360
+I see.
+
+2229
+01:39:05,360 --> 01:39:07,360
+So the question isn't how do you solve the MDP,
+
+2230
+01:39:07,360 --> 01:39:09,360
+it's how do you model the MDP,
+
+2231
+01:39:09,360 --> 01:39:11,360
+how do you represent a large MDP.
+
+2232
+01:39:11,360 --> 01:39:12,360
+So typically the reward function
+
+2233
+01:39:12,360 --> 01:39:16,360
+is given by the environment dynamics,
+
+2234
+01:39:16,360 --> 01:39:18,360
+so it's given by,
+
+2235
+01:39:18,360 --> 01:39:19,360
+so for example it might be,
+
+2236
+01:39:19,360 --> 01:39:21,360
+imagine you're playing Atari,
+
+2237
+01:39:21,360 --> 01:39:22,360
+the score that you get,
+
+2238
+01:39:22,360 --> 01:39:25,360
+there are many more than the million states in Atari,
+
+2239
+01:39:25,360 --> 01:39:27,360
+and yet the score is just a function
+
+2240
+01:39:27,360 --> 01:39:28,360
+of that state that you're in,
+
+2241
+01:39:28,360 --> 01:39:30,360
+so it's something which you're in this state,
+
+2242
+01:39:30,360 --> 01:39:31,360
+you query the emulator,
+
+2243
+01:39:31,360 --> 01:39:32,360
+you say what's the score,
+
+2244
+01:39:32,360 --> 01:39:34,360
+or you extract the score from the screen,
+
+2245
+01:39:34,360 --> 01:39:36,360
+and it's just a function that depends on your state.
+
+2246
+01:39:36,360 --> 01:39:38,360
+So typically there's some function
+
+2247
+01:39:38,360 --> 01:39:39,360
+mapping state to reward,
+
+2248
+01:39:39,360 --> 01:39:42,360
+and that function characterizes like the,
+
+2249
+01:39:42,360 --> 01:39:43,360
+this is like, you know,
+
+2250
+01:39:43,360 --> 01:39:44,360
+imagine you're a programmer
+
+2251
+01:39:44,360 --> 01:39:45,360
+and you're trying to tell your program
+
+2252
+01:39:45,360 --> 01:39:48,360
+how to, what the problem is you're trying to solve.
+
+2253
+01:39:48,360 --> 01:39:49,360
+The reward function is kind of like
+
+2254
+01:39:49,360 --> 01:39:51,360
+the definition of the program,
+
+2255
+01:39:51,360 --> 01:39:53,360
+you're asking the programmer to solve
+
+2256
+01:39:53,360 --> 01:39:54,360
+this particular problem,
+
+2257
+01:39:54,360 --> 01:39:56,360
+it's part of the problem definition.
+
+2258
+01:39:56,360 --> 01:39:59,360
+So the reward is just a function of the,
+
+2259
+01:39:59,360 --> 01:40:00,360
+it's part of the environment,
+
+2260
+01:40:00,360 --> 01:40:02,360
+it's part of the thing describing
+
+2261
+01:40:02,360 --> 01:40:04,360
+how the environment state gets mapped into reward.
+
+2262
+01:40:04,360 --> 01:40:06,360
+So in any reasonable problem,
+
+2263
+01:40:06,360 --> 01:40:08,360
+you'll see that there's a way to transform this
+
+2264
+01:40:08,360 --> 01:40:10,360
+and describe the reward normally quite conveniently.
+
+2265
+01:40:10,360 --> 01:40:12,360
+There's a big open question,
+
+2266
+01:40:12,360 --> 01:40:14,360
+which is how do you best model the reward
+
+2267
+01:40:14,360 --> 01:40:16,360
+in a way that actually leads to intuitively
+
+2268
+01:40:16,360 --> 01:40:19,360
+what we as humans think of as the best solution.
+
+2269
+01:40:19,360 --> 01:40:20,360
+Okay, very briefly,
+
+2270
+01:40:20,360 --> 01:40:23,360
+I just wanted to put up this slide
+
+2271
+01:40:23,360 --> 01:40:26,360
+just to highlight that there are some additional slides,
+
+2272
+01:40:26,360 --> 01:40:27,360
+extensions to MVPs,
+
+2273
+01:40:27,360 --> 01:40:29,360
+this is not examinable material,
+
+2274
+01:40:29,360 --> 01:40:31,360
+I do not expect you guys to go off and revise stuff
+
+2275
+01:40:31,360 --> 01:40:33,360
+which I haven't told you about.
+
+2276
+01:40:33,360 --> 01:40:35,360
+And in general for these classes,
+
+2277
+01:40:35,360 --> 01:40:36,360
+I'll try to make it very clear
+
+2278
+01:40:36,360 --> 01:40:38,360
+what's not examinable material.
+
+2279
+01:40:38,360 --> 01:40:39,360
+And if we run out of time at any point,
+
+2280
+01:40:39,360 --> 01:40:41,360
+don't panic, you know,
+
+2281
+01:40:41,360 --> 01:40:43,360
+you won't suddenly find a question
+
+2282
+01:40:43,360 --> 01:40:46,360
+to crop up in the exam which we didn't cover.
+
+2283
+01:40:46,360 --> 01:40:48,360
+But the extensions are on the slide
+
+2284
+01:40:48,360 --> 01:40:49,360
+just there as additional material,
+
+2285
+01:40:49,360 --> 01:40:51,360
+in particular telling you how to deal with
+
+2286
+01:40:51,360 --> 01:40:53,360
+infinite MVPs, continuous MVPs,
+
+2287
+01:40:53,360 --> 01:40:55,360
+partially observable MVPs,
+
+2288
+01:40:55,360 --> 01:40:57,360
+undiscounted average reward MVPs.
+
+2289
+01:40:57,360 --> 01:41:00,360
+These are the major extensions to the MVP framework.
+
+2290
+01:41:00,360 --> 01:41:02,360
+Just to give you some sense,
+
+2291
+01:41:02,360 --> 01:41:03,360
+I think just out of interest,
+
+2292
+01:41:03,360 --> 01:41:05,360
+you can get some sense, it's not details,
+
+2293
+01:41:05,360 --> 01:41:06,360
+it's just a brief outline,
+
+2294
+01:41:06,360 --> 01:41:08,360
+showing you how you can move beyond this
+
+2295
+01:41:08,360 --> 01:41:11,360
+to the case where you're trying to control
+
+2296
+01:41:11,360 --> 01:41:13,360
+some real airplane or helicopter
+
+2297
+01:41:13,360 --> 01:41:15,360
+with continuous actions
+
+2298
+01:41:15,360 --> 01:41:18,360
+and perhaps even continuous time steps.
+
+2299
+01:41:18,360 --> 01:41:20,360
+Or where the state that you see
+
+2300
+01:41:20,360 --> 01:41:22,360
+doesn't tell you everything about the environment,
+
+2301
+01:41:22,360 --> 01:41:24,360
+but you just get to see like the robot's camera
+
+2302
+01:41:24,360 --> 01:41:26,360
+at every given time step
+
+2303
+01:41:26,360 --> 01:41:29,360
+and you don't get exposed to the Markov state
+
+2304
+01:41:29,360 --> 01:41:31,360
+that's actually inside the environment,
+
+2305
+01:41:31,360 --> 01:41:34,360
+you just get to see what your agent sees at that moment.
+
+2306
+01:41:34,360 --> 01:41:36,360
+And finally the case where,
+
+2307
+01:41:36,360 --> 01:41:38,360
+we can deal with undiscounted cases,
+
+2308
+01:41:38,360 --> 01:41:40,360
+I basically looking at a limiting case
+
+2309
+01:41:40,360 --> 01:41:42,360
+where we average over,
+
+2310
+01:41:42,360 --> 01:41:44,360
+where we look at the average reward going into the future,
+
+2311
+01:41:44,360 --> 01:41:46,360
+the average reward per time step,
+
+2312
+01:41:46,360 --> 01:41:48,360
+instead of the discounted sum of rewards.
+
+2313
+01:41:48,360 --> 01:41:50,360
+It's a different definition of return
+
+2314
+01:41:50,360 --> 01:41:52,360
+that actually works out very neatly.
+
+2315
+01:41:52,360 --> 01:41:55,360
+So just if you're feeling enthusiastic,
+
+2316
+01:41:55,360 --> 01:41:57,360
+go and have a look, there's pointers to elsewhere.
+
+2317
+01:41:57,360 --> 01:42:00,360
+And otherwise, the remainder is,
+
+2318
+01:42:00,360 --> 01:42:02,360
+next week we'll start to talk about how to solve these things.
+
+2319
+01:42:02,360 --> 01:42:04,360
+So this is just defining the problem.
+

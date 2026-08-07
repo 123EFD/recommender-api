@@ -1,0 +1,6084 @@
+1
+00:00:00,000 --> 00:00:19,600
+OK, so let's start back up.
+
+2
+00:00:19,600 --> 00:00:20,640
+Today, let's see.
+
+3
+00:00:20,640 --> 00:00:24,240
+We are transitioning from morphology into phonetics.
+
+4
+00:00:24,240 --> 00:00:26,080
+So I hope you enjoyed morphology.
+
+5
+00:00:26,080 --> 00:00:28,520
+It's not as if you won't ever do any morphology again,
+
+6
+00:00:28,520 --> 00:00:33,280
+but that's it for lessons on morphology, lectures, I guess.
+
+7
+00:00:33,280 --> 00:00:35,560
+Today is phonetics, which means that today we
+
+8
+00:00:35,560 --> 00:00:37,760
+begin making funny sounds at each other.
+
+9
+00:00:37,760 --> 00:00:42,120
+So everybody limber up your vocal tracks.
+
+10
+00:00:42,120 --> 00:00:42,600
+Let's see.
+
+11
+00:00:42,600 --> 00:00:44,320
+I'm trying to remember if there's anything
+
+12
+00:00:44,320 --> 00:00:46,160
+that I ought to announce.
+
+13
+00:00:46,160 --> 00:00:48,840
+You remember maybe that problem set one, which
+
+14
+00:00:48,840 --> 00:00:53,040
+confusingly is your second problem set, is due on Thursday.
+
+15
+00:00:53,040 --> 00:00:54,640
+Normally it would be due on Tuesday,
+
+16
+00:00:54,640 --> 00:00:58,480
+but because I am technologically challenged,
+
+17
+00:00:58,480 --> 00:01:01,240
+it's due on Thursday.
+
+18
+00:01:01,240 --> 00:01:02,760
+Speaking of being technologically challenged,
+
+19
+00:01:02,760 --> 00:01:05,360
+I just figured out how to get the projector to project
+
+20
+00:01:05,360 --> 00:01:06,880
+over there instead of in the middle
+
+21
+00:01:06,880 --> 00:01:08,880
+so that I won't have to write everything twice running back
+
+22
+00:01:08,880 --> 00:01:09,920
+and forth across the room.
+
+23
+00:01:09,920 --> 00:01:10,640
+So thank you.
+
+24
+00:01:14,640 --> 00:01:16,720
+I'm going to mention this when I go up for, you know,
+
+25
+00:01:16,720 --> 00:01:19,160
+my chair is trying to decide whether to give me a raise.
+
+26
+00:01:19,160 --> 00:01:22,080
+I'll be like, big academic achievements of the year.
+
+27
+00:01:22,080 --> 00:01:24,040
+Figuring out the techniques.
+
+28
+00:01:24,040 --> 00:01:25,840
+So if anybody misses the old days,
+
+29
+00:01:25,840 --> 00:01:27,880
+like you were used watching me run back and forth,
+
+30
+00:01:27,880 --> 00:01:32,040
+or this turns out to be too small or something like that,
+
+31
+00:01:32,040 --> 00:01:34,160
+let me know, and we'll go back to the old days.
+
+32
+00:01:37,880 --> 00:01:43,360
+So when we speak, if we're speaking an oral language,
+
+33
+00:01:43,360 --> 00:01:47,360
+if we're not signing, what we are typically doing
+
+34
+00:01:47,360 --> 00:01:50,400
+is producing a flow of air, which typically comes out
+
+35
+00:01:50,400 --> 00:01:52,040
+of your lungs, but not necessarily.
+
+36
+00:01:52,040 --> 00:01:54,080
+We'll talk about that.
+
+37
+00:01:54,080 --> 00:01:58,720
+And it gets obstructed in various ways in the vocal tract.
+
+38
+00:01:58,720 --> 00:02:01,160
+And so one standard way of talking
+
+39
+00:02:01,160 --> 00:02:03,000
+about different kinds of speech sounds
+
+40
+00:02:03,000 --> 00:02:07,920
+is to talk about where in the vocal tract things the flow
+
+41
+00:02:07,920 --> 00:02:09,920
+of air can get obstructed and how.
+
+42
+00:02:09,920 --> 00:02:12,520
+And that's what we're going to kind of do.
+
+43
+00:02:12,520 --> 00:02:14,160
+So first, we'll talk about where.
+
+44
+00:02:14,160 --> 00:02:17,040
+So one way of categorizing the various things
+
+45
+00:02:17,040 --> 00:02:20,920
+that your vocal tract does to the airflow
+
+46
+00:02:20,920 --> 00:02:22,840
+is by what's called place of articulation.
+
+47
+00:02:22,840 --> 00:02:25,080
+That is, where in your vocal tract
+
+48
+00:02:25,080 --> 00:02:28,240
+is the flow of air getting obstructed.
+
+49
+00:02:28,240 --> 00:02:32,480
+So for example, there are what are called bilabial sounds.
+
+50
+00:02:32,480 --> 00:02:35,520
+These are sounds which are made with both lips.
+
+51
+00:02:35,520 --> 00:02:37,040
+This picture over here on the right
+
+52
+00:02:37,040 --> 00:02:38,720
+is what's called a sagittal section.
+
+53
+00:02:38,720 --> 00:02:42,640
+That is, it's a picture of someone's head cut in half
+
+54
+00:02:42,640 --> 00:02:46,280
+so that you can see the stuff that's inside.
+
+55
+00:02:46,280 --> 00:02:48,800
+And those arrows are meant to get you
+
+56
+00:02:48,800 --> 00:02:51,600
+to imagine that this person is making a sound
+
+57
+00:02:51,600 --> 00:02:53,320
+by putting their two lips together.
+
+58
+00:02:53,320 --> 00:02:54,920
+So that's what you do for the sounds
+
+59
+00:02:54,920 --> 00:02:58,360
+that are at the beginnings of words like paint and bath
+
+60
+00:02:58,360 --> 00:03:02,160
+and mouth and, well, wipe, where your lips don't touch,
+
+61
+00:03:02,160 --> 00:03:04,440
+but they both move.
+
+62
+00:03:04,440 --> 00:03:06,800
+Everybody, feel free to confirm to yourselves
+
+63
+00:03:06,800 --> 00:03:09,920
+the privacy of your own mask that that is what you're
+
+64
+00:03:09,920 --> 00:03:11,840
+doing when you make these sounds.
+
+65
+00:03:11,840 --> 00:03:16,800
+Now, next to the sounds, so I have these words, paint, bath,
+
+66
+00:03:17,040 --> 00:03:18,520
+and wipe, and then next to them I
+
+67
+00:03:18,520 --> 00:03:21,720
+have these symbols in brackets.
+
+68
+00:03:21,720 --> 00:03:23,080
+And they may not look at it, but these
+
+69
+00:03:23,080 --> 00:03:24,600
+are extremely technical symbols.
+
+70
+00:03:24,600 --> 00:03:27,920
+These are symbols of the international phonetic alphabet.
+
+71
+00:03:27,920 --> 00:03:31,360
+So linguists have a system for writing sounds down
+
+72
+00:03:31,360 --> 00:03:33,960
+so that we'll all know what kind of sound we're talking about
+
+73
+00:03:33,960 --> 00:03:36,960
+when we're talking about sounds.
+
+74
+00:03:36,960 --> 00:03:39,840
+And bless you, a lot of the symbols
+
+75
+00:03:39,840 --> 00:03:41,400
+of the international phonetic alphabet
+
+76
+00:03:41,400 --> 00:03:43,320
+resemble letters of the English alphabet.
+
+77
+00:03:43,320 --> 00:03:45,040
+So we have started here with symbols
+
+78
+00:03:45,040 --> 00:03:46,520
+that should all look kind of familiar.
+
+79
+00:03:46,520 --> 00:03:50,200
+So the symbol for the sound at the beginning of paint
+
+80
+00:03:50,200 --> 00:03:53,760
+is the letter P. And so that's a symbol
+
+81
+00:03:53,760 --> 00:03:55,440
+of the international phonetic alphabet.
+
+82
+00:03:55,440 --> 00:03:57,400
+As we go along, we will be seeing weirder and weirder
+
+83
+00:03:57,400 --> 00:03:59,360
+symbols from the international phonetic alphabet.
+
+84
+00:03:59,360 --> 00:04:01,560
+So please enjoy it while it's easy.
+
+85
+00:04:01,560 --> 00:04:02,760
+So far so good.
+
+86
+00:04:07,320 --> 00:04:10,160
+There are also what are called labiodental sounds.
+
+87
+00:04:10,160 --> 00:04:14,240
+Labiodental sounds involve your top teeth and your lower lip.
+
+88
+00:04:14,240 --> 00:04:15,640
+If you think about what you're doing
+
+89
+00:04:15,640 --> 00:04:20,280
+at the beginning of a sound like face or vase,
+
+90
+00:04:20,280 --> 00:04:22,520
+what you're doing, at least if you're me,
+
+91
+00:04:22,520 --> 00:04:26,520
+is bringing your lower lip pretty close to your upper teeth
+
+92
+00:04:26,520 --> 00:04:28,360
+and obstructing the flow of air there
+
+93
+00:04:28,360 --> 00:04:31,400
+so that there's some turbulence.
+
+94
+00:04:31,400 --> 00:04:35,680
+There are, I believe, no languages in which labiodentals
+
+95
+00:04:35,680 --> 00:04:38,600
+are made with your bottom teeth and your upper lip.
+
+96
+00:04:38,600 --> 00:04:41,880
+It's a little hard to do face, face.
+
+97
+00:04:41,880 --> 00:04:44,680
+We'll talk about other kinds of places of articulation
+
+98
+00:04:44,680 --> 00:04:45,640
+that English doesn't use.
+
+99
+00:04:45,640 --> 00:04:48,480
+But I think that one just doesn't exist.
+
+100
+00:04:48,480 --> 00:04:50,440
+And again, two symbols of the IPA,
+
+101
+00:04:50,440 --> 00:04:52,840
+which, again, are not going to be too hard for you to learn.
+
+102
+00:04:52,840 --> 00:04:55,840
+Yeah, so the symbol for the sound at the beginning of face
+
+103
+00:04:55,840 --> 00:04:58,120
+is an F. The symbol for the sound at the beginning of vase
+
+104
+00:04:58,120 --> 00:05:02,920
+is a V. Here we get our first two IPA symbols that
+
+105
+00:05:02,920 --> 00:05:05,920
+are not letters of the English alphabet.
+
+106
+00:05:05,920 --> 00:05:08,360
+These are interdental sounds.
+
+107
+00:05:08,360 --> 00:05:10,800
+Interdental sounds are cross linguistically not hugely
+
+108
+00:05:10,800 --> 00:05:12,120
+common.
+
+109
+00:05:12,160 --> 00:05:14,000
+We have them in English.
+
+110
+00:05:14,000 --> 00:05:16,960
+There are various dialects of Arabic that have them.
+
+111
+00:05:16,960 --> 00:05:19,440
+Some of the Berber languages have them.
+
+112
+00:05:19,440 --> 00:05:22,960
+But they're not all that common.
+
+113
+00:05:22,960 --> 00:05:25,040
+These are the sounds at the beginnings of words
+
+114
+00:05:25,040 --> 00:05:28,320
+like thistle and this, where you're
+
+115
+00:05:28,320 --> 00:05:30,920
+sticking your tongue between your front teeth
+
+116
+00:05:30,920 --> 00:05:33,360
+and making air flow out.
+
+117
+00:05:36,860 --> 00:05:40,480
+English doesn't spell these differently, at least not
+
+118
+00:05:40,480 --> 00:05:41,480
+reliably.
+
+119
+00:05:41,520 --> 00:05:43,560
+So we spell both of these with a th.
+
+120
+00:05:43,560 --> 00:05:46,120
+That's one of the reasons the International Fanatic Alphabet
+
+121
+00:05:46,120 --> 00:05:48,320
+is there, so that we can unambiguously talk
+
+122
+00:05:48,320 --> 00:05:49,520
+about what we're talking about.
+
+123
+00:05:49,520 --> 00:05:51,760
+So the sound at the beginning of thistle
+
+124
+00:05:51,760 --> 00:05:53,960
+and the sound at the beginning of this,
+
+125
+00:05:53,960 --> 00:05:55,200
+they're not the same sound.
+
+126
+00:05:55,200 --> 00:05:57,640
+We'll talk about the difference between them shortly.
+
+127
+00:05:57,640 --> 00:05:59,480
+But at this point, maybe it's just clear,
+
+128
+00:05:59,480 --> 00:06:00,440
+they're not the same sound.
+
+129
+00:06:00,440 --> 00:06:02,640
+So there are two different IPA symbols for them.
+
+130
+00:06:02,640 --> 00:06:04,480
+The Greek letter theta is used for the sound
+
+131
+00:06:04,480 --> 00:06:06,240
+at the beginning of thistle.
+
+132
+00:06:06,240 --> 00:06:09,040
+And that second letter is an old English letter.
+
+133
+00:06:09,040 --> 00:06:10,320
+It's still used in Icelandic.
+
+134
+00:06:10,320 --> 00:06:12,840
+It's sometimes called ev, and it
+
+135
+00:06:12,840 --> 00:06:14,760
+stands for the sound at the beginning of this.
+
+136
+00:06:21,000 --> 00:06:25,080
+Then there are what are called alveolar sounds.
+
+137
+00:06:25,080 --> 00:06:31,400
+If you put your tongue at the top of your mouth
+
+138
+00:06:31,400 --> 00:06:35,480
+and kind of drag it, so put it first against your front teeth,
+
+139
+00:06:35,480 --> 00:06:37,640
+and then kind of drag it backwards
+
+140
+00:06:37,640 --> 00:06:39,800
+along the top of your mouth.
+
+141
+00:06:39,840 --> 00:06:44,400
+If you're like me, you've got your teeth,
+
+142
+00:06:44,400 --> 00:06:47,360
+and then there's this kind of flat-ish space,
+
+143
+00:06:47,360 --> 00:06:49,160
+and then it kind of goes up.
+
+144
+00:06:49,160 --> 00:06:53,120
+So from your teeth, you go back, there's a little plateau.
+
+145
+00:06:53,120 --> 00:06:55,200
+There's this little plateau there right behind your teeth,
+
+146
+00:06:55,200 --> 00:06:59,720
+this gum ridge, and then your mouth begins to go up higher.
+
+147
+00:06:59,720 --> 00:07:03,080
+That ridge is called the alveolar ridge.
+
+148
+00:07:03,080 --> 00:07:05,400
+And if you put your tongue there,
+
+149
+00:07:05,400 --> 00:07:07,520
+then you are all set to make sounds
+
+150
+00:07:07,560 --> 00:07:12,800
+like the sound at the beginning of the word teeth or duck
+
+151
+00:07:12,800 --> 00:07:14,320
+or nail.
+
+152
+00:07:14,320 --> 00:07:16,800
+And for sounds like sail and zoom,
+
+153
+00:07:16,800 --> 00:07:19,000
+again, you're not actually touching that position.
+
+154
+00:07:19,000 --> 00:07:21,400
+We'll talk more about the difference between S and T
+
+155
+00:07:21,400 --> 00:07:22,320
+in just a second.
+
+156
+00:07:22,320 --> 00:07:23,880
+But they're both alveolar sounds.
+
+157
+00:07:23,880 --> 00:07:25,920
+Your tongue is pointing in the general direction
+
+158
+00:07:25,920 --> 00:07:28,200
+of your alveolar ridge.
+
+159
+00:07:28,200 --> 00:07:29,680
+Everybody have that sensation?
+
+160
+00:07:29,680 --> 00:07:32,680
+You should all be exploring the insides of your own heads
+
+161
+00:07:32,680 --> 00:07:33,180
+right now.
+
+162
+00:07:38,520 --> 00:07:41,800
+There's a type of sound that has been called alveopalital.
+
+163
+00:07:41,800 --> 00:07:43,080
+It's also called post-alveolar.
+
+164
+00:07:43,080 --> 00:07:45,080
+I'll call it post-alveolar.
+
+165
+00:07:45,080 --> 00:07:48,400
+If you think first about an S, and then you
+
+166
+00:07:48,400 --> 00:07:52,280
+think about a shh, the shh at the beginning of shit.
+
+167
+00:07:52,280 --> 00:07:55,240
+If you go back and forth between them,
+
+168
+00:07:55,240 --> 00:07:58,840
+shh, shh, shh, shh, shh, shh, shh, shh.
+
+169
+00:07:58,840 --> 00:08:02,000
+You make a very soothing sound.
+
+170
+00:08:02,000 --> 00:08:02,040
+Yeah?
+
+171
+00:08:02,040 --> 00:08:04,440
+And maybe what you can feel is that your tongue
+
+172
+00:08:04,720 --> 00:08:07,080
+and maybe what you can feel is that your tongue
+
+173
+00:08:07,080 --> 00:08:09,000
+is kind of rocking back and forth.
+
+174
+00:08:09,000 --> 00:08:10,680
+At least that's what my tongue is doing.
+
+175
+00:08:10,680 --> 00:08:13,840
+For S, it's kind of pointing at the front,
+
+176
+00:08:13,840 --> 00:08:15,160
+at my alveolar ridge.
+
+177
+00:08:15,160 --> 00:08:18,000
+And then for shh, the middle of my tongue
+
+178
+00:08:18,000 --> 00:08:21,680
+kind of curls up a little bit, goes a little further back.
+
+179
+00:08:21,680 --> 00:08:23,200
+Is that the feeling people are having?
+
+180
+00:08:23,200 --> 00:08:25,200
+Is there going back and forth between these?
+
+181
+00:08:26,760 --> 00:08:28,120
+Here's another new symbol.
+
+182
+00:08:28,120 --> 00:08:30,880
+That's the symbol for the sound at the beginning of ship.
+
+183
+00:08:30,880 --> 00:08:33,080
+And another new symbol, that's the sound
+
+184
+00:08:33,120 --> 00:08:37,520
+in the middle of azure, the shh sound.
+
+185
+00:08:37,520 --> 00:08:39,760
+Both of those are post-alveolar sounds.
+
+186
+00:08:39,760 --> 00:08:42,240
+You'll sometimes see them called alveopalital sounds.
+
+187
+00:08:42,240 --> 00:08:45,240
+I'll try to remember to always call them post-alveolar.
+
+188
+00:08:45,240 --> 00:08:45,740
+Yep.
+
+189
+00:08:48,520 --> 00:08:50,240
+A little further back, there are
+
+190
+00:08:50,240 --> 00:08:53,640
+what are called palatal sounds.
+
+191
+00:08:53,640 --> 00:08:55,840
+These are even further behind the alveolar ridge,
+
+192
+00:08:55,840 --> 00:08:57,920
+sort of back where the roof of your mouth
+
+193
+00:08:57,920 --> 00:08:59,680
+gets as high as it's going to get.
+
+194
+00:08:59,680 --> 00:09:02,240
+And the one palatal sound that we have in English
+
+195
+00:09:02,240 --> 00:09:05,120
+is the y sound at the beginning of year.
+
+196
+00:09:05,120 --> 00:09:07,400
+And here's the first IPA symbol that is deliberately
+
+197
+00:09:07,400 --> 00:09:09,520
+designed to confuse you.
+
+198
+00:09:09,520 --> 00:09:12,560
+The IPA symbol for that sound, the y at the beginning of year,
+
+199
+00:09:12,560 --> 00:09:14,240
+is a j.
+
+200
+00:09:14,240 --> 00:09:18,400
+This is because the IPA was not invented exclusively
+
+201
+00:09:18,400 --> 00:09:19,840
+by speakers of English.
+
+202
+00:09:19,840 --> 00:09:22,320
+So it was invented also by speakers of languages
+
+203
+00:09:22,320 --> 00:09:26,800
+like German, in which they used this letter for this sound.
+
+204
+00:09:26,800 --> 00:09:29,920
+Ja, for example, the German word for yes, it's spelled ja.
+
+205
+00:09:33,240 --> 00:09:35,120
+OK.
+
+206
+00:09:35,120 --> 00:09:36,960
+The letter y is used for something else.
+
+207
+00:09:36,960 --> 00:09:37,520
+We'll get to it.
+
+208
+00:09:40,280 --> 00:09:43,080
+And then, sort of continuing our tour of the mouth.
+
+209
+00:09:43,080 --> 00:09:45,120
+So we're working our way backwards through the mouth.
+
+210
+00:09:45,120 --> 00:09:47,240
+There are what are called velar sounds.
+
+211
+00:09:47,240 --> 00:09:50,120
+In the velar sound, the body of your tongue
+
+212
+00:09:50,120 --> 00:09:52,080
+is up against what's called the velum, which
+
+213
+00:09:52,080 --> 00:09:53,960
+is the soft tissue at the back of your mouth
+
+214
+00:09:53,960 --> 00:09:55,960
+that we're going to be hearing more about in a second.
+
+215
+00:09:55,960 --> 00:09:58,280
+It's responsible for partitioning your mouth
+
+216
+00:09:58,280 --> 00:10:02,360
+from your nose, from your oral cavity.
+
+217
+00:10:02,360 --> 00:10:05,800
+So that's the place that your tongue is touching
+
+218
+00:10:05,800 --> 00:10:07,840
+when you say the sounds at the beginnings of words
+
+219
+00:10:07,840 --> 00:10:12,280
+like colonel and caught and gone.
+
+220
+00:10:12,280 --> 00:10:14,920
+And when you make the nasal sound at the end of a word
+
+221
+00:10:14,920 --> 00:10:19,680
+like sing, so if you think about where your tongue is,
+
+222
+00:10:19,680 --> 00:10:22,160
+it's up in the back there.
+
+223
+00:10:22,160 --> 00:10:24,720
+Does that sound right?
+
+224
+00:10:24,720 --> 00:10:27,280
+Yeah?
+
+225
+00:10:27,720 --> 00:10:30,720
+Cool.
+
+226
+00:10:30,720 --> 00:10:34,520
+And then, going even further down.
+
+227
+00:10:34,520 --> 00:10:36,520
+Further down in your throat, you've
+
+228
+00:10:36,520 --> 00:10:39,880
+got the vocal cords of the glottis, this space that's
+
+229
+00:10:39,880 --> 00:10:42,720
+down there in your throat around your larynx.
+
+230
+00:10:42,720 --> 00:10:46,040
+And your vocal cords, or they're sometimes
+
+231
+00:10:46,040 --> 00:10:47,680
+called your vocal folds.
+
+232
+00:10:47,680 --> 00:10:50,000
+This process that you've got back here in your throat
+
+233
+00:10:50,000 --> 00:10:53,760
+for closing off the air can be closed
+
+234
+00:10:53,760 --> 00:10:58,080
+to make what's called a glottal stop.
+
+235
+00:10:58,080 --> 00:11:02,880
+English doesn't make a huge amount of use of the glottal
+
+236
+00:11:02,880 --> 00:11:06,680
+stop, but it's what shows up at the beginnings of words
+
+237
+00:11:06,680 --> 00:11:10,440
+like, uh-uh, that catch that you're getting in your throat,
+
+238
+00:11:10,440 --> 00:11:13,160
+uh-uh, meaning no, right?
+
+239
+00:11:13,160 --> 00:11:18,240
+Or, uh-oh, meaning oh dear.
+
+240
+00:11:18,240 --> 00:11:19,840
+That catch that you're getting in your throat,
+
+241
+00:11:19,840 --> 00:11:21,640
+that's a glottal stop.
+
+242
+00:11:21,640 --> 00:11:23,680
+There are languages that are into glottal stops.
+
+243
+00:11:23,680 --> 00:11:25,120
+They have lots of them.
+
+244
+00:11:25,120 --> 00:11:27,600
+English is not.
+
+245
+00:11:27,600 --> 00:11:29,560
+And then, so that's what, and the way you make that
+
+246
+00:11:29,560 --> 00:11:31,840
+is by basically slamming your vocal folds together
+
+247
+00:11:31,840 --> 00:11:34,120
+to close off the flow of air.
+
+248
+00:11:34,120 --> 00:11:36,440
+You can also hold them kind of close together
+
+249
+00:11:36,440 --> 00:11:38,240
+and let the air whistle past.
+
+250
+00:11:38,240 --> 00:11:39,880
+That's how you make an H, right?
+
+251
+00:11:39,880 --> 00:11:41,480
+As in, what's my word up there?
+
+252
+00:11:41,480 --> 00:11:42,640
+Help, yeah?
+
+253
+00:11:42,640 --> 00:11:45,200
+So you're just slightly abrading the flow of air.
+
+254
+00:11:48,000 --> 00:11:48,500
+OK?
+
+255
+00:11:49,500 --> 00:11:51,940
+Now, yeah, are there questions about any of that?
+
+256
+00:11:51,940 --> 00:11:53,980
+So that was just a quick tour through the vocal tract.
+
+257
+00:11:53,980 --> 00:11:54,480
+Yeah?
+
+258
+00:11:54,480 --> 00:11:56,460
+Where is my cha?
+
+259
+00:11:56,460 --> 00:11:58,220
+Oh, we haven't gotten to cha.
+
+260
+00:11:58,220 --> 00:11:59,900
+Yeah, but good question.
+
+261
+00:11:59,900 --> 00:12:02,860
+We can think of what that is.
+
+262
+00:12:02,860 --> 00:12:07,140
+Cha, a cha sound at the beginning of a word like church.
+
+263
+00:12:07,140 --> 00:12:11,620
+Also at the end of a word like church.
+
+264
+00:12:11,620 --> 00:12:13,780
+Is a kind of dynamic sound, right?
+
+265
+00:12:13,980 --> 00:12:19,740
+I think your tongue is in motion as you are making that sound.
+
+266
+00:12:19,740 --> 00:12:26,140
+So it makes one sort of, it completely stops the flow there
+
+267
+00:12:26,140 --> 00:12:30,620
+and then it gradually peels back and allows the air to flow out.
+
+268
+00:12:30,620 --> 00:12:32,540
+You could think of that first thing
+
+269
+00:12:32,540 --> 00:12:36,220
+it's doing as, I'm on completely the wrong slide,
+
+270
+00:12:36,220 --> 00:12:39,340
+as being like an alveolar stop, right?
+
+271
+00:12:39,340 --> 00:12:42,660
+So it's like a T, right?
+
+272
+00:12:43,180 --> 00:12:48,700
+It's like a T. And then as it peels back,
+
+273
+00:12:48,700 --> 00:12:52,140
+you end up with something like a cha, like a post alveolar.
+
+274
+00:12:52,140 --> 00:12:54,700
+So it's a pretty complicated sound.
+
+275
+00:12:54,700 --> 00:12:55,580
+And we'll talk about it.
+
+276
+00:12:55,580 --> 00:12:58,340
+Yeah, that's a really good question.
+
+277
+00:12:58,340 --> 00:12:59,340
+Are there questions?
+
+278
+00:12:59,340 --> 00:13:00,340
+Somebody had a question?
+
+279
+00:13:00,340 --> 00:13:00,840
+Yeah?
+
+280
+00:13:00,840 --> 00:13:04,020
+What's the difference between an alveolar stop and an ending constant?
+
+281
+00:13:04,020 --> 00:13:05,020
+I'm sorry, say it again.
+
+282
+00:13:05,020 --> 00:13:09,500
+What's the difference between an alveolar stop and say an ending constant?
+
+283
+00:13:09,500 --> 00:13:11,700
+An ending constant?
+
+284
+00:13:11,700 --> 00:13:14,940
+What kind of ending constant did you get?
+
+285
+00:13:14,940 --> 00:13:17,300
+Oh, oh, oh, yeah, so that's a really good point.
+
+286
+00:13:17,300 --> 00:13:23,900
+OK, so a glottal stop, take a word like put, right?
+
+287
+00:13:27,140 --> 00:13:32,180
+If you say put, your tongue, at least my tongue,
+
+288
+00:13:32,180 --> 00:13:33,420
+touches the alveolar ridge.
+
+289
+00:13:33,420 --> 00:13:36,380
+It goes where I said it would.
+
+290
+00:13:36,380 --> 00:13:37,660
+But you're right.
+
+291
+00:13:37,660 --> 00:13:40,500
+You also make a glottal stop, at least the way I just said it.
+
+292
+00:13:40,500 --> 00:13:41,780
+Put, yeah.
+
+293
+00:13:46,780 --> 00:13:47,940
+You could contrast that.
+
+294
+00:13:47,940 --> 00:13:50,860
+If you didn't make the closure at the alveolar ridge,
+
+295
+00:13:50,860 --> 00:13:54,780
+it would sound like put, right?
+
+296
+00:13:54,780 --> 00:13:56,900
+Which is not an English word for me.
+
+297
+00:13:56,900 --> 00:13:58,860
+There are dialects of English in which you would say,
+
+298
+00:13:58,860 --> 00:14:01,420
+in which that's something you would say, right?
+
+299
+00:14:01,420 --> 00:14:03,700
+Put.
+
+300
+00:14:03,700 --> 00:14:07,980
+There are places in English where things
+
+301
+00:14:07,980 --> 00:14:11,780
+that we write as other kinds of sounds actually
+
+302
+00:14:11,780 --> 00:14:13,980
+are, in fact, glottal stops, at least in my English.
+
+303
+00:14:13,980 --> 00:14:19,900
+So the difference for me between can and can't,
+
+304
+00:14:19,900 --> 00:14:22,060
+my wife, who is Japanese, is driven crazy
+
+305
+00:14:22,060 --> 00:14:24,220
+by the difference between can and can't.
+
+306
+00:14:24,220 --> 00:14:27,380
+Because they're virtually the same, right?
+
+307
+00:14:27,380 --> 00:14:29,380
+It's very hard for her to figure out often,
+
+308
+00:14:29,380 --> 00:14:31,140
+whether I'm saying can or can't.
+
+309
+00:14:31,140 --> 00:14:34,860
+Because the difference between them is really mostly just,
+
+310
+00:14:34,860 --> 00:14:39,060
+can't is really just can plus a glottal stop.
+
+311
+00:14:39,060 --> 00:14:42,540
+I'm not saying can't, usually, unless I'm being very emphatic.
+
+312
+00:14:42,540 --> 00:14:44,420
+Yeah?
+
+313
+00:14:44,420 --> 00:14:45,020
+Good question.
+
+314
+00:14:45,020 --> 00:14:46,020
+Yes?
+
+315
+00:14:46,020 --> 00:14:49,140
+It's a little bit difficult for the same sound
+
+316
+00:14:49,140 --> 00:14:54,540
+to be heard, honestly, but with a different sound.
+
+317
+00:14:54,540 --> 00:14:55,220
+Yes?
+
+318
+00:14:55,220 --> 00:14:56,820
+Yes, there are things like that.
+
+319
+00:14:56,820 --> 00:14:58,460
+Do you have something in mind?
+
+320
+00:14:58,460 --> 00:14:59,380
+Oh, OK.
+
+321
+00:14:59,380 --> 00:15:03,380
+So we haven't gotten yet to R. We'll get to R, eventually.
+
+322
+00:15:03,380 --> 00:15:06,180
+But actually, people discovered at a certain point.
+
+323
+00:15:06,180 --> 00:15:09,460
+So people investigate this kind of thing in all kinds of ways.
+
+324
+00:15:09,460 --> 00:15:11,020
+One is the kind of thing we're all doing,
+
+325
+00:15:11,020 --> 00:15:13,300
+where we just sort of sit and say, what is my mouth doing?
+
+326
+00:15:13,300 --> 00:15:15,300
+Hm.
+
+327
+00:15:15,300 --> 00:15:19,860
+There's other kinds of work where people, classically,
+
+328
+00:15:19,860 --> 00:15:23,340
+paint the roof of your mouth with stuff that will come off.
+
+329
+00:15:23,340 --> 00:15:25,620
+And then you have people produce a sound,
+
+330
+00:15:25,620 --> 00:15:28,100
+and then you stick a camera in their mouth and take pictures
+
+331
+00:15:28,100 --> 00:15:31,540
+and see which parts of the paint came off.
+
+332
+00:15:31,940 --> 00:15:34,460
+You stick tubes down people's nose to measure airflow.
+
+333
+00:15:34,460 --> 00:15:37,500
+You do all kinds of horrible, invasive things.
+
+334
+00:15:37,500 --> 00:15:40,020
+These days, people do a lot of MRIs.
+
+335
+00:15:40,020 --> 00:15:45,980
+I'm going to put on the website a couple of websites
+
+336
+00:15:45,980 --> 00:15:48,580
+that have charts of all of the sounds
+
+337
+00:15:48,580 --> 00:15:50,860
+that we're going to talk about plus many more,
+
+338
+00:15:50,860 --> 00:15:54,220
+together with MRIs of the people's insides of people's mouths
+
+339
+00:15:54,220 --> 00:15:57,540
+making these sounds so that you can sort of see the anatomy that's
+
+340
+00:15:57,540 --> 00:15:57,900
+involved.
+
+341
+00:15:57,900 --> 00:15:59,220
+You won't just have to think about it.
+
+342
+00:15:59,220 --> 00:16:00,460
+One of the things people have discovered
+
+343
+00:16:00,460 --> 00:16:01,740
+as they're doing this kind of work
+
+344
+00:16:01,740 --> 00:16:05,420
+is that people just have different ways of producing R,
+
+345
+00:16:05,420 --> 00:16:07,820
+that there are just different kinds of things
+
+346
+00:16:07,820 --> 00:16:10,580
+you can do with your anatomy to make an R sound.
+
+347
+00:16:10,580 --> 00:16:12,740
+And that's probably related to the fact
+
+348
+00:16:12,740 --> 00:16:14,820
+that R is one of the kinds of sounds
+
+349
+00:16:14,820 --> 00:16:16,580
+that people classically have trouble with.
+
+350
+00:16:16,580 --> 00:16:18,820
+If you've been around small children, for example,
+
+351
+00:16:18,820 --> 00:16:22,260
+it's kind of standard for them to not quite get R, right?
+
+352
+00:16:22,260 --> 00:16:24,940
+And to say something that sounds more like a W
+
+353
+00:16:24,940 --> 00:16:27,220
+at a certain stage.
+
+354
+00:16:27,220 --> 00:16:29,700
+So I'm sorry, the short answer to your question is yes.
+
+355
+00:16:29,820 --> 00:16:31,100
+And R might be an example.
+
+356
+00:16:33,820 --> 00:16:34,980
+Yeah, good questions.
+
+357
+00:16:34,980 --> 00:16:38,100
+Any other things people want to talk about?
+
+358
+00:16:38,100 --> 00:16:38,600
+OK.
+
+359
+00:16:41,580 --> 00:16:44,500
+So I went through that.
+
+360
+00:16:44,500 --> 00:16:46,740
+So now I already sort of alluded to the fact
+
+361
+00:16:46,740 --> 00:16:52,900
+that I had these slides that had various places
+
+362
+00:16:52,900 --> 00:16:53,940
+of articulation on them.
+
+363
+00:16:53,940 --> 00:16:58,140
+But of course, each slide had multiple sounds on it.
+
+364
+00:16:58,140 --> 00:17:00,420
+And so the place of articulation is obviously
+
+365
+00:17:00,420 --> 00:17:01,860
+not the whole story.
+
+366
+00:17:01,860 --> 00:17:03,220
+Here's another part of the story.
+
+367
+00:17:03,220 --> 00:17:06,020
+It's what's called voicing.
+
+368
+00:17:06,020 --> 00:17:10,220
+So if you think about an S and a Z,
+
+369
+00:17:10,220 --> 00:17:11,820
+those are both alveolar sounds.
+
+370
+00:17:11,820 --> 00:17:16,900
+Your tongue is reaching toward the alveolar ridge.
+
+371
+00:17:16,900 --> 00:17:18,900
+But they're not the same.
+
+372
+00:17:18,900 --> 00:17:20,980
+What's the difference between them?
+
+373
+00:17:20,980 --> 00:17:22,900
+If you think about, if you go back and forth between them,
+
+374
+00:17:23,380 --> 00:17:33,380
+zzzz, zzzz, zzzz, zzzz, you can feel a buzzing.
+
+375
+00:17:33,380 --> 00:17:36,900
+And if you put your hand right here, sorry,
+
+376
+00:17:36,900 --> 00:17:42,060
+you put your hand right here, right here on your throat,
+
+377
+00:17:42,060 --> 00:17:45,220
+then when you make the zzzz sound,
+
+378
+00:17:45,220 --> 00:17:48,300
+you can sort of find the source of that buzzing.
+
+379
+00:17:48,300 --> 00:17:51,220
+It's right there in your larynx.
+
+380
+00:17:51,220 --> 00:17:53,740
+What's happening when you make a zzzz
+
+381
+00:17:53,740 --> 00:17:57,380
+is that you're holding your vocal folds
+
+382
+00:17:57,380 --> 00:17:59,980
+across the flow there in such a way
+
+383
+00:17:59,980 --> 00:18:02,900
+that they will flap in the breeze as the air goes by.
+
+384
+00:18:02,900 --> 00:18:04,540
+They'll vibrate.
+
+385
+00:18:04,540 --> 00:18:08,180
+That's like whistling with a blade of grass,
+
+386
+00:18:08,180 --> 00:18:10,740
+or playing a reed instrument.
+
+387
+00:18:10,740 --> 00:18:14,060
+You're getting something to vibrate really fast.
+
+388
+00:18:14,060 --> 00:18:15,540
+And that's what you're hearing.
+
+389
+00:18:15,540 --> 00:18:17,660
+That's that buzzing sound that you're hearing and feeling
+
+390
+00:18:17,660 --> 00:18:21,740
+if you put your hand right here when you're doing a zzzz.
+
+391
+00:18:21,740 --> 00:18:26,260
+We say that zzzz is voiced and that szzz is voiceless.
+
+392
+00:18:26,260 --> 00:18:28,020
+It's a distinction in voicing.
+
+393
+00:18:28,020 --> 00:18:28,520
+Yes?
+
+394
+00:18:28,520 --> 00:18:31,460
+Is the fact that it's not holding the throat
+
+395
+00:18:31,460 --> 00:18:32,820
+in the breeze?
+
+396
+00:18:32,820 --> 00:18:35,580
+Yeah, so the difference between cats and dogs?
+
+397
+00:18:35,580 --> 00:18:36,740
+Yeah.
+
+398
+00:18:36,740 --> 00:18:39,220
+So exactly, I was going to get to that later,
+
+399
+00:18:39,220 --> 00:18:40,620
+but yes, that's exactly it.
+
+400
+00:18:40,620 --> 00:18:44,180
+So what's the difference between a cat and a dog?
+
+401
+00:18:44,180 --> 00:18:46,300
+Well, as far as a phenologist is concerned,
+
+402
+00:18:46,300 --> 00:18:51,060
+the difference is that cat and dog end in sounds
+
+403
+00:18:51,060 --> 00:18:53,260
+that differ in voicing.
+
+404
+00:18:53,260 --> 00:18:55,420
+Is t voiced or voiceless?
+
+405
+00:18:55,420 --> 00:18:57,660
+The t at the end of cat?
+
+406
+00:18:57,660 --> 00:18:58,900
+Voiceless.
+
+407
+00:18:58,900 --> 00:19:01,580
+And the g at the end of dog is voiced.
+
+408
+00:19:01,580 --> 00:19:03,220
+And you're choosing s or z.
+
+409
+00:19:03,220 --> 00:19:05,660
+You're putting the sound that agrees in voicing
+
+410
+00:19:05,660 --> 00:19:07,100
+with the constant that's at the end.
+
+411
+00:19:07,100 --> 00:19:08,260
+That's exactly right.
+
+412
+00:19:08,260 --> 00:19:08,760
+Yeah?
+
+413
+00:19:08,760 --> 00:19:15,180
+So then, is it possible to whist the zzzz?
+
+414
+00:19:15,220 --> 00:19:17,740
+Yeah, so this is a really good question,
+
+415
+00:19:17,740 --> 00:19:19,860
+which I was hoping not to get asked quite so soon,
+
+416
+00:19:19,860 --> 00:19:21,460
+but no, that's good.
+
+417
+00:19:21,460 --> 00:19:24,420
+OK, so she just asked, what are you
+
+418
+00:19:24,420 --> 00:19:25,860
+doing when you're whispering?
+
+419
+00:19:25,860 --> 00:19:27,220
+So if you think about what you're
+
+420
+00:19:27,220 --> 00:19:30,780
+doing when you're whispering, first of all,
+
+421
+00:19:30,780 --> 00:19:33,700
+your vocal cords are not vibrating at all.
+
+422
+00:19:33,700 --> 00:19:38,340
+Your vocal cords are not vibrating at all at any point.
+
+423
+00:19:38,340 --> 00:19:42,020
+So that should mean that you're not
+
+424
+00:19:42,020 --> 00:19:46,260
+making the distinction between s and z, or between f and v.
+
+425
+00:19:46,260 --> 00:19:47,580
+Or what's my other example here?
+
+426
+00:19:47,580 --> 00:19:48,860
+The and the, right?
+
+427
+00:19:48,860 --> 00:19:51,700
+So the difference between bath and bath
+
+428
+00:19:51,700 --> 00:19:56,780
+is that the v is voiced and the th is voiceless.
+
+429
+00:19:56,780 --> 00:19:59,260
+But that doesn't seem to be true, right?
+
+430
+00:19:59,260 --> 00:20:05,380
+I mean, if you whisper safe and save,
+
+431
+00:20:05,380 --> 00:20:09,060
+safe, save, you have the feeling
+
+432
+00:20:09,060 --> 00:20:11,740
+that you can hear the difference between them, yeah?
+
+433
+00:20:11,780 --> 00:20:14,100
+I think if you were to whisper one of these,
+
+434
+00:20:14,100 --> 00:20:16,700
+so do a controlled experiment, go back to your dorm,
+
+435
+00:20:16,700 --> 00:20:18,460
+whisper to your dorm mate, safe,
+
+436
+00:20:18,460 --> 00:20:21,260
+and then find out what they think you said.
+
+437
+00:20:21,260 --> 00:20:27,340
+Maybe warn them in advance, what you're going to do.
+
+438
+00:20:27,340 --> 00:20:32,020
+I really, really, oh boy, the complaints.
+
+439
+00:20:32,020 --> 00:20:35,220
+Yes, so there's got to be something else going on, right?
+
+440
+00:20:35,220 --> 00:20:36,500
+Let's do this experiment again, though.
+
+441
+00:20:36,500 --> 00:20:38,620
+So it's easiest for you, actually, with f and v.
+
+442
+00:20:38,620 --> 00:20:40,020
+So let's do this thing again.
+
+443
+00:20:40,020 --> 00:20:45,740
+If we go back and forth between f and v,
+
+444
+00:20:45,740 --> 00:20:47,700
+which of them is voiced?
+
+445
+00:20:47,700 --> 00:20:48,540
+The v, right?
+
+446
+00:20:48,540 --> 00:20:49,620
+The v is voiced.
+
+447
+00:20:49,620 --> 00:20:51,500
+OK, now do it again, but whisper.
+
+448
+00:20:58,780 --> 00:21:01,300
+Does anybody feel a difference between f and v?
+
+449
+00:21:03,820 --> 00:21:07,100
+I mean, not here, right?
+
+450
+00:21:07,100 --> 00:21:07,600
+Yeah?
+
+451
+00:21:07,920 --> 00:21:13,080
+So I, yes?
+
+452
+00:21:20,400 --> 00:21:21,240
+Yeah, there might be a difference
+
+453
+00:21:21,240 --> 00:21:23,400
+in the aperture of your mouth, I think you're right.
+
+454
+00:21:23,400 --> 00:21:25,360
+And I think you're right, too, that there's
+
+455
+00:21:25,360 --> 00:21:28,840
+a difference in how fast the air is flowing.
+
+456
+00:21:28,840 --> 00:21:30,720
+For me, I actually have the opposite of your feeling.
+
+457
+00:21:30,720 --> 00:21:36,320
+For me, for me, there's more air when there's an f,
+
+458
+00:21:36,320 --> 00:21:37,960
+and less air when there's a v, I don't know.
+
+459
+00:21:37,960 --> 00:21:38,460
+Yeah?
+
+460
+00:21:38,460 --> 00:21:41,600
+It does need, but when I see v, it might look a little narrower.
+
+461
+00:21:41,600 --> 00:21:42,100
+Ooh.
+
+462
+00:21:47,760 --> 00:21:50,840
+Yeah, my jaw is moving as I do that.
+
+463
+00:21:50,840 --> 00:21:53,640
+And I think that is affecting what my lips are doing.
+
+464
+00:21:53,640 --> 00:21:55,560
+They're coming together more.
+
+465
+00:21:55,560 --> 00:21:57,320
+So I think what's happening, maybe,
+
+466
+00:21:57,320 --> 00:22:01,480
+maybe is an attempt to answer your question, is that,
+
+467
+00:22:01,480 --> 00:22:05,840
+so I just said, sounds can be either voiced or voiceless.
+
+468
+00:22:05,840 --> 00:22:07,840
+If they're voiced, what it means is that your vocal cords
+
+469
+00:22:07,840 --> 00:22:08,960
+are vibrating.
+
+470
+00:22:08,960 --> 00:22:10,920
+And I made it sound like the way you do that
+
+471
+00:22:10,920 --> 00:22:13,920
+is, well, you stick your vocal cords into the flow of air,
+
+472
+00:22:13,920 --> 00:22:15,280
+and you make them vibrate.
+
+473
+00:22:15,280 --> 00:22:16,720
+But I think maybe what we're learning
+
+474
+00:22:16,720 --> 00:22:18,800
+is that you do some other things, too,
+
+475
+00:22:18,800 --> 00:22:21,160
+to optimize the flow of air so that you
+
+476
+00:22:21,160 --> 00:22:23,040
+will get a good vibration going.
+
+477
+00:22:23,040 --> 00:22:25,400
+That maybe if the flow of air is too fast,
+
+478
+00:22:25,400 --> 00:22:27,520
+and maybe we're learning things about the aperture
+
+479
+00:22:27,520 --> 00:22:32,000
+of your mouth as well, there's a way of making sure
+
+480
+00:22:32,000 --> 00:22:33,960
+that the pressure that you're getting,
+
+481
+00:22:33,960 --> 00:22:36,080
+the sort of rush of air that you're getting on your vocal
+
+482
+00:22:36,080 --> 00:22:38,480
+cords, will make them vibrate in just the right way.
+
+483
+00:22:38,480 --> 00:22:40,840
+And you're manipulating all of that stuff
+
+484
+00:22:40,840 --> 00:22:42,640
+without thinking about it.
+
+485
+00:22:42,640 --> 00:22:44,880
+And you can still hear it when you whisper.
+
+486
+00:22:44,880 --> 00:22:47,440
+So when you whisper, you're not engaging your vocal cords,
+
+487
+00:22:47,440 --> 00:22:48,960
+but you're doing all the other stuff.
+
+488
+00:22:48,960 --> 00:22:51,960
+And that's what you're using to hear the difference.
+
+489
+00:22:51,960 --> 00:22:53,640
+There's experimental work on this,
+
+490
+00:22:53,640 --> 00:22:56,400
+is the kind of thing people try to figure out.
+
+491
+00:22:56,400 --> 00:22:59,440
+Yeah, really good question.
+
+492
+00:22:59,440 --> 00:23:00,440
+OK.
+
+493
+00:23:00,440 --> 00:23:02,800
+OK, so your vocal cords can either be vibrating
+
+494
+00:23:02,800 --> 00:23:03,920
+or they cannot be vibrating.
+
+495
+00:23:04,680 --> 00:23:07,520
+You have voiced sounds, and you have voiceless sounds.
+
+496
+00:23:07,520 --> 00:23:10,960
+So S and Z and T and D are all alveolar,
+
+497
+00:23:10,960 --> 00:23:15,400
+but S and T are voiceless, and Z and D are voiced.
+
+498
+00:23:15,400 --> 00:23:16,480
+Does that all sound right?
+
+499
+00:23:16,480 --> 00:23:19,120
+Is anyone upset by any of that?
+
+500
+00:23:19,120 --> 00:23:22,920
+Disturbed, alarmed, hungry.
+
+501
+00:23:22,920 --> 00:23:23,640
+Yeah, anything?
+
+502
+00:23:23,640 --> 00:23:24,800
+OK, good.
+
+503
+00:23:24,800 --> 00:23:32,360
+So back to the Polish plurals.
+
+504
+00:23:32,360 --> 00:23:36,760
+So we saw before we convinced ourselves,
+
+505
+00:23:36,760 --> 00:23:38,720
+or I convinced myself, and I tried
+
+506
+00:23:38,720 --> 00:23:41,280
+to take the rest of you with me, kind of as collateral damage,
+
+507
+00:23:41,280 --> 00:23:45,680
+that Polish has words that end in K
+
+508
+00:23:45,680 --> 00:23:48,320
+and words that end in G underlyingly,
+
+509
+00:23:48,320 --> 00:23:50,880
+but it also has a rule that changes G to K
+
+510
+00:23:50,880 --> 00:23:51,920
+at the ends of words.
+
+511
+00:23:51,920 --> 00:23:55,240
+That was Polish, right?
+
+512
+00:23:55,240 --> 00:24:00,200
+OK, but it's not just G. So we can see some other pairs of words.
+
+513
+00:24:00,200 --> 00:24:01,960
+I don't have any more minimal pairs for you,
+
+514
+00:24:01,960 --> 00:24:04,760
+but you can see there's the same general tendency
+
+515
+00:24:04,760 --> 00:24:08,280
+that if we look at singulars in Polish,
+
+516
+00:24:08,280 --> 00:24:13,080
+that they can end in sounds like K or P or T or S.
+
+517
+00:24:13,080 --> 00:24:15,240
+That's what we're seeing in these pairs.
+
+518
+00:24:15,240 --> 00:24:20,360
+And that when you pluralize them, some nouns that end in P
+
+519
+00:24:20,360 --> 00:24:25,960
+still end in P when you add the E, the suffix, like corpse,
+
+520
+00:24:25,960 --> 00:24:29,800
+but some change the P to a B. And the same deal
+
+521
+00:24:29,800 --> 00:24:31,640
+for these other ones.
+
+522
+00:24:31,640 --> 00:24:35,040
+So what we're learning is it isn't just
+
+523
+00:24:35,040 --> 00:24:39,440
+that G becomes K at the end of a word in Polish.
+
+524
+00:24:39,440 --> 00:24:41,720
+There's this more general thing.
+
+525
+00:24:41,720 --> 00:24:43,160
+What's the more general thing?
+
+526
+00:24:43,160 --> 00:24:45,280
+What's going on here?
+
+527
+00:24:45,280 --> 00:24:47,800
+What's the difference between G and K?
+
+528
+00:24:47,800 --> 00:24:48,800
+So they're both velar.
+
+529
+00:24:51,280 --> 00:24:52,640
+Yeah.
+
+530
+00:24:52,640 --> 00:24:55,360
+Yeah, which one is voiced?
+
+531
+00:24:55,360 --> 00:24:59,280
+The G. So what's happening is that the G, which was voiced,
+
+532
+00:24:59,280 --> 00:25:03,400
+is becoming voiceless at the ends of words in Polish.
+
+533
+00:25:03,400 --> 00:25:05,400
+What's happening with B and P?
+
+534
+00:25:08,000 --> 00:25:08,560
+Joseph?
+
+535
+00:25:08,560 --> 00:25:10,400
+Voice A becomes voiceless.
+
+536
+00:25:10,400 --> 00:25:13,480
+Yeah, the voiced B becomes the voiceless version, which is P.
+
+537
+00:25:13,480 --> 00:25:15,480
+Those are both bilabial sounds.
+
+538
+00:25:15,480 --> 00:25:18,080
+They involve both your lips.
+
+539
+00:25:18,080 --> 00:25:18,580
+Yes?
+
+540
+00:25:18,580 --> 00:25:19,800
+How is D voiced?
+
+541
+00:25:19,800 --> 00:25:20,280
+Sorry?
+
+542
+00:25:20,280 --> 00:25:21,240
+How is D voiced?
+
+543
+00:25:21,240 --> 00:25:23,840
+How is D voiced?
+
+544
+00:25:23,840 --> 00:25:25,000
+Oh, B.
+
+545
+00:25:25,000 --> 00:25:25,840
+B.
+
+546
+00:25:26,560 --> 00:25:31,320
+B. You're raising a good point.
+
+547
+00:25:31,320 --> 00:25:34,600
+There's a reason that I started with sounds like S and Z
+
+548
+00:25:34,600 --> 00:25:42,120
+and F and V, because you can go for as long as you have breath.
+
+549
+00:25:42,120 --> 00:25:46,080
+Whereas B, there's a limit to how long you can be.
+
+550
+00:25:49,120 --> 00:25:51,800
+We just said the way voicing works
+
+551
+00:25:51,800 --> 00:25:54,840
+is that you've got air flowing across your vocal folds
+
+552
+00:25:54,840 --> 00:25:56,840
+and making them vibrate.
+
+553
+00:25:56,840 --> 00:25:59,320
+And for a Z, you can see how that would work.
+
+554
+00:25:59,320 --> 00:26:00,760
+So the air just flows.
+
+555
+00:26:00,760 --> 00:26:06,640
+For a B, well, the air only has so far to go.
+
+556
+00:26:06,640 --> 00:26:09,720
+That's one reason you can't keep a B going for very long.
+
+557
+00:26:09,720 --> 00:26:11,320
+All that air has to get in.
+
+558
+00:26:11,320 --> 00:26:13,040
+It has to flow past your vocal folds
+
+559
+00:26:13,040 --> 00:26:14,640
+to get them to vibrate a little bit.
+
+560
+00:26:14,640 --> 00:26:17,840
+And then it gets to your mouth, and then it has to stop.
+
+561
+00:26:17,840 --> 00:26:19,840
+There are other departments that are better at this than I am,
+
+562
+00:26:19,840 --> 00:26:21,840
+but the air pressure in your mouth
+
+563
+00:26:21,840 --> 00:26:23,560
+is going to build up past a certain point.
+
+564
+00:26:23,560 --> 00:26:26,280
+You won't be able to keep doing that.
+
+565
+00:26:26,280 --> 00:26:28,080
+But you do it for as long as you can.
+
+566
+00:26:28,080 --> 00:26:30,400
+That's the sense of much it's voiced.
+
+567
+00:26:30,400 --> 00:26:32,240
+Yeah, good question.
+
+568
+00:26:32,240 --> 00:26:33,560
+Yeah?
+
+569
+00:26:33,560 --> 00:26:35,240
+OK.
+
+570
+00:26:35,240 --> 00:26:38,760
+So yeah, what's happening in Polish is not just G becomes K.
+
+571
+00:26:38,760 --> 00:26:43,160
+It's voiced sounds are becoming voiceless.
+
+572
+00:26:43,160 --> 00:26:49,080
+So Z becomes S, D becomes T, B becomes P, and G becomes K.
+
+573
+00:26:49,080 --> 00:26:51,600
+So it's sometimes called final devoicing.
+
+574
+00:26:51,600 --> 00:26:54,320
+And it's a cross-linguistically quite common phenomenon.
+
+575
+00:26:57,320 --> 00:26:58,920
+OK.
+
+576
+00:26:58,920 --> 00:27:02,920
+So yeah.
+
+577
+00:27:02,920 --> 00:27:04,240
+All right.
+
+578
+00:27:04,240 --> 00:27:07,160
+So we've talked about place of articulation,
+
+579
+00:27:07,160 --> 00:27:09,280
+and we've talked about voicing.
+
+580
+00:27:09,280 --> 00:27:11,840
+Now we need to talk about another dimension
+
+581
+00:27:11,840 --> 00:27:14,440
+for categorizing sounds, which is called
+
+582
+00:27:14,440 --> 00:27:16,080
+manner of articulation.
+
+583
+00:27:16,080 --> 00:27:19,800
+So think about S and T. They're both alveolar
+
+584
+00:27:19,840 --> 00:27:22,240
+and they're both voiceless.
+
+585
+00:27:22,240 --> 00:27:24,560
+But they're different from each other.
+
+586
+00:27:24,560 --> 00:27:26,760
+And the way we distinguish them is via what
+
+587
+00:27:26,760 --> 00:27:28,680
+we call manner of articulation.
+
+588
+00:27:28,680 --> 00:27:31,640
+So they're both voiceless alveolar sounds.
+
+589
+00:27:31,640 --> 00:27:37,440
+But T is a stop, and S is what's called a fricative.
+
+590
+00:27:37,440 --> 00:27:41,400
+So stops are also called plosives.
+
+591
+00:27:41,400 --> 00:27:44,640
+I promise never, ever to call them plosives.
+
+592
+00:27:44,640 --> 00:27:46,880
+I will always call them stops, because that's
+
+593
+00:27:46,880 --> 00:27:48,160
+what I grew up calling them.
+
+594
+00:27:48,160 --> 00:27:50,000
+But you will sometimes see things written in which
+
+595
+00:27:50,000 --> 00:27:51,960
+they're called plosives.
+
+596
+00:27:51,960 --> 00:27:54,080
+In homeworks, if you ever need to write about them,
+
+597
+00:27:54,080 --> 00:27:55,560
+feel free to call them either one.
+
+598
+00:27:55,560 --> 00:27:57,320
+Doesn't matter.
+
+599
+00:27:57,320 --> 00:27:59,280
+I like calling them stops, because they're
+
+600
+00:27:59,280 --> 00:28:02,800
+named after the fact that, well, they stop the flow there.
+
+601
+00:28:02,800 --> 00:28:03,520
+That's what they do.
+
+602
+00:28:03,520 --> 00:28:04,760
+That's what a stop is.
+
+603
+00:28:04,760 --> 00:28:09,240
+So the error is coming out of your lungs, and it gets stopped.
+
+604
+00:28:09,240 --> 00:28:13,160
+Fricatives, like S, are sounds in which you don't stop the flow
+
+605
+00:28:13,160 --> 00:28:17,560
+there, but you narrow some aperture
+
+606
+00:28:17,560 --> 00:28:20,720
+enough to create turbulent airflow, which you hear
+
+607
+00:28:20,720 --> 00:28:22,880
+as a kind of hissing sound.
+
+608
+00:28:22,880 --> 00:28:26,520
+So sounds like S, and sh, and f, and f.
+
+609
+00:28:26,520 --> 00:28:27,480
+These are all fricatives.
+
+610
+00:28:34,480 --> 00:28:37,320
+So for T and D, the airflow is stopped.
+
+611
+00:28:37,320 --> 00:28:41,240
+For S and Z, the airflow is restricted, but is not stopped.
+
+612
+00:28:41,240 --> 00:28:45,040
+So you kind of hold your tongue close to the alveolar ridge,
+
+613
+00:28:45,040 --> 00:28:48,840
+but you allow air to keep flowing through.
+
+614
+00:28:48,840 --> 00:28:51,160
+That's why, since the conversation we just had,
+
+615
+00:28:51,160 --> 00:28:54,080
+that's why an S, you can keep going
+
+616
+00:28:54,080 --> 00:28:56,160
+for as long as you have breath in your lungs,
+
+617
+00:28:56,160 --> 00:28:58,920
+whereas a T, you can't keep executing it.
+
+618
+00:29:03,840 --> 00:29:08,160
+So now we have these three ways of categorizing
+
+619
+00:29:08,160 --> 00:29:10,760
+these kinds of speech sounds.
+
+620
+00:29:10,760 --> 00:29:13,360
+Place and manner and voicing.
+
+621
+00:29:13,400 --> 00:29:17,120
+Place of articulation, manner of articulation, and voicing.
+
+622
+00:29:17,120 --> 00:29:19,360
+So there are a bunch of places of articulation
+
+623
+00:29:19,360 --> 00:29:21,680
+over there on the left.
+
+624
+00:29:21,680 --> 00:29:24,320
+And the sounds that we have mainly talked about
+
+625
+00:29:24,320 --> 00:29:26,520
+have been either stops or fricatives.
+
+626
+00:29:26,520 --> 00:29:32,000
+And then each of these places on the table,
+
+627
+00:29:32,000 --> 00:29:34,800
+there's a pair of sounds.
+
+628
+00:29:34,800 --> 00:29:37,080
+And I hope I managed to do this right.
+
+629
+00:29:37,080 --> 00:29:39,160
+Yes, it looks like I did.
+
+630
+00:29:39,160 --> 00:29:42,840
+In all of these pairs, you've got both a voiced
+
+631
+00:29:42,840 --> 00:29:43,880
+and a voiceless sound.
+
+632
+00:29:43,880 --> 00:29:46,880
+Which one is first?
+
+633
+00:29:46,880 --> 00:29:48,080
+The voiced sound.
+
+634
+00:29:48,080 --> 00:29:50,640
+So in all of those, there's a pair.
+
+635
+00:29:50,640 --> 00:29:52,800
+So you've got zh and sh, for example,
+
+636
+00:29:52,800 --> 00:29:54,360
+the post-alveolar fricatives.
+
+637
+00:29:54,360 --> 00:29:56,000
+And the zh is the voiced one.
+
+638
+00:29:56,000 --> 00:29:58,120
+And the sh is the voiceless one.
+
+639
+00:29:58,120 --> 00:30:00,120
+Yeah?
+
+640
+00:30:00,120 --> 00:30:00,680
+OK, good.
+
+641
+00:30:03,640 --> 00:30:04,120
+All right.
+
+642
+00:30:04,120 --> 00:30:06,360
+So now, new class of sounds.
+
+643
+00:30:06,360 --> 00:30:08,440
+This is a new manner of articulation.
+
+644
+00:30:08,440 --> 00:30:11,360
+So we've got d, which is a voiced alveolar stop,
+
+645
+00:30:11,360 --> 00:30:14,400
+and zh, which is a voiced alveolar fricative.
+
+646
+00:30:14,400 --> 00:30:17,040
+And now we need to think about n.
+
+647
+00:30:17,040 --> 00:30:25,240
+Well, n is voiced, and it's a stop in the sense
+
+648
+00:30:25,240 --> 00:30:28,720
+that you are stopping the air from flowing through your mouth.
+
+649
+00:30:28,720 --> 00:30:30,800
+If you think about what's happening inside your mouth
+
+650
+00:30:30,800 --> 00:30:33,360
+during an n, your tongue is jammed
+
+651
+00:30:33,360 --> 00:30:38,480
+against your alveolar ridge, just as it would be for a t.
+
+652
+00:30:38,480 --> 00:30:43,640
+So I love the sound of phonetics in the morning.
+
+653
+00:30:43,640 --> 00:30:46,440
+It's great.
+
+654
+00:30:46,440 --> 00:30:49,520
+So when you're doing an n, you've
+
+655
+00:30:49,520 --> 00:30:50,840
+stopped the flow of air in your mouth,
+
+656
+00:30:50,840 --> 00:30:53,200
+and so n is technically a stop.
+
+657
+00:30:53,200 --> 00:30:55,160
+It's called a stop because there's no air coming out
+
+658
+00:30:55,160 --> 00:30:55,800
+of your mouth.
+
+659
+00:30:55,800 --> 00:30:57,680
+But there's air coming out somewhere.
+
+660
+00:30:57,680 --> 00:31:00,720
+It's coming out of your nose.
+
+661
+00:31:00,720 --> 00:31:04,360
+And you can tell because if you hold your nose,
+
+662
+00:31:04,360 --> 00:31:06,680
+you will not be able to make an n.
+
+663
+00:31:06,680 --> 00:31:11,000
+So the reason that you can keep an n going again
+
+664
+00:31:11,000 --> 00:31:13,960
+for as long as you have breath is, well,
+
+665
+00:31:13,960 --> 00:31:15,320
+the air has some place to go.
+
+666
+00:31:15,320 --> 00:31:18,160
+It's going out your nose.
+
+667
+00:31:18,160 --> 00:31:20,120
+What's happening when you make an n
+
+668
+00:31:20,120 --> 00:31:24,400
+is that you are lowering the velum, which
+
+669
+00:31:24,400 --> 00:31:26,960
+is this doohickey in the back of your mouth
+
+670
+00:31:26,960 --> 00:31:31,000
+that partitions your nose from your mouth.
+
+671
+00:31:31,000 --> 00:31:34,240
+By lowering it, you're allowing air to flow through your nose.
+
+672
+00:31:34,240 --> 00:31:38,320
+So for t and d, the airflow is stopped at the alveolar ridge.
+
+673
+00:31:38,320 --> 00:31:41,840
+For n, the airflow is also stopped at the alveolar ridge.
+
+674
+00:31:41,840 --> 00:31:43,280
+It can't go through the mouth.
+
+675
+00:31:43,280 --> 00:31:46,960
+It's stopped right there, but it goes through your nose.
+
+676
+00:31:46,960 --> 00:31:51,360
+This is a nasal stop, a voiced alveolar nasal.
+
+677
+00:31:51,360 --> 00:31:54,160
+People often just call them nasals
+
+678
+00:31:54,160 --> 00:31:58,040
+because nasal fricatives are messy.
+
+679
+00:31:58,040 --> 00:31:59,600
+Actually, not possible, possibly.
+
+680
+00:32:00,400 --> 00:32:00,900
+OK?
+
+681
+00:32:04,000 --> 00:32:06,080
+So let me go back.
+
+682
+00:32:06,080 --> 00:32:09,280
+n is an alveolar nasal.
+
+683
+00:32:09,280 --> 00:32:11,080
+What would a bilabial nasal sound like?
+
+684
+00:32:15,680 --> 00:32:18,480
+Close your lips and allow the air to flow through your nose.
+
+685
+00:32:18,480 --> 00:32:19,640
+And a velar nasal?
+
+686
+00:32:24,320 --> 00:32:27,160
+Remember that velar means the place of articulation
+
+687
+00:32:27,160 --> 00:32:28,720
+for a k or a g.
+
+688
+00:32:28,720 --> 00:32:31,400
+So you make a k or a g sound, and then just
+
+689
+00:32:31,400 --> 00:32:33,120
+let air flow through your nose.
+
+690
+00:32:33,120 --> 00:32:37,920
+That's the sound at the end of a word like song, or king,
+
+691
+00:32:37,920 --> 00:32:40,040
+or making a velar nasal.
+
+692
+00:32:40,040 --> 00:32:43,560
+English doesn't allow words to begin with velar nasals,
+
+693
+00:32:43,560 --> 00:32:45,600
+but there are languages that do.
+
+694
+00:32:45,600 --> 00:32:50,200
+So Tagalog, for example, the word for now, right now,
+
+695
+00:32:50,200 --> 00:32:51,960
+is ngayun.
+
+696
+00:32:51,960 --> 00:32:53,880
+So it starts with a velar nasal.
+
+697
+00:32:53,880 --> 00:32:55,920
+One of the entertaining things about learning Tagalog
+
+698
+00:32:55,920 --> 00:32:58,480
+is learning how to make sounds that start with velar nasals.
+
+699
+00:32:58,520 --> 00:33:00,640
+You're an English speaker, you're not used to it.
+
+700
+00:33:00,640 --> 00:33:01,640
+Yeah?
+
+701
+00:33:05,640 --> 00:33:08,560
+OK, so there's the table again.
+
+702
+00:33:08,560 --> 00:33:10,640
+So we've got stops and fricatives and nasals.
+
+703
+00:33:10,640 --> 00:33:12,840
+Nasal stops.
+
+704
+00:33:12,840 --> 00:33:14,680
+Things can be voiced or voiceless.
+
+705
+00:33:14,680 --> 00:33:17,000
+And we've got all those places of articulation
+
+706
+00:33:17,000 --> 00:33:18,040
+over there on the left.
+
+707
+00:33:18,040 --> 00:33:19,480
+Are there questions about any of this?
+
+708
+00:33:19,480 --> 00:33:21,240
+Is anybody looking at this and saying, whoa,
+
+709
+00:33:21,240 --> 00:33:24,680
+this table has grown out of my ability to keep a word?
+
+710
+00:33:24,680 --> 00:33:25,180
+Yeah?
+
+711
+00:33:25,180 --> 00:33:25,680
+Yeah.
+
+712
+00:33:25,680 --> 00:33:26,180
+Yeah?
+
+713
+00:33:26,180 --> 00:33:27,560
+What English doesn't allow?
+
+714
+00:33:27,600 --> 00:33:30,680
+English doesn't allow words to begin with velar nasals.
+
+715
+00:33:30,680 --> 00:33:32,600
+We don't have any words that start with the sound
+
+716
+00:33:32,600 --> 00:33:35,200
+that's at the end of words like song.
+
+717
+00:33:35,200 --> 00:33:38,800
+We don't have words like ngayun.
+
+718
+00:33:38,800 --> 00:33:40,960
+English doesn't have words like that.
+
+719
+00:33:40,960 --> 00:33:43,120
+There are plenty of languages that do.
+
+720
+00:33:43,120 --> 00:33:44,200
+Tagalog is one.
+
+721
+00:33:44,200 --> 00:33:45,640
+Cantonese is one.
+
+722
+00:33:45,640 --> 00:33:46,640
+There are a bunch of others.
+
+723
+00:33:46,640 --> 00:33:49,360
+But English doesn't have that.
+
+724
+00:33:49,360 --> 00:33:50,840
+Yes?
+
+725
+00:33:50,960 --> 00:33:55,640
+I noticed there's not a j in practice or a y.
+
+726
+00:33:55,640 --> 00:33:58,200
+It's called paladol.
+
+727
+00:33:58,200 --> 00:34:00,680
+Oh, yeah.
+
+728
+00:34:00,680 --> 00:34:05,200
+Actually, I don't actually know where this j would go.
+
+729
+00:34:05,200 --> 00:34:06,040
+Yeah.
+
+730
+00:34:06,040 --> 00:34:08,720
+So we haven't yet gotten to the kind of sound
+
+731
+00:34:08,720 --> 00:34:11,720
+that that j, the sound at the beginning of the year.
+
+732
+00:34:11,720 --> 00:34:12,600
+You're absolutely right.
+
+733
+00:34:12,600 --> 00:34:14,360
+There's a gap there.
+
+734
+00:34:14,360 --> 00:34:17,360
+And I've put the paladol line there partly
+
+735
+00:34:17,360 --> 00:34:19,920
+to get you to ask exactly that kind of question.
+
+736
+00:34:19,920 --> 00:34:22,720
+So one of the points of this table,
+
+737
+00:34:22,720 --> 00:34:24,880
+it's kind of like when the periodic table was first
+
+738
+00:34:24,880 --> 00:34:25,920
+invented, I guess.
+
+739
+00:34:25,920 --> 00:34:28,560
+So we have this system for categorizing sounds.
+
+740
+00:34:28,560 --> 00:34:30,480
+And now we get to look at it and say, well, wait, why
+
+741
+00:34:30,480 --> 00:34:32,520
+isn't there anything there or there?
+
+742
+00:34:32,520 --> 00:34:34,720
+And what would it be like if it were there?
+
+743
+00:34:34,720 --> 00:34:37,360
+We'll do a little bit of that in a second.
+
+744
+00:34:37,360 --> 00:34:38,880
+But yeah, you're right.
+
+745
+00:34:38,880 --> 00:34:42,080
+So we haven't yet talked about the kind of sound
+
+746
+00:34:42,080 --> 00:34:45,720
+that the IPA symbol j, the sound we usually
+
+747
+00:34:45,720 --> 00:34:48,480
+write with y in English, the sound at the beginning of the year,
+
+748
+00:34:48,480 --> 00:34:50,360
+we haven't put that on the table yet.
+
+749
+00:34:50,360 --> 00:34:51,160
+You're right.
+
+750
+00:34:51,160 --> 00:34:52,840
+It's not a stop.
+
+751
+00:34:52,840 --> 00:34:55,080
+It's also not a fricative because you're not making
+
+752
+00:34:55,080 --> 00:34:56,880
+any turbulence in the airflow.
+
+753
+00:34:56,880 --> 00:34:58,040
+And it's not nasal.
+
+754
+00:34:58,040 --> 00:34:59,240
+So it's another kind of thing.
+
+755
+00:34:59,240 --> 00:35:01,280
+We'll get to it.
+
+756
+00:35:01,280 --> 00:35:01,840
+Good question.
+
+757
+00:35:01,840 --> 00:35:03,760
+Other questions?
+
+758
+00:35:03,760 --> 00:35:05,560
+This?
+
+759
+00:35:05,560 --> 00:35:07,280
+OK.
+
+760
+00:35:07,280 --> 00:35:09,280
+All right.
+
+761
+00:35:09,280 --> 00:35:10,400
+So yeah, OK.
+
+762
+00:35:10,400 --> 00:35:12,640
+So this way of classifying the sounds
+
+763
+00:35:12,640 --> 00:35:13,720
+leads us to wonder about gaps.
+
+764
+00:35:13,720 --> 00:35:14,960
+This is, yes, thanks.
+
+765
+00:35:14,960 --> 00:35:16,480
+Norvin, yeah, you set that up nicely.
+
+766
+00:35:19,640 --> 00:35:22,160
+So let's think about some of these gaps.
+
+767
+00:35:22,160 --> 00:35:26,320
+So English, for example, has bilabial stops, P and B.
+
+768
+00:35:26,320 --> 00:35:29,280
+And it has a bilabial nasal and M. But it
+
+769
+00:35:29,280 --> 00:35:32,400
+doesn't have a bilabial fricative.
+
+770
+00:35:32,400 --> 00:35:34,080
+What would a bilabial fricative sound like?
+
+771
+00:35:37,360 --> 00:35:40,360
+It would sound kind of like blowing out a candle.
+
+772
+00:35:40,360 --> 00:35:42,760
+Open your lips just enough to let some air come out and then
+
+773
+00:35:42,760 --> 00:35:44,280
+blow.
+
+774
+00:35:44,280 --> 00:35:45,440
+That's a bilabial trill.
+
+775
+00:35:45,440 --> 00:35:48,680
+We will get to that.
+
+776
+00:35:48,680 --> 00:35:51,920
+Either that or you were just having fun, I'm not sure.
+
+777
+00:35:51,920 --> 00:35:55,240
+There are languages that have that.
+
+778
+00:35:55,240 --> 00:35:56,800
+So but a bilabial fricative, English
+
+779
+00:35:56,800 --> 00:35:58,360
+doesn't have a bilabial fricative.
+
+780
+00:35:58,360 --> 00:35:59,960
+But there are languages that do.
+
+781
+00:35:59,960 --> 00:36:01,240
+Japanese does, for example.
+
+782
+00:36:01,240 --> 00:36:03,480
+So in Japanese, the sound that when
+
+783
+00:36:03,480 --> 00:36:05,800
+people are writing Japanese in the Roman alphabet,
+
+784
+00:36:05,800 --> 00:36:08,040
+when they write an F, like when they
+
+785
+00:36:08,040 --> 00:36:11,600
+write the name of this mountain, they'll write it with an F.
+
+786
+00:36:11,600 --> 00:36:13,280
+But in Japanese, that's not an F.
+
+787
+00:36:13,280 --> 00:36:14,440
+It's a bilabial fricative.
+
+788
+00:36:14,440 --> 00:36:16,320
+It's Fuji, Fuji.
+
+789
+00:36:16,320 --> 00:36:19,360
+If you learn Japanese, you must learn to pronounce
+
+790
+00:36:19,360 --> 00:36:23,280
+the F bilabially rather than labiodentally.
+
+791
+00:36:23,280 --> 00:36:25,600
+So in English, we have a labiodental F
+
+792
+00:36:25,600 --> 00:36:28,960
+with our lower lip against our teeth.
+
+793
+00:36:28,960 --> 00:36:31,400
+In Japanese, F, your teeth are not involved.
+
+794
+00:36:31,400 --> 00:36:32,280
+It is only your lips.
+
+795
+00:36:36,760 --> 00:36:39,600
+What would a bilabial fricative sound like?
+
+796
+00:36:39,600 --> 00:36:42,920
+Is this a voice or a voiceless bilabial fricative?
+
+797
+00:36:42,920 --> 00:36:44,480
+Voiceless.
+
+798
+00:36:44,480 --> 00:36:46,640
+What would it sound like if it were voiced?
+
+799
+00:36:46,640 --> 00:36:48,640
+Vrr.
+
+800
+00:36:48,640 --> 00:36:50,320
+And that exists, too.
+
+801
+00:36:50,320 --> 00:36:51,840
+There are dialects of Spanish, for example,
+
+802
+00:36:51,840 --> 00:36:54,240
+that have that between vowels.
+
+803
+00:36:54,240 --> 00:36:59,560
+If you have the letter B between vowels in words like aruela,
+
+804
+00:36:59,560 --> 00:37:06,320
+that B has that sound, a voiced bilabial fricative.
+
+805
+00:37:06,320 --> 00:37:09,480
+Moving across the chart, I've got a nasal stop there.
+
+806
+00:37:09,480 --> 00:37:11,240
+Is that nasal voiced or voiceless?
+
+807
+00:37:13,440 --> 00:37:15,600
+Voiced.
+
+808
+00:37:15,600 --> 00:37:18,800
+What would it sound like if it were voiceless?
+
+809
+00:37:18,800 --> 00:37:19,520
+I should step back.
+
+810
+00:37:23,960 --> 00:37:25,640
+English doesn't have that.
+
+811
+00:37:25,640 --> 00:37:28,760
+But there are languages out there that do.
+
+812
+00:37:28,760 --> 00:37:31,760
+Languages like Hmong, for example,
+
+813
+00:37:31,760 --> 00:37:34,000
+which is a minority language spoken in,
+
+814
+00:37:34,000 --> 00:37:36,160
+actually it's quite a large minority language spoken
+
+815
+00:37:36,160 --> 00:37:38,200
+in Vietnam.
+
+816
+00:37:38,200 --> 00:37:42,200
+Hmong has that kind of sound.
+
+817
+00:37:42,200 --> 00:37:45,880
+Tibetan has that kind of sound, too.
+
+818
+00:37:45,880 --> 00:37:47,080
+OK.
+
+819
+00:37:47,080 --> 00:37:50,120
+Let's skip palatal and do velar.
+
+820
+00:37:50,120 --> 00:37:53,800
+We've got velar stops in English, K and G, and G.
+
+821
+00:37:53,800 --> 00:37:56,280
+And we've got velar nasals.
+
+822
+00:37:56,280 --> 00:38:00,720
+What would a velar fricative sound like?
+
+823
+00:38:00,720 --> 00:38:01,520
+Yes.
+
+824
+00:38:01,520 --> 00:38:03,880
+She's alerting me that she's not just hissing at me.
+
+825
+00:38:03,880 --> 00:38:04,960
+She's making a velar fricative.
+
+826
+00:38:04,960 --> 00:38:07,960
+Yes.
+
+827
+00:38:07,960 --> 00:38:11,520
+Is that a voiced or a voiceless velar fricative?
+
+828
+00:38:11,520 --> 00:38:13,960
+Voiceless, yeah.
+
+829
+00:38:13,960 --> 00:38:15,520
+English doesn't have that.
+
+830
+00:38:15,520 --> 00:38:17,360
+But there are languages that do.
+
+831
+00:38:17,360 --> 00:38:19,800
+Languages like German say that's one of the sounds
+
+832
+00:38:19,800 --> 00:38:22,960
+that they write with the letters C and H. At the end of composers
+
+833
+00:38:22,960 --> 00:38:27,360
+names like Bach, Johann Sebastian Bach.
+
+834
+00:38:27,360 --> 00:38:29,760
+His name ends with a velar fricative.
+
+835
+00:38:29,760 --> 00:38:33,240
+Russian has this sound.
+
+836
+00:38:33,240 --> 00:38:37,520
+Shows up in the names of authors like Chekhov.
+
+837
+00:38:37,520 --> 00:38:39,400
+Sound.
+
+838
+00:38:39,400 --> 00:38:42,280
+What would a velar fricative sound like if it were voiced?
+
+839
+00:38:48,120 --> 00:38:50,400
+And English doesn't have that either.
+
+840
+00:38:50,400 --> 00:38:52,360
+But their languages that do, again,
+
+841
+00:38:52,360 --> 00:38:53,600
+they're dialects of Spanish, where
+
+842
+00:38:53,600 --> 00:38:55,720
+if you have a G between vowels, it'll
+
+843
+00:38:55,720 --> 00:38:57,640
+get this kind of sound in words like agua.
+
+844
+00:39:01,920 --> 00:39:03,840
+So we've talked about various kinds of nasals.
+
+845
+00:39:03,840 --> 00:39:04,720
+Nasal stops.
+
+846
+00:39:04,720 --> 00:39:08,720
+So an M is a bilabial nasal, right?
+
+847
+00:39:08,720 --> 00:39:11,440
+Where you close the flow there at your lips
+
+848
+00:39:11,440 --> 00:39:14,600
+and allow the air to flow through your nasal cavity
+
+849
+00:39:14,600 --> 00:39:15,560
+by lowering your velums.
+
+850
+00:39:15,560 --> 00:39:19,360
+You get an N. Or you can stop the flow there in other places.
+
+851
+00:39:19,360 --> 00:39:20,880
+You can have an alveolar nasal, right?
+
+852
+00:39:20,880 --> 00:39:23,880
+N, you can have a velar nasal.
+
+853
+00:39:23,880 --> 00:39:25,560
+What would a glottal nasal sound like?
+
+854
+00:39:30,640 --> 00:39:34,080
+Trick question, you would need surgery.
+
+855
+00:39:34,080 --> 00:39:38,320
+So the way nasal stops work is you're
+
+856
+00:39:38,320 --> 00:39:41,400
+stopping the flow of air somewhere in your vocal tract,
+
+857
+00:39:41,400 --> 00:39:45,000
+but you're allowing the air to flow through your nasal cavity.
+
+858
+00:39:45,000 --> 00:39:46,840
+That's what a nasal stop is.
+
+859
+00:39:46,840 --> 00:39:50,280
+Here, let's get back to one of these sedgital sections.
+
+860
+00:39:50,280 --> 00:39:53,520
+So that N there, right?
+
+861
+00:39:53,520 --> 00:39:55,800
+What you're doing is you're stopping the flow of air
+
+862
+00:39:55,800 --> 00:39:57,800
+there at the alveolar ridge, right?
+
+863
+00:39:57,800 --> 00:39:59,960
+But you're lowering the velum to let the air flow through.
+
+864
+00:39:59,960 --> 00:40:03,360
+Or an M, you'd be closing the flow of air at your lips
+
+865
+00:40:03,400 --> 00:40:05,560
+and lowering your velum to let the air flow through.
+
+866
+00:40:05,560 --> 00:40:09,720
+Or a velar nasal, a N, like at the end of King.
+
+867
+00:40:09,720 --> 00:40:11,480
+You're making a closure at the velum,
+
+868
+00:40:11,480 --> 00:40:13,160
+but you're also lowering the velum and letting
+
+869
+00:40:13,160 --> 00:40:14,520
+the air flow through.
+
+870
+00:40:14,520 --> 00:40:18,520
+A glottal nasal, you'd have to stop the flow of air down
+
+871
+00:40:18,520 --> 00:40:26,120
+there at the vocal folds and let the air go through your velum.
+
+872
+00:40:26,120 --> 00:40:27,720
+But if you're stopping it down there,
+
+873
+00:40:27,720 --> 00:40:29,880
+it can't be going through your velum.
+
+874
+00:40:29,880 --> 00:40:32,040
+So you would need, again, as I say,
+
+875
+00:40:32,040 --> 00:40:34,880
+probably there are unethical surgeons who would modify you
+
+876
+00:40:34,880 --> 00:40:36,480
+so that you could make glottal nasals.
+
+877
+00:40:36,480 --> 00:40:40,240
+You need extra ways to get air to flow through your nasal cavity.
+
+878
+00:40:40,240 --> 00:40:41,920
+I'm not recommending this, by the way.
+
+879
+00:40:45,040 --> 00:40:48,040
+All right.
+
+880
+00:40:48,040 --> 00:40:51,040
+Cool.
+
+881
+00:40:51,040 --> 00:40:53,920
+So those are some of the gaps.
+
+882
+00:40:53,920 --> 00:40:56,800
+Oh, and I flagged a gap that I didn't talk about.
+
+883
+00:40:56,800 --> 00:40:58,920
+Sorry, a couple of gaps.
+
+884
+00:40:58,920 --> 00:41:03,160
+So English has interdental fricatives, th and the.
+
+885
+00:41:03,160 --> 00:41:05,240
+And as I said, those are cross-linguistically kind
+
+886
+00:41:05,240 --> 00:41:08,800
+of rare, which is why if you're trying
+
+887
+00:41:08,800 --> 00:41:11,280
+to do an accent from various kinds of places,
+
+888
+00:41:11,280 --> 00:41:13,840
+for example, in Europe, one of the things you do
+
+889
+00:41:13,840 --> 00:41:16,760
+is replace your TH sounds with other kinds of sounds.
+
+890
+00:41:16,760 --> 00:41:18,760
+So if you're doing a French accent,
+
+891
+00:41:18,760 --> 00:41:22,440
+you replace your TH sounds with Zs.
+
+892
+00:41:22,440 --> 00:41:23,880
+Or if you're doing a German accent,
+
+893
+00:41:23,880 --> 00:41:27,040
+you replace your TH sounds with Ts.
+
+894
+00:41:27,040 --> 00:41:29,520
+English has interdental fricatives,
+
+895
+00:41:29,520 --> 00:41:34,480
+and it has alveolar stops, T and D. There are languages out there
+
+896
+00:41:34,480 --> 00:41:37,400
+that have what are called dental stops.
+
+897
+00:41:37,400 --> 00:41:39,720
+So a dental stop, so the alveolar stop, again,
+
+898
+00:41:39,720 --> 00:41:41,960
+involves your tongue touching the alveolar ridge
+
+899
+00:41:41,960 --> 00:41:43,600
+and stopping the flow there, there.
+
+900
+00:41:43,600 --> 00:41:46,480
+For a dental stop, your tongue is touching your teeth.
+
+901
+00:41:46,480 --> 00:41:48,440
+So you're not saying atah.
+
+902
+00:41:48,440 --> 00:41:52,360
+You're saying atah, atah, atah.
+
+903
+00:41:52,360 --> 00:41:54,960
+English does not have those, but there are languages out there
+
+904
+00:41:54,960 --> 00:41:56,200
+that do.
+
+905
+00:41:56,200 --> 00:41:58,080
+If you're studying another language,
+
+906
+00:41:58,080 --> 00:41:59,800
+this is a kind of thing to think about,
+
+907
+00:41:59,800 --> 00:42:01,400
+because sometimes your teacher will not
+
+908
+00:42:01,400 --> 00:42:02,920
+be thinking about this.
+
+909
+00:42:02,920 --> 00:42:04,200
+But you should be asking yourself,
+
+910
+00:42:04,200 --> 00:42:07,520
+is this sound that sounds sort of like a T?
+
+911
+00:42:07,520 --> 00:42:10,360
+Is it an alveolar T or is it a dental T?
+
+912
+00:42:10,360 --> 00:42:11,680
+Part of your job, if you're learning
+
+913
+00:42:11,680 --> 00:42:13,400
+ta-da-log, for example, is to learn
+
+914
+00:42:13,400 --> 00:42:15,760
+to make dental Ts instead of alveolar Ts,
+
+915
+00:42:15,760 --> 00:42:18,240
+because that's what they've got.
+
+916
+00:42:18,240 --> 00:42:20,240
+Yeah?
+
+917
+00:42:20,240 --> 00:42:23,400
+If you're thinking about, like, with your teeth,
+
+918
+00:42:24,160 --> 00:42:27,040
+what say someone doesn't have teeth?
+
+919
+00:42:27,040 --> 00:42:30,040
+Yes, yeah?
+
+920
+00:42:30,040 --> 00:42:31,280
+How about that?
+
+921
+00:42:31,280 --> 00:42:32,160
+Well.
+
+922
+00:42:32,160 --> 00:42:35,240
+Would it be like a gesture?
+
+923
+00:42:35,240 --> 00:42:38,160
+I think, I believe that is what people do, yeah.
+
+924
+00:42:38,160 --> 00:42:41,000
+So you make a closure.
+
+925
+00:42:41,000 --> 00:42:43,000
+We can talk about interdental fricatives, right?
+
+926
+00:42:43,000 --> 00:42:46,600
+So somebody who doesn't have teeth and wants to do a th,
+
+927
+00:42:46,600 --> 00:42:47,400
+what do they do?
+
+928
+00:42:47,400 --> 00:42:51,560
+I think their job is to create turbulent airflow
+
+929
+00:42:51,560 --> 00:42:54,040
+with their tongue between where their teeth would
+
+930
+00:42:54,040 --> 00:42:56,920
+be if they only had teeth, right?
+
+931
+00:42:56,920 --> 00:42:58,800
+And I think there's something similar going on
+
+932
+00:42:58,800 --> 00:42:59,840
+with dental stops.
+
+933
+00:42:59,840 --> 00:43:01,240
+But this is exactly the kind of thing
+
+934
+00:43:01,240 --> 00:43:03,120
+that experimental phoneticists do,
+
+935
+00:43:03,120 --> 00:43:05,040
+is to try to figure out one of the things that,
+
+936
+00:43:05,040 --> 00:43:07,160
+they do many things, some of them kind of creepy,
+
+937
+00:43:07,160 --> 00:43:09,720
+to try to figure out what's going on in your vocal tract
+
+938
+00:43:09,720 --> 00:43:12,520
+exactly as you do this stuff.
+
+939
+00:43:12,520 --> 00:43:15,040
+There's all this work on what people
+
+940
+00:43:15,040 --> 00:43:17,920
+do to compensate for various kinds of obstructions
+
+941
+00:43:17,920 --> 00:43:18,680
+in the vocal tract.
+
+942
+00:43:18,680 --> 00:43:20,640
+So you have people bite on a block.
+
+943
+00:43:20,640 --> 00:43:23,200
+And you put something solid in their mouth.
+
+944
+00:43:23,200 --> 00:43:24,680
+And then you're like, OK, so now what
+
+945
+00:43:24,680 --> 00:43:28,560
+will you do with your tongue to make the sounds?
+
+946
+00:43:28,560 --> 00:43:29,520
+As best you can.
+
+947
+00:43:29,520 --> 00:43:31,800
+All kinds of weird stuff people do.
+
+948
+00:43:31,800 --> 00:43:33,040
+Cool stuff.
+
+949
+00:43:33,040 --> 00:43:34,560
+Yeah?
+
+950
+00:43:34,560 --> 00:43:37,560
+OK.
+
+951
+00:43:37,560 --> 00:43:38,480
+Where was I with all that?
+
+952
+00:43:38,480 --> 00:43:39,120
+OK, yeah.
+
+953
+00:43:39,120 --> 00:43:43,400
+So yeah, that's another set of IPA symbols.
+
+954
+00:43:43,400 --> 00:43:45,120
+These are your first IPA diacritics,
+
+955
+00:43:45,120 --> 00:43:47,520
+I guess those little square doohickeys under the t
+
+956
+00:43:47,520 --> 00:43:48,680
+and the d there.
+
+957
+00:43:48,680 --> 00:43:51,000
+Those indicate that that particular t and d, those
+
+958
+00:43:51,000 --> 00:43:52,920
+are dental.
+
+959
+00:43:52,920 --> 00:43:54,360
+There are even languages out there
+
+960
+00:43:54,360 --> 00:43:57,840
+that have both dental t's and alveolar t's.
+
+961
+00:43:57,840 --> 00:44:00,880
+So the Dravidian languages of India
+
+962
+00:44:00,880 --> 00:44:02,280
+are famous for having those.
+
+963
+00:44:02,280 --> 00:44:05,960
+And a lot of the Aboriginal languages of Australia
+
+964
+00:44:05,960 --> 00:44:09,640
+are really rich in places of articulation.
+
+965
+00:44:09,640 --> 00:44:12,080
+So has Dinka come to think of it, this Nialotic language
+
+966
+00:44:12,080 --> 00:44:15,200
+that I mentioned briefly that has tone as a way of marking
+
+967
+00:44:15,200 --> 00:44:17,280
+case.
+
+968
+00:44:17,280 --> 00:44:19,120
+These are all languages that have lots and lots
+
+969
+00:44:19,120 --> 00:44:23,040
+of places of articulation, including both dental and alveolar.
+
+970
+00:44:23,040 --> 00:44:25,840
+But that often don't make the languages of Australia,
+
+971
+00:44:25,840 --> 00:44:28,800
+at least, often don't make voicing distinctions.
+
+972
+00:44:28,800 --> 00:44:30,120
+So they have stops, but they don't
+
+973
+00:44:30,120 --> 00:44:32,160
+distinguish voiced from voiceless.
+
+974
+00:44:32,160 --> 00:44:36,720
+So they have places of articulation and lots of them.
+
+975
+00:44:36,720 --> 00:44:38,480
+And nasals in all those places as well,
+
+976
+00:44:38,480 --> 00:44:42,240
+but no distinction between voiced and voiceless.
+
+977
+00:44:42,240 --> 00:44:42,960
+Yeah?
+
+978
+00:44:42,960 --> 00:44:45,600
+OK, any other questions about this chart
+
+979
+00:44:45,600 --> 00:44:48,760
+before we zoom past it?
+
+980
+00:44:48,760 --> 00:44:50,680
+Like I say, I'm going to, on the website,
+
+981
+00:44:50,680 --> 00:44:54,680
+there will be a link to charts that
+
+982
+00:44:54,680 --> 00:44:57,560
+will look, hopefully, sort of like this,
+
+983
+00:44:57,560 --> 00:45:02,200
+more official charts by the IPA, which will have sound files
+
+984
+00:45:02,200 --> 00:45:04,840
+so that you can listen to trained phenologists making
+
+985
+00:45:04,840 --> 00:45:05,600
+the sounds.
+
+986
+00:45:05,600 --> 00:45:08,880
+And also, at least one website, which I hope is still up,
+
+987
+00:45:08,880 --> 00:45:12,200
+has MRIs so that you can watch the inside of a person's
+
+988
+00:45:12,200 --> 00:45:16,160
+vocal tract as they make the sound.
+
+989
+00:45:16,160 --> 00:45:18,680
+OK.
+
+990
+00:45:18,680 --> 00:45:22,680
+Now, we have been talking about parts of the vocal tract
+
+991
+00:45:22,680 --> 00:45:24,640
+that English uses.
+
+992
+00:45:24,640 --> 00:45:26,520
+Sometimes it doesn't use them for the same things
+
+993
+00:45:26,520 --> 00:45:27,440
+that their languages do.
+
+994
+00:45:27,440 --> 00:45:28,160
+So we have teeth.
+
+995
+00:45:28,160 --> 00:45:29,600
+We use our teeth for intradentals,
+
+996
+00:45:29,600 --> 00:45:31,920
+but we don't make dental stops.
+
+997
+00:45:31,920 --> 00:45:34,200
+But there are places in the vocal tract
+
+998
+00:45:34,200 --> 00:45:37,920
+that English just does not use, and yet, if other languages do.
+
+999
+00:45:37,920 --> 00:45:39,240
+Here are a couple.
+
+1000
+00:45:39,240 --> 00:45:41,320
+There are what are called retroflex sounds.
+
+1001
+00:45:41,360 --> 00:45:43,360
+These are sounds in which the tip of your tongue
+
+1002
+00:45:43,360 --> 00:45:44,640
+is on your palate.
+
+1003
+00:45:44,640 --> 00:45:50,040
+So instead of a t, you're making a t, a ta, a ta.
+
+1004
+00:45:50,040 --> 00:45:52,360
+So your tongue is curled back a little bit further
+
+1005
+00:45:52,360 --> 00:45:55,360
+than it would be for a t, and it's making a closure
+
+1006
+00:45:55,360 --> 00:45:57,280
+if you're making a stop right there.
+
+1007
+00:45:57,280 --> 00:46:00,200
+So you can make stops there, a ta, or a da.
+
+1008
+00:46:00,200 --> 00:46:04,480
+You can make fricatives there, like a sha, or a ja.
+
+1009
+00:46:04,480 --> 00:46:08,840
+And you can make nasals there, like a na, a na.
+
+1010
+00:46:08,880 --> 00:46:14,000
+Retroflex sounds are very popular in India and Australia
+
+1011
+00:46:14,000 --> 00:46:16,480
+and Indonesia.
+
+1012
+00:46:16,480 --> 00:46:17,600
+They're all a good place.
+
+1013
+00:46:17,600 --> 00:46:18,100
+Yeah?
+
+1014
+00:46:18,100 --> 00:46:18,600
+Yeah.
+
+1015
+00:46:18,600 --> 00:46:23,680
+In the B, there's a retroflex lateral to it.
+
+1016
+00:46:23,680 --> 00:46:24,180
+You're right.
+
+1017
+00:46:24,180 --> 00:46:24,680
+Out of da.
+
+1018
+00:46:24,680 --> 00:46:25,180
+Yeah?
+
+1019
+00:46:25,180 --> 00:46:26,400
+Mm-hmm.
+
+1020
+00:46:26,400 --> 00:46:27,040
+Yeah?
+
+1021
+00:46:27,040 --> 00:46:28,160
+Well, we'll get to laterals.
+
+1022
+00:46:28,160 --> 00:46:30,680
+But yes, yes, there is.
+
+1023
+00:46:30,680 --> 00:46:32,760
+Yeah?
+
+1024
+00:46:32,760 --> 00:46:35,240
+OK, there's retroflexes.
+
+1025
+00:46:35,280 --> 00:46:36,440
+Uvulars.
+
+1026
+00:46:36,440 --> 00:46:40,160
+Uvulars are kind of like k, except more so.
+
+1027
+00:46:40,160 --> 00:46:42,480
+So for a k, your back of your tongue
+
+1028
+00:46:42,480 --> 00:46:45,120
+is hitting the back of your mouth.
+
+1029
+00:46:45,120 --> 00:46:46,160
+It's touching your velum.
+
+1030
+00:46:46,160 --> 00:46:48,320
+That's a k sound, akka.
+
+1031
+00:46:48,320 --> 00:46:50,280
+For a uvular, your tongue goes further back,
+
+1032
+00:46:50,280 --> 00:46:52,600
+and it gets at or near your uvula,
+
+1033
+00:46:52,600 --> 00:46:53,800
+which is the little doohickey that
+
+1034
+00:46:53,800 --> 00:46:57,120
+hangs down there at the back.
+
+1035
+00:46:57,120 --> 00:46:58,120
+That's your uvula.
+
+1036
+00:46:58,120 --> 00:47:04,080
+So this is a sound like akka, akka, akka, or aga,
+
+1037
+00:47:04,080 --> 00:47:09,400
+or agha, or agha, or agha.
+
+1038
+00:47:09,400 --> 00:47:12,880
+These are all uvular sounds.
+
+1039
+00:47:12,880 --> 00:47:14,440
+We do not have these in English, at least
+
+1040
+00:47:14,440 --> 00:47:15,360
+when we're feeling well.
+
+1041
+00:47:15,360 --> 00:47:18,240
+But there are languages out there that do.
+
+1042
+00:47:18,240 --> 00:47:23,160
+You're working on a problem set that
+
+1043
+00:47:23,160 --> 00:47:25,480
+involves the language inupiaq.
+
+1044
+00:47:25,480 --> 00:47:29,120
+And that letter k is a symbol for a uvular stop.
+
+1045
+00:47:29,120 --> 00:47:31,040
+Inupiaq has a uvular stop.
+
+1046
+00:47:31,040 --> 00:47:32,680
+It has one at the end of the name.
+
+1047
+00:47:32,680 --> 00:47:34,320
+The inu at the beginning means people,
+
+1048
+00:47:34,320 --> 00:47:36,080
+and piaq is a suffix meaning something
+
+1049
+00:47:36,080 --> 00:47:39,320
+like real, or normal, or regular.
+
+1050
+00:47:39,320 --> 00:47:41,560
+So the inupiaq are the normal people.
+
+1051
+00:47:41,560 --> 00:47:43,040
+The rest of us are abnormal.
+
+1052
+00:47:46,600 --> 00:47:51,040
+So yeah, uvulars, reasonably popular.
+
+1053
+00:47:51,040 --> 00:47:52,640
+They're all over, let's see, they're
+
+1054
+00:47:52,640 --> 00:47:56,600
+all over the indigenous languages of the Americas.
+
+1055
+00:47:56,600 --> 00:47:59,440
+They have them in Arabic.
+
+1056
+00:47:59,440 --> 00:48:05,320
+They're not exactly rare, but English does not have them.
+
+1057
+00:48:05,320 --> 00:48:11,200
+The uvular voiced fricative, so the voiceless fricative,
+
+1058
+00:48:11,200 --> 00:48:15,120
+the ch, ch, is found.
+
+1059
+00:48:15,120 --> 00:48:19,840
+But not usually common in Europe, the r, r,
+
+1060
+00:48:19,840 --> 00:48:22,880
+is one of the voiced uvular fricative,
+
+1061
+00:48:22,880 --> 00:48:26,720
+is one of the ways to pronounce an r in languages
+
+1062
+00:48:26,720 --> 00:48:28,360
+like French and German.
+
+1063
+00:48:28,400 --> 00:48:31,360
+So if you're pronouncing the French word for red,
+
+1064
+00:48:31,360 --> 00:48:33,640
+one of the ways to do it is with this fricative to say,
+
+1065
+00:48:33,640 --> 00:48:40,200
+r, r, that r sound is a voiced uvular fricative.
+
+1066
+00:48:40,200 --> 00:48:44,400
+There are other ways you can also do a uvular trill,
+
+1067
+00:48:44,400 --> 00:48:49,360
+where you get your uvula to flap in the breeze.
+
+1068
+00:48:49,360 --> 00:48:51,680
+But not everybody does that.
+
+1069
+00:48:51,680 --> 00:48:54,080
+Yep, questions about that?
+
+1070
+00:48:54,080 --> 00:48:54,560
+Makes sense?
+
+1071
+00:48:55,280 --> 00:48:57,640
+OK.
+
+1072
+00:48:57,640 --> 00:49:02,200
+And then there are also pharyngeals.
+
+1073
+00:49:02,200 --> 00:49:06,880
+Pharyngeals involve constriction near the pharyngeal wall.
+
+1074
+00:49:06,880 --> 00:49:08,600
+Arabic has these.
+
+1075
+00:49:08,600 --> 00:49:09,760
+The Berber languages have these.
+
+1076
+00:49:09,760 --> 00:49:13,800
+These are like, ah, ha, ah, ah, ah, ah, ah.
+
+1077
+00:49:13,800 --> 00:49:15,200
+So you're getting the back of your tongue
+
+1078
+00:49:15,200 --> 00:49:17,840
+to get against the back of your vocal tract.
+
+1079
+00:49:17,840 --> 00:49:20,360
+Does anybody here speak Arabic?
+
+1080
+00:49:20,360 --> 00:49:20,860
+OK.
+
+1081
+00:49:20,860 --> 00:49:22,400
+So if you know anyone who speaks Arabic,
+
+1082
+00:49:22,400 --> 00:49:23,640
+get them to speak to you for a while,
+
+1083
+00:49:23,640 --> 00:49:25,320
+and you'll get to hear them saying this.
+
+1084
+00:49:25,320 --> 00:49:26,920
+As I say, there will be sound files
+
+1085
+00:49:26,920 --> 00:49:30,520
+where you'll get to hear people making these.
+
+1086
+00:49:30,520 --> 00:49:35,400
+So English doesn't have these, but they're languages that do.
+
+1087
+00:49:35,400 --> 00:49:36,920
+There are pharyngeal fricatives.
+
+1088
+00:49:36,920 --> 00:49:39,280
+Yeah, those are both pharyngeal fricatives.
+
+1089
+00:49:39,280 --> 00:49:42,960
+OK, so slightly larger chart with more symbols on it,
+
+1090
+00:49:42,960 --> 00:49:44,680
+including some of the ones we've talked about.
+
+1091
+00:49:44,680 --> 00:49:47,960
+Pharyngeal tubulars, rectiflexes.
+
+1092
+00:49:47,960 --> 00:49:50,160
+And for some reason, the dental stops are still red.
+
+1093
+00:49:50,160 --> 00:49:52,680
+I don't know why to fix that.
+
+1094
+00:49:52,680 --> 00:49:56,120
+Yep, there's a chart.
+
+1095
+00:49:56,120 --> 00:49:59,120
+OK.
+
+1096
+00:49:59,120 --> 00:50:02,600
+OK, now, people keep asking me about sounds
+
+1097
+00:50:02,600 --> 00:50:03,920
+that I've been carefully avoiding,
+
+1098
+00:50:03,920 --> 00:50:06,080
+so let's talk about them.
+
+1099
+00:50:06,080 --> 00:50:10,760
+There are what are called approximants.
+
+1100
+00:50:10,760 --> 00:50:14,320
+Approximants are not stops, and they're not fricatives,
+
+1101
+00:50:14,320 --> 00:50:15,720
+and they're not nasals.
+
+1102
+00:50:15,720 --> 00:50:20,520
+They involve your articulators kind of vaguely gesturing
+
+1103
+00:50:20,520 --> 00:50:24,360
+towards each other in some part of your vocal tract.
+
+1104
+00:50:24,360 --> 00:50:27,640
+Not enough to make, definitely not making contact,
+
+1105
+00:50:27,640 --> 00:50:30,560
+and not enough to cause any turbulence in the air flow.
+
+1106
+00:50:30,560 --> 00:50:34,280
+So if you think about a W, let's say,
+
+1107
+00:50:34,280 --> 00:50:37,640
+in the middle of a word like away,
+
+1108
+00:50:37,640 --> 00:50:39,400
+that's not a stop, and it's not a fricative,
+
+1109
+00:50:39,400 --> 00:50:40,360
+and it's not nasal.
+
+1110
+00:50:40,360 --> 00:50:43,720
+It's bilabial, you can feel your lips engaging
+
+1111
+00:50:43,720 --> 00:50:45,960
+as you make the W in the middle of away.
+
+1112
+00:50:45,960 --> 00:50:49,280
+It's a bilabial sound, but it's not a bilabial stop,
+
+1113
+00:50:49,280 --> 00:50:53,560
+or a fricative, it is a bilabial approximate.
+
+1114
+00:50:53,560 --> 00:50:57,560
+So similarly for the Y sound at the beginning of year,
+
+1115
+00:50:57,560 --> 00:51:03,520
+or yard, and the L and the R at the beginning and end
+
+1116
+00:51:03,520 --> 00:51:11,360
+of, I don't know, layer, or rail, those are all approximants.
+
+1117
+00:51:11,360 --> 00:51:16,520
+They are sometimes divided into glides and liquids,
+
+1118
+00:51:16,520 --> 00:51:18,760
+and I'm hoping that nobody will ask me
+
+1119
+00:51:18,760 --> 00:51:22,360
+how you know whether something is a glide or a liquid.
+
+1120
+00:51:22,360 --> 00:51:24,160
+Are you about to ask me how you know whether something
+
+1121
+00:51:24,160 --> 00:51:26,760
+is a glide or a liquid?
+
+1122
+00:51:26,760 --> 00:51:28,640
+Go ahead, is that what you're?
+
+1123
+00:51:28,640 --> 00:51:31,520
+Yes, OK, all right, fine.
+
+1124
+00:51:31,520 --> 00:51:35,760
+So a glide, I mean, sometimes it's as though a glide
+
+1125
+00:51:35,760 --> 00:51:39,760
+is an approximate that if you were to hold it longer,
+
+1126
+00:51:39,760 --> 00:51:41,320
+it would be a vowel.
+
+1127
+00:51:41,320 --> 00:51:47,560
+So a W, if you just freeze yourself in W space,
+
+1128
+00:51:47,560 --> 00:51:49,720
+you're making an OO, right?
+
+1129
+00:51:49,720 --> 00:51:52,080
+A W is like an OO sped up.
+
+1130
+00:51:52,080 --> 00:51:53,840
+We're going to talk about vowels later,
+
+1131
+00:51:53,840 --> 00:51:56,520
+but if you think about what an OO is,
+
+1132
+00:51:56,520 --> 00:52:02,240
+it's a held version of a W. And similarly, a Y sound,
+
+1133
+00:52:02,240 --> 00:52:06,920
+yeah, is a sped up version of an E,
+
+1134
+00:52:06,920 --> 00:52:11,960
+as opposed to an R or an L, which are just something else.
+
+1135
+00:52:11,960 --> 00:52:14,700
+Because I have not given you a good way of distinguishing
+
+1136
+00:52:14,700 --> 00:52:16,800
+glides from liquids, you can trust me
+
+1137
+00:52:16,800 --> 00:52:19,720
+that I will never ask you to distinguish them in a way that
+
+1138
+00:52:19,720 --> 00:52:22,040
+will make a difference for grades or anything like that.
+
+1139
+00:52:22,040 --> 00:52:23,840
+You will never see me saying, no, you're wrong,
+
+1140
+00:52:23,840 --> 00:52:25,320
+that's not a glide, it's a liquid.
+
+1141
+00:52:25,320 --> 00:52:30,720
+I mean, I may say that, but there won't be minus 5 next to it.
+
+1142
+00:52:30,720 --> 00:52:31,720
+Yeah?
+
+1143
+00:52:31,720 --> 00:52:37,040
+I mean, if the W and the Y sound are both just short and
+
+1144
+00:52:37,040 --> 00:52:41,360
+vowel sounds, why is it necessary to have these
+
+1145
+00:52:41,360 --> 00:52:45,560
+as separate symbols, just like the CH having two letters?
+
+1146
+00:52:46,320 --> 00:52:47,680
+That's a really good question.
+
+1147
+00:52:47,680 --> 00:52:52,320
+So why don't we just use the letter OO for the bilabial
+
+1148
+00:52:52,320 --> 00:52:55,160
+glide for the W?
+
+1149
+00:52:55,160 --> 00:52:58,680
+And let me see if I can come up with a good answer to that.
+
+1150
+00:52:58,680 --> 00:53:01,680
+There are, eventually, we're going to get to it.
+
+1151
+00:53:01,680 --> 00:53:05,640
+So far, all we're doing is talking about sounds individually.
+
+1152
+00:53:05,640 --> 00:53:08,920
+And eventually, we're going to start talking about sequences
+
+1153
+00:53:08,920 --> 00:53:10,600
+of sounds.
+
+1154
+00:53:10,600 --> 00:53:14,760
+And we're going to want to be able to talk about restrictions
+
+1155
+00:53:14,760 --> 00:53:18,280
+on the ways in which sounds get to interact with each other.
+
+1156
+00:53:18,280 --> 00:53:20,040
+And so it's going to be useful at that point
+
+1157
+00:53:20,040 --> 00:53:22,720
+to be able to distinguish, for example, consonants
+
+1158
+00:53:22,720 --> 00:53:24,920
+from vowels.
+
+1159
+00:53:24,920 --> 00:53:27,760
+And once we do that, and you should
+
+1160
+00:53:27,760 --> 00:53:30,880
+feel free to call me on this if it doesn't come up later,
+
+1161
+00:53:30,880 --> 00:53:33,320
+I'll try to make sure it does, it'll
+
+1162
+00:53:33,320 --> 00:53:35,360
+turn out to be useful to be able to think
+
+1163
+00:53:35,360 --> 00:53:38,800
+of the consonant version of the sound, the W,
+
+1164
+00:53:38,800 --> 00:53:41,680
+and also the vowel version of the sound, the OO.
+
+1165
+00:53:41,680 --> 00:53:44,160
+But you're right, that there are plenty of sound changes
+
+1166
+00:53:44,200 --> 00:53:48,240
+where you see them converting back and forth between each other.
+
+1167
+00:53:48,240 --> 00:53:50,080
+That's the kind of thing that happens.
+
+1168
+00:53:50,080 --> 00:53:54,160
+So yeah, but that's the prima facie reason
+
+1169
+00:53:54,160 --> 00:53:55,840
+for distinguishing them, because there
+
+1170
+00:53:55,840 --> 00:53:59,960
+are rules for the distribution of sounds
+
+1171
+00:53:59,960 --> 00:54:02,280
+for which it's useful to have that distinction.
+
+1172
+00:54:02,280 --> 00:54:03,680
+It's like anything else, I guess.
+
+1173
+00:54:03,680 --> 00:54:06,360
+We make that distinction as long as it turns out
+
+1174
+00:54:06,360 --> 00:54:09,440
+to be useful for explaining stuff.
+
+1175
+00:54:09,440 --> 00:54:10,280
+Good question.
+
+1176
+00:54:15,120 --> 00:54:17,600
+All right.
+
+1177
+00:54:17,600 --> 00:54:20,120
+OK, so those are quite some liquids.
+
+1178
+00:54:20,120 --> 00:54:22,640
+OK, and then, this was Raquel who
+
+1179
+00:54:22,640 --> 00:54:27,080
+was asking about this before, sounds like ch and j.
+
+1180
+00:54:27,080 --> 00:54:31,560
+I think I said you could think of ch as like a stop, a T,
+
+1181
+00:54:31,560 --> 00:54:36,920
+followed by a fricative, ch, or j,
+
+1182
+00:54:36,920 --> 00:54:41,200
+the j at the beginning and end of a word like judge,
+
+1183
+00:54:41,200 --> 00:54:47,240
+as being a stop, a D sound, followed by a fricative, a j.
+
+1184
+00:54:47,240 --> 00:54:50,040
+There's a little bit of a debate about whether what I just
+
+1185
+00:54:50,040 --> 00:54:51,760
+said is the right way to think about this or not.
+
+1186
+00:54:51,760 --> 00:54:53,280
+I think the standard way to think about it
+
+1187
+00:54:53,280 --> 00:54:54,520
+is not exactly that.
+
+1188
+00:54:54,520 --> 00:54:58,280
+What people do is say, yeah, there's this package deal,
+
+1189
+00:54:58,280 --> 00:54:59,720
+an affricate.
+
+1190
+00:54:59,720 --> 00:55:02,040
+So there's a name for this kind of thing.
+
+1191
+00:55:02,040 --> 00:55:05,240
+An affricate is this kind of sequence,
+
+1192
+00:55:05,240 --> 00:55:08,520
+something like a stop, followed by a fricative.
+
+1193
+00:55:08,520 --> 00:55:11,480
+And the arguments about whether or not
+
+1194
+00:55:11,480 --> 00:55:13,400
+to make this move, about whether to say, no, that's
+
+1195
+00:55:13,400 --> 00:55:16,440
+a single sound with a complex motion,
+
+1196
+00:55:16,440 --> 00:55:18,720
+as opposed to saying, no, there's two sounds
+
+1197
+00:55:18,720 --> 00:55:21,560
+next to each other, has to do with the kinds of considerations
+
+1198
+00:55:21,560 --> 00:55:22,560
+I was just talking about.
+
+1199
+00:55:22,560 --> 00:55:25,000
+When you're trying to figure out what's the best theory of,
+
+1200
+00:55:25,000 --> 00:55:27,400
+for example, what sequences of sounds
+
+1201
+00:55:27,400 --> 00:55:30,840
+are allowed in a syllable in a given language,
+
+1202
+00:55:30,840 --> 00:55:32,760
+sometimes it's useful to be able to say,
+
+1203
+00:55:32,760 --> 00:55:35,520
+this is a language that doesn't ever, ever allow,
+
+1204
+00:55:35,520 --> 00:55:39,320
+say, a syllable to end with a stop followed by a fricative.
+
+1205
+00:55:39,320 --> 00:55:41,800
+Oh, but it's OK for it to end with ch, you know.
+
+1206
+00:55:41,800 --> 00:55:43,920
+So we'll just treat that as a single package.
+
+1207
+00:55:43,920 --> 00:55:46,320
+We won't treat it as a stop followed by a fricative.
+
+1208
+00:55:46,320 --> 00:55:50,400
+That's the kind of move people make, yeah.
+
+1209
+00:55:50,400 --> 00:55:54,200
+So terminology, OK?
+
+1210
+00:55:57,520 --> 00:55:59,480
+All right.
+
+1211
+00:55:59,480 --> 00:56:02,720
+So I've made the table whiter.
+
+1212
+00:56:02,720 --> 00:56:05,800
+There are glides, like woof and yeh.
+
+1213
+00:56:05,800 --> 00:56:08,040
+There are some other glides there,
+
+1214
+00:56:08,040 --> 00:56:09,320
+which I can try to read to you.
+
+1215
+00:56:09,320 --> 00:56:12,120
+What would a labiodental glide sound like?
+
+1216
+00:56:16,640 --> 00:56:18,560
+What's a labiodental fricative?
+
+1217
+00:56:18,560 --> 00:56:21,240
+A voiced labiodental fricative.
+
+1218
+00:56:21,240 --> 00:56:22,120
+V, right?
+
+1219
+00:56:22,120 --> 00:56:23,840
+Like a V sound.
+
+1220
+00:56:23,840 --> 00:56:26,880
+So can you try to make a labiodental glide,
+
+1221
+00:56:26,880 --> 00:56:28,440
+maybe between vowels?
+
+1222
+00:56:28,440 --> 00:56:32,680
+It's going to be something like, a la, a la, a la.
+
+1223
+00:56:33,680 --> 00:56:34,800
+English doesn't have those.
+
+1224
+00:56:34,800 --> 00:56:36,120
+I believe Hindi does.
+
+1225
+00:56:36,120 --> 00:56:39,240
+So there are languages out there that have labiodental glides.
+
+1226
+00:56:39,240 --> 00:56:43,800
+Similarly, there are velar glides, a la, a la, a la,
+
+1227
+00:56:43,800 --> 00:56:47,200
+where your tongue is just kind of vaguely gesturing
+
+1228
+00:56:47,200 --> 00:56:49,560
+in the direction of your velum.
+
+1229
+00:56:49,560 --> 00:56:52,000
+I kind of like the IPA symbol for the velar glide.
+
+1230
+00:56:52,000 --> 00:56:55,320
+It looks like something out of Tolkien.
+
+1231
+00:56:55,320 --> 00:56:57,200
+Yep.
+
+1232
+00:56:57,200 --> 00:57:00,200
+OK.
+
+1233
+00:57:00,200 --> 00:57:01,560
+All right.
+
+1234
+00:57:01,560 --> 00:57:04,440
+So we've done consonants.
+
+1235
+00:57:04,440 --> 00:57:05,840
+Had not done all the consonants.
+
+1236
+00:57:05,840 --> 00:57:08,280
+So what I'm going to do is show you some vowels.
+
+1237
+00:57:08,280 --> 00:57:09,600
+And then we'll circle back and look
+
+1238
+00:57:09,600 --> 00:57:12,400
+at some particularly exotic consonants, probably next time,
+
+1239
+00:57:12,400 --> 00:57:13,760
+probably not today.
+
+1240
+00:57:13,760 --> 00:57:15,920
+I want to start talking about vowels.
+
+1241
+00:57:15,920 --> 00:57:18,920
+So let's go through the vowels systematically.
+
+1242
+00:57:18,920 --> 00:57:21,960
+Compare the vowel in the middle of bead
+
+1243
+00:57:21,960 --> 00:57:24,280
+and the vowel in the middle of bad.
+
+1244
+00:57:24,280 --> 00:57:29,160
+And here, let me just warn you that the IPA becomes
+
+1245
+00:57:29,160 --> 00:57:33,680
+particularly forbidding when we get to vowels in English.
+
+1246
+00:57:33,680 --> 00:57:35,840
+And it's not the fault of the IPA.
+
+1247
+00:57:35,840 --> 00:57:40,360
+It's the fact that English has a very large number of vowels
+
+1248
+00:57:40,360 --> 00:57:44,760
+and not a very good system for writing them.
+
+1249
+00:57:44,760 --> 00:57:47,040
+This is one of the things that makes English spelling so
+
+1250
+00:57:47,040 --> 00:57:50,120
+difficult that we can actually have competitions where you
+
+1251
+00:57:50,120 --> 00:57:54,800
+watch people spell, this kind of thing that in many languages
+
+1252
+00:57:54,800 --> 00:57:55,920
+would be impossible.
+
+1253
+00:57:55,920 --> 00:57:57,800
+If you tried to do that in Finnish,
+
+1254
+00:57:57,800 --> 00:57:59,840
+the spelling bead would just never end,
+
+1255
+00:57:59,840 --> 00:58:03,800
+because every word is pronounced exactly the way it's spelled.
+
+1256
+00:58:03,800 --> 00:58:05,840
+We don't do that in English.
+
+1257
+00:58:05,840 --> 00:58:09,960
+So here are two vowels, and those are their IPA symbols,
+
+1258
+00:58:09,960 --> 00:58:12,760
+the vowel in bead and the vowel in bad.
+
+1259
+00:58:12,760 --> 00:58:17,440
+And now, if you, so everybody joined me in sort of transitioning
+
+1260
+00:58:17,440 --> 00:58:23,920
+from one of those vowels to the other, go yeah, yeah, yeah.
+
+1261
+00:58:28,800 --> 00:58:31,200
+OK.
+
+1262
+00:58:31,200 --> 00:58:33,440
+You guys sound good.
+
+1263
+00:58:33,440 --> 00:58:35,600
+What are you doing?
+
+1264
+00:58:35,600 --> 00:58:37,040
+I mean, you're doing what I asked you to,
+
+1265
+00:58:37,040 --> 00:58:40,200
+but what's happening in your mouth?
+
+1266
+00:58:40,200 --> 00:58:41,000
+Yes?
+
+1267
+00:58:41,000 --> 00:58:42,720
+The second vowel is more open.
+
+1268
+00:58:42,720 --> 00:58:44,120
+Yeah, the second vowel is more open.
+
+1269
+00:58:44,120 --> 00:58:46,480
+You're opening your mouth a little bit more.
+
+1270
+00:58:46,480 --> 00:58:49,520
+What are you doing with your tongue?
+
+1271
+00:58:49,520 --> 00:58:51,360
+Lowering from the top to the bottom.
+
+1272
+00:58:51,360 --> 00:58:52,440
+Yeah, it's lowering.
+
+1273
+00:58:52,440 --> 00:58:53,680
+It's going from the top to the bottom.
+
+1274
+00:58:53,680 --> 00:58:55,280
+Yeah, I think you guys are both right.
+
+1275
+00:58:55,280 --> 00:58:58,720
+If your tongue is sort of tensed and it's up there
+
+1276
+00:58:58,720 --> 00:59:03,320
+at the top of your mouth, then for ah, your tongue drops.
+
+1277
+00:59:03,320 --> 00:59:06,760
+In fact, it drops so far that it drags your jaw down with it.
+
+1278
+00:59:06,760 --> 00:59:08,760
+Maybe there's a more reasonable way to say that.
+
+1279
+00:59:08,760 --> 00:59:11,040
+You lower your jaw so that your tongue can
+
+1280
+00:59:11,040 --> 00:59:12,040
+go even further down.
+
+1281
+00:59:15,040 --> 00:59:20,680
+So one way of classifying vowels is in terms of height.
+
+1282
+00:59:20,680 --> 00:59:23,680
+So we talk about the high vowel like heat
+
+1283
+00:59:23,680 --> 00:59:26,200
+and the low vowel like hat.
+
+1284
+00:59:26,200 --> 00:59:29,320
+And there are vowels in between, like the vowel in hate.
+
+1285
+00:59:29,320 --> 00:59:31,280
+That vowel is called mid.
+
+1286
+00:59:31,280 --> 00:59:33,200
+So we have high vowels, and we have mid vowels,
+
+1287
+00:59:33,200 --> 00:59:34,360
+and then we have low vowels.
+
+1288
+00:59:40,000 --> 00:59:42,480
+Yeah?
+
+1289
+00:59:42,480 --> 00:59:46,040
+OK, now let's do another comparison.
+
+1290
+00:59:46,040 --> 00:59:50,280
+Think about the vowel in he and the vowel in who.
+
+1291
+00:59:50,280 --> 00:59:59,840
+So everybody go ee, ee, ee, ee, ee.
+
+1292
+00:59:59,840 --> 01:00:03,200
+What's going on in your vocal tract as you do that?
+
+1293
+01:00:09,800 --> 01:00:13,400
+What's the difference between e and ooh?
+
+1294
+01:00:13,400 --> 01:00:16,160
+Your lips, your lips are definitely involved, yes.
+
+1295
+01:00:16,160 --> 01:00:19,000
+So for ooh, for further twist, right?
+
+1296
+01:00:19,000 --> 01:00:21,560
+Your lips are rounded for the ooh.
+
+1297
+01:00:21,560 --> 01:00:23,680
+That's absolutely right, yeah?
+
+1298
+01:00:23,680 --> 01:00:25,560
+And then for heat, they're not.
+
+1299
+01:00:25,560 --> 01:00:26,060
+Yeah?
+
+1300
+01:00:26,060 --> 01:00:28,960
+In fact, that's why when you take photographs of people,
+
+1301
+01:00:28,960 --> 01:00:32,520
+you have them say something with an e-vel and like cheese,
+
+1302
+01:00:32,520 --> 01:00:35,800
+just to get them to not round their lips.
+
+1303
+01:00:35,800 --> 01:00:37,760
+But you're doing something with your tongue, too,
+
+1304
+01:00:37,760 --> 01:00:43,560
+as you go from ee to ooh, ee, ooh.
+
+1305
+01:00:43,560 --> 01:00:45,760
+What are you doing with your tongue?
+
+1306
+01:00:46,400 --> 01:00:46,900
+Yes?
+
+1307
+01:00:46,900 --> 01:00:49,560
+Move it forward and the bottom to the floor.
+
+1308
+01:00:49,560 --> 01:00:55,720
+Wow, so let's start with ee, where is your tongue?
+
+1309
+01:00:55,720 --> 01:00:59,960
+I mean, it's in your mouth, but where is it pointing?
+
+1310
+01:00:59,960 --> 01:01:01,400
+It's kind of high, right?
+
+1311
+01:01:01,400 --> 01:01:02,880
+Ee.
+
+1312
+01:01:02,880 --> 01:01:06,360
+And then for ooh, where does it go?
+
+1313
+01:01:11,280 --> 01:01:13,040
+It moves, right?
+
+1314
+01:01:13,040 --> 01:01:14,560
+So you aren't just rounding your lips
+
+1315
+01:01:14,560 --> 01:01:16,440
+and leaving your tongue where it was, yes?
+
+1316
+01:01:16,440 --> 01:01:19,440
+I notice for ee, my tongue has to be in my molars.
+
+1317
+01:01:19,440 --> 01:01:21,520
+Yeah?
+
+1318
+01:01:21,520 --> 01:01:23,560
+That's, yeah, I see what you mean, yeah?
+
+1319
+01:01:23,560 --> 01:01:25,000
+Yeah?
+
+1320
+01:01:25,000 --> 01:01:28,960
+I don't know about you guys, for me, for ee, yeah.
+
+1321
+01:01:28,960 --> 01:01:32,960
+Yeah, for me, for ee, it's at the front and it's high.
+
+1322
+01:01:32,960 --> 01:01:37,040
+And then for ooh, my tongue kind of curls backward
+
+1323
+01:01:37,040 --> 01:01:39,960
+and it avoids my molars, you're absolutely right.
+
+1324
+01:01:39,960 --> 01:01:41,680
+And it curls backwards, so it's hiding back
+
+1325
+01:01:41,680 --> 01:01:42,440
+in the back of my mouth.
+
+1326
+01:01:42,440 --> 01:01:44,960
+I think that's the kind of thing you were saying just now.
+
+1327
+01:01:44,960 --> 01:01:47,040
+Yeah, is that the experience people were having?
+
+1328
+01:01:47,040 --> 01:01:49,760
+Everybody do some more ee, ooh, ee, ooh, feel your tongue
+
+1329
+01:01:49,760 --> 01:01:50,520
+moving back and forth.
+
+1330
+01:01:50,520 --> 01:01:51,640
+Ignore your lips, right?
+
+1331
+01:01:51,640 --> 01:01:55,680
+And think about your tongue, yeah?
+
+1332
+01:01:55,680 --> 01:01:57,120
+Yeah?
+
+1333
+01:01:57,120 --> 01:02:03,160
+OK, so we have high, mid, and low vells,
+
+1334
+01:02:03,160 --> 01:02:06,080
+but we also have front and back vells.
+
+1335
+01:02:06,080 --> 01:02:08,880
+So the back vells are vells like the vell in hoo
+
+1336
+01:02:08,880 --> 01:02:12,520
+and the vell in ho, and the vell in hot, ah.
+
+1337
+01:02:12,520 --> 01:02:16,080
+So ooh, and oh, and ah, those are all back vells.
+
+1338
+01:02:16,080 --> 01:02:19,680
+Your tongue is sort of pulling back toward the back of your mouth.
+
+1339
+01:02:19,680 --> 01:02:21,920
+Yeah?
+
+1340
+01:02:21,920 --> 01:02:25,520
+And then this is the other point that you guys made.
+
+1341
+01:02:25,520 --> 01:02:27,040
+Some of these vells are rounded.
+
+1342
+01:02:27,040 --> 01:02:32,480
+So in English, the back non-low vells, the back high
+
+1343
+01:02:32,480 --> 01:02:36,880
+and the back mid vells, are rounded in hoo and ho.
+
+1344
+01:02:36,880 --> 01:02:39,880
+Your lips have to round to make those vells.
+
+1345
+01:02:39,880 --> 01:02:43,040
+But for hot, your lips don't round.
+
+1346
+01:02:43,040 --> 01:02:44,240
+Yeah?
+
+1347
+01:02:44,240 --> 01:02:47,280
+And a bunch more symbols, some of them aren't so bad.
+
+1348
+01:02:47,280 --> 01:02:49,320
+You know, the letter u for ooh, that's pretty good.
+
+1349
+01:02:49,320 --> 01:02:51,960
+And the letter o for ooh, yeah?
+
+1350
+01:02:51,960 --> 01:02:54,720
+And then we have that ash symbol there,
+
+1351
+01:02:54,720 --> 01:02:59,840
+which is from Old English, for ah in had, and then e and a
+
+1352
+01:02:59,840 --> 01:03:01,680
+and ah, go back with those.
+
+1353
+01:03:01,680 --> 01:03:02,800
+Yeah?
+
+1354
+01:03:02,800 --> 01:03:05,760
+We have sort of standard issue European values
+
+1355
+01:03:05,760 --> 01:03:08,120
+for some of those symbols.
+
+1356
+01:03:08,120 --> 01:03:11,120
+OK?
+
+1357
+01:03:11,120 --> 01:03:21,680
+Now, in this chart, I've only got six vells.
+
+1358
+01:03:21,680 --> 01:03:23,120
+You may have been taught, how many vells
+
+1359
+01:03:23,120 --> 01:03:27,120
+were you taught English had if you went to school in English?
+
+1360
+01:03:27,120 --> 01:03:28,120
+Yeah?
+
+1361
+01:03:28,120 --> 01:03:28,620
+Five.
+
+1362
+01:03:28,620 --> 01:03:29,120
+Five.
+
+1363
+01:03:29,120 --> 01:03:30,160
+It's supposed to have five, right?
+
+1364
+01:03:30,160 --> 01:03:31,040
+It does not have five.
+
+1365
+01:03:31,040 --> 01:03:33,520
+It has like 14.
+
+1366
+01:03:33,640 --> 01:03:37,720
+And you know, why are we taught that it only has five?
+
+1367
+01:03:37,720 --> 01:03:40,280
+Why do we only have five letters for vells?
+
+1368
+01:03:43,560 --> 01:03:46,080
+Who gave us this alphabet?
+
+1369
+01:03:46,080 --> 01:03:47,840
+The Romans, right?
+
+1370
+01:03:47,840 --> 01:03:48,480
+Yeah?
+
+1371
+01:03:48,480 --> 01:03:50,880
+And in Latin, there in fact are five vells, which
+
+1372
+01:03:50,880 --> 01:03:52,560
+can be either long or short.
+
+1373
+01:03:52,560 --> 01:03:54,680
+So this is a perfect alphabet for Latin.
+
+1374
+01:03:54,680 --> 01:03:55,180
+Yeah?
+
+1375
+01:03:55,180 --> 01:03:57,040
+But then we got hold of it.
+
+1376
+01:03:57,040 --> 01:04:01,880
+And so we've ended up with 12, 14 vells, different dialects
+
+1377
+01:04:01,880 --> 01:04:03,440
+of English or different.
+
+1378
+01:04:03,440 --> 01:04:05,680
+And we have five letters to spell them with.
+
+1379
+01:04:05,680 --> 01:04:07,280
+And this is why we have spelling Bs.
+
+1380
+01:04:07,280 --> 01:04:08,640
+Yeah?
+
+1381
+01:04:08,640 --> 01:04:10,040
+One of the reasons.
+
+1382
+01:04:10,040 --> 01:04:15,120
+OK, so I've written six of our five vells here on this chart.
+
+1383
+01:04:15,120 --> 01:04:17,760
+And then, but we have more.
+
+1384
+01:04:17,760 --> 01:04:21,400
+So think about O and O, right?
+
+1385
+01:04:21,400 --> 01:04:29,640
+In Houd and Hood, or E and E, and Heed and Hid, or A and E,
+
+1386
+01:04:29,680 --> 01:04:36,600
+and Raid and Red, or O and A, like in coat and caught.
+
+1387
+01:04:36,600 --> 01:04:39,120
+There are various ways of talking about this distinction.
+
+1388
+01:04:39,120 --> 01:04:41,120
+But one way is like this.
+
+1389
+01:04:41,120 --> 01:04:42,880
+We say that there's a distinction between what
+
+1390
+01:04:42,880 --> 01:04:46,800
+are called tense vells and what are called lax vells.
+
+1391
+01:04:46,800 --> 01:04:52,920
+So O is a high back rounded tense vowel.
+
+1392
+01:04:52,920 --> 01:04:55,760
+And if you go back and forth between O and O,
+
+1393
+01:04:56,480 --> 01:05:03,640
+O, O, O, the idea is basically what you're doing is relaxing.
+
+1394
+01:05:03,640 --> 01:05:07,680
+So your tongue is not quite as rigidly high and back
+
+1395
+01:05:07,680 --> 01:05:10,480
+as it would be for an O when it makes an O.
+
+1396
+01:05:10,480 --> 01:05:12,400
+And your lips are probably not quite as
+
+1397
+01:05:12,400 --> 01:05:13,520
+tensely rounded either.
+
+1398
+01:05:13,520 --> 01:05:16,720
+Your whole body relaxes.
+
+1399
+01:05:16,720 --> 01:05:20,120
+Same deal with all these other pairs.
+
+1400
+01:05:20,120 --> 01:05:22,400
+It's a fact about English lax vowels
+
+1401
+01:05:22,400 --> 01:05:25,920
+that there's a restriction on their distribution.
+
+1402
+01:05:25,920 --> 01:05:29,880
+English monosyllables don't end in lax vells that
+
+1403
+01:05:29,880 --> 01:05:30,960
+are either front or high.
+
+1404
+01:05:30,960 --> 01:05:35,320
+So we have words like flea and flu and flay.
+
+1405
+01:05:35,320 --> 01:05:37,600
+Those are all words in English.
+
+1406
+01:05:37,600 --> 01:05:41,040
+Flay means to remove the skin from.
+
+1407
+01:05:41,040 --> 01:05:44,320
+But we don't have those three words at the end there.
+
+1408
+01:05:44,320 --> 01:05:46,160
+I've given them stars to remind us
+
+1409
+01:05:46,160 --> 01:05:49,200
+that those are not words that we could have in English.
+
+1410
+01:05:49,200 --> 01:05:50,880
+Anybody want to attempt to pronounce them?
+
+1411
+01:05:53,360 --> 01:05:54,360
+Yeah?
+
+1412
+01:05:54,360 --> 01:05:55,640
+Wait, which one was it?
+
+1413
+01:05:55,640 --> 01:05:56,120
+Oh, sorry.
+
+1414
+01:05:56,120 --> 01:05:57,080
+You were going to ask a question.
+
+1415
+01:05:57,080 --> 01:05:57,560
+Go ahead.
+
+1416
+01:05:57,560 --> 01:05:59,000
+What about schwa?
+
+1417
+01:05:59,000 --> 01:06:00,320
+We haven't gotten to schwa.
+
+1418
+01:06:00,320 --> 01:06:02,160
+Yeah, they're more vowels.
+
+1419
+01:06:02,160 --> 01:06:07,840
+So those last three, if they were English words,
+
+1420
+01:06:07,840 --> 01:06:10,680
+they would be flea, flu, and flea.
+
+1421
+01:06:10,680 --> 01:06:12,160
+Well, we don't have words like that.
+
+1422
+01:06:12,160 --> 01:06:17,280
+English doesn't have words that end in e or o or e,
+
+1423
+01:06:17,280 --> 01:06:21,240
+with the possible exception of meh.
+
+1424
+01:06:21,240 --> 01:06:23,120
+So if we don't count that as a word,
+
+1425
+01:06:23,120 --> 01:06:24,840
+then English doesn't have monosyllables
+
+1426
+01:06:24,840 --> 01:06:27,480
+that end in these vowels.
+
+1427
+01:06:27,480 --> 01:06:32,400
+And then you wanted to know about schwa.
+
+1428
+01:06:32,400 --> 01:06:34,320
+Those are sometimes called central vowels.
+
+1429
+01:06:34,320 --> 01:06:39,800
+So the first vowel in machine is a schwa.
+
+1430
+01:06:39,800 --> 01:06:40,920
+It's not high or back.
+
+1431
+01:06:40,920 --> 01:06:41,800
+It's not front.
+
+1432
+01:06:41,800 --> 01:06:44,640
+It's not high or low.
+
+1433
+01:06:44,640 --> 01:06:46,360
+It's kind of mid and central.
+
+1434
+01:06:46,360 --> 01:06:49,960
+And then dove is pretty similar to schwa
+
+1435
+01:06:49,960 --> 01:06:52,360
+and is sometimes represented with that wedge shape there.
+
+1436
+01:06:52,360 --> 01:06:54,000
+In fact, it's called a wedge.
+
+1437
+01:06:54,000 --> 01:06:57,480
+Not all speakers of English distinguish schwa from wedge.
+
+1438
+01:06:57,480 --> 01:06:57,960
+I do.
+
+1439
+01:06:57,960 --> 01:07:02,720
+So for me, the vowels in above are two different vowels above.
+
+1440
+01:07:02,720 --> 01:07:04,800
+But there are speakers of English
+
+1441
+01:07:04,800 --> 01:07:07,560
+for whom they're the same.
+
+1442
+01:07:07,560 --> 01:07:11,680
+Similarly, I'll go back to an earlier slide.
+
+1443
+01:07:11,680 --> 01:07:14,400
+Not every dialect of English has all of these vowels
+
+1444
+01:07:14,400 --> 01:07:16,400
+or has them all in the same places.
+
+1445
+01:07:16,400 --> 01:07:18,400
+So I speak a dialect of English in which
+
+1446
+01:07:18,400 --> 01:07:22,840
+cot and cot have different vowels in them.
+
+1447
+01:07:22,840 --> 01:07:25,280
+Does anybody pronounce those words the same?
+
+1448
+01:07:25,280 --> 01:07:26,280
+Yeah.
+
+1449
+01:07:26,280 --> 01:07:28,440
+I pronounce them the same, but I have a question.
+
+1450
+01:07:28,440 --> 01:07:28,940
+Yes.
+
+1451
+01:07:28,940 --> 01:07:30,280
+You said that they can't, like, English
+
+1452
+01:07:30,280 --> 01:07:33,080
+also can't end in lax vowels.
+
+1453
+01:07:33,080 --> 01:07:34,080
+What about, like, law?
+
+1454
+01:07:34,080 --> 01:07:35,880
+OK, they're the ending.
+
+1455
+01:07:35,880 --> 01:07:38,680
+Yeah.
+
+1456
+01:07:38,680 --> 01:07:40,640
+Yeah, yeah, yeah.
+
+1457
+01:07:40,640 --> 01:07:41,680
+So what did I say?
+
+1458
+01:07:41,680 --> 01:07:46,360
+They can't end in lax vowels that are either front or high.
+
+1459
+01:07:46,360 --> 01:07:49,200
+So yeah, you're absolutely right.
+
+1460
+01:07:49,200 --> 01:07:51,360
+There are ones ending in awe, like, law.
+
+1461
+01:07:51,360 --> 01:07:52,760
+Yeah, absolutely.
+
+1462
+01:07:52,760 --> 01:07:55,560
+Or flaw.
+
+1463
+01:07:55,560 --> 01:07:58,440
+There are people who pronounce cot and cot the same.
+
+1464
+01:07:58,440 --> 01:07:59,880
+For me, those are two different vowels.
+
+1465
+01:07:59,880 --> 01:08:01,240
+Yeah, can you pronounce them for us?
+
+1466
+01:08:01,240 --> 01:08:02,360
+Cot and cot.
+
+1467
+01:08:02,360 --> 01:08:03,520
+OK, cool.
+
+1468
+01:08:03,520 --> 01:08:06,640
+Did you say them in the same order or a different order?
+
+1469
+01:08:06,640 --> 01:08:07,400
+It didn't matter.
+
+1470
+01:08:07,400 --> 01:08:08,200
+It doesn't matter.
+
+1471
+01:08:08,200 --> 01:08:10,680
+OK, good.
+
+1472
+01:08:10,680 --> 01:08:15,800
+I pronounce those three words, Mary, Mary, and Mary.
+
+1473
+01:08:15,800 --> 01:08:17,200
+I pronounce them the same.
+
+1474
+01:08:17,200 --> 01:08:18,520
+There are dialects of English that
+
+1475
+01:08:18,520 --> 01:08:20,720
+have different pronunciations for some of them.
+
+1476
+01:08:20,720 --> 01:08:24,480
+Does anybody pronounce these words differently?
+
+1477
+01:08:24,480 --> 01:08:25,480
+Yeah.
+
+1478
+01:08:25,480 --> 01:08:27,160
+Mary, Mary, and Mary.
+
+1479
+01:08:27,160 --> 01:08:28,160
+Mary, yeah.
+
+1480
+01:08:28,160 --> 01:08:31,080
+So there are people for whom the vowel in the last one
+
+1481
+01:08:31,080 --> 01:08:32,080
+is more of an ash.
+
+1482
+01:08:32,080 --> 01:08:33,680
+It's like a Mary.
+
+1483
+01:08:33,680 --> 01:08:36,000
+I associate that with, like, New Jersey.
+
+1484
+01:08:36,000 --> 01:08:38,160
+You're from New Jersey.
+
+1485
+01:08:38,160 --> 01:08:40,720
+Yeah, yes.
+
+1486
+01:08:40,720 --> 01:08:43,560
+I'll pay you later.
+
+1487
+01:08:43,560 --> 01:08:44,920
+OK, yeah.
+
+1488
+01:08:44,920 --> 01:08:48,920
+So OK, we've now sort of rocketed through a bunch
+
+1489
+01:08:48,920 --> 01:08:50,520
+of consonants and the vowels.
+
+1490
+01:08:50,520 --> 01:08:51,600
+We're just about out of time.
+
+1491
+01:08:51,600 --> 01:08:54,000
+Let me just give this to you as an exercise,
+
+1492
+01:08:54,000 --> 01:08:54,840
+and then we'll stop.
+
+1493
+01:08:54,840 --> 01:08:57,200
+Anybody want to try to pronounce the first of those?
+
+1494
+01:09:04,880 --> 01:09:06,320
+She sells seashells.
+
+1495
+01:09:06,320 --> 01:09:09,160
+Yeah.
+
+1496
+01:09:09,160 --> 01:09:11,240
+Tell you what, we'll do this exercise next time.
+
+1497
+01:09:11,240 --> 01:09:14,760
+So next time, we'll do this as the first slide.
+
+1498
+01:09:14,760 --> 01:09:16,360
+And I'll leave it on the slides.
+
+1499
+01:09:16,360 --> 01:09:18,160
+You can work on it at home.
+
+1500
+01:09:18,160 --> 01:09:19,920
+And do some fooling with it and try
+
+1501
+01:09:19,920 --> 01:09:21,120
+to get to where you can read it.
+
+1502
+01:09:21,120 --> 01:09:23,600
+As we go along, I'm going to be asking you to read things
+
+1503
+01:09:23,600 --> 01:09:26,600
+in IPA, so I'll start putting IPA on the slides more and more.
+
+1504
+01:09:26,600 --> 01:09:28,600
+So start trying to familiarize yourself with it
+
+1505
+01:09:28,600 --> 01:09:30,800
+and get to where you're familiar with, at least,
+
+1506
+01:09:30,800 --> 01:09:33,840
+the symbols for sounds that we use in English.
+
+1507
+01:09:33,840 --> 01:09:35,320
+Do you want me to read the rest of them?
+
+1508
+01:09:35,320 --> 01:09:36,280
+I'll do some more IPA.
+
+1509
+01:09:36,280 --> 01:09:38,880
+OK, so what's the second one?
+
+1510
+01:09:38,880 --> 01:09:40,440
+Sue says he's a bad egg.
+
+1511
+01:09:40,440 --> 01:09:41,720
+Sue says he's a bad egg.
+
+1512
+01:09:41,720 --> 01:09:43,440
+Yeah, you guys are good fast learners.
+
+1513
+01:09:43,480 --> 01:09:47,080
+And what's the third one?
+
+1514
+01:09:47,080 --> 01:09:47,580
+Excellent.
+
+1515
+01:09:47,580 --> 01:09:50,080
+And what's the last one?
+
+1516
+01:09:50,080 --> 01:09:54,080
+Top chopstick shops.
+
+1517
+01:09:54,080 --> 01:09:58,680
+Yeah, top chopstick shops, stock top chopsticks.
+
+1518
+01:09:58,680 --> 01:10:01,120
+Got that from a book of tongue twisters.
+
+1519
+01:10:01,120 --> 01:10:01,800
+OK, good.
+
+1520
+01:10:01,800 --> 01:10:02,840
+So let's leave it there.
+
+1521
+01:10:02,840 --> 01:10:05,080
+And we'll come back to this next time.
+

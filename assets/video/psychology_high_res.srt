@@ -1,0 +1,7140 @@
+1
+00:00:00,000 --> 00:00:02,480
+The following content is provided under a Creative
+
+2
+00:00:02,480 --> 00:00:03,880
+Commons license.
+
+3
+00:00:03,880 --> 00:00:06,920
+Your support will help MIT OpenCourseWare continue to
+
+4
+00:00:06,920 --> 00:00:10,560
+offer high quality educational resources for free.
+
+5
+00:00:10,560 --> 00:00:13,480
+To make a donation or view additional materials from
+
+6
+00:00:13,480 --> 00:00:17,400
+hundreds of MIT courses, visit MIT OpenCourseWare at
+
+7
+00:00:17,400 --> 00:00:18,640
+ocw.mit.edu.
+
+8
+00:00:18,640 --> 00:00:32,400
+So today I want to talk with you about how it is that we can
+
+9
+00:00:32,400 --> 00:00:36,560
+do research of a scientific kind for something as complex as
+
+10
+00:00:36,560 --> 00:00:39,600
+human behavior, as opposed to things that you measure out
+
+11
+00:00:39,600 --> 00:00:43,160
+in space or test tubes or under microscopes.
+
+12
+00:00:43,160 --> 00:00:46,480
+People are complex organisms, right?
+
+13
+00:00:46,480 --> 00:00:49,480
+And to do research on them, to understand human nature, how
+
+14
+00:00:49,480 --> 00:00:51,840
+the mind works, how the brain supports it, is a
+
+15
+00:00:51,840 --> 00:00:52,960
+challenging story.
+
+16
+00:00:52,960 --> 00:00:55,480
+So the usual thing is an experiment.
+
+17
+00:00:55,480 --> 00:00:57,920
+You have a group of participants who will talk
+
+18
+00:00:57,920 --> 00:00:58,800
+about that.
+
+19
+00:00:58,800 --> 00:01:01,280
+But in the reading for today, and I know for the first time
+
+20
+00:01:01,280 --> 00:01:03,640
+we've done this, so you may not have read it, but if you
+
+21
+00:01:03,640 --> 00:01:07,440
+have, that'd be great, is another thread of the kind of
+
+22
+00:01:07,440 --> 00:01:09,840
+way that people are studied, which is dramatic
+
+23
+00:01:09,840 --> 00:01:13,480
+individual stories, case studies, single stories that
+
+24
+00:01:13,480 --> 00:01:15,560
+are illustrative of something that we think are
+
+25
+00:01:15,560 --> 00:01:16,880
+broader principles.
+
+26
+00:01:16,880 --> 00:01:18,800
+And a lot of our biggest discoveries, and we'll come
+
+27
+00:01:18,800 --> 00:01:21,000
+to that later in the course, have been made on very
+
+28
+00:01:21,000 --> 00:01:24,880
+unusual single individuals who turn out to have a lesson
+
+29
+00:01:24,880 --> 00:01:26,880
+that's pretty broad, for example, for the
+
+30
+00:01:26,880 --> 00:01:28,680
+organization, the human brain.
+
+31
+00:01:28,680 --> 00:01:32,760
+So in the Oliver Sacks book, there's a story about Donald.
+
+32
+00:01:32,760 --> 00:01:38,680
+And what did Donald do that got him in big trouble?
+
+33
+00:01:38,680 --> 00:01:41,760
+He murdered his girlfriend while he was on PCP.
+
+34
+00:01:41,800 --> 00:01:45,520
+He's in a psychiatric hospital.
+
+35
+00:01:45,520 --> 00:01:47,520
+They try hypnosis to help him remember it.
+
+36
+00:01:47,520 --> 00:01:49,400
+He says he doesn't remember it.
+
+37
+00:01:49,400 --> 00:01:52,080
+Many of you may know that an astounding number of
+
+38
+00:01:52,080 --> 00:01:55,800
+criminals under interrogation tell you they don't
+
+39
+00:01:55,800 --> 00:01:59,440
+remember anything about the episode involved.
+
+40
+00:01:59,440 --> 00:02:02,000
+So people are suspicious at first, for many reasons,
+
+41
+00:02:02,000 --> 00:02:04,720
+because the easiest thing to say is I don't remember what
+
+42
+00:02:04,720 --> 00:02:07,520
+happened, and then you can't catch yourself in a lie or
+
+43
+00:02:07,520 --> 00:02:10,200
+any complexity, because you don't remember what happened.
+
+44
+00:02:10,240 --> 00:02:12,400
+And sometimes you don't remember, and sometimes you do.
+
+45
+00:02:12,400 --> 00:02:14,520
+But in this case, they try hypnosis.
+
+46
+00:02:14,520 --> 00:02:15,200
+That doesn't help.
+
+47
+00:02:15,200 --> 00:02:17,880
+He's in there for four years.
+
+48
+00:02:17,880 --> 00:02:22,160
+And then he knows conceptually that he murdered his
+
+49
+00:02:22,160 --> 00:02:25,320
+girlfriend, and he says, I'm not fit for society.
+
+50
+00:02:25,320 --> 00:02:27,400
+He knows it's a terrible thing he did.
+
+51
+00:02:27,400 --> 00:02:29,440
+But it's kind of like an intellectual knowledge, right?
+
+52
+00:02:29,440 --> 00:02:30,400
+It's not a feeling.
+
+53
+00:02:30,400 --> 00:02:31,600
+It's not a memory.
+
+54
+00:02:31,600 --> 00:02:37,760
+And then he goes biking and something happens.
+
+55
+00:02:37,800 --> 00:02:42,160
+Which is, he gets hit by a car.
+
+56
+00:02:42,160 --> 00:02:46,600
+And so there's what appears to be a drug-induced amnesia of
+
+57
+00:02:46,600 --> 00:02:48,720
+the original murderous episode.
+
+58
+00:02:48,720 --> 00:02:50,080
+He gets hit by a car.
+
+59
+00:02:50,080 --> 00:02:51,440
+He has a severe head injury.
+
+60
+00:02:51,440 --> 00:02:53,120
+He's in a coma for two weeks.
+
+61
+00:02:53,120 --> 00:02:55,480
+He has left-sided weakness as he comes out of it, which
+
+62
+00:02:55,480 --> 00:02:59,800
+means the biggest injury was in the right side of his brain.
+
+63
+00:02:59,800 --> 00:03:00,800
+Weakness and numbness.
+
+64
+00:03:00,800 --> 00:03:02,400
+And he has frontal lobe contusions.
+
+65
+00:03:02,400 --> 00:03:04,840
+He has injury and bleeding around the frontal lobes,
+
+66
+00:03:04,840 --> 00:03:07,360
+the cortex that sits in the front of the brain.
+
+67
+00:03:07,400 --> 00:03:09,040
+But now a remarkable thing happens.
+
+68
+00:03:09,040 --> 00:03:13,480
+It's as if two insults, two wrongs made a right.
+
+69
+00:03:13,480 --> 00:03:16,520
+The first wrong being the PCP, the second wrong being the
+
+70
+00:03:16,520 --> 00:03:19,160
+accident, and now what happens?
+
+71
+00:03:19,160 --> 00:03:23,000
+He remembers in vivid and florid detail the horror that he
+
+72
+00:03:23,000 --> 00:03:24,480
+actually committed this murder.
+
+73
+00:03:24,480 --> 00:03:27,680
+It's as if two insults to the brain, one drug-induced, one
+
+74
+00:03:27,680 --> 00:03:30,760
+a focal injury, repressed the memory, and
+
+75
+00:03:30,760 --> 00:03:32,360
+then unrepressed the memory.
+
+76
+00:03:32,360 --> 00:03:34,280
+And one of the first things I have to do is discover whether
+
+77
+00:03:34,280 --> 00:03:36,560
+he really has his memory or he just thinks he has his
+
+78
+00:03:36,560 --> 00:03:37,120
+memory.
+
+79
+00:03:37,120 --> 00:03:40,640
+And how do they figure out to their satisfaction whether it's
+
+80
+00:03:40,640 --> 00:03:44,280
+a really recovered memory or a fabrication of his mind?
+
+81
+00:03:46,960 --> 00:03:48,320
+Right, that's really important.
+
+82
+00:03:48,320 --> 00:03:51,160
+He remembers details of the murder that are not publicly
+
+83
+00:03:51,160 --> 00:03:54,000
+available, that were not in the information that was given
+
+84
+00:03:54,000 --> 00:03:54,360
+to him.
+
+85
+00:03:54,360 --> 00:03:56,560
+That's a really huge issue in these kinds of memories.
+
+86
+00:03:56,560 --> 00:03:58,600
+So there's a really recovered memory, not an
+
+87
+00:03:58,600 --> 00:04:00,760
+inadvertently fabricated memory.
+
+88
+00:04:00,760 --> 00:04:04,160
+And they discover he has deep seizure activity in his limb
+
+89
+00:04:04,200 --> 00:04:07,160
+structures, the parts of his brain that are involved in
+
+90
+00:04:07,160 --> 00:04:10,280
+emotion are having seizures.
+
+91
+00:04:10,280 --> 00:04:13,600
+In epilepsy, neurons are firing for no good reason, and
+
+92
+00:04:13,600 --> 00:04:14,560
+that's part of his disorder.
+
+93
+00:04:14,560 --> 00:04:17,440
+They give him medications to help with that.
+
+94
+00:04:17,440 --> 00:04:20,200
+But here's the question for you for a moment to think about.
+
+95
+00:04:20,200 --> 00:04:22,880
+And it's now such a common question because our society
+
+96
+00:04:22,880 --> 00:04:25,040
+is moving that way, that it's on many TV shows.
+
+97
+00:04:25,040 --> 00:04:26,080
+I see it every couple of weeks.
+
+98
+00:04:26,080 --> 00:04:28,400
+There's a Law and Order episode that has something like
+
+99
+00:04:28,400 --> 00:04:32,240
+this, which is the more you know about the biology that
+
+100
+00:04:32,280 --> 00:04:36,760
+underlies really criminal, terrible behavior.
+
+101
+00:04:36,760 --> 00:04:40,640
+Should that be a cause for understanding it, or not?
+
+102
+00:04:40,640 --> 00:04:43,400
+So in this case, he took the drugs, he killed the person,
+
+103
+00:04:43,400 --> 00:04:45,480
+you think he's pretty responsible.
+
+104
+00:04:45,480 --> 00:04:47,880
+But how about somebody who kills somebody, and it turns
+
+105
+00:04:47,880 --> 00:04:50,080
+out, in such a case, a man with no history, a grown man
+
+106
+00:04:50,080 --> 00:04:54,320
+with no history of criminal activity of any kind, shoved
+
+107
+00:04:54,320 --> 00:04:58,160
+his wife out of a high window to her death in the course of
+
+108
+00:04:58,160 --> 00:05:00,960
+a standard argument.
+
+109
+00:05:00,960 --> 00:05:05,200
+Then they discovered that he has a big tumor growing in the
+
+110
+00:05:05,200 --> 00:05:07,480
+basal part of his frontal cortex.
+
+111
+00:05:10,200 --> 00:05:11,920
+Now, is the man responsible for what he did?
+
+112
+00:05:16,040 --> 00:05:18,760
+It's a really interesting question, right?
+
+113
+00:05:18,760 --> 00:05:21,080
+And the more we understand about the neuroscience of our
+
+114
+00:05:21,080 --> 00:05:23,520
+brains, what makes us do things which lets us control
+
+115
+00:05:23,520 --> 00:05:26,680
+impulses, what makes us murderous, there's a guy, Kent
+
+116
+00:05:26,680 --> 00:05:29,040
+Keele, University of Mexico, who's driving around in a big
+
+117
+00:05:29,040 --> 00:05:32,520
+van with an MRI scanner, and he goes from penitentiary to
+
+118
+00:05:32,520 --> 00:05:35,840
+penitentiary, and he images the brains of serial
+
+119
+00:05:35,840 --> 00:05:38,360
+murderers, of psychopathic murderers.
+
+120
+00:05:38,360 --> 00:05:40,280
+And he's getting things that are pretty systematically
+
+121
+00:05:40,280 --> 00:05:42,560
+different about their brains.
+
+122
+00:05:42,560 --> 00:05:44,320
+And the question is, what does that mean?
+
+123
+00:05:44,320 --> 00:05:46,160
+Does that mean those people were prone to do it for
+
+124
+00:05:46,160 --> 00:05:48,440
+reasons of their early environment, or genes, or
+
+125
+00:05:48,440 --> 00:05:50,040
+some incident that happened?
+
+126
+00:05:50,040 --> 00:05:51,960
+If that's the case, do you forgive them differently?
+
+127
+00:05:51,960 --> 00:05:55,400
+Should we have a different moral code, or legal code as we
+
+128
+00:05:55,400 --> 00:05:57,760
+discovered the brain basis for some of these things?
+
+129
+00:05:57,760 --> 00:06:01,080
+Or is that irrelevant, what counts as the action?
+
+130
+00:06:01,080 --> 00:06:03,280
+So this is the kind of thing you could think about, maybe
+
+131
+00:06:03,280 --> 00:06:04,520
+discuss in your section some.
+
+132
+00:06:04,520 --> 00:06:06,600
+The more we understand about the human brain, the more we'll
+
+133
+00:06:06,600 --> 00:06:09,360
+understand about behaviors that we find terrible.
+
+134
+00:06:09,360 --> 00:06:12,200
+And what does that mean about legal and moral decisions about
+
+135
+00:06:12,200 --> 00:06:14,520
+how to punish those, or think about those?
+
+136
+00:06:14,520 --> 00:06:17,840
+So that's coming in your lifetime, because there's
+
+137
+00:06:17,840 --> 00:06:21,040
+steady progress on this, and how to think about that is a
+
+138
+00:06:21,040 --> 00:06:22,840
+really big question.
+
+139
+00:06:22,840 --> 00:06:26,640
+So I'm going to talk with you today about research and
+
+140
+00:06:26,680 --> 00:06:27,600
+psychology.
+
+141
+00:06:27,600 --> 00:06:29,280
+And a funny thing about psychology, and I'll come
+
+142
+00:06:29,280 --> 00:06:32,200
+back to this, is everybody is an amateur psychologist.
+
+143
+00:06:32,200 --> 00:06:32,840
+They have to be.
+
+144
+00:06:32,840 --> 00:06:35,320
+If you deal with people, you're an amateur psychologist.
+
+145
+00:06:35,320 --> 00:06:38,400
+Moreover, we live in a world with Oprah Winfrey and Dr.
+
+146
+00:06:38,400 --> 00:06:39,360
+Phil, right?
+
+147
+00:06:39,360 --> 00:06:42,040
+So in case you're only an amateur one, you hear all
+
+148
+00:06:42,040 --> 00:06:44,440
+kinds of stuff, newspaper, internet, magazines,
+
+149
+00:06:44,440 --> 00:06:46,160
+everywhere you go, friends will tell you stuff about
+
+150
+00:06:46,160 --> 00:06:47,600
+psychologists have found this, or
+
+151
+00:06:47,600 --> 00:06:49,520
+psychologists have found that.
+
+152
+00:06:49,520 --> 00:06:51,680
+So you have your own intuitions to deal with people in
+
+153
+00:06:51,680 --> 00:06:53,480
+everyday life.
+
+154
+00:06:53,480 --> 00:06:58,880
+And here's a kind of a sentence from Time Magazine that
+
+155
+00:06:58,880 --> 00:07:01,480
+drives psychologists crazy if you take it seriously.
+
+156
+00:07:01,480 --> 00:07:04,000
+So here's this literal sentence.
+
+157
+00:07:04,000 --> 00:07:07,400
+Almost half of children of divorces enter adulthood as
+
+158
+00:07:07,400 --> 00:07:10,920
+worried, underachieving, self-deprecating, and
+
+159
+00:07:10,920 --> 00:07:13,280
+sometimes angry young men and women.
+
+160
+00:07:13,280 --> 00:07:14,480
+OK.
+
+161
+00:07:14,480 --> 00:07:16,880
+So that sounds kind of like a psychological study of
+
+162
+00:07:16,880 --> 00:07:19,400
+some kind, kind of, right?
+
+163
+00:07:19,400 --> 00:07:21,240
+Somebody who wants to argue about the importance of
+
+164
+00:07:21,240 --> 00:07:24,640
+divorce and breakdown of the family.
+
+165
+00:07:24,640 --> 00:07:26,120
+So let's think about this for a moment.
+
+166
+00:07:26,120 --> 00:07:28,520
+Almost half of children of divorce enter adulthood as
+
+167
+00:07:28,520 --> 00:07:29,840
+worried.
+
+168
+00:07:29,840 --> 00:07:32,440
+Are you guys worried about global warming?
+
+169
+00:07:32,440 --> 00:07:33,040
+A little.
+
+170
+00:07:33,040 --> 00:07:35,960
+Are you worried about peace in the Middle East and how that
+
+171
+00:07:35,960 --> 00:07:37,600
+influences the Middle East and the US?
+
+172
+00:07:37,600 --> 00:07:38,320
+A little.
+
+173
+00:07:38,320 --> 00:07:40,000
+Are you worried about an economy that may not have
+
+174
+00:07:40,000 --> 00:07:41,360
+jobs waiting for you?
+
+175
+00:07:41,360 --> 00:07:41,840
+A little.
+
+176
+00:07:41,840 --> 00:07:42,520
+OK.
+
+177
+00:07:42,520 --> 00:07:43,480
+Who's not worried?
+
+178
+00:07:43,480 --> 00:07:44,240
+A little.
+
+179
+00:07:44,240 --> 00:07:46,760
+A little bit of the time.
+
+180
+00:07:46,760 --> 00:07:48,760
+So it doesn't even tell you that half of children in the
+
+181
+00:07:48,760 --> 00:07:51,160
+world, for example, are who come from families.
+
+182
+00:07:51,160 --> 00:07:52,920
+Without divorce, right?
+
+183
+00:07:52,920 --> 00:07:54,040
+Because that's the only relevant question.
+
+184
+00:07:54,040 --> 00:07:56,400
+It's not are people worried about stuff.
+
+185
+00:07:56,400 --> 00:07:58,920
+Underachieving, compared to what?
+
+186
+00:07:58,920 --> 00:08:01,920
+How would you prove somebody's underachieving?
+
+187
+00:08:01,920 --> 00:08:03,760
+Scientifically.
+
+188
+00:08:03,760 --> 00:08:06,400
+I mean, most of you probably have had days where you've
+
+189
+00:08:06,400 --> 00:08:08,800
+underachieved and days where you've achieved pretty well.
+
+190
+00:08:08,800 --> 00:08:10,680
+But how would you measure and prove that?
+
+191
+00:08:10,680 --> 00:08:11,680
+Self-deprecating.
+
+192
+00:08:11,680 --> 00:08:13,120
+Well, sometimes we think it's actually kind of nice if a
+
+193
+00:08:13,120 --> 00:08:14,240
+person's modest.
+
+194
+00:08:14,240 --> 00:08:17,040
+What's the difference between modest and self-deprecation?
+
+195
+00:08:17,040 --> 00:08:17,760
+And I like this one.
+
+196
+00:08:17,760 --> 00:08:21,280
+Sometimes angry young men and women, right?
+
+197
+00:08:21,280 --> 00:08:27,240
+I mean, are you sometimes angry about something or another?
+
+198
+00:08:27,240 --> 00:08:29,760
+And if you are, does that tell us that society is breaking
+
+199
+00:08:29,760 --> 00:08:32,240
+down and your parents did something bad that you're
+
+200
+00:08:32,240 --> 00:08:32,960
+sometimes?
+
+201
+00:08:32,960 --> 00:08:35,520
+I mean, who as a human being is not sometimes angry?
+
+202
+00:08:35,520 --> 00:08:39,160
+So here's a kind of psychology-sounding sentence on a
+
+203
+00:08:39,160 --> 00:08:42,120
+serious topic, which is what is consequences of
+
+204
+00:08:42,120 --> 00:08:43,680
+divorces in families?
+
+205
+00:08:43,680 --> 00:08:47,120
+Should we be thinking about things that encourage
+
+206
+00:08:47,120 --> 00:08:50,240
+marriages to stay stable and things like that?
+
+207
+00:08:50,240 --> 00:08:54,080
+But there's really no information at all.
+
+208
+00:08:54,080 --> 00:08:56,920
+So from a researcher science perspective, so I'm going to
+
+209
+00:08:56,920 --> 00:08:59,240
+talk about a little bit, just reminding you what science is.
+
+210
+00:08:59,240 --> 00:09:00,960
+We're at a university, obviously, that thinks about
+
+211
+00:09:00,960 --> 00:09:03,160
+science and does science all the time.
+
+212
+00:09:03,160 --> 00:09:05,520
+Remind you of what an experiment is, a very brief
+
+213
+00:09:05,520 --> 00:09:08,000
+history of psychology experimentation, and then walk
+
+214
+00:09:08,000 --> 00:09:09,840
+you through a few experiments that I find kind of
+
+215
+00:09:09,840 --> 00:09:13,120
+interesting, and then some topics related to psychology.
+
+216
+00:09:13,120 --> 00:09:14,280
+So let me start with this.
+
+217
+00:09:14,280 --> 00:09:16,720
+How do you know what is true?
+
+218
+00:09:16,760 --> 00:09:19,120
+How do you know what is true?
+
+219
+00:09:19,120 --> 00:09:20,480
+That you take to be true?
+
+220
+00:09:25,480 --> 00:09:25,920
+What is the answer?
+
+221
+00:09:25,920 --> 00:09:27,280
+Everyone's looking all like, how do I know?
+
+222
+00:09:27,280 --> 00:09:28,000
+Please tell me.
+
+223
+00:09:28,000 --> 00:09:28,960
+OK.
+
+224
+00:09:28,960 --> 00:09:31,240
+Well, when people try to analyze this, and you can think
+
+225
+00:09:31,240 --> 00:09:35,280
+about it for your own self, one of them is authority.
+
+226
+00:09:35,280 --> 00:09:38,840
+Parents, teachers, textbooks, scientists, professors, and
+
+227
+00:09:38,840 --> 00:09:41,320
+courses, we tell you this is the truth.
+
+228
+00:09:41,320 --> 00:09:44,360
+And if you remember the truth correctly, you get an A.
+
+229
+00:09:44,360 --> 00:09:45,960
+So authority is a huge source.
+
+230
+00:09:46,440 --> 00:09:48,080
+It would be costly to go around and kind of have your own
+
+231
+00:09:48,080 --> 00:09:49,080
+idea about everything.
+
+232
+00:09:49,080 --> 00:09:51,080
+12 inches in a foot, I'm not taking that piece of
+
+233
+00:09:51,080 --> 00:09:53,360
+information without skepticism.
+
+234
+00:09:53,360 --> 00:09:55,240
+You couldn't lead your life without kind of believing a
+
+235
+00:09:55,240 --> 00:09:56,760
+lot of stuff, but you know you don't want to believe
+
+236
+00:09:56,760 --> 00:09:58,400
+everything, just because you hear it.
+
+237
+00:09:58,400 --> 00:10:02,280
+Repetition or tenacity, you hear something often enough,
+
+238
+00:10:02,280 --> 00:10:05,440
+and people tend to believe stuff.
+
+239
+00:10:05,440 --> 00:10:06,640
+A priori, what's reasonable?
+
+240
+00:10:06,640 --> 00:10:08,320
+You think things through just by thought.
+
+241
+00:10:08,320 --> 00:10:11,000
+What's possible, rational, and so on?
+
+242
+00:10:11,000 --> 00:10:14,880
+And then maybe a fourth brand of knowledge to something
+
+243
+00:10:14,880 --> 00:10:17,600
+scientific analysis, where we have hypotheses and we test
+
+244
+00:10:17,600 --> 00:10:19,920
+them in some version of experiments, or at least
+
+245
+00:10:19,920 --> 00:10:22,560
+correlations among data.
+
+246
+00:10:22,560 --> 00:10:28,120
+Now there's another view, which is kind of that whatever we
+
+247
+00:10:28,120 --> 00:10:30,480
+think makes something science is what the scientific
+
+248
+00:10:30,480 --> 00:10:34,400
+community decides as a community is true.
+
+249
+00:10:34,400 --> 00:10:37,280
+Roughly speaking, that is the mainstay of faculty at
+
+250
+00:10:37,280 --> 00:10:40,200
+places like MIT and Stanford and Harvard and so on, and
+
+251
+00:10:40,200 --> 00:10:42,600
+around the world at universities tell you this is
+
+252
+00:10:42,600 --> 00:10:44,160
+how science works, you go, OK, that's how
+
+253
+00:10:44,160 --> 00:10:45,120
+science works.
+
+254
+00:10:45,120 --> 00:10:48,840
+And I remember some years ago, there was a lot of excitement
+
+255
+00:10:48,840 --> 00:10:52,760
+about a satirical article written by a scientist,
+
+256
+00:10:52,760 --> 00:10:55,520
+where he said, oh, this is all just societal authority.
+
+257
+00:10:55,520 --> 00:10:56,960
+The scientists tell you what's true, just because they
+
+258
+00:10:56,960 --> 00:10:59,280
+believe in it, just like a sports writer says the
+
+259
+00:10:59,280 --> 00:11:00,880
+Celtics are the best.
+
+260
+00:11:00,880 --> 00:11:02,480
+You don't really think that the sports writer knows
+
+261
+00:11:02,480 --> 00:11:04,280
+scientifically the Celtics are the best, right?
+
+262
+00:11:04,280 --> 00:11:05,400
+OK.
+
+263
+00:11:05,400 --> 00:11:09,360
+So he wrote a paper saying that gravity is simply a
+
+264
+00:11:09,360 --> 00:11:12,520
+consensus among scientists, and a particular view they're
+
+265
+00:11:12,520 --> 00:11:14,600
+foisting on society.
+
+266
+00:11:14,600 --> 00:11:16,800
+But none of us would want to really go up there and jump
+
+267
+00:11:16,800 --> 00:11:19,160
+out the window going, well, gravity is one person's
+
+268
+00:11:19,160 --> 00:11:22,080
+opinion, and here's my opinion, right?
+
+269
+00:11:22,080 --> 00:11:24,800
+But it's kind of interesting, because for those of you who
+
+270
+00:11:24,800 --> 00:11:26,800
+go to medical school, for example, you'll learn lots of
+
+271
+00:11:26,800 --> 00:11:29,600
+procedures and so on that the medical community believes
+
+272
+00:11:29,600 --> 00:11:31,960
+is true, where there's not much scientific evidence behind
+
+273
+00:11:31,960 --> 00:11:34,760
+it, but they have to use it every day.
+
+274
+00:11:34,760 --> 00:11:37,080
+So you're used to hearing about the scientific method.
+
+275
+00:11:37,080 --> 00:11:40,800
+It applies to psychology in many ways, just like it applies
+
+276
+00:11:40,840 --> 00:11:43,360
+to chemistry, physics, or biology.
+
+277
+00:11:43,360 --> 00:11:45,960
+We have to test things that are falsifiable.
+
+278
+00:11:45,960 --> 00:11:48,600
+We have to deal in probabilities of outcomes in terms of
+
+279
+00:11:48,600 --> 00:11:51,120
+statistics in some sense.
+
+280
+00:11:51,120 --> 00:11:53,280
+The kinds of data we can have are descriptive, or
+
+281
+00:11:53,280 --> 00:11:55,520
+correlative, or experimental.
+
+282
+00:11:55,520 --> 00:11:57,400
+I'll talk about those in a moment.
+
+283
+00:11:57,400 --> 00:12:00,120
+We are always trying to disprove the null hypothesis
+
+284
+00:12:00,120 --> 00:12:01,480
+statistically, as you know.
+
+285
+00:12:01,480 --> 00:12:03,560
+We can't prove that something is true, but we can prove
+
+286
+00:12:03,560 --> 00:12:05,440
+that it's not true.
+
+287
+00:12:05,440 --> 00:12:10,040
+And then finally, like all fields of science, today's
+
+288
+00:12:10,080 --> 00:12:12,640
+most exciting breakthroughs are tomorrow's things that have
+
+289
+00:12:12,640 --> 00:12:15,440
+to be apologized for and rediscovered, right?
+
+290
+00:12:15,440 --> 00:12:18,280
+I mean, what makes something breaking science is not that
+
+291
+00:12:18,280 --> 00:12:19,080
+it's known with certainty.
+
+292
+00:12:19,080 --> 00:12:21,040
+What's known with certainty is what's in your textbook,
+
+293
+00:12:21,040 --> 00:12:22,400
+kind of.
+
+294
+00:12:22,400 --> 00:12:24,440
+What makes something breaking science is it moves the
+
+295
+00:12:24,440 --> 00:12:26,880
+field forward, so what's the difference between the cutting
+
+296
+00:12:26,880 --> 00:12:31,200
+edge and the bleeding edge is a very close call.
+
+297
+00:12:31,200 --> 00:12:34,680
+So here's a cartoon that says he's constantly proving his
+
+298
+00:12:34,680 --> 00:12:38,480
+experiments wrong, and the guy's kind of glum looking over.
+
+299
+00:12:38,480 --> 00:12:41,400
+He's proving the null hypothesis to be correct.
+
+300
+00:12:41,400 --> 00:12:44,680
+Now, that's sort of funny for scientists.
+
+301
+00:12:44,680 --> 00:12:47,600
+But it's sort of funny in the sense that, no, we don't
+
+302
+00:12:47,600 --> 00:12:50,600
+really go around going, I hope, you know, with all my
+
+303
+00:12:50,600 --> 00:12:52,720
+heart for this research project I've worked on for the last
+
+304
+00:12:52,720 --> 00:12:55,400
+five years that it will prove the null hypothesis.
+
+305
+00:12:55,400 --> 00:12:58,280
+There's no difference between things I'm studying.
+
+306
+00:12:58,280 --> 00:13:00,760
+In fact, scientists like all humans have agendas and hopes,
+
+307
+00:13:00,760 --> 00:13:03,000
+and like everybody else.
+
+308
+00:13:03,000 --> 00:13:06,040
+So they observe hypothesized experiment, assess data, and
+
+309
+00:13:06,040 --> 00:13:09,040
+it doesn't always go perfectly, right?
+
+310
+00:13:09,040 --> 00:13:11,240
+And the last thing I want to say is I'm going to emphasize
+
+311
+00:13:11,240 --> 00:13:15,640
+today a scientific approach to the human mind and behavior.
+
+312
+00:13:15,640 --> 00:13:18,880
+But of course, there's many other paths of knowledge for
+
+313
+00:13:18,880 --> 00:13:21,280
+important things in our life, religion, philosophy,
+
+314
+00:13:21,280 --> 00:13:22,280
+arts, and so on.
+
+315
+00:13:22,280 --> 00:13:24,320
+There's many things that science cannot address, and I
+
+316
+00:13:24,320 --> 00:13:26,320
+don't want to pretend that it does.
+
+317
+00:13:26,320 --> 00:13:28,760
+That's not a problem too much when you think about chemistry.
+
+318
+00:13:28,760 --> 00:13:30,320
+It's kind of an interesting problem when you think about
+
+319
+00:13:30,320 --> 00:13:33,720
+psychology, because when we think about happiness or values
+
+320
+00:13:33,720 --> 00:13:37,520
+or things like that, those topics cut across psychology and
+
+321
+00:13:37,520 --> 00:13:41,400
+things like religion, philosophy, and topics like that.
+
+322
+00:13:41,400 --> 00:13:44,160
+So what makes something an experiment is you have to have
+
+323
+00:13:44,160 --> 00:13:46,800
+sort of two things, conceptually, especially.
+
+324
+00:13:46,800 --> 00:13:50,000
+The dependent variable, what you measure, the outcome, and
+
+325
+00:13:50,000 --> 00:13:52,440
+the independent variable, what you vary.
+
+326
+00:13:52,440 --> 00:13:54,600
+Once you have those things in an experiment, you're kind of
+
+327
+00:13:54,600 --> 00:13:57,360
+an experiment in a broad sense.
+
+328
+00:13:57,360 --> 00:13:59,440
+So in psychology, it took a long time.
+
+329
+00:13:59,440 --> 00:14:01,440
+It wasn't until the 1800s that people had kind of an
+
+330
+00:14:01,440 --> 00:14:04,520
+approach to doing experiments in psychology.
+
+331
+00:14:04,520 --> 00:14:06,920
+And figuring out, for example, how to use the simple
+
+332
+00:14:06,920 --> 00:14:10,600
+measurement of time to measure how long a mental
+
+333
+00:14:10,600 --> 00:14:12,920
+operation lasts in your mind.
+
+334
+00:14:12,920 --> 00:14:14,120
+So that's pretty cool.
+
+335
+00:14:14,120 --> 00:14:16,000
+If you were to come to a fifth grader and say, how would you
+
+336
+00:14:16,000 --> 00:14:23,520
+measure not a brick or a stone, but how long a thought takes?
+
+337
+00:14:23,520 --> 00:14:24,840
+You would say, well, that would be pretty hard.
+
+338
+00:14:24,840 --> 00:14:28,440
+But it turns out it's not as hard in a simple way.
+
+339
+00:14:28,480 --> 00:14:31,400
+So Wilhelm Wundt, who, big figure in psychology, first
+
+340
+00:14:31,400 --> 00:14:34,480
+textbook in psychology, first laboratory in psychology, did
+
+341
+00:14:34,480 --> 00:14:37,560
+the following test of mental chronometry, simply measuring
+
+342
+00:14:37,560 --> 00:14:39,240
+how long it takes you to do things.
+
+343
+00:14:39,240 --> 00:14:42,000
+So he would show you a light, and he'd simply press the
+
+344
+00:14:42,000 --> 00:14:45,760
+button, and that would take about a fifth of a second.
+
+345
+00:14:45,760 --> 00:14:48,120
+And then he would say, instead, let's you do this.
+
+346
+00:14:48,120 --> 00:14:50,840
+If the light turns on and it's red, you push one button, and
+
+347
+00:14:50,840 --> 00:14:52,520
+if it's green, you push another.
+
+348
+00:14:52,520 --> 00:14:55,520
+So his idea was, the motor system to push the button is
+
+349
+00:14:55,520 --> 00:14:56,600
+about the same.
+
+350
+00:14:56,600 --> 00:14:59,920
+The time to observe the light is about the same.
+
+351
+00:14:59,920 --> 00:15:02,800
+But the difference between these two is how long it takes
+
+352
+00:15:02,800 --> 00:15:04,760
+to make a choice.
+
+353
+00:15:04,760 --> 00:15:06,960
+How long it takes to make a choice.
+
+354
+00:15:06,960 --> 00:15:09,520
+And that difference, when he subtracts them, took about a
+
+355
+00:15:09,520 --> 00:15:12,000
+tenth of a second by that measurement.
+
+356
+00:15:12,000 --> 00:15:13,840
+So all of a sudden, you could start to measure, in an
+
+357
+00:15:13,840 --> 00:15:17,360
+objective sense, how long a mental operation
+
+358
+00:15:17,360 --> 00:15:20,280
+takes in your mind.
+
+359
+00:15:20,280 --> 00:15:21,920
+Then psychology went a lot of different directions.
+
+360
+00:15:21,920 --> 00:15:24,960
+A famous one from Tichner, who worked with Wundt, developed
+
+361
+00:15:24,960 --> 00:15:27,360
+the psychology department at Cornell, was introspection.
+
+362
+00:15:27,360 --> 00:15:30,560
+Look inside yourself and think very carefully when you think
+
+363
+00:15:30,560 --> 00:15:31,320
+about a topic.
+
+364
+00:15:31,320 --> 00:15:33,360
+How do I think about it?
+
+365
+00:15:33,360 --> 00:15:36,600
+That lost its way as a scientific method.
+
+366
+00:15:36,600 --> 00:15:39,440
+Trouble is, one person thinks one way, and one person
+
+367
+00:15:39,440 --> 00:15:42,480
+thinks another way, and you can't really settle it, right?
+
+368
+00:15:42,480 --> 00:15:45,640
+So introspection about your thoughts is a private process.
+
+369
+00:15:45,640 --> 00:15:47,840
+It's not a public measure that you can exchange among
+
+370
+00:15:47,840 --> 00:15:50,640
+scientists, like time or measurements.
+
+371
+00:15:50,640 --> 00:15:53,080
+But we still introspect a lot when we think about psychology,
+
+372
+00:15:53,080 --> 00:15:54,680
+whether it feels right to us, whether the questions
+
+373
+00:15:54,680 --> 00:15:56,400
+to ask are still just being human.
+
+374
+00:15:56,400 --> 00:15:59,720
+You can't help but introspect about psychology topics.
+
+375
+00:15:59,720 --> 00:16:05,040
+In the US, there was a huge response to introspection as
+
+376
+00:16:05,040 --> 00:16:07,240
+being too loosey-goosey.
+
+377
+00:16:07,240 --> 00:16:10,400
+One famous name, and this is John Watson, he said, the mind
+
+378
+00:16:10,400 --> 00:16:11,680
+is unobservable.
+
+379
+00:16:11,680 --> 00:16:15,040
+So we can only study behavior, things that people do.
+
+380
+00:16:15,040 --> 00:16:15,880
+Actions they take.
+
+381
+00:16:15,880 --> 00:16:18,320
+Their mouth moves, their hand buttons, presses.
+
+382
+00:16:18,320 --> 00:16:20,840
+And then we identify what in the environment influences
+
+383
+00:16:20,840 --> 00:16:22,440
+those behaviors.
+
+384
+00:16:22,440 --> 00:16:24,600
+The principles of the mind should be similar between
+
+385
+00:16:24,600 --> 00:16:27,680
+animals and humans, and the only thing a responsible
+
+386
+00:16:27,680 --> 00:16:30,560
+experimental scientist can do is relate environmental
+
+387
+00:16:30,560 --> 00:16:33,360
+factors to actions.
+
+388
+00:16:33,360 --> 00:16:35,360
+And so there's a stimulus, and you can control the
+
+389
+00:16:35,360 --> 00:16:36,400
+stimulus as a scientist.
+
+390
+00:16:36,400 --> 00:16:38,280
+There's a response, you measure the response.
+
+391
+00:16:38,280 --> 00:16:41,280
+And that's your psychology experiment.
+
+392
+00:16:41,280 --> 00:16:44,840
+And then the 1980s became the cognitive revolution.
+
+393
+00:16:44,840 --> 00:16:47,920
+Partly, this path led, after a while, to not very
+
+394
+00:16:47,920 --> 00:16:48,960
+interesting science.
+
+395
+00:16:48,960 --> 00:16:50,480
+That was the biggest problem.
+
+396
+00:16:50,480 --> 00:16:53,640
+And people said, no, we can make inferences about the mind
+
+397
+00:16:53,680 --> 00:16:56,040
+as it translates what it hears or sees
+
+398
+00:16:56,040 --> 00:16:57,640
+into what a person does.
+
+399
+00:16:57,640 --> 00:17:01,280
+So ideas of representations or knowledge in the mind, or in
+
+400
+00:17:01,280 --> 00:17:03,920
+the brain later on, and how that translates what's out
+
+401
+00:17:03,920 --> 00:17:06,440
+there, and how you act upon it.
+
+402
+00:17:06,440 --> 00:17:09,440
+So I'll remind you a couple more things
+
+403
+00:17:09,440 --> 00:17:10,960
+then we'll get to specifics.
+
+404
+00:17:10,960 --> 00:17:14,400
+So correlations are, you can only get in an experiment,
+
+405
+00:17:14,400 --> 00:17:16,560
+where you have an independent variable.
+
+406
+00:17:16,560 --> 00:17:18,800
+Sorry, correlations you can look at all the time.
+
+407
+00:17:18,800 --> 00:17:20,280
+Experiments only, experiments allows
+
+408
+00:17:20,280 --> 00:17:22,720
+us to infer causation.
+
+409
+00:17:22,760 --> 00:17:25,920
+So let's pick an example that, when I read, struck me as
+
+410
+00:17:25,920 --> 00:17:27,640
+slightly relevant.
+
+411
+00:17:27,640 --> 00:17:31,000
+So age of parent and risk for disease in a child.
+
+412
+00:17:31,000 --> 00:17:33,400
+So most of you are young enough that you're not too
+
+413
+00:17:33,400 --> 00:17:35,400
+worried about this yet, and you have no reason to be.
+
+414
+00:17:35,400 --> 00:17:37,520
+But for those of us who are in my generation and some
+
+415
+00:17:37,520 --> 00:17:41,840
+generations back, many people are postponing childbirth, as
+
+416
+00:17:41,840 --> 00:17:44,280
+they do their careers in complete different tasks.
+
+417
+00:17:44,280 --> 00:17:46,840
+And parents are getting older and older.
+
+418
+00:17:46,840 --> 00:17:49,000
+They're only seem old, they are old.
+
+419
+00:17:49,000 --> 00:17:55,600
+So it's the case statistically that the older the mother is
+
+420
+00:17:55,600 --> 00:17:57,200
+that higher the risk of Down syndrome.
+
+421
+00:17:57,200 --> 00:17:59,720
+So the statistics are, if a mother is age 20 to 24, it's
+
+422
+00:17:59,720 --> 00:18:03,400
+very rare to have Down syndrome, and the number goes up
+
+423
+00:18:03,400 --> 00:18:07,000
+dramatically if the mother is over age 42.
+
+424
+00:18:07,000 --> 00:18:10,240
+So this is simple observation and measurement, but it's
+
+425
+00:18:10,240 --> 00:18:12,680
+something a lot of women giving birth in their 30s and 40s
+
+426
+00:18:12,680 --> 00:18:15,320
+are thinking about and worrying about, and it's a
+
+427
+00:18:15,320 --> 00:18:17,760
+thing on their mind.
+
+428
+00:18:17,800 --> 00:18:21,840
+Up until relatively recently, men said, oh, it's too bad for
+
+429
+00:18:21,840 --> 00:18:24,760
+those women, but no problem for us.
+
+430
+00:18:24,760 --> 00:18:27,960
+So you have the movie star, who's 90 years old and
+
+431
+00:18:27,960 --> 00:18:29,960
+marries a 20-year-old actress.
+
+432
+00:18:29,960 --> 00:18:32,960
+That kind of model that you see all the time in the news.
+
+433
+00:18:32,960 --> 00:18:34,480
+Because it doesn't matter how old the guy is.
+
+434
+00:18:34,480 --> 00:18:37,360
+Well, it turns out it does matter.
+
+435
+00:18:37,360 --> 00:18:39,120
+And here's some data for that.
+
+436
+00:18:39,120 --> 00:18:43,280
+So here's the probability of developing schizophrenia, a
+
+437
+00:18:43,280 --> 00:18:46,480
+disease that's typically diagnosed in a person's late
+
+438
+00:18:46,480 --> 00:18:51,080
+adolescence or 20s, depending on the age of the father.
+
+439
+00:18:51,080 --> 00:18:53,240
+And you can see the father is less than 25.
+
+440
+00:18:53,240 --> 00:18:55,840
+It's 1 out of 141.
+
+441
+00:18:55,840 --> 00:18:59,280
+If the father is in his 50s, it becomes 1 out of 50, a
+
+442
+00:18:59,280 --> 00:19:02,480
+dramatic growth in the likelihood of an offspring
+
+443
+00:19:02,480 --> 00:19:05,720
+child having schizophrenia, depending on the age of the
+
+444
+00:19:05,720 --> 00:19:07,520
+father.
+
+445
+00:19:07,520 --> 00:19:12,520
+So now, there's a correlation between age and whether a
+
+446
+00:19:12,520 --> 00:19:14,800
+child expresses schizophrenia.
+
+447
+00:19:14,800 --> 00:19:19,600
+So let's guess about the possible causes of that.
+
+448
+00:19:19,600 --> 00:19:21,120
+I can tell you it's unknown.
+
+449
+00:19:21,120 --> 00:19:24,920
+But let's even begin to guess about it.
+
+450
+00:19:24,920 --> 00:19:26,360
+Let me ask you to guess about it.
+
+451
+00:19:32,840 --> 00:19:33,560
+Yeah?
+
+452
+00:19:33,560 --> 00:19:36,720
+Maybe the damage by age and under the lack of
+
+453
+00:19:36,720 --> 00:19:38,080
+augmentation.
+
+454
+00:19:38,080 --> 00:19:39,920
+Yeah, bad sperm.
+
+455
+00:19:39,920 --> 00:19:42,720
+OK, for some reason in some way.
+
+456
+00:19:42,720 --> 00:19:45,480
+And sperm that leads more likely to be risk for
+
+457
+00:19:45,480 --> 00:19:46,320
+schizophrenia.
+
+458
+00:19:46,320 --> 00:19:48,720
+So that's your first intuition.
+
+459
+00:19:48,720 --> 00:19:50,800
+And that may turn out to be right, problematic.
+
+460
+00:19:50,800 --> 00:19:52,800
+Something problematic about the sperm from the male.
+
+461
+00:19:55,720 --> 00:19:56,840
+Here's another one, though.
+
+462
+00:19:56,840 --> 00:20:03,280
+And this shows you the challenges with
+
+463
+00:20:03,280 --> 00:20:05,240
+correlational research on something even so important
+
+464
+00:20:05,240 --> 00:20:06,720
+as this, which is, how about a long-term
+
+465
+00:20:06,720 --> 00:20:11,160
+alternative, which is, who marries later in life?
+
+466
+00:20:11,160 --> 00:20:13,040
+OK?
+
+467
+00:20:13,040 --> 00:20:15,360
+Maybe the desirable moment are plucked off the market on
+
+468
+00:20:15,360 --> 00:20:18,640
+average in large statistics by age 30 or something.
+
+469
+00:20:18,640 --> 00:20:21,480
+And a bunch of us, and I'm a late marrier, limp to find
+
+470
+00:20:21,480 --> 00:20:24,280
+some woman around the world who will accept us.
+
+471
+00:20:24,280 --> 00:20:27,880
+And finally, out of pity, some woman says, OK, you drag
+
+472
+00:20:27,880 --> 00:20:31,920
+yourself into your 50s, and I'll take you.
+
+473
+00:20:31,920 --> 00:20:35,120
+So right, because it's not random, probably.
+
+474
+00:20:35,520 --> 00:20:37,880
+We're averaging over many people, but it's not random
+
+475
+00:20:37,880 --> 00:20:40,880
+probably, who marries at 25 in a given society, and who
+
+476
+00:20:40,880 --> 00:20:41,720
+marries at 50?
+
+477
+00:20:41,720 --> 00:20:43,240
+It's not random.
+
+478
+00:20:43,240 --> 00:20:45,640
+It could be big differences among, OK?
+
+479
+00:20:45,640 --> 00:20:46,840
+And how could we tell that difference?
+
+480
+00:20:46,840 --> 00:20:48,360
+Maybe it's nothing to do with the sperm.
+
+481
+00:20:48,360 --> 00:20:51,320
+Maybe it's something to do with the, something about the
+
+482
+00:20:51,320 --> 00:20:54,520
+genes and environment that goes with marrying, being a
+
+483
+00:20:54,520 --> 00:20:57,440
+parent in your 50s versus being a parent in your 20s.
+
+484
+00:20:57,440 --> 00:20:59,240
+Completely different explanations.
+
+485
+00:20:59,240 --> 00:21:02,440
+Someday maybe we'll know, but we don't know now.
+
+486
+00:21:02,440 --> 00:21:03,840
+So this is the limits of correlations.
+
+487
+00:21:03,840 --> 00:21:05,160
+And it could be both could be true.
+
+488
+00:21:05,160 --> 00:21:08,360
+Neither could be a third story altogether.
+
+489
+00:21:08,360 --> 00:21:12,680
+So that was about me, my becoming a parent late in
+
+490
+00:21:12,680 --> 00:21:13,840
+life, and marrying late in life.
+
+491
+00:21:13,840 --> 00:21:15,400
+Let's talk about you, all right?
+
+492
+00:21:15,400 --> 00:21:18,240
+So let's talk about the level of stress you have, and how
+
+493
+00:21:18,240 --> 00:21:22,240
+empathetic you are, on average, your college generation
+
+494
+00:21:22,240 --> 00:21:25,400
+relative to one's five or 10 or 20 years ago.
+
+495
+00:21:25,400 --> 00:21:26,400
+So let's ask that question.
+
+496
+00:21:26,400 --> 00:21:28,200
+Why would people want to know such a thing?
+
+497
+00:21:28,200 --> 00:21:34,880
+Well, you might want to understand, what pressures
+
+498
+00:21:34,880 --> 00:21:37,960
+are we putting young people under as they go through
+
+499
+00:21:37,960 --> 00:21:40,760
+grade school and high school and college?
+
+500
+00:21:40,760 --> 00:21:41,600
+What's the world like?
+
+501
+00:21:41,600 --> 00:21:42,680
+Is it pretty much the same?
+
+502
+00:21:42,680 --> 00:21:45,920
+Is it pretty much changing?
+
+503
+00:21:45,920 --> 00:21:47,200
+Now, how would we figure that out?
+
+504
+00:21:47,200 --> 00:21:48,680
+How would we begin to measure that?
+
+505
+00:21:51,800 --> 00:21:53,440
+It's a very simple question.
+
+506
+00:21:53,440 --> 00:21:57,720
+Are you more stressed than people 10 years ago at MIT?
+
+507
+00:21:57,720 --> 00:22:00,320
+On average, across the country?
+
+508
+00:22:00,320 --> 00:22:02,640
+And are you more or less empathetic towards other
+
+509
+00:22:02,640 --> 00:22:03,640
+people?
+
+510
+00:22:06,360 --> 00:22:09,520
+How might one answer that kind of a question?
+
+511
+00:22:09,520 --> 00:22:10,240
+Yeah?
+
+512
+00:22:10,240 --> 00:22:12,520
+For the stress part, we know a little bit about
+
+513
+00:22:12,520 --> 00:22:14,160
+the form of the city extent that we can then
+
+514
+00:22:14,160 --> 00:22:17,000
+involve one another for any stress.
+
+515
+00:22:17,000 --> 00:22:19,120
+That would be a very interesting path.
+
+516
+00:22:19,120 --> 00:22:21,000
+It's a tough research path, but you're right.
+
+517
+00:22:21,000 --> 00:22:23,400
+If we had some biological signature of stress, that
+
+518
+00:22:23,400 --> 00:22:23,920
+would be a good one.
+
+519
+00:22:23,920 --> 00:22:25,520
+But let's ask this question.
+
+520
+00:22:25,520 --> 00:22:27,200
+Let's say I measured everybody in here and got your
+
+521
+00:22:27,200 --> 00:22:29,840
+average stress hormone or something like that.
+
+522
+00:22:29,840 --> 00:22:34,480
+Now, what's my answer about whether 10 years ago, people
+
+523
+00:22:34,480 --> 00:22:36,480
+were more or less stressed?
+
+524
+00:22:36,480 --> 00:22:37,480
+Yeah?
+
+525
+00:22:37,480 --> 00:22:40,360
+Look at suicide rates.
+
+526
+00:22:40,360 --> 00:22:45,040
+That would be an outcome of a kind.
+
+527
+00:22:45,040 --> 00:22:47,400
+But there's a lot of things that go in.
+
+528
+00:22:47,400 --> 00:22:49,200
+We have to worry about two things.
+
+529
+00:22:49,200 --> 00:22:52,480
+One thing we know is, let me ask you another one, you
+
+530
+00:22:52,480 --> 00:22:56,480
+could compare your level of stress to people who are
+
+531
+00:22:56,480 --> 00:22:59,080
+10 years older than you or 20 years older than you.
+
+532
+00:22:59,080 --> 00:23:00,160
+What do you think about that?
+
+533
+00:23:02,840 --> 00:23:03,600
+No?
+
+534
+00:23:03,600 --> 00:23:05,360
+Yeah?
+
+535
+00:23:05,360 --> 00:23:06,360
+Yeah?
+
+536
+00:23:06,360 --> 00:23:08,680
+It would actually be more accurate if you
+
+537
+00:23:08,680 --> 00:23:11,440
+measured who you want to know for a college student
+
+538
+00:23:11,440 --> 00:23:12,440
+specifically.
+
+539
+00:23:12,440 --> 00:23:15,440
+You'd have to get a baseline of yourself from somewhere
+
+540
+00:23:15,440 --> 00:23:17,640
+like before.
+
+541
+00:23:17,640 --> 00:23:21,200
+Yeah, because maybe people who are 30 or 40
+
+542
+00:23:21,200 --> 00:23:23,560
+are more stressed for other reasons, because they have
+
+543
+00:23:23,560 --> 00:23:26,120
+more bills and mortgages to pay or less stress for other
+
+544
+00:23:26,160 --> 00:23:27,440
+reasons or whatever.
+
+545
+00:23:27,440 --> 00:23:30,320
+Maybe that's not about the generation you're in.
+
+546
+00:23:30,320 --> 00:23:33,320
+Maybe it's about being a person with more responsibilities
+
+547
+00:23:33,320 --> 00:23:35,040
+at 40.
+
+548
+00:23:35,040 --> 00:23:37,520
+So for some things, you get some luck.
+
+549
+00:23:37,520 --> 00:23:39,360
+And you have it in your hand.
+
+550
+00:23:39,360 --> 00:23:42,600
+So here's an emotional health questionnaire
+
+551
+00:23:42,600 --> 00:23:46,840
+where students across the country for the last 25 years
+
+552
+00:23:46,840 --> 00:23:49,160
+have been given the identical questionnaire.
+
+553
+00:23:49,160 --> 00:23:51,440
+It's a questionnaire, it's not a biology measure,
+
+554
+00:23:51,440 --> 00:23:54,720
+about their self-reported measure of stress.
+
+555
+00:23:54,720 --> 00:23:57,760
+And this was in the New York Times just a few weeks ago.
+
+556
+00:23:57,760 --> 00:24:01,280
+It's you guys on average across the country, US college
+
+557
+00:24:01,280 --> 00:24:05,760
+students, are at an all-time, high level of self-reported
+
+558
+00:24:05,760 --> 00:24:08,040
+stress.
+
+559
+00:24:08,040 --> 00:24:09,160
+Sorry about that.
+
+560
+00:24:12,800 --> 00:24:15,000
+So now it's not the perfect measurement in every way,
+
+561
+00:24:15,000 --> 00:24:17,520
+but it's the same questionnaire to college students year
+
+562
+00:24:17,520 --> 00:24:18,120
+and year out.
+
+563
+00:24:18,120 --> 00:24:21,160
+By self-report, people say, I feel more stressed.
+
+564
+00:24:21,160 --> 00:24:24,280
+You can also see that there's a difference between men
+
+565
+00:24:24,280 --> 00:24:24,640
+and women.
+
+566
+00:24:24,640 --> 00:24:30,280
+Women on average report feeling more stressed.
+
+567
+00:24:30,280 --> 00:24:32,800
+And it may be relevant, and on average, for example,
+
+568
+00:24:32,800 --> 00:24:37,240
+there's a higher rate of depression among women than men.
+
+569
+00:24:37,240 --> 00:24:39,920
+There's a much higher rate of autism among men than women.
+
+570
+00:24:39,920 --> 00:24:43,600
+So it's not a being one sex or the other is not
+
+571
+00:24:43,600 --> 00:24:47,240
+a gift certificate of avoiding mental health challenges.
+
+572
+00:24:47,240 --> 00:24:50,760
+But so you're more stressed than ever, OK?
+
+573
+00:24:50,760 --> 00:24:51,640
+Good luck.
+
+574
+00:24:51,640 --> 00:24:53,480
+We'll try to do the best we can in this course,
+
+575
+00:24:53,520 --> 00:24:55,000
+not we'll make that way worse.
+
+576
+00:24:55,000 --> 00:24:56,680
+But that's something to think about.
+
+577
+00:24:56,680 --> 00:24:58,400
+I got a call the other day from somebody
+
+578
+00:24:58,400 --> 00:25:01,160
+who said there's a lot of curiosity
+
+579
+00:25:01,160 --> 00:25:03,880
+about whether the shift from book learning and book
+
+580
+00:25:03,880 --> 00:25:08,880
+reading to internet worlds and Twitter and Facebook worlds
+
+581
+00:25:08,880 --> 00:25:12,560
+are fundamentally changing how people think.
+
+582
+00:25:12,560 --> 00:25:14,760
+And that sounds kind of possible.
+
+583
+00:25:14,760 --> 00:25:16,960
+And there are people who give amazingly entertaining
+
+584
+00:25:16,960 --> 00:25:19,520
+lectures about these things.
+
+585
+00:25:19,520 --> 00:25:21,760
+Scientifically, it's unbelievably hard
+
+586
+00:25:21,800 --> 00:25:24,040
+to imagine how we would ever answer that.
+
+587
+00:25:24,040 --> 00:25:25,240
+So when I get a casual phone call,
+
+588
+00:25:25,240 --> 00:25:27,680
+like, what do neuroscientists know about that?
+
+589
+00:25:27,680 --> 00:25:29,160
+What could they know about it?
+
+590
+00:25:29,160 --> 00:25:32,280
+Is that even an answerable question?
+
+591
+00:25:32,280 --> 00:25:34,320
+If I take you now and say, well, you've probably
+
+592
+00:25:34,320 --> 00:25:37,000
+done more Facebook than a 50-year-old,
+
+593
+00:25:37,000 --> 00:25:39,840
+and compare you to a 50-year-old on some other thing,
+
+594
+00:25:39,840 --> 00:25:42,760
+is that going to answer the question of how you think
+
+595
+00:25:42,760 --> 00:25:45,800
+about ideas given the world you live in versus the world
+
+596
+00:25:45,800 --> 00:25:47,320
+a 50-year-old lived in?
+
+597
+00:25:47,320 --> 00:25:48,800
+No.
+
+598
+00:25:48,800 --> 00:25:50,840
+So there's just a lot of huge, deep things
+
+599
+00:25:50,840 --> 00:25:52,920
+about changes in the world that we can't even
+
+600
+00:25:52,920 --> 00:25:53,640
+begin to get at.
+
+601
+00:25:53,640 --> 00:25:55,640
+Sometimes we get lucky if people have been giving
+
+602
+00:25:55,640 --> 00:25:57,920
+some particular measure for some time.
+
+603
+00:25:57,920 --> 00:26:01,120
+Empathy by self-reports.
+
+604
+00:26:01,120 --> 00:26:03,280
+And now you, if this, I wouldn't fill it out now,
+
+605
+00:26:03,280 --> 00:26:04,920
+but you can take a look just to get a feeling
+
+606
+00:26:04,920 --> 00:26:06,040
+of your leisure.
+
+607
+00:26:06,040 --> 00:26:09,440
+This is a questionnaire they used for self-reported empathy.
+
+608
+00:26:09,440 --> 00:26:15,320
+It's self-report 40% lower today than 20 years ago.
+
+609
+00:26:15,320 --> 00:26:17,000
+So on average, you guys, literally
+
+610
+00:26:17,000 --> 00:26:19,360
+on average by these measures, are
+
+611
+00:26:19,360 --> 00:26:22,640
+more stressed and less empathetic towards others.
+
+612
+00:26:22,640 --> 00:26:24,760
+Sorry.
+
+613
+00:26:24,760 --> 00:26:26,680
+And those things, this is not an individual.
+
+614
+00:26:26,680 --> 00:26:27,640
+This is an average.
+
+615
+00:26:27,640 --> 00:26:31,040
+So at the level that society operates,
+
+616
+00:26:31,040 --> 00:26:34,320
+things are going on and moving for some reason.
+
+617
+00:26:34,320 --> 00:26:36,840
+By the way, I can tell you that when I'm stressed,
+
+618
+00:26:36,840 --> 00:26:39,160
+I have less room to be empathetic.
+
+619
+00:26:39,160 --> 00:26:40,440
+So maybe these things are related.
+
+620
+00:26:40,440 --> 00:26:42,000
+If you're feeling stressed, your first thought
+
+621
+00:26:42,000 --> 00:26:44,400
+is not how can I help others, but how can I just
+
+622
+00:26:44,400 --> 00:26:45,720
+get through the day?
+
+623
+00:26:45,720 --> 00:26:49,040
+So these things might be related.
+
+624
+00:26:49,040 --> 00:26:53,560
+So let's turn a little bit to experimentation.
+
+625
+00:26:53,560 --> 00:26:56,400
+And some of the challenges of relating psychology
+
+626
+00:26:56,400 --> 00:26:58,760
+to real world policies that are meant
+
+627
+00:26:58,760 --> 00:27:01,280
+to make the world better or safer in some way.
+
+628
+00:27:01,280 --> 00:27:03,200
+So there's a famous broken window theory
+
+629
+00:27:03,200 --> 00:27:05,560
+from the political scientist James Wilson, the criminologist
+
+630
+00:27:05,560 --> 00:27:06,160
+George Kelling.
+
+631
+00:27:06,160 --> 00:27:09,440
+And their idea was this, that especially in neighborhoods
+
+632
+00:27:09,440 --> 00:27:13,360
+that are not immaculately kept, or to say it the other way,
+
+633
+00:27:13,360 --> 00:27:15,400
+where there's a lot of damage around you,
+
+634
+00:27:15,400 --> 00:27:18,200
+things like broken windows is the phrase they used,
+
+635
+00:27:18,240 --> 00:27:20,560
+that this promotes in people who live in that community
+
+636
+00:27:20,560 --> 00:27:23,640
+or work around that community a sense that the rules don't
+
+637
+00:27:23,640 --> 00:27:25,680
+count, anybody can do anything.
+
+638
+00:27:25,680 --> 00:27:29,200
+And then it fosters the growth of petty crimes.
+
+639
+00:27:29,200 --> 00:27:31,440
+And once you do a petty crime, you're more vulnerable
+
+640
+00:27:31,440 --> 00:27:35,680
+or willing to do a major crime, a slippery slope.
+
+641
+00:27:35,680 --> 00:27:42,040
+And in fact, Rudy Giuliani and Commissioner Bill Bretton
+
+642
+00:27:42,040 --> 00:27:42,640
+employ this.
+
+643
+00:27:42,640 --> 00:27:45,840
+They ask the police to write lots of tickets
+
+644
+00:27:45,880 --> 00:27:48,400
+and make lots of minor arrests for things
+
+645
+00:27:48,400 --> 00:27:50,920
+where people weren't upkeeping the environment
+
+646
+00:27:50,920 --> 00:27:53,160
+or they were littering or things like that.
+
+647
+00:27:53,160 --> 00:27:55,760
+And this is a huge debate, because in a police department,
+
+648
+00:27:55,760 --> 00:27:57,400
+you can only do so much.
+
+649
+00:27:57,400 --> 00:28:00,880
+So if they have a person working on jaywalking and littering,
+
+650
+00:28:00,880 --> 00:28:03,840
+that's a person not working on major crime rings, OK?
+
+651
+00:28:03,840 --> 00:28:06,040
+So to try to make a choice where they think
+
+652
+00:28:06,040 --> 00:28:09,760
+they can make communities safer in the most effective way.
+
+653
+00:28:09,760 --> 00:28:11,920
+And the crimes went way down in New York.
+
+654
+00:28:11,920 --> 00:28:15,880
+In most cities now, you don't hear crime discussed
+
+655
+00:28:15,880 --> 00:28:19,080
+as a big topic nationally in some local areas,
+
+656
+00:28:19,080 --> 00:28:22,080
+like in Boston, in some specific areas you do.
+
+657
+00:28:22,080 --> 00:28:24,320
+I don't really think in the state of the Union
+
+658
+00:28:24,320 --> 00:28:27,240
+there was a word about crime that I can remember a week ago.
+
+659
+00:28:27,240 --> 00:28:28,920
+It's not a big national topic.
+
+660
+00:28:28,920 --> 00:28:32,320
+In some local places, it is a big topic, but not nationally.
+
+661
+00:28:32,320 --> 00:28:35,360
+So you don't know some years ago when people said New York
+
+662
+00:28:35,360 --> 00:28:38,200
+City was a horrible place to go because there was so much
+
+663
+00:28:38,200 --> 00:28:40,120
+crime that you'd walk out from your airplane
+
+664
+00:28:40,120 --> 00:28:41,880
+and get mugged before you made it to your taxi.
+
+665
+00:28:41,880 --> 00:28:45,000
+No, it was like the whole country was saying
+
+666
+00:28:45,000 --> 00:28:49,320
+big cities were just crime-ridden and dangerous.
+
+667
+00:28:49,320 --> 00:28:51,600
+They do this policy, things get better, right?
+
+668
+00:28:51,600 --> 00:28:53,280
+So we said, hm, that sounds pretty good.
+
+669
+00:28:53,280 --> 00:28:54,760
+But of course, it's not an experiment.
+
+670
+00:28:54,760 --> 00:28:56,200
+It's a real-life policy.
+
+671
+00:28:56,200 --> 00:29:00,720
+And then people had these incredibly clever reinterpretations
+
+672
+00:29:00,720 --> 00:29:03,440
+of why crime went down.
+
+673
+00:29:03,440 --> 00:29:07,160
+So the wildest one was in Freakonomics,
+
+674
+00:29:07,160 --> 00:29:09,760
+was discussed in that, which said, well, abortion
+
+675
+00:29:09,760 --> 00:29:11,920
+was legalized in 1973.
+
+676
+00:29:11,920 --> 00:29:14,160
+That gave women who didn't have access
+
+677
+00:29:14,160 --> 00:29:18,720
+to legal abortions the ability to have them,
+
+678
+00:29:18,720 --> 00:29:20,960
+that children on average in these communities
+
+679
+00:29:20,960 --> 00:29:23,520
+had at least access to safe and legal abortions
+
+680
+00:29:23,520 --> 00:29:26,600
+would be poor and stable addiction-ridden communities
+
+681
+00:29:26,600 --> 00:29:28,640
+statistically.
+
+682
+00:29:28,640 --> 00:29:32,040
+And that's so that if you imagine the reduced abortion
+
+683
+00:29:32,040 --> 00:29:35,200
+rate in poor areas could, when you count out
+
+684
+00:29:35,200 --> 00:29:39,080
+the number of possible criminals in those areas,
+
+685
+00:29:39,080 --> 00:29:41,560
+account for the reduction in crime all by itself.
+
+686
+00:29:41,560 --> 00:29:43,880
+A completely different interpretation
+
+687
+00:29:43,880 --> 00:29:46,120
+that has nothing to do with the policy.
+
+688
+00:29:46,120 --> 00:29:50,080
+It just said, we're going to have a demographic shift, which
+
+689
+00:29:50,080 --> 00:29:53,680
+will have a weird, unexpected consequence of lowering
+
+690
+00:29:53,680 --> 00:29:56,160
+the crime rate, because it's the finding
+
+691
+00:29:56,160 --> 00:30:00,080
+that young men in particular are most likely to engage
+
+692
+00:30:00,080 --> 00:30:01,280
+in violent criminal activities.
+
+693
+00:30:01,280 --> 00:30:04,960
+Not a rule, but a statistical average.
+
+694
+00:30:04,960 --> 00:30:08,960
+Or there was a big crack academic that reduced,
+
+695
+00:30:09,000 --> 00:30:12,440
+or lots of states put in laws that put people into jail
+
+696
+00:30:12,440 --> 00:30:14,680
+for much higher, longer periods, much more
+
+697
+00:30:14,680 --> 00:30:17,360
+severe penalties with new drug laws.
+
+698
+00:30:17,360 --> 00:30:20,880
+So it's very hard to know if the policy that was initiated
+
+699
+00:30:20,880 --> 00:30:23,440
+really worked, or whether completely other things were
+
+700
+00:30:23,440 --> 00:30:25,960
+happening that move the crime rates.
+
+701
+00:30:25,960 --> 00:30:30,920
+And here's some very perverse or other explanations.
+
+702
+00:30:30,920 --> 00:30:33,920
+So that left the question is, is broken windows
+
+703
+00:30:33,920 --> 00:30:34,880
+even a good idea?
+
+704
+00:30:34,880 --> 00:30:37,960
+Just because a Harvard, and we know Harvard is always right,
+
+705
+00:30:38,000 --> 00:30:39,520
+but just because a Harvard psychologist says,
+
+706
+00:30:39,520 --> 00:30:41,720
+pretty interestingly, that sounds right to me,
+
+707
+00:30:41,720 --> 00:30:43,760
+is that even a right idea?
+
+708
+00:30:43,760 --> 00:30:45,200
+So let's take a step back.
+
+709
+00:30:45,200 --> 00:30:46,920
+Can we test that experimentally?
+
+710
+00:30:46,920 --> 00:30:49,800
+So here's the experiment.
+
+711
+00:30:49,800 --> 00:30:51,720
+And the idea is, again, that when people observe that others
+
+712
+00:30:51,720 --> 00:30:53,880
+violate a social norm or legitimate rule,
+
+713
+00:30:53,880 --> 00:30:55,320
+are they more likely to violate?
+
+714
+00:30:55,320 --> 00:30:57,400
+If you see people around you breaking rules,
+
+715
+00:30:57,400 --> 00:30:59,680
+are you more likely to do it?
+
+716
+00:30:59,680 --> 00:31:02,800
+And you could say, it seems like it is, but let's do the science.
+
+717
+00:31:02,800 --> 00:31:04,320
+So here's an independent measure.
+
+718
+00:31:04,320 --> 00:31:05,680
+I'll show you the environment.
+
+719
+00:31:05,680 --> 00:31:07,080
+The dependent measure is in the number
+
+720
+00:31:07,080 --> 00:31:08,560
+of people who perform a violation.
+
+721
+00:31:08,560 --> 00:31:10,560
+Now, you can't go getting people murdering each other
+
+722
+00:31:10,560 --> 00:31:13,600
+and stuff for an experiment, but you can do this.
+
+723
+00:31:13,600 --> 00:31:14,560
+You can have two conditions.
+
+724
+00:31:14,560 --> 00:31:17,920
+On the top condition, do you ever go back to your car or bike?
+
+725
+00:31:17,920 --> 00:31:18,880
+Usually cars, I think.
+
+726
+00:31:18,880 --> 00:31:20,280
+And they put leaflets in your car,
+
+727
+00:31:20,280 --> 00:31:21,280
+and now what are you going to do?
+
+728
+00:31:21,280 --> 00:31:24,640
+You're running away with a leaflet on your windshield wiper.
+
+729
+00:31:24,640 --> 00:31:26,080
+So they put it out, and they either
+
+730
+00:31:26,080 --> 00:31:28,200
+had a wall like this, which was clean.
+
+731
+00:31:28,200 --> 00:31:30,360
+There's a sign that says no graffiti.
+
+732
+00:31:30,360 --> 00:31:33,200
+And they put on those white pieces of paper onto the bikes,
+
+733
+00:31:33,200 --> 00:31:36,680
+or they put a lot of graffiti on the wall.
+
+734
+00:31:36,960 --> 00:31:38,320
+People came out from their classes.
+
+735
+00:31:38,320 --> 00:31:39,120
+They went in the glasses.
+
+736
+00:31:39,120 --> 00:31:40,400
+They parked their bike.
+
+737
+00:31:40,400 --> 00:31:41,080
+They ran into class.
+
+738
+00:31:41,080 --> 00:31:43,280
+They came out, and they got all these white leaflets.
+
+739
+00:31:43,280 --> 00:31:45,160
+And what they did is watched, and they
+
+740
+00:31:45,160 --> 00:31:47,880
+said how many people put the leaflet away,
+
+741
+00:31:47,880 --> 00:31:51,360
+and how many people crumpled it up and threw it right on the ground.
+
+742
+00:31:51,360 --> 00:31:53,200
+So we don't know what they're going to do with the leaflet
+
+743
+00:31:53,200 --> 00:31:54,280
+that they put it away, but we could hope
+
+744
+00:31:54,280 --> 00:31:55,520
+they're going to throw it out.
+
+745
+00:31:55,520 --> 00:31:57,280
+One thing we know for sure, if you crumpled up and throw it
+
+746
+00:31:57,280 --> 00:31:59,800
+on the ground, it's littering and not a good social norm.
+
+747
+00:31:59,800 --> 00:32:02,400
+And sure enough, a third of the people
+
+748
+00:32:02,400 --> 00:32:05,520
+littered if the wall had no graffiti,
+
+749
+00:32:05,560 --> 00:32:08,600
+but it more than doubled if the wall had graffiti.
+
+750
+00:32:08,600 --> 00:32:09,600
+So that's a small thing.
+
+751
+00:32:09,600 --> 00:32:11,520
+That's not a broken down, complicated neighborhood.
+
+752
+00:32:11,520 --> 00:32:14,000
+But just at that moment, as you roar out of class,
+
+753
+00:32:14,000 --> 00:32:15,840
+you get that piece of paper on your bike,
+
+754
+00:32:15,840 --> 00:32:17,800
+and you see like, wow, this is a pretty crummy place.
+
+755
+00:32:17,800 --> 00:32:19,360
+People are breaking the rules all the time.
+
+756
+00:32:19,360 --> 00:32:21,600
+Twice as likely to throw a piece of paper on the ground.
+
+757
+00:32:21,600 --> 00:32:23,680
+So that shows that people very easily
+
+758
+00:32:23,680 --> 00:32:26,600
+are influenced by very mild perceptions of whether people
+
+759
+00:32:26,600 --> 00:32:27,960
+are following the rules or not.
+
+760
+00:32:27,960 --> 00:32:30,560
+And will be their better selves or their worse selves,
+
+761
+00:32:30,560 --> 00:32:34,840
+depending on that sense of, are all rules on or are all rules off.
+
+762
+00:32:34,880 --> 00:32:36,560
+And there's a pretty good bet they're not thinking about it,
+
+763
+00:32:36,560 --> 00:32:37,400
+right?
+
+764
+00:32:37,400 --> 00:32:38,920
+They're not thinking they're saying they're, okay,
+
+765
+00:32:38,920 --> 00:32:41,840
+here's a, you know, here's littering, you know,
+
+766
+00:32:41,840 --> 00:32:44,600
+not as bad as killing somebody, or here's the wall,
+
+767
+00:32:44,600 --> 00:32:45,880
+well, there's 30% graffiti.
+
+768
+00:32:45,880 --> 00:32:46,720
+I mean, nobody does that.
+
+769
+00:32:46,720 --> 00:32:48,280
+They have an emotion, quick response,
+
+770
+00:32:48,280 --> 00:32:51,560
+but the environment makes a difference in that regard.
+
+771
+00:32:51,560 --> 00:32:55,120
+So an important thing about studies like this,
+
+772
+00:32:55,120 --> 00:32:56,400
+so let me tell you about this one.
+
+773
+00:32:56,400 --> 00:32:58,280
+Here's a study to look at a drug that was supposed
+
+774
+00:32:58,280 --> 00:33:01,040
+to lower mortality from coronary artery disease.
+
+775
+00:33:01,040 --> 00:33:02,680
+Those who took the drug, 80% or more,
+
+776
+00:33:02,680 --> 00:33:04,560
+because people follow whether you take the drug.
+
+777
+00:33:04,560 --> 00:33:07,360
+If you don't take the drug, of course, the drug won't work.
+
+778
+00:33:07,360 --> 00:33:10,200
+I had a 15% mortality rate within five years.
+
+779
+00:33:11,120 --> 00:33:13,400
+Those who took the drug, less than 80%
+
+780
+00:33:13,400 --> 00:33:14,920
+had a 25% mortality.
+
+781
+00:33:14,920 --> 00:33:17,680
+So you'd say, well, 10% better chance of living
+
+782
+00:33:17,680 --> 00:33:19,840
+for five years, that's worth it, right?
+
+783
+00:33:21,040 --> 00:33:22,560
+The nice thing is they had a placebo
+
+784
+00:33:22,560 --> 00:33:25,800
+and there was no difference whatsoever
+
+785
+00:33:25,800 --> 00:33:27,560
+between those who took the active drug
+
+786
+00:33:27,560 --> 00:33:29,800
+and those who took the placebo.
+
+787
+00:33:29,800 --> 00:33:32,000
+The differences between, was those who followed
+
+788
+00:33:32,000 --> 00:33:33,880
+the instructions to take the pill.
+
+789
+00:33:34,560 --> 00:33:35,720
+And those who didn't.
+
+790
+00:33:37,200 --> 00:33:38,440
+So what does that mean?
+
+791
+00:33:38,440 --> 00:33:40,520
+How do you interpret that?
+
+792
+00:33:40,520 --> 00:33:42,040
+It's not the drug.
+
+793
+00:33:42,040 --> 00:33:42,880
+Yeah?
+
+794
+00:33:42,880 --> 00:33:44,880
+It could be the stress of not following the drug,
+
+795
+00:33:44,880 --> 00:33:46,720
+it's not working for the drug.
+
+796
+00:33:46,720 --> 00:33:47,800
+It could be that.
+
+797
+00:33:47,800 --> 00:33:50,920
+It could be the stress, it could be that.
+
+798
+00:33:50,920 --> 00:33:52,000
+Let me make a guess.
+
+799
+00:33:52,000 --> 00:33:53,880
+There's no scientific answer to this.
+
+800
+00:33:53,880 --> 00:33:55,520
+People who tend not to follow instructions,
+
+801
+00:33:55,520 --> 00:33:58,280
+are they mostly stressed by not following instructions?
+
+802
+00:33:58,280 --> 00:34:01,040
+No, mostly the intuition is they're blowing it off.
+
+803
+00:34:01,040 --> 00:34:02,360
+They're like, yeah, that's the instructions,
+
+804
+00:34:02,360 --> 00:34:04,560
+but I got things to do in places to go.
+
+805
+00:34:04,560 --> 00:34:06,440
+But you could be right.
+
+806
+00:34:06,440 --> 00:34:08,840
+So anyway, the idea is, what you pick up is,
+
+807
+00:34:08,840 --> 00:34:11,240
+are people who try to take care of themselves.
+
+808
+00:34:11,240 --> 00:34:13,560
+They have a health condition,
+
+809
+00:34:13,560 --> 00:34:16,360
+and the people who are following the pill instruction
+
+810
+00:34:16,360 --> 00:34:19,640
+are probably also doing the best they can
+
+811
+00:34:19,640 --> 00:34:23,600
+in terms of exercise, diet, all the things they could do
+
+812
+00:34:23,600 --> 00:34:25,840
+to maximize their health, right?
+
+813
+00:34:25,840 --> 00:34:26,920
+And they're taking their placebo
+
+814
+00:34:26,920 --> 00:34:29,080
+or they're taking the drug, they don't know.
+
+815
+00:34:29,080 --> 00:34:30,360
+But they're doing everything they can.
+
+816
+00:34:30,360 --> 00:34:33,000
+And the people who are blowing off stuff,
+
+817
+00:34:33,000 --> 00:34:34,040
+they're the ones who are doing all the things
+
+818
+00:34:34,040 --> 00:34:36,000
+that aren't healthy, including not even taking your pills.
+
+819
+00:34:36,000 --> 00:34:37,960
+I mean, if you don't even take your pills, right?
+
+820
+00:34:37,960 --> 00:34:40,000
+Exercise is work, diet is work,
+
+821
+00:34:40,000 --> 00:34:42,840
+popping a pill that's been handed to you
+
+822
+00:34:42,840 --> 00:34:43,960
+that you're told might help you,
+
+823
+00:34:43,960 --> 00:34:45,560
+is probably not that much work.
+
+824
+00:34:45,560 --> 00:34:48,400
+So it's what's called self-selection bias,
+
+825
+00:34:48,400 --> 00:34:50,760
+that you stand out if you tend to take care
+
+826
+00:34:50,760 --> 00:34:51,760
+of yourself or not.
+
+827
+00:34:53,760 --> 00:34:55,920
+Okay, so when we run experiments
+
+828
+00:34:55,920 --> 00:34:58,720
+at universities that involve people,
+
+829
+00:34:58,720 --> 00:35:01,360
+a huge issue for us is the idea is this,
+
+830
+00:35:01,360 --> 00:35:03,080
+that we randomly recruit people,
+
+831
+00:35:03,080 --> 00:35:04,760
+and we'll come back to this in a moment,
+
+832
+00:35:04,760 --> 00:35:07,160
+then we randomly assign them to one condition or another,
+
+833
+00:35:07,160 --> 00:35:09,720
+for example, the placebo condition or the drug condition,
+
+834
+00:35:09,720 --> 00:35:11,960
+or we randomly assign them to the messy wall
+
+835
+00:35:11,960 --> 00:35:13,400
+or the clean wall.
+
+836
+00:35:13,400 --> 00:35:16,160
+We discover something and then we try to generalize it
+
+837
+00:35:16,160 --> 00:35:18,280
+as far as we can to people as a whole.
+
+838
+00:35:18,280 --> 00:35:19,600
+We've discovered something fundamental
+
+839
+00:35:19,600 --> 00:35:21,080
+about how humans work,
+
+840
+00:35:21,080 --> 00:35:23,880
+generalizable principles of human mind and behavior.
+
+841
+00:35:23,880 --> 00:35:25,640
+So what really happens in the world?
+
+842
+00:35:25,640 --> 00:35:27,400
+And it's always, you're in between
+
+843
+00:35:27,400 --> 00:35:28,760
+sort of the best possible world
+
+844
+00:35:28,760 --> 00:35:30,720
+in the world we actually live in.
+
+845
+00:35:30,720 --> 00:35:33,240
+So is it really, is it really random
+
+846
+00:35:33,240 --> 00:35:35,840
+who participates in research studies
+
+847
+00:35:35,840 --> 00:35:38,000
+in psychology departments where a lot of the research
+
+848
+00:35:38,000 --> 00:35:38,840
+gets done?
+
+849
+00:35:38,840 --> 00:35:39,680
+Is it really random?
+
+850
+00:35:41,080 --> 00:35:42,600
+No, okay.
+
+851
+00:35:42,600 --> 00:35:44,160
+So who volunteers?
+
+852
+00:35:44,160 --> 00:35:45,840
+Have any of you volunteered to be a subject
+
+853
+00:35:45,840 --> 00:35:47,080
+in an experiment anywhere?
+
+854
+00:35:47,080 --> 00:35:47,920
+Yeah.
+
+855
+00:35:48,760 --> 00:35:51,880
+Okay, so it's not random, you know,
+
+856
+00:35:51,880 --> 00:35:54,640
+it's that some people, they either need to make a few bucks
+
+857
+00:35:54,640 --> 00:35:56,240
+or they're very curious about psychology
+
+858
+00:35:56,240 --> 00:35:57,840
+or they have a friend who's in psychology
+
+859
+00:35:57,840 --> 00:35:59,120
+or, you know, it's not random.
+
+860
+00:35:59,120 --> 00:36:01,760
+And in fact, population-wide,
+
+861
+00:36:01,760 --> 00:36:03,880
+people have said that psychology can be described
+
+862
+00:36:03,880 --> 00:36:06,080
+as weird research for the following reason.
+
+863
+00:36:06,080 --> 00:36:08,400
+That the vast majority of the findings
+
+864
+00:36:08,400 --> 00:36:10,400
+you'll read about everywhere,
+
+865
+00:36:10,400 --> 00:36:11,560
+including in your textbook,
+
+866
+00:36:11,560 --> 00:36:15,120
+but everywhere are from nations that are westernized,
+
+867
+00:36:15,120 --> 00:36:19,080
+educated, industrialized and relatively rich democracies.
+
+868
+00:36:19,080 --> 00:36:20,120
+Okay?
+
+869
+00:36:20,120 --> 00:36:22,560
+The vast majority are between 17 and 25.
+
+870
+00:36:22,560 --> 00:36:23,960
+They're undergraduates or graduate students
+
+871
+00:36:23,960 --> 00:36:25,360
+who participate in research.
+
+872
+00:36:27,240 --> 00:36:29,320
+It's been estimated if you're a U.S. college student,
+
+873
+00:36:29,320 --> 00:36:32,080
+you're 4,000 times more likely to show up
+
+874
+00:36:32,080 --> 00:36:34,280
+in a scientifically reported experiment
+
+875
+00:36:34,280 --> 00:36:37,280
+than if you're a person anywhere else on the planet.
+
+876
+00:36:37,280 --> 00:36:38,120
+Okay?
+
+877
+00:36:38,120 --> 00:36:39,360
+4,000 times.
+
+878
+00:36:39,360 --> 00:36:40,680
+Because why?
+
+879
+00:36:40,680 --> 00:36:42,080
+Because it's changing a little bit,
+
+880
+00:36:42,080 --> 00:36:44,200
+but for many, many years, you know,
+
+881
+00:36:44,200 --> 00:36:46,320
+the huge amount of research happened in the U.S.
+
+882
+00:36:46,320 --> 00:36:49,080
+at universities, pretty much at better universities,
+
+883
+00:36:49,080 --> 00:36:51,120
+pretty much at highly selected students.
+
+884
+00:36:51,120 --> 00:36:51,960
+All right?
+
+885
+00:36:51,960 --> 00:36:54,120
+So that's, and then we never publish that.
+
+886
+00:36:54,120 --> 00:36:57,240
+We never say MIT students did the following things.
+
+887
+00:36:57,240 --> 00:36:58,600
+People just go, yeah, MIT students, you know,
+
+888
+00:36:58,600 --> 00:37:00,360
+because then we have a different report from Stanford
+
+889
+00:37:00,360 --> 00:37:02,320
+or from UMass or from Michigan or Texas.
+
+890
+00:37:02,320 --> 00:37:05,080
+We say, no, humans did an experiment
+
+891
+00:37:05,080 --> 00:37:07,280
+and humans are like this, okay?
+
+892
+00:37:07,280 --> 00:37:09,640
+So, and that could make us, you know,
+
+893
+00:37:09,640 --> 00:37:11,760
+it's just something to think about as you see studies
+
+894
+00:37:11,760 --> 00:37:12,600
+and stuff like that.
+
+895
+00:37:12,600 --> 00:37:14,360
+And people are more and more sensitized to that.
+
+896
+00:37:14,360 --> 00:37:19,360
+As the more and more of the world gets somewhat industrializes,
+
+897
+00:37:20,000 --> 00:37:21,440
+there's more and more research around the world,
+
+898
+00:37:21,440 --> 00:37:24,560
+but still the vast majority of findings are you guys, okay?
+
+899
+00:37:26,480 --> 00:37:29,160
+Now, that's just to start with who's in the subject pool
+
+900
+00:37:29,160 --> 00:37:30,840
+or the participant pool.
+
+901
+00:37:30,840 --> 00:37:33,080
+How normal are you when you do an experiment?
+
+902
+00:37:33,080 --> 00:37:35,520
+Are you like yourself or are you doing weird stuff?
+
+903
+00:37:35,520 --> 00:37:37,800
+And people use this idea that you're really weird
+
+904
+00:37:37,800 --> 00:37:39,600
+when you do an experiment in another sense,
+
+905
+00:37:39,600 --> 00:37:40,920
+because you're like, you don't know what's going on,
+
+906
+00:37:40,920 --> 00:37:42,560
+you're following instructions, you know?
+
+907
+00:37:42,560 --> 00:37:44,480
+So they do experiments to show how ridiculously
+
+908
+00:37:44,480 --> 00:37:47,160
+people behave when they're doing an experiment
+
+909
+00:37:47,160 --> 00:37:48,000
+like they would never do it.
+
+910
+00:37:48,000 --> 00:37:49,680
+So they ask them to come in and they say,
+
+911
+00:37:49,680 --> 00:37:51,120
+would you fill out 200 sheets of paper
+
+912
+00:37:51,120 --> 00:37:53,200
+filled with random digits, add them pairwise,
+
+913
+00:37:53,200 --> 00:37:55,120
+and just I'll come back in a few hours.
+
+914
+00:37:55,120 --> 00:37:57,520
+Now, if a friend asks you to do that,
+
+915
+00:37:57,520 --> 00:37:59,560
+add random digits for a couple hours,
+
+916
+00:37:59,560 --> 00:38:01,920
+you would be like, no, thank you.
+
+917
+00:38:01,920 --> 00:38:04,280
+I've got about 8 million better things to do than that, right?
+
+918
+00:38:04,280 --> 00:38:06,480
+I could multiply random digits to start with her.
+
+919
+00:38:06,480 --> 00:38:08,880
+So, but people will do it for hours
+
+920
+00:38:08,880 --> 00:38:09,920
+because they're in this weird like,
+
+921
+00:38:09,920 --> 00:38:11,520
+I mean, that's the instruction
+
+922
+00:38:11,520 --> 00:38:12,560
+and that's what my mission is.
+
+923
+00:38:12,560 --> 00:38:14,560
+Or even more ridiculous, they pick up a card
+
+924
+00:38:14,560 --> 00:38:17,000
+after each page, they've added all these numbers,
+
+925
+00:38:17,000 --> 00:38:19,480
+for no good reason, and the instruction tells them
+
+926
+00:38:19,480 --> 00:38:20,320
+when you've done the page,
+
+927
+00:38:20,320 --> 00:38:21,960
+tear the page up into 32 pieces.
+
+928
+00:38:21,960 --> 00:38:22,960
+And here's the next page, okay?
+
+929
+00:38:22,960 --> 00:38:25,200
+In the next page, it's obviously fruitless
+
+930
+00:38:25,200 --> 00:38:27,320
+and pointless, ridiculously so,
+
+931
+00:38:27,320 --> 00:38:28,520
+but because you're in an experiment
+
+932
+00:38:28,520 --> 00:38:29,960
+and somebody told you to do that, right?
+
+933
+00:38:29,960 --> 00:38:31,320
+You just keep barreling forward.
+
+934
+00:38:31,320 --> 00:38:33,040
+So, you know, how much are we or who we are
+
+935
+00:38:33,040 --> 00:38:34,320
+when we do experiments versus people
+
+936
+00:38:34,320 --> 00:38:35,160
+following weird instructions?
+
+937
+00:38:35,160 --> 00:38:37,560
+And we'll come back to that in some serious context.
+
+938
+00:38:37,560 --> 00:38:39,040
+That's the subject, how about experimenters?
+
+939
+00:38:39,040 --> 00:38:40,960
+Experimenters are never objective.
+
+940
+00:38:40,960 --> 00:38:43,320
+We try to be as scientist as objective as we can.
+
+941
+00:38:43,320 --> 00:38:45,800
+We're never, you know, we believe certain hypotheses,
+
+942
+00:38:45,800 --> 00:38:48,360
+we have certain goals, we recognize results
+
+943
+00:38:48,360 --> 00:38:49,360
+that would be super exciting,
+
+944
+00:38:49,360 --> 00:38:51,080
+we recognize results that would be boring.
+
+945
+00:38:51,080 --> 00:38:53,280
+Okay, we're humans too.
+
+946
+00:38:53,280 --> 00:38:54,400
+We wanna do stuff that matters,
+
+947
+00:38:54,400 --> 00:38:56,600
+we wanna do stuff that people reward us for.
+
+948
+00:38:56,600 --> 00:38:57,720
+I mean, it's just human.
+
+949
+00:38:57,720 --> 00:39:01,040
+So, here's a lowest case example
+
+950
+00:39:01,040 --> 00:39:02,680
+of how once you're an experimenter,
+
+951
+00:39:02,680 --> 00:39:04,200
+you produce your own results.
+
+952
+00:39:04,200 --> 00:39:06,520
+And believe me, it's much more when your result matters
+
+953
+00:39:06,520 --> 00:39:08,960
+for things like your career advancement
+
+954
+00:39:08,960 --> 00:39:10,760
+or your status in the field.
+
+955
+00:39:10,760 --> 00:39:14,040
+So, students were told that rats were either
+
+956
+00:39:14,040 --> 00:39:15,360
+maize bright or maize dull.
+
+957
+00:39:15,360 --> 00:39:16,960
+They were told that these rats were bred
+
+958
+00:39:16,960 --> 00:39:19,600
+to be smart learners or not so smart.
+
+959
+00:39:19,600 --> 00:39:21,760
+The rats were all just random rats, okay?
+
+960
+00:39:21,760 --> 00:39:24,520
+It's a fake story to undergraduates.
+
+961
+00:39:24,520 --> 00:39:26,800
+Then they had them test on a maize
+
+962
+00:39:26,800 --> 00:39:28,480
+and they said, for your laboratory exercise,
+
+963
+00:39:28,480 --> 00:39:31,920
+write down how quickly the rat runs the maize, okay?
+
+964
+00:39:31,920 --> 00:39:36,640
+And amazingly, the smart rats did way better
+
+965
+00:39:36,640 --> 00:39:39,120
+than the dull rats, okay?
+
+966
+00:39:39,120 --> 00:39:41,280
+Now, these are not students trying to become famous
+
+967
+00:39:41,280 --> 00:39:44,080
+or have a career, they're handing in an assignment, okay?
+
+968
+00:39:44,080 --> 00:39:45,320
+And how did that happen?
+
+969
+00:39:46,320 --> 00:39:48,000
+Well, they went back and it wasn't
+
+970
+00:39:48,000 --> 00:39:49,400
+that anybody faked data or anything like that,
+
+971
+00:39:49,400 --> 00:39:51,040
+but when they looked at films or discussed stuff
+
+972
+00:39:51,040 --> 00:39:53,800
+with kids, students in the course,
+
+973
+00:39:53,800 --> 00:39:56,320
+every little thing that the students did
+
+974
+00:39:56,320 --> 00:39:59,480
+that moved the data in tiny, tiny ways,
+
+975
+00:39:59,480 --> 00:40:02,520
+always favored finding the maize bright rats
+
+976
+00:40:02,520 --> 00:40:04,440
+and being brilliant maize runners.
+
+977
+00:40:04,440 --> 00:40:06,560
+So, for example, you know, they would put the rat,
+
+978
+00:40:06,560 --> 00:40:08,040
+if you've ever run a rat in a maize,
+
+979
+00:40:08,040 --> 00:40:09,640
+does anybody run a rat in a maize?
+
+980
+00:40:09,640 --> 00:40:10,600
+Is it easy?
+
+981
+00:40:12,200 --> 00:40:14,040
+If you pick them up and put them in the maize,
+
+982
+00:40:14,080 --> 00:40:15,880
+that's when they're more automated now.
+
+983
+00:40:15,880 --> 00:40:17,000
+Is it physically easy?
+
+984
+00:40:17,000 --> 00:40:19,880
+Are rats like, please, show me the starting line?
+
+985
+00:40:19,880 --> 00:40:20,760
+I'm ready to go?
+
+986
+00:40:20,760 --> 00:40:21,600
+No, what are they like?
+
+987
+00:40:21,600 --> 00:40:23,760
+Help me out here for you guys who've done this.
+
+988
+00:40:23,760 --> 00:40:26,120
+Are they kind of, are they kind of really at?
+
+989
+00:40:28,460 --> 00:40:30,640
+And they don't like to be handled that much, really, no.
+
+990
+00:40:30,640 --> 00:40:32,320
+Even ones in the other, they're just fighting.
+
+991
+00:40:32,320 --> 00:40:34,640
+And these are undergraduates who've hardly ever touched a rat.
+
+992
+00:40:34,640 --> 00:40:37,320
+Okay, they're like, please, don't attack me or something.
+
+993
+00:40:37,320 --> 00:40:39,560
+So they're holding up the guy and the rat's fighting back.
+
+994
+00:40:39,560 --> 00:40:40,640
+And because it's really uncomfortable,
+
+995
+00:40:40,640 --> 00:40:42,560
+that's really unhappy and the student's like, really,
+
+996
+00:40:43,560 --> 00:40:47,080
+so what happens is, and then they clunk the rat down
+
+997
+00:40:47,080 --> 00:40:48,880
+and they go, oh my gosh, it's facing the wrong direction
+
+998
+00:40:48,880 --> 00:40:49,720
+and it's a smart one.
+
+999
+00:40:49,720 --> 00:40:52,800
+Wait, let's start, stop the clock, let's get him,
+
+1000
+00:40:52,800 --> 00:40:55,680
+but if it's a dull one facing the wrong direction,
+
+1001
+00:40:55,680 --> 00:40:57,600
+it's okay, it's a dull one, let the maize,
+
+1002
+00:40:57,600 --> 00:40:59,240
+so lots of little things.
+
+1003
+00:40:59,240 --> 00:41:00,160
+Are you sure you wrote this down?
+
+1004
+00:41:00,160 --> 00:41:01,880
+Was it 12 seconds or 11?
+
+1005
+00:41:01,880 --> 00:41:04,760
+I guess it was 11, oh, because it's a smart one, okay?
+
+1006
+00:41:04,760 --> 00:41:07,680
+So completely innocently, completely innocently,
+
+1007
+00:41:07,680 --> 00:41:10,480
+as far as we understand, they made the result
+
+1008
+00:41:10,480 --> 00:41:13,640
+to match up with what the expectation was.
+
+1009
+00:41:13,640 --> 00:41:16,760
+And it's not just that, and if you know this example,
+
+1010
+00:41:16,760 --> 00:41:19,360
+cognitive psychology has studied a phenomenon like this,
+
+1011
+00:41:19,360 --> 00:41:20,760
+so try this at your desk.
+
+1012
+00:41:20,760 --> 00:41:22,280
+Each card is a letter on one side
+
+1013
+00:41:22,280 --> 00:41:24,200
+and a number on the other side.
+
+1014
+00:41:24,200 --> 00:41:27,000
+Your job is to figure out what's the smallest number
+
+1015
+00:41:27,000 --> 00:41:28,840
+of cards you have to pick up
+
+1016
+00:41:28,840 --> 00:41:31,200
+to discover if this rule is right.
+
+1017
+00:41:31,200 --> 00:41:33,880
+If a card has a vowel on one side,
+
+1018
+00:41:33,880 --> 00:41:35,920
+then it has an even number on the other side.
+
+1019
+00:41:35,920 --> 00:41:37,640
+So think about this for a moment.
+
+1020
+00:41:37,640 --> 00:41:40,240
+If a card has a vowel on one side,
+
+1021
+00:41:40,240 --> 00:41:42,160
+then it has to have an even number on the other side.
+
+1022
+00:41:42,160 --> 00:41:44,680
+What's the smallest number of cards you can pick up
+
+1023
+00:41:44,680 --> 00:41:46,360
+to test that hypothesis?
+
+1024
+00:41:48,600 --> 00:41:50,800
+So here's what people have found.
+
+1025
+00:41:50,800 --> 00:41:53,140
+The correct answer is E and seven,
+
+1026
+00:41:54,200 --> 00:41:57,840
+and about 10% of people on average come up with that.
+
+1027
+00:41:57,840 --> 00:42:02,520
+Many, many more people pick E alone or E and six.
+
+1028
+00:42:03,760 --> 00:42:04,600
+Why?
+
+1029
+00:42:06,720 --> 00:42:09,280
+Well, everybody gets that you have to look at E
+
+1030
+00:42:09,280 --> 00:42:11,360
+because it's an even number, right?
+
+1031
+00:42:11,360 --> 00:42:15,160
+So you flip E over, and if that one turns out to have,
+
+1032
+00:42:15,160 --> 00:42:16,960
+it's a vowel, if it has an odd number,
+
+1033
+00:42:16,960 --> 00:42:19,280
+that hypothesis is wrong, right?
+
+1034
+00:42:19,280 --> 00:42:22,280
+That's, everybody gets it, you should check E.
+
+1035
+00:42:22,280 --> 00:42:24,880
+Pretty much everybody gets that J is irrelevant
+
+1036
+00:42:24,880 --> 00:42:26,800
+because it's a consonant, okay?
+
+1037
+00:42:26,800 --> 00:42:28,760
+Now comes the interesting six and seven.
+
+1038
+00:42:29,760 --> 00:42:32,880
+Because the sentence is talking about a vowel
+
+1039
+00:42:32,880 --> 00:42:34,720
+and an even number, sometimes people feel like,
+
+1040
+00:42:34,720 --> 00:42:37,240
+gotta check the even number, right?
+
+1041
+00:42:37,240 --> 00:42:38,880
+But it doesn't say anything about even numbers
+
+1042
+00:42:38,880 --> 00:42:40,320
+and couldn't go with consonants.
+
+1043
+00:42:40,320 --> 00:42:42,000
+It doesn't even, it doesn't tell you anything.
+
+1044
+00:42:42,000 --> 00:42:44,760
+That's not part of the hypothesis.
+
+1045
+00:42:44,760 --> 00:42:48,680
+So you don't, but if you flipped over number seven
+
+1046
+00:42:48,680 --> 00:42:52,640
+and you discovered a vowel, you'd violate the rule.
+
+1047
+00:42:53,800 --> 00:42:56,280
+So what happens is they're tempted to go for things
+
+1048
+00:42:56,280 --> 00:42:59,580
+that feel like they confirm the question.
+
+1049
+00:42:59,580 --> 00:43:01,040
+And it feels like E confirms it
+
+1050
+00:43:01,040 --> 00:43:03,920
+and it feels like six confirms it, right?
+
+1051
+00:43:03,920 --> 00:43:06,680
+And it's what's called confirmatory bias.
+
+1052
+00:43:06,680 --> 00:43:08,160
+That when you look at stuff,
+
+1053
+00:43:08,160 --> 00:43:10,720
+if you see what you think confirms it,
+
+1054
+00:43:10,720 --> 00:43:11,720
+then you tend to go for that
+
+1055
+00:43:11,720 --> 00:43:13,780
+even when there's evidence in front of you
+
+1056
+00:43:13,780 --> 00:43:15,960
+that could contradict your expectation.
+
+1057
+00:43:17,040 --> 00:43:21,960
+Okay, so now I'm gonna give you a practical suggestion
+
+1058
+00:43:21,960 --> 00:43:23,560
+for how to win somebody over
+
+1059
+00:43:23,560 --> 00:43:26,000
+if you have a brewing romantic interest in that person,
+
+1060
+00:43:26,000 --> 00:43:26,840
+all right?
+
+1061
+00:43:26,840 --> 00:43:28,360
+All right, so finally we get practical, right?
+
+1062
+00:43:28,360 --> 00:43:30,680
+Everything was like, I'm not running rats, you know?
+
+1063
+00:43:30,680 --> 00:43:34,120
+I'm taking, all right, all right.
+
+1064
+00:43:34,120 --> 00:43:35,160
+And I think it's really interesting
+
+1065
+00:43:35,160 --> 00:43:37,360
+because I think, when we think about how people
+
+1066
+00:43:37,360 --> 00:43:38,720
+make decisions in their lives,
+
+1067
+00:43:38,720 --> 00:43:40,920
+we tend to think intuitively about big decisions.
+
+1068
+00:43:40,920 --> 00:43:42,760
+You know, like, what's my career gonna be?
+
+1069
+00:43:42,760 --> 00:43:43,960
+Where do I go to college?
+
+1070
+00:43:43,960 --> 00:43:45,200
+We think those are the big decisions,
+
+1071
+00:43:45,200 --> 00:43:47,400
+but a huge amount of life is little decisions.
+
+1072
+00:43:47,400 --> 00:43:49,520
+Moment to moment, if somebody asks you for something,
+
+1073
+00:43:49,520 --> 00:43:50,880
+do you say yes or no?
+
+1074
+00:43:50,880 --> 00:43:52,600
+Somebody walks up to you at a party.
+
+1075
+00:43:52,600 --> 00:43:54,000
+They want to talk with you.
+
+1076
+00:43:54,000 --> 00:43:55,920
+Do you feel like talking or not feel like talking?
+
+1077
+00:43:55,920 --> 00:43:56,920
+You know, maybe you talk with them
+
+1078
+00:43:56,920 --> 00:43:59,700
+as a lifetime friend or a romantic partner or whatever.
+
+1079
+00:43:59,700 --> 00:44:02,400
+So I think we make constantly little decisions
+
+1080
+00:44:02,400 --> 00:44:04,400
+that turn out to big effects in our lives.
+
+1081
+00:44:04,400 --> 00:44:06,560
+So here's some evidence about things like that
+
+1082
+00:44:06,760 --> 00:44:07,720
+that influence that.
+
+1083
+00:44:07,720 --> 00:44:10,040
+And this is, worked in at Yale.
+
+1084
+00:44:10,040 --> 00:44:13,320
+So we describe people as warm,
+
+1085
+00:44:13,320 --> 00:44:16,320
+or we can define them as cold or aloof, right?
+
+1086
+00:44:16,320 --> 00:44:18,760
+And we could think those words are kind of arbitrary.
+
+1087
+00:44:18,760 --> 00:44:20,600
+And most of us, if you met somebody at a party,
+
+1088
+00:44:20,600 --> 00:44:21,760
+would you rather hang out with somebody
+
+1089
+00:44:21,760 --> 00:44:23,660
+who's warm or cold?
+
+1090
+00:44:25,080 --> 00:44:25,920
+Warm, okay.
+
+1091
+00:44:25,920 --> 00:44:29,520
+All right, just checking that we're, okay.
+
+1092
+00:44:29,520 --> 00:44:34,520
+Now, sometimes there's an idea of embodied cognition
+
+1093
+00:44:34,800 --> 00:44:36,120
+and here's what it is.
+
+1094
+00:44:36,160 --> 00:44:39,480
+We can't really know how warm or cold that person is,
+
+1095
+00:44:39,480 --> 00:44:41,920
+or even that's even an abstract idea,
+
+1096
+00:44:41,920 --> 00:44:44,160
+but we know we're comfortable when we're kind of warm
+
+1097
+00:44:44,160 --> 00:44:46,680
+and we know we're not comfortable physically inside us
+
+1098
+00:44:46,680 --> 00:44:48,320
+when we're kind of cold.
+
+1099
+00:44:48,320 --> 00:44:50,760
+So there's an idea that when we think about
+
+1100
+00:44:50,760 --> 00:44:52,760
+other people's feelings, other people's thoughts,
+
+1101
+00:44:52,760 --> 00:44:54,400
+or abstract things in the world,
+
+1102
+00:44:54,400 --> 00:44:57,520
+we base them on physical experiences that we have inside,
+
+1103
+00:44:57,520 --> 00:44:59,720
+okay, that there's a more direct link
+
+1104
+00:44:59,720 --> 00:45:02,360
+between what we know inside us
+
+1105
+00:45:02,360 --> 00:45:04,240
+and we use that to interpret the world out there.
+
+1106
+00:45:04,240 --> 00:45:07,000
+And embodied cognition, your body is the vehicle
+
+1107
+00:45:07,000 --> 00:45:08,680
+for understanding things out there.
+
+1108
+00:45:08,680 --> 00:45:11,800
+So here's the experiment, it's really clever.
+
+1109
+00:45:11,800 --> 00:45:14,280
+There's two temperature conditions.
+
+1110
+00:45:14,280 --> 00:45:16,400
+So what happens is you go into a building
+
+1111
+00:45:16,400 --> 00:45:19,120
+and the examiner, an undergraduate,
+
+1112
+00:45:19,120 --> 00:45:21,760
+usually a graduate student, meets a subject in the lobby
+
+1113
+00:45:21,760 --> 00:45:24,840
+and he's carrying a cup of coffee.
+
+1114
+00:45:24,840 --> 00:45:28,480
+Sometimes it's hot coffee, sometimes it's cold coffee.
+
+1115
+00:45:28,480 --> 00:45:30,920
+A clipboard, two textbooks, okay?
+
+1116
+00:45:30,920 --> 00:45:32,960
+So you can imagine, it's a setup, right?
+
+1117
+00:45:33,000 --> 00:45:34,560
+Persons walking, they're juggling with the coffee,
+
+1118
+00:45:34,560 --> 00:45:36,280
+the textbook, all the clipboard,
+
+1119
+00:45:36,280 --> 00:45:38,040
+and he says, on the elevator, he says,
+
+1120
+00:45:38,040 --> 00:45:40,640
+could you just hold my cup while I write down your name
+
+1121
+00:45:40,640 --> 00:45:42,600
+on my list of subjects in the experiment?
+
+1122
+00:45:42,600 --> 00:45:44,440
+Okay, it's very innocent, right?
+
+1123
+00:45:44,440 --> 00:45:46,800
+On the elevator, until you hold a cup of coffee,
+
+1124
+00:45:46,800 --> 00:45:49,240
+which half the people get a hot cup,
+
+1125
+00:45:49,240 --> 00:45:50,840
+half the people get a cold cup.
+
+1126
+00:45:51,800 --> 00:45:53,160
+Then you read a description of a person,
+
+1127
+00:45:53,160 --> 00:45:55,560
+it's just a paragraph, and you have to rate
+
+1128
+00:45:55,560 --> 00:45:59,320
+whether you find the person described as warm or cold.
+
+1129
+00:45:59,320 --> 00:46:01,500
+And if you had the warm cup of coffee,
+
+1130
+00:46:01,540 --> 00:46:03,140
+you're more likely to describe that person
+
+1131
+00:46:03,140 --> 00:46:05,620
+as a warm kind of a person, okay?
+
+1132
+00:46:05,620 --> 00:46:06,980
+Now, these subjects have no idea,
+
+1133
+00:46:06,980 --> 00:46:07,900
+they held a cup of coffee,
+
+1134
+00:46:07,900 --> 00:46:08,740
+they probably didn't even think
+
+1135
+00:46:08,740 --> 00:46:10,260
+whether it was warm or cold.
+
+1136
+00:46:10,260 --> 00:46:12,380
+But something in their body that got warmed up
+
+1137
+00:46:12,380 --> 00:46:15,500
+to the least degree possible, right?
+
+1138
+00:46:15,500 --> 00:46:17,020
+That thought is still in their head.
+
+1139
+00:46:17,020 --> 00:46:17,980
+So when they read a description,
+
+1140
+00:46:17,980 --> 00:46:20,020
+somebody goes, oh, this seems like a warm person.
+
+1141
+00:46:20,020 --> 00:46:22,220
+Or if it was a cold cup of coffee,
+
+1142
+00:46:22,220 --> 00:46:25,220
+they say, oh, this seems like a cold, aloof kind of person
+
+1143
+00:46:25,220 --> 00:46:26,900
+as far as I can tell, all right?
+
+1144
+00:46:26,900 --> 00:46:28,420
+That little bit of difference.
+
+1145
+00:46:28,420 --> 00:46:30,740
+So here's the lesson just so you got it.
+
+1146
+00:46:30,740 --> 00:46:32,340
+If you want to take somebody
+
+1147
+00:46:32,340 --> 00:46:34,180
+because you have a possible friendship
+
+1148
+00:46:34,180 --> 00:46:35,820
+or romantic interest in that person,
+
+1149
+00:46:35,820 --> 00:46:38,300
+are you better off going out for a warm cup of coffee
+
+1150
+00:46:38,300 --> 00:46:40,760
+or giving them a cold glass of beer?
+
+1151
+00:46:41,820 --> 00:46:46,100
+But for that first impression,
+
+1152
+00:46:46,100 --> 00:46:51,100
+scientific research shows it's something warm will work.
+
+1153
+00:46:52,380 --> 00:46:53,340
+It's not that powerful,
+
+1154
+00:46:53,340 --> 00:46:55,740
+you're not gonna be able to control the world, okay?
+
+1155
+00:46:56,980 --> 00:47:00,380
+But what it says is when we're in ambiguous situations,
+
+1156
+00:47:01,300 --> 00:47:03,140
+we first meet somebody, we don't really know them.
+
+1157
+00:47:03,140 --> 00:47:05,100
+Little things can start us off on one path
+
+1158
+00:47:05,100 --> 00:47:06,380
+or can start us off on another path.
+
+1159
+00:47:06,380 --> 00:47:07,980
+Surprisingly little things.
+
+1160
+00:47:09,380 --> 00:47:11,260
+Now, then they have to worry about a confound.
+
+1161
+00:47:11,260 --> 00:47:13,060
+Can you imagine a confound here?
+
+1162
+00:47:13,060 --> 00:47:14,100
+Think of the rats.
+
+1163
+00:47:14,100 --> 00:47:16,980
+Who knows if the cup is cold or hot
+
+1164
+00:47:16,980 --> 00:47:18,460
+besides the person holding it?
+
+1165
+00:47:20,700 --> 00:47:22,340
+The examiner, right?
+
+1166
+00:47:22,340 --> 00:47:25,380
+Okay, now maybe the examiner doesn't try to do this,
+
+1167
+00:47:25,380 --> 00:47:27,380
+but maybe the examiner no matter what says,
+
+1168
+00:47:27,380 --> 00:47:29,820
+over in the warm condition and I'm smiling
+
+1169
+00:47:29,940 --> 00:47:30,940
+because this is gonna be nice,
+
+1170
+00:47:30,940 --> 00:47:32,660
+I'm helping this person feel good.
+
+1171
+00:47:32,660 --> 00:47:34,180
+And here's the aloof condition,
+
+1172
+00:47:34,180 --> 00:47:36,060
+I'm giving it, and we're all gonna be miserable.
+
+1173
+00:47:36,060 --> 00:47:37,700
+And the examiner knows it because they know
+
+1174
+00:47:37,700 --> 00:47:39,220
+if they have a hot or cold cup of coffee.
+
+1175
+00:47:39,220 --> 00:47:41,780
+So maybe the person's not vibing to the coffee,
+
+1176
+00:47:41,780 --> 00:47:44,220
+they're vibing to the expression or feeling
+
+1177
+00:47:44,220 --> 00:47:45,980
+or sentiment of the examiner, right?
+
+1178
+00:47:45,980 --> 00:47:47,700
+Who understands what's going on?
+
+1179
+00:47:47,700 --> 00:47:49,180
+So they do one more experiment where they give,
+
+1180
+00:47:49,180 --> 00:47:51,220
+have you seen these hot and icy therapeutic packs
+
+1181
+00:47:51,220 --> 00:47:52,100
+that you could make hot or cold?
+
+1182
+00:47:52,100 --> 00:47:55,020
+Okay, now somebody else makes it hot or cold.
+
+1183
+00:47:55,020 --> 00:47:57,580
+The experimenter has no idea whether it was hot or cold.
+
+1184
+00:47:57,580 --> 00:47:58,980
+So it's what we call double blind.
+
+1185
+00:47:58,980 --> 00:48:01,260
+The person doesn't know it's relevant, the experimenter.
+
+1186
+00:48:01,260 --> 00:48:03,900
+They rate the pad and now, this moves it a little bit,
+
+1187
+00:48:03,900 --> 00:48:05,940
+they either get, after this thing is over,
+
+1188
+00:48:05,940 --> 00:48:08,060
+they're told it's a product evaluation of the pad,
+
+1189
+00:48:08,060 --> 00:48:10,660
+but they either got a hot pad or a cold pad.
+
+1190
+00:48:10,660 --> 00:48:13,340
+And they could either choose to one of two rewards,
+
+1191
+00:48:13,340 --> 00:48:15,300
+a Snapple beverage or a dollar gift certificate,
+
+1192
+00:48:15,300 --> 00:48:16,260
+whichever you like better.
+
+1193
+00:48:16,260 --> 00:48:18,340
+Okay, you had two little things you could do.
+
+1194
+00:48:18,340 --> 00:48:20,460
+But here's the big decision, do you get it for yourself
+
+1195
+00:48:20,460 --> 00:48:23,300
+where we can send it for you to a friend?
+
+1196
+00:48:23,300 --> 00:48:26,620
+We can send them the Snapple or the certificate.
+
+1197
+00:48:26,660 --> 00:48:30,420
+If the people got a cold pad, 75% of the times they say,
+
+1198
+00:48:30,420 --> 00:48:32,620
+please give it to me right now, I'll take it.
+
+1199
+00:48:32,620 --> 00:48:36,100
+If they had a warm pad, 46% of the,
+
+1200
+00:48:36,100 --> 00:48:37,380
+the majority of the time they actually send it
+
+1201
+00:48:37,380 --> 00:48:38,220
+to their friend.
+
+1202
+00:48:39,300 --> 00:48:43,220
+That pad difference moved quite substantially,
+
+1203
+00:48:43,220 --> 00:48:45,340
+the likelihood that you take it for yourself
+
+1204
+00:48:45,340 --> 00:48:47,860
+or you give it away, quite substantially.
+
+1205
+00:48:47,860 --> 00:48:49,900
+If you're a charity trying to get people to donate
+
+1206
+00:48:49,900 --> 00:48:51,420
+or you wanna get help from somebody,
+
+1207
+00:48:51,420 --> 00:48:55,620
+a 75, 25% success rate is a lot worse
+
+1208
+00:48:55,620 --> 00:48:58,820
+than a 54% right, it's a doubling,
+
+1209
+00:48:58,820 --> 00:49:00,820
+a doubling of whether you keep it for yourself
+
+1210
+00:49:00,820 --> 00:49:02,140
+or you're generous to your friend.
+
+1211
+00:49:02,140 --> 00:49:06,780
+Just that cup of coffee, it's just that therapeutic pad.
+
+1212
+00:49:06,780 --> 00:49:09,180
+I'm gonna do two more and then go to the video.
+
+1213
+00:49:09,180 --> 00:49:10,640
+How about money?
+
+1214
+00:49:10,640 --> 00:49:11,660
+When you think about money,
+
+1215
+00:49:11,660 --> 00:49:13,140
+I don't mean traumatic things about money,
+
+1216
+00:49:13,140 --> 00:49:14,580
+just a little bit about money.
+
+1217
+00:49:14,580 --> 00:49:17,740
+How does it influence how you relate to other people?
+
+1218
+00:49:17,740 --> 00:49:19,940
+Okay, here's the experiment.
+
+1219
+00:49:19,940 --> 00:49:21,620
+The idea is that money on average,
+
+1220
+00:49:21,620 --> 00:49:22,820
+when you just think a little bit about it
+
+1221
+00:49:22,820 --> 00:49:24,780
+and I'll show you how ridiculously little
+
+1222
+00:49:24,780 --> 00:49:25,780
+they think about it,
+
+1223
+00:49:27,060 --> 00:49:29,060
+their hypothesis is that money makes you think
+
+1224
+00:49:29,060 --> 00:49:30,700
+about self-reliance, you earn your money,
+
+1225
+00:49:30,700 --> 00:49:31,700
+you have your bank account,
+
+1226
+00:49:31,700 --> 00:49:35,340
+compared to situations where you're not thinking about money.
+
+1227
+00:49:36,340 --> 00:49:37,380
+So here's what they did.
+
+1228
+00:49:37,380 --> 00:49:39,300
+They had people come in in three conditions.
+
+1229
+00:49:39,300 --> 00:49:41,340
+They either, and they had to unscramble sentences.
+
+1230
+00:49:41,340 --> 00:49:43,380
+You have no idea what's going on, right?
+
+1231
+00:49:43,380 --> 00:49:47,000
+You got a sentence like, cold at desk outside is,
+
+1232
+00:49:47,000 --> 00:49:49,500
+which you would make into a good sentence,
+
+1233
+00:49:49,500 --> 00:49:52,460
+or high as salary desk paying, okay?
+
+1234
+00:49:52,460 --> 00:49:54,240
+So you just make those, you scramble those words around,
+
+1235
+00:49:54,240 --> 00:49:57,800
+but the money condition has a word like salary in it.
+
+1236
+00:49:57,800 --> 00:50:00,160
+Or you get the neutral sentences
+
+1237
+00:50:00,160 --> 00:50:01,200
+that have no money reference,
+
+1238
+00:50:01,200 --> 00:50:04,920
+and you see a monopoly money in the corner of the room.
+
+1239
+00:50:04,920 --> 00:50:06,160
+Okay, so we're not talking like,
+
+1240
+00:50:06,160 --> 00:50:09,120
+people just sent you your tuition bill, okay?
+
+1241
+00:50:09,120 --> 00:50:14,120
+Or whatever, or you just found out that you're something
+
+1242
+00:50:14,120 --> 00:50:16,240
+terrible happened financially, or you won the lottery.
+
+1243
+00:50:16,240 --> 00:50:18,160
+It's monopoly money, okay?
+
+1244
+00:50:18,160 --> 00:50:20,200
+It's just like the idea of money in them, all right?
+
+1245
+00:50:20,200 --> 00:50:23,240
+Okay, and then they give you a task to do,
+
+1246
+00:50:23,240 --> 00:50:24,960
+and the experimenter, as he or she leaves the room,
+
+1247
+00:50:24,960 --> 00:50:28,000
+they say, it's a pretty hard task, you may want some help.
+
+1248
+00:50:28,000 --> 00:50:31,000
+So just come and get me, I'm glad to help you, not a problem.
+
+1249
+00:50:31,000 --> 00:50:32,320
+So what happens?
+
+1250
+00:50:32,320 --> 00:50:34,240
+Here's a probability of getting help,
+
+1251
+00:50:34,240 --> 00:50:36,640
+and it's incredibly more for the control groups
+
+1252
+00:50:36,640 --> 00:50:39,000
+that did the sentences without money,
+
+1253
+00:50:39,000 --> 00:50:41,240
+and way less, not only for the people who unscramble
+
+1254
+00:50:41,240 --> 00:50:43,080
+the sentence with the word salary,
+
+1255
+00:50:43,080 --> 00:50:46,500
+but also way less if they saw monopoly money in the corner.
+
+1256
+00:50:47,460 --> 00:50:50,240
+The mere idea of money, not money given to you,
+
+1257
+00:50:50,240 --> 00:50:52,560
+not financial trauma or financial gain,
+
+1258
+00:50:52,560 --> 00:50:55,960
+the mere idea of money makes you less willing
+
+1259
+00:50:55,960 --> 00:50:58,080
+to get up and get help.
+
+1260
+00:50:58,080 --> 00:51:00,640
+So the positive, it makes you more self-reliant.
+
+1261
+00:51:00,640 --> 00:51:03,440
+The negative is people were less willing
+
+1262
+00:51:03,440 --> 00:51:04,280
+to help somebody.
+
+1263
+00:51:04,280 --> 00:51:06,280
+Now the end, as the examiner comes in and says,
+
+1264
+00:51:06,280 --> 00:51:08,600
+you know, I'm an undergraduate like you,
+
+1265
+00:51:08,600 --> 00:51:10,280
+I've got huge pressure to get this paper in,
+
+1266
+00:51:10,280 --> 00:51:13,080
+can you help me code, can you help me score up a few sheets?
+
+1267
+00:51:13,080 --> 00:51:17,840
+Okay, people were twice as much willing to help
+
+1268
+00:51:17,840 --> 00:51:20,320
+if they just did the neutral things,
+
+1269
+00:51:20,320 --> 00:51:23,720
+than if they unscrambled the money sentences
+
+1270
+00:51:23,720 --> 00:51:26,440
+or saw the monopoly money in the corner of the room.
+
+1271
+00:51:26,440 --> 00:51:29,000
+Cause just that thought about money goes like,
+
+1272
+00:51:29,000 --> 00:51:31,840
+man, okay, self-reliance, we're all in it for ourselves.
+
+1273
+00:51:31,840 --> 00:51:34,720
+Okay, I've got my money, you've got your money.
+
+1274
+00:51:34,720 --> 00:51:37,440
+You know, good luck, we're all, we're all, we're all out.
+
+1275
+00:51:37,440 --> 00:51:39,800
+Okay, self-reliance can be a good thing,
+
+1276
+00:51:39,800 --> 00:51:41,600
+but it doesn't necessarily go with helping people
+
+1277
+00:51:41,600 --> 00:51:42,980
+very much also, yeah.
+
+1278
+00:51:43,480 --> 00:51:45,100
+So there's no relationship to people though,
+
+1279
+00:51:45,100 --> 00:51:46,500
+like, there's just monopoly money
+
+1280
+00:51:46,500 --> 00:51:48,980
+and it's just suspicious that a lot of the money's
+
+1281
+00:51:48,980 --> 00:51:52,300
+moving there, that's why you're not going to help.
+
+1282
+00:51:52,300 --> 00:51:54,740
+It could, yeah, the monopoly money, I agree with you,
+
+1283
+00:51:54,740 --> 00:51:55,900
+maybe that's why they also had the one
+
+1284
+00:51:55,900 --> 00:51:58,660
+where you just get the scrambled sentences.
+
+1285
+00:51:58,660 --> 00:51:59,980
+Okay, I agree with you, these are all,
+
+1286
+00:51:59,980 --> 00:52:01,380
+you know, you could think, there's many, many ways
+
+1287
+00:52:01,380 --> 00:52:02,740
+to think about this.
+
+1288
+00:52:02,740 --> 00:52:04,860
+Okay, the last example that I just kind of want to show you
+
+1289
+00:52:04,860 --> 00:52:08,660
+is dating behavior, all right.
+
+1290
+00:52:08,660 --> 00:52:10,980
+And the way, again, an experiment can challenge
+
+1291
+00:52:11,020 --> 00:52:13,860
+various ideas, so, and this is specifically
+
+1292
+00:52:13,860 --> 00:52:15,180
+about dating between men and women.
+
+1293
+00:52:15,180 --> 00:52:17,140
+The story, to the extent it's been studied,
+
+1294
+00:52:17,140 --> 00:52:17,980
+would be a little bit different
+
+1295
+00:52:17,980 --> 00:52:19,220
+if you're dating within a sex.
+
+1296
+00:52:19,220 --> 00:52:21,540
+So, for dating between men and women,
+
+1297
+00:52:21,540 --> 00:52:25,500
+who is more selective in their dating choices, do you think?
+
+1298
+00:52:25,500 --> 00:52:29,100
+Who's more willing to date widely, or a lot?
+
+1299
+00:52:29,100 --> 00:52:32,700
+Or less, you know, what's your thought
+
+1300
+00:52:32,700 --> 00:52:35,540
+if you have to generalize about men and women
+
+1301
+00:52:35,540 --> 00:52:37,020
+on average in your,
+
+1302
+00:52:38,020 --> 00:52:39,860
+no, okay, thank you, all right.
+
+1303
+00:52:41,860 --> 00:52:45,140
+Okay, so, an evolutionary psychologist,
+
+1304
+00:52:45,140 --> 00:52:46,740
+and I love evolutionary psychology,
+
+1305
+00:52:46,740 --> 00:52:48,100
+but it drives me crazy too, okay.
+
+1306
+00:52:48,100 --> 00:52:49,500
+Evolutionary psychologists will go,
+
+1307
+00:52:49,500 --> 00:52:51,900
+well, because, you know, by evolutionary theory,
+
+1308
+00:52:51,900 --> 00:52:53,860
+men have to go and make as many offspring
+
+1309
+00:52:53,860 --> 00:52:55,540
+as they can to keep their genes going,
+
+1310
+00:52:55,540 --> 00:52:56,740
+women have to be more selective.
+
+1311
+00:52:56,740 --> 00:52:58,300
+It takes nine months to bear a baby,
+
+1312
+00:52:58,300 --> 00:53:00,740
+it takes nine seconds to do the male part, right?
+
+1313
+00:53:00,740 --> 00:53:01,580
+Okay.
+
+1314
+00:53:03,500 --> 00:53:04,340
+Estimated.
+
+1315
+00:53:05,180 --> 00:53:09,900
+Okay, so, you know, so this might or might not be true.
+
+1316
+00:53:09,900 --> 00:53:11,220
+It's kind of fun, we all laugh about it.
+
+1317
+00:53:11,220 --> 00:53:12,300
+All of us find it kind of amusing
+
+1318
+00:53:12,300 --> 00:53:14,580
+to sort of think about, you know, if we, so,
+
+1319
+00:53:14,580 --> 00:53:17,340
+but how would we actually know
+
+1320
+00:53:17,340 --> 00:53:20,140
+if this is vaguely true on average?
+
+1321
+00:53:20,140 --> 00:53:22,740
+How would we actually know if men
+
+1322
+00:53:22,740 --> 00:53:23,940
+for dating behavior are more,
+
+1323
+00:53:23,940 --> 00:53:25,740
+how would we even, is that true,
+
+1324
+00:53:25,740 --> 00:53:30,140
+is that a, you know, bad myth, the bad rap, or whatever, yeah.
+
+1325
+00:53:31,140 --> 00:53:31,980
+Getting my sides?
+
+1326
+00:53:31,980 --> 00:53:33,060
+Yeah, thank you very much.
+
+1327
+00:53:33,060 --> 00:53:37,260
+So there's an entire research enterprise out there now
+
+1328
+00:53:37,260 --> 00:53:38,820
+that uses online dating sites,
+
+1329
+00:53:38,820 --> 00:53:40,580
+which, of course, it's only in the last 20 years
+
+1330
+00:53:40,580 --> 00:53:42,580
+or something, you know, that they've existed, I think,
+
+1331
+00:53:42,580 --> 00:53:44,180
+so it wasn't before.
+
+1332
+00:53:44,180 --> 00:53:46,620
+And the other one that's been a treasure trove of data,
+
+1333
+00:53:46,620 --> 00:53:49,140
+a speed dating environments, okay,
+
+1334
+00:53:49,140 --> 00:53:51,060
+where you can observe things and measure things.
+
+1335
+00:53:51,060 --> 00:53:53,580
+And those studies have shown, for example,
+
+1336
+00:53:53,580 --> 00:53:56,180
+that online dating on average men are one and a half times
+
+1337
+00:53:56,180 --> 00:53:58,220
+more likely to send email offerings, you know,
+
+1338
+00:53:58,220 --> 00:54:00,140
+dates to a woman than the other way around,
+
+1339
+00:54:00,140 --> 00:54:01,060
+compared to women.
+
+1340
+00:54:01,180 --> 00:54:03,420
+And in speed dating, too,
+
+1341
+00:54:03,420 --> 00:54:05,700
+men are more likely to indicate there
+
+1342
+00:54:05,700 --> 00:54:08,460
+would be happy to date a person they met than women.
+
+1343
+00:54:08,460 --> 00:54:10,700
+So there's objective evidence that this is true
+
+1344
+00:54:10,700 --> 00:54:12,660
+on average in this society at this time.
+
+1345
+00:54:14,180 --> 00:54:15,220
+And so everybody's, oh yeah,
+
+1346
+00:54:15,220 --> 00:54:16,940
+this shows the evolutionary psychology.
+
+1347
+00:54:16,940 --> 00:54:18,260
+Evolutionary psychology is crazy,
+
+1348
+00:54:18,260 --> 00:54:20,260
+because on the one hand, it's certainly the case
+
+1349
+00:54:20,260 --> 00:54:24,140
+that our minds and brains evolved through evolution, okay.
+
+1350
+00:54:24,140 --> 00:54:27,100
+So there's something about the history we went through
+
+1351
+00:54:27,100 --> 00:54:29,140
+as a species that matters for who we are now.
+
+1352
+00:54:29,140 --> 00:54:30,540
+That's gotta be the case.
+
+1353
+00:54:30,540 --> 00:54:32,540
+On the other hand, it was a different world
+
+1354
+00:54:32,540 --> 00:54:34,500
+before internet dating and speed dating, right.
+
+1355
+00:54:34,500 --> 00:54:37,260
+I mean, it's hard to know how those things line up exactly.
+
+1356
+00:54:37,260 --> 00:54:38,420
+So here's the fun thing.
+
+1357
+00:54:38,420 --> 00:54:41,060
+It turns out that on average in speed dating,
+
+1358
+00:54:41,060 --> 00:54:43,180
+a typical speed dating event will have like four minutes,
+
+1359
+00:54:43,180 --> 00:54:45,300
+right, so you typically have women sitting at desks,
+
+1360
+00:54:45,300 --> 00:54:47,780
+is it, almost always they set it up that way.
+
+1361
+00:54:47,780 --> 00:54:49,940
+And the men are sitting in chairs in front of the desk
+
+1362
+00:54:49,940 --> 00:54:51,260
+and they meet and they talk for four minutes.
+
+1363
+00:54:51,260 --> 00:54:52,620
+The bell rings, the men jump up
+
+1364
+00:54:52,620 --> 00:54:54,740
+and they shift over one station, right.
+
+1365
+00:54:54,740 --> 00:54:55,940
+And then what happens is,
+
+1366
+00:54:55,940 --> 00:54:57,220
+for each time you meet a person,
+
+1367
+00:54:57,220 --> 00:54:58,700
+you fill out a card that says yes or no,
+
+1368
+00:54:58,700 --> 00:55:00,340
+I'd be willing to have a date with a person.
+
+1369
+00:55:00,340 --> 00:55:03,580
+And if you have two yeses from the man and the woman,
+
+1370
+00:55:03,580 --> 00:55:06,980
+the speed dating organizer exchanges the information
+
+1371
+00:55:06,980 --> 00:55:08,540
+so they can make direct contact.
+
+1372
+00:55:08,540 --> 00:55:10,060
+Is that for some, okay, all right.
+
+1373
+00:55:10,060 --> 00:55:13,100
+And men make more yes responses
+
+1374
+00:55:13,100 --> 00:55:15,860
+and it turns out, this doesn't have to be this way,
+
+1375
+00:55:15,860 --> 00:55:17,940
+but almost, from my reading,
+
+1376
+00:55:17,940 --> 00:55:19,680
+that almost every speed dating thing
+
+1377
+00:55:19,680 --> 00:55:21,820
+has the men rotating around, okay.
+
+1378
+00:55:21,820 --> 00:55:23,020
+And the women sitting there,
+
+1379
+00:55:23,020 --> 00:55:24,580
+waiting for the men to rotate around.
+
+1380
+00:55:24,580 --> 00:55:26,820
+So let's just ask this question.
+
+1381
+00:55:26,820 --> 00:55:29,580
+What happens if the women rotate,
+
+1382
+00:55:29,620 --> 00:55:30,860
+which almost never happens,
+
+1383
+00:55:30,860 --> 00:55:32,500
+but they did this experimentally.
+
+1384
+00:55:32,500 --> 00:55:35,580
+They said, for half of the speed dating sessions,
+
+1385
+00:55:35,580 --> 00:55:37,380
+the men will be sitting at the table
+
+1386
+00:55:37,380 --> 00:55:38,500
+and the women will stand up
+
+1387
+00:55:38,500 --> 00:55:39,860
+and move a chair over every four minutes.
+
+1388
+00:55:39,860 --> 00:55:43,300
+The bell rings, so the women are moving and rotating.
+
+1389
+00:55:43,300 --> 00:55:45,100
+And here's the results.
+
+1390
+00:55:46,140 --> 00:55:48,180
+Basically what's showing on the left
+
+1391
+00:55:48,180 --> 00:55:51,020
+are when the men rotate, the standard condition,
+
+1392
+00:55:51,020 --> 00:55:52,780
+the first one is romantic desire.
+
+1393
+00:55:52,780 --> 00:55:54,700
+Men feel more romantic desire
+
+1394
+00:55:54,700 --> 00:55:56,660
+on average for the partner they sit with.
+
+1395
+00:55:56,660 --> 00:55:59,300
+They feel that more chemistry is happening
+
+1396
+00:55:59,340 --> 00:56:00,620
+with the person they sit with.
+
+1397
+00:56:00,620 --> 00:56:04,060
+And on the bottom left corner,
+
+1398
+00:56:04,060 --> 00:56:08,580
+they also are more likely to give a yes response.
+
+1399
+00:56:08,580 --> 00:56:11,580
+I would like a date with this person, okay.
+
+1400
+00:56:11,580 --> 00:56:14,380
+But reverse the roles, have the women rotating
+
+1401
+00:56:14,380 --> 00:56:17,500
+and look at these bars, there's no difference at all.
+
+1402
+00:56:18,660 --> 00:56:22,180
+You completely wipe out the male-female difference
+
+1403
+00:56:22,180 --> 00:56:24,940
+in self-reported romantic desire per person,
+
+1404
+00:56:24,940 --> 00:56:27,940
+self-reported chemistry they think is happening,
+
+1405
+00:56:27,940 --> 00:56:30,020
+and the yes-no responses that I would have at it.
+
+1406
+00:56:30,020 --> 00:56:31,780
+You completely eliminate it
+
+1407
+00:56:31,780 --> 00:56:35,540
+when the women are rotating, it's flat even.
+
+1408
+00:56:35,540 --> 00:56:39,820
+So that's the result, what does it suggest?
+
+1409
+00:56:42,060 --> 00:56:44,220
+What happened to the evolutionary psychology?
+
+1410
+00:56:48,260 --> 00:56:49,700
+It disappeared just by having the women
+
+1411
+00:56:49,700 --> 00:56:50,500
+rotate around their own.
+
+1412
+00:56:50,500 --> 00:56:52,740
+It suggests, and we don't know this with certainty,
+
+1413
+00:56:52,740 --> 00:56:53,740
+but there are people that are following this up
+
+1414
+00:56:53,740 --> 00:56:54,740
+who are interested in this,
+
+1415
+00:56:54,740 --> 00:56:56,980
+it suggests that there's something about
+
+1416
+00:56:56,980 --> 00:56:59,340
+getting up and approaching that person,
+
+1417
+00:56:59,340 --> 00:57:02,180
+your body going, here I come, okay.
+
+1418
+00:57:02,180 --> 00:57:04,900
+I'm not sitting in my chair, hanging out,
+
+1419
+00:57:04,900 --> 00:57:07,180
+it's like, here I come.
+
+1420
+00:57:07,180 --> 00:57:10,620
+That makes a person energized, feel more romantic,
+
+1421
+00:57:10,620 --> 00:57:12,060
+feel more chemistries happening,
+
+1422
+00:57:12,060 --> 00:57:13,420
+and more likely to ask on a date.
+
+1423
+00:57:13,420 --> 00:57:16,900
+And it doesn't matter whether you're a man or a woman at all.
+
+1424
+00:57:16,900 --> 00:57:19,420
+It's the getting up and that physical approach,
+
+1425
+00:57:19,420 --> 00:57:21,660
+just, you're more invested, you're more out there,
+
+1426
+00:57:21,660 --> 00:57:22,820
+who knows what it is.
+
+1427
+00:57:22,820 --> 00:57:25,140
+Completely eliminates what everybody had said
+
+1428
+00:57:25,140 --> 00:57:28,300
+is an ancient, inevitable evolutionary difference
+
+1429
+00:57:28,300 --> 00:57:29,740
+between men and women.
+
+1430
+00:57:29,740 --> 00:57:31,060
+And this isn't to say there might not be
+
+1431
+00:57:31,060 --> 00:57:33,420
+some of those streaks in us, who knows.
+
+1432
+00:57:33,420 --> 00:57:35,180
+But speed dating is not showing that, okay.
+
+1433
+00:57:35,180 --> 00:57:36,660
+All you gotta do is have the women rotate,
+
+1434
+00:57:36,660 --> 00:57:38,620
+and you completely eliminate what's thought to be
+
+1435
+00:57:38,620 --> 00:57:41,540
+some hardwired biological difference on this dimension.
+
+1436
+00:57:42,700 --> 00:57:45,300
+Now, talking about that, when we do experiments like this
+
+1437
+00:57:45,300 --> 00:57:50,020
+that look at sort of fun things like dating around a thing
+
+1438
+00:57:50,020 --> 00:57:52,060
+or age difference between a five-year-old
+
+1439
+00:57:52,060 --> 00:57:54,340
+and a 20-year-old or 20-year-old and an 80-year-old,
+
+1440
+00:57:54,340 --> 00:57:56,740
+cultures, there's lots of experiments to compare,
+
+1441
+00:57:56,740 --> 00:58:01,140
+say, Western cultures versus Eastern Asian cultures.
+
+1442
+00:58:01,140 --> 00:58:02,420
+We'll talk about that later in the course
+
+1443
+00:58:02,420 --> 00:58:03,720
+in terms of behaviors.
+
+1444
+00:58:03,720 --> 00:58:06,180
+Genes, whether you have one gene or another.
+
+1445
+00:58:06,180 --> 00:58:09,460
+All those things, are those independent variables?
+
+1446
+00:58:14,020 --> 00:58:14,980
+No.
+
+1447
+00:58:14,980 --> 00:58:18,620
+We can't assign you randomly to be a man or a woman,
+
+1448
+00:58:18,620 --> 00:58:21,580
+younger or old, to come from the United States
+
+1449
+00:58:21,580 --> 00:58:25,460
+or Japan or China, or to have this gene or that gene.
+
+1450
+00:58:25,460 --> 00:58:26,940
+It's not that we couldn't do stuff,
+
+1451
+00:58:26,940 --> 00:58:29,780
+you know, in some monstrous world,
+
+1452
+00:58:29,780 --> 00:58:32,020
+but not ethically, and it's never gonna happen, right?
+
+1453
+00:58:32,020 --> 00:58:35,300
+So, whenever you have science that talks about
+
+1454
+00:58:35,300 --> 00:58:37,660
+differences between men and women, or young and old,
+
+1455
+00:58:37,660 --> 00:58:40,500
+or cultures, or genes, it's not really
+
+1456
+00:58:40,500 --> 00:58:42,420
+a completely independent manipulation.
+
+1457
+00:58:42,420 --> 00:58:45,020
+We can't assign you randomly, and so it means
+
+1458
+00:58:45,020 --> 00:58:46,780
+everything in the world about what it means to be
+
+1459
+00:58:46,780 --> 00:58:49,180
+a man or a woman, a 20-year-old or an 80-year-old,
+
+1460
+00:58:49,180 --> 00:58:51,260
+come from this continent or that continent,
+
+1461
+00:58:51,260 --> 00:58:52,780
+have this gene or that gene.
+
+1462
+00:58:52,780 --> 00:58:54,540
+Those are not things we can freely manipulate,
+
+1463
+00:58:54,540 --> 00:58:56,260
+and you have to be extra cautious
+
+1464
+00:58:56,260 --> 00:58:57,820
+in interpreting those kinds of studies,
+
+1465
+00:58:57,820 --> 00:59:00,260
+because we can't randomly assign you to condition,
+
+1466
+00:59:00,260 --> 00:59:01,100
+we just can't.
+
+1467
+00:59:02,220 --> 00:59:05,740
+Okay, and I didn't talk about the fact that we,
+
+1468
+00:59:05,740 --> 00:59:08,180
+up until this moment, we've made every conclusion
+
+1469
+00:59:08,180 --> 00:59:10,460
+a complete generality about human nature,
+
+1470
+00:59:10,460 --> 00:59:11,300
+and people are different,
+
+1471
+00:59:11,300 --> 00:59:12,780
+one from the other individual differences,
+
+1472
+00:59:12,780 --> 00:59:15,140
+we'll talk about that later in the course too.
+
+1473
+00:59:15,140 --> 00:59:16,420
+So, for the last couple of minutes,
+
+1474
+00:59:16,420 --> 00:59:17,260
+I wanna talk about this.
+
+1475
+00:59:17,260 --> 00:59:18,380
+Folk psychology, you know,
+
+1476
+00:59:18,380 --> 00:59:19,660
+everybody has ideas about psychology,
+
+1477
+00:59:19,660 --> 00:59:21,580
+so if you have this piece of paper,
+
+1478
+00:59:21,580 --> 00:59:23,780
+if you would zoom through it,
+
+1479
+00:59:23,780 --> 00:59:25,860
+ideas about people in psychology,
+
+1480
+00:59:25,860 --> 00:59:28,500
+and just where there is some scientific evidence,
+
+1481
+00:59:29,980 --> 00:59:32,620
+if you just zoom down on Mark, yes or no,
+
+1482
+00:59:32,620 --> 00:59:34,500
+on average, do offices attract?
+
+1483
+00:59:35,800 --> 00:59:38,140
+On average, is familiarity, breed contempt?
+
+1484
+00:59:38,140 --> 00:59:40,140
+On average, more people present in an emergency,
+
+1485
+00:59:40,140 --> 00:59:42,740
+are you more likely to get some help?
+
+1486
+00:59:42,740 --> 00:59:44,900
+On average, are there such things as visual learners
+
+1487
+00:59:44,900 --> 00:59:46,100
+and verbal learners, and if they got
+
+1488
+00:59:46,100 --> 00:59:47,020
+the right kind of instruction,
+
+1489
+00:59:47,020 --> 00:59:48,780
+that would help them in school?
+
+1490
+00:59:48,780 --> 00:59:50,500
+Is hypnosis baloney?
+
+1491
+00:59:50,500 --> 00:59:52,180
+Dissubliminal advertising work,
+
+1492
+00:59:52,180 --> 00:59:53,300
+you know, when things are presented,
+
+1493
+00:59:53,300 --> 00:59:55,300
+so you don't see them below consciousness,
+
+1494
+00:59:55,300 --> 00:59:57,540
+does it help you buy something?
+
+1495
+00:59:58,380 --> 01:00:00,980
+Just playing Mozart to an infant boost
+
+1496
+01:00:00,980 --> 01:00:03,140
+their intelligence, Mozart effect?
+
+1497
+01:00:03,140 --> 01:00:05,780
+Is old age on average associated with dissatisfaction?
+
+1498
+01:00:05,780 --> 01:00:08,140
+If you're unsure of your answer when taking a test,
+
+1499
+01:00:08,140 --> 01:00:10,020
+I'm gonna tell you the science about this,
+
+1500
+01:00:10,020 --> 01:00:12,140
+it's best to stick with your first hunch.
+
+1501
+01:00:12,140 --> 01:00:14,100
+Practically every website tells you that,
+
+1502
+01:00:14,100 --> 01:00:15,740
+have you heard that many times?
+
+1503
+01:00:15,740 --> 01:00:17,540
+Okay, I'm gonna tell you what the actual evidence
+
+1504
+01:00:17,580 --> 01:00:20,140
+is about that and how they get that in a moment.
+
+1505
+01:00:20,140 --> 01:00:21,860
+Ulcers are caused primarily by stress,
+
+1506
+01:00:21,860 --> 01:00:24,060
+a positive attitude can stave off cancer.
+
+1507
+01:00:24,060 --> 01:00:26,420
+Raising children similarly leads to similarities
+
+1508
+01:00:26,420 --> 01:00:28,980
+in their adult personalities, you know.
+
+1509
+01:00:28,980 --> 01:00:30,460
+Low self-esteem is the major cause
+
+1510
+01:00:30,460 --> 01:00:31,540
+of psychological problems.
+
+1511
+01:00:31,540 --> 01:00:33,340
+People's responses and the ink block tests
+
+1512
+01:00:33,340 --> 01:00:35,380
+tell us a lot about their personalities.
+
+1513
+01:00:35,380 --> 01:00:37,460
+Interviews help identify those most likely
+
+1514
+01:00:37,460 --> 01:00:38,820
+to succeed in medical school.
+
+1515
+01:00:44,260 --> 01:00:45,100
+Okay.
+
+1516
+01:00:46,100 --> 01:00:47,780
+I'll give you a minute.
+
+1517
+01:00:49,140 --> 01:00:52,860
+Okay, a bunch of these we'll come back to in the course.
+
+1518
+01:00:52,860 --> 01:00:54,820
+The answer for all these is this
+
+1519
+01:00:54,820 --> 01:00:55,940
+and there's evidence to it all.
+
+1520
+01:00:55,940 --> 01:00:59,300
+So I'm gonna tell you about four of them for 10 minutes, okay?
+
+1521
+01:01:01,300 --> 01:01:02,940
+One of the ones you might wanna know most about
+
+1522
+01:01:02,940 --> 01:01:05,380
+is the changing your initial hunch answer.
+
+1523
+01:01:05,380 --> 01:01:06,660
+Okay, how do you know that?
+
+1524
+01:01:06,660 --> 01:01:08,580
+So that people have gone back over test scores
+
+1525
+01:01:08,580 --> 01:01:10,380
+and look where people crossed out an answer
+
+1526
+01:01:10,380 --> 01:01:11,220
+or erased an answer,
+
+1527
+01:01:11,220 --> 01:01:12,580
+that's the best source of evidence they have
+
+1528
+01:01:12,580 --> 01:01:13,580
+in large samples
+
+1529
+01:01:13,620 --> 01:01:16,780
+and people are twice as likely to give a better,
+
+1530
+01:01:16,780 --> 01:01:19,380
+the correct answer than to move to a wrong answer.
+
+1531
+01:01:19,380 --> 01:01:21,380
+That's the empirical evidence, okay?
+
+1532
+01:01:21,380 --> 01:01:24,580
+So it's a fantastically interesting disconnect
+
+1533
+01:01:25,660 --> 01:01:28,900
+that you see so many places and teachers advise you
+
+1534
+01:01:28,900 --> 01:01:31,380
+go with your first hunch when you're unsure.
+
+1535
+01:01:31,380 --> 01:01:34,420
+The empirical evidence is you're much more likely
+
+1536
+01:01:34,420 --> 01:01:38,140
+to be correct when you go with your best final answer, okay?
+
+1537
+01:01:38,140 --> 01:01:40,860
+All right, I mean, of course, you're not sure
+
+1538
+01:01:40,860 --> 01:01:42,500
+so you're gonna miss a fair bit
+
+1539
+01:01:42,500 --> 01:01:43,980
+but you're twice as likely to come out
+
+1540
+01:01:43,980 --> 01:01:44,820
+with the correct answer
+
+1541
+01:01:44,820 --> 01:01:46,980
+when you go with your best possible answer
+
+1542
+01:01:46,980 --> 01:01:48,620
+so that people who crossed out their answers
+
+1543
+01:01:48,620 --> 01:01:49,660
+or erased their answers,
+
+1544
+01:01:49,660 --> 01:01:51,860
+they were twice as likely to move to a good answer
+
+1545
+01:01:51,860 --> 01:01:55,260
+than leave behind a good answer, yeah.
+
+1546
+01:01:56,140 --> 01:01:59,340
+You know that maybe it's not like they pick an answer
+
+1547
+01:01:59,340 --> 01:02:01,300
+and then just switch their answer
+
+1548
+01:02:01,300 --> 01:02:03,300
+and then taking the advice and going back to thinking
+
+1549
+01:02:03,300 --> 01:02:04,140
+about why they didn't.
+
+1550
+01:02:04,140 --> 01:02:04,980
+Yeah, that's an excellent question.
+
+1551
+01:02:04,980 --> 01:02:06,220
+We don't know, they've kind of gone like five times
+
+1552
+01:02:06,220 --> 01:02:07,820
+back and forth.
+
+1553
+01:02:07,820 --> 01:02:09,620
+The assumption has been on average
+
+1554
+01:02:09,620 --> 01:02:11,940
+that people will go once back and forth
+
+1555
+01:02:11,940 --> 01:02:15,260
+but you're right but ask yourself the other question too.
+
+1556
+01:02:15,260 --> 01:02:17,700
+What's the evidence ever that going with your hunches
+
+1557
+01:02:17,700 --> 01:02:19,620
+and nobody's been able to show that, okay?
+
+1558
+01:02:19,620 --> 01:02:23,640
+So where there's evidence is all in favor of best answer
+
+1559
+01:02:23,640 --> 01:02:25,020
+and nobody's shown evidence
+
+1560
+01:02:25,020 --> 01:02:28,780
+that hunch is the best way to go empirically.
+
+1561
+01:02:28,780 --> 01:02:30,280
+That doesn't mean that sometimes it doesn't happen
+
+1562
+01:02:30,280 --> 01:02:32,180
+but on average that's the way that ends.
+
+1563
+01:02:32,180 --> 01:02:33,680
+But your question, your point's excellent.
+
+1564
+01:02:33,680 --> 01:02:36,100
+Okay, so how about Rorschach test?
+
+1565
+01:02:36,100 --> 01:02:39,020
+Every psychology program, clinical psychologists
+
+1566
+01:02:39,020 --> 01:02:40,660
+in the country is required to learn
+
+1567
+01:02:40,660 --> 01:02:42,340
+how to administer and evaluate a Rorschach.
+
+1568
+01:02:42,340 --> 01:02:43,180
+You know this?
+
+1569
+01:02:43,180 --> 01:02:46,700
+So this obviously shows, obviously it shows
+
+1570
+01:02:46,700 --> 01:02:49,700
+some sort of horrible sex act between animals and, no.
+
+1571
+01:02:49,700 --> 01:02:54,700
+No, it's a, yeah, you know all these kinds of tests
+
+1572
+01:02:56,820 --> 01:02:58,460
+you're supposed to read it and then the examiner listens
+
+1573
+01:02:58,460 --> 01:03:00,300
+to you and they figure out something, right?
+
+1574
+01:03:00,300 --> 01:03:03,860
+Okay, there's been about 10,000 publications about this.
+
+1575
+01:03:03,860 --> 01:03:06,340
+There's no evidence that there's anything predictive
+
+1576
+01:03:06,340 --> 01:03:08,940
+or correct about this test, none, zero, none, okay?
+
+1577
+01:03:08,980 --> 01:03:10,780
+People argue it, people give it, you know?
+
+1578
+01:03:10,780 --> 01:03:13,940
+People have to learn how to give this test.
+
+1579
+01:03:13,940 --> 01:03:15,540
+So this is a disconnect that happens a lot
+
+1580
+01:03:15,540 --> 01:03:17,580
+between clinical stuff and experimental work.
+
+1581
+01:03:17,580 --> 01:03:20,020
+I mean those, you know, researchers can't grasp
+
+1582
+01:03:20,020 --> 01:03:21,340
+why people still give this.
+
+1583
+01:03:22,460 --> 01:03:23,820
+Medical school interviews, those of you
+
+1584
+01:03:23,820 --> 01:03:28,820
+who will apply to medical school will get interviews,
+
+1585
+01:03:29,180 --> 01:03:30,340
+who get interviews for jobs,
+
+1586
+01:03:30,340 --> 01:03:32,060
+who get interviews for all kinds of things in your life.
+
+1587
+01:03:32,060 --> 01:03:33,020
+What's the evidence that interviews
+
+1588
+01:03:33,020 --> 01:03:34,260
+are any good for anything?
+
+1589
+01:03:35,260 --> 01:03:39,980
+How could you know whether interviews are good for anything?
+
+1590
+01:03:41,620 --> 01:03:45,100
+A company interviews you, a university interviews you.
+
+1591
+01:03:45,100 --> 01:03:46,260
+How would you even decide whether,
+
+1592
+01:03:46,260 --> 01:03:47,980
+so I can tell you that socialist psychologists
+
+1593
+01:03:47,980 --> 01:03:49,300
+have shown repeatedly that interviews
+
+1594
+01:03:49,300 --> 01:03:52,300
+are cesspools for discrimination
+
+1595
+01:03:52,300 --> 01:03:55,100
+because people tend to like people who are like them, okay?
+
+1596
+01:03:55,100 --> 01:03:57,340
+You know, oh, you went to MIT, you know, yeah,
+
+1597
+01:03:57,340 --> 01:03:59,260
+course nine, you know, then you go,
+
+1598
+01:03:59,260 --> 01:04:01,220
+oh man, this is gonna be good, right?
+
+1599
+01:04:01,220 --> 01:04:03,540
+Or I went to Caltech, we didn't like MIT people,
+
+1600
+01:04:03,540 --> 01:04:05,220
+we thought they were a little bit snobby or something,
+
+1601
+01:04:05,220 --> 01:04:07,180
+and I go, oh, that's not gonna be so good, right?
+
+1602
+01:04:07,180 --> 01:04:10,220
+Okay, so, you know, socialist psychologists have shown
+
+1603
+01:04:10,220 --> 01:04:12,820
+that if you just vary information in practice interviews,
+
+1604
+01:04:12,820 --> 01:04:15,260
+people tend to like people who are like them
+
+1605
+01:04:15,260 --> 01:04:16,780
+by background, by appearance, and so on.
+
+1606
+01:04:16,780 --> 01:04:19,340
+On average, they try not to, they try to be fair, but,
+
+1607
+01:04:19,340 --> 01:04:20,820
+okay, so we know that.
+
+1608
+01:04:20,820 --> 01:04:22,420
+But how about me, okay, so here's what Yale,
+
+1609
+01:04:22,420 --> 01:04:23,260
+here's what they did.
+
+1610
+01:04:23,260 --> 01:04:24,740
+Yale compared students who were accepted
+
+1611
+01:04:24,740 --> 01:04:26,260
+or rejected on the basis of an interview,
+
+1612
+01:04:26,260 --> 01:04:29,300
+so they all had scores that got them to the interview.
+
+1613
+01:04:29,300 --> 01:04:32,080
+And then they looked at them where they went in pairs
+
+1614
+01:04:32,120 --> 01:04:33,920
+or larger than pairs to other medical schools.
+
+1615
+01:04:33,920 --> 01:04:36,800
+So let's say you got accepted by Yale,
+
+1616
+01:04:36,800 --> 01:04:38,920
+and you were accepted or rejected on the interview,
+
+1617
+01:04:38,920 --> 01:04:41,760
+but you ended up as two students at Penn,
+
+1618
+01:04:41,760 --> 01:04:44,600
+or two students at Michigan, okay?
+
+1619
+01:04:44,600 --> 01:04:46,680
+You're sitting next to each other, I'll just, right?
+
+1620
+01:04:46,680 --> 01:04:48,520
+One of you was accepted by interview at Yale,
+
+1621
+01:04:48,520 --> 01:04:49,960
+one of you was not.
+
+1622
+01:04:49,960 --> 01:04:52,160
+Who does better at that other place?
+
+1623
+01:04:53,400 --> 01:04:54,760
+They're dead even.
+
+1624
+01:04:54,760 --> 01:04:58,000
+The interview added nothing for predicting grade point average
+
+1625
+01:04:58,000 --> 01:05:00,360
+or completion of medical school.
+
+1626
+01:05:00,360 --> 01:05:01,520
+Here's one more example.
+
+1627
+01:05:01,520 --> 01:05:05,600
+The University of Texas enlarged in the midst of their,
+
+1628
+01:05:05,600 --> 01:05:07,640
+Houston, in the midst of their interviews,
+
+1629
+01:05:07,640 --> 01:05:10,840
+it enlarged from 150 to 200 students.
+
+1630
+01:05:10,840 --> 01:05:14,440
+They had interviewed 800, 150 who came
+
+1631
+01:05:14,440 --> 01:05:15,440
+were among their top ones.
+
+1632
+01:05:15,440 --> 01:05:17,520
+They interviewed them, they liked them, they came.
+
+1633
+01:05:17,520 --> 01:05:18,800
+And then they had, and all of a sudden,
+
+1634
+01:05:18,800 --> 01:05:19,960
+because the state legislature said,
+
+1635
+01:05:19,960 --> 01:05:22,520
+we're by law, man, they need to take 50 more.
+
+1636
+01:05:22,520 --> 01:05:25,320
+They took 50 more who didn't do so well in the interview,
+
+1637
+01:05:25,320 --> 01:05:26,860
+okay?
+
+1638
+01:05:26,860 --> 01:05:29,760
+Those 50 more performed identically
+
+1639
+01:05:29,760 --> 01:05:32,800
+to the ones who got in with a successful interview.
+
+1640
+01:05:32,800 --> 01:05:35,040
+They couldn't find a difference between them.
+
+1641
+01:05:35,040 --> 01:05:37,600
+Now, there's at least one thing you might think
+
+1642
+01:05:37,600 --> 01:05:40,160
+the interview might have done, but we don't know,
+
+1643
+01:05:40,160 --> 01:05:42,760
+but people, what do you think it might have done?
+
+1644
+01:05:42,760 --> 01:05:45,480
+So the outcome was your grades in medical school
+
+1645
+01:05:45,480 --> 01:05:47,400
+and your likelihood of completing medical school.
+
+1646
+01:05:47,400 --> 01:05:49,960
+What else could an interview have been relevant for?
+
+1647
+01:05:52,000 --> 01:05:53,720
+Maybe, maybe, maybe.
+
+1648
+01:05:53,720 --> 01:05:57,160
+Something about bedside manner or how you relate to people.
+
+1649
+01:05:57,160 --> 01:05:59,120
+Maybe, maybe, maybe, but there's no evidence
+
+1650
+01:05:59,120 --> 01:06:00,120
+that's true, okay?
+
+1651
+01:06:00,120 --> 01:06:02,120
+Now you're starting to grasp at straws.
+
+1652
+01:06:02,120 --> 01:06:03,760
+So there's no evidence that interview processes
+
+1653
+01:06:03,760 --> 01:06:04,880
+make any difference anywhere,
+
+1654
+01:06:04,880 --> 01:06:06,720
+but everybody does interviews all the ways
+
+1655
+01:06:06,720 --> 01:06:08,720
+because we always think we're kind of good judges
+
+1656
+01:06:08,720 --> 01:06:11,040
+of human nature or something, okay?
+
+1657
+01:06:11,040 --> 01:06:13,060
+So interviews, it's very hard to tell
+
+1658
+01:06:13,060 --> 01:06:14,100
+that they ever do anything.
+
+1659
+01:06:14,100 --> 01:06:16,940
+So here's my last thing, self-esteem.
+
+1660
+01:06:16,940 --> 01:06:19,520
+You cannot watch Oprah or Dr. Phil
+
+1661
+01:06:19,520 --> 01:06:22,200
+without some discussion of self-esteem at some moment.
+
+1662
+01:06:22,200 --> 01:06:23,480
+And it sounds good to everybody.
+
+1663
+01:06:23,480 --> 01:06:25,360
+I mean, nobody would wish for you as a parent or friend
+
+1664
+01:06:25,360 --> 01:06:27,040
+for you to have low self-esteem.
+
+1665
+01:06:27,080 --> 01:06:29,240
+And in fact, higher self-esteem is correlated
+
+1666
+01:06:29,240 --> 01:06:31,080
+with higher initiative and persistence,
+
+1667
+01:06:31,080 --> 01:06:32,480
+happiness and emotional resilience,
+
+1668
+01:06:32,480 --> 01:06:34,120
+and also, unfortunately,
+
+1669
+01:06:34,120 --> 01:06:36,520
+with people who are narcissistic and bullies, okay?
+
+1670
+01:06:36,520 --> 01:06:40,280
+I mean, I mean, and how they measure it,
+
+1671
+01:06:40,280 --> 01:06:42,120
+just so you know, because this is a problem too,
+
+1672
+01:06:42,120 --> 01:06:42,960
+like how do you measure it?
+
+1673
+01:06:42,960 --> 01:06:45,360
+You have, there's several scales,
+
+1674
+01:06:45,360 --> 01:06:47,960
+but the most widely used scale is this Rosenberg scale.
+
+1675
+01:06:47,960 --> 01:06:51,320
+So you have that too if you wanna try it out on yourself, okay?
+
+1676
+01:06:51,320 --> 01:06:53,320
+Okay, self-report.
+
+1677
+01:06:53,320 --> 01:06:55,760
+And when they reviewed 15,000 studies some years ago,
+
+1678
+01:06:55,760 --> 01:06:57,360
+they could find no evidence
+
+1679
+01:06:57,360 --> 01:07:00,400
+that higher self-esteem leads to better things.
+
+1680
+01:07:00,400 --> 01:07:02,280
+It all seemed the other way around.
+
+1681
+01:07:02,280 --> 01:07:05,680
+That like doing better at things led to higher self-esteem,
+
+1682
+01:07:05,680 --> 01:07:06,520
+okay?
+
+1683
+01:07:06,520 --> 01:07:08,080
+They could never find that pushing your self-esteem up
+
+1684
+01:07:08,080 --> 01:07:08,920
+doesn't.
+
+1685
+01:07:08,920 --> 01:07:11,440
+Having said that, I can tell you as a parent
+
+1686
+01:07:11,440 --> 01:07:13,320
+of two young kids or if you have friends
+
+1687
+01:07:13,320 --> 01:07:14,600
+and you care about them and you know this,
+
+1688
+01:07:14,600 --> 01:07:16,840
+we like to praise people to build up their self-esteem,
+
+1689
+01:07:16,840 --> 01:07:17,680
+right?
+
+1690
+01:07:17,680 --> 01:07:18,520
+We tell them, you're awesome.
+
+1691
+01:07:18,520 --> 01:07:20,280
+Someday you'll go to MIT and I know you will, okay?
+
+1692
+01:07:20,280 --> 01:07:22,160
+You're a wonderful person and you're smart
+
+1693
+01:07:22,160 --> 01:07:23,400
+and you're beautiful and, you know,
+
+1694
+01:07:23,400 --> 01:07:25,600
+parents want their children and teachers too
+
+1695
+01:07:25,600 --> 01:07:28,920
+to grow up and thrive and build up that self-esteem.
+
+1696
+01:07:28,920 --> 01:07:31,520
+So how can, and the easiest way to do that is praise, right?
+
+1697
+01:07:31,520 --> 01:07:34,160
+Just telling your kid how awesome he or she is
+
+1698
+01:07:34,160 --> 01:07:36,600
+or your younger sibling how awesome he or she is.
+
+1699
+01:07:36,600 --> 01:07:38,200
+Get their self-esteem up.
+
+1700
+01:07:38,200 --> 01:07:39,280
+So the last thing I'm gonna tell you
+
+1701
+01:07:39,280 --> 01:07:41,200
+and then we'll be done in about three minutes is
+
+1702
+01:07:41,200 --> 01:07:43,320
+work from Carol Dweck that shows you how danger it is
+
+1703
+01:07:43,320 --> 01:07:46,200
+to encounter productive it is to have
+
+1704
+01:07:50,200 --> 01:07:52,000
+praise where you don't think through its relation
+
+1705
+01:07:52,000 --> 01:07:55,200
+to people and in one sentence we'll talk about
+
+1706
+01:07:55,200 --> 01:07:56,920
+are you gonna succeed in life by your effort
+
+1707
+01:07:56,920 --> 01:07:58,080
+or by your talent?
+
+1708
+01:07:58,080 --> 01:07:59,640
+What's a bigger question than that?
+
+1709
+01:07:59,640 --> 01:08:00,920
+Wherever you get to in your life,
+
+1710
+01:08:00,920 --> 01:08:03,400
+it's gonna be based on your effort or your talent or both.
+
+1711
+01:08:03,400 --> 01:08:04,920
+I'll just have a sentence about that now.
+
+1712
+01:08:04,920 --> 01:08:07,080
+So here's the experiment she did with fifth graders.
+
+1713
+01:08:07,080 --> 01:08:09,560
+She had them perform a pretty hard task
+
+1714
+01:08:09,560 --> 01:08:12,280
+and afterwards, randomly, they were either praised
+
+1715
+01:08:12,280 --> 01:08:13,120
+for their intelligence.
+
+1716
+01:08:13,120 --> 01:08:16,480
+So a person said to them, you, fifth grader,
+
+1717
+01:08:16,480 --> 01:08:18,720
+you are so smart, I can't believe how great you did
+
+1718
+01:08:18,720 --> 01:08:20,320
+on that fifth grader, okay?
+
+1719
+01:08:20,360 --> 01:08:22,160
+Or they were praised for their hard work.
+
+1720
+01:08:22,160 --> 01:08:23,760
+This shows a lot of hard work, okay?
+
+1721
+01:08:23,760 --> 01:08:26,040
+Different kid and some kids got no praise at all.
+
+1722
+01:08:26,040 --> 01:08:28,760
+In this experiment, okay?
+
+1723
+01:08:28,760 --> 01:08:32,560
+Now, then they get a task that's even a little bit harder.
+
+1724
+01:08:33,600 --> 01:08:36,000
+How does the different kind of praise influence things?
+
+1725
+01:08:36,000 --> 01:08:37,520
+And here was the finding.
+
+1726
+01:08:37,520 --> 01:08:39,840
+If you were praised for your intelligence,
+
+1727
+01:08:39,840 --> 01:08:41,960
+you did worse on the second test.
+
+1728
+01:08:41,960 --> 01:08:44,360
+If you were praised for your hard work, you did better.
+
+1729
+01:08:44,360 --> 01:08:47,480
+If nobody said anything, your performance didn't change.
+
+1730
+01:08:47,480 --> 01:08:48,960
+And the idea is this, you understand?
+
+1731
+01:08:48,960 --> 01:08:51,720
+Praise for your intelligence, you did worse on a hard task.
+
+1732
+01:08:51,720 --> 01:08:53,240
+Praise for your effort, you did better.
+
+1733
+01:08:53,240 --> 01:08:56,600
+And here's the idea that if we praise people
+
+1734
+01:08:56,600 --> 01:08:59,120
+for their intelligence to build up their self-esteem,
+
+1735
+01:08:59,120 --> 01:09:01,680
+they start to care more about how their performance
+
+1736
+01:09:01,680 --> 01:09:04,920
+reflects on them than the performance itself.
+
+1737
+01:09:04,920 --> 01:09:07,360
+Because if I, you're trying to prove
+
+1738
+01:09:07,360 --> 01:09:08,840
+that you're an intelligent person.
+
+1739
+01:09:08,840 --> 01:09:11,840
+You care less, the students who get that kind of praise
+
+1740
+01:09:11,840 --> 01:09:13,800
+for their intelligence, they persist less
+
+1741
+01:09:13,800 --> 01:09:17,360
+in a difficult task, they say they don't enjoy challenges.
+
+1742
+01:09:17,360 --> 01:09:18,200
+Why?
+
+1743
+01:09:18,200 --> 01:09:20,920
+They just wanna ace everything to keep proving they're smart.
+
+1744
+01:09:20,920 --> 01:09:22,240
+Okay?
+
+1745
+01:09:22,240 --> 01:09:24,320
+The kids who get praised for effort,
+
+1746
+01:09:24,320 --> 01:09:26,080
+they're kinda like, okay, I'm gonna make some mistakes,
+
+1747
+01:09:26,080 --> 01:09:27,040
+but I'm just gonna keep going,
+
+1748
+01:09:27,040 --> 01:09:29,120
+because with effort I can do things sometimes.
+
+1749
+01:09:29,120 --> 01:09:31,080
+And it turns out that it makes a remarkable thing.
+
+1750
+01:09:31,080 --> 01:09:32,800
+And so Dweck, we'll come back to this,
+
+1751
+01:09:32,800 --> 01:09:36,000
+talks about, you can imbue your intelligence as a trait.
+
+1752
+01:09:36,000 --> 01:09:37,680
+I have only so much.
+
+1753
+01:09:37,680 --> 01:09:41,200
+Or as a growth, the harder I work, the smarter I get,
+
+1754
+01:09:41,200 --> 01:09:43,760
+but I have to do the hard work to get there, okay?
+
+1755
+01:09:43,760 --> 01:09:46,800
+And we live in a society that often goes by
+
+1756
+01:09:46,800 --> 01:09:50,640
+fixed traits, American Idol, the harder to work,
+
+1757
+01:09:50,640 --> 01:09:53,600
+the better you sing, or who has the talent is discovered.
+
+1758
+01:09:54,760 --> 01:09:56,520
+Who has the talent is discovered, right?
+
+1759
+01:09:56,520 --> 01:09:58,000
+Okay, right?
+
+1760
+01:09:58,000 --> 01:10:00,240
+Because the idea is, you have a certain amount
+
+1761
+01:10:00,240 --> 01:10:02,000
+of musical talent, and now the judges show
+
+1762
+01:10:02,000 --> 01:10:04,040
+and you break into the world and you're a famous singer,
+
+1763
+01:10:04,040 --> 01:10:04,880
+right?
+
+1764
+01:10:04,880 --> 01:10:09,880
+So ask yourself this, when you are good at what you do,
+
+1765
+01:10:10,280 --> 01:10:12,240
+is it because something in your genes
+
+1766
+01:10:12,240 --> 01:10:14,320
+or an environment made you good at,
+
+1767
+01:10:14,320 --> 01:10:16,500
+or is it because you try really hard?
+
+1768
+01:10:16,500 --> 01:10:18,820
+So Malcolm Gladwell has this statement
+
+1769
+01:10:18,820 --> 01:10:20,860
+that's floating around, gets a lot of attention,
+
+1770
+01:10:20,860 --> 01:10:22,860
+that anybody can become great at anything
+
+1771
+01:10:22,860 --> 01:10:25,080
+if they work on it for 10,000 hours.
+
+1772
+01:10:27,100 --> 01:10:29,620
+So how much of your success in the past,
+
+1773
+01:10:29,620 --> 01:10:33,060
+currently in the future, is gonna be based on your effort,
+
+1774
+01:10:33,060 --> 01:10:36,060
+and how much is it gonna be based on your talents,
+
+1775
+01:10:36,060 --> 01:10:37,100
+and how would we know that?
+
+1776
+01:10:37,100 --> 01:10:39,500
+And we're a very talent-oriented society,
+
+1777
+01:10:40,700 --> 01:10:42,940
+and it seems like the more we encourage effort,
+
+1778
+01:10:42,940 --> 01:10:44,620
+maybe the more people might flourish.
+
+1779
+01:10:44,620 --> 01:10:47,180
+So we talked about how psychology and science,
+
+1780
+01:10:47,180 --> 01:10:50,300
+experiments, brief history of psychology experimentation,
+
+1781
+01:10:50,300 --> 01:10:51,420
+some issues in experimentation,
+
+1782
+01:10:51,420 --> 01:10:52,820
+and then some psychological topics,
+
+1783
+01:10:52,820 --> 01:10:54,260
+and some practical information
+
+1784
+01:10:54,260 --> 01:10:56,980
+for being generous and kind and winning friends rapidly.
+
+1785
+01:10:56,980 --> 01:10:58,020
+Okay, thanks very much.
+

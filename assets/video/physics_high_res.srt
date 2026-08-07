@@ -1,0 +1,3480 @@
+1
+00:00:00,000 --> 00:00:19,480
+Okay, welcome everyone. Welcome back to 8225, which is also STS042, physics in the 20th
+
+2
+00:00:19,480 --> 00:00:24,800
+century. Let me start by asking just quickly, if there are any logistical questions, any
+
+3
+00:00:24,800 --> 00:00:28,360
+kind of course structure or other questions like that, we can try to clear up quickly
+
+4
+00:00:28,360 --> 00:00:33,240
+and then we'll jump into the first main lecture. In general, it's good to do the readings at
+
+5
+00:00:33,240 --> 00:00:39,720
+least to skim the more technical readings before the assigned class. So for today, that
+
+6
+00:00:39,720 --> 00:00:43,720
+was a brief excerpt from Maxwell's treatise on electricity magnetism, for example, at
+
+7
+00:00:43,720 --> 00:00:49,120
+a chapter from Bruce Hunt's book on the Maxwellians. So in general, it would be helpful if students
+
+8
+00:00:49,120 --> 00:00:53,400
+keep up with the readings because it's just going to snowball. Otherwise, some of the
+
+9
+00:00:53,400 --> 00:00:58,960
+readings, as you probably have noted with the Maxwell in particular, are pretty, they're
+
+10
+00:00:58,960 --> 00:01:03,040
+not exactly a page turning novel, right? Like what's going on with that? So I'm going to
+
+11
+00:01:03,040 --> 00:01:07,080
+be talking about what Maxwell thought he was doing, what some of Maxwell's contemporaries,
+
+12
+00:01:07,080 --> 00:01:11,840
+how they read that book in today's lecture. So for that, as a, so today might hopefully
+
+13
+00:01:11,840 --> 00:01:16,240
+we'll exemplify the kind of kind of use to make of readings like that as we go through
+
+14
+00:01:16,240 --> 00:01:22,040
+the kind of first worked example with Maxwell today. Other readings, as you'll see like the
+
+15
+00:01:22,040 --> 00:01:27,360
+chapter from Bruce Hunt for this week, are by physicists or historians or sociologists
+
+16
+00:01:27,360 --> 00:01:32,480
+or other more recent scholars, trying to help us make sense of that older work. And for
+
+17
+00:01:32,480 --> 00:01:37,440
+those, I think it does make sense to read them a bit more closely, what's the actual
+
+18
+00:01:37,440 --> 00:01:40,920
+argument the author is making? What are the kinds of evidence does the author bring to
+
+19
+00:01:40,920 --> 00:01:45,720
+bear? Because we'll work on together over the course of the semester is actually working
+
+20
+00:01:45,720 --> 00:01:50,440
+on your own written essays, your own analyses, where you will be will help you will build
+
+21
+00:01:50,440 --> 00:01:56,160
+up toward it. But you'll be working on articulating an argument, defending an argument evidence
+
+22
+00:01:56,160 --> 00:02:01,000
+and examples from various sources. So those, the readings that we would call a secondary
+
+23
+00:02:01,000 --> 00:02:06,640
+source readings by historians or more recent physicists or philosophers or sociologists
+
+24
+00:02:06,640 --> 00:02:10,640
+or journalists or whomever. Those are more like the kinds of writings we're going to
+
+25
+00:02:10,640 --> 00:02:15,280
+try to do ourselves over the course of the term. So I'd recommend, plus I think hopefully
+
+26
+00:02:15,280 --> 00:02:19,400
+they're interesting, I've chosen for you know, very carefully. So I do recommend you try
+
+27
+00:02:19,440 --> 00:02:23,640
+to read those a bit differently, let's say, than something like skimming over Maxwell's
+
+28
+00:02:23,640 --> 00:02:28,760
+treatise, which might look both pretty bland and weird and a little unusual given how we
+
+29
+00:02:28,760 --> 00:02:33,360
+do things today. So there are kind of different ways to read the different kinds of sources.
+
+30
+00:02:33,360 --> 00:02:36,760
+And I guess I hopefully today we'll actually give a bit of an example of that as we took
+
+31
+00:02:36,760 --> 00:02:43,160
+talk a little bit about that Maxwell reading throughout today. So that's the plan. And if
+
+32
+00:02:43,160 --> 00:02:47,080
+there's no other questions, I think we'll just jump right in. So I'm going to go ahead
+
+33
+00:02:47,120 --> 00:02:59,120
+and share screen. And hopefully you can see that first slide. So today we're going to start our kind
+
+34
+00:02:59,120 --> 00:03:07,800
+of journey in earnest. We're going to turn the clock back about 200 years and talk about some of
+
+35
+00:03:07,800 --> 00:03:14,520
+the leading natural philosophers and the leading people who are trying to understand the physical
+
+36
+00:03:14,520 --> 00:03:19,400
+world. And what did they think their job was? What were the settings in which they did it? What
+
+37
+00:03:19,400 --> 00:03:23,600
+were the conceptual tools they brought to bear? And we'll always be asked ourselves what looks
+
+38
+00:03:23,600 --> 00:03:32,600
+kind of similar and what looks really, really unfamiliar from our vantage point today. So
+
+39
+00:03:32,600 --> 00:03:38,600
+the discussion today has three main sections. We have a brief kind of warm up on physics then
+
+40
+00:03:38,600 --> 00:03:44,320
+and now just to try to prep us to put our minds back into the world of the early 19th century.
+
+41
+00:03:45,120 --> 00:03:50,400
+Then we'll spend a bit of time talking about Michael Faraday, who was one of the most widely
+
+42
+00:03:50,400 --> 00:03:55,480
+celebrated scientists or natural philosophers of his day. And we'll see some of the things that
+
+43
+00:03:55,480 --> 00:04:01,400
+he introduced during his rather unusual career. And then the last main section for today, we'll
+
+44
+00:04:01,400 --> 00:04:05,880
+talk about some of the folks who are a bit younger than Faraday, who kind of took up his mantle,
+
+45
+00:04:05,880 --> 00:04:10,560
+who tried to continue his line of work, but again, using some some different kinds of techniques
+
+46
+00:04:10,560 --> 00:04:15,840
+and tools. In this case, William Thompson and James Clark Maxwell. So that's our kind of goal
+
+47
+00:04:15,840 --> 00:04:22,640
+for today. So let's just pause and remember that we are entering a kind of, you know, imaginary
+
+48
+00:04:22,640 --> 00:04:28,600
+time capsule and going back, you know, about 200 years to start. So the assumptions that we might
+
+49
+00:04:28,600 --> 00:04:34,960
+bring in as physics students, as MIT students more generally, about how the world works about what
+
+50
+00:04:34,960 --> 00:04:40,960
+the job of a physicist is and so on, those won't map on perfectly well to some of these earlier
+
+51
+00:04:40,960 --> 00:04:45,360
+folks we start talking about. And I really I find that that's part of what's so fun for me about
+
+52
+00:04:45,360 --> 00:04:49,280
+working in the history of science is exactly those moments where things don't look so familiar, as
+
+53
+00:04:49,280 --> 00:04:54,880
+well as a continuity we can trace over time. So one of the biggest questions we might ask about
+
+54
+00:04:54,880 --> 00:05:01,120
+physics today is what's the world made of? What do we think as modern day scientists are the basic
+
+55
+00:05:01,120 --> 00:05:07,840
+building blocks out of which the world is made? If we were to conduct, you know, a survey of most
+
+56
+00:05:07,840 --> 00:05:13,040
+working physicists at MIT or really anywhere around the world at this point, we'd get an answer along
+
+57
+00:05:13,040 --> 00:05:17,920
+these lines. We would hear about something called the standard model of particle physics, which is
+
+58
+00:05:17,920 --> 00:05:23,120
+amazing and we'll actually talk a bit about the standard model later in this semester. It describes
+
+59
+00:05:23,120 --> 00:05:28,320
+the world is made up of a very small number of fundamental entities, elementary particles like
+
+60
+00:05:28,320 --> 00:05:34,800
+the quarks and electrons and tau mesons and neutrinos and even the long elusive Higgs boson.
+
+61
+00:05:34,800 --> 00:05:39,680
+There's a collection, not a very big collection of stuff out of which we think literally everything
+
+62
+00:05:39,680 --> 00:05:45,120
+else is made. We hear the physicists today talk about the tools that have been developed to try to
+
+63
+00:05:45,120 --> 00:05:49,840
+study interactions of those elementary bits of matter, how different particles can interact
+
+64
+00:05:49,840 --> 00:05:54,080
+with each other, can scatter off each other, can transmit the fundamental forces of nature
+
+65
+00:05:54,720 --> 00:05:59,360
+by exchanging certain kinds of particles in a vacuum. Depending on which physicists we ask,
+
+66
+00:05:59,360 --> 00:06:04,080
+we might get an earful, maybe more than we invited, saying that actually all those particles of
+
+67
+00:06:04,080 --> 00:06:10,480
+themselves really only the kind of the efflorescence of more fundamental entities called strings that
+
+68
+00:06:10,480 --> 00:06:15,280
+live in some abstract space. The point is we're going to get an answer like this about basically
+
+69
+00:06:15,280 --> 00:06:20,000
+particles exchanging particles in the vacuum. Now if we were to build our time machine, which I
+
+70
+00:06:20,000 --> 00:06:26,960
+sincerely hope we can complete soon, and we go back a hundred or little in 200 years to say talk
+
+71
+00:06:26,960 --> 00:06:32,960
+with leading natural researchers in Britain, and we told them this answer that physicists today said
+
+72
+00:06:32,960 --> 00:06:36,800
+the world has made of particles exchanging particles in a vacuum, they would have thought we
+
+73
+00:06:36,800 --> 00:06:41,520
+were really not with it. I like to think they would have shouted bollocks or at least something
+
+74
+00:06:41,520 --> 00:06:46,000
+maybe more colorful. Every single part of this modern answer would have looked extraordinarily
+
+75
+00:06:46,000 --> 00:06:50,960
+wrong-headed to the people that we're going to spend some time reading about and talking about
+
+76
+00:06:50,960 --> 00:06:56,320
+at the start of this term. And why is that important? I mean if we if we did this exercise with the
+
+77
+00:06:56,320 --> 00:07:02,880
+ancient Mayans or the medieval Turks or the Renaissance French we'd also expect some disagreement.
+
+78
+00:07:02,880 --> 00:07:08,720
+What I like about this is that we're turning the clock back not so far compared to the present day
+
+79
+00:07:09,440 --> 00:07:14,160
+and yet we already see a huge divergence in the answers as we'll see throughout today and
+
+80
+00:07:14,240 --> 00:07:20,400
+actually for several class sessions for the term, we use their equations. We still use, you know,
+
+81
+00:07:20,400 --> 00:07:25,680
+Maxwell's equations for example and a lot of the ideas that Michael Faraday introduced,
+
+82
+00:07:25,680 --> 00:07:30,240
+and yet what they thought those equations meant, what they thought they were describing about how
+
+83
+00:07:30,240 --> 00:07:36,240
+the world is made up, are almost, you know, 180 degrees opposite from how we start our investigations
+
+84
+00:07:36,240 --> 00:07:41,840
+today. So even though some parts have remained the same going over these 150 or 200 years to the
+
+85
+00:07:41,840 --> 00:07:48,560
+past, how we make sense of those ideas or those techniques have gone through a really quite amazing
+
+86
+00:07:48,560 --> 00:07:53,840
+change. So what do we think the world is made of? That's not a kind of static set of answers and we
+
+87
+00:07:53,840 --> 00:08:00,480
+see pretty dramatic change even over a relatively short span of history. There's another kind of
+
+88
+00:08:00,480 --> 00:08:05,120
+shift that we want to get our heads into, kind of attune ourselves to as well, and that concerns
+
+89
+00:08:05,120 --> 00:08:10,960
+who pursues the study of physics and in what kinds of settings, what institutions. So during the
+
+90
+00:08:11,040 --> 00:08:15,920
+first half of the 19th century, we'll start this class, people who worked on what we would call
+
+91
+00:08:15,920 --> 00:08:22,000
+physics, electricity, magnetism, optics, other phenomena, heat, they also worked on things that
+
+92
+00:08:22,000 --> 00:08:27,920
+we would call not physics, like chemistry or mathematics or astronomy, physiology, even beyond
+
+93
+00:08:27,920 --> 00:08:33,920
+that. For them, this was all kind of one field of study. It was often grouped under the term
+
+94
+00:08:33,920 --> 00:08:39,840
+natural philosophy rather than physics or chemistry or mathematics per se. In fact, the term for
+
+95
+00:08:39,840 --> 00:08:46,560
+a person who studied these things in English, the term we would call scientist, was actually only
+
+96
+00:08:46,560 --> 00:08:52,720
+invented in 1834. It's remarkably new as far as the English language goes. It was invented
+
+97
+00:08:52,720 --> 00:08:57,040
+after some of the developments we'll actually start talking about today. So even having the job
+
+98
+00:08:57,040 --> 00:09:02,800
+description scientist or the title is actually relatively new and what these particular kinds
+
+99
+00:09:02,800 --> 00:09:07,040
+of scientists that we would now call physicists, what they thought they should do, again, some pretty
+
+100
+00:09:07,040 --> 00:09:13,840
+broad changes compared to what we're used to today. Not only do they think their job description was
+
+101
+00:09:13,840 --> 00:09:18,160
+different than what we might imagine for ourselves, but where they did the work and what kinds of
+
+102
+00:09:18,160 --> 00:09:23,360
+settings or institutions, that was also pretty different merely 200 years ago, let alone much
+
+103
+00:09:23,360 --> 00:09:29,040
+further back in human history. So a lot of stuff we'll start by talking about today was not done
+
+104
+00:09:29,040 --> 00:09:33,920
+in schools or universities. They were done in separate institutes or academies and the key
+
+105
+00:09:33,920 --> 00:09:39,440
+thing is these were not places where students took classes to get degrees. There was a kind of
+
+106
+00:09:39,440 --> 00:09:44,880
+separation between kind of learning institutions. Universities existed throughout many parts of
+
+107
+00:09:44,880 --> 00:09:49,440
+the world, including Western Europe and the United States. Universities existed, but that was not
+
+108
+00:09:49,440 --> 00:09:54,560
+where people were doing what we would call scientific research. In fact, some of the most
+
+109
+00:09:54,560 --> 00:09:58,880
+prominent natural philosophers or leading physicists were not only not professors at
+
+110
+00:09:58,880 --> 00:10:02,960
+universities, some of them had never even attended university themselves. And that's true of the
+
+111
+00:10:02,960 --> 00:10:09,920
+first figure we'll look at today, Michael Farage. So there's a big shift toward a kind of placement
+
+112
+00:10:09,920 --> 00:10:14,960
+of this research that would look more familiar, things more like what we'd expect to see ourselves.
+
+113
+00:10:14,960 --> 00:10:21,280
+That shift begins in the middle of the 19th century, so more like 150 or 107 years ago,
+
+114
+00:10:21,280 --> 00:10:28,320
+rather than 200 years ago or more. There's a shift to where research in fields like physics
+
+115
+00:10:28,320 --> 00:10:32,560
+gets done more often than not by people who are professors in universities who also spend some
+
+116
+00:10:32,560 --> 00:10:37,920
+of the time teaching students, like what we are more used to today. That has a history,
+
+117
+00:10:37,920 --> 00:10:43,360
+it's actually relatively recent, and it has and it emerges really in the middle part of the 19th
+
+118
+00:10:43,360 --> 00:10:49,280
+century. So the overall theme of this very first kind of warm-up for the class is to kind of put
+
+119
+00:10:49,280 --> 00:10:55,200
+ourselves on guard. We shouldn't assume that our current sense of what's expected or normal or
+
+120
+00:10:55,200 --> 00:11:01,680
+familiar, either about how we choose to study the natural world, what concepts we use, let alone
+
+121
+00:11:01,680 --> 00:11:06,880
+how we think we should be pursuing that, what kinds of institutions or job descriptions. We
+
+122
+00:11:06,880 --> 00:11:11,920
+shouldn't expect that what's familiar to us today is just how people did things in the past,
+
+123
+00:11:11,920 --> 00:11:16,320
+and in fact we'll see some pretty dramatic changes over a relatively short span of time.
+
+124
+00:11:16,960 --> 00:11:20,080
+So let me pause there and ask them any questions, just on that early kind of warm-up.
+
+125
+00:11:21,440 --> 00:11:23,520
+Anyone have any thoughts or questions about that?
+
+126
+00:11:31,680 --> 00:11:39,680
+If not, then I'm going to press it on. Again, feel free to jump in on the chat if things come up.
+
+127
+00:11:40,400 --> 00:11:44,400
+Let's talk about this first figure I already mentioned, Michael Faraday. We're going to spend a
+
+128
+00:11:44,400 --> 00:11:48,960
+little time talking about Faraday. I think he's fascinating. So he became one of the most successful
+
+129
+00:11:48,960 --> 00:11:52,640
+and actually one of the most famous natural philosophers in his lifetime, in fact really
+
+130
+00:11:52,640 --> 00:11:58,320
+of the entire 19th century. He had a pretty remarkable personal story and I think we'll
+
+131
+00:11:58,320 --> 00:12:03,840
+also see he helps sort of make clear some of the larger social and institutional changes going on
+
+132
+00:12:03,840 --> 00:12:09,520
+as well. He helps us understand his own larger time period. Personally, he had this really
+
+133
+00:12:10,320 --> 00:12:15,680
+kind of inspiring rags to riches story. He was born into a rather poor family. He never attended
+
+134
+00:12:15,680 --> 00:12:23,520
+high school, let alone college or university. He was apprenticed to a book binder at age 13.
+
+135
+00:12:23,520 --> 00:12:31,280
+That means he literally left his family, moved in with his main tutor, and was apprenticed in a kind
+
+136
+00:12:31,280 --> 00:12:38,320
+of trade. So in that sense, his career path started out closer to what we might expect of
+
+137
+00:12:38,320 --> 00:12:44,080
+the Renaissance or even the Middle Ages into the modern period. It was a kind of time still of guilds
+
+138
+00:12:44,080 --> 00:12:50,000
+and of trade associations and his role, his way to make a living, was to learn the kind of manual
+
+139
+00:12:50,000 --> 00:12:57,200
+dexterity skills of being a book binder starting early on. He met the very famous chemist or natural
+
+140
+00:12:57,200 --> 00:13:02,080
+philosopher Humphrey Davy. When Davy gave a series of public lectures on natural philosophy at the
+
+141
+00:13:02,080 --> 00:13:08,240
+Royal Institution in London, and we'll talk a bit about the Royal Institution, it was not a university,
+
+142
+00:13:08,240 --> 00:13:13,760
+it was a place where research was done and public lectures were given. So Faraday was just mesmerized
+
+143
+00:13:13,760 --> 00:13:19,360
+by Davy's lectures. He actually took very careful notes on these public lectures. Faraday then bound
+
+144
+00:13:19,360 --> 00:13:24,480
+into a beautiful, very fancy book, and here's how we know he was so smart. He then gave that fancy
+
+145
+00:13:24,480 --> 00:13:29,360
+book to Davy as a gift, and I have a hint here of what you can do with that information. He basically
+
+146
+00:13:29,360 --> 00:13:34,400
+brought his way into a new kind of apprenticeship. Davy was very flattered and impressed by the kind
+
+147
+00:13:34,400 --> 00:13:40,720
+of manual skills, by the dexterity that Faraday had shown. So Davy hired Faraday for basically a
+
+148
+00:13:40,720 --> 00:13:45,600
+new kind of apprenticeship. Faraday had never attended high school or college. It wasn't that he was
+
+149
+00:13:45,600 --> 00:13:50,960
+trained in mathematical physics, quite the contrary. But Davy figured Faraday could do some new kinds
+
+150
+00:13:50,960 --> 00:13:57,840
+of manual dexterity skills in the laboratory as a laboratory assistant, a kind of continuation
+
+151
+00:13:57,840 --> 00:14:03,120
+of his bookbinder apprenticeship. So that's how Faraday enters what we would now call the world
+
+152
+00:14:03,120 --> 00:14:08,160
+of natural philosophy. So years and years go by, they work very closely for a long time. Davy
+
+153
+00:14:08,160 --> 00:14:13,600
+eventually steps down, he retires, and Faraday in fact became his successor, now the director of
+
+154
+00:14:13,600 --> 00:14:19,280
+this royal institution in London. So much like I mentioned a few moments ago, Faraday worked on
+
+155
+00:14:19,280 --> 00:14:24,640
+really a kind of mind-boggling array of topics, mind-boggling from our modern point of view,
+
+156
+00:14:24,640 --> 00:14:30,320
+quite kind of familiar to his own contemporaries. So he worked on what we would separately
+
+157
+00:14:30,320 --> 00:14:35,600
+classify as chemistry, optics, electricity, magnesium, electrolysis, and more. To Faraday,
+
+158
+00:14:35,600 --> 00:14:39,920
+these were all elements of a single unified approach to nature, and he was particularly
+
+159
+00:14:40,240 --> 00:14:46,720
+fascinated, even more than some of his contemporaries, with his inter-convertibility of forces.
+
+160
+00:14:46,720 --> 00:14:53,040
+How could electrical effects make physiological effects happen, like using electric shocks to
+
+161
+00:14:53,040 --> 00:14:59,840
+make a frog's leg jump? How could chemical effects be catalyzed by electric currents? So
+
+162
+00:14:59,840 --> 00:15:04,240
+the way that one kind of phenomenon or force could have effects in some other domain.
+
+163
+00:15:05,120 --> 00:15:09,920
+Now Faraday was partly inspired in this kind of inter-convertibility view
+
+164
+00:15:09,920 --> 00:15:13,600
+by his own religious backgrounds. I'm really very interested in work by a number of historians,
+
+165
+00:15:13,600 --> 00:15:18,880
+biographers of Faraday, who've tried to understand why Faraday took this kind of notion even further,
+
+166
+00:15:18,880 --> 00:15:23,280
+even more fervently, than many of his own contemporaries. And these other historians make
+
+167
+00:15:23,280 --> 00:15:29,600
+a pretty compelling case. Faraday belonged to a rather small religious minority in England.
+
+168
+00:15:29,600 --> 00:15:34,880
+He was a Protestant, but he was not an Anglican. He was not a member of the official Church of
+
+169
+00:15:34,880 --> 00:15:40,960
+England. He belonged to a small sect called the Sandamanians, Protestant, but not Anglican.
+
+170
+00:15:41,520 --> 00:15:45,120
+And the Sandamanians, even more than the standard Church of England at the time,
+
+171
+00:15:45,760 --> 00:15:51,040
+emphasized a underlying unity to all of nature. We're all part of one natural world,
+
+172
+00:15:51,760 --> 00:15:55,120
+and that people and things are somehow connected to each other. That was part of what the
+
+173
+00:15:55,120 --> 00:16:00,560
+Sandamanians themselves kind of believed and had a theological import for them. And there's a really
+
+174
+00:16:00,560 --> 00:16:04,560
+interesting parallel at the very least in some of the ways that Faraday had explored the natural
+
+175
+00:16:04,560 --> 00:16:10,160
+world as well. He became a beloved, very successful public lecturer. He continued the tradition that
+
+176
+00:16:10,160 --> 00:16:15,600
+Humphrey Davy had done at the Royal Institution, giving these very, very well attended so-called
+
+177
+00:16:15,600 --> 00:16:20,320
+Christmas lectures. These still continue from the Royal Institution to this day. Faraday would
+
+178
+00:16:20,320 --> 00:16:25,360
+really fill the lecture hall and give these dazzling spectacular demonstrations of electrical
+
+179
+00:16:25,360 --> 00:16:29,920
+effects and chemical change and all the rest. That's partly why he became so beloved and well
+
+180
+00:16:29,920 --> 00:16:35,040
+known in his lifetime. You can't quite see it in this engraving. It's hard to tell, but these were,
+
+181
+00:16:36,000 --> 00:16:41,040
+this really was the definition of popular. The tickets were not too expensive. That's partly how
+
+182
+00:16:41,040 --> 00:16:46,240
+very young and poor Faraday himself was able to attend as a child. It wasn't like attending, you
+
+183
+00:16:46,240 --> 00:16:52,480
+know, the fanciest opera performance in high elite London. There was a kind of, you wouldn't,
+
+184
+00:16:52,480 --> 00:16:56,400
+there'd be cheap seats. You can see how large the hall was. So there, the very nice, you know,
+
+185
+00:16:56,400 --> 00:17:03,680
+fancy seats then as now were expensive and tickets would go to the affluent and well to do.
+
+186
+00:17:03,680 --> 00:17:08,480
+But there really was what we today would call a kind of outreach. It was a real effort to reach
+
+187
+00:17:08,480 --> 00:17:14,080
+across several kind of social and economic classes, not all the way but broader than only
+
+188
+00:17:14,080 --> 00:17:19,600
+the very elite. And they became a really beloved kind of city institution within London. People
+
+189
+00:17:19,600 --> 00:17:25,280
+would come in from out of town to attend them. They became an annual tradition and Faraday
+
+190
+00:17:25,280 --> 00:17:30,000
+became especially beloved as a presenter in that tradition. So they really were reaching not only
+
+191
+00:17:30,000 --> 00:17:36,160
+people who had any interest in natural philosophy. It was really the kind of a way of showing a kind
+
+192
+00:17:36,160 --> 00:17:43,040
+of sophistication and a way for members of the so-called aspiring classes, meaning those who
+
+193
+00:17:43,040 --> 00:17:46,960
+weren't so well to do, to be able to participate in things that they saw the really elites doing.
+
+194
+00:17:46,960 --> 00:17:51,440
+So it really had a interesting kind of social cross-section to them. Historians have written
+
+195
+00:17:51,440 --> 00:17:55,200
+a lot of issues, that's not these public lectures. They really were talked about broadly,
+
+196
+00:17:55,200 --> 00:17:59,920
+covered in the in the broad sheet newspapers and all that. In this time period, the main
+
+197
+00:18:00,640 --> 00:18:06,800
+mechanisms were largely books. So even, even scientists like when we would call physicists
+
+198
+00:18:06,800 --> 00:18:11,680
+were mostly writing monographs and sometimes writing short articles for fellow specialists.
+
+199
+00:18:11,680 --> 00:18:16,080
+There were scientific journals, some of the earliest had been founded in England going back
+
+200
+00:18:16,080 --> 00:18:23,120
+to the 1660s, similar ones in other parts of Europe. But the real kind of transfer mechanisms
+
+201
+00:18:23,840 --> 00:18:27,680
+were often through monographs. That's partly why Maxwell's treatise that we'll talk about later
+
+202
+00:18:27,680 --> 00:18:34,400
+today became so widely known as influential. There were then these lectures. They were also
+
+203
+00:18:34,400 --> 00:18:40,000
+so-called itinerant lectures. People who made their whole living just giving popular lectures
+
+204
+00:18:40,000 --> 00:18:45,680
+on topics like electricity, town to town. So not just in London, but to the, to the outskirts and
+
+205
+00:18:45,680 --> 00:18:50,560
+likewise throughout provincial France and other places. So there were kind of popular lectures
+
+206
+00:18:50,560 --> 00:18:55,040
+in that sense. You can think of it almost like, like PBS television today, like Nova Specialists.
+
+207
+00:18:55,680 --> 00:19:01,760
+But for fellow specialists, there were just the start of professional meetings, the British
+
+208
+00:19:01,760 --> 00:19:05,120
+Association for the Advancement of Science. I'm having annual meetings of the sort that
+
+209
+00:19:05,120 --> 00:19:10,000
+will become so familiar for fellow specialists. Sometimes those will be covered in the national
+
+210
+00:19:10,000 --> 00:19:14,880
+newspapers. It was a hodgepodge. Some things would look familiar to us. Some things might seem a little,
+
+211
+00:19:14,880 --> 00:19:19,920
+a little more unusual. But Faraday wrote books and books and some articles, for example.
+
+212
+00:19:21,280 --> 00:19:25,280
+And certainly some of this would get into the curriculum for universities and we'll talk more
+
+213
+00:19:25,280 --> 00:19:30,000
+about that actually especially later today and in the next class session. But the way that kind of
+
+214
+00:19:30,000 --> 00:19:34,240
+fellow researchers interacted with fellow researchers, it was largely through books,
+
+215
+00:19:34,240 --> 00:19:37,680
+sometimes through journals and through these different kinds of lectures. Great, great questions.
+
+216
+00:19:39,520 --> 00:19:44,080
+I'm going to move on. These are great questions. I'll try to answer more than I don't get to
+
+217
+00:19:44,720 --> 00:19:50,160
+as we go further. But I want to get to one of the topics that was really, really high on Faraday's
+
+218
+00:19:50,160 --> 00:19:55,200
+list of most important, because this is really going to set our kind of agenda for several classes
+
+219
+00:19:55,200 --> 00:20:02,640
+to come. And that's what was called the ether, a presumptive, a hypothetical medium that pretty
+
+220
+00:20:02,640 --> 00:20:07,680
+much everyone that we're going to talk about, Faraday included, just assumed they kind of knew
+
+221
+00:20:07,680 --> 00:20:13,280
+they had an extremely strong confidence that this medium was filling all of space, filled every
+
+222
+00:20:13,280 --> 00:20:20,640
+nook and cranny of the universe. And it was this medium that filled everything that enabled various
+
+223
+00:20:20,640 --> 00:20:25,120
+processes to affect one another. That was the kind of interconvertibility of forces. Why did
+
+224
+00:20:25,120 --> 00:20:29,760
+electrical effects lead to magnetic effects? Because they're both ultimately effects of this
+
+225
+00:20:29,840 --> 00:20:37,040
+ether that connects everything. So what's the ether? Just during Faraday's own childhood,
+
+226
+00:20:37,040 --> 00:20:42,000
+another kind of amateur British naturalist named Thomas Young, building on some work by
+
+227
+00:20:42,000 --> 00:20:47,440
+French scholars from around the same time, right around the year 1800, had advanced a wave theory
+
+228
+00:20:47,440 --> 00:20:51,520
+of light. This is opposite actually to Isaac Newton's theory of light, who had a particle or
+
+229
+00:20:51,520 --> 00:20:56,880
+corpuscular theory. So Thomas Young, like some of the French scholars as well, suggested a whole
+
+230
+00:20:56,880 --> 00:21:02,720
+bunch of optical phenomena like interference, like reflection and refraction, could really
+
+231
+00:21:02,720 --> 00:21:07,600
+only be made sense of if light was a series of waves. And I'm sure you've seen this is a very
+
+232
+00:21:07,600 --> 00:21:13,120
+simple illustration. If two waves are perfectly in sync with each other, we'd say in phase,
+
+233
+00:21:13,120 --> 00:21:16,960
+you can get constructive interference, the peaks will become larger than either wave alone,
+
+234
+00:21:16,960 --> 00:21:21,760
+the trunks become deeper. Of course, if those two waves are exactly out of sync with each other,
+
+235
+00:21:21,760 --> 00:21:25,680
+if they're perfectly out of phase, you can get destructive interference and the resultant wave
+
+236
+00:21:25,680 --> 00:21:30,640
+will vanish altogether and sort of anything in between. So Young and others were convinced that
+
+237
+00:21:30,640 --> 00:21:36,080
+these interference phenomena kind of were natural indications that light is a wave phenomena. But
+
+238
+00:21:36,080 --> 00:21:42,080
+then the next question is, well, waves of what? Waves in what? Ocean waves are clearly waves of
+
+239
+00:21:42,080 --> 00:21:48,800
+water. Sound waves or compressions are waves in the atmosphere, in the air. What are waves of?
+
+240
+00:21:48,800 --> 00:21:53,760
+So they said, well, any wave we know about is a wave in some medium. There must be a medium
+
+241
+00:21:53,760 --> 00:21:58,800
+that carries these light waves. It was called the luminiferous ether, which is a very fancy word.
+
+242
+00:21:58,800 --> 00:22:03,840
+You can see how to parse it here. If you remember either Latin or Harry Potter, I find them equally
+
+243
+00:22:03,840 --> 00:22:11,680
+helpful. Think about the Lumos spell in Harry Potter. The lumini art just means light, referring to
+
+244
+00:22:11,680 --> 00:22:17,200
+light. Ferris means carrying, thinking like a ferris wheel. So the formal name of luminiferous
+
+245
+00:22:17,200 --> 00:22:22,000
+ether really just means the light carrying or the light bearing ether. This was the medium
+
+246
+00:22:22,560 --> 00:22:27,520
+in which light traveled, in which everything, all of the physical phenomena were immersed,
+
+247
+00:22:27,520 --> 00:22:33,120
+which is why these folks would never have said the stuff of the world is elementary particles
+
+248
+00:22:33,120 --> 00:22:38,240
+traveling in vacuum. There is no vacuum. Everything at root is filled with ether. That's where they
+
+249
+00:22:38,240 --> 00:22:44,720
+were starting from. So why would you need a medium for light? Again, even before around the same time
+
+250
+00:22:44,720 --> 00:22:49,440
+as Thomas Young in England, a number of French scholars had found that the speed of light, the
+
+251
+00:22:49,440 --> 00:22:54,240
+speed at which light waves travel depends on the medium in which they're traveling. In fact,
+
+252
+00:22:54,240 --> 00:22:58,880
+they're slower in water than in air. That's opposite, by the way, than sound waves. Sound waves travel
+
+253
+00:22:58,880 --> 00:23:06,400
+more quickly in a dense medium. That led to things like Snell's law, the whole set of knowledge
+
+254
+00:23:06,400 --> 00:23:10,800
+about refraction and how light behaves when it crosses from one type of medium to another.
+
+255
+00:23:10,800 --> 00:23:14,720
+You can characterize these media in terms of what became known as an index of refraction.
+
+256
+00:23:15,680 --> 00:23:19,600
+Everything about the behavior of these waves seemed to depend on the medium through which
+
+257
+00:23:19,600 --> 00:23:25,120
+they were traveling. There must be some baseline or reference medium, the ether,
+
+258
+00:23:25,120 --> 00:23:31,360
+with respect to which any of these deviations would then be measured. Water is one type of
+
+259
+00:23:31,360 --> 00:23:35,520
+medium, but even if you take all the water away and have an evacuated chamber,
+
+260
+00:23:35,520 --> 00:23:40,000
+you still have light waves traveling in the remaining ether. That was how they organized
+
+261
+00:23:40,000 --> 00:23:45,520
+these studies, or so much for light. What about other things like electricity and magnetism?
+
+262
+00:23:45,520 --> 00:23:51,280
+So again, during Faraday's early career, by this point, he was already kind of ensconced
+
+263
+00:23:51,280 --> 00:23:54,960
+to the Royal Institution, still working closely with people like Humphrey Davy,
+
+264
+00:23:55,840 --> 00:24:02,160
+there was a headline grabbing event not found in Britain, but actually nearby in Denmark.
+
+265
+00:24:02,160 --> 00:24:06,400
+So when another natural philosopher Hans Christian Orsted was giving a public lecture,
+
+266
+00:24:06,400 --> 00:24:10,160
+very much like at the Royal Institution, same kind of format. These were popular throughout.
+
+267
+00:24:11,280 --> 00:24:15,600
+Orsted was giving a public lecture and he accidentally discovered in the midst of his talk
+
+268
+00:24:15,600 --> 00:24:19,760
+something that he really didn't expect. He had an apparatus that looked a lot like this,
+
+269
+00:24:19,760 --> 00:24:27,520
+a kind of conducting coil, so there's a conducting wire, and he had nearby a compass,
+
+270
+00:24:27,520 --> 00:24:32,160
+so a magnetic needle. And he found that when current was flowing through the wire,
+
+271
+00:24:32,160 --> 00:24:36,960
+the needle would be deflected. He did not expect that at all, none of his audience expected that,
+
+272
+00:24:36,960 --> 00:24:42,080
+no one else expected that. Somehow that electric current, the flow of electricity,
+
+273
+00:24:44,320 --> 00:24:49,040
+could induce magnetic effects. It could change the behavior of that magnetic needle of the compass.
+
+274
+00:24:50,240 --> 00:24:54,320
+This became headline news if there had been 19th century Twitter, this would have broken Twitter,
+
+275
+00:24:54,320 --> 00:24:58,560
+hashtag the needle move, I'm sure. This was like literally whatever it was super exciting,
+
+276
+00:24:58,560 --> 00:25:02,960
+including people like Michael Faraday. This was for Faraday exactly this kind of
+
+277
+00:25:02,960 --> 00:25:07,200
+interconversion of forces that he was so interested, partly from his San Dominion faith,
+
+278
+00:25:07,200 --> 00:25:11,280
+partly because he was a natural philosopher of his time. So not only does he quickly
+
+279
+00:25:11,280 --> 00:25:17,440
+replicate Orsted's finding, he separately finds that he can get electric current to move a compass
+
+280
+00:25:17,440 --> 00:25:23,600
+needle. He then finds the inverse. He then does, as shown here, he takes a bar magnet
+
+281
+00:25:23,600 --> 00:25:28,720
+and starts moving it in a pattern near a conducting coil from which he can measure the
+
+282
+00:25:28,720 --> 00:25:34,320
+current as an ammeter attached. And he finds the inverse can happen as well, that a moving magnet,
+
+283
+00:25:34,320 --> 00:25:42,080
+a changing magnetic effect, can induce an electric current. So he's investigating induction, both
+
+284
+00:25:42,080 --> 00:25:46,720
+sort of electric currents inducing magnetic effects, magnetic fields or magnetic effects
+
+285
+00:25:46,720 --> 00:25:51,680
+inducing electric effects. And he wants to kind of keep track of this stuff. So he starts sketching
+
+286
+00:25:51,680 --> 00:25:56,720
+these helpful doodles that he calls lines of force. As far as Faraday was concerned, these were
+
+287
+00:25:56,720 --> 00:26:01,920
+lines of force to depict the underlying state of the ether. Remember, everything as far as he's
+
+288
+00:26:01,920 --> 00:26:07,040
+concerned is what's going on with the underlying ether. So it must be, he begins to reason with
+
+289
+00:26:07,040 --> 00:26:13,280
+these kind of pictorial aids, that the ether could be put under states of strain or tension. That's
+
+290
+00:26:13,280 --> 00:26:18,480
+if I have an electric charge that I place within the ether, it's going to have an effect and put
+
+291
+00:26:18,480 --> 00:26:23,760
+a kind of strain on the ether immediately around it. So he draws these lines of force emanating
+
+292
+00:26:23,760 --> 00:26:29,280
+either outward from positive electric charge or collapsing in toward a negative electric charge.
+
+293
+00:26:29,920 --> 00:26:35,440
+And then he begins using his sort of like middle school level mathematics. He'd had a little bit
+
+294
+00:26:35,440 --> 00:26:41,280
+of geometry before leaving formal schooling. And he puts that to work. He says he supposes,
+
+295
+00:26:41,920 --> 00:26:47,840
+what if a number of lines that come outwards from a positive charge is fixed and is proportional to
+
+296
+00:26:47,840 --> 00:26:53,360
+the amount of that electric charge. So a charge of say seven units would have seven of these lines
+
+297
+00:26:53,360 --> 00:26:58,240
+radiating outward, affecting the surrounding ether. A charge of 10 units would have 10 lines
+
+298
+00:26:58,240 --> 00:27:03,680
+radiating outward and so on. Then you can imagine what would happen if you surrounded that positive
+
+299
+00:27:03,680 --> 00:27:10,080
+charge with a kind of imaginary sphere at some distant radius. Then you can ask how many lines
+
+300
+00:27:10,080 --> 00:27:16,320
+per unit area will cross through that imagined sphere. The density of filled lines will fall
+
+301
+00:27:16,320 --> 00:27:20,960
+out. The lines are dispersing as you get further and further away from the electric charge. So the
+
+302
+00:27:20,960 --> 00:27:26,640
+density of filled lines, how many of those lines will intersect a kind of unit of that sphere
+
+303
+00:27:26,640 --> 00:27:31,840
+will fall off like one over r squared. You take the fixed number of lines, divide by the surface
+
+304
+00:27:31,840 --> 00:27:38,240
+area that you've surrounded that charge by. The area goes by like four pi r squared. So the density
+
+305
+00:27:38,240 --> 00:27:42,960
+should fall off like one over r squared. That was really exciting to Faraday because he had learned
+
+306
+00:27:42,960 --> 00:27:48,000
+from, again, from French scholars like Coulomb not too long before, really just in Faraday's own
+
+307
+00:27:48,000 --> 00:27:55,760
+childhood, that there was this Newton-like force of attraction or repulsion among electric charges.
+
+308
+00:27:55,760 --> 00:28:02,080
+We now call it Coulomb's law. That this magnitude of the force between two electric charges falls
+
+309
+00:28:02,080 --> 00:28:07,200
+off like one over the square, the distance, exactly as Faraday had kind of reasons toward
+
+310
+00:28:07,200 --> 00:28:12,800
+by thinking about state's attention in the ether and how that strain would be kind of dissipated
+
+311
+00:28:12,800 --> 00:28:18,000
+at more and more distance. So Faraday went on. Remember, he was so excited not only about one
+
+312
+00:28:18,000 --> 00:28:23,680
+topic like electricity, but also about magnetism. What if you plop a bar magnet down in the ether?
+
+313
+00:28:24,240 --> 00:28:29,120
+Then he could do that with these things like iron filings and trace out the kind of lines of
+
+314
+00:28:29,120 --> 00:28:33,360
+influence around the magnet, something you've probably done even as a child. And he realized
+
+315
+00:28:33,360 --> 00:28:38,000
+that he could make sense of this also in terms of lines of force, that these iron filings were
+
+316
+00:28:38,000 --> 00:28:43,840
+helping him map out the kind of magnetic effects, the strain that the bar magnet with its north and
+
+317
+00:28:43,840 --> 00:28:49,920
+south magnetic poles could do for the surrounding ether. What's really interesting here is that
+
+318
+00:28:49,920 --> 00:28:54,880
+Faraday starts to say that sometimes forces might not be transmitted only along the kind of straight
+
+319
+00:28:54,880 --> 00:29:02,240
+line shortest path between A and B. That was the sort of rule for all Newton-like forces. The
+
+320
+00:29:02,320 --> 00:29:08,080
+magnetic lines of force would bend. They'd curve. They would have these kind of looping paths.
+
+321
+00:29:08,080 --> 00:29:11,760
+And so maybe the magnetic force did not always go on shortest distance paths.
+
+322
+00:29:12,480 --> 00:29:16,640
+And more generally, Faraday starts saying, let's keep track of all these states of tension in the
+
+323
+00:29:16,640 --> 00:29:22,400
+ether. He introduces this notion of the field, something that physicists to this day use every
+
+324
+00:29:22,400 --> 00:29:28,160
+single day of our careers. We now call it field theory. It largely comes as being introduced
+
+325
+00:29:28,160 --> 00:29:34,400
+by Faraday as he tries to make sense of with kind of convenient mnemonic devices, these states of
+
+326
+00:29:34,400 --> 00:29:40,320
+strain in the ether. So the electric and magnetic fields, as far as Faraday was concerned, were
+
+327
+00:29:40,320 --> 00:29:45,520
+simply ways of characterizing the local state of the ether as represented by these kind of lines
+
+328
+00:29:45,520 --> 00:29:50,400
+of force. What were the stresses and strains at that spot in the ether? How do they change if
+
+329
+00:29:50,400 --> 00:29:54,800
+they go to this spot? How do they change if that one spot over time? This is what he says is the
+
+330
+00:29:54,800 --> 00:30:01,280
+notion of a field. It's just shorthand for the state of the underlying ether. But is that real?
+
+331
+00:30:01,840 --> 00:30:07,280
+Might still wonder, is the ether just a helpful thing to think about or did Faraday and his colleagues
+
+332
+00:30:07,280 --> 00:30:12,480
+think he was really part of the world? And it was unambiguously for them part of the world,
+
+333
+00:30:12,480 --> 00:30:17,120
+not just convenient to think about, but really the stuff from which the world was made. And we'll
+
+334
+00:30:17,120 --> 00:30:22,480
+talk about this in some more detail over coming class sessions. Faraday thought he found like the
+
+335
+00:30:22,560 --> 00:30:28,160
+golden proof in 1845, but now he was much more senior researcher. How could you demonstrate
+
+336
+00:30:28,160 --> 00:30:34,560
+the ether was real? Well, let's study the interaction in magnetic fields and the behavior of light,
+
+337
+00:30:34,560 --> 00:30:39,840
+in particular polarized light. This is now known as the Faraday effect or the Faraday rotation.
+
+338
+00:30:39,840 --> 00:30:44,080
+It's one of these things that's literally still in our textbooks. We use it all the time. It comes
+
+339
+00:30:44,080 --> 00:30:49,120
+from Faraday's efforts to prove to himself and his colleagues that we are all immersed in this
+
+340
+00:30:49,120 --> 00:30:56,720
+elastic bendable ether. So Faraday and his peers, the idea was the following, that if you put the
+
+341
+00:30:56,720 --> 00:31:04,320
+ether under local strain by putting a local magnetic field in some region of space, that
+
+342
+00:31:04,320 --> 00:31:10,080
+magnetic field will have a kind of twisting or curling effect, a kind of torsion on the underlying
+
+343
+00:31:10,080 --> 00:31:14,560
+ether. And then this light wave is traveling through this kind of deformed local bit of the
+
+344
+00:31:14,560 --> 00:31:20,640
+ether. So its behavior will change in a particular what's called the plane of polarization. The
+
+345
+00:31:20,640 --> 00:31:28,000
+direction in which its wave is waving will rotate. There'll be some angle shown here is the angle beta.
+
+346
+00:31:28,000 --> 00:31:32,960
+So if the field starts out, the wave starts out waving in one direction, it will literally
+
+347
+00:31:32,960 --> 00:31:37,200
+rotate it by some angle. The amount of rotation depends on the strength of the field and the
+
+348
+00:31:37,200 --> 00:31:43,600
+distance through which this ether is under tension. This is not just a good idea for 1845.
+
+349
+00:31:44,080 --> 00:31:48,880
+It's how we make sense of the world today, minus the ether part. But it comes from trying to figure
+
+350
+00:31:48,880 --> 00:31:53,280
+out is the ether real. Just last year I had fun working with a really terrific Europe student,
+
+351
+00:31:53,280 --> 00:31:59,680
+some of you might know Max Doshner, he and my friend Joe Formaggio in physics. We use this exact
+
+352
+00:31:59,680 --> 00:32:05,200
+same phenomenon that an external magnetic field will rotate the plane of polarization of light,
+
+353
+00:32:06,240 --> 00:32:11,040
+not to talk about the ether but as a way to jam quantum encryption indefinitely. So in the sort
+
+354
+00:32:11,040 --> 00:32:15,840
+of hyper-modern physics of the moment, we're still going back to Faraday rotation and yet
+
+355
+00:32:15,840 --> 00:32:19,920
+Faraday thought this was a way of characterizing the ether. I just love that. We're going to see many
+
+356
+00:32:19,920 --> 00:32:24,640
+examples of that throughout the class. Let me wrap up the Faraday part. I'll pause again for some more
+
+357
+00:32:24,640 --> 00:32:30,000
+questions. So Faraday as we've seen worked on a variety of phenomena, what we would call separately
+
+358
+00:32:30,000 --> 00:32:35,840
+chemistry and optics, electrolysis, even physiology, let alone electricity and magnetism. He was
+
+359
+00:32:35,920 --> 00:32:41,360
+especially interested in the inter-convertibility of forces, partly the compelling case of the maid,
+
+360
+00:32:41,360 --> 00:32:46,960
+this kind of resonance, especially closely with his sort of religious minority views,
+
+361
+00:32:46,960 --> 00:32:54,240
+his Sandamanian views, and that there was this kind of underlying unity of nature. Faraday was
+
+362
+00:32:54,240 --> 00:32:58,400
+never trained in advanced mathematics. He had really just the rudiments of this kind of pictorial
+
+363
+00:32:58,400 --> 00:33:03,760
+geometry like we saw with the kind of lines of force. He was an apprentice tinkerer. He had
+
+364
+00:33:03,760 --> 00:33:10,160
+tremendous manual dexterity skills and also great cleverness. He became this leading experimentalist
+
+365
+00:33:10,160 --> 00:33:16,080
+based on not formal training at a university, but being kind of apprenticed as a book binder and then
+
+366
+00:33:16,080 --> 00:33:21,280
+essentially apprenticed as Humphrey Davis assistant at the Royal Institution, not at a university.
+
+367
+00:33:22,000 --> 00:33:26,480
+He introduces these things which we still use to this day like lines of force and then fields.
+
+368
+00:33:27,040 --> 00:33:32,560
+For Faraday, these are ways of characterizing the one big prize of natural studies, meaning the ether,
+
+369
+00:33:32,560 --> 00:33:37,280
+the medium within which all these things unfolded, and the reason as far as Faraday was concerned,
+
+370
+00:33:37,280 --> 00:33:43,120
+why there could be this inter-convertibility and unity. So in place of Newtonian action at a distance
+
+371
+00:33:43,120 --> 00:33:48,720
+that somehow one object could instantaneously affect or exert a force on another one, Faraday
+
+372
+00:33:48,720 --> 00:33:53,840
+starts explaining all physical phenomena. He has the ambition to explain everything in terms of these
+
+373
+00:33:53,840 --> 00:34:00,400
+local fields. There's a local disturbance here at position x equals one and it can convey effects
+
+374
+00:34:00,400 --> 00:34:05,680
+to its nearest neighbors point by point. So you have to study how these fields change over time
+
+375
+00:34:05,680 --> 00:34:10,560
+and spread out through space. Everything is now meant to be local fields, not action at a distance.
+
+376
+00:34:10,560 --> 00:34:13,920
+Let me pause there again and ask me any questions. See at least one more item in the chat.
+
+377
+00:34:15,520 --> 00:34:16,960
+Any questions on the Faraday material?
+
+378
+00:34:22,480 --> 00:34:26,400
+Very good. So it was common to attend the public science lectures. In fact, it was seen as a way
+
+379
+00:34:26,400 --> 00:34:30,800
+of being kind of elegant. Again, it does a really fascinating work on the kind of social class
+
+380
+00:34:30,800 --> 00:34:36,480
+emulation going on, especially heightened as you might know in in Britain in this time period.
+
+381
+00:34:36,480 --> 00:34:42,720
+So to be considered a kind of fashionable lady in the terminology today, one had to show or at
+
+382
+00:34:42,720 --> 00:34:48,400
+least feign interests in a range of topics, one of which was these kind of, you know, elegant
+
+383
+00:34:48,400 --> 00:34:52,880
+demonstrations of the glories of the world. For many people this, by the way, had a kind of overt
+
+384
+00:34:52,880 --> 00:34:58,000
+religious significance, a kind of natural theology. Not for everyone, but for many in this period,
+
+385
+00:34:58,000 --> 00:35:04,480
+the idea was that learning about how electric shocks make frogs, frogs legs twitch, or how
+
+386
+00:35:04,480 --> 00:35:09,200
+magnetic bar magnet can change, can induce electric current. These are ways of kind of
+
+387
+00:35:10,000 --> 00:35:15,120
+revealing the glory of God's creation, as many people argued at the time. So it was seen as
+
+388
+00:35:15,680 --> 00:35:21,360
+actually a function of kind of moral or spiritual uplift. And therefore, again, according to the
+
+389
+00:35:21,360 --> 00:35:26,080
+kind of assumptions that we might say, prejudice is the time, therefore, all the more important for
+
+390
+00:35:26,080 --> 00:35:30,960
+young women to be exposed to this was a thinking of the time with their kind of tender moral souls
+
+391
+00:35:30,960 --> 00:35:36,720
+that needed special care, again, to speak in their idiom, not my own. So there actually was a great
+
+392
+00:35:36,720 --> 00:35:40,960
+encouragement for women to attend these public lectures, not, not as you might expect, to move
+
+393
+00:35:40,960 --> 00:35:46,880
+into the laboratory, not to do the work. That was an almost uniquely male enclave in this period,
+
+394
+00:35:46,880 --> 00:35:52,240
+certainly in the Royal Institution. But to be sort of exposed, to be part of the broader kind of
+
+395
+00:35:52,240 --> 00:35:57,440
+polite discussions, it was one way of showing that you were, you know, how to kind of appropriate
+
+396
+00:35:57,440 --> 00:36:00,560
+upbringing. And again, there's lots of cool stuff. I'd be glad to talk more about that or send some
+
+397
+00:36:00,560 --> 00:36:05,360
+references to Marie. The short answer was, yes, to attend the Christmas Lectures at Royal Institute,
+
+398
+00:36:05,360 --> 00:36:09,840
+that was an awesome thing to, you know, bring your daughter to. But, but at the time, and
+
+399
+00:36:09,840 --> 00:36:14,160
+there's something we'll see change rather slowly, but change over time throughout the semester.
+
+400
+00:36:14,720 --> 00:36:20,720
+At that time, it was not something that was seen as a kind of acceptable or appropriate day job or
+
+401
+00:36:20,720 --> 00:36:26,240
+a career path. So that was a very, very clear gender disparity, but a great openness to have
+
+402
+00:36:26,240 --> 00:36:30,960
+women participate in that limited way in the kind of public lectures. So very good question. We'll
+
+403
+00:36:30,960 --> 00:36:37,920
+come back to that, that theme quite a lot. Great questions. Oh, that's so good. So we'll come to
+
+404
+00:36:37,920 --> 00:36:42,720
+actually, we'll come to some of that in his very next unit right now. So, so partly I'll just punt.
+
+405
+00:36:42,720 --> 00:36:47,360
+But the short answer is there was a growing recognition in just this time period among
+
+406
+00:36:47,360 --> 00:36:51,840
+many influential government leaders, not only in Britain, in many parts of Europe, in fact,
+
+407
+00:36:51,840 --> 00:36:58,480
+many parts of the world, China and Japan, certainly North America, a growing recognition by, by this,
+
+408
+00:36:58,480 --> 00:37:04,320
+during this exact time period, that many nation states would benefit from investing in what we
+
+409
+00:37:04,320 --> 00:37:09,120
+would now call science and technology or science and engineering. So there certainly were hot button
+
+410
+00:37:09,120 --> 00:37:15,040
+issues, then as now, natural evolution, Darwin's theory of evolution, which comes just around this
+
+411
+00:37:15,040 --> 00:37:21,520
+time, first published in 1859. That becomes yet another flashpoint for tension and controversy.
+
+412
+00:37:22,080 --> 00:37:25,440
+But for a lot of this work, and what we would now call the physical science is,
+
+413
+00:37:25,440 --> 00:37:31,200
+as we'll see, there was actually a kind of investment, a new kind of priority in a lot of
+
+414
+00:37:31,200 --> 00:37:35,760
+this work, not across the board, not without its own hiccups, we'll come to that. But it was actually
+
+415
+00:37:35,840 --> 00:37:41,680
+a turning point in, in a new kind of investment, partly because many of these places were undergoing
+
+416
+00:37:41,680 --> 00:37:46,320
+their own kind of nation based industrial development. And we'll see that actually even more
+
+417
+00:37:46,320 --> 00:37:50,320
+explicitly in the next class, some of it today with Maxwell. And in the next semester was a great
+
+418
+00:37:50,320 --> 00:37:55,920
+question. It's a theme we'll trace throughout the semester. But even in in Faraday's own lifetime,
+
+419
+00:37:55,920 --> 00:38:02,160
+that was beginning to change into a more kind of a higher priority and investment in exactly
+
+420
+00:38:02,160 --> 00:38:06,160
+these topics. Great question. Any others? Should we, should we press on?
+
+421
+00:38:08,720 --> 00:38:12,960
+These are great. So keep in common. These are great historical questions to help us think about,
+
+422
+00:38:12,960 --> 00:38:16,640
+like, what was different back then? What might have been similar? So we're going to keep that kind
+
+423
+00:38:16,640 --> 00:38:21,440
+of back and forth in mind as we enter now just the last part for today's class. And we'll talk
+
+424
+00:38:21,440 --> 00:38:29,360
+about William Thompson and James Clark Maxwell. So as, as, as we saw these briefly, Faraday had
+
+425
+00:38:29,360 --> 00:38:33,600
+very little formal training in mathematics and he used very little in his own studies,
+
+426
+00:38:33,600 --> 00:38:37,840
+his very voluminous studies. And that's not surprising given what we know about his own
+
+427
+00:38:37,840 --> 00:38:44,160
+early childhood in education. There's a really remarkable shift, one that I still find unbelievably
+
+428
+00:38:44,160 --> 00:38:48,240
+fascinating. So we're going to spend quite a bit of time talking about it today and next class as well.
+
+429
+00:38:48,240 --> 00:38:54,400
+This amazing shift that begins really late in Faraday's own lifetime in the middle decades
+
+430
+00:38:54,400 --> 00:38:58,240
+of the 19th century. It doesn't only happen in Britain. We're going to look at it because it's
+
+431
+00:38:58,240 --> 00:39:04,640
+especially kind of dramatic or kind of blown out of proportion, we might say, in Britain at places
+
+432
+00:39:04,640 --> 00:39:08,560
+like Cambridge University. It's happening also in places like France and other parts of the world,
+
+433
+00:39:09,360 --> 00:39:13,920
+even beyond Europe. But, but Cambridge in Britain gives us like the kind of capstone picture that
+
+434
+00:39:13,920 --> 00:39:19,520
+and it's almost like pure essence. So there's a real sea change going on between Faraday's early
+
+435
+00:39:19,520 --> 00:39:25,280
+life and even the later years of his own career in, in the way that people would try to approach
+
+436
+00:39:25,280 --> 00:39:32,640
+national phenomena like electricity and activism. Two kind of exemplars, two examples of that shift
+
+437
+00:39:32,640 --> 00:39:36,560
+are names that might be familiar to many of you. And we'll spend a little time today talking about
+
+438
+00:39:36,560 --> 00:39:42,800
+some of their work. William Thompson, who is later known as Lord Kelvin, that's the same Kelvin from
+
+439
+00:39:42,800 --> 00:39:47,600
+the Kelvin temperature scale, absolute temperature familiar to you and other many other things.
+
+440
+00:39:48,480 --> 00:39:54,080
+So Thompson on one hand and James Clark, Max on the other. Again, I'm sure Max or a familiar name,
+
+441
+00:39:54,080 --> 00:39:59,440
+things like Maxwell equations and all the rest. So these two folks were about two generations
+
+442
+00:39:59,440 --> 00:40:05,280
+younger than Faraday. They were coming of age when Faraday was already a well known natural
+
+443
+00:40:05,280 --> 00:40:11,360
+philosopher. They pick up on Faraday's work. They were avid readers of Faraday's books, often
+
+444
+00:40:11,360 --> 00:40:17,120
+monographs, not just as articles. And they began to translate it into a very powerful mathematical
+
+445
+00:40:17,120 --> 00:40:22,800
+formalism of the sorts that Faraday had had no inkling of whatsoever. Turns out both Thompson
+
+446
+00:40:22,800 --> 00:40:27,920
+and Maxwell were born in Scotland. They were not from London or the immediate English surroundings.
+
+447
+00:40:27,920 --> 00:40:33,680
+They were both Scottish born. They both moved to Cambridge for their formal university training
+
+448
+00:40:34,400 --> 00:40:40,000
+in the middle decades of the 19th century. So both Thompson and Maxwell became deeply
+
+449
+00:40:40,000 --> 00:40:44,240
+involved coming to exactly the question that was raised just in that last question period.
+
+450
+00:40:44,240 --> 00:40:49,760
+They became deeply involved with what we might call kind of engineering aspects or applications
+
+451
+00:40:49,760 --> 00:40:55,760
+of natural philosophy all around the physics of the ether. They both had very long illustrious careers
+
+452
+00:40:56,480 --> 00:41:01,200
+not only when they were university students. They were pursuing these very fancy sophisticated
+
+453
+00:41:01,200 --> 00:41:05,440
+mathematical kind of formal mathematical approaches to electricity, magnetism, and the
+
+454
+00:41:05,440 --> 00:41:10,320
+physics of the ether, not only for the sake of pure mathematics. As we'll see, they were deeply
+
+455
+00:41:10,320 --> 00:41:16,000
+involved in very practical ways with things that governments wanted to pay for, like telegraphy
+
+456
+00:41:16,000 --> 00:41:21,680
+and other practical electrotechnical devices. So among the most important in their own careers
+
+457
+00:41:21,680 --> 00:41:26,720
+was indeed telegraphy. So as you know, Britain then as now was an island, it's still an island.
+
+458
+00:41:26,720 --> 00:41:32,400
+Back then it had lots and lots of colonies. That's what's changed. It was a period of still rapid
+
+459
+00:41:33,600 --> 00:41:39,920
+acceleration of the British colonial adventure. So distant outposts or so-called possessions,
+
+460
+00:41:39,920 --> 00:41:44,880
+territorial possessions, really all around the world. Again, many of you might recall the old quip
+
+461
+00:41:44,880 --> 00:41:50,640
+that the sun never sets on the British Empire. In that time period, there were colonial holdings
+
+462
+00:41:50,640 --> 00:41:56,400
+or territories that spanned really the entire globe. So at any given time of day, the sun was
+
+463
+00:41:56,400 --> 00:42:02,720
+shining on some British outpost. So what do you need if you're going to try to administer a world
+
+464
+00:42:02,720 --> 00:42:09,200
+spanning empire? You need ways to have efficient communication. And that was an enormous impetus
+
+465
+00:42:09,200 --> 00:42:14,800
+for things like telegraphy. Even with some of the former colonies like the United States or Canada,
+
+466
+00:42:14,800 --> 00:42:20,480
+some kind of formal colonial holdings, there was still an effort in this same period, the middle
+
+467
+00:42:20,480 --> 00:42:25,120
+decades of the 19th century, to have efficient long-distance communication for things like commerce
+
+468
+00:42:25,120 --> 00:42:32,320
+and diplomacy. So there were all kinds of reasons why electromechanical investigations were given
+
+469
+00:42:32,320 --> 00:42:38,400
+a very high priority in Britain in this time period. So we get a taste of, here's our first
+
+470
+00:42:38,400 --> 00:42:45,760
+quotation from that little bit of the Maxwell that I designed. Maxwell published this voluminous
+
+471
+00:42:45,760 --> 00:42:52,080
+treatise, a two-volume treatise in 1873. The two volumes together run to about 900 pages. It makes
+
+472
+00:42:52,080 --> 00:42:56,400
+for fun beach reading. But in the very opening of the preface, we get this really interesting
+
+473
+00:42:56,400 --> 00:43:00,880
+observation. He tells us partly why anyone should read this book. And he says here,
+
+474
+00:43:00,880 --> 00:43:07,040
+the important applications of electromagnetism to telegraphy have reacted on pure science by giving
+
+475
+00:43:07,040 --> 00:43:13,680
+a commercial value, and indeed a governmental diplomatic value, to accurate electrical measurements
+
+476
+00:43:13,680 --> 00:43:19,200
+and by affording to electricians, let's say experts in the field, the use of apparatus on a scale
+
+477
+00:43:19,200 --> 00:43:24,160
+which greatly transcends that of any ordinary laboratory. They're getting huge investments
+
+478
+00:43:24,160 --> 00:43:30,080
+to conduct very large investigations with very elaborate apparatus. The consequences of this
+
+479
+00:43:30,080 --> 00:43:35,120
+demand, this sort of government and commercial private interest demand for electrical knowledge
+
+480
+00:43:36,080 --> 00:43:40,080
+and of these experimental opportunities for acquiring that knowledge have already been
+
+481
+00:43:40,080 --> 00:43:45,920
+very great, both in stimulating the energies of advanced electricians and then diffusing among
+
+482
+00:43:45,920 --> 00:43:50,640
+practical men a degree of accurate knowledge which is likely to conduce to the general scientific
+
+483
+00:43:50,640 --> 00:43:55,680
+progress of the whole engineering profession. P.S. by my 900-page book is literally worth
+
+484
+00:43:55,680 --> 00:44:01,920
+something. That's what he's announcing in the opening pages of his treatise. So let's go a little
+
+485
+00:44:02,480 --> 00:44:08,320
+into some somehow William Thompson and James Clark Maxwell start treating Faraday's kind of
+
+486
+00:44:08,320 --> 00:44:13,760
+intellectual legacy. So Thompson began reading Faraday's books as well as some articles as an
+
+487
+00:44:13,760 --> 00:44:18,720
+undergraduate. Thompson was still, you know, basically 18 and 19 years old at Cambridge
+
+488
+00:44:19,520 --> 00:44:24,480
+when he starts devouring Faraday's work or continues to do so. He began to realize that he
+
+489
+00:44:24,480 --> 00:44:29,760
+could put Faraday's work, he could kind of translate it on the one hand, and also Newton's work on
+
+490
+00:44:29,760 --> 00:44:35,600
+mechanics within the same mathematical structure. This was the stuff that only in the middle decades
+
+491
+00:44:35,600 --> 00:44:41,600
+of the 19th century was what university students at Cambridge like William Thompson began to really
+
+492
+00:44:41,600 --> 00:44:46,080
+be immersed in. We'll talk much more about that in the next lecture. So we realized that you could
+
+493
+00:44:46,080 --> 00:44:51,520
+make this bridge, you could treat all these disparate phenomena within electricity and separately
+
+494
+00:44:51,520 --> 00:44:55,920
+all these disparate phenomena within Newton's mechanics, blocks sliding down planes, the attraction
+
+495
+00:44:55,920 --> 00:45:02,640
+of gravity, introduce one similar mathematical construct, the potential, a scalar potential,
+
+496
+00:45:03,200 --> 00:45:08,160
+which is often just labeled by the Greek letter phi. If this is brand new to you, don't worry,
+
+497
+00:45:08,160 --> 00:45:14,160
+if it's very familiar to you, great. The idea is that a scalar function, a scalar field like this
+
+498
+00:45:14,160 --> 00:45:20,480
+potential, it has values at every point in space, those values can change over time, but it doesn't
+
+499
+00:45:20,480 --> 00:45:28,160
+have direction, it has no, it only has magnitude. You can think of making a kind of representing
+
+500
+00:45:28,160 --> 00:45:34,000
+the temperature in the room at every location in space, and then tracking how those temperature
+
+501
+00:45:34,000 --> 00:45:38,240
+readings change over time at each location in space, that's a scalar function. Temperature is
+
+502
+00:45:38,240 --> 00:45:45,200
+scalar, it has magnitude, but not direction, that's hopefully review. Other things like these fields
+
+503
+00:45:45,200 --> 00:45:50,480
+that Faraday introduced for electricity magnetism, those have direction as well as magnitude,
+
+504
+00:45:50,480 --> 00:45:55,520
+those are vector quantities. Well, as Thompson was learning to just devour in his undergraduate
+
+505
+00:45:55,520 --> 00:46:02,080
+studies, you could create a vector quantity by taking kind of rates of change of a scalar
+
+506
+00:46:02,080 --> 00:46:06,880
+quantity, what we'd now call the gradient. So the gradient, often with this upside down triangle,
+
+507
+00:46:08,880 --> 00:46:12,720
+the gradient of a scalar function gives a vector function, and in particular,
+
+508
+00:46:13,360 --> 00:46:19,520
+one could represent these vector field like quantities of either electricity or gravitation
+
+509
+00:46:19,520 --> 00:46:23,760
+by first writing down a simpler mathematical object, the scalar function, scalar potential.
+
+510
+00:46:25,200 --> 00:46:30,720
+So he first reviews what had already been worked out by a bunch of 18th century savant
+
+511
+00:46:30,720 --> 00:46:37,120
+throughout France, French scholars throughout the 1700s, downstream from Newton himself.
+
+512
+00:46:37,120 --> 00:46:40,240
+They had really translated Newton's own work into this language of
+
+513
+00:46:41,040 --> 00:46:45,600
+directional quantities like fields, like forces in the gravitational field,
+
+514
+00:46:46,160 --> 00:46:50,400
+and then introduced this simplifying mathematical structure of a scalar potential.
+
+515
+00:46:50,960 --> 00:46:56,960
+And then you could study not just how the field is related to changes in that scalar function,
+
+516
+00:46:56,960 --> 00:47:01,920
+the gradient, you could see how the field would divert the divergence of that field
+
+517
+00:47:02,800 --> 00:47:07,920
+related to where the stuff is, the density of sources of gravitation, like the mass density.
+
+518
+00:47:07,920 --> 00:47:13,920
+This was basically a translation, re-translation of Newton's work from the 1680s,
+
+519
+00:47:14,480 --> 00:47:19,600
+translated into this more modern language throughout the 1700s by the French scholars
+
+520
+00:47:19,600 --> 00:47:24,880
+of direction filled vector quantities being related to derivatives to rates of change of
+
+521
+00:47:24,880 --> 00:47:28,800
+simpler scalar quantities. That was literally textbook stuff. That's what Thompson's learning
+
+522
+00:47:28,800 --> 00:47:33,040
+as an undergraduate. It's not Thompson, not those French folks in this case,
+
+523
+00:47:34,000 --> 00:47:39,360
+who says, can we make a one-for-one map? He's absorbing this cool Faraday stuff. He says,
+
+524
+00:47:39,360 --> 00:47:44,880
+what if we represent an electric field as the state of strain in the ether exactly as Faraday
+
+525
+00:47:44,880 --> 00:47:50,640
+had begun kind of groping toward pictorially? There's electrical forces to be forces related
+
+526
+00:47:50,640 --> 00:47:58,000
+to an electrical field, the state of disturbance of the ether. Sorry, how's that? Sorry, gang.
+
+527
+00:47:58,720 --> 00:48:04,400
+Okay. You can then relate the electric field, again, to rates of change of a simpler quantity,
+
+528
+00:48:04,400 --> 00:48:09,840
+a scalar potential, exactly analogous to the gravitational case. You can then ask how the
+
+529
+00:48:09,840 --> 00:48:15,440
+electric field is diverging throughout space and time, like those lines of force getting more and
+
+530
+00:48:15,440 --> 00:48:19,280
+more spread out from each other in Faraday's simple pictures. And that's related to where
+
+531
+00:48:19,280 --> 00:48:24,240
+the stuff is, to the sources of this electrical disturbance, the charge density, how many
+
+532
+00:48:24,320 --> 00:48:30,160
+electrical charged objects are distributed throughout space per unit volume, say. So,
+
+533
+00:48:30,160 --> 00:48:34,800
+he makes a one-to-one map. And he says, there's really this precise mathematical analogy
+
+534
+00:48:34,800 --> 00:48:39,920
+between electrical phenomena and mechanics, like Newton's laws, and the mapping is done by this
+
+535
+00:48:39,920 --> 00:48:45,600
+a little bit more formal, more fancy mathematics. So far, that's not so shocking. Thompson was
+
+536
+00:48:45,600 --> 00:48:50,000
+among the first to take this textbook side and start doing new things with it with the Faraday
+
+537
+00:48:50,000 --> 00:48:57,520
+cool E&M stuff. Within one year of when Faraday introduced what we now call Faraday rotation,
+
+538
+00:48:57,520 --> 00:49:02,160
+remember that thing about the external magnetic field rotating the plane of polarization for light?
+
+539
+00:49:02,880 --> 00:49:07,440
+Thompson does the same thing. He says, oh, good. Faraday has some new cool stuff. Let me put that
+
+540
+00:49:07,440 --> 00:49:14,160
+through my very fancy university mathematics. So now, he's still an undergraduate. Thompson is now
+
+541
+00:49:14,160 --> 00:49:19,600
+making brand new stuff, not just rewriting the known regularities among electrical phenomena,
+
+542
+00:49:20,000 --> 00:49:25,760
+but in fact, formalizing the brand new stuff, like Faraday rotation. He introduces a new kind
+
+543
+00:49:25,760 --> 00:49:30,400
+of mathematical object, the vector potential. That was not known even to the French savant.
+
+544
+00:49:30,960 --> 00:49:36,800
+We still call it the vector potential A. And he introduces a new operator, a new way of manipulating
+
+545
+00:49:36,800 --> 00:49:41,600
+that quantity, which we call the curl. Thompson events curl as an undergraduate. Just let that
+
+546
+00:49:41,600 --> 00:49:46,320
+sink in for a second. So, you know, the new semester's early, you all can invent all kinds
+
+547
+00:49:46,320 --> 00:49:50,720
+of new math before, let's say, November. Thompson's literally doing this like for fun on the weekends
+
+548
+00:49:50,720 --> 00:49:56,480
+because he can't get enough math. So, he introduces a vector potential and this curl because as Faraday
+
+549
+00:49:56,480 --> 00:50:02,960
+had kind of intuited, the effect of a magnetic field on the surrounding aether was kind of turning
+
+550
+00:50:02,960 --> 00:50:08,640
+or twisting strain, unlike the kind of straight line strain of an electric field. And so,
+
+551
+00:50:08,640 --> 00:50:14,240
+Thompson wanted to kind of formalize what that curl, what that twisting torsion would be like
+
+552
+00:50:14,720 --> 00:50:19,120
+as a different kind of strain in the aether. And he formalizes this new operator, which we now
+
+553
+00:50:19,120 --> 00:50:24,800
+know and love and use every single day. It comes out of Thompson trying to treat mathematically
+
+554
+00:50:24,800 --> 00:50:29,680
+formally what he was still learning very actively from people like Faraday. Pretty amazing.
+
+555
+00:50:31,200 --> 00:50:35,440
+So, far following Faraday's lead, Thompson begins to interpret this
+
+556
+00:50:36,160 --> 00:50:40,480
+mathematical result mechanically. Remember, we saw that one-to-one bridge between the kind of
+
+557
+00:50:40,480 --> 00:50:45,360
+Newton mechanic stuff and the electricity stuff. He says, if the same mathematics applies, maybe
+
+558
+00:50:45,360 --> 00:50:52,160
+it's the same physical explanation undergirding all of it. The aether, he'd learned from people
+
+559
+00:50:52,160 --> 00:50:57,200
+like Michael Faraday and others, the aether seemed to be this elastic physical medium. It was literally
+
+560
+00:50:57,840 --> 00:51:03,840
+a kind of stuff spread out everywhere and that medium could be put under local states of tension
+
+561
+00:51:03,840 --> 00:51:09,600
+or strain with twist, with directional properties described by these vectors. So, these new mathematical
+
+562
+00:51:09,600 --> 00:51:15,680
+techniques like Curl could quantify this physical mechanical medium's response to pressures like
+
+563
+00:51:15,680 --> 00:51:20,880
+electric and magnetic fields. He really took that to heart in a famous set of public lectures,
+
+564
+00:51:20,880 --> 00:51:25,360
+much like these London ones. He actually came to Baltimore in the United States and gave very,
+
+565
+00:51:25,360 --> 00:51:30,480
+very well attended popular lectures for in Baltimore. Thompson basically tried to give his
+
+566
+00:51:30,480 --> 00:51:35,760
+audience a feel for what these kind of experts were doing. This is a direct quotation. So, again,
+
+567
+00:51:35,760 --> 00:51:39,920
+people in their fancy opera gloves, like Out for Night in the Town, do you hear the great Lord
+
+568
+00:51:39,920 --> 00:51:45,920
+Kelvin by this point, the great ennobled Lord Kelvin described about the latest advances.
+
+569
+00:51:45,920 --> 00:51:50,880
+And he tells this fancy audience, stick your hand in a bowl of jelly, okay, and see how it
+
+570
+00:51:50,880 --> 00:51:56,160
+wiggles and vibrates as you move your hand around. That's what it was to do physics because the jelly
+
+571
+00:51:56,160 --> 00:52:01,840
+is just like this elastic aether. It's everywhere and the job of super smart ambitious people like
+
+572
+00:52:01,920 --> 00:52:07,200
+William Thompson was to quantify the wiggles and vibrations of that aether much as you would
+
+573
+00:52:07,200 --> 00:52:14,640
+if you disturbed this pot of jelly. I love that. This becomes known as a mechanical worldview.
+
+574
+00:52:14,640 --> 00:52:20,160
+If the mathematics was the same, make this one-to-one mathematical map, then maybe you could model
+
+575
+00:52:20,160 --> 00:52:25,440
+electromagnetism on literally a mechanical model. You have an elastic stuff under states of strain
+
+576
+00:52:25,440 --> 00:52:31,280
+with directional properties. And if the models reproduce all the relevant phenomena like Coulomb's
+
+577
+00:52:31,280 --> 00:52:37,120
+law and all the rest, all the electromagnetic phenomena, then maybe these aren't only analogies
+
+578
+00:52:37,120 --> 00:52:43,760
+or models. Maybe aether really was merely a mechanical system just like that jar of jam.
+
+579
+00:52:43,760 --> 00:52:49,120
+So it becomes a mechanical worldview. All of the things of the world are to be understood on the
+
+580
+00:52:49,120 --> 00:52:55,360
+mechanical kind of vibrations or responses of this space-filling aether. Last part, then I'll
+
+581
+00:52:55,360 --> 00:53:00,800
+pause for more questions. We're almost done. We're going to turn to Thompson's slightly younger
+
+582
+00:53:00,800 --> 00:53:08,800
+colleague James Clark-Maxwell. I mentioned they had a similar upbringing a couple years apart,
+
+583
+00:53:08,800 --> 00:53:11,520
+both Scottish, both come to Cambridge for their undergraduate studies.
+
+584
+00:53:12,240 --> 00:53:14,960
+Maxwell was a couple years younger. I don't think they actually overlapped in Cambridge. They came
+
+585
+00:53:14,960 --> 00:53:20,560
+to know each other later. Maxwell liked Thompson, he becomes steeped in his new Cambridge mathematical
+
+586
+00:53:20,640 --> 00:53:26,160
+training. We'll talk a lot more about the Cambridge training in the next class. And Maxwell develops
+
+587
+00:53:26,160 --> 00:53:30,800
+further analogies between these electromagnetic kind of aether-based systems and mechanical
+
+588
+00:53:30,800 --> 00:53:34,560
+systems. Here's a famous example. And this, by the way, you get some more description of this in
+
+589
+00:53:34,560 --> 00:53:40,560
+that chapter by Bruce Hunt in the reading for today. So the model, the effects of a magnetic field
+
+590
+00:53:40,560 --> 00:53:46,000
+on the aether, Maxwell imagines this elaborate system. Basically, it's like a contraption of like
+
+591
+00:53:46,000 --> 00:53:50,320
+pulleys and conveyor belts and gears. We don't have to worry about the detail so much.
+
+592
+00:53:50,320 --> 00:53:55,200
+The ambition is what I want to convey. That there's a physical model of an actual system,
+
+593
+00:53:55,200 --> 00:54:01,280
+a mechanical system of gears, levers, and straps that he thinks is what's really going on in the
+
+594
+00:54:01,280 --> 00:54:06,720
+aether when we do things like put a little patch of the aether under local strain from a magnetic
+
+595
+00:54:06,720 --> 00:54:12,000
+field. So between these kind of vortices as depicted here are these idle wheels, wheels that
+
+596
+00:54:12,000 --> 00:54:16,960
+sort of stay in place but can change the rate at which they turn. They really like these conveyor
+
+597
+00:54:16,960 --> 00:54:23,680
+belts. If an external force changed the rate at which one of these vortices was spinning,
+
+598
+00:54:23,680 --> 00:54:28,560
+you could change it by imposing one of these external fields like a magnetic field. You change
+
+599
+00:54:28,560 --> 00:54:32,640
+the rate at which this kind of unit cell is spinning. That changes the rate at which the
+
+600
+00:54:32,640 --> 00:54:39,200
+immediately nearest neighbors are going to be behaving. It's all this faraday field idea of
+
+601
+00:54:39,200 --> 00:54:44,640
+local neighbor to local neighbor, not action at a distance. So this unit cell starts to change
+
+602
+00:54:44,640 --> 00:54:48,480
+its rate of rotation. That changes the speed at which these intervening, these so-called idle
+
+603
+00:54:48,480 --> 00:54:52,960
+wheels spin. That then changes the rate at which they're nearest neighbors in because they're
+
+604
+00:54:52,960 --> 00:54:58,560
+literally connected. So it's all local effects. So all effects are local and the way that a
+
+605
+00:54:58,560 --> 00:55:03,840
+magnetic disturbance affects something over there is by these local effects propagating
+
+606
+00:55:03,840 --> 00:55:09,280
+through the medium in this kind of gears and straps conveyor belt sort of way. And again,
+
+607
+00:55:09,280 --> 00:55:14,320
+he gives us hints about this in the even in the brief excerpt from Axel's treatise that I assigned
+
+608
+00:55:14,320 --> 00:55:19,200
+for today. So he talks about how the action of one electrical system on another is affected
+
+609
+00:55:19,200 --> 00:55:24,640
+not by direct action at a distance, not the way Newton had said, but rather by means of a
+
+610
+00:55:24,640 --> 00:55:30,080
+distribution of stress in this medium, this elastic medium or the ether, extending continuously
+
+611
+00:55:30,080 --> 00:55:35,440
+throughout space. Likewise, he says a few pages later in the excerpt, the distribution of stress
+
+612
+00:55:35,440 --> 00:55:40,720
+in this medium, this ether, is precisely that to which faraday was led in his investigation of
+
+613
+00:55:40,720 --> 00:55:46,000
+induction of the fact that a moving magnet can induce electrical effects like an electric current.
+
+614
+00:55:47,280 --> 00:55:51,200
+At every point of the medium, there's a state of stress. Every part of the ether is under some
+
+615
+00:55:51,200 --> 00:55:55,840
+kind of stress, such that there's tension along the lines of force, pressure at right angles. He's
+
+616
+00:55:55,840 --> 00:56:00,640
+really building a mechanical model, almost sometimes a kind of hydrostatic one, other ones more likely
+
+617
+00:56:00,640 --> 00:56:06,880
+gears of a factory. This became how the Maxwellians, not just Maxwell, but even his nearest followers
+
+618
+00:56:06,880 --> 00:56:12,240
+and students and kind of protégés, that's what they thought it was to study the natural world,
+
+619
+00:56:12,240 --> 00:56:17,280
+to build more and more kind of articulated mechanical models of the ether with which they
+
+620
+00:56:17,280 --> 00:56:23,040
+could model and even predict more and more features of natural worlds like electromagnetic effects.
+
+621
+00:56:23,040 --> 00:56:28,080
+So one of his acolytes, Oliver Lodge, himself went on to a very, very distinguished career
+
+622
+00:56:28,080 --> 00:56:32,800
+in physics himself. He wrote a book a few years later, the Maxwell's treatise called
+
+623
+00:56:32,800 --> 00:56:37,760
+The Modern Views of Electricity, and it was all about this sort of Maxwellian approach within
+
+624
+00:56:37,760 --> 00:56:43,120
+this mechanical worldview to account for states of strain and ether using this kind of much more
+
+625
+00:56:43,760 --> 00:56:49,280
+articulated mapping, the fancy math that people like Thompson, Maxwell, and soon the whole Cambridge
+
+626
+00:56:49,760 --> 00:56:53,760
+group would articulate. Well, this didn't impress everyone. I love this book review. This is the
+
+627
+00:56:53,760 --> 00:56:59,360
+nastiest book review for a long, long time. Here's a review by the French mathematical
+
+628
+00:56:59,360 --> 00:57:06,560
+physicist Pierre Duem, reviewing Oliver Lodge's book, this sort of Maxwellian book. Duem hopes
+
+629
+00:57:06,560 --> 00:57:11,200
+he would like it. He also was very interested in electricism, but he just sniffs in this wonderful
+
+630
+00:57:11,200 --> 00:57:17,360
+sneering French way to wear the quoting. Duem says, here is a book intended to expound the modern
+
+631
+00:57:17,360 --> 00:57:21,840
+theories of electricity. In it, there are nothing but strings which move around pulleys,
+
+632
+00:57:21,840 --> 00:57:26,880
+which roll around drums, which go through pearl beads, which carry weights, and tubes which pump
+
+633
+00:57:26,880 --> 00:57:31,520
+water while others swell and contract. Toothed wheels are geared to one another, engage hooks.
+
+634
+00:57:31,520 --> 00:57:37,360
+This is the real kicker. We thought we were entering the tranquil and neatly ordered abode of reason,
+
+635
+00:57:37,360 --> 00:57:41,760
+but we find ourselves in a factory. This was not high praise. He was like, I thought I was going
+
+636
+00:57:41,760 --> 00:57:47,200
+to learn something edifying for my soul. Instead, this is literally low class stuff. This is the
+
+637
+00:57:47,200 --> 00:57:54,080
+most obnoxious takedown book of you that I could think of. This Maxwellian British approach doesn't
+
+638
+00:57:54,080 --> 00:57:58,400
+please everyone, and yet, as we'll see in the last little bit, they're starting to make some pretty
+
+639
+00:57:58,400 --> 00:58:03,360
+remarkable strides nonetheless. Last little bit, then we'll pause for questions. Last part for Max.
+
+640
+00:58:06,080 --> 00:58:11,200
+While working out this sort of mechanical model, how would local disturbances propagate
+
+641
+00:58:11,200 --> 00:58:17,200
+through this elastic medium of the ether? Maxwell starts putting in some quantitative
+
+642
+00:58:17,200 --> 00:58:21,680
+values for the way to characterize the kind of response of the ether. These are really like
+
+643
+00:58:21,680 --> 00:58:27,280
+spring constants. How stretchy is the ether, or how much stretchiness or tension do you get
+
+644
+00:58:27,280 --> 00:58:32,400
+sort of per unit applied external field? When we apply an external electric field to this part
+
+645
+00:58:32,400 --> 00:58:37,280
+of the ether, how much does the tension change or likewise the magnetic field? So we like spring
+
+646
+00:58:37,280 --> 00:58:42,480
+constants, analogous. And that's what he and his colleagues are measuring in their local laboratories
+
+647
+00:58:42,480 --> 00:58:48,400
+in studying. Then he goes back to these mechanical models to ask how quickly would a mechanical
+
+648
+00:58:48,400 --> 00:58:54,160
+disturbance begin to propagate within this mechanical ether? And he finds, really to his
+
+649
+00:58:54,160 --> 00:58:59,600
+surprise, he didn't see it coming, these disturbances in the ether, the moment by moment local effects
+
+650
+00:58:59,600 --> 00:59:04,160
+would move at a speed he already knew very well, the speed of light. Here's a direct quotation
+
+651
+00:59:04,160 --> 00:59:10,560
+in this very famous paper from 1865. And he says, the velocity of transverse undulations
+
+652
+00:59:10,560 --> 00:59:15,360
+in our hypothetical medium, I just love that phrase, transverse undulations in our hypothetical
+
+653
+00:59:15,360 --> 00:59:20,560
+medium, meaning the speed at which these waves of ether are traveling, that speed agrees so
+
+654
+00:59:20,560 --> 00:59:24,400
+exactly with the velocity of light that's calculated from optical experiments and actually mostly
+
+655
+00:59:24,400 --> 00:59:31,280
+astronomical tests, that we can scarcely avoid the inference that light consists of the transverse
+
+656
+00:59:31,360 --> 00:59:36,560
+undulations of the same medium, the ether, which is the cause of electric and magnetic
+
+657
+00:59:36,560 --> 00:59:42,240
+phenomena. Translated into how we might say it today, light waves were literally nothing,
+
+658
+00:59:42,240 --> 00:59:47,200
+but traveling disturbances of electric and magnetic fields within this light bearing
+
+659
+00:59:47,200 --> 00:59:53,520
+all pervasive ether. He gets that he gets this unification of electricity, magnetism and optics
+
+660
+00:59:53,520 --> 00:59:58,880
+by thinking very, very hard and very quantitatively about the mechanical response of this all
+
+661
+00:59:58,880 --> 01:00:03,280
+pervasive ether. So let me wrap up, then I'll pause, I see a bunch of comments coming up in the
+
+662
+01:00:03,280 --> 01:00:07,520
+chat, so I want to make sure you time to chat. So let me just wrap up and then we'll get to
+
+663
+01:00:07,520 --> 01:00:13,920
+discussion. Leading natural philosophers of the 19th century were really quite convinced and they
+
+664
+01:00:13,920 --> 01:00:19,360
+had very good reasons that the world has made up just different kinds of stuff than how our
+
+665
+01:00:19,360 --> 01:00:23,600
+contemporaries would answer that question, that opening question, what's the world made of?
+
+666
+01:00:24,240 --> 01:00:30,320
+The folks back then, world-leading, rightly celebrated scholars, Faraday, Thompson, Maxwell,
+
+667
+01:00:30,320 --> 01:00:33,360
+and for that matter, people like Pierre du Emond and his contemporaries as well,
+
+668
+01:00:34,400 --> 01:00:38,560
+they were convinced that the world was not made of elementary particles that skitter around a
+
+669
+01:00:38,560 --> 01:00:44,160
+vacuum, but rather there was no vacuum and particles were a kind of afterthought, we'll come back to
+
+670
+01:00:44,160 --> 01:00:49,840
+that next class, that the world is filled with this elastic physical medium, the ether, and
+
+671
+01:00:49,840 --> 01:00:54,320
+everything that matters is a response that ether to various kinds of mechanical disturbances,
+
+672
+01:00:54,320 --> 01:01:00,000
+as Lord Kelvin says, stick your hand in a bowl of jelly, see how it works, that's what the world has
+
+673
+01:01:00,000 --> 01:01:07,200
+made of. Up until the middle decades of the 19th century, many leading highly accomplished and
+
+674
+01:01:07,200 --> 01:01:12,400
+very influential natural philosophers like Michael Faraday could enter research careers
+
+675
+01:01:12,400 --> 01:01:17,360
+based on this apprenticeship model closer to the Middle Ages or the Renaissance than to today.
+
+676
+01:01:17,920 --> 01:01:22,560
+They often worked in sort of institutes which had no formal teaching function,
+
+677
+01:01:22,560 --> 01:01:26,720
+they were not for the most part based at universities, that's what begins to change
+
+678
+01:01:26,720 --> 01:01:31,840
+in the middle decades of the 19th century. So Faraday, Thompson, and Maxwell in their own
+
+679
+01:01:31,840 --> 01:01:37,360
+different ways pursued these analogies between this light-bearing or luminiferous ether and
+
+680
+01:01:37,360 --> 01:01:42,080
+mechanical systems. Faraday with his rather rudimentary geometrical arguments and his very
+
+681
+01:01:42,080 --> 01:01:46,560
+clever kind of pictorial aids, Thompson and Maxwell with his increasingly sophisticated
+
+682
+01:01:46,560 --> 01:01:51,440
+mathematics, we'll look at that some more next time. They all became convinced of what became
+
+683
+01:01:51,440 --> 01:01:56,880
+called a mechanical worldview. The electromagnetic effects were literally nothing but mechanical
+
+684
+01:01:56,880 --> 01:02:01,840
+effects, mechanical effects on this all-pervasive ether, moreover this is the birth of what we
+
+685
+01:02:01,840 --> 01:02:07,760
+now call field physics, local causes yield local effects, there's no action at a distance
+
+686
+01:02:07,760 --> 01:02:14,480
+unlike Newton's description of gravity. A can affect B but it'll take some time for the
+
+687
+01:02:14,480 --> 01:02:18,640
+effects to propagate and certain kinds of propagating effects like these electric and
+
+688
+01:02:18,640 --> 01:02:23,440
+magnetic transverse undulations will show up as nothing other than what we call light.
+
+689
+01:02:24,000 --> 01:02:31,360
+Let me stop sharing the screen there, open it up for questions, there's a huge set in the chat,
+
+690
+01:02:31,360 --> 01:02:33,760
+I might like I think I'll get won't get to them all today.
+
+691
+01:02:43,600 --> 01:02:47,040
+Great, great question, thank you. So there was a spectrum even among what we now
+
+692
+01:02:47,040 --> 01:02:50,720
+call the Maxwellians, they didn't all have you know exact same ideas or they shared a lot.
+
+693
+01:02:51,280 --> 01:02:55,600
+And so indeed some of them wondered is this a useful analogy and if so should we nonetheless
+
+694
+01:02:55,600 --> 01:02:59,520
+keep pursuing it, see what we get out of it. Others were convinced that it's more than it's
+
+695
+01:02:59,520 --> 01:03:04,480
+not merely an analogy, it's a helpful analogy precisely because of some deeper similarity
+
+696
+01:03:04,480 --> 01:03:08,800
+and individuals used change over time and the whole group would have a kind of
+
+697
+01:03:08,800 --> 01:03:13,840
+let's say evolving center of gravity. They were more like each other in the kind of Cambridge
+
+698
+01:03:13,840 --> 01:03:19,360
+scene than like say the French or the Germans or indeed communities further afield as we'll look at.
+
+699
+01:03:19,920 --> 01:03:24,320
+So I don't want to make it sound like they were all kind of like exactly had the same notion,
+
+700
+01:03:24,320 --> 01:03:28,960
+they were pretty similar compared to as we'll see actually we'll see a really interesting
+
+701
+01:03:28,960 --> 01:03:33,760
+contrast next class I think interesting with some leading scholars within the German states.
+
+702
+01:03:34,320 --> 01:03:38,960
+So there there was maybe the strongest contrast, but you're right that some of these even within
+
+703
+01:03:38,960 --> 01:03:43,520
+Cambridge are the kind of close Maxwellian colleagues, they were all delighted to pursue the
+
+704
+01:03:43,520 --> 01:03:48,240
+mathematical analogies and they were getting trained in this very, very elaborate mathematical
+
+705
+01:03:48,240 --> 01:03:53,120
+machinery as we'll talk more about next time. They shared that and they were impressed by what
+
+706
+01:03:53,120 --> 01:03:57,840
+the analogies would bring them either to explain something or to prompt new questions to then
+
+707
+01:03:57,840 --> 01:04:02,080
+try to go investigate the laboratory. It was a productive set of analogies. That was already
+
+708
+01:04:02,080 --> 01:04:06,960
+what they agreed on. Some then said it's not just analogy, the world is filled with jelly
+
+709
+01:04:06,960 --> 01:04:12,640
+effectively. It's a great question. It looks like Julia has very kind of compiled a bunch of
+
+710
+01:04:13,680 --> 01:04:18,800
+questions for me. Let me answer some that Julia has private chatted to me and if I miss some others
+
+711
+01:04:19,440 --> 01:04:24,320
+we have time for some more. So someone asks by way Julia if university and research institutions
+
+712
+01:04:24,320 --> 01:04:29,200
+were separated at the time who used to teach at the universities oh very good. People would teach
+
+713
+01:04:29,200 --> 01:04:34,240
+at the universities who had gone to universities so self-replicating. Now that's still true today,
+
+714
+01:04:34,240 --> 01:04:40,080
+but we've achieved a kind of monopoly whereas back then it wasn't such a monopoly. That is to say
+
+715
+01:04:40,080 --> 01:04:46,320
+people who would teach at universities had indeed been trained like William Thompson or James Clark
+
+716
+01:04:46,320 --> 01:04:51,280
+Maxwell by their own students and in fact we'll talk quite a bit about this in the next class and
+
+717
+01:04:51,280 --> 01:04:56,880
+something that I find really interesting and that was still separated from people who could enter
+
+718
+01:04:56,880 --> 01:05:02,080
+really elaborately amazingly prestigious careers like Michael Faraday or even Thomas Young before
+
+719
+01:05:02,080 --> 01:05:06,960
+him or Hans Christian Erstedt or many other names we counted today without going through that kind
+
+720
+01:05:06,960 --> 01:05:11,760
+of formal university setting. So the kind of apprenticeship model like get your hands dirty
+
+721
+01:05:11,760 --> 01:05:17,280
+on effectively a kind of elaborate internship and just like never leave that was still a viable
+
+722
+01:05:17,280 --> 01:05:23,600
+path in to conduct really world-class cutting-edge research. Then you'd often write your monograph,
+
+723
+01:05:23,600 --> 01:05:28,400
+your whole book about it, maybe deliver some fancy lectures, maybe some of the scholars at the
+
+724
+01:05:28,400 --> 01:05:32,160
+university would be interested and maybe write a textbook and maybe lecture on it in their classes
+
+725
+01:05:32,160 --> 01:05:38,240
+but they were kind of they were separated. The separation begins to be reduced starting in the
+
+726
+01:05:38,800 --> 01:05:45,520
+roughly 1850, 1840s, 1850s and they become much, much closer associated not automatically, not
+
+727
+01:05:45,520 --> 01:05:51,600
+without sort of some switches back and forth but the trend really sets in starting in the middle
+
+728
+01:05:51,600 --> 01:05:55,040
+of the 19th century. Again we'll look at that a bit more directly next time. Very good question.
+
+729
+01:05:55,680 --> 01:05:59,680
+So another question is why do we go from the convention used in Maxwell of denoting the
+
+730
+01:05:59,680 --> 01:06:03,840
+potential as Psy to now using it Phi? Oh very good, are they different? No, they're not different. So
+
+731
+01:06:04,560 --> 01:06:08,800
+I guess I skipped ahead to the modern. I showed my prejudices in my slides here,
+
+732
+01:06:08,800 --> 01:06:14,480
+just using the Greek letter Phi for potential. The short answer is I don't know what that particular
+
+733
+01:06:14,480 --> 01:06:20,720
+letter changed. What I do know and we'll talk about again next time is that as you had a taste
+
+734
+01:06:20,720 --> 01:06:27,440
+of again in the reader today, Maxwell was not using any of this fancy pants vector stuff. Maxwell
+
+735
+01:06:27,440 --> 01:06:33,040
+was writing everything out in explicit Cartesian coordinates. That's probably why I joke why his
+
+736
+01:06:33,040 --> 01:06:36,800
+book was 900 pages. Like if he just used vectors, I think it would have been a 20 page pamphlet,
+
+737
+01:06:36,800 --> 01:06:43,200
+you know, we'd be done. And so I talk a lot about that actually in the coming class. So the particular
+
+738
+01:06:43,200 --> 01:06:49,040
+question, how did Psy become Phi? It's interesting and I actually don't know. But the larger question
+
+739
+01:06:49,040 --> 01:06:54,720
+about Maxwell's notation and in particular how it could become so valuable for people like us
+
+740
+01:06:54,720 --> 01:06:59,200
+when he writes these incredibly clunky pain-in-the-buck kinds of things is probably why I gave you
+
+741
+01:06:59,200 --> 01:07:04,000
+those excerpts from his reader, from his treatise. It doesn't look just like, you know, our favorite
+
+742
+01:07:04,000 --> 01:07:08,720
+textbooks today, even when we're using quote-unquote his equations. So it's a great question. The
+
+743
+01:07:08,720 --> 01:07:13,440
+conventions actually show a lot of interesting stuff, even the particular question about Psy-Phi,
+
+744
+01:07:13,440 --> 01:07:18,720
+I admit I don't know. Regarding the wheels, pulleys as analogies for physical reality,
+
+745
+01:07:18,720 --> 01:07:22,080
+how is continuous rotational symmetry of the physics explained? Oh, that's interesting.
+
+746
+01:07:23,280 --> 01:07:28,400
+I think the idea, oh, that's good. Yeah, that's good. So I think they adjusted toward it by those
+
+747
+01:07:28,400 --> 01:07:34,080
+like molecular vortices. That's a kind of two-dimensional slice. And they certainly were
+
+748
+01:07:34,080 --> 01:07:39,360
+things like spheres. So a lot of it, they talked about ball bearings. They actually have spherical
+
+749
+01:07:39,360 --> 01:07:45,600
+symmetry. And so they constructed even more elaborate kind of pulleys and gears. So they were
+
+750
+01:07:45,600 --> 01:07:51,520
+certainly very attuned, especially to think about these mathematical kind of fancy mathematicians
+
+751
+01:07:51,520 --> 01:07:56,000
+like Thomas and Maxwell. They were very attuned to what we would now call symmetry arguments in
+
+752
+01:07:56,000 --> 01:08:03,040
+real space, kind of rotate the system around x, y, or z. And so a lot of their models were actually
+
+753
+01:08:03,040 --> 01:08:13,920
+frankly sort of spherical, like billiard balls or like ball bearings, as opposed to only like
+
+754
+01:08:14,640 --> 01:08:20,560
+circles. So we'll come to that as well. These are all good questions. Other questions here from the chat?
+
+755
+01:08:21,280 --> 01:08:26,960
+Or from Dr. Jen. Anyone else have any questions they want to pose for the group?
+
+756
+01:08:27,840 --> 01:08:36,480
+Feel free to raise, just raise your blue hand at this point too, now that we can see each other.
+
+757
+01:08:51,200 --> 01:08:58,240
+I like the comment about putting your hand in the jelly now your keyboard sticky. My apologies for
+
+758
+01:08:58,240 --> 01:09:02,480
+your keyboard, but just trying to catch up on the chat here.
+
+759
+01:09:06,000 --> 01:09:10,320
+There's a really interesting comment here from Sabrina. I like this. So Sabrina writes that
+
+760
+01:09:11,200 --> 01:09:14,880
+I don't know what a gun is, a gran unified theory, but it seems like we're moving back
+
+761
+01:09:14,880 --> 01:09:19,600
+towards everything being the same thing again with the smile emoji. So one of the things that
+
+762
+01:09:21,200 --> 01:09:27,040
+maybe comes back actually to Iyabo's question. So for some of these folks, the ether was a kind of
+
+763
+01:09:27,040 --> 01:09:34,000
+word for something that didn't really know what it was. A topic they figured had to be everywhere
+
+764
+01:09:34,000 --> 01:09:38,720
+because they could infer its effects. If I wiggle something here or something happens there,
+
+765
+01:09:38,720 --> 01:09:45,200
+there must be some medium that transmitted the influence from A to B. How could a moving bar
+
+766
+01:09:45,200 --> 01:09:49,840
+magnet possibly affect an electric current because they're both immersed in the shared medium?
+
+767
+01:09:49,840 --> 01:09:54,320
+It's all pervasive medium. And so they gave it a name. They gave it a name long before they had
+
+768
+01:09:54,320 --> 01:09:59,920
+any kind of articulated descriptions or analogies. They called it the light bearing ether, luminous
+
+769
+01:09:59,920 --> 01:10:06,160
+ether decades before they had any kind of more specific ideas about it. And so in that sense,
+
+770
+01:10:06,160 --> 01:10:10,800
+I think it is kind of like we're in a similar situation today. And we'll talk a bit about this
+
+771
+01:10:10,800 --> 01:10:15,680
+near the very end of this semester with our quest to understand what's the world made of.
+
+772
+01:10:15,680 --> 01:10:20,000
+And we have some other, we have very finely articulated models like a standard model and
+
+773
+01:10:20,000 --> 01:10:25,120
+this kind of neutrino and that kind of electron and up quarks and dow quarks and gluons and Higgs
+
+774
+01:10:25,120 --> 01:10:30,960
+and all this very specific stuff. And that amounts, as you may know, for not more than five percent
+
+775
+01:10:31,520 --> 01:10:36,560
+of the kind of mass balance of the universe. We've explained five percent of the universe
+
+776
+01:10:36,560 --> 01:10:43,360
+with unbelievable precision out to 12 decimal places. Thank you very much. And we know nothing
+
+777
+01:10:43,440 --> 01:10:48,480
+with a capital N, nothing about the other 95 percent of the mass of the energy balance.
+
+778
+01:10:49,040 --> 01:10:53,920
+So we give it names. We call it dark matter and dark energy. Again, it will come to in the very
+
+779
+01:10:53,920 --> 01:10:58,160
+near the end of the very, very end of the term. And I think in some sense, I have some sort of
+
+780
+01:10:58,160 --> 01:11:02,880
+sympathy with either my present colleagues and myself and or with the kind of people of Faraday's
+
+781
+01:11:02,880 --> 01:11:07,520
+and Maxwell's age. They didn't know what the ether was, but they knew that had to be there. It was
+
+782
+01:11:07,520 --> 01:11:11,360
+conveying all these effects. They could measure the effects of disturbing the ether as far as
+
+783
+01:11:11,360 --> 01:11:16,640
+they were concerned. So they gave it a name, a kind of placeholder name, partly to help organize
+
+784
+01:11:16,640 --> 01:11:21,760
+their studies. Oh, I'm studying luminiferous ether as well. That helps get scholars on the same page.
+
+785
+01:11:22,400 --> 01:11:27,600
+They would give their best estimates of what they thought the thing was like and how it behaved,
+
+786
+01:11:27,600 --> 01:11:34,560
+but they didn't know. They had better or less well compelling responses. And I think we're
+
+787
+01:11:34,560 --> 01:11:39,680
+in a very similar situation today, not by design, not by our hopes, because we have been stymied
+
+788
+01:11:40,240 --> 01:11:46,880
+now for four decades to get any more kind of carefully articulated knowledge about what
+
+789
+01:11:46,880 --> 01:11:51,920
+specifically is dark matter that seems to be filling every galaxy much, much more so than
+
+790
+01:11:51,920 --> 01:11:56,880
+ordinary matter. And what particularly is this other separate kind of stuff that we now call dark
+
+791
+01:11:56,880 --> 01:12:03,600
+energy. So I think we again, I don't want to say we've learned nothing since 1820. We can see some
+
+792
+01:12:03,600 --> 01:12:10,800
+maybe humbling, humility inducing parallels between our best efforts today and the efforts of
+
+793
+01:12:10,800 --> 01:12:16,480
+very, very earnest, talented folks from long ago. That's a great. So again, we'll keep that in mind
+
+794
+01:12:16,480 --> 01:12:21,520
+as we as we march forward throughout the term. Julian asks, why are they so reluctant to accept
+
+795
+01:12:21,520 --> 01:12:25,680
+action at a distance? And how did we come to accept it? Oh, good. Let me take the first one first.
+
+796
+01:12:26,240 --> 01:12:32,720
+Action at a distance. That's a great topic. Newton famously says, when it comes to the
+
+797
+01:12:32,720 --> 01:12:40,480
+phenomenon of gravity, I feign no hypothesis. Hypothesis non-fingo is the Latin. He says,
+
+798
+01:12:40,480 --> 01:12:46,000
+I think that quantitatively, the effect of one mass exerting a force the other goes as the product
+
+799
+01:12:46,000 --> 01:12:49,680
+of the masses divided by the square of their distance is law of universal gravitation.
+
+800
+01:12:50,320 --> 01:12:55,920
+What's the underlying reason for that? He says, for that, I feign no hypothesis. He actually had a
+
+801
+01:12:55,920 --> 01:13:00,800
+lot of hypotheses. He just knew not to write them down. A lot of scholars have argued that he was
+
+802
+01:13:00,800 --> 01:13:05,920
+actually convinced, at least by analogy, that gravity was a kind of alchemical effect, even
+
+803
+01:13:05,920 --> 01:13:11,280
+at a time when alchemy was in kind of poor repute. So he said outwardly and publicly,
+
+804
+01:13:11,280 --> 01:13:16,560
+I don't know what it is, but he seems to have at least been inspired in part by these very,
+
+805
+01:13:16,560 --> 01:13:20,320
+what we would now call occult forces where something can somehow have an influence on
+
+806
+01:13:20,320 --> 01:13:27,200
+something else instantly across time and space. So Newton was kind of comfortable with the notion
+
+807
+01:13:27,200 --> 01:13:31,360
+of action or distance that somehow the earth could instantly tug on the moon and vice versa
+
+808
+01:13:31,360 --> 01:13:37,200
+without having to wait for some influence to travel, as you hear in there. That, even in its day,
+
+809
+01:13:37,200 --> 01:13:41,600
+was criticized by a number of scholars, even in Newton's own day, because they thought it did
+
+810
+01:13:41,600 --> 01:13:46,160
+sound occult. It sounds like, you know, kind of witchcraft. How could this thing possibly affect
+
+811
+01:13:46,160 --> 01:13:51,120
+something over there? If everything else I see, you know, I throw a pond, excuse me, a rock into
+
+812
+01:13:51,120 --> 01:13:56,640
+the pond, I see ripples spread out. The distant edges of the pond aren't affected by my rock until
+
+813
+01:13:56,640 --> 01:14:01,600
+the ripples get there. There were all kinds of common sense observations that suggested to people
+
+814
+01:14:01,600 --> 01:14:06,800
+like Leibniz, I mean, like Newton's very smart contemporaries, that the physical world seemed
+
+815
+01:14:06,800 --> 01:14:13,280
+to convey influences by requiring some time for influence to travel from A to B. So Newton's action
+
+816
+01:14:13,280 --> 01:14:19,840
+or distance was already at least had a kind of curious, you know, kind of bad reputation among
+
+817
+01:14:19,840 --> 01:14:27,200
+the savants who cared. And then you get to someone like Faraday and Ersted and Thomas Young,
+
+818
+01:14:27,200 --> 01:14:33,040
+and now they figure they have a reason to finally give up or to finally reject that action or distance
+
+819
+01:14:33,040 --> 01:14:38,800
+because they have separate reasons based on this wave theory of light, say, oh, there is a seat,
+
+820
+01:14:38,800 --> 01:14:43,920
+there's a physical explanation available to us for how all these physical phenomena are transmitted
+
+821
+01:14:43,920 --> 01:14:49,440
+from A to B across space. They're all sitting in this elastic medium, this ether, and that can have
+
+822
+01:14:49,440 --> 01:14:54,720
+a local disturbance that propagates. So there was, so to speak, an added reason to pile on
+
+823
+01:14:54,720 --> 01:14:59,200
+and say not only did people wonder about Newton's action or distance in Newton's own day,
+
+824
+01:14:59,760 --> 01:15:06,640
+now roughly 100, 110 years later, we have new inputs, we have new evidence from our investigations
+
+825
+01:15:06,640 --> 01:15:10,960
+that suggest something that Newton hadn't known about it or hadn't taken into account at all.
+
+826
+01:15:10,960 --> 01:15:18,080
+All the more reason to try to find out a kind of local causes yield local effects kind of response.
+
+827
+01:15:18,160 --> 01:15:24,640
+So that starts getting more and more compelling to this next generation. Now Julian asks, because
+
+828
+01:15:24,640 --> 01:15:29,520
+he knows what's coming, why do we now accept action or distance? We sort of do and don't,
+
+829
+01:15:29,520 --> 01:15:33,360
+we have a love-hating relationship with it. I assume Julian that you're referring to quantum
+
+830
+01:15:33,360 --> 01:15:38,080
+entanglement, your so-called quantum non-locality. If you're not referring to that, I'm going to
+
+831
+01:15:38,080 --> 01:15:41,600
+hijack this and I'm going to talk about it because I just love it. So we're going to talk about that
+
+832
+01:15:41,600 --> 01:15:46,160
+actually in a few classes a little bit later this term. So how have we made our kind of
+
+833
+01:15:46,160 --> 01:15:51,760
+awkward peace with a very certain kind of action or distance not easily, not right away, thanks to
+
+834
+01:15:51,760 --> 01:15:58,720
+a lot of hard and contested thinking. That's a preview for lecture 12, I think. So we're going to
+
+835
+01:15:58,720 --> 01:16:03,600
+talk about quantum non-locality. This is one of my favorite topics in the universe. So we'll get to
+
+836
+01:16:03,600 --> 01:16:11,520
+that too. But for a long, long time between, let's say, you know, 1800 and the 1960s or 70s,
+
+837
+01:16:11,520 --> 01:16:16,480
+people were quite content to say that action or distance is always, always bad. We never want it.
+
+838
+01:16:16,480 --> 01:16:20,560
+We never want it in our physics. And they had a range of reasons why they thought that was going
+
+839
+01:16:20,560 --> 01:16:27,600
+to be an acceptable approach. Aidan asks, how accessible were the lectures and later universities
+
+840
+01:16:27,600 --> 01:16:31,520
+of research? I mentioned that Faraday did not have much money when he was younger,
+
+841
+01:16:31,520 --> 01:16:34,960
+but he was the exception. Was the exception to the rule? Did class discrimination preventable? Oh,
+
+842
+01:16:34,960 --> 01:16:40,800
+yeah, very good. So in Britain, in British history, I mean, the rough shorthand is we're always talking
+
+843
+01:16:40,800 --> 01:16:45,440
+about class discrimination. So including in Faraday's time. Faraday was absolutely the exception
+
+844
+01:16:45,440 --> 01:16:51,120
+who proved the rule. It was, as I say, this rags to riches story. It wasn't that there was no social
+
+845
+01:16:51,120 --> 01:16:55,440
+mobility. And you can read any kind of Charles Dickens novel to see some characters who have a
+
+846
+01:16:55,440 --> 01:17:00,480
+breakthrough and rise above their station in the language of the time. But in the natural
+
+847
+01:17:00,480 --> 01:17:05,840
+philosophy, Faraday stands out as a pretty unusual case. And the universities as well, there were
+
+848
+01:17:06,000 --> 01:17:14,640
+scholarship students at places like Cambridge than is now. So it wasn't only very, very rich
+
+849
+01:17:14,640 --> 01:17:18,560
+children and very rich families who could go to university, but it was tilted very strongly that
+
+850
+01:17:18,560 --> 01:17:24,560
+way. And in fact, it's only in Britain in the middle decades of the 20th century, like 100 years
+
+851
+01:17:24,560 --> 01:17:30,240
+after the days of Thompson and Maxwell, was a very large university reform throughout Britain
+
+852
+01:17:30,240 --> 01:17:35,520
+to make much more accessible, you know, colleges, universities for many, many more for people from
+
+853
+01:17:35,520 --> 01:17:41,120
+many more backgrounds, that kind of large scale national university reform comes really in earnest
+
+854
+01:17:41,120 --> 01:17:45,680
+like 100 years later. So there were students on fellowship. In fact, Isaac Newton was a
+
+855
+01:17:45,680 --> 01:17:52,240
+scholarship student when he went to Cambridge in his own lifetime in the 1600s. Often they would
+
+856
+01:17:52,240 --> 01:17:58,320
+have to be basically like a butler or or a maid for their for their roommates, not an ideal
+
+857
+01:17:58,320 --> 01:18:03,040
+situation, right? This was not like work study. It was like, you have to go clean up for your
+
+858
+01:18:03,040 --> 01:18:08,160
+rich roommate, not what I recommended. So there were ways to be a student as some of these elite
+
+859
+01:18:08,160 --> 01:18:13,040
+British universities from from more humble backgrounds, not great. This was well outside
+
+860
+01:18:13,040 --> 01:18:17,600
+the reach of someone like Faraday. So it does again, the ladder didn't extend sort of arbitrarily low.
+
+861
+01:18:18,160 --> 01:18:22,080
+But there were there was a range of social classes and universities in this time, not
+
+862
+01:18:22,080 --> 01:18:27,680
+not a full range. And that begins to change pretty slowly all over the world, including in
+
+863
+01:18:27,680 --> 01:18:31,840
+Britain, including frankly, the United States. And of course, we still have challenges even here.
+
+864
+01:18:31,840 --> 01:18:36,000
+So that's a great question. Faraday was indeed the exception who who proves the rule within
+
+865
+01:18:36,000 --> 01:18:41,600
+natural philosophy. Yeah, great question. Any other questions there? If not, I realize we're
+
+866
+01:18:41,600 --> 01:18:47,360
+pretty much at the hour. Those are great questions. Thank you so much. I hope it's not too clunky.
+
+867
+01:18:47,360 --> 01:18:51,120
+We'll try to get better. I'll try to get better at flowing in the questions and discussions
+
+868
+01:18:51,120 --> 01:18:56,000
+throughout these Zoom lectures. Anyway, thanks, everyone. Great, great questions. I'll post the
+
+869
+01:18:56,000 --> 01:18:59,840
+video as soon as it's done processing, it'll go to the canvas site, and we'll pick it up there
+
+870
+01:18:59,840 --> 01:19:07,840
+for next week. Everyone stay well. See you soon.
+

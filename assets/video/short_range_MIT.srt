@@ -1,0 +1,4000 @@
+1
+00:00:01,000 --> 00:00:03,400
+The following content is provided under a Creative
+
+2
+00:00:03,400 --> 00:00:04,640
+Commons license.
+
+3
+00:00:04,640 --> 00:00:07,040
+Your support will help MIT OpenCourseWare
+
+4
+00:00:07,040 --> 00:00:10,960
+continue to offer high quality educational resources for free.
+
+5
+00:00:10,960 --> 00:00:13,680
+To make a donation or to view additional materials
+
+6
+00:00:13,680 --> 00:00:17,560
+from hundreds of MIT courses, visit MIT OpenCourseWare
+
+7
+00:00:17,560 --> 00:00:18,080
+at ocw.mit.edu.
+
+8
+00:00:22,560 --> 00:00:24,720
+Let's go ahead and start.
+
+9
+00:00:24,720 --> 00:00:26,600
+Good afternoon, everyone.
+
+10
+00:00:26,600 --> 00:00:28,120
+My name is Neema Nassir.
+
+11
+00:00:28,120 --> 00:00:31,520
+I'm a postdoctoral associate at Transit Lab, MIT.
+
+12
+00:00:31,520 --> 00:00:36,120
+I've been invited to give a few lectures in this course
+
+13
+00:00:36,120 --> 00:00:41,680
+and basically participate in delivering the course material
+
+14
+00:00:41,680 --> 00:00:42,560
+for this course.
+
+15
+00:00:42,560 --> 00:00:49,440
+I will be talking in this session and in the next session
+
+16
+00:00:49,440 --> 00:00:52,120
+on short-range planning practice.
+
+17
+00:00:52,120 --> 00:00:56,120
+And then I'll be back again in April
+
+18
+00:00:56,120 --> 00:01:01,000
+in four sessions in April, lecture number 13, 14, 15,
+
+19
+00:01:01,000 --> 00:01:03,080
+and 16 dealing with vehicle scheduling,
+
+20
+00:01:03,080 --> 00:01:05,200
+crew scheduling, network and route structure,
+
+21
+00:01:05,200 --> 00:01:11,880
+and high ridership corridors.
+
+22
+00:01:11,880 --> 00:01:15,120
+So let's go ahead and start.
+
+23
+00:01:15,120 --> 00:01:20,120
+In this session, we're going to talk about short-range planning
+
+24
+00:01:20,120 --> 00:01:21,440
+practice.
+
+25
+00:01:21,440 --> 00:01:25,920
+And basically, I will give a brief set of definition
+
+26
+00:01:25,920 --> 00:01:29,960
+and concepts and introduction to the planning activities
+
+27
+00:01:29,960 --> 00:01:33,160
+that are usually made at transit authorities in the US
+
+28
+00:01:33,160 --> 00:01:37,040
+and also worldwide.
+
+29
+00:01:37,040 --> 00:01:40,920
+And then we will briefly talk about the measures and standards
+
+30
+00:01:40,920 --> 00:01:44,560
+and guidelines that are published and used
+
+31
+00:01:44,560 --> 00:01:51,720
+by transit agencies to plan their service based on those.
+
+32
+00:01:51,720 --> 00:01:55,600
+Then we will also talk about current practice
+
+33
+00:01:55,600 --> 00:02:00,800
+and critique of the existing systems.
+
+34
+00:02:00,800 --> 00:02:05,800
+Probably, we will cover item one and some material
+
+35
+00:02:05,800 --> 00:02:07,640
+on item two this week.
+
+36
+00:02:07,640 --> 00:02:13,200
+And then the rest will actually be delivered to you
+
+37
+00:02:13,200 --> 00:02:15,120
+in our session next Tuesday.
+
+38
+00:02:15,800 --> 00:02:26,200
+So the planning decisions and planning activities
+
+39
+00:02:26,200 --> 00:02:30,760
+that are usually done at the transportation planning
+
+40
+00:02:30,760 --> 00:02:33,240
+agencies and public transport planning agencies
+
+41
+00:02:33,240 --> 00:02:39,000
+usually can be classified into four different type of decisions,
+
+42
+00:02:39,000 --> 00:02:41,600
+depending on frequency of decision making
+
+43
+00:02:41,600 --> 00:02:44,120
+and the need for making decisions.
+
+44
+00:02:44,120 --> 00:02:50,880
+And the scope of decisions, the scope of changes
+
+45
+00:02:50,880 --> 00:02:53,960
+that are related to the decisions that are made
+
+46
+00:02:53,960 --> 00:02:56,640
+with each activity, these planning activities
+
+47
+00:02:56,640 --> 00:03:01,160
+are divided into four different classes.
+
+48
+00:03:01,160 --> 00:03:05,600
+Long-range planning activities, medium-range, short-range,
+
+49
+00:03:05,600 --> 00:03:07,640
+and control.
+
+50
+00:03:07,640 --> 00:03:10,360
+Long-range planning activities basically
+
+51
+00:03:10,360 --> 00:03:13,480
+include major capital investment,
+
+52
+00:03:13,480 --> 00:03:16,560
+major improvements to the infrastructure, which
+
+53
+00:03:16,560 --> 00:03:21,640
+would include construction of a new station, a new rail line,
+
+54
+00:03:21,640 --> 00:03:24,080
+a new busway to the system.
+
+55
+00:03:24,080 --> 00:03:28,840
+Or it could also be related to and as a result
+
+56
+00:03:28,840 --> 00:03:31,560
+of major institutional changes and changes
+
+57
+00:03:31,560 --> 00:03:41,200
+to the financial resources of the organization.
+
+58
+00:03:41,200 --> 00:03:44,480
+The decisions that involve long-range planning
+
+59
+00:03:44,480 --> 00:03:49,760
+are usually driven by political and economic considerations.
+
+60
+00:03:49,760 --> 00:03:53,520
+And basically, the type of analysis
+
+61
+00:03:53,520 --> 00:03:57,480
+and the type of planning that is done in long-range planning
+
+62
+00:03:57,480 --> 00:04:01,520
+activities involve projection into the future
+
+63
+00:04:01,520 --> 00:04:06,880
+and prediction of demand and prediction of situation
+
+64
+00:04:06,880 --> 00:04:07,880
+in the future.
+
+65
+00:04:07,880 --> 00:04:10,760
+Therefore, it requires a comprehensive analysis,
+
+66
+00:04:10,760 --> 00:04:16,960
+usually, for a strategic planning of interactions
+
+67
+00:04:16,960 --> 00:04:20,120
+between land use and changes in land use and interaction
+
+68
+00:04:20,120 --> 00:04:22,440
+between land use and demand in the future.
+
+69
+00:04:22,440 --> 00:04:27,960
+And it basically needs to capture or have an insight
+
+70
+00:04:27,960 --> 00:04:34,520
+into the future of the network and of the region.
+
+71
+00:04:34,520 --> 00:04:38,720
+The next range is basically or the next class
+
+72
+00:04:38,720 --> 00:04:42,760
+of planning activities is basically
+
+73
+00:04:42,760 --> 00:04:45,000
+the medium-range activities.
+
+74
+00:04:45,000 --> 00:04:49,080
+Medium-range activities include bus network structure design,
+
+75
+00:04:49,080 --> 00:04:52,560
+network size design and improvement,
+
+76
+00:04:52,560 --> 00:04:55,000
+fleet size, fair policy, and technology.
+
+77
+00:04:55,000 --> 00:05:02,160
+It basically involves incremental or medium improvement
+
+78
+00:05:02,160 --> 00:05:11,280
+to the system and to the transit service.
+
+79
+00:05:11,280 --> 00:05:14,080
+One point that I need to mention about the long-range
+
+80
+00:05:14,080 --> 00:05:19,120
+and medium-range is that these two, although really important
+
+81
+00:05:19,120 --> 00:05:23,320
+in the planning practice for transportation systems,
+
+82
+00:05:23,360 --> 00:05:28,240
+but these decisions are usually done at the upper level,
+
+83
+00:05:28,240 --> 00:05:32,120
+at the higher level than the transit authority.
+
+84
+00:05:32,120 --> 00:05:34,200
+For example, long-range decisions
+
+85
+00:05:34,200 --> 00:05:41,080
+are usually done in collaboration between MPOs,
+
+86
+00:05:41,080 --> 00:05:43,640
+metropolitan planning organizations,
+
+87
+00:05:43,640 --> 00:05:45,520
+state departments of transportation,
+
+88
+00:05:45,520 --> 00:05:46,920
+and transit authorities.
+
+89
+00:05:46,920 --> 00:05:49,520
+So transit authority is not the final decision-maker
+
+90
+00:05:49,520 --> 00:05:53,400
+in that case, and it needs close interaction
+
+91
+00:05:53,400 --> 00:05:58,200
+and close collaboration with the higher-level organizations
+
+92
+00:05:58,200 --> 00:06:01,280
+and governmental agencies to make the final decisions.
+
+93
+00:06:01,280 --> 00:06:02,600
+So that's about the long-range.
+
+94
+00:06:02,600 --> 00:06:04,800
+Medium-range is also somehow similar.
+
+95
+00:06:04,800 --> 00:06:06,480
+It usually, for example, decisions
+
+96
+00:06:06,480 --> 00:06:09,280
+that are related to the network structure,
+
+97
+00:06:09,280 --> 00:06:13,600
+although there is a lot of interesting research going on
+
+98
+00:06:13,600 --> 00:06:16,720
+in universities that deals with optimization
+
+99
+00:06:16,720 --> 00:06:18,640
+of network design and optimization
+
+100
+00:06:18,640 --> 00:06:20,440
+of the structure of the network,
+
+101
+00:06:20,440 --> 00:06:25,080
+because what happens in practice is that usually
+
+102
+00:06:25,080 --> 00:06:28,400
+in the networks that we live and in current cities,
+
+103
+00:06:28,400 --> 00:06:31,360
+the actual layout and structure of the network
+
+104
+00:06:31,360 --> 00:06:32,760
+is already given.
+
+105
+00:06:32,760 --> 00:06:36,680
+And it's usually rare or impossible
+
+106
+00:06:36,680 --> 00:06:40,920
+that we start from scratch and start to design a network
+
+107
+00:06:40,920 --> 00:06:44,400
+from scratch to begin with.
+
+108
+00:06:44,400 --> 00:06:47,640
+So therefore, what we usually observe
+
+109
+00:06:47,680 --> 00:06:51,640
+is incremental changes to the network addition
+
+110
+00:06:51,640 --> 00:06:54,600
+or elimination of some routes from the service
+
+111
+00:06:54,600 --> 00:06:58,000
+and basically decisions that are related to that.
+
+112
+00:07:00,000 --> 00:07:01,000
+Yes, please.
+
+113
+00:07:01,000 --> 00:07:03,400
+In terms of fleet size, could that come
+
+114
+00:07:03,400 --> 00:07:05,400
+as a request from the agencies?
+
+115
+00:07:05,400 --> 00:07:07,320
+An agency says, between the bus line,
+
+116
+00:07:07,320 --> 00:07:10,920
+it's at capacity or over capacity, we need more buses.
+
+117
+00:07:10,920 --> 00:07:14,120
+Could it come from a request to the higher level?
+
+118
+00:07:14,120 --> 00:07:15,680
+Yes, definitely, yeah.
+
+119
+00:07:15,920 --> 00:07:20,920
+But it eventually requires the interaction
+
+120
+00:07:22,040 --> 00:07:25,920
+and also the securing of funding
+
+121
+00:07:25,920 --> 00:07:28,680
+from the upper level governmental agencies.
+
+122
+00:07:31,800 --> 00:07:36,640
+So the reason that I'm explaining this is
+
+123
+00:07:36,640 --> 00:07:41,000
+that I like for you to understand why we are focusing
+
+124
+00:07:41,000 --> 00:07:43,120
+on short range decision making
+
+125
+00:07:43,120 --> 00:07:46,160
+and short range planning practice in this course.
+
+126
+00:07:46,160 --> 00:07:50,040
+That's mainly because the bulk part of activities
+
+127
+00:07:50,040 --> 00:07:54,760
+at transit agencies is related to short range planning
+
+128
+00:07:54,760 --> 00:07:56,520
+and short range decision making.
+
+129
+00:07:57,360 --> 00:08:01,000
+So what we mean by short range decision making
+
+130
+00:08:01,000 --> 00:08:04,960
+are decisions that are usually made more frequently
+
+131
+00:08:04,960 --> 00:08:07,600
+than a yearly basis.
+
+132
+00:08:07,600 --> 00:08:10,880
+And they basically entail decisions
+
+133
+00:08:10,880 --> 00:08:13,840
+about the structures of the route,
+
+134
+00:08:13,840 --> 00:08:16,040
+layout of the route, layout of the stops,
+
+135
+00:08:16,040 --> 00:08:21,040
+and basically decisions about the frequency
+
+136
+00:08:21,400 --> 00:08:26,400
+of service, timetable, and vehicle and crew scheduling.
+
+137
+00:08:26,560 --> 00:08:30,480
+Despite the first two classes of,
+
+138
+00:08:31,480 --> 00:08:33,280
+the top two classes of decision making
+
+139
+00:08:33,280 --> 00:08:38,040
+that are usually driven by political
+
+140
+00:08:38,040 --> 00:08:42,280
+and economic considerations, short range decision making
+
+141
+00:08:42,280 --> 00:08:47,280
+and control activities are usually basically driven
+
+142
+00:08:50,000 --> 00:08:52,200
+by cost optimization.
+
+143
+00:08:52,200 --> 00:08:55,200
+And these are basically tactical decisions
+
+144
+00:08:55,200 --> 00:08:57,400
+as opposed to strategic decisions
+
+145
+00:08:57,400 --> 00:09:00,160
+that are usually in the wrong range and median range.
+
+146
+00:09:00,160 --> 00:09:05,160
+So then there is real time and control decision making
+
+147
+00:09:05,580 --> 00:09:10,580
+which is basically usually done currently in using
+
+148
+00:09:13,080 --> 00:09:17,040
+like expert decision and expert activities.
+
+149
+00:09:20,920 --> 00:09:25,920
+There is an ongoing effort in the technology
+
+150
+00:09:26,840 --> 00:09:29,400
+to improve the quality of control,
+
+151
+00:09:29,400 --> 00:09:32,840
+ongoing research to use real time data
+
+152
+00:09:32,880 --> 00:09:36,120
+and improve the real time performance
+
+153
+00:09:36,120 --> 00:09:38,120
+by using real time control.
+
+154
+00:09:38,120 --> 00:09:43,120
+This includes revisions of the routes
+
+155
+00:09:43,440 --> 00:09:48,440
+that could be the case in reaction to incidents
+
+156
+00:09:48,960 --> 00:09:51,400
+and disruption situation.
+
+157
+00:09:51,400 --> 00:09:54,600
+It could also relate to holding this
+
+158
+00:09:54,600 --> 00:09:56,720
+and dispatching decisions, thank you.
+
+159
+00:09:57,720 --> 00:10:02,720
+That could actually be used to improve
+
+160
+00:10:02,720 --> 00:10:06,720
+the effective capacity of the system
+
+161
+00:10:06,720 --> 00:10:10,120
+by trying to regulate,
+
+162
+00:10:10,120 --> 00:10:15,120
+have a better frequency basically in the service.
+
+163
+00:10:18,720 --> 00:10:23,720
+So similar to the typical planning problem,
+
+164
+00:10:24,720 --> 00:10:29,720
+there are major elements in planning for public transportation
+
+165
+00:10:30,840 --> 00:10:33,520
+and particularly in short term
+
+166
+00:10:33,520 --> 00:10:36,000
+and short range decision making.
+
+167
+00:10:37,880 --> 00:10:41,800
+It includes data collection similar to what you guys
+
+168
+00:10:41,800 --> 00:10:45,120
+have done in your homework assignment number two,
+
+169
+00:10:46,760 --> 00:10:48,200
+collection of data on demand,
+
+170
+00:10:48,200 --> 00:10:50,800
+collection of data on supply and interaction of supply
+
+171
+00:10:50,800 --> 00:10:53,640
+and demand is an essential part to be able
+
+172
+00:10:53,640 --> 00:10:57,720
+to make decisions and make the basically reliable
+
+173
+00:10:57,720 --> 00:11:00,040
+and actionable intelligence
+
+174
+00:11:00,040 --> 00:11:02,760
+for the decision making process.
+
+175
+00:11:02,760 --> 00:11:06,240
+Then there should be like analysis
+
+176
+00:11:06,240 --> 00:11:09,120
+on identification of potential problems
+
+177
+00:11:09,120 --> 00:11:10,960
+and identification of opportunities
+
+178
+00:11:10,960 --> 00:11:12,680
+to improve the situation.
+
+179
+00:11:12,680 --> 00:11:17,680
+And then there is the creative part of design of options,
+
+180
+00:11:18,680 --> 00:11:21,960
+solution and strategies to address the situation.
+
+181
+00:11:21,960 --> 00:11:26,960
+And then typical to any economic analysis,
+
+182
+00:11:28,160 --> 00:11:32,320
+there would be an element of cost and benefit estimation
+
+183
+00:11:32,320 --> 00:11:37,320
+to be able to justify the project.
+
+184
+00:11:40,160 --> 00:11:43,760
+So in terms of operational planning process
+
+185
+00:11:43,760 --> 00:11:48,760
+or in another term, short range planning process,
+
+186
+00:11:48,840 --> 00:11:52,400
+there are multiple stages involved in the work.
+
+187
+00:11:52,400 --> 00:11:57,400
+And usually what happens is that in practice,
+
+188
+00:11:58,400 --> 00:12:03,400
+it is proven that the planning procedure can be decomposed
+
+189
+00:12:04,520 --> 00:12:08,040
+into sequential decision making processes.
+
+190
+00:12:08,040 --> 00:12:12,600
+And that's, although it is possible
+
+191
+00:12:13,080 --> 00:12:16,000
+to formulate all of these decisions
+
+192
+00:12:16,000 --> 00:12:18,560
+into one gigantic optimization problem
+
+193
+00:12:18,560 --> 00:12:22,200
+and solve it for all the decision variables
+
+194
+00:12:22,200 --> 00:12:25,400
+that you need to basically address.
+
+195
+00:12:25,400 --> 00:12:28,880
+However, the practice has shown that there's a nice way
+
+196
+00:12:28,880 --> 00:12:33,000
+of decomposing the process into some problems
+
+197
+00:12:33,000 --> 00:12:35,840
+and solve them sequentially in order to make sure
+
+198
+00:12:35,840 --> 00:12:40,840
+that you're satisfying all the constraints
+
+199
+00:12:41,800 --> 00:12:46,800
+to the accurate level and you're finding a realistic,
+
+200
+00:12:49,080 --> 00:12:53,140
+optimal solution for your planning practice.
+
+201
+00:12:54,720 --> 00:12:58,840
+Considerations regarding policy constraints
+
+202
+00:12:58,840 --> 00:13:03,840
+and some of the economic concerns are usually difficult
+
+203
+00:13:06,120 --> 00:13:10,640
+to formulate into optimization problems.
+
+204
+00:13:10,640 --> 00:13:13,120
+But there are guidelines, published guidelines
+
+205
+00:13:13,120 --> 00:13:18,040
+by governmental agencies that you can basically follow
+
+206
+00:13:18,040 --> 00:13:21,480
+and make sure that at least the top two level
+
+207
+00:13:21,480 --> 00:13:26,160
+of the decision making processes and tasks here
+
+208
+00:13:26,160 --> 00:13:30,600
+are basically done to the satisfactory level.
+
+209
+00:13:30,600 --> 00:13:33,760
+So let's go ahead and start and review these tasks.
+
+210
+00:13:33,760 --> 00:13:37,080
+There are lectures in this course that are dealing with
+
+211
+00:13:37,080 --> 00:13:42,080
+each one of these tasks and components in planning.
+
+212
+00:13:42,640 --> 00:13:46,720
+But in this lecture, I just briefly go over
+
+213
+00:13:46,720 --> 00:13:51,520
+these different components as an introductory part
+
+214
+00:13:51,520 --> 00:13:54,920
+of the course.
+
+215
+00:13:55,920 --> 00:14:00,920
+So we will have, for every optimization problem
+
+216
+00:14:02,480 --> 00:14:06,080
+or in this case, planning process,
+
+217
+00:14:06,080 --> 00:14:10,720
+you have a set of inputs, constraints, basically,
+
+218
+00:14:10,720 --> 00:14:12,360
+that you need to satisfy.
+
+219
+00:14:12,360 --> 00:14:14,800
+And then there is an objective function
+
+220
+00:14:14,800 --> 00:14:16,160
+that you need to optimize.
+
+221
+00:14:16,160 --> 00:14:21,160
+So the first component of the planning practice here
+
+222
+00:14:25,600 --> 00:14:27,960
+is bus route design.
+
+223
+00:14:27,960 --> 00:14:31,880
+This includes design of layout of the routes
+
+224
+00:14:31,880 --> 00:14:35,680
+and layout of the stops.
+
+225
+00:14:35,680 --> 00:14:40,000
+And basically the input into this task includes
+
+226
+00:14:40,000 --> 00:14:43,600
+constraints that are related to right of way,
+
+227
+00:14:43,600 --> 00:14:47,000
+roadway constraints, like if there's a river
+
+228
+00:14:47,000 --> 00:14:48,880
+in your network, there's this connectivity,
+
+229
+00:14:48,880 --> 00:14:50,480
+there are bridges, tunnels.
+
+230
+00:14:50,480 --> 00:14:54,160
+So these are the kind of constraints at network level
+
+231
+00:14:54,160 --> 00:14:56,240
+that you would like to satisfy.
+
+232
+00:14:56,240 --> 00:14:59,000
+And there's also demand constraints in the network
+
+233
+00:14:59,000 --> 00:15:02,440
+that you need to consider for this task.
+
+234
+00:15:02,440 --> 00:15:06,120
+Like you have a sense of what's the demand
+
+235
+00:15:06,120 --> 00:15:09,520
+from certain suburb to the downtown area.
+
+236
+00:15:09,520 --> 00:15:13,400
+And you basically would like to have a route system
+
+237
+00:15:13,400 --> 00:15:18,120
+that can address that demand and satisfy that demand.
+
+238
+00:15:18,120 --> 00:15:22,840
+Then the solution to the design component
+
+239
+00:15:22,840 --> 00:15:26,000
+and that task out of routes and layout of stops
+
+240
+00:15:26,000 --> 00:15:30,640
+that are basically resulting from the first component.
+
+241
+00:15:30,720 --> 00:15:33,520
+And then it will be the set of routes
+
+242
+00:15:33,520 --> 00:15:37,680
+and the stops will be input into the second task,
+
+243
+00:15:37,680 --> 00:15:40,560
+the task which is setting type timetables.
+
+244
+00:15:40,560 --> 00:15:45,160
+This task includes finding frequencies for the routes
+
+245
+00:15:45,160 --> 00:15:48,760
+and from that identifying and defining
+
+246
+00:15:48,760 --> 00:15:52,280
+the basically generating the timetables
+
+247
+00:15:52,280 --> 00:15:54,440
+based on frequencies.
+
+248
+00:15:54,440 --> 00:15:59,240
+There are usually considerations related to policy headways,
+
+249
+00:15:59,240 --> 00:16:02,880
+policy frequencies and capacity frequencies
+
+250
+00:16:02,880 --> 00:16:07,200
+that need to be addressed in this task.
+
+251
+00:16:07,200 --> 00:16:12,200
+But again, this task is also somehow dealt with
+
+252
+00:16:13,600 --> 00:16:15,480
+using the existing guidelines
+
+253
+00:16:15,480 --> 00:16:18,440
+and just satisfying these guidelines.
+
+254
+00:16:18,440 --> 00:16:22,080
+The input and other constraints that are considered
+
+255
+00:16:22,080 --> 00:16:24,960
+for this task would be level of service guidelines
+
+256
+00:16:24,960 --> 00:16:29,040
+and again, the demand constraints in the network.
+
+257
+00:16:30,360 --> 00:16:32,600
+Then from the set of timetables,
+
+258
+00:16:32,600 --> 00:16:37,600
+what will be resulted here is the departure times
+
+259
+00:16:37,600 --> 00:16:40,520
+that are scheduled for the service.
+
+260
+00:16:40,520 --> 00:16:45,520
+So the first two components of row one and row two
+
+261
+00:16:45,880 --> 00:16:49,600
+basically are dealing with satisfying the demand
+
+262
+00:16:49,600 --> 00:16:51,280
+and satisfying the guidelines.
+
+263
+00:16:51,280 --> 00:16:55,480
+But once you go beyond the first two components,
+
+264
+00:16:55,480 --> 00:16:58,400
+it becomes to the level that you know kind of
+
+265
+00:16:58,400 --> 00:17:01,040
+what's the service you want to deliver
+
+266
+00:17:01,040 --> 00:17:03,160
+and then you're dealing with tactical decision
+
+267
+00:17:03,160 --> 00:17:07,160
+how you can optimize the cost of delivering this service
+
+268
+00:17:08,560 --> 00:17:10,080
+and improve efficiency.
+
+269
+00:17:10,080 --> 00:17:14,520
+So the third row here basically deals with
+
+270
+00:17:14,520 --> 00:17:18,840
+the departure times that are given for all the routes
+
+271
+00:17:18,880 --> 00:17:22,480
+in the network and for all times of day.
+
+272
+00:17:22,480 --> 00:17:25,240
+And then what you need to do is how you want to
+
+273
+00:17:25,240 --> 00:17:30,240
+allocate your resources in terms of allocate the vehicles
+
+274
+00:17:31,040 --> 00:17:35,760
+to the system to make sure that that service
+
+275
+00:17:35,760 --> 00:17:39,520
+is going to be delivered on time.
+
+276
+00:17:40,600 --> 00:17:45,280
+Then so that would be the task of vehicle scheduling,
+
+277
+00:17:45,280 --> 00:17:47,080
+input into that task or constraints
+
+278
+00:17:47,080 --> 00:17:52,080
+that are running times on different segments of the route
+
+279
+00:17:53,320 --> 00:17:56,040
+and also the departure times that are given
+
+280
+00:17:56,040 --> 00:17:59,560
+from upper level decision making process
+
+281
+00:17:59,560 --> 00:18:02,760
+and it will eventually result into a schedule
+
+282
+00:18:02,760 --> 00:18:06,960
+of given buses in terms of what the specific trips
+
+283
+00:18:06,960 --> 00:18:09,840
+they need to serve and what's the sequence of these trips.
+
+284
+00:18:11,040 --> 00:18:14,200
+Then the output from that decision
+
+285
+00:18:14,240 --> 00:18:17,880
+with the vehicle schedules into
+
+286
+00:18:19,000 --> 00:18:22,520
+the task of scheduling for drivers.
+
+287
+00:18:22,520 --> 00:18:26,960
+This task also include input from operator
+
+288
+00:18:26,960 --> 00:18:30,640
+and basically work union constraints
+
+289
+00:18:32,040 --> 00:18:36,120
+like maximum shift hours and for example,
+
+290
+00:18:36,120 --> 00:18:39,720
+like break times and lunch times
+
+291
+00:18:39,720 --> 00:18:42,120
+and maximum separation between two shifts
+
+292
+00:18:42,120 --> 00:18:45,360
+and the rules and regulations that are related to that
+
+293
+00:18:45,360 --> 00:18:47,320
+and this task is again,
+
+294
+00:18:47,320 --> 00:18:50,800
+is a task of allocating resources
+
+295
+00:18:50,800 --> 00:18:55,240
+to minimize the cost of scheduling drivers
+
+296
+00:18:55,240 --> 00:18:58,000
+to deliver the service
+
+297
+00:18:58,000 --> 00:19:00,680
+and the result would be the schedules for the crew.
+
+298
+00:19:03,720 --> 00:19:07,680
+So then these decisions can be looked at
+
+299
+00:19:07,680 --> 00:19:09,840
+in another way too,
+
+300
+00:19:09,840 --> 00:19:13,160
+like we can further classify these decisions
+
+301
+00:19:13,160 --> 00:19:15,400
+into service planning decisions
+
+302
+00:19:15,400 --> 00:19:17,160
+and operational planning decisions.
+
+303
+00:19:18,040 --> 00:19:20,880
+Service planning decisions would be the decisions
+
+304
+00:19:20,880 --> 00:19:23,040
+that define service as it is perceived
+
+305
+00:19:23,040 --> 00:19:26,720
+and understood by public.
+
+306
+00:19:26,720 --> 00:19:29,200
+This is basically the part of service
+
+307
+00:19:29,200 --> 00:19:31,080
+that is visible to the public
+
+308
+00:19:32,400 --> 00:19:35,680
+and then there are decisions that are related to operations
+
+309
+00:19:35,680 --> 00:19:38,560
+which basically defines how operations occur
+
+310
+00:19:38,560 --> 00:19:40,320
+to produce the service.
+
+311
+00:19:40,320 --> 00:19:43,960
+This is somehow a black box to the users,
+
+312
+00:19:43,960 --> 00:19:45,360
+I mean to the passengers
+
+313
+00:19:46,800 --> 00:19:48,800
+and basically, yeah, yeah,
+
+314
+00:19:48,800 --> 00:19:53,240
+basically the passengers should not really care
+
+315
+00:19:53,240 --> 00:19:55,120
+what's the vehicle schedule
+
+316
+00:19:55,120 --> 00:19:56,960
+and then what's the crew schedule
+
+317
+00:19:56,960 --> 00:19:58,960
+that is assigned to the trip
+
+318
+00:19:58,960 --> 00:20:02,280
+as long as trip is being delivered as it is scheduled.
+
+319
+00:20:03,080 --> 00:20:08,080
+So in terms of other characteristics of these decisions,
+
+320
+00:20:08,280 --> 00:20:12,880
+we basically, for network design,
+
+321
+00:20:12,880 --> 00:20:16,200
+frequency setting, timetable development,
+
+322
+00:20:16,200 --> 00:20:18,920
+vehicle scheduling and crew scheduling,
+
+323
+00:20:18,920 --> 00:20:23,920
+there is the decisions that are involved in planning
+
+324
+00:20:23,920 --> 00:20:27,920
+basically starting from top to bottom,
+
+325
+00:20:27,920 --> 00:20:29,600
+frequency of decisions,
+
+326
+00:20:29,640 --> 00:20:32,160
+basically are increased
+
+327
+00:20:32,160 --> 00:20:37,160
+and the scope of decision making into the future
+
+328
+00:20:37,360 --> 00:20:41,840
+is basically become limited and smaller.
+
+329
+00:20:44,360 --> 00:20:49,360
+And also, the decision making in the network design,
+
+330
+00:20:51,400 --> 00:20:53,400
+frequency setting and timetable
+
+331
+00:20:53,400 --> 00:20:58,320
+is basically made based on the network design
+
+332
+00:20:59,160 --> 00:21:02,640
+and basically made based on guidelines and standards
+
+333
+00:21:02,640 --> 00:21:05,920
+and decision making on the board level,
+
+334
+00:21:05,920 --> 00:21:08,840
+vehicle scheduling and crew scheduling is made
+
+335
+00:21:08,840 --> 00:21:11,640
+usually based on optimization of cost
+
+336
+00:21:11,640 --> 00:21:16,640
+and then given the nature of the decision making,
+
+337
+00:21:17,400 --> 00:21:19,440
+the tools that are used
+
+338
+00:21:19,440 --> 00:21:21,160
+and the techniques that are used
+
+339
+00:21:21,160 --> 00:21:25,120
+for solving these planning decision making processes
+
+340
+00:21:25,120 --> 00:21:30,120
+are basically ranging from judgment and manual analysis
+
+341
+00:21:33,160 --> 00:21:36,120
+that is more dominated into computer tools
+
+342
+00:21:36,120 --> 00:21:38,680
+that are basically designed
+
+343
+00:21:38,680 --> 00:21:43,240
+to solve optimization problems for minimizing the cost.
+
+344
+00:21:45,760 --> 00:21:50,760
+So similar to the classical evaluation structure,
+
+345
+00:21:51,760 --> 00:21:56,080
+when you're dealing with planning questions
+
+346
+00:21:56,080 --> 00:22:00,480
+and planning projects or planning alternatives,
+
+347
+00:22:01,400 --> 00:22:04,400
+there's this structure that starts with goals,
+
+348
+00:22:04,400 --> 00:22:07,480
+objective measures and standards or guidelines.
+
+349
+00:22:07,480 --> 00:22:11,360
+So let's just make a quick practice
+
+350
+00:22:12,560 --> 00:22:17,560
+and define a goal and then define objectives for that goal
+
+351
+00:22:17,720 --> 00:22:20,000
+and define measures based on that
+
+352
+00:22:20,000 --> 00:22:24,280
+and see how a standard can be defined
+
+353
+00:22:29,920 --> 00:22:33,920
+to make that planning decision acceptable.
+
+354
+00:22:37,160 --> 00:22:41,120
+So let's define a goal.
+
+355
+00:22:41,120 --> 00:22:46,120
+So does anyone have any suggestion?
+
+356
+00:22:51,640 --> 00:22:56,640
+What is an important goal for public transportation system?
+
+357
+00:22:59,400 --> 00:23:00,640
+Maximize ridership?
+
+358
+00:23:00,640 --> 00:23:02,920
+Maximize ridership, yes.
+
+359
+00:23:02,920 --> 00:23:07,920
+So let's say we want to maximize ridership.
+
+360
+00:23:08,920 --> 00:23:11,600
+That's your research problem, right?
+
+361
+00:23:11,600 --> 00:23:12,440
+Yeah.
+
+362
+00:23:12,440 --> 00:23:13,960
+It's just the goal to that one.
+
+363
+00:23:13,960 --> 00:23:14,800
+Right.
+
+364
+00:23:16,320 --> 00:23:18,920
+So then in terms of objectives,
+
+365
+00:23:18,920 --> 00:23:22,520
+what would be an objective that we can define for this?
+
+366
+00:23:25,840 --> 00:23:30,840
+I would say probably the peak hour demand
+
+367
+00:23:31,840 --> 00:23:33,880
+could be one objective
+
+368
+00:23:33,880 --> 00:23:36,720
+or peak hour ridership in certain corridor.
+
+369
+00:23:36,720 --> 00:23:41,720
+Let's say peak hour ridership
+
+370
+00:23:46,280 --> 00:23:47,800
+per weekday, per month.
+
+371
+00:23:57,000 --> 00:24:00,160
+What peak hour ridership would be the objective here
+
+372
+00:24:00,160 --> 00:24:01,920
+and then the measure that you would define
+
+373
+00:24:01,920 --> 00:24:06,200
+would be peak hour ridership per weekday, per month.
+
+374
+00:24:06,200 --> 00:24:11,200
+And then the standard that you want to define
+
+375
+00:24:16,360 --> 00:24:19,520
+would be something that would also,
+
+376
+00:24:19,520 --> 00:24:23,600
+something that not only captures the demand side,
+
+377
+00:24:23,600 --> 00:24:26,120
+but also the supply of the system too.
+
+378
+00:24:26,120 --> 00:24:31,120
+So you would come up with probably like, I would like...
+
+379
+00:24:31,120 --> 00:24:36,120
+Vehicle riders for mile, for hour.
+
+380
+00:24:36,120 --> 00:24:36,960
+Yeah, exactly.
+
+381
+00:24:36,960 --> 00:24:40,240
+Or let's say like 60% of capacity.
+
+382
+00:24:45,760 --> 00:24:47,720
+Your standard in this case would be,
+
+383
+00:24:49,280 --> 00:24:53,480
+your peak hour ridership should be greater than 60%
+
+384
+00:24:54,640 --> 00:24:56,880
+of capacity.
+
+385
+00:24:56,880 --> 00:24:59,600
+So this was just an example that we tried to work out
+
+386
+00:24:59,600 --> 00:25:03,240
+one practice for evaluation structure.
+
+387
+00:25:03,240 --> 00:25:04,640
+But let me give you another example
+
+388
+00:25:04,640 --> 00:25:09,640
+that is actually used in the practice.
+
+389
+00:25:13,000 --> 00:25:15,800
+So I assume that we are considering the goal of
+
+390
+00:25:17,440 --> 00:25:20,120
+reliability in the transit system.
+
+391
+00:25:20,120 --> 00:25:24,240
+The goal of reliability would be considered
+
+392
+00:25:25,120 --> 00:25:26,880
+one of the main goals because
+
+393
+00:25:27,000 --> 00:25:32,000
+if we have a reliable public transport system,
+
+394
+00:25:34,960 --> 00:25:39,960
+you can secure and you can guarantee a body of demand
+
+395
+00:25:42,120 --> 00:25:46,960
+in your network that can rely on your transit system
+
+396
+00:25:46,960 --> 00:25:51,960
+and basically adapt to the lifestyle of using public transport.
+
+397
+00:25:57,760 --> 00:26:02,760
+And that's beneficial to the system from different perspectives.
+
+398
+00:26:07,080 --> 00:26:09,680
+So the objective that we can rely,
+
+399
+00:26:09,680 --> 00:26:12,480
+that we can define for reliability in this case
+
+400
+00:26:12,480 --> 00:26:17,160
+would be possibly, can you come up with some objective
+
+401
+00:26:17,160 --> 00:26:22,160
+that we can define with the goal of improving reliability?
+
+402
+00:26:23,640 --> 00:26:25,000
+On time performance, yes.
+
+403
+00:26:26,880 --> 00:26:31,880
+So on time performance would be the objective
+
+404
+00:26:34,960 --> 00:26:38,880
+and then we need to define a measure for this
+
+405
+00:26:38,880 --> 00:26:42,760
+to be able to measure that objective
+
+406
+00:26:42,760 --> 00:26:46,040
+for each one of the scenarios
+
+407
+00:26:46,040 --> 00:26:50,360
+and for each one of the alternative plans.
+
+408
+00:26:50,360 --> 00:26:53,480
+So what would be a measure for on time performance?
+
+409
+00:26:53,480 --> 00:26:58,480
+So let's say percentage of on time arrivals.
+
+410
+00:27:13,600 --> 00:27:17,160
+So we would say percentage of on time arrivals
+
+411
+00:27:17,160 --> 00:27:19,520
+and we would define on time arrivals
+
+412
+00:27:19,520 --> 00:27:24,520
+to be between zero and five minutes of a schedule.
+
+413
+00:27:27,680 --> 00:27:32,600
+And then the standard that many of the agencies use
+
+414
+00:27:32,600 --> 00:27:37,600
+to measure this would be 90 or 95% basically.
+
+415
+00:27:37,600 --> 00:27:42,600
+So this way the transit agency can go ahead
+
+416
+00:27:52,840 --> 00:27:57,840
+and evaluate the performance of the operators of the system
+
+417
+00:27:58,480 --> 00:28:02,520
+who basically are running some part of the service
+
+418
+00:28:02,520 --> 00:28:04,560
+and come back to them and say,
+
+419
+00:28:04,560 --> 00:28:08,560
+okay, your performance in terms of reliability
+
+420
+00:28:08,560 --> 00:28:10,840
+has been acceptable or not, please.
+
+421
+00:28:10,840 --> 00:28:14,080
+So should the standard also include something
+
+422
+00:28:14,080 --> 00:28:18,200
+like what is the gain over the previous standard?
+
+423
+00:28:18,200 --> 00:28:22,040
+So for example, if the goal was the library
+
+424
+00:28:22,040 --> 00:28:24,880
+for the previous phase of planning as well
+
+425
+00:28:24,880 --> 00:28:27,920
+and the library was somewhere around 80%
+
+426
+00:28:27,920 --> 00:28:31,480
+and now the goal is to achieve a 10% gain
+
+427
+00:28:31,600 --> 00:28:33,680
+compared to the previous one.
+
+428
+00:28:33,680 --> 00:28:35,000
+Right.
+
+429
+00:28:35,000 --> 00:28:35,960
+Yeah, yeah, exactly.
+
+430
+00:28:35,960 --> 00:28:40,960
+So another measure would be percentage improvement
+
+431
+00:28:41,400 --> 00:28:43,280
+as compared to baseline.
+
+432
+00:28:43,280 --> 00:28:46,840
+And then the transit agency can define a standard
+
+433
+00:28:46,840 --> 00:28:50,160
+of at least 10% improvement to the baseline
+
+434
+00:28:50,160 --> 00:28:53,480
+should be required for reliability.
+
+435
+00:28:53,480 --> 00:28:54,820
+Thank you.
+
+436
+00:28:54,820 --> 00:28:59,820
+So then one other interesting thing
+
+437
+00:29:01,680 --> 00:29:05,840
+is the point that actually comes to mind
+
+438
+00:29:05,840 --> 00:29:08,240
+looking at the existing guidelines
+
+439
+00:29:08,240 --> 00:29:13,240
+is that on time arrivals are usually defined for zero to five.
+
+440
+00:29:14,000 --> 00:29:17,640
+That basically means that you consider a bus
+
+441
+00:29:17,640 --> 00:29:20,920
+that is late by two minutes to be on time,
+
+442
+00:29:20,920 --> 00:29:23,520
+but the bus that is early by one minute
+
+443
+00:29:23,520 --> 00:29:25,280
+is not considered to be on time.
+
+444
+00:29:25,280 --> 00:29:28,520
+Does anyone have any comments about this?
+
+445
+00:29:28,520 --> 00:29:31,040
+Why do we consider,
+
+446
+00:29:31,040 --> 00:29:34,220
+why we do not consider early arrivals on time?
+
+447
+00:29:35,400 --> 00:29:39,000
+Miss connections for people who expected
+
+448
+00:29:39,000 --> 00:29:42,080
+to be there at a certain time, but they left.
+
+449
+00:29:42,080 --> 00:29:43,720
+Yeah, yeah.
+
+450
+00:29:43,720 --> 00:29:48,720
+So it can be proved that based on typical assumptions
+
+451
+00:29:50,280 --> 00:29:55,280
+about passenger arrivals, early arrivals of buses
+
+452
+00:29:55,840 --> 00:30:00,840
+and service is usually more negative as late arrivals.
+
+453
+00:30:01,960 --> 00:30:03,560
+Let's make an example here.
+
+454
+00:30:03,560 --> 00:30:08,560
+For example, let's assume under uniform arrivals
+
+455
+00:30:10,000 --> 00:30:14,080
+of passengers, let's assume if this is my scheduled
+
+456
+00:30:14,080 --> 00:30:17,440
+arrivals over the axis of time,
+
+457
+00:30:17,440 --> 00:30:21,280
+and this is my number of passengers waiting
+
+458
+00:30:21,280 --> 00:30:26,280
+in the bus stop under uniform arrivals,
+
+459
+00:30:34,280 --> 00:30:37,080
+accumulation of passengers that are waiting at the stop.
+
+460
+00:30:42,920 --> 00:30:46,480
+And then what happens is that if one of these buses
+
+461
+00:30:46,480 --> 00:30:51,480
+are early, let's say it's basically arrives at this time.
+
+462
+00:30:53,120 --> 00:30:55,440
+What happens is that the amount of time
+
+463
+00:30:55,440 --> 00:30:59,480
+that we're saving due to this arrival
+
+464
+00:30:59,480 --> 00:31:03,440
+is basically less than the amount of time
+
+465
+00:31:03,440 --> 00:31:08,440
+that will be added to our waiting time for the next trip.
+
+466
+00:31:09,760 --> 00:31:11,120
+And that's because a number of people
+
+467
+00:31:11,120 --> 00:31:15,120
+who are experiencing this is a little higher,
+
+468
+00:31:15,160 --> 00:31:17,800
+number of people that are experiencing
+
+469
+00:31:17,800 --> 00:31:21,720
+the additional waiting time is higher
+
+470
+00:31:21,720 --> 00:31:24,480
+than number of people who are experiencing
+
+471
+00:31:24,480 --> 00:31:29,480
+the early arrival and a cut to the waiting time.
+
+472
+00:31:30,000 --> 00:31:35,000
+So if you compare these two areas,
+
+473
+00:31:35,880 --> 00:31:40,880
+that basically tells you you're basically having a loss
+
+474
+00:31:41,680 --> 00:31:43,880
+or having an increase in waiting time.
+
+475
+00:31:43,880 --> 00:31:46,400
+If your service is early.
+
+476
+00:31:46,400 --> 00:31:48,280
+And then the situation becomes worse
+
+477
+00:31:49,200 --> 00:31:50,520
+in the case that you suggested
+
+478
+00:31:50,520 --> 00:31:54,480
+when people are coordinating with the system.
+
+479
+00:31:54,480 --> 00:31:57,320
+For example, it is assumed that,
+
+480
+00:31:57,320 --> 00:32:01,760
+and it can actually be proven by looking at the data too,
+
+481
+00:32:01,760 --> 00:32:06,440
+that people make the transition to coordinated behavior
+
+482
+00:32:06,440 --> 00:32:08,840
+and coordination with the schedule
+
+483
+00:32:08,840 --> 00:32:13,120
+as the frequency of service increases.
+
+484
+00:32:13,120 --> 00:32:17,720
+For example, for a service that is scheduled
+
+485
+00:32:17,720 --> 00:32:22,400
+to be delivered every half hour or every one hour,
+
+486
+00:32:22,400 --> 00:32:25,600
+it is expected that passengers are coordinating
+
+487
+00:32:25,600 --> 00:32:29,360
+with the system and with the coordinating,
+
+488
+00:32:29,360 --> 00:32:33,560
+there are arrivals with the departure of the buses.
+
+489
+00:32:34,520 --> 00:32:39,520
+But when it comes to more frequent service
+
+490
+00:32:39,520 --> 00:32:44,520
+then we will have more uniform arrivals.
+
+491
+00:32:45,520 --> 00:32:47,160
+So in that case, what we would observe
+
+492
+00:32:47,160 --> 00:32:49,160
+is that passengers arrivals would resemble
+
+493
+00:32:49,160 --> 00:32:50,360
+something like this.
+
+494
+00:32:55,440 --> 00:33:00,120
+Well, it has to go up to the original case.
+
+495
+00:33:01,400 --> 00:33:06,400
+And then in that case, if your service is early
+
+496
+00:33:06,800 --> 00:33:08,720
+by five or 10 minutes,
+
+497
+00:33:08,720 --> 00:33:13,160
+you would have the main bulk of your passengers
+
+498
+00:33:13,160 --> 00:33:17,520
+who need to wait another headway basically.
+
+499
+00:33:17,520 --> 00:33:21,960
+So this should be actually added to your computation too.
+
+500
+00:33:24,400 --> 00:33:26,000
+Is there any questions about this?
+
+501
+00:33:29,560 --> 00:33:30,400
+Okay.
+
+502
+00:33:31,000 --> 00:33:36,000
+So in terms of the advantage of guidelines
+
+503
+00:33:39,800 --> 00:33:44,560
+in transit planning, one of the main purposes
+
+504
+00:33:44,560 --> 00:33:48,200
+of these guidelines is to communicate to public
+
+505
+00:33:48,200 --> 00:33:51,400
+the rationale and the logic behind your decision-making
+
+506
+00:33:51,400 --> 00:33:54,960
+and behind your allocation of resources to the system.
+
+507
+00:33:54,960 --> 00:33:58,480
+It also gives you a consistent and fair basis
+
+508
+00:33:58,480 --> 00:34:03,480
+for decision-making and it somehow gives you a tool
+
+509
+00:34:05,080 --> 00:34:08,080
+to justify your decisions and also a tool
+
+510
+00:34:08,080 --> 00:34:10,720
+to make sure that your decisions are fair
+
+511
+00:34:10,720 --> 00:34:13,840
+and justified in nature.
+
+512
+00:34:13,840 --> 00:34:18,360
+It also gives you the opportunity to balance
+
+513
+00:34:18,360 --> 00:34:22,080
+the improvement and the investments to the network
+
+514
+00:34:22,080 --> 00:34:26,120
+and gain a uniform level of service improvement
+
+515
+00:34:26,120 --> 00:34:27,640
+for efficient service.
+
+516
+00:34:29,440 --> 00:34:33,800
+So the guidelines that are existing in the literature
+
+517
+00:34:33,800 --> 00:34:37,400
+and in the practice basically, in the state of practice
+
+518
+00:34:37,400 --> 00:34:42,400
+are dealing with the design of service
+
+519
+00:34:42,720 --> 00:34:44,600
+and with the delivery of service.
+
+520
+00:34:44,600 --> 00:34:49,600
+So the design of service basically dealing with variables
+
+521
+00:34:51,440 --> 00:34:55,880
+that are related to spacing and density of stops,
+
+522
+00:34:56,520 --> 00:35:00,840
+spacing and density of trips and frequency of the service
+
+523
+00:35:00,840 --> 00:35:03,720
+as it is designed and as it is in the schedule.
+
+524
+00:35:03,720 --> 00:35:05,480
+So there are guidelines related to that
+
+525
+00:35:05,480 --> 00:35:09,120
+and there's also guidelines related to how you deliver
+
+526
+00:35:09,120 --> 00:35:12,800
+or how the transit agency delivers the design service
+
+527
+00:35:12,800 --> 00:35:16,280
+and how the performance actually took place.
+
+528
+00:35:18,200 --> 00:35:22,080
+So the main factors of service design
+
+529
+00:35:22,120 --> 00:35:26,480
+and service quality from the passenger's perspective
+
+530
+00:35:27,520 --> 00:35:31,120
+are basically reported by transit capacity
+
+531
+00:35:31,120 --> 00:35:32,920
+and quality of service manual
+
+532
+00:35:36,360 --> 00:35:38,360
+of the Transportation Research Board
+
+533
+00:35:38,360 --> 00:35:43,360
+and it basically includes frequency of the service
+
+534
+00:35:45,080 --> 00:35:50,080
+as one of the main aspects or factors
+
+535
+00:35:50,080 --> 00:35:52,400
+that are defining the quality of service,
+
+536
+00:35:52,400 --> 00:35:55,040
+waiting time, reliability and access.
+
+537
+00:35:55,040 --> 00:35:57,880
+This is access over time and also access over space.
+
+538
+00:35:59,120 --> 00:36:02,520
+So why do we again have both frequency
+
+539
+00:36:02,520 --> 00:36:04,880
+and waiting time in here?
+
+540
+00:36:04,880 --> 00:36:09,880
+So if frequency and waiting time are kind of interrelated,
+
+541
+00:36:11,320 --> 00:36:16,320
+how come there are two separate items here on the list here?
+
+542
+00:36:17,320 --> 00:36:20,160
+Does anyone have any suggestions about this?
+
+543
+00:36:30,280 --> 00:36:35,280
+So let me go ahead and explain how I understand this.
+
+544
+00:36:37,720 --> 00:36:40,160
+Frequency of the service is important
+
+545
+00:36:40,160 --> 00:36:45,160
+in terms of not only in terms of the waiting time
+
+546
+00:36:45,560 --> 00:36:47,520
+that could be associated with that,
+
+547
+00:36:47,520 --> 00:36:51,440
+but also when it comes to lower frequency system
+
+548
+00:36:51,440 --> 00:36:53,160
+and longer headways,
+
+549
+00:36:55,480 --> 00:36:58,320
+the waiting time is not a function of frequency anymore.
+
+550
+00:36:58,320 --> 00:37:03,120
+It basically, as we discussed,
+
+551
+00:37:03,120 --> 00:37:08,120
+the waiting time could actually be independent of frequency.
+
+552
+00:37:08,320 --> 00:37:10,320
+However, in those cases,
+
+553
+00:37:10,320 --> 00:37:12,240
+there is a burden of coordination
+
+554
+00:37:12,240 --> 00:37:14,760
+that is imposed to the passenger.
+
+555
+00:37:14,800 --> 00:37:17,920
+So if you have to coordinate your arrival,
+
+556
+00:37:17,920 --> 00:37:21,280
+for example, for your in the morning from home to work,
+
+557
+00:37:21,280 --> 00:37:24,200
+then there is some sort of inconvenience
+
+558
+00:37:24,200 --> 00:37:26,880
+that is imposed to you to basically
+
+559
+00:37:28,360 --> 00:37:32,960
+to make it to your coordinator the schedule.
+
+560
+00:37:32,960 --> 00:37:34,960
+And then waiting time is also important
+
+561
+00:37:34,960 --> 00:37:39,960
+because if the service is frequent,
+
+562
+00:37:40,960 --> 00:37:45,560
+but at different ranges of frequency,
+
+563
+00:37:45,560 --> 00:37:47,680
+you may experience different waiting time
+
+564
+00:37:47,680 --> 00:37:51,760
+if the process of arrivals of passenger
+
+565
+00:37:51,760 --> 00:37:54,960
+is assumed to be around the process.
+
+566
+00:37:54,960 --> 00:37:56,800
+Then reliability, as we discussed,
+
+567
+00:37:56,800 --> 00:38:00,400
+is one of the important features
+
+568
+00:38:00,400 --> 00:38:02,760
+and one of the important aspects of the service.
+
+569
+00:38:04,200 --> 00:38:09,200
+It usually is measured based on on-time arrivals of the service
+
+570
+00:38:09,440 --> 00:38:16,440
+and then the next aspect that is important
+
+571
+00:38:16,440 --> 00:38:19,920
+is access to origins and destinations.
+
+572
+00:38:20,920 --> 00:38:23,280
+This access can be interpreted in two ways.
+
+573
+00:38:24,440 --> 00:38:26,600
+We can look at access in terms of space
+
+574
+00:38:26,600 --> 00:38:27,800
+and in terms of time.
+
+575
+00:38:27,800 --> 00:38:32,320
+Access in terms of space is closeness to the bus stops
+
+576
+00:38:32,320 --> 00:38:36,520
+and closeness to the service from origin
+
+577
+00:38:36,520 --> 00:38:37,920
+and from the destination.
+
+578
+00:38:37,960 --> 00:38:40,840
+Access in terms of time would be a span of service
+
+579
+00:38:40,840 --> 00:38:43,000
+when you like to travel
+
+580
+00:38:43,000 --> 00:38:45,280
+and basically what is the service time
+
+581
+00:38:45,280 --> 00:38:48,600
+and available times of service.
+
+582
+00:38:51,280 --> 00:38:52,640
+So yeah, as I mentioned,
+
+583
+00:38:52,640 --> 00:38:56,040
+most agencies have guidelines covering a span of service.
+
+584
+00:38:56,040 --> 00:39:01,040
+For example, MBTA has this guideline
+
+585
+00:39:01,320 --> 00:39:06,320
+that for weekdays, you need to have service
+
+586
+00:39:06,320 --> 00:39:10,480
+from all suburbs into the CBD area
+
+587
+00:39:11,440 --> 00:39:16,440
+with that at least like at latest arrives at 7 a.m.
+
+588
+00:39:16,920 --> 00:39:21,000
+So you need to basically be able to cover
+
+589
+00:39:21,000 --> 00:39:22,960
+between 7 a.m. and 6 p.m.
+
+590
+00:39:24,040 --> 00:39:28,800
+as your services span in MBTA.
+
+591
+00:39:28,800 --> 00:39:33,120
+For TransLink, it's also somehow the same.
+
+592
+00:39:33,120 --> 00:39:35,800
+You need to basically minimum service guidelines
+
+593
+00:39:35,800 --> 00:39:38,840
+to ensure that 95% of trips listed
+
+594
+00:39:38,840 --> 00:39:43,600
+can be completed in the time span given below.
+
+595
+00:39:43,600 --> 00:39:47,240
+Like from any point to downtown Vancouver,
+
+596
+00:39:47,240 --> 00:39:50,480
+you need to have service that can be finished
+
+597
+00:39:50,480 --> 00:39:54,440
+by can actually arrive in downtown Vancouver by 7 a.m.
+
+598
+00:39:54,440 --> 00:39:56,160
+for people who like to start,
+
+599
+00:39:56,160 --> 00:39:59,080
+should start their work at 7 a.m.
+
+600
+00:39:59,080 --> 00:40:03,840
+And then there's also trips in the evening
+
+601
+00:40:03,880 --> 00:40:08,360
+and it basically says earliest departure time
+
+602
+00:40:08,360 --> 00:40:10,720
+of last transit trip in the evening
+
+603
+00:40:10,720 --> 00:40:13,520
+from downtown Vancouver to any town center
+
+604
+00:40:13,520 --> 00:40:16,440
+needs to be midnight for people who basically
+
+605
+00:40:16,440 --> 00:40:21,040
+would like to enjoy the nightlife in the downtown area
+
+606
+00:40:21,040 --> 00:40:23,440
+and then use transit to go back home.
+
+607
+00:40:26,600 --> 00:40:28,680
+So in terms of route design
+
+608
+00:40:28,680 --> 00:40:33,120
+and in terms of layout of routes and stops,
+
+609
+00:40:34,120 --> 00:40:38,320
+there are also guidelines that are addressing this decision.
+
+610
+00:40:38,320 --> 00:40:41,440
+MBTA has a policy objective to provide transit service
+
+611
+00:40:41,440 --> 00:40:45,680
+within walking distance, which is defined a quarter mile
+
+612
+00:40:45,680 --> 00:40:48,000
+of all residents that are living in area
+
+613
+00:40:48,000 --> 00:40:51,320
+with population densities greater than 5,000 people
+
+614
+00:40:51,320 --> 00:40:53,240
+per square mile.
+
+615
+00:40:53,240 --> 00:40:58,120
+That's basically an interesting guideline.
+
+616
+00:40:58,120 --> 00:41:00,760
+It considers two different variables.
+
+617
+00:41:00,760 --> 00:41:02,560
+One is the population density
+
+618
+00:41:02,560 --> 00:41:05,840
+and the other one is the density of the stops
+
+619
+00:41:05,840 --> 00:41:10,840
+or vicinity or walkability of transit
+
+620
+00:41:11,520 --> 00:41:16,240
+in areas that are populated with densities
+
+621
+00:41:16,240 --> 00:41:18,240
+greater than 5,000 per square mile.
+
+622
+00:41:20,400 --> 00:41:24,560
+So in terms of comprehensiveness objective,
+
+623
+00:41:25,600 --> 00:41:30,080
+TransLink basically has a very comprehensive guideline
+
+624
+00:41:30,080 --> 00:41:34,080
+related to basically a set of different
+
+625
+00:41:35,160 --> 00:41:38,520
+performance measures and goals.
+
+626
+00:41:38,520 --> 00:41:43,280
+Let me read from these.
+
+627
+00:41:43,280 --> 00:41:46,480
+At least 90% of our residents and employees
+
+628
+00:41:46,480 --> 00:41:49,240
+in urbanized development areas should have a walk
+
+629
+00:41:49,240 --> 00:41:52,520
+less than 450 meters to a bus stop.
+
+630
+00:41:52,520 --> 00:41:57,440
+So this is related to access over space.
+
+631
+00:41:57,440 --> 00:41:58,840
+98%
+
+632
+00:41:58,840 --> 00:42:01,360
+when they say 90% of residents and employees
+
+633
+00:42:01,360 --> 00:42:05,000
+basically they're looking at the person twice.
+
+634
+00:42:05,000 --> 00:42:07,240
+The person is on one end of resident
+
+635
+00:42:07,240 --> 00:42:08,880
+and on the other end of employee.
+
+636
+00:42:08,880 --> 00:42:10,240
+Right, yes.
+
+637
+00:42:10,240 --> 00:42:11,600
+So it's...
+
+638
+00:42:11,600 --> 00:42:16,200
+Yeah, you want to consider both ends of the trip, right?
+
+639
+00:42:16,200 --> 00:42:19,120
+And these percentages are a little tricky.
+
+640
+00:42:19,120 --> 00:42:21,320
+Sometimes they're counting the number of people,
+
+641
+00:42:21,320 --> 00:42:22,240
+number of residents.
+
+642
+00:42:22,240 --> 00:42:25,160
+Sometimes they're counting OD pairs.
+
+643
+00:42:25,160 --> 00:42:27,200
+Sometimes they're counting passengers.
+
+644
+00:42:27,240 --> 00:42:32,240
+So it's a little tricky to interpret these correctly.
+
+645
+00:42:33,040 --> 00:42:36,040
+So the second one basically says 98%
+
+646
+00:42:36,040 --> 00:42:38,000
+of all peak period transit trips
+
+647
+00:42:38,000 --> 00:42:40,400
+to and from downtown Vancouver should require
+
+648
+00:42:40,400 --> 00:42:43,600
+no more than one transfer.
+
+649
+00:42:43,600 --> 00:42:47,760
+That basically is 98% of people who are traveling
+
+650
+00:42:47,760 --> 00:42:51,440
+from and to downtown to the suburbs.
+
+651
+00:42:51,440 --> 00:42:55,320
+And so it may be a little difficult,
+
+652
+00:42:55,320 --> 00:42:59,440
+especially in the absence of AFC data,
+
+653
+00:42:59,440 --> 00:43:02,600
+automated fare collection system data,
+
+654
+00:43:02,600 --> 00:43:06,720
+it can be a little tricky to measure these objectives.
+
+655
+00:43:07,600 --> 00:43:11,880
+Usually what's usually done basically is people go out
+
+656
+00:43:11,880 --> 00:43:16,880
+and basically, and ask from transit riders
+
+657
+00:43:17,000 --> 00:43:18,760
+about their origins and destinations.
+
+658
+00:43:18,760 --> 00:43:21,520
+It's called public transit origin destination survey
+
+659
+00:43:21,520 --> 00:43:23,840
+that is usually done on board.
+
+660
+00:43:23,840 --> 00:43:24,840
+Do you have a question?
+
+661
+00:43:25,320 --> 00:43:26,160
+Okay.
+
+662
+00:43:28,320 --> 00:43:31,600
+So the second measure here relates
+
+663
+00:43:31,600 --> 00:43:33,520
+to connectivity in the network.
+
+664
+00:43:34,680 --> 00:43:39,080
+The third one is 95% of all peak period transit trips
+
+665
+00:43:39,080 --> 00:43:41,720
+to the nearest town center should require
+
+666
+00:43:41,720 --> 00:43:42,920
+no more than one transfer.
+
+667
+00:43:42,920 --> 00:43:46,240
+Again, this one is also related to connectivity
+
+668
+00:43:46,240 --> 00:43:47,720
+of the network.
+
+669
+00:43:47,720 --> 00:43:51,640
+And fourth one is all trips between one town center
+
+670
+00:43:51,640 --> 00:43:55,240
+and adjacent town centers should require no transfers.
+
+671
+00:43:55,280 --> 00:43:59,520
+Again, this one is a guideline on connectivity.
+
+672
+00:43:59,520 --> 00:44:04,520
+And then again, the last one is also on connectivity.
+
+673
+00:44:04,840 --> 00:44:09,200
+It basically requires that 95% of all peak period transit
+
+674
+00:44:09,200 --> 00:44:12,080
+trips to major regional activity centers
+
+675
+00:44:12,080 --> 00:44:16,040
+and gateways should require no more than two transfers.
+
+676
+00:44:19,240 --> 00:44:21,440
+Okay, so any questions or comments about this?
+
+677
+00:44:21,440 --> 00:44:22,280
+Yeah.
+
+678
+00:44:22,280 --> 00:44:24,760
+In terms of one connectivity between one town center
+
+679
+00:44:24,760 --> 00:44:26,840
+and adjacent town center,
+
+680
+00:44:26,840 --> 00:44:30,200
+definition of the town varies from place to place.
+
+681
+00:44:30,200 --> 00:44:32,360
+I know that specifically Vancouver has
+
+682
+00:44:33,360 --> 00:44:36,320
+rather large suburbs, like suburbs of 100,000 people,
+
+683
+00:44:36,320 --> 00:44:37,280
+200,000 people.
+
+684
+00:44:37,280 --> 00:44:41,920
+So you actually have a few municipal entities
+
+685
+00:44:41,920 --> 00:44:43,520
+for a large area.
+
+686
+00:44:43,520 --> 00:44:46,000
+But you could have areas where that condition
+
+687
+00:44:46,000 --> 00:44:48,600
+would be a little bit too strict if you have,
+
+688
+00:44:48,600 --> 00:44:49,720
+let's say the Boston area,
+
+689
+00:44:49,720 --> 00:44:52,160
+which has generally slightly smaller suburbs
+
+690
+00:44:52,760 --> 00:44:54,080
+and more suburbs to connect.
+
+691
+00:44:54,080 --> 00:44:55,160
+Right, yeah.
+
+692
+00:44:55,160 --> 00:44:58,320
+So some of these may actually be a little tricky
+
+693
+00:44:58,320 --> 00:45:01,320
+to measure and to quantify.
+
+694
+00:45:01,320 --> 00:45:02,600
+Yeah, I know better to compare.
+
+695
+00:45:02,600 --> 00:45:04,120
+Right.
+
+696
+00:45:04,120 --> 00:45:07,400
+Yeah, when I see these numbers and I try to think
+
+697
+00:45:07,400 --> 00:45:12,400
+about equity and the 10% that is not 450 from that.
+
+698
+00:45:13,560 --> 00:45:14,400
+Yeah.
+
+699
+00:45:14,400 --> 00:45:15,240
+Right.
+
+700
+00:45:15,240 --> 00:45:17,080
+About 5% of it.
+
+701
+00:45:17,080 --> 00:45:19,120
+So how do you navigate these numbers
+
+702
+00:45:19,120 --> 00:45:22,040
+in the face of enough equity?
+
+703
+00:45:22,040 --> 00:45:24,920
+Right, this is a really good point.
+
+704
+00:45:24,920 --> 00:45:27,200
+Some of these percentages, I think,
+
+705
+00:45:27,200 --> 00:45:31,200
+are related to random variables.
+
+706
+00:45:31,200 --> 00:45:33,440
+And those are somehow acceptable
+
+707
+00:45:33,440 --> 00:45:36,000
+because that's when you try to define
+
+708
+00:45:36,000 --> 00:45:37,600
+a confidence interval.
+
+709
+00:45:37,600 --> 00:45:40,600
+But when it comes to cases like this,
+
+710
+00:45:40,600 --> 00:45:43,400
+it is not a random variable anymore.
+
+711
+00:45:43,400 --> 00:45:46,480
+It's basically like a special variable
+
+712
+00:45:46,480 --> 00:45:51,480
+that is constantly requires,
+
+713
+00:45:51,520 --> 00:45:53,280
+like a certain amount of connections
+
+714
+00:45:53,280 --> 00:45:56,360
+to the downtown area, right?
+
+715
+00:45:56,360 --> 00:46:00,480
+So that may be one of the loopholes of this guideline.
+
+716
+00:46:00,480 --> 00:46:01,920
+That's a really good point.
+
+717
+00:46:01,920 --> 00:46:06,920
+And because one may argue that if 95% of my OD pairs
+
+718
+00:46:08,440 --> 00:46:12,120
+are connected with the minimum connectivity requirement,
+
+719
+00:46:12,120 --> 00:46:14,200
+what about the rest of 5%?
+
+720
+00:46:14,200 --> 00:46:18,120
+Does it mean that all people who live in that 5% area
+
+721
+00:46:18,120 --> 00:46:23,120
+will have to go through the unacceptable
+
+722
+00:46:23,280 --> 00:46:25,040
+connectivity situation?
+
+723
+00:46:25,040 --> 00:46:26,480
+So that's a valid point.
+
+724
+00:46:26,480 --> 00:46:28,080
+And thank you for bringing that up.
+
+725
+00:46:28,080 --> 00:46:28,920
+Right.
+
+726
+00:46:28,920 --> 00:46:31,320
+Does they correctly achieve these goals
+
+727
+00:46:31,320 --> 00:46:35,400
+as you kind of blocked the difficulty?
+
+728
+00:46:35,400 --> 00:46:36,240
+Right.
+
+729
+00:46:37,280 --> 00:46:39,880
+Yeah, well, these are basically,
+
+730
+00:46:39,880 --> 00:46:43,080
+these are usually for projects and plans
+
+731
+00:46:43,080 --> 00:46:46,480
+that are being proposed
+
+732
+00:46:47,240 --> 00:46:50,200
+for like a small start projects
+
+733
+00:46:50,200 --> 00:46:53,360
+or for improvement plans.
+
+734
+00:46:53,360 --> 00:46:57,120
+So I think what they try to do is to make sure
+
+735
+00:46:57,120 --> 00:46:59,760
+that the ones that are being accepted
+
+736
+00:46:59,760 --> 00:47:03,360
+and being implemented would satisfy this.
+
+737
+00:47:03,360 --> 00:47:06,240
+But I'm not really sure if the existing network
+
+738
+00:47:06,240 --> 00:47:08,520
+satisfy all these conditions or not.
+
+739
+00:47:09,960 --> 00:47:12,720
+Sorry, is transit the name of the agency that does?
+
+740
+00:47:12,720 --> 00:47:13,800
+Yes, right.
+
+741
+00:47:13,800 --> 00:47:14,960
+Yeah, right.
+
+742
+00:47:16,960 --> 00:47:18,920
+Okay, so any other questions?
+
+743
+00:47:26,560 --> 00:47:30,440
+So then TransLink guideline on root design
+
+744
+00:47:30,440 --> 00:47:32,560
+and is very interesting too.
+
+745
+00:47:32,560 --> 00:47:35,960
+They have like really interesting logic
+
+746
+00:47:35,960 --> 00:47:40,720
+to validate the design and the improvements
+
+747
+00:47:40,720 --> 00:47:43,320
+that are proposed for root design.
+
+748
+00:47:43,320 --> 00:47:45,640
+So what it says is that deviations
+
+749
+00:47:45,640 --> 00:47:49,480
+from the most direct route must have walking time savings
+
+750
+00:47:49,480 --> 00:47:52,160
+for customers on the added route section
+
+751
+00:47:52,160 --> 00:47:55,640
+greater than the increase in total travel time
+
+752
+00:47:55,640 --> 00:47:57,160
+for true passengers.
+
+753
+00:47:57,160 --> 00:48:02,160
+So does anyone have any interpretation,
+
+754
+00:48:03,880 --> 00:48:06,400
+quick interpretation on this guideline?
+
+755
+00:48:09,000 --> 00:48:11,840
+The only reason I do it is there's a major destination
+
+756
+00:48:11,840 --> 00:48:13,280
+where people are on the right-hand block
+
+757
+00:48:13,280 --> 00:48:16,440
+of the route, otherwise people are going straight.
+
+758
+00:48:16,440 --> 00:48:18,440
+And what would be the aggregate time savings
+
+759
+00:48:18,440 --> 00:48:21,560
+for people on the left-hand block?
+
+760
+00:48:21,560 --> 00:48:22,880
+The second or last stop on the route,
+
+761
+00:48:22,880 --> 00:48:24,440
+maybe you make that deviation
+
+762
+00:48:24,440 --> 00:48:25,840
+in order for people on the left-hand block
+
+763
+00:48:25,840 --> 00:48:27,200
+to be less than the traffic.
+
+764
+00:48:27,200 --> 00:48:28,800
+Right, yeah.
+
+765
+00:48:28,800 --> 00:48:30,560
+Right, you had a comment too?
+
+766
+00:48:32,360 --> 00:48:33,440
+Right, yeah.
+
+767
+00:48:33,440 --> 00:48:38,440
+So if you look at the problem or look at the situation
+
+768
+00:48:39,120 --> 00:48:40,680
+from the perspective of system
+
+769
+00:48:40,680 --> 00:48:42,760
+and from the perspective of total travel time
+
+770
+00:48:42,760 --> 00:48:46,920
+in the system, what they basically are requiring
+
+771
+00:48:46,920 --> 00:48:51,240
+is that, for example, let's assume that I have a suburb here
+
+772
+00:48:51,240 --> 00:48:53,280
+and then this is my downtown area
+
+773
+00:48:53,280 --> 00:48:56,800
+and there's a route here that has multiple stops
+
+774
+00:48:56,800 --> 00:48:59,600
+and then there's another suburb here
+
+775
+00:48:59,600 --> 00:49:03,400
+which in the original plan is being served by this route.
+
+776
+00:49:03,400 --> 00:49:08,400
+However, it requires a walking link to different stops.
+
+777
+00:49:09,000 --> 00:49:11,520
+What this guideline basically requires
+
+778
+00:49:11,520 --> 00:49:14,960
+is that if the total travel time
+
+779
+00:49:14,960 --> 00:49:18,040
+for all passengers who are traveling from here to here
+
+780
+00:49:18,040 --> 00:49:21,280
+and for all that are traveling from here to here
+
+781
+00:49:21,280 --> 00:49:26,280
+is going to be increased, then you cannot justify
+
+782
+00:49:27,240 --> 00:49:31,520
+an additional detour here to serve this area.
+
+783
+00:49:32,400 --> 00:49:35,800
+Meaning that if the total travel time saving
+
+784
+00:49:35,800 --> 00:49:40,800
+that is done on the walking time of these people
+
+785
+00:49:40,960 --> 00:49:45,680
+is not as much as total increase in travel time of people
+
+786
+00:49:45,680 --> 00:49:49,320
+that are traveling from this suburb to this suburb,
+
+787
+00:49:49,320 --> 00:49:53,840
+then you cannot justify the design or the reroute.
+
+788
+00:49:56,240 --> 00:49:57,080
+Okay.
+
+789
+00:50:00,120 --> 00:50:05,120
+So in terms of guidelines related to a schedule
+
+790
+00:50:05,120 --> 00:50:08,560
+and guidelines related to frequency and timetable,
+
+791
+00:50:08,560 --> 00:50:13,560
+we basically, in practice, there are two main components,
+
+792
+00:50:14,440 --> 00:50:19,440
+component that is related to the policy of design
+
+793
+00:50:19,680 --> 00:50:22,320
+and components that is related to the crowding situation.
+
+794
+00:50:22,320 --> 00:50:26,240
+Policy of design basically dictate a minimum headway
+
+795
+00:50:26,240 --> 00:50:29,740
+or basically a minimum frequency
+
+796
+00:50:29,740 --> 00:50:33,520
+or a maximum headway for the service
+
+797
+00:50:33,520 --> 00:50:36,200
+and that's basically the case
+
+798
+00:50:36,200 --> 00:50:39,480
+when there's no crowding situation.
+
+799
+00:50:39,480 --> 00:50:44,480
+However, in the main corridors and in peak directions,
+
+800
+00:50:44,680 --> 00:50:49,680
+we usually would go beyond the service of policy headway
+
+801
+00:50:50,440 --> 00:50:54,800
+because we need to accommodate the demand
+
+802
+00:50:54,800 --> 00:50:59,800
+and that's basically how the maximum passenger
+
+803
+00:50:59,840 --> 00:51:04,600
+crowding guides come into play.
+
+804
+00:51:04,600 --> 00:51:09,600
+So in terms of the actual guideline on policy of headway
+
+805
+00:51:11,800 --> 00:51:16,800
+for MBTA, we have maximum headway on all local bus routes
+
+806
+00:51:18,040 --> 00:51:21,400
+should be 30 minutes in peak and 60 minutes at other times
+
+807
+00:51:21,400 --> 00:51:23,920
+for express routes, there should be at least three trips
+
+808
+00:51:23,920 --> 00:51:25,060
+in each peak period.
+
+809
+00:51:25,980 --> 00:51:30,980
+So let's discuss a little bit more about this.
+
+810
+00:51:31,740 --> 00:51:35,380
+Why do you think that we need to have a policy headway,
+
+811
+00:51:35,380 --> 00:51:37,180
+maximum policy headway?
+
+812
+00:51:39,780 --> 00:51:43,140
+If we are considering the demand
+
+813
+00:51:43,140 --> 00:51:46,220
+and if we are trying to satisfy the demand
+
+814
+00:51:46,220 --> 00:51:51,220
+by number of vehicles that we are assigning to the route,
+
+815
+00:51:52,180 --> 00:51:54,420
+then why should we care about a minimum?
+
+816
+00:51:55,900 --> 00:51:58,540
+Because if the demand is really low,
+
+817
+00:51:59,860 --> 00:52:02,300
+that person can't wait forever.
+
+818
+00:52:02,300 --> 00:52:03,940
+You don't have to circumnavigate.
+
+819
+00:52:03,940 --> 00:52:05,300
+Exactly, yeah.
+
+820
+00:52:05,300 --> 00:52:08,620
+Again, the equity issue and the accessibility issue
+
+821
+00:52:08,620 --> 00:52:09,940
+basically.
+
+822
+00:52:09,940 --> 00:52:13,180
+And they're also still elderly people
+
+823
+00:52:13,180 --> 00:52:16,300
+who don't use smartphones to coordinate the arrival
+
+824
+00:52:16,300 --> 00:52:18,580
+of the bus stop when the bus is coming
+
+825
+00:52:18,580 --> 00:52:21,580
+and you don't want to make the way indefinitely.
+
+826
+00:52:21,580 --> 00:52:23,580
+Right, exactly, right.
+
+827
+00:52:25,700 --> 00:52:30,060
+Okay, and then when it comes to considerations
+
+828
+00:52:30,060 --> 00:52:32,740
+related to the crowding, we have guidelines
+
+829
+00:52:32,740 --> 00:52:36,500
+about maximum crowding and maximum expectation of crowding
+
+830
+00:52:36,500 --> 00:52:41,500
+that would dictate a minimum frequency for the service.
+
+831
+00:52:41,780 --> 00:52:46,260
+For example, for green line, the maximum passengers
+
+832
+00:52:46,260 --> 00:52:50,740
+per car should be no more than 225% of the seats
+
+833
+00:52:50,740 --> 00:52:51,940
+in the peak period.
+
+834
+00:52:51,940 --> 00:52:54,100
+In the off peak, the maximum passengers
+
+835
+00:52:54,100 --> 00:52:56,460
+should be no more than the seated capacity
+
+836
+00:52:56,460 --> 00:53:00,660
+except in the central subway, which can go up to 140%.
+
+837
+00:53:03,620 --> 00:53:07,860
+Yeah, so here is the transit guideline,
+
+838
+00:53:07,860 --> 00:53:11,500
+a translate guideline on frequency objective.
+
+839
+00:53:11,500 --> 00:53:14,500
+It basically defines different headways
+
+840
+00:53:14,540 --> 00:53:17,100
+for different, based on time of days
+
+841
+00:53:17,100 --> 00:53:19,260
+and based on modes of transit
+
+842
+00:53:20,340 --> 00:53:23,300
+that the transit agencies and operators
+
+843
+00:53:23,300 --> 00:53:26,580
+of the system need to satisfy.
+
+844
+00:53:28,820 --> 00:53:33,820
+So in terms of guaranteeing that the load
+
+845
+00:53:35,060 --> 00:53:38,060
+and the crowding situation is addressed
+
+846
+00:53:38,060 --> 00:53:42,660
+in the guideline that is related to frequency,
+
+847
+00:53:42,700 --> 00:53:45,100
+there is some analysis that is done
+
+848
+00:53:45,100 --> 00:53:50,100
+to make sure that your frequency is high enough
+
+849
+00:53:51,260 --> 00:53:56,260
+that your crowding situation does not exceed a certain level.
+
+850
+00:53:56,540 --> 00:54:00,540
+Why do we care about the loads and the crowding situation?
+
+851
+00:54:00,540 --> 00:54:05,540
+The first reason is that we do not want to frequently
+
+852
+00:54:05,540 --> 00:54:10,540
+deny to board that would yield to increased travel time
+
+853
+00:54:10,820 --> 00:54:15,820
+and we would like to basically avoid higher dwell time
+
+854
+00:54:15,940 --> 00:54:19,580
+that is associated with higher number of boardings,
+
+855
+00:54:19,580 --> 00:54:22,060
+ally things, number of wheelchairs on board
+
+856
+00:54:23,060 --> 00:54:27,580
+that would eventually, again, increase the running time.
+
+857
+00:54:28,820 --> 00:54:31,220
+For example, in the acceptable,
+
+858
+00:54:31,220 --> 00:54:36,060
+in the irregular standard 45th bus,
+
+859
+00:54:36,060 --> 00:54:40,860
+with the acceptable load of 70 passengers are considered,
+
+860
+00:54:40,860 --> 00:54:45,340
+however, the average that we estimate based on our design
+
+861
+00:54:45,340 --> 00:54:48,300
+should not exceed 55 passengers.
+
+862
+00:54:48,300 --> 00:54:50,700
+So that's the case of indeterminacy
+
+863
+00:54:50,700 --> 00:54:53,620
+and the confidence in intervals
+
+864
+00:54:53,620 --> 00:54:58,220
+that we kind of allow in the analysis.
+
+865
+00:54:58,220 --> 00:55:00,820
+However, it's a little different with the equity issue
+
+866
+00:55:00,820 --> 00:55:03,220
+that you mentioned in this case
+
+867
+00:55:03,220 --> 00:55:08,220
+because you want to make sure that to a certain degree
+
+868
+00:55:08,580 --> 00:55:11,940
+of confidence your system is performing
+
+869
+00:55:12,820 --> 00:55:15,180
+at an acceptable crowding level.
+
+870
+00:55:15,180 --> 00:55:18,260
+The variability to demand could actually relate
+
+871
+00:55:18,260 --> 00:55:22,060
+to bulk arrivals or group arrivals
+
+872
+00:55:22,060 --> 00:55:27,060
+that may happen at once due to exchanges
+
+873
+00:55:27,260 --> 00:55:28,740
+from different service
+
+874
+00:55:29,660 --> 00:55:34,660
+or it could actually relate to the variability in the headway
+
+875
+00:55:35,300 --> 00:55:39,780
+or variability in the nature of demand based on day of week,
+
+876
+00:55:39,780 --> 00:55:43,500
+based on seasonality, based on the weather condition
+
+877
+00:55:43,500 --> 00:55:44,740
+and so on and so forth.
+
+878
+00:55:45,860 --> 00:55:50,860
+Then the other objective that in the guideline of transiting
+
+879
+00:55:52,700 --> 00:55:57,060
+is the objective of comfort
+
+880
+00:55:57,060 --> 00:56:00,460
+and it basically deals again with the crowding level
+
+881
+00:56:00,460 --> 00:56:04,100
+or the design crowding level or crowding averages
+
+882
+00:56:04,100 --> 00:56:08,180
+that we are basically computing as objectives
+
+883
+00:56:08,180 --> 00:56:11,380
+to be tested for this guideline.
+
+884
+00:56:11,380 --> 00:56:15,340
+As you can see again for different peak periods
+
+885
+00:56:15,340 --> 00:56:20,340
+and then different type of vehicles and type of service
+
+886
+00:56:21,020 --> 00:56:26,020
+there's published numbers in terms of the average
+
+887
+00:56:27,540 --> 00:56:32,540
+or computed averages for the maximum crowding levels.
+
+888
+00:56:36,700 --> 00:56:40,500
+So look at this numbers.
+
+889
+00:56:40,500 --> 00:56:45,500
+Does anyone have any, an idea why some of these numbers
+
+890
+00:56:45,500 --> 00:56:50,500
+are larger for example for peak 15 minutes in AM and PM peak
+
+891
+00:56:51,580 --> 00:56:56,580
+you would allow an average of 60 passengers onboard
+
+892
+00:56:57,620 --> 00:57:01,980
+however when it comes to computations of peak 30 minutes
+
+893
+00:57:01,980 --> 00:57:03,860
+you would only allow 55.
+
+894
+00:57:06,180 --> 00:57:07,500
+You won't be going left behind
+
+895
+00:57:07,500 --> 00:57:09,340
+because the frequency of the services
+
+896
+00:57:09,340 --> 00:57:11,660
+will be at that time take away maybe another hour
+
+897
+00:57:11,660 --> 00:57:14,940
+or plus versus another five minutes.
+
+898
+00:57:14,940 --> 00:57:17,580
+Right, yeah that could be one reason
+
+899
+00:57:17,580 --> 00:57:20,380
+that's actually yielded to this design.
+
+900
+00:57:20,380 --> 00:57:22,740
+Any other thoughts or suggestions?
+
+901
+00:57:23,100 --> 00:57:27,940
+If you have a 15 minute peak it allows you
+
+902
+00:57:27,940 --> 00:57:30,020
+to have one very full vehicle that sort of
+
+903
+00:57:30,020 --> 00:57:31,940
+would skew the averages while there in the peak
+
+904
+00:57:31,940 --> 00:57:34,620
+sort of moderates that.
+
+905
+00:57:34,620 --> 00:57:38,180
+Yeah, yeah exactly.
+
+906
+00:57:38,180 --> 00:57:39,020
+Yep please.
+
+907
+00:57:39,020 --> 00:57:42,660
+Is this like a, could be like a chicken or egg problem
+
+908
+00:57:42,660 --> 00:57:47,660
+where the routes where you need a peak 15 minute headway
+
+909
+00:57:47,980 --> 00:57:50,660
+are ones that you really expect a lot of people
+
+910
+00:57:50,660 --> 00:57:53,180
+or is it the other way around where you see a lot of people
+
+911
+00:57:53,180 --> 00:57:55,100
+and then you make it more frequent?
+
+912
+00:57:55,100 --> 00:57:57,140
+Right, yes right.
+
+913
+00:57:57,140 --> 00:58:00,100
+Well yeah that's exactly one of the considerations
+
+914
+00:58:00,100 --> 00:58:05,100
+in design of a frequency and design of a schedule.
+
+915
+00:58:05,100 --> 00:58:10,100
+So if I want to reward what Ari mentioned
+
+916
+00:58:11,980 --> 00:58:15,220
+if you're computing your average over 15 minutes
+
+917
+00:58:15,220 --> 00:58:17,780
+and you're observing and then you're computing
+
+918
+00:58:17,780 --> 00:58:19,500
+your average over 13 minutes
+
+919
+00:58:19,500 --> 00:58:21,700
+and you're observing a higher crowding level
+
+920
+00:58:21,700 --> 00:58:26,700
+over the accepted level then the situation
+
+921
+00:58:29,140 --> 00:58:34,140
+is becomes more critical if you're computing
+
+922
+00:58:34,740 --> 00:58:37,500
+over 30 minutes is more critical
+
+923
+00:58:37,500 --> 00:58:40,900
+than if you're computing over 15 minutes.
+
+924
+00:58:40,900 --> 00:58:45,900
+So if you observe an average of a high crowding level
+
+925
+00:58:46,900 --> 00:58:49,460
+for 30 minutes or for longer period
+
+926
+00:58:49,460 --> 00:58:54,460
+that is a sign of a higher actual average of crowding level.
+
+927
+00:58:57,740 --> 00:59:00,860
+If yeah, yeah maybe you explained it better.
+
+928
+00:59:00,860 --> 00:59:02,860
+I shouldn't have rewarded you, right?
+
+929
+00:59:04,660 --> 00:59:08,500
+So the other objective that TransLink covers
+
+930
+00:59:08,500 --> 00:59:12,460
+is basically the comfort situation.
+
+931
+00:59:12,460 --> 00:59:14,380
+This is one of the interesting ones
+
+932
+00:59:14,380 --> 00:59:16,500
+and I do not really know how it's possible
+
+933
+00:59:16,500 --> 00:59:18,260
+to measure this for a design.
+
+934
+00:59:18,260 --> 00:59:22,060
+It's probably usually being used
+
+935
+00:59:22,060 --> 00:59:24,940
+in evaluation of the existing service.
+
+936
+00:59:24,940 --> 00:59:29,940
+It basically deals with a number of minutes
+
+937
+00:59:30,060 --> 00:59:35,060
+that you expect from passengers to be standing,
+
+938
+00:59:38,500 --> 00:59:42,300
+maximum number of minutes of being standing on board.
+
+939
+00:59:42,340 --> 00:59:45,540
+And there's a level of compliance
+
+940
+00:59:45,540 --> 00:59:47,180
+that is defined for each one.
+
+941
+00:59:47,180 --> 00:59:52,180
+For example, you would allow no more than 95%
+
+942
+00:59:53,420 --> 00:59:57,460
+cases that passengers would have to stand
+
+943
+00:59:57,460 --> 01:00:00,980
+more than 20 minutes on the trip.
+
+944
+01:00:01,980 --> 01:00:05,540
+So I can imagine if you have an existing system
+
+945
+01:00:05,540 --> 01:00:09,060
+and if you want to measure this,
+
+946
+01:00:09,060 --> 01:00:13,260
+you can go out and survey these numbers
+
+947
+01:00:13,260 --> 01:00:17,980
+and compute averages and compute the distributions.
+
+948
+01:00:17,980 --> 01:00:22,980
+However, if you have a design which is not in place,
+
+949
+01:00:24,460 --> 01:00:26,700
+does anyone have any thoughts how you can come up
+
+950
+01:00:26,700 --> 01:00:31,380
+with some sort of estimation for this case?
+
+951
+01:00:32,380 --> 01:00:37,380
+Yeah, simulation could be one possible way of doing this.
+
+952
+01:00:37,380 --> 01:00:41,380
+Simulation of demand could be one possible way of doing this.
+
+953
+01:00:47,380 --> 01:00:52,380
+If it's a train, I saw the sky train there,
+
+954
+01:00:52,380 --> 01:00:55,700
+you can see where the train fills up
+
+955
+01:00:55,700 --> 01:00:58,060
+and then assume that everyone else,
+
+956
+01:00:58,060 --> 01:01:02,460
+that everyone that boards the train afterwards,
+
+957
+01:01:02,460 --> 01:01:05,580
+if you know how many people are boarded in QFLA.
+
+958
+01:01:05,580 --> 01:01:06,820
+Right, yeah.
+
+959
+01:01:06,820 --> 01:01:08,900
+To do that, then you can assume
+
+960
+01:01:08,900 --> 01:01:11,100
+that everyone is boarding after standing
+
+961
+01:01:11,100 --> 01:01:13,140
+and then you can see how many of them
+
+962
+01:01:13,140 --> 01:01:16,620
+have 20 minutes or more left on the journey
+
+963
+01:01:16,620 --> 01:01:17,900
+till the train gets there.
+
+964
+01:01:17,900 --> 01:01:19,660
+Exactly, that's a good idea.
+
+965
+01:01:19,660 --> 01:01:24,260
+So what you're suggesting is to generate the load profile
+
+966
+01:01:24,260 --> 01:01:28,740
+for the line and whenever the load is over
+
+967
+01:01:28,740 --> 01:01:32,860
+the seating capacity, you measure the time period on that.
+
+968
+01:01:32,860 --> 01:01:36,260
+So that's a good idea, right?
+
+969
+01:01:36,260 --> 01:01:41,180
+So in terms of for Toronto Transit Commission,
+
+970
+01:01:41,180 --> 01:01:44,340
+the loading standards is something like this.
+
+971
+01:01:44,340 --> 01:01:46,180
+For different types of vehicle,
+
+972
+01:01:46,180 --> 01:01:50,740
+you would allow different averages for your design.
+
+973
+01:01:50,740 --> 01:01:55,180
+So there is also one interesting point here.
+
+974
+01:01:55,180 --> 01:01:58,340
+Why do you think for low frequency service,
+
+975
+01:01:58,340 --> 01:02:03,140
+you would allow a lower crowding level
+
+976
+01:02:03,140 --> 01:02:07,140
+or a lower average ridership?
+
+977
+01:02:11,540 --> 01:02:14,340
+If it was that crowded, you would want to add frequency
+
+978
+01:02:14,340 --> 01:02:16,460
+to better serve people riding.
+
+979
+01:02:16,460 --> 01:02:17,340
+Right, yeah.
+
+980
+01:02:17,340 --> 01:02:22,660
+That could be one good answer.
+
+981
+01:02:22,660 --> 01:02:24,780
+The other reason that I can imagine
+
+982
+01:02:24,780 --> 01:02:27,540
+is that if it's a low frequency service
+
+983
+01:02:27,540 --> 01:02:29,260
+and if someone is denied boarding
+
+984
+01:02:29,260 --> 01:02:32,820
+to a low frequency service, they have to wait longer.
+
+985
+01:02:32,820 --> 01:02:37,700
+So we would allow a little bit of slackness in the design
+
+986
+01:02:37,700 --> 01:02:39,580
+so we would avoid situation like that.
+
+987
+01:02:47,380 --> 01:02:51,660
+Okay, so let's stop here and then we will continue
+
+988
+01:02:51,660 --> 01:02:54,100
+to the rest of the guidelines,
+
+989
+01:02:54,100 --> 01:03:00,300
+particularly with reliability of service next week.
+
+990
+01:03:00,300 --> 01:03:01,700
+Is there a question here?
+
+991
+01:03:01,700 --> 01:03:02,380
+Right.
+
+992
+01:03:02,380 --> 01:03:03,940
+Someone asked, is there a reason
+
+993
+01:03:03,940 --> 01:03:05,660
+why we use so many community examples?
+
+994
+01:03:05,660 --> 01:03:06,380
+Sorry?
+
+995
+01:03:06,380 --> 01:03:09,100
+Is there a reason why we use so many community examples?
+
+996
+01:03:09,100 --> 01:03:11,820
+That's a good question.
+
+997
+01:03:11,820 --> 01:03:13,300
+Public transportation is good.
+
+998
+01:03:13,300 --> 01:03:15,460
+Yeah, better, probably the closest place
+
+999
+01:03:15,500 --> 01:03:17,020
+that has a better public transportation.
+
+1000
+01:03:17,020 --> 01:03:17,520
+OK.
+

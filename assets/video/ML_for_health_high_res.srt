@@ -1,0 +1,3516 @@
+1
+00:00:00,000 --> 00:00:21,920
+So last time we talked about what medicine does, and today I want to take a deep dive
+
+2
+00:00:21,920 --> 00:00:29,520
+into medical data, and I'm going to use as examples a lot of stuff from the MIMIC database,
+
+3
+00:00:29,520 --> 00:00:34,280
+which is one of the databases that we're going to be using in this class.
+
+4
+00:00:34,280 --> 00:00:38,880
+Some of you are probably familiar with it, and some of you are not.
+
+5
+00:00:38,880 --> 00:00:43,640
+And there are, I hope, some takeaway lessons from this discussion.
+
+6
+00:00:43,640 --> 00:00:52,280
+So for example, a few years ago when MIMIC 3 was about to be released, I was playing
+
+7
+00:00:52,280 --> 00:00:59,800
+with the data, and I looked at the distribution of heart rates in the care view part of the
+
+8
+00:00:59,800 --> 00:01:00,800
+database.
+
+9
+00:01:00,800 --> 00:01:08,240
+So MIMIC, for those of you who don't know, has intensive care data from about 60-something
+
+10
+00:01:08,240 --> 00:01:16,240
+thousand admissions to intensive care units at the Beth Israel Deaconess Medical Center
+
+11
+00:01:16,240 --> 00:01:19,000
+over a period of about 12 years.
+
+12
+00:01:19,000 --> 00:01:23,960
+And one of the technical difficulties that we encountered is that in the middle of that
+
+13
+00:01:23,960 --> 00:01:29,960
+time period, the hospital shifted from one information system that they used in their
+
+14
+00:01:29,960 --> 00:01:32,360
+intensive care unit to another.
+
+15
+00:01:32,360 --> 00:01:36,800
+Care view is the old one, medivision is the new one, and of course they're not exactly
+
+16
+00:01:36,800 --> 00:01:40,480
+compatible, so we'll see some examples of that.
+
+17
+00:01:40,480 --> 00:01:44,360
+So this is the old data, so this is from care view.
+
+18
+00:01:44,360 --> 00:01:51,760
+And you look at that and say, well, heart rates range from 40 to 200, roughly, which
+
+19
+00:01:51,760 --> 00:01:53,480
+is OK.
+
+20
+00:01:53,480 --> 00:01:58,040
+But then there's this funny thing, there are two peaks.
+
+21
+00:01:58,040 --> 00:02:08,240
+So where, if ever, do you see two peaks in physiological data?
+
+22
+00:02:08,240 --> 00:02:10,400
+Not typical.
+
+23
+00:02:10,400 --> 00:02:23,520
+And so my initial reaction was, so then I looked a little closer and I said, hmm, what
+
+24
+00:02:23,520 --> 00:02:27,560
+do the heart rates look like from these two systems?
+
+25
+00:02:27,560 --> 00:02:30,960
+And if you look in care view, you see the picture that I just showed you, and if you
+
+26
+00:02:30,960 --> 00:02:36,280
+look in medivision, you see this other picture which looks more like what you would normally
+
+27
+00:02:36,280 --> 00:02:38,640
+expect.
+
+28
+00:02:38,640 --> 00:02:43,920
+And so I'm sitting there scratching my head, going, OK, there must be some difference between
+
+29
+00:02:43,920 --> 00:02:44,920
+these.
+
+30
+00:02:44,920 --> 00:02:51,520
+It's not that simultaneous with the switchover of the hospital from one information system
+
+31
+00:02:51,520 --> 00:02:59,000
+to another, physiology of people changed and all of a sudden some subset of people started
+
+32
+00:02:59,000 --> 00:03:03,080
+having faster heart rates.
+
+33
+00:03:03,080 --> 00:03:07,960
+But if you think about that, what subset of people have faster heart rates?
+
+34
+00:03:07,960 --> 00:03:20,440
+Yeah, kids.
+
+35
+00:03:20,440 --> 00:03:21,600
+Right?
+
+36
+00:03:21,600 --> 00:03:23,720
+So I said, hmm, interesting.
+
+37
+00:03:23,720 --> 00:03:28,520
+So anyway, if you look at the statistics, you see that the mean heart rate in care view
+
+38
+00:03:28,520 --> 00:03:35,280
+is 108, and the mean heart rate in medivision is 87.
+
+39
+00:03:35,280 --> 00:03:43,600
+But of course, means are not that meaningful when you look at these bimodal distributions.
+
+40
+00:03:43,600 --> 00:03:46,720
+So then I said, well, what if we just look at adults?
+
+41
+00:03:46,720 --> 00:03:55,480
+So we look at people from age greater than one up to age 90, and I'll say a word about
+
+42
+00:03:55,480 --> 00:03:57,000
+that in a minute.
+
+43
+00:03:57,120 --> 00:04:02,160
+I look at those two distributions, they look pretty close, they look pretty similar.
+
+44
+00:04:02,160 --> 00:04:09,600
+So that means that the number of patients of different ages in the adult group is similar
+
+45
+00:04:09,600 --> 00:04:12,440
+in the two data sets.
+
+46
+00:04:12,440 --> 00:04:19,960
+But if I don't exclude the very young or the very old, then I see this funny distribution
+
+47
+00:04:19,960 --> 00:04:24,880
+where I have suppressed ages greater than 90, but not the young.
+
+48
+00:04:24,880 --> 00:04:32,600
+And what you see is that in care view, there's this giant spike at age zero, right?
+
+49
+00:04:32,600 --> 00:04:39,520
+So what happened at the hospital is that under the old system, it was also being used in
+
+50
+00:04:39,520 --> 00:04:45,280
+the NICU, the neonatal intensive care unit, and the new system was not being used in the
+
+51
+00:04:45,280 --> 00:04:52,240
+NICU, and therefore they didn't capture data about babies, right?
+
+52
+00:04:52,240 --> 00:05:01,160
+And in fact, if you look at age versus heart rate of the entire population, you see two
+
+53
+00:05:01,160 --> 00:05:03,260
+very peculiar things.
+
+54
+00:05:03,260 --> 00:05:08,920
+So here are the adults that we've been talking about, and here are the babies, and sure enough
+
+55
+00:05:08,920 --> 00:05:11,240
+they have higher heart rates.
+
+56
+00:05:11,240 --> 00:05:17,600
+And then here are these 300-year-old people who go, wow, I don't think I'm going to have
+
+57
+00:05:17,600 --> 00:05:21,360
+a heart rate when I'm 300 years old.
+
+58
+00:05:21,360 --> 00:05:26,600
+So who are those people?
+
+59
+00:05:26,600 --> 00:05:29,080
+Anybody have a clue?
+
+60
+00:05:29,080 --> 00:05:30,080
+Yeah?
+
+61
+00:05:30,080 --> 00:05:31,080
+Entry errors?
+
+62
+00:05:31,080 --> 00:05:32,080
+Sorry?
+
+63
+00:05:32,080 --> 00:05:34,720
+Entry errors?
+
+64
+00:05:34,720 --> 00:05:36,080
+There are too many of them.
+
+65
+00:05:36,080 --> 00:05:41,600
+Yeah, entry errors is always a possibility, but there's quite a few data points there.
+
+66
+00:05:41,600 --> 00:05:42,600
+Yeah?
+
+67
+00:05:42,600 --> 00:05:45,400
+Missing data, but it's 5,000, 300.
+
+68
+00:05:45,400 --> 00:05:46,400
+Close.
+
+69
+00:05:46,400 --> 00:05:48,560
+It's not quite missing data.
+
+70
+00:05:48,560 --> 00:05:55,520
+So HIPAA, the Health Insurance Portability and Accountability Act, defines a set of criteria
+
+71
+00:05:55,520 --> 00:06:00,960
+about protecting personal health information, and one of the things you're not allowed to
+
+72
+00:06:00,960 --> 00:06:07,760
+do is to specify the age of somebody who is 90 years old or older.
+
+73
+00:06:07,760 --> 00:06:14,200
+And the reason is because the number of 97-year-olds is pretty small, and so if I tell you that
+
+74
+00:06:14,200 --> 00:06:19,080
+Willie is 97 years old, then you're going to be able to pick him out of a population
+
+75
+00:06:19,080 --> 00:06:24,800
+relatively easily, and so it's prohibited to say that.
+
+76
+00:06:24,800 --> 00:06:31,240
+So as a result, everybody who's 90-year-older gets labeled as being 300 years old in the
+
+77
+00:06:31,240 --> 00:06:32,240
+database.
+
+78
+00:06:32,240 --> 00:06:35,040
+It's an artifact.
+
+79
+00:06:35,040 --> 00:06:43,320
+It's like back in my youth, I worked as a computer programmer at a health sciences computing
+
+80
+00:06:43,320 --> 00:06:53,760
+facility at UCLA, and we used to have a convention that missing data was represented by 9999.
+
+81
+00:06:53,760 --> 00:07:00,120
+And of course, if you average that into a real dataset, you get garbage, which people
+
+82
+00:07:00,120 --> 00:07:05,640
+did regularly, so there are problems with this, and we're running into one of those.
+
+83
+00:07:05,640 --> 00:07:12,680
+If you look at just the adults, the two systems actually look very similar.
+
+84
+00:07:12,680 --> 00:07:19,280
+So the blue and red dots are the two systems, and I've drawn the trend lines between them,
+
+85
+00:07:19,280 --> 00:07:21,720
+and you can see that they're very similar.
+
+86
+00:07:21,720 --> 00:07:28,080
+So it looks like as you get older, your heart rate declines very slightly, but it does so
+
+87
+00:07:28,080 --> 00:07:30,080
+equally in the two datasets.
+
+88
+00:07:30,080 --> 00:07:31,080
+Yeah.
+
+89
+00:07:31,080 --> 00:07:35,520
+On the previous slide, beyond 300, it looks like there are people who are older than 300?
+
+90
+00:07:35,520 --> 00:07:41,200
+Well that's because the ages there are computed at the time that the heart rate is measured,
+
+91
+00:07:41,200 --> 00:07:47,440
+and so if you are 300 years old when you admit it to the hospital, if you stay in the hospital
+
+92
+00:07:47,440 --> 00:07:53,460
+for six months, then you're 300 and a half years old by the time of that measurement.
+
+93
+00:07:53,460 --> 00:08:01,320
+So that's why there are data points to the right of 300, yeah, good catch.
+
+94
+00:08:01,320 --> 00:08:05,160
+Okay, and then this is what the babies look like, and of course they do have higher heart
+
+95
+00:08:05,160 --> 00:08:07,000
+rates.
+
+96
+00:08:07,000 --> 00:08:08,680
+And here are the oldsters.
+
+97
+00:08:09,320 --> 00:08:16,800
+Actually there are people out to 310 years old because maybe they were discharged from
+
+98
+00:08:16,800 --> 00:08:23,520
+the hospital, and then at age 100 they came back, maybe they were 90 years old at the
+
+99
+00:08:23,520 --> 00:08:28,560
+time they were initially admitted, 10 years later they came back, and we recorded more
+
+100
+00:08:28,560 --> 00:08:33,160
+data about them, and so this is all relative to that 300.
+
+101
+00:08:33,160 --> 00:08:35,920
+Okay, so that's just one example.
+
+102
+00:08:36,240 --> 00:08:42,200
+The lesson there is be careful when you look at data because it can really easily fool
+
+103
+00:08:42,200 --> 00:08:47,720
+you, because there are all kinds of funny things about the way it's collected, about
+
+104
+00:08:47,720 --> 00:08:53,280
+these artifactual things like 300-year-old patients, and so on.
+
+105
+00:08:53,280 --> 00:08:59,400
+Okay, so here's a catalog of the types of data that are available to us.
+
+106
+00:08:59,400 --> 00:09:06,560
+So we have typical kind of electronic health record data from hospitals, demographics,
+
+107
+00:09:06,560 --> 00:09:12,120
+age sex, socioeconomic status, insurance type language, religion, living situation, family
+
+108
+00:09:12,120 --> 00:09:15,840
+structure, location, work, etc.
+
+109
+00:09:15,840 --> 00:09:21,320
+We have vital signs, your weight, your height, your pulse, respiration rate, body temperature,
+
+110
+00:09:21,320 --> 00:09:22,480
+etc.
+
+111
+00:09:22,480 --> 00:09:27,760
+So these are typically the things that if you ever go to a doctor's office or you go
+
+112
+00:09:27,760 --> 00:09:34,240
+into a hospital, a nurse will take you aside and weigh you and measure your height and
+
+113
+00:09:34,240 --> 00:09:39,080
+check your blood pressure and take your temperature and stuff like that.
+
+114
+00:09:39,080 --> 00:09:45,200
+These are standard vital signs, and so we have lots of those recorded.
+
+115
+00:09:45,200 --> 00:09:51,160
+Medications, prescription medications, over-the-counter drugs, illegal drugs if you're willing not
+
+116
+00:09:51,160 --> 00:09:54,680
+to lie to your health care provider.
+
+117
+00:09:54,720 --> 00:10:03,840
+Again, one of my earliest days, I was hanging out with a cardiologist at Tufts Medical Center,
+
+118
+00:10:03,840 --> 00:10:13,440
+and we see this elderly lady who looks kind of terrible, and we're talking to her, well,
+
+119
+00:10:13,440 --> 00:10:22,520
+the doctor is talking to her, I'm trying to stay out of the way, and he says, so do
+
+120
+00:10:22,560 --> 00:10:24,600
+you drink alcohol?
+
+121
+00:10:24,600 --> 00:10:27,960
+And she says, oh, no, never touch this stuff.
+
+122
+00:10:27,960 --> 00:10:35,680
+And then we talk some more, and we go out of the patient's room, and the doctor turns
+
+123
+00:10:35,680 --> 00:10:42,120
+to me out of earshot of the patient and says, oh, she's a chronic drunk, and said, well,
+
+124
+00:10:42,120 --> 00:10:43,120
+how do you know?
+
+125
+00:10:43,120 --> 00:10:50,080
+And he says, well, from lab tests, from the appearance of her skin, from her general demeanor,
+
+126
+00:10:50,720 --> 00:10:57,360
+various ineffable factors, and so patients lie.
+
+127
+00:10:57,360 --> 00:11:01,960
+They really do, because they don't want to tell you things.
+
+128
+00:11:01,960 --> 00:11:05,160
+OK, medications, by the way, is a big deal.
+
+129
+00:11:05,160 --> 00:11:13,360
+So there's this whole field called med rec, medication reconciliation, which is the hospital
+
+130
+00:11:13,360 --> 00:11:19,320
+or the doctor's office's attempt to figure out what medications you're actually taking.
+
+131
+00:11:19,320 --> 00:11:25,240
+So I'm a member of the MIT health plan, and if I sign into my health plan account, it
+
+132
+00:11:25,240 --> 00:11:34,040
+tells me that I'm taking some pills that I got 12 years ago as part of a laboratory
+
+133
+00:11:34,040 --> 00:11:41,360
+test, where I took two pills, which were supposed to have some physiological effect,
+
+134
+00:11:41,360 --> 00:11:43,040
+and then they measured that.
+
+135
+00:11:43,040 --> 00:11:48,800
+And I've never gotten another pill and never taken one since then, nor would it be particularly
+
+136
+00:11:48,800 --> 00:11:52,360
+good for me, but it's still on my record.
+
+137
+00:11:52,360 --> 00:11:56,840
+And there's no notice of it ever having been discontinued.
+
+138
+00:11:56,840 --> 00:12:02,040
+And that's a real problem, because if you're taking care of a patient, you'd like to understand
+
+139
+00:12:02,040 --> 00:12:06,720
+what drugs they're actually taking, and it's hard to know.
+
+140
+00:12:06,720 --> 00:12:09,040
+OK, then lab tests.
+
+141
+00:12:09,040 --> 00:12:16,360
+So this is the things that you imagine that we do a lot of, and these are components of
+
+142
+00:12:16,360 --> 00:12:22,880
+the blood and the urine, mainly, but also of the stool, saliva, spinal fluid, fluid
+
+143
+00:12:22,880 --> 00:12:30,000
+taken off the belly, joint fluid, bone marrow, stuff coming out of your lungs.
+
+144
+00:12:30,000 --> 00:12:32,120
+It's anything, right?
+
+145
+00:12:32,120 --> 00:12:38,800
+And any place where you can produce some specimen, they can send it to a lab and measure things
+
+146
+00:12:38,800 --> 00:12:44,760
+in it, and they measure lots and lots of different kinds of things, and these are often useful.
+
+147
+00:12:44,760 --> 00:12:51,760
+Pathology, qualitative and quantitative examination of anybody tissue, for example, biopsy samples
+
+148
+00:12:51,760 --> 00:12:56,040
+or surgical scraps.
+
+149
+00:12:56,040 --> 00:13:01,440
+If they do an operation, they cut something out of you, that typically winds up on a pathologist
+
+150
+00:13:01,440 --> 00:13:06,480
+bench who then tries to figure out what its characteristics are, and that's, again, useful
+
+151
+00:13:06,480 --> 00:13:08,480
+information.
+
+152
+00:13:08,960 --> 00:13:12,320
+OK, microbiology.
+
+153
+00:13:12,320 --> 00:13:19,960
+Ever since Pasteur, we know that organisms cause disease, and so we're quite interested
+
+154
+00:13:19,960 --> 00:13:28,720
+in knowing what organisms are growing inside your body, and typically testing is not only
+
+155
+00:13:28,720 --> 00:13:34,800
+to identify the organism, but also to figure out which antibiotics it's sensitive to and
+
+156
+00:13:34,800 --> 00:13:36,440
+insensitive to.
+
+157
+00:13:36,560 --> 00:13:44,360
+So you'll see things like reports of sensitivity testing at various dilutions.
+
+158
+00:13:44,360 --> 00:13:49,960
+In other words, they try to give a strong dose of an antibiotic, a weaker dose, a weaker
+
+159
+00:13:49,960 --> 00:13:55,800
+dose, a weaker dose, a weaker dose, to see which is the minimum level of dosing that's
+
+160
+00:13:55,800 --> 00:13:58,360
+enough to kill the bacteria.
+
+161
+00:13:58,360 --> 00:14:05,800
+There's a common missing there, but input-output of fluids is another important thing, because
+
+162
+00:14:05,800 --> 00:14:12,600
+especially in the hospital, often get either dehydrated or overhydrated, and neither of
+
+163
+00:14:12,600 --> 00:14:17,240
+those is good for you, and so trying to keep track of what's going into you and what's
+
+164
+00:14:17,240 --> 00:14:21,160
+coming out of you is important.
+
+165
+00:14:21,160 --> 00:14:26,880
+Then there are tons of notes, so an important one that we're going to look at in this class
+
+166
+00:14:26,880 --> 00:14:28,840
+is discharge summaries.
+
+167
+00:14:28,840 --> 00:14:35,520
+So these are the typically long notes that are written at the end of a hospitalization.
+
+168
+00:14:35,520 --> 00:14:43,880
+So this is a summary of why you came in, what they did to you, the main things they discovered
+
+169
+00:14:43,880 --> 00:14:50,440
+about you, and then plans for what to do after your discharge, where are you going to go,
+
+170
+00:14:50,440 --> 00:14:54,600
+what drugs are you going to be taking, when are you supposed to come back for follow-up,
+
+171
+00:14:54,600 --> 00:14:55,600
+et cetera.
+
+172
+00:14:55,600 --> 00:15:01,760
+I'll show you an excruciatingly long one of those later in the lecture today.
+
+173
+00:15:01,760 --> 00:15:09,120
+But we also have notes from attendings under residents, nurses, various specialties, consultants.
+
+174
+00:15:09,120 --> 00:15:14,320
+The referring physician, if somebody sends you to the hospital, that doctor will usually
+
+175
+00:15:14,320 --> 00:15:20,360
+write a note saying, this is what I'm interested in, here's why I'm sending in the patient.
+
+176
+00:15:20,360 --> 00:15:25,720
+There are letters back to the referring physician saying, okay, this is what we found out, here's
+
+177
+00:15:25,720 --> 00:15:28,960
+the answer to the question you were asking.
+
+178
+00:15:28,960 --> 00:15:33,840
+There are emergency department notes, so that's often the first contact between the
+
+179
+00:15:33,840 --> 00:15:36,440
+patient and the healthcare system.
+
+180
+00:15:36,440 --> 00:15:43,440
+So these are all important, and then there's tons and tons of billing data.
+
+181
+00:15:43,440 --> 00:15:52,560
+So remember, the EHR systems were initially designed by accountants, and they were designed
+
+182
+00:15:52,560 --> 00:15:54,720
+for the purpose of billing.
+
+183
+00:15:54,720 --> 00:16:01,600
+And so we capture a lot of data about formalized ways of describing the condition of the patient
+
+184
+00:16:01,600 --> 00:16:07,920
+and what was done to the patient in order to submit the right bills.
+
+185
+00:16:07,920 --> 00:16:14,440
+You obviously want a bill for as much as possible, but you have to be able to justify the bills
+
+186
+00:16:14,440 --> 00:16:21,480
+that you submit, because insurance companies and Medicare and Medicaid don't have a good
+
+187
+00:16:21,480 --> 00:16:22,880
+sense of humor.
+
+188
+00:16:23,640 --> 00:16:29,200
+If you submit bills for things that you can't justify, then you get penalized.
+
+189
+00:16:29,200 --> 00:16:31,840
+Okay.
+
+190
+00:16:31,840 --> 00:16:36,240
+And then there are administrative data, like which service are you on?
+
+191
+00:16:36,240 --> 00:16:40,480
+So this is occasionally a confusing thing.
+
+192
+00:16:40,480 --> 00:16:46,420
+You can go into the hospital and have heart problems, but it turns out that the heart-intensive
+
+193
+00:16:46,420 --> 00:16:51,600
+care unit, the cardiac intensive care unit, is full up with patients.
+
+194
+00:16:51,600 --> 00:16:57,080
+But there's an extra bed in the pulmonary intensive care unit, and so they stick you
+
+195
+00:16:57,080 --> 00:17:03,720
+in that unit, but you're still on the cardiology service, and so there are these sort of mixture
+
+196
+00:17:03,720 --> 00:17:07,320
+kinds of cases that you still have to take care of.
+
+197
+00:17:07,320 --> 00:17:13,520
+Transfers are when you get transferred from one place to another in the hospital.
+
+198
+00:17:13,520 --> 00:17:14,640
+Imaging data.
+
+199
+00:17:14,680 --> 00:17:22,120
+So I'm not going to talk about that much today, but there are X-rays, ultrasound, CT, MRI,
+
+200
+00:17:22,120 --> 00:17:28,880
+PET scans, retinal scans, endoscopy, photographs of like your skin and stuff like that, so
+
+201
+00:17:28,880 --> 00:17:31,480
+this is all imaging data.
+
+202
+00:17:31,480 --> 00:17:36,520
+And there's been a tremendous amount of progress recently in applying machine learning techniques
+
+203
+00:17:36,520 --> 00:17:42,680
+to try to interpret the contents of these data, so these are also very important.
+
+204
+00:17:42,680 --> 00:17:45,920
+And then there's the whole quantified self-movement.
+
+205
+00:17:45,920 --> 00:17:53,120
+I mean, how many of you wear an activity tracker?
+
+206
+00:17:53,120 --> 00:17:54,440
+Only about a third?
+
+207
+00:17:54,440 --> 00:17:59,080
+I'm surprised at the place like MIT.
+
+208
+00:17:59,080 --> 00:18:06,640
+So we measure steps and elevation change and workouts, and you can record vital signs and
+
+209
+00:18:07,480 --> 00:18:16,920
+diet and your blood sugar, especially if you're diabetic, allergies, allergic incidents.
+
+210
+00:18:16,920 --> 00:18:23,240
+There's all this mindfulness, mood, sleep, pain, sexual activity, and then people have
+
+211
+00:18:23,240 --> 00:18:29,720
+developed this idea of N of 1 experiments where, for example, I had a student some years
+
+212
+00:18:29,720 --> 00:18:33,640
+ago who was suffered from psoriasis.
+
+213
+00:18:33,640 --> 00:18:38,960
+It's a proteic condition of the skin, and the problem is there are no good cures for
+
+214
+00:18:38,960 --> 00:18:44,200
+it, and so people who suffer from psoriasis try all kinds of things.
+
+215
+00:18:44,200 --> 00:18:50,800
+They stop eating nuts for a while, or they douse themselves with vinegar, or they do
+
+216
+00:18:50,800 --> 00:18:54,360
+whatever crazy thing comes to mind.
+
+217
+00:18:54,360 --> 00:18:59,160
+And we don't have a good theory for how to treat this disease, but on the other hand,
+
+218
+00:18:59,160 --> 00:19:04,280
+some things work for some people, and so there's a whole methodology that has been developed
+
+219
+00:19:04,280 --> 00:19:09,000
+that says when you try these things, act like a scientist.
+
+220
+00:19:09,000 --> 00:19:18,000
+Have hypotheses, take good notes, collect good data, be cognizant of things like onset periods
+
+221
+00:19:18,000 --> 00:19:23,320
+where you may have to drip vinegar on yourself for a week before you see any effect.
+
+222
+00:19:23,320 --> 00:19:27,160
+So if it doesn't do anything after one day, don't stop.
+
+223
+00:19:27,160 --> 00:19:34,960
+And furthermore, if you stop, then don't start something new immediately because you
+
+224
+00:19:34,960 --> 00:19:40,160
+will then be confused about whether this is the effect of the thing you were on before
+
+225
+00:19:40,160 --> 00:19:42,360
+or the new thing that you're trying.
+
+226
+00:19:42,360 --> 00:19:45,440
+So there's all sorts of ideas like that.
+
+227
+00:19:45,440 --> 00:19:53,600
+Okay, so this is a slide from our paper on Mimic 3, and it gives you a kind of overview
+
+228
+00:19:53,600 --> 00:19:56,440
+of what's going on with the patient.
+
+229
+00:19:56,440 --> 00:20:01,720
+So if you look at this, I'm going to point with my hands.
+
+230
+00:20:01,720 --> 00:20:04,320
+At the top is something very important.
+
+231
+00:20:04,320 --> 00:20:07,720
+This patient starts off at full code.
+
+232
+00:20:07,720 --> 00:20:13,600
+That means that if something bad happens to him, he wants everything to be done to try
+
+233
+00:20:13,600 --> 00:20:15,560
+to save him.
+
+234
+00:20:15,560 --> 00:20:20,560
+And he winds up in comfort measures only, which means that if something bad happens
+
+235
+00:20:20,560 --> 00:20:28,520
+to him, he wants to die, or his family does if he's unconscious.
+
+236
+00:20:28,520 --> 00:20:31,200
+So what else do we know about this guy?
+
+237
+00:20:31,200 --> 00:20:39,800
+Well, GCS is the Glasgow Coma Score, and it's a way of quantifying people's level of consciousness.
+
+238
+00:20:39,800 --> 00:20:48,160
+And you see that at the beginning, this patient is oriented and then gets confused and finally
+
+239
+00:20:48,160 --> 00:20:54,320
+is only making incomprehensible words or sounds.
+
+240
+00:20:54,320 --> 00:21:02,720
+Motor is able to obey commands, eventually he's only able to flex when you stimulate
+
+241
+00:21:02,720 --> 00:21:07,400
+his muscles, so he's no longer conscious.
+
+242
+00:21:07,400 --> 00:21:14,680
+High movements, he's able to follow you spontaneously, he's able to orient to speech, and eventually
+
+243
+00:21:14,680 --> 00:21:16,240
+no orientation at all.
+
+244
+00:21:16,240 --> 00:21:22,960
+So this is clearly somebody who's going downhill quickly and in fact dies at the end of this
+
+245
+00:21:22,960 --> 00:21:25,320
+episode.
+
+246
+00:21:25,320 --> 00:21:32,200
+Now we then look at labs so we can see what is their level of platelets at about the time
+
+247
+00:21:32,200 --> 00:21:37,880
+that they're measured, their creatinine level, their white blood cell count, the neutrophil
+
+248
+00:21:37,880 --> 00:21:40,800
+percentage, et cetera.
+
+249
+00:21:40,800 --> 00:21:44,600
+There's not every possible data point on this slide.
+
+250
+00:21:44,760 --> 00:21:47,240
+This is just illustrative.
+
+251
+00:21:47,240 --> 00:21:49,640
+The next section is medications.
+
+252
+00:21:49,640 --> 00:21:56,640
+So the person is on morphine, they're on vancomycin, which is an antibiotic, piparicillin, I don't
+
+253
+00:21:56,640 --> 00:21:58,120
+know what that is.
+
+254
+00:21:58,120 --> 00:21:59,120
+Somebody know?
+
+255
+00:21:59,120 --> 00:22:00,120
+Antibiotic.
+
+256
+00:22:00,120 --> 00:22:01,120
+It's what?
+
+257
+00:22:01,120 --> 00:22:02,120
+It's antibiotic.
+
+258
+00:22:02,120 --> 00:22:03,120
+Okay.
+
+259
+00:22:03,120 --> 00:22:12,080
+Sodium chloride, 9%, so that's just keeping him hydrated, amiodarone and dextrose, so dextrose
+
+260
+00:22:12,800 --> 00:22:14,640
+giving him some energy.
+
+261
+00:22:14,640 --> 00:22:18,080
+And then these are the various measurements.
+
+262
+00:22:18,080 --> 00:22:24,400
+So you see the heart rate, for example, is up pretty high and is going up near the end.
+
+263
+00:22:24,400 --> 00:22:34,480
+The oxygen saturation starts off pretty good, but here we're down to 60% or 50% O2 sat, which
+
+264
+00:22:34,480 --> 00:22:40,240
+is supposed to be above about 92 in order to be considered reasonable.
+
+265
+00:22:40,240 --> 00:22:45,480
+So again, this is a very consistent picture of things going very badly wrong for this
+
+266
+00:22:45,480 --> 00:22:48,360
+particular patient.
+
+267
+00:22:48,360 --> 00:22:52,120
+So this is all the data in the database.
+
+268
+00:22:52,120 --> 00:22:57,920
+Now if you want to try to analyze some of this stuff, you can say, well, let's look
+
+269
+00:22:57,920 --> 00:23:03,400
+at the ages at the time of the last lab measurement in the database.
+
+270
+00:23:03,400 --> 00:23:06,360
+So we have the times of all the lab measurements.
+
+271
+00:23:06,360 --> 00:23:13,760
+So we can see that many of the ICU population are fairly old, right?
+
+272
+00:23:13,760 --> 00:23:19,680
+There's a relatively small number of young people and then a growing number of older
+
+273
+00:23:19,680 --> 00:23:24,280
+people in both females and males.
+
+274
+00:23:24,280 --> 00:23:31,800
+If we look at age at admission by gender, so this is age at admission, not age at the
+
+275
+00:23:31,800 --> 00:23:35,280
+time the last lab measurement was done.
+
+276
+00:23:35,280 --> 00:23:37,360
+It's pretty similar curve.
+
+277
+00:23:37,360 --> 00:23:51,640
+So we see that females were 64.21 at time of lab measurement, 63.5 at the time of admission.
+
+278
+00:23:51,640 --> 00:23:58,680
+So we can look at demographics, and demographics typically includes these kinds of factors,
+
+279
+00:23:58,680 --> 00:24:00,720
+which I mentioned before.
+
+280
+00:24:00,720 --> 00:24:07,020
+And again, if we're interested in the relationship between this and, for example, the age distribution,
+
+281
+00:24:07,020 --> 00:24:16,800
+we see that if you look at the different admission types, so you can be either admitted
+
+282
+00:24:16,800 --> 00:24:22,960
+for an emergency, for some urgent care, or electively.
+
+283
+00:24:22,960 --> 00:24:29,080
+And it doesn't seem to make a whole lot of difference, at least in the means of the population
+
+284
+00:24:29,520 --> 00:24:31,280
+age distribution.
+
+285
+00:24:31,280 --> 00:24:38,880
+On the other hand, if you look at insurance type and say who's paying the bills, there's
+
+286
+00:24:38,880 --> 00:24:42,240
+a big difference in the age distributions.
+
+287
+00:24:42,240 --> 00:24:56,280
+Now why do you think that private insurance drops way off at about 65?
+
+288
+00:24:56,280 --> 00:24:58,040
+It's because of Medicare.
+
+289
+00:24:58,040 --> 00:25:02,560
+So Medicare covers people who are 65 years old.
+
+290
+00:25:02,560 --> 00:25:04,360
+There's a terrible story I have to tell you.
+
+291
+00:25:04,360 --> 00:25:06,800
+I was talking to somebody at an insurance company.
+
+292
+00:25:06,800 --> 00:25:13,840
+It was a bit cynical, and he said, suppose that you see a 63-year-old patient who's developing
+
+293
+00:25:13,840 --> 00:25:15,200
+type 2 diabetes.
+
+294
+00:25:15,200 --> 00:25:18,160
+What should you do for him?
+
+295
+00:25:18,160 --> 00:25:25,400
+Well, there are standard things you should do for somebody developing type 2 diabetes,
+
+296
+00:25:25,400 --> 00:25:31,120
+like get him to eat better, or get him to lose weight, get him to exercise more, etc.
+
+297
+00:25:31,120 --> 00:25:34,240
+But his cynical answer was absolutely nothing.
+
+298
+00:25:34,240 --> 00:25:35,240
+Okay?
+
+299
+00:25:35,240 --> 00:25:36,240
+Why?
+
+300
+00:25:36,240 --> 00:25:40,640
+Well, it's very cheap to do nothing.
+
+301
+00:25:40,640 --> 00:25:46,760
+Most people who develop type 2 diabetes don't get real sick in the next two years.
+
+302
+00:25:46,760 --> 00:25:52,040
+And by the time this patient is 65, he'll be the government's responsibility, not the
+
+303
+00:25:52,040 --> 00:25:54,040
+insurance company.
+
+304
+00:25:54,760 --> 00:25:55,760
+Okay.
+
+305
+00:25:55,760 --> 00:25:56,760
+Nice.
+
+306
+00:25:56,760 --> 00:25:58,760
+Okay.
+
+307
+00:25:58,760 --> 00:26:06,520
+So, of course, a lot of the elderly are insured by Medicare or Medicaid.
+
+308
+00:26:06,520 --> 00:26:08,160
+Not that surprising.
+
+309
+00:26:08,160 --> 00:26:16,960
+Self-pay is a pretty small number because it's insanely expensive to pay for your own healthcare.
+
+310
+00:26:16,960 --> 00:26:19,760
+What about where you came from?
+
+311
+00:26:19,760 --> 00:26:21,920
+Right?
+
+312
+00:26:21,920 --> 00:26:28,800
+Were you referred from a clinic, or were you an emergency room admit, or were you referred
+
+313
+00:26:28,800 --> 00:26:32,880
+from an HMO, or etc.
+
+314
+00:26:32,880 --> 00:26:40,920
+And other than transfer from a skilled nursing facility or transfer within the facility,
+
+315
+00:26:40,920 --> 00:26:44,400
+within the hospital, it doesn't make much difference.
+
+316
+00:26:44,400 --> 00:26:50,440
+The averages there and the distributions look moderately similar.
+
+317
+00:26:50,440 --> 00:26:56,400
+If you're coming from a skilled nursing facility, if you are in a skilled nursing facility,
+
+318
+00:26:56,400 --> 00:27:02,720
+you're probably old because younger people don't typically need skilled nursing care.
+
+319
+00:27:02,720 --> 00:27:10,560
+And I'm not sure why transfers within the facility are significantly younger ages, but
+
+320
+00:27:10,560 --> 00:27:15,760
+that's true from the MIMIC data.
+
+321
+00:27:15,760 --> 00:27:18,880
+What about age at admission by language?
+
+322
+00:27:18,880 --> 00:27:21,160
+So some people speak English.
+
+323
+00:27:21,160 --> 00:27:25,400
+Some people speak not available.
+
+324
+00:27:25,400 --> 00:27:28,560
+Some people speak Spanish, etc.
+
+325
+00:27:28,560 --> 00:27:33,840
+So it turns out the Russians are the oldest, right?
+
+326
+00:27:33,840 --> 00:27:41,280
+And that may have to do with immigration patterns, or I don't know exactly why.
+
+327
+00:27:41,280 --> 00:27:45,880
+But that's the data, that's what the data show.
+
+328
+00:27:45,880 --> 00:27:54,400
+If you do it by ethnicity, it turns out that African Americans on the whole are somewhat
+
+329
+00:27:54,400 --> 00:28:01,480
+younger than whites, and Hispanics are somewhat younger yet.
+
+330
+00:28:01,480 --> 00:28:11,800
+So that means that those subpopulations apparently need intensive care earlier in life than whites.
+
+331
+00:28:11,800 --> 00:28:19,160
+So this is a topic that's very hot right now, discussions about how bias might play into
+
+332
+00:28:19,160 --> 00:28:20,160
+healthcare.
+
+333
+00:28:20,160 --> 00:28:21,160
+Yeah.
+
+334
+00:28:21,160 --> 00:28:23,840
+What does unable to aid mean?
+
+335
+00:28:23,840 --> 00:28:28,320
+It just means that, you know, somebody refused to say what their ethnicity was.
+
+336
+00:28:28,320 --> 00:28:29,640
+They never asked.
+
+337
+00:28:29,640 --> 00:28:30,880
+Yeah.
+
+338
+00:28:30,880 --> 00:28:34,160
+I think I'm not positive.
+
+339
+00:28:34,160 --> 00:28:41,120
+So just to confirm, this also represents like Boston's population dynamics, too, right?
+
+340
+00:28:41,120 --> 00:28:47,280
+It's the catchment basin of the Beth Israel Deaconess Hospital, which is Boston, clearly.
+
+341
+00:28:47,280 --> 00:28:55,200
+But it turns out that like a lot of North Shore people go to Mass General, and so different
+
+342
+00:28:55,200 --> 00:28:57,480
+hospitals have different catchment basins.
+
+343
+00:28:57,480 --> 00:29:02,680
+Does it have anything to do with like, is this just the ICU, or is this everybody, because
+
+344
+00:29:02,680 --> 00:29:05,040
+the hospital, the ER, or what's-
+
+345
+00:29:05,040 --> 00:29:10,080
+These are all people who at some point were in the ICU.
+
+346
+00:29:10,080 --> 00:29:12,200
+So these are the sicker patients.
+
+347
+00:29:12,200 --> 00:29:13,200
+Yeah.
+
+348
+00:29:13,200 --> 00:29:18,600
+So just so much I can see that there's a higher portion of black African American people in
+
+349
+00:29:18,600 --> 00:29:23,840
+the population here as well, because the red is higher than the others?
+
+350
+00:29:23,840 --> 00:29:24,840
+No.
+
+351
+00:29:24,840 --> 00:29:28,000
+Actually, I don't remember if I have that graph.
+
+352
+00:29:28,000 --> 00:29:29,640
+I think this is cumulative.
+
+353
+00:29:29,640 --> 00:29:30,640
+Oh, okay.
+
+354
+00:29:30,640 --> 00:29:31,640
+Okay.
+
+355
+00:29:31,760 --> 00:29:42,640
+So most people are white for whatever definition of white we're using, and I think it's only
+
+356
+00:29:42,640 --> 00:29:45,760
+the increment that you see on top.
+
+357
+00:29:45,760 --> 00:29:47,760
+Okay.
+
+358
+00:29:47,760 --> 00:29:49,960
+All right.
+
+359
+00:29:49,960 --> 00:29:53,680
+How about marital status?
+
+360
+00:29:53,720 --> 00:30:03,400
+Well according to this, it's bad to be single, right?
+
+361
+00:30:03,400 --> 00:30:06,160
+So I could sort of see that for hospitalization.
+
+362
+00:30:06,160 --> 00:30:13,560
+I'm not sure why it's true for the ICU, because if you don't have anybody at home to take
+
+363
+00:30:13,560 --> 00:30:18,600
+care of you and you get sick, it seems reasonable that you'd be more likely to wind up in the
+
+364
+00:30:18,600 --> 00:30:21,560
+hospital, but I don't know why you'd wind up in intensive care.
+
+365
+00:30:21,560 --> 00:30:22,560
+Yeah.
+
+366
+00:30:22,560 --> 00:30:29,200
+It's possible that those are also like single people are probably younger, and those are
+
+367
+00:30:29,200 --> 00:30:30,200
+probably younger.
+
+368
+00:30:30,200 --> 00:30:31,200
+Yes.
+
+369
+00:30:31,200 --> 00:30:32,200
+Yeah.
+
+370
+00:30:32,200 --> 00:30:33,200
+Yeah.
+
+371
+00:30:33,200 --> 00:30:34,200
+That's probably also right.
+
+372
+00:30:34,200 --> 00:30:35,200
+Yep.
+
+373
+00:30:35,200 --> 00:30:36,200
+Okay.
+
+374
+00:30:36,200 --> 00:30:44,200
+So here's an interesting question, a little bit related to something you'll see on the
+
+375
+00:30:44,200 --> 00:30:46,920
+next problem set.
+
+376
+00:30:46,920 --> 00:30:56,240
+So could we predict in-hospital mortality from just these demographic features?
+
+377
+00:30:56,240 --> 00:31:03,520
+So I'm using a tool in language called R. This is a general linear model, and I've set it
+
+378
+00:31:03,520 --> 00:31:09,600
+up to do basically logistic regression, and it says, I'm predicting whether you die in
+
+379
+00:31:09,600 --> 00:31:17,160
+the hospital based on these demographic factors.
+
+380
+00:31:17,160 --> 00:31:24,080
+And it turns out that the only ones that are highly significant are age.
+
+381
+00:31:24,080 --> 00:31:29,720
+So that's not surprising that older people are more likely to die than younger people.
+
+382
+00:31:29,720 --> 00:31:32,480
+It's generally true.
+
+383
+00:31:32,480 --> 00:31:39,280
+And if I'm unable to obtain your ethnicity or I don't know your ethnicity, then you're
+
+384
+00:31:39,280 --> 00:31:42,520
+more likely to die.
+
+385
+00:31:42,520 --> 00:31:47,160
+I have no clue why that might be the case.
+
+386
+00:31:47,160 --> 00:31:49,880
+And other things are not as significant.
+
+387
+00:31:49,880 --> 00:31:54,320
+So if you speak Spanish or English, you're slightly less likely to die.
+
+388
+00:31:54,320 --> 00:31:57,160
+You see a negative contribution here.
+
+389
+00:31:57,160 --> 00:32:01,760
+And if you speak Russian, you're slightly less likely to die.
+
+390
+00:32:01,760 --> 00:32:10,480
+But it's significant, not at the P equal 0.05 level, but it is at the P equal 0.06 level.
+
+391
+00:32:10,480 --> 00:32:15,720
+And marriage doesn't seem to make much difference in predicting whether you're going to die
+
+392
+00:32:15,720 --> 00:32:17,280
+or not.
+
+393
+00:32:17,280 --> 00:32:24,600
+Now remember, this is ICU patients, and we're looking at in-hospital mortality, yeah.
+
+394
+00:32:24,600 --> 00:32:28,960
+For ethnicity, can they learn that at any point during this day or just right at the
+
+395
+00:32:28,960 --> 00:32:29,960
+beginning?
+
+396
+00:32:29,960 --> 00:32:30,960
+Or do you know?
+
+397
+00:32:31,320 --> 00:32:32,320
+I don't know.
+
+398
+00:32:32,320 --> 00:32:37,880
+Because if it could be that unable to obtain means that they died before we could ask them?
+
+399
+00:32:37,880 --> 00:32:44,120
+No, because there wouldn't be that many of those people, I think.
+
+400
+00:32:44,120 --> 00:32:51,440
+There are not that many people who don't live past the intake interview.
+
+401
+00:32:51,440 --> 00:32:52,440
+And they do ask them.
+
+402
+00:32:52,440 --> 00:32:58,440
+How much they come into being is in bad shape to be honest.
+
+403
+00:32:58,440 --> 00:33:00,560
+Yeah, that would be an example.
+
+404
+00:33:00,560 --> 00:33:07,680
+But I don't think you'd see enough such people to show up statistically.
+
+405
+00:33:07,680 --> 00:33:17,640
+OK, well, so I've already mentioned that there's this problem of having moved from
+
+406
+00:33:17,640 --> 00:33:21,600
+CareVue to Medivision just in the MIMIC database.
+
+407
+00:33:21,600 --> 00:33:26,600
+But of course, this is a much bigger problem around the country and around the world, because
+
+408
+00:33:26,600 --> 00:33:30,080
+every hospital has its own way of keeping records.
+
+409
+00:33:30,080 --> 00:33:34,360
+And wouldn't it be nice if we had standards?
+
+410
+00:33:34,360 --> 00:33:38,800
+And of course, there's this funny phrase, the wonderful thing about standards is that
+
+411
+00:33:38,800 --> 00:33:41,680
+there's so many to choose from.
+
+412
+00:33:41,680 --> 00:33:48,320
+So for example, if you look at prescriptions in the MIMIC database, here are two particular
+
+413
+00:33:48,320 --> 00:33:58,920
+prescriptions for subject number 57139, admitted on admission ID 155470.
+
+414
+00:33:58,920 --> 00:34:03,640
+And so they have the same start date, but different end dates.
+
+415
+00:34:03,640 --> 00:34:08,400
+One is a prescription for Tylenol, acetaminophen.
+
+416
+00:34:08,400 --> 00:34:13,760
+And the other is for clobatosal propionate 0.05% cream.
+
+417
+00:34:13,760 --> 00:34:20,680
+That's a skin lotion thing for, I think it's a steroid skin cream.
+
+418
+00:34:20,680 --> 00:34:27,880
+So if you look in the BI's database, they have their own private formulary code where
+
+419
+00:34:27,880 --> 00:34:38,520
+this thing is a set 325, and this thing is clob.05C30.
+
+420
+00:34:38,520 --> 00:34:45,960
+And if you look, there's also something called a GSN, which is some commercial coding system
+
+421
+00:34:45,960 --> 00:34:53,280
+for drugs, maybe having to do with who their drug supplier is at the hospital.
+
+422
+00:34:53,280 --> 00:34:55,560
+And these have different codes.
+
+423
+00:34:55,560 --> 00:35:03,360
+There's the national drug code, which is an FDA assigned nine digit code that specifies
+
+424
+00:35:03,360 --> 00:35:09,800
+who made the drug, what form it's in, and what's its strength.
+
+425
+00:35:09,800 --> 00:35:11,880
+And so you get these.
+
+426
+00:35:11,880 --> 00:35:20,520
+Then there's a human readable description that says Tylenol comes in 325 milligram tablets,
+
+427
+00:35:20,520 --> 00:35:24,920
+and this clobatosal comes in 30 gram tubes.
+
+428
+00:35:25,040 --> 00:35:34,560
+The dose is supposed to be 325 to 650, i.e. one to two tablets measured in milligrams.
+
+429
+00:35:34,560 --> 00:35:40,240
+The dose here is one application, whatever that is.
+
+430
+00:35:40,240 --> 00:35:42,640
+I don't know what the 0.01 means.
+
+431
+00:35:42,640 --> 00:35:48,600
+And this is a tablet, and that's a tube, and this is taken orally, and that's administered
+
+432
+00:35:48,600 --> 00:35:52,000
+on the skin, right?
+
+433
+00:35:52,000 --> 00:35:55,400
+So this is a local database.
+
+434
+00:35:55,400 --> 00:36:00,480
+For a doctor, they just gimme the package, and then this is all registered.
+
+435
+00:36:00,480 --> 00:36:03,240
+At most hospitals, that's true now.
+
+436
+00:36:03,240 --> 00:36:11,880
+It wasn't true when the Mimic database started being collected, and the BI was relatively late
+
+437
+00:36:11,880 --> 00:36:16,480
+in moving to that compared to some of the other hospitals in the Boston area.
+
+438
+00:36:16,600 --> 00:36:23,840
+Each hospital has its own desiderata for what it thinks is most important, and I think the
+
+439
+00:36:23,840 --> 00:36:31,200
+BI just didn't prioritize it as much as some of the other hospitals.
+
+440
+00:36:31,200 --> 00:36:38,440
+OK, so then I said, well, if you look at prescriptions, how often are they given?
+
+441
+00:36:38,440 --> 00:36:42,520
+So remember, we have about 60,000 ICU stays.
+
+442
+00:36:42,520 --> 00:36:51,680
+And so isoasmotic dextrose was given 87,000 times to various people.
+
+443
+00:36:51,680 --> 00:36:55,760
+Sodium chloride, 0.9% flush, do you know what that is?
+
+444
+00:36:55,760 --> 00:36:59,560
+Have you ever had an IV?
+
+445
+00:36:59,560 --> 00:37:05,280
+So periodically, the nurse comes by and squirts a little bit of stuff in the IV to make sure
+
+446
+00:37:05,280 --> 00:37:07,400
+that it hasn't clogged up.
+
+447
+00:37:07,400 --> 00:37:10,040
+That's what that is.
+
+448
+00:37:10,080 --> 00:37:17,320
+Insulin SW, I don't know, salt water, I don't know what SW is.
+
+449
+00:37:17,320 --> 00:37:24,720
+Magnesium sulfate, dextrose 5 in water, furosimide is a diuretic, potassium chloride, replenishes
+
+450
+00:37:24,720 --> 00:37:29,520
+potassium that people are often low on.
+
+451
+00:37:29,520 --> 00:37:36,760
+And then you go, so why is there this D5W and that D5W?
+
+452
+00:37:36,760 --> 00:37:42,280
+And that's probably some data error in the system.
+
+453
+00:37:42,280 --> 00:37:48,520
+One of them has an NDC code associated with it, and the other one doesn't, but probably
+
+454
+00:37:48,520 --> 00:37:49,520
+should.
+
+455
+00:37:49,520 --> 00:37:50,520
+Yeah?
+
+456
+00:37:50,520 --> 00:37:51,520
+Oh, I have to actually ask.
+
+457
+00:37:51,520 --> 00:37:57,560
+GZeras mean that they're standard across hospitals or just that we don't have the data?
+
+458
+00:37:57,560 --> 00:38:05,320
+The NDC code should be standard across the country, because those are FDA assigned codes.
+
+459
+00:38:05,320 --> 00:38:09,000
+But if not, every hospital uses them.
+
+460
+00:38:09,000 --> 00:38:14,840
+And for the ones that say zero, I'm not sure why they're not associated with the code in
+
+461
+00:38:14,840 --> 00:38:17,560
+this hospital's database.
+
+462
+00:38:17,560 --> 00:38:30,360
+Okay, next most common, you see normal saline, 0.9% sodium chloride, so that was the same
+
+463
+00:38:30,360 --> 00:38:35,600
+stuff as the flush solution, but this time not being used for flush.
+
+464
+00:38:35,600 --> 00:38:38,480
+Metoprolol is a beta blocker.
+
+465
+00:38:38,480 --> 00:38:43,640
+Here's another insulin, this time with an NDC code, et cetera.
+
+466
+00:38:43,640 --> 00:38:51,680
+I love bag and vial, so these are not exactly medications.
+
+467
+00:38:51,680 --> 00:38:59,180
+A bag is literally like a baggie that they put something into, and a vial is literally
+
+468
+00:38:59,180 --> 00:39:01,980
+something that they put pills in.
+
+469
+00:39:01,980 --> 00:39:03,940
+And why is that in the database?
+
+470
+00:39:03,940 --> 00:39:07,100
+Because they get to charge for it.
+
+471
+00:39:07,100 --> 00:39:11,340
+And I don't know what the charge is, but it wouldn't surprise me if you're paying five
+
+472
+00:39:11,340 --> 00:39:15,940
+bucks for a plastic bag to put something in.
+
+473
+00:39:15,940 --> 00:39:23,900
+Okay, so if we say, well, how many pharmacy orders are there per admission at this hospital?
+
+474
+00:39:23,900 --> 00:39:26,580
+And the answer is a lot.
+
+475
+00:39:26,980 --> 00:39:34,260
+If you look at, it's a very long tailed distribution, it goes out to about 2,500, but you see if
+
+476
+00:39:34,260 --> 00:39:41,900
+I blow up just the numbers up to about 200, there's a very large number of people with
+
+477
+00:39:41,900 --> 00:39:52,780
+like two prescriptions filled, and then a fairly declining number with more.
+
+478
+00:39:52,780 --> 00:39:54,300
+And then it's a very long tail.
+
+479
+00:39:54,300 --> 00:40:01,900
+So can you imagine 2,500 things prescribed for you during a hospital stay?
+
+480
+00:40:01,900 --> 00:40:05,980
+Well, a little more about standards.
+
+481
+00:40:05,980 --> 00:40:13,380
+So NDC is probably the best of the coding systems, and it's developed by the FDA.
+
+482
+00:40:13,380 --> 00:40:20,700
+The picture up on the top right shows that the first four digits are the so-called labeler
+
+483
+00:40:20,780 --> 00:40:27,020
+that's usually the person who produced the drugs or at least the person who distributes them.
+
+484
+00:40:27,020 --> 00:40:34,500
+The second four digit number is the form of the drug, so whether it's capsules or tablets
+
+485
+00:40:34,500 --> 00:40:39,380
+or liquid or whatever, and the dose.
+
+486
+00:40:39,380 --> 00:40:46,460
+And then the last two digits are a package code which translates into the total number
+
+487
+00:40:46,460 --> 00:40:49,660
+of doses that are in a package.
+
+488
+00:40:49,660 --> 00:40:56,500
+So this is a godsend, and all of the robotic pharmacies and so on rely on using this kind
+
+489
+00:40:56,500 --> 00:41:00,620
+of information nowadays.
+
+490
+00:41:00,620 --> 00:41:10,540
+Unfortunately they ran out of four digit numbers, and so they added an extra digit, but they
+
+491
+00:41:10,540 --> 00:41:15,900
+didn't do it systematically, and so sometimes they added an extra digit to the labeler and
+
+492
+00:41:15,900 --> 00:41:22,060
+sometimes to the product code, and so there's a nightmare of translations between the old
+
+493
+00:41:22,060 --> 00:41:27,420
+codes and the new codes, and you have to have a code dictionary in order to do it properly,
+
+494
+00:41:27,420 --> 00:41:28,420
+and so on.
+
+495
+00:41:28,420 --> 00:41:35,460
+Okay, well, if that weren't good enough, the International Council for the Harmonization
+
+496
+00:41:35,460 --> 00:41:41,700
+of Technical Requirements for Pharmaceuticals for Human Use developed another coding system
+
+497
+00:41:41,700 --> 00:41:49,140
+called MEDRA, which is also used in various places, and this is an international standard,
+
+498
+00:41:49,140 --> 00:41:54,460
+which is of course incompatible with the NDC.
+
+499
+00:41:54,460 --> 00:42:03,180
+There are also CPT is the Common Procedural Terminology, which we'll talk about in a little
+
+500
+00:42:03,180 --> 00:42:11,420
+bit, and they have a sub-range of their codes which also correspond to medication administration,
+
+501
+00:42:11,420 --> 00:42:22,820
+and so this is yet another way of coding giving medicines, and then the HCPCS is yet another
+
+502
+00:42:22,820 --> 00:42:32,220
+set of codes for specifying what medicines you've given to somebody, and then I had mentioned
+
+503
+00:42:32,220 --> 00:42:37,060
+this GSN number, which apparently the Beth Israel uses.
+
+504
+00:42:37,060 --> 00:42:42,780
+This is a commercial coding system from a company called First Data Bank that is in
+
+505
+00:42:42,780 --> 00:42:48,900
+the business of trying to produce standards, but in this case they're producing ones that
+
+506
+00:42:48,900 --> 00:42:55,300
+are pretty redundant with other existing standards, but nevertheless for historical reasons or
+
+507
+00:42:55,300 --> 00:42:58,620
+for whatever reasons people are using these.
+
+508
+00:42:58,620 --> 00:43:01,540
+Okay, enough of drugs.
+
+509
+00:43:01,540 --> 00:43:04,940
+So what procedures were done to a patient?
+
+510
+00:43:04,940 --> 00:43:08,180
+If you look in MIMIC, there are three tables.
+
+511
+00:43:08,180 --> 00:43:16,780
+There's procedures ICD, which has ICD-9 codes for about a quarter million procedures.
+
+512
+00:43:16,780 --> 00:43:25,100
+There's CPT events, which has about half a million, 600,000 events that are coded in
+
+513
+00:43:25,100 --> 00:43:32,980
+the CPT terminology, and then MEDA vision, the newer of the two systems, has about a
+
+514
+00:43:32,980 --> 00:43:37,740
+quarter million procedure events that are coded in that system.
+
+515
+00:43:37,740 --> 00:43:44,420
+So some examples, here's the most common ICD-9 procedure codes.
+
+516
+00:43:44,420 --> 00:43:55,220
+So ICD-9 code 3893, of which there are 14,000 instances, is venous catheterization, not
+
+517
+00:43:55,220 --> 00:43:57,540
+elsewhere classified.
+
+518
+00:43:57,540 --> 00:43:59,660
+So what's venous catheterization?
+
+519
+00:44:00,420 --> 00:44:05,820
+It's when somebody sticks an IV in your vein.
+
+520
+00:44:05,820 --> 00:44:06,820
+Very common.
+
+521
+00:44:06,820 --> 00:44:14,020
+You show up at a hospital before they ask you your name, they stick an IV in your arm.
+
+522
+00:44:14,020 --> 00:44:21,820
+That's a billable event, too, an insertion of an endothracheal tube.
+
+523
+00:44:21,820 --> 00:44:27,260
+If you're having any problems like that, they stick something down your throat, enteral
+
+524
+00:44:27,260 --> 00:44:30,820
+infusion of concentrated nutritional substances.
+
+525
+00:44:30,820 --> 00:44:36,460
+So if you're not able to eat, then they feed you through a stomach tube.
+
+526
+00:44:36,460 --> 00:44:40,300
+So that's what that is.
+
+527
+00:44:40,300 --> 00:44:45,900
+Continuous invasive mechanical ventilation for less than 96 consecutive hours.
+
+528
+00:44:45,900 --> 00:44:52,140
+So this is being put on a ventilator that's breathing for you, et cetera.
+
+529
+00:44:52,140 --> 00:44:56,120
+So you see that there's a very long tail of these.
+
+530
+00:44:56,120 --> 00:44:58,600
+So those are the ICD-9 codes.
+
+531
+00:44:58,600 --> 00:45:05,980
+Now CPT has its own procedure codes that go into tremendous amount of detail.
+
+532
+00:45:05,980 --> 00:45:12,600
+So for example, this is the medicine subsection, and it shows you the kinds of drugs that you're
+
+533
+00:45:12,600 --> 00:45:23,040
+being administered that are involved in, dialysis or psychiatry or vaccines or whatever.
+
+534
+00:45:23,040 --> 00:45:29,360
+And then here are the surgical and the radiological codes, and there's tons and tons of detail
+
+535
+00:45:29,360 --> 00:45:30,360
+on these.
+
+536
+00:45:30,360 --> 00:45:31,360
+Yeah.
+
+537
+00:45:31,360 --> 00:45:34,840
+So how can they put these codes as like 1,000 to 1,022?
+
+538
+00:45:34,840 --> 00:45:36,960
+This seems really annoying for anyone.
+
+539
+00:45:36,960 --> 00:45:38,240
+No, these are categories.
+
+540
+00:45:38,240 --> 00:45:49,640
+So if you drill down, there's a fan out of that tree and you get down to individual codes.
+
+541
+00:45:49,640 --> 00:45:56,600
+Just as a nasty surprise, CPT is owned by the American College of Physicians.
+
+542
+00:45:56,600 --> 00:46:07,080
+And they could sue me if I showed you the actual codes because they're copyrighted.
+
+543
+00:46:07,080 --> 00:46:10,720
+And you have to pay them if you use those codes.
+
+544
+00:46:10,720 --> 00:46:14,800
+It's crazy.
+
+545
+00:46:14,800 --> 00:46:21,480
+So if you look at the number of all of these codes per admission, you see a distribution
+
+546
+00:46:21,480 --> 00:46:28,560
+like this, or if I separate them out, you see that there are more ICD-9 codes and fewer
+
+547
+00:46:28,560 --> 00:46:33,240
+of the CPT and the codes that are in medivision.
+
+548
+00:46:33,240 --> 00:46:37,680
+But they look somewhat similar in their distributions.
+
+549
+00:46:37,680 --> 00:46:40,040
+Okay, lab measurements.
+
+550
+00:46:40,040 --> 00:46:46,600
+So you send off a sputum sample, blood, urine, a piece of your brain, something.
+
+551
+00:46:46,600 --> 00:46:50,440
+They stick it in some goo and measure something about it.
+
+552
+00:46:50,440 --> 00:46:52,240
+So what is it that they're measuring?
+
+553
+00:46:52,240 --> 00:46:57,600
+Well, it turns out that hematocrit is the most common measurement.
+
+554
+00:46:57,600 --> 00:47:05,440
+So this is how much hemoglobin is in your blood or what fraction in your blood and is
+
+555
+00:47:05,440 --> 00:47:09,000
+very important for sick people.
+
+556
+00:47:09,360 --> 00:47:16,160
+The second most important is potassium and sodium creatine chloride, urea nitrogen, bicarbonate,
+
+557
+00:47:16,160 --> 00:47:17,160
+et cetera.
+
+558
+00:47:17,160 --> 00:47:21,760
+So this is a long, long list of different things that can be measured, and all this stuff
+
+559
+00:47:21,760 --> 00:47:24,040
+is in the database.
+
+560
+00:47:24,040 --> 00:47:37,600
+So for example, here's patient number two in the database, and on July 17th of 2138,
+
+561
+00:47:37,600 --> 00:47:42,960
+this is part of the de-identification process to make it difficult to figure out who the
+
+562
+00:47:42,960 --> 00:47:45,280
+patient actually is.
+
+563
+00:47:45,280 --> 00:47:57,800
+This person got a test for their blood, and they reported atypical lymphocytes.
+
+564
+00:47:57,800 --> 00:48:02,120
+So there are a couple of interesting things to note here.
+
+565
+00:48:02,120 --> 00:48:07,200
+One is that some things have a value and others don't.
+
+566
+00:48:07,200 --> 00:48:12,080
+So this is a qualitative measure, so there's no value associated with it.
+
+567
+00:48:12,080 --> 00:48:17,040
+Just the fact of the label tells you what the result of the test was.
+
+568
+00:48:17,040 --> 00:48:21,600
+The other thing that's interesting is this last column, which is LOINC, and I'll say
+
+569
+00:48:21,600 --> 00:48:28,200
+a word about that in a minute, actually right now.
+
+570
+00:48:28,200 --> 00:48:33,840
+So LOINC is the logical observation identifier's names and codes.
+
+571
+00:48:33,840 --> 00:48:41,320
+It was developed by our colleagues at Reagan Street Clinic in Indiana about 15 years ago,
+
+572
+00:48:41,320 --> 00:48:44,440
+maybe 20 years ago at this point.
+
+573
+00:48:44,440 --> 00:48:50,200
+And the attempt was to say every different type of laboratory test ought to have a unique
+
+574
+00:48:50,200 --> 00:48:56,920
+name, and they ought to be hierarchical so that if you have, for example, three different
+
+575
+00:48:56,920 --> 00:49:02,960
+ways of measuring serum potassium, that they're related to each other, but that they're distinct
+
+576
+00:49:02,960 --> 00:49:08,680
+from each other, because there may be circumstances under which the errors that you get from one
+
+577
+00:49:08,680 --> 00:49:13,360
+measurement versus another are different.
+
+578
+00:49:13,360 --> 00:49:20,280
+And so this is the standard way, if you send off your blood sample to a lab, they send
+
+579
+00:49:20,280 --> 00:49:27,960
+back a string like this to the hospital or to your doctor's office that says it's coded
+
+580
+00:49:27,960 --> 00:49:38,240
+in this OBX coding system, and here is the LOINC code, and this is the SNOMED interpretation,
+
+581
+00:49:38,240 --> 00:49:44,920
+and so this string is the way that your hospital's EHR or your doctor's office system figures
+
+582
+00:49:44,920 --> 00:49:47,880
+out what the result of the test was.
+
+583
+00:49:47,880 --> 00:49:54,640
+HL7 is this 30-something-year-old organization that has been working on standardizing stuff
+
+584
+00:49:54,640 --> 00:50:00,360
+like this, and LOINC is part of their standardization.
+
+585
+00:50:00,360 --> 00:50:05,800
+So if you look at these, you say, well, again, how many tests per admission?
+
+586
+00:50:05,800 --> 00:50:14,160
+Again a huge long tail, up to about 15,000 for a very small number of patients.
+
+587
+00:50:14,160 --> 00:50:22,400
+If you look at lab tests per admission, you can do a log transform and get something that
+
+588
+00:50:22,400 --> 00:50:25,280
+looks like a more reasonable distribution.
+
+589
+00:50:25,280 --> 00:50:30,720
+By the way, that's a very generic lesson when we're going to do analyses of these data,
+
+590
+00:50:30,720 --> 00:50:37,240
+is that often doing a transform of some sort, like in this case a log, takes some funny-looking
+
+591
+00:50:37,240 --> 00:50:43,000
+distribution and turns it into something that looks plausibly normal, which is better for
+
+592
+00:50:43,000 --> 00:50:44,680
+a lot of the techniques we use.
+
+593
+00:50:44,680 --> 00:50:45,680
+Yeah.
+
+594
+00:50:45,680 --> 00:51:00,680
+Yes, that's the whole idea of creating the standard.
+
+595
+00:51:00,680 --> 00:51:05,240
+And that has been pretty successful, pretty successfully adopted.
+
+596
+00:51:05,240 --> 00:51:08,240
+OK, chart events.
+
+597
+00:51:08,240 --> 00:51:13,320
+So these are the things that nurses typically enter at the bedside.
+
+598
+00:51:13,320 --> 00:51:21,440
+And so there are 5.1, 5.2 million heart rates measured in the MIMIC database.
+
+599
+00:51:21,440 --> 00:51:26,200
+And Calprev-Flig is an artifact.
+
+600
+00:51:26,200 --> 00:51:32,080
+It exists in every record, and it's some calibration, something or other that doesn't
+
+601
+00:51:32,080 --> 00:51:33,080
+mean anything.
+
+602
+00:51:33,080 --> 00:51:36,200
+I've never been able to figure out exactly what it is.
+
+603
+00:51:36,200 --> 00:51:41,200
+SpO2 is the partial pressure of oxygen in your blood.
+
+604
+00:51:41,200 --> 00:51:45,440
+If you use a pulse oximeter, that's what that's measuring.
+
+605
+00:51:45,440 --> 00:51:49,160
+Respiratory rate, heart rhythm, ectopic type, dot, dot, dot.
+
+606
+00:51:49,160 --> 00:51:56,000
+Now you might be troubled by the fact that here's heart rate again, right?
+
+607
+00:51:56,000 --> 00:52:03,520
+But I've already shown you this, that heart rate in care view and heart rate in meta-vision
+
+608
+00:52:03,520 --> 00:52:11,040
+were coded under different codes in the joint system that we created out of those two databases.
+
+609
+00:52:11,960 --> 00:52:20,200
+And so you have to take care of figuring out what's what if you're trying to analyze this data.
+
+610
+00:52:20,200 --> 00:52:27,000
+Not only do we have that problem of different age distributions across the two different data sets,
+
+611
+00:52:27,000 --> 00:52:32,720
+but we also just have the mechanical problem that there will be things with the same label
+
+612
+00:52:32,720 --> 00:52:39,360
+that may or may not represent the same measurement at different times in the system.
+
+613
+00:52:39,360 --> 00:52:48,000
+OK, this is the number of chart entries per admission, again on a log scale.
+
+614
+00:52:48,000 --> 00:52:56,240
+So you see that there are about 10 to the 3.5 chart entries per admission, so, you know,
+
+615
+00:52:56,240 --> 00:53:03,600
+thousands of admissions, of chart events per admission.
+
+616
+00:53:03,600 --> 00:53:06,320
+We also track outputs.
+
+617
+00:53:06,320 --> 00:53:14,960
+So Foley-Catheter allows your bladder to drain without you having consciously to go to the bathroom,
+
+618
+00:53:14,960 --> 00:53:16,840
+so they collect that information.
+
+619
+00:53:16,840 --> 00:53:25,080
+There are 1.9 million recordings of how much fluid came out of your bladder.
+
+620
+00:53:25,080 --> 00:53:30,440
+Chest tubes will drain stuff out of your chest if you have congestion.
+
+621
+00:53:30,480 --> 00:53:35,960
+Medivision is if you pee regularly, stool out, et cetera.
+
+622
+00:53:35,960 --> 00:53:45,320
+And again, I'm not sure I understand what the difference is between urine out Foley versus Foley.
+
+623
+00:53:45,320 --> 00:53:50,760
+They may be the same thing, but one from Careview and one from Medivision.
+
+624
+00:53:50,760 --> 00:53:54,000
+So again, typical kinds of problems.
+
+625
+00:53:54,000 --> 00:54:04,120
+If you look at the number of output events per admission, you're seeing on the order of a hundred, roughly.
+
+626
+00:54:08,120 --> 00:54:13,680
+Well, if you're tracking outputs, you should also track inputs, and so they do.
+
+627
+00:54:13,680 --> 00:54:22,080
+And so D5W is this dextrose in water, 0.9% normal saline.
+
+628
+00:54:22,080 --> 00:54:33,160
+People fall as an anesthetic, insulin, heparin, blood thinner, et cetera, fentanyl, I think an opioid, if I remember right.
+
+629
+00:54:33,160 --> 00:54:41,040
+So these are various things that are given to people, and they affect the volume of the person.
+
+630
+00:54:41,040 --> 00:54:46,600
+So this is an attempt to keep the person in balance and keep track of that.
+
+631
+00:54:46,600 --> 00:54:53,720
+Medivision inputs are classified somewhat differently, but they have similar kinds of data.
+
+632
+00:54:53,720 --> 00:55:05,120
+And if you combine them, you get, again, a distribution on a log scale that shows that there are on the order of 10 to the fifth input events.
+
+633
+00:55:05,120 --> 00:55:11,640
+So quite a few input events because this is recorded periodically.
+
+634
+00:55:11,680 --> 00:55:14,200
+Now, the paper that I had, yeah.
+
+635
+00:55:14,200 --> 00:55:16,040
+Is that what's an input event again?
+
+636
+00:55:16,040 --> 00:55:18,520
+Is that like when you come in the hospital and I was in it?
+
+637
+00:55:18,520 --> 00:55:21,440
+No, no, no, it's an input into you.
+
+638
+00:55:21,440 --> 00:55:29,440
+So it's like you drink a glass of water, the nurse is supposed to record it, although she doesn't always because she may not notice it.
+
+639
+00:55:29,440 --> 00:55:36,240
+But if they hang an IV bag and pour a liter of liquid into you, they do record that.
+
+640
+00:55:36,240 --> 00:55:39,040
+OK. All right.
+
+641
+00:55:39,040 --> 00:55:56,120
+So I had you read this interesting paper and a discussion prior to that paper because one of the authors is a former student of mine and I know one of the other guys pretty well.
+
+642
+00:55:56,200 --> 00:56:20,120
+And the former student, Zach Kohane, came back some years ago from a conference in California and was explaining to me that he ran into a venture capitalist who discovered that there's an interesting physiological variation in the abnormality of lab tests that are done at night.
+
+643
+00:56:20,120 --> 00:56:29,800
+And he suspected that there's a diurnal variation that lab tests actually become more abnormal at night than they do during the day.
+
+644
+00:56:29,800 --> 00:56:39,480
+And Zach, who is not only a computer science PhD, but also a practicing doctor, turns to him and says, you're an idiot, right?
+
+645
+00:56:39,480 --> 00:56:45,680
+Who has their blood drawn at three o'clock in the morning?
+
+646
+00:56:45,720 --> 00:56:50,720
+It's typically not healthy people, right?
+
+647
+00:56:50,720 --> 00:57:03,240
+So this is another of these nice confounding stories where if you have a test done in the middle of the night, it probably indicates that you're sicker.
+
+648
+00:57:03,240 --> 00:57:14,880
+So he and Griffin recruited their third author and went off and did a very large scale study of this question, which is what the paper that I asked you to read reports on.
+
+649
+00:57:14,880 --> 00:57:22,240
+And so I said, well, I wonder if I could reproduce that study in the MIMIC database?
+
+650
+00:57:22,240 --> 00:57:31,320
+And the answer, just in case you get your hopes up, was no, in large part because we just don't have the right kind of data.
+
+651
+00:57:31,320 --> 00:57:38,480
+So there are not that many white blood counts that were measured in the MIMIC database, for example.
+
+652
+00:57:38,480 --> 00:57:49,520
+But if you look at the, this is MIMIC data, and if you say, what's the fraction of abnormal white blood count values by hour?
+
+653
+00:57:49,520 --> 00:57:53,320
+So this is midnight to midnight.
+
+654
+00:57:53,320 --> 00:57:59,400
+And each hour, there's some fraction of these test results that are abnormal.
+
+655
+00:57:59,400 --> 00:58:20,600
+And sure enough, what you see is that at 5 o'clock in the morning, a much higher fraction of them is abnormal than at 3 o'clock in the afternoon, which is consistent with Zach's peremptory comment about the guy being an idiot.
+
+656
+00:58:20,600 --> 00:58:29,520
+So once again, I said, well, can we build a really simple model that predicts who's going to die in the hospital in this case?
+
+657
+00:58:29,520 --> 00:58:33,520
+That's the easiest one to predict because I have that data.
+
+658
+00:58:33,520 --> 00:58:49,680
+We could get three-year survival data, which is what they were looking at, but it's harder and it runs into censoring problems of what happens if the person was hospitalized less than three years before the end of our data collection period and so on.
+
+659
+00:58:49,680 --> 00:58:51,560
+And so I avoided that.
+
+660
+00:58:51,560 --> 00:59:07,880
+But what this is showing you is for each of the hours 0 to 24, what is the number of measurements?
+
+661
+00:59:07,880 --> 00:59:16,840
+And for each of those hours, what is the fraction of those measurements that's abnormal?
+
+662
+00:59:16,840 --> 00:59:21,040
+So I said, well, let's just throw it into a logistic regression model.
+
+663
+00:59:21,040 --> 00:59:30,040
+And what comes out is something really weird, which is that a few particular hours are significant, but most of them are not.
+
+664
+00:59:30,040 --> 00:59:46,640
+And that looks like noise to me, because you wouldn't expect that at 8 o'clock in the morning, the fact that you had something measured matters.
+
+665
+00:59:46,640 --> 00:59:52,520
+But at 9 o'clock in the morning, that doesn't seem sensible.
+
+666
+00:59:52,520 --> 00:59:55,920
+So I don't think there's enough signal here.
+
+667
+00:59:55,920 --> 01:00:13,800
+And in fact, when I looked at the number of white blood count measurements at night and related to mortality, so false means people lived and true means they died, but you see that there's not a whole lot of difference between the distributions.
+
+668
+01:00:13,800 --> 01:00:24,280
+But you also see that the number of white blood counts is relatively small in this database, and so I think we just don't have enough data to do it.
+
+669
+01:00:24,280 --> 01:00:38,080
+On the other hand, if you look at a panel of different drugs, you look at mean values of blood urea nitrogen or calcium chloride, CO2, et cetera, you see that there is variation across time.
+
+670
+01:00:38,080 --> 01:00:55,240
+So there is some sort of variance that's either caused by the diurnal physiology of the human body or by the routine practice of medicine about when people choose to take lab measurements.
+
+671
+01:00:55,240 --> 01:01:04,640
+And in fact, if you look at the fraction of high and low lab values, they do vary by hour.
+
+672
+01:01:04,640 --> 01:01:23,680
+And in particular, if you look at white blood counts, you see that the fraction of high values goes up at night and the fraction of low values goes down at night, which is consistent with what they saw as well.
+
+673
+01:01:23,680 --> 01:01:36,520
+There's another way to measure it, which is instead of using normal ranges, the lab actually gives you a call that says, is this value normal, low, or high?
+
+674
+01:01:36,520 --> 01:01:38,680
+And we can use that.
+
+675
+01:01:38,680 --> 01:01:47,160
+That's a little bit more subtle because it depends on calibration of the equipment and is updated as the calibration changes.
+
+676
+01:01:47,160 --> 01:01:53,360
+So that's probably a little bit more accurate, but you see essentially the same phenomenon here.
+
+677
+01:01:53,360 --> 01:02:12,600
+But if you look at the distributions of when measurements are done that turn out to be normal versus when they turn out to be abnormal, there's a lot of similarity between the normal and the abnormal curves of when those measurements are taken.
+
+678
+01:02:12,600 --> 01:02:15,800
+So we're not seeing that.
+
+679
+01:02:15,800 --> 01:02:19,000
+OK, let me race through to the end.
+
+680
+01:02:19,000 --> 01:02:23,280
+This is my heartbeat from my watch.
+
+681
+01:02:23,320 --> 01:02:30,480
+You can actually download the stuff and put it in your favorite analysis engine and take a look.
+
+682
+01:02:30,480 --> 01:02:33,680
+So here I was running across the Harvard Bridge.
+
+683
+01:02:33,680 --> 01:02:50,960
+And if you look at my heart rate variability over the 30 seconds or so, you see that the interbeat interval ranges from about 550 to about 630 milliseconds, whatever, 20 milliseconds.
+
+684
+01:02:50,960 --> 01:02:58,640
+And so you could calculate my heart rate variability, which is thought to be an indicator of heart health and so on.
+
+685
+01:02:58,640 --> 01:03:03,000
+You can calculate that I was running at a pace of about 100.
+
+686
+01:03:03,000 --> 01:03:07,280
+My heart was beating at a pace of about 100 beats per minute.
+
+687
+01:03:07,280 --> 01:03:11,600
+So there's all sorts of information like that available.
+
+688
+01:03:11,600 --> 01:03:15,520
+Now, as I said, I'm not going to get into this today.
+
+689
+01:03:15,520 --> 01:03:26,560
+But this was a very successful recently published paper where they're able to take a look at images of the lung.
+
+690
+01:03:26,560 --> 01:03:30,960
+So this is a transverse scan of the lung.
+
+691
+01:03:30,960 --> 01:03:37,840
+And they have a deep learning machine that is able to identify these two yellow marked things,
+
+692
+01:03:37,920 --> 01:03:45,120
+a pulmonary emboli, as opposed to these other things that are just random flecks in the tissue.
+
+693
+01:03:45,120 --> 01:03:47,840
+And I can't do that by eyeball.
+
+694
+01:03:47,840 --> 01:03:51,280
+Maybe a good radiologist might be able to.
+
+695
+01:03:51,280 --> 01:03:58,080
+But this is claimed in the paper to outperform decent radiologists already.
+
+696
+01:03:58,080 --> 01:04:05,480
+This was one of the articles that led Jeff Hinton to make this rather stupid pronouncement that said,
+
+697
+01:04:05,480 --> 01:04:13,520
+tell your children not to become radiologists because the profession will be over by the time they get fully trained,
+
+698
+01:04:13,520 --> 01:04:20,720
+which I don't believe they may do different things, but they won't go away.
+
+699
+01:04:20,720 --> 01:04:25,160
+This was a slide from Ron Kikinis at the Brigham.
+
+700
+01:04:25,160 --> 01:04:34,040
+And they're using automated techniques of analyzing white matter in order to identify lupus lesions.
+
+701
+01:04:34,120 --> 01:04:44,840
+So lupus is a bad disease that shows up in these magnetic resonance images in certain ways.
+
+702
+01:04:44,840 --> 01:04:48,200
+The last thing I want to talk about today is notes.
+
+703
+01:04:48,200 --> 01:05:00,400
+So my students did a little exercise last semester where we tried to see how good is the average ape,
+
+704
+01:05:00,440 --> 01:05:07,280
+namely, member of my research group at predicting mortality.
+
+705
+01:05:07,280 --> 01:05:11,160
+And so we took a bunch of cases from the MIMIC data set,
+
+706
+01:05:11,160 --> 01:05:15,360
+blinded to the question of whether the person lived or died.
+
+707
+01:05:15,360 --> 01:05:21,640
+We gave the data to people in a kind of visualization tool, sort of like the one that I showed you earlier,
+
+708
+01:05:21,640 --> 01:05:27,520
+that summarizes the case and then also gave people access to the notes,
+
+709
+01:05:27,520 --> 01:05:35,400
+the de-identified notes about those cases to see whether people could predict better than a coin flip,
+
+710
+01:05:35,400 --> 01:05:39,080
+whether somebody was going to live or die.
+
+711
+01:05:39,080 --> 01:05:42,840
+And the answer is yes, slightly better, okay?
+
+712
+01:05:42,840 --> 01:05:46,120
+Not immensely better, but slightly better.
+
+713
+01:05:46,120 --> 01:05:50,280
+And furthermore, it looks like by giving them feedback.
+
+714
+01:05:50,280 --> 01:05:54,880
+So as they're looking at these cases and trying to make the prediction,
+
+715
+01:05:54,920 --> 01:05:59,960
+they make a prediction, you tell them if they were right or wrong, we learn.
+
+716
+01:05:59,960 --> 01:06:05,840
+And so we get slightly better than slightly better than random, right?
+
+717
+01:06:05,840 --> 01:06:07,880
+It's kind of interesting.
+
+718
+01:06:07,880 --> 01:06:16,000
+Okay, so one of the things I discovered is that at least when I was playing the monkey in this exercise,
+
+719
+01:06:16,000 --> 01:06:24,680
+I found the notes to be immensely useful, much more useful than the trend lines of laboratory data.
+
+720
+01:06:24,680 --> 01:06:27,360
+Partly it's because I'm used to reading English.
+
+721
+01:06:27,360 --> 01:06:31,960
+I'm not so used to reading graphs of laboratory data.
+
+722
+01:06:31,960 --> 01:06:38,640
+But part of it is that there's a level of human understanding that is transmitted in the nursing notes
+
+723
+01:06:38,640 --> 01:06:44,280
+and in the discharge summaries and so on that you don't get from just looking at raw data.
+
+724
+01:06:44,280 --> 01:06:49,760
+And so there is very much the sense, which we're going to talk about in a couple of weeks,
+
+725
+01:06:49,800 --> 01:06:59,040
+of how can we take advantage of that information, extract it, and use it in the kinds of modeling that we want to do.
+
+726
+01:06:59,040 --> 01:07:06,000
+So in MIMIC, if you look, we have nursing notes and radiology reports and more nursing notes
+
+727
+01:07:06,000 --> 01:07:16,160
+and electrocardiogram reports and doctor's notes and discharge summaries and echocardiograms, respiratory, etc.
+
+728
+01:07:16,160 --> 01:07:24,800
+And if you look at the distribution of the length of these, these are unfortunately not on the same scale.
+
+729
+01:07:24,800 --> 01:07:29,880
+But the discharge summary is the thing that's written at the time you leave the hospital.
+
+730
+01:07:29,880 --> 01:07:35,280
+So this is sort of the summary of everything that happened to you during your hospitalization.
+
+731
+01:07:35,280 --> 01:07:48,240
+And it's long, so it goes up to like 30,000 characters, it's a small, it's a short story, not so short, short story.
+
+732
+01:07:48,240 --> 01:07:53,480
+Nursing notes tend to be shorter, they run up to about 3,000 characters.
+
+733
+01:07:53,480 --> 01:08:01,600
+This other set of nursing notes, which I think comes from the other system, is a little bit longer, goes up to about 5,000.
+
+734
+01:08:01,600 --> 01:08:08,960
+Doctor's notes are a little bit longer yet, they go up to about 10, 15,000 characters, typically.
+
+735
+01:08:08,960 --> 01:08:11,760
+And there are various other kinds of notes.
+
+736
+01:08:11,760 --> 01:08:14,360
+So I just wanted to show you a few of these.
+
+737
+01:08:14,360 --> 01:08:16,040
+Here's a brief nursing note.
+
+738
+01:08:16,040 --> 01:08:20,960
+So this is a patient who is hypotensive but not in shock.
+
+739
+01:08:20,960 --> 01:08:27,960
+Patient remains on this drug drip at 0.75 micrograms per kilogram per minute.
+
+740
+01:08:27,960 --> 01:08:30,480
+No titration needed at this time.
+
+741
+01:08:30,480 --> 01:08:33,080
+Their blood pressure is stable at more than 100.
+
+742
+01:08:33,080 --> 01:08:38,160
+The mean arterial pressure is 65, greater than 65.
+
+743
+01:08:38,160 --> 01:08:43,320
+Wean them from this drug, presumably, if it's tolerated.
+
+744
+01:08:43,320 --> 01:08:48,960
+Wound infection, so anterior groin area open and oozing.
+
+745
+01:08:48,960 --> 01:08:53,520
+Moderate amounts of thin pink tinged serous fluid.
+
+746
+01:08:53,520 --> 01:09:00,400
+Patient's stooling with small amounts of stool on something and dangerously close to the open wound.
+
+747
+01:09:01,040 --> 01:09:04,160
+So this is sort of the nurse's snapshot.
+
+748
+01:09:04,160 --> 01:09:07,000
+She just went in, saw the patient.
+
+749
+01:09:07,000 --> 01:09:15,520
+By the way, I say she, but probably a vast majority of nurses in Boston area hospitals really are women.
+
+750
+01:09:15,520 --> 01:09:19,160
+But there are some male nurses.
+
+751
+01:09:19,160 --> 01:09:24,040
+And we'll record sort of a snapshot of what's going on with the patient.
+
+752
+01:09:24,040 --> 01:09:25,680
+What are the concerns?
+
+753
+01:09:25,680 --> 01:09:31,400
+In principle, this is going to be useful not only as a part of the medical record,
+
+754
+01:09:31,400 --> 01:09:36,480
+but also when this nurse goes off shift and the next nurse comes on shift,
+
+755
+01:09:36,480 --> 01:09:43,160
+then this is a recording of what the state of the patient was the last time they were seen by the nurse.
+
+756
+01:09:43,160 --> 01:09:50,720
+In reality, the nurses tend to tell each other verbally rather than relying on the written version.
+
+757
+01:09:50,720 --> 01:09:56,560
+I remember one time talking to a nurse in an intensive care unit in another part of the country,
+
+758
+01:09:56,560 --> 01:09:59,920
+and I said, so whoever reads your notes.
+
+759
+01:09:59,920 --> 01:10:06,080
+And she says quality assurance officers.
+
+760
+01:10:06,080 --> 01:10:15,840
+So the hospital has people responsible for trying to assess the quality of care they're giving and lawyers when there's a lawsuit.
+
+761
+01:10:15,840 --> 01:10:26,480
+And she was very happy because she had saved the hospital $10 million by having carefully recorded that some procedure had been done to a patient
+
+762
+01:10:26,480 --> 01:10:33,040
+who then had a bad outcome and was suing the hospital for their neglect and not having done this.
+
+763
+01:10:33,040 --> 01:10:42,640
+But because it was in the note that was proof that it actually had been done and therefore the hospital wasn't liable.
+
+764
+01:10:42,640 --> 01:10:46,080
+So, but there's a lot of information in here.
+
+765
+01:10:46,080 --> 01:10:51,000
+Now, I'm going to show you many pages of a typical discharge summary.
+
+766
+01:10:51,000 --> 01:11:07,600
+So this is somebody on the surgery service who came in complaining of leg pain, redness and swelling secondary to infection of left femoral poplithal bypass.
+
+767
+01:11:07,600 --> 01:11:09,960
+So she had surgery.
+
+768
+01:11:09,960 --> 01:11:11,800
+I think she, yeah, female.
+
+769
+01:11:11,800 --> 01:11:15,320
+She had surgery, which didn't heal well.
+
+770
+01:11:15,320 --> 01:11:37,440
+So major surgical or invasive procedure, incision and drainage and pulse irrigation of the left groin and left above knee poplithal site incisions with exploration of bypass graft and excision of the entire left common femoral artery to above knee, blah, blah, blah, blah, blah, blah.
+
+771
+01:11:37,440 --> 01:11:40,000
+So this is what they did.
+
+772
+01:11:40,000 --> 01:11:41,920
+History of the present illness.
+
+773
+01:11:41,920 --> 01:11:55,160
+She's a 45 year old woman who underwent a left femoral AK doctor or something or other with PTFE, whatever that is, over a month ago on a certain date.
+
+774
+01:11:55,160 --> 01:12:04,320
+By the way, these bracket asterisk things are where we've taken out identifying information from the record.
+
+775
+01:12:04,320 --> 01:12:09,680
+She had been doing well postoperatively and was seen in the clinic six days prior to presentation.
+
+776
+01:12:09,680 --> 01:12:17,840
+At this time, she acutely developed nausea, vomiting, fevers and progressive redness, swelling, pain of her left thigh, et cetera.
+
+777
+01:12:17,840 --> 01:12:21,200
+So that's just page one of many pages.
+
+778
+01:12:21,200 --> 01:12:21,720
+Yeah.
+
+779
+01:12:21,720 --> 01:12:22,240
+Question.
+
+780
+01:12:22,240 --> 01:12:24,600
+Is this completely these information fields?
+
+781
+01:12:24,600 --> 01:12:25,640
+There is no help.
+
+782
+01:12:25,640 --> 01:12:29,360
+There is no auto-complete if you type a patient's name or date.
+
+783
+01:12:29,360 --> 01:12:31,080
+Not in this system.
+
+784
+01:12:31,080 --> 01:12:39,920
+There are people, Henry Chouet at Mass General spent 10 years building a system that had auto-complete and so on.
+
+785
+01:12:39,920 --> 01:12:43,840
+And some doctors liked it and some doctors hated it.
+
+786
+01:12:43,840 --> 01:12:50,320
+And the MGH threw out all of their old systems in order to buy epic.
+
+787
+01:12:50,320 --> 01:12:51,440
+And so it's gone.
+
+788
+01:12:51,440 --> 01:12:54,320
+It was like 10 years of work down the drain.
+
+789
+01:12:54,320 --> 01:12:57,760
+But it was not a spectacular success.
+
+790
+01:12:57,760 --> 01:13:03,720
+Because whenever you have auto-complete, you have to anticipate every possible answer.
+
+791
+01:13:03,720 --> 01:13:05,240
+And people are very creative.
+
+792
+01:13:05,240 --> 01:13:09,040
+And they always want to type something that you can anticipate.
+
+793
+01:13:09,040 --> 01:13:11,680
+So it's hard to support it.
+
+794
+01:13:11,680 --> 01:13:13,240
+And what is Epic?
+
+795
+01:13:13,240 --> 01:13:21,640
+Epic is a big company that has been winning all the recent contests for installing electronic medical record systems.
+
+796
+01:13:21,640 --> 01:13:26,800
+Remember in my last lecture, I showed that we're reaching about 100% saturation.
+
+797
+01:13:26,840 --> 01:13:34,360
+So they've been winning a lot of the installation deals.
+
+798
+01:13:34,360 --> 01:13:38,400
+And they're getting a lot of the subsidy.
+
+799
+01:13:38,400 --> 01:13:45,400
+The estimate I heard was that Partners Health Care, which is MGH of the Brigham and a couple of other hospitals,
+
+800
+01:13:45,400 --> 01:13:50,840
+spent somewhere on the order of $2 billion installing the system.
+
+801
+01:13:50,880 --> 01:13:57,600
+So that included all the customizations and all the training and all the administrative stuff that went with it.
+
+802
+01:13:57,600 --> 01:14:01,840
+But that's a huge amount of money.
+
+803
+01:14:01,840 --> 01:14:03,120
+OK.
+
+804
+01:14:03,120 --> 01:14:10,360
+So we have past medical history, one pack a day smoker, abused cocaine.
+
+805
+01:14:10,360 --> 01:14:18,200
+But she stopped six months ago, has asthma, type 2 diabetes, social history, family history.
+
+806
+01:14:21,840 --> 01:14:25,840
+These are the physical exam results.
+
+807
+01:14:25,840 --> 01:14:31,840
+So it's giving you a lot of information about the person.
+
+808
+01:14:31,840 --> 01:14:34,840
+Description of the wound down at the bottom.
+
+809
+01:14:34,840 --> 01:14:36,840
+Pertinent lab results.
+
+810
+01:14:36,840 --> 01:14:39,840
+So these are copied out of the laboratory tables.
+
+811
+01:14:39,840 --> 01:14:41,840
+Just double-tip with the drug results.
+
+812
+01:14:41,840 --> 01:14:42,840
+Sorry?
+
+813
+01:14:42,840 --> 01:14:44,840
+Just double-tip with the drug results, two slides back.
+
+814
+01:14:44,840 --> 01:14:45,840
+Yep.
+
+815
+01:14:46,840 --> 01:14:52,840
+So it has the fake dates of 2198 up there.
+
+816
+01:14:52,840 --> 01:14:53,840
+Yeah.
+
+817
+01:14:53,840 --> 01:14:59,840
+So the fact that there was a positive test in 2197 a year ago, so that's the medication.
+
+818
+01:14:59,840 --> 01:15:00,840
+Yeah.
+
+819
+01:15:00,840 --> 01:15:07,840
+The de-identification technology here maintains the relative dates, but not the absolute dates.
+
+820
+01:15:07,840 --> 01:15:21,840
+So these are results, again, copied out of the laboratory database into the discharge summary,
+
+821
+01:15:21,840 --> 01:15:26,840
+brief hospital course, and then a review of systems.
+
+822
+01:15:26,840 --> 01:15:27,840
+So what's going on?
+
+823
+01:15:27,840 --> 01:15:32,840
+Neurologically, cardiovascular, pulmonary, GI, GU, et cetera.
+
+824
+01:15:33,840 --> 01:15:38,840
+Infectious disease, endocrine, hematology, prophylaxis.
+
+825
+01:15:38,840 --> 01:15:42,840
+And at the time of discharge, the patient was doing well.
+
+826
+01:15:42,840 --> 01:15:51,840
+No fever and stable vital signs, tolerating a regular diet, ambulating, voiding without assistance, and pain was well controlled.
+
+827
+01:15:51,840 --> 01:15:53,840
+Medications on admission.
+
+828
+01:15:53,840 --> 01:15:56,840
+So this was the medication reconciliation.
+
+829
+01:15:56,840 --> 01:15:58,840
+Discharge medication.
+
+830
+01:15:58,840 --> 01:16:01,840
+So this is what she's being sent home on.
+
+831
+01:16:01,840 --> 01:16:07,840
+Discharge disposition is to the home with some follow-up service.
+
+832
+01:16:07,840 --> 01:16:11,840
+And she's going home.
+
+833
+01:16:11,840 --> 01:16:19,840
+And the discharge diagnosis is infected left femoral, popliteal, bypass graft, and the condition.
+
+834
+01:16:19,840 --> 01:16:25,840
+And these are the instructions to the patient that say, you know, here's what you can do.
+
+835
+01:16:25,840 --> 01:16:30,840
+Here's when you should come back and tell us if something is going wrong, et cetera.
+
+836
+01:16:31,840 --> 01:16:36,840
+And here's what you should report if it happens.
+
+837
+01:16:36,840 --> 01:16:40,840
+You know, if you have sudden severe bleeding or swelling, do this.
+
+838
+01:16:40,840 --> 01:16:43,840
+Follow up with Dr. Somebody or other.
+
+839
+01:16:43,840 --> 01:16:47,840
+Call his clinic at this number to schedule an appointment.
+
+840
+01:16:47,840 --> 01:16:53,840
+And then follow up with Dr. Somebody else in two weeks.
+
+841
+01:16:54,840 --> 01:17:00,840
+I think this is the same one.
+
+842
+01:17:00,840 --> 01:17:05,840
+So just a couple of final words about standards.
+
+843
+01:17:05,840 --> 01:17:16,840
+So you saw in David's introductory lecture a reference to Odyssey, which is a standard method of encoding the kind of data that we were talking about today.
+
+844
+01:17:16,840 --> 01:17:31,840
+There's a likelihood that the next release of the MIMIC database will adopt the Odyssey formats rather than the, yeah, David's shaking his head, wondering why me too.
+
+845
+01:17:37,840 --> 01:17:45,840
+Well, so, you know, what always happens is you say I'm going to adopt this standard asterisk with the following extensions.
+
+846
+01:17:45,840 --> 01:17:47,840
+And that's probably what's going to happen.
+
+847
+01:17:47,840 --> 01:18:01,840
+But it means that the central tables, you know, the ICD-9 code tables and the drug tables and things like that are likely to wind up adopting the formats of the Odyssey database.
+
+848
+01:18:01,840 --> 01:18:10,840
+You should also know about this thing called FHIR, the Fast Health Interoperability Resources.
+
+849
+01:18:11,840 --> 01:18:28,840
+So HL7 is the standards organization that had a tremendous success in the early 1990s in solving the problem of how to allow laboratories to report lab data back to the hospitals or the clinics that ordered the labs.
+
+850
+01:18:29,840 --> 01:18:40,840
+And that character string with the up arrows and the vertical bars and so on that I showed you before that had link encoded in it is that standard.
+
+851
+01:18:40,840 --> 01:18:42,840
+That's called HL7 version 2.
+
+852
+01:18:42,840 --> 01:18:45,840
+It's still in use very widely.
+
+853
+01:18:45,840 --> 01:18:58,840
+They then got ambitious and suffered second system syndrome, which is they decided to build HL7 version 3, which I used to teach in a class here 10 years ago.
+
+854
+01:18:58,840 --> 01:19:14,840
+But one of my friends who works for a company that helps hospitals implement that sent me a like a 38 megabyte PDF file that describes what you need to know in order to implement that system.
+
+855
+01:19:14,840 --> 01:19:17,840
+And as a result, nobody was doing it.
+
+856
+01:19:17,840 --> 01:19:33,840
+So FHIR is a gross simplification of that that starts off and says, if a doctor refers a new patient to you, what is the minimum set of data that you need to know in order to take care of that person?
+
+857
+01:19:33,840 --> 01:19:38,840
+And FHIR tries to provide just that subset of all the data.
+
+858
+01:19:38,840 --> 01:19:53,840
+It has become a standard mainly because after Congress spent $42 billion or so bribing people into buying these information systems, they got mad that the information systems they bought couldn't talk to each other.
+
+859
+01:19:53,840 --> 01:20:05,840
+And so they called in on the carpet the heads of these IT companies, health IT companies, and they yelled at them and they made them promise that there would be interoperability.
+
+860
+01:20:05,840 --> 01:20:08,840
+They promised and out of that came FHIR.
+
+861
+01:20:08,840 --> 01:20:13,840
+It was probably simultaneously developed, but they adopted it.
+
+862
+01:20:13,840 --> 01:20:25,840
+And so now, in principle, it's possible to exchange data between different hospitals at least to the level of that degree of harmonization of the data.
+
+863
+01:20:25,840 --> 01:20:40,840
+In reality, the companies don't want you to do that because they like there to be friction in not being able to take all your data to a different hospital because it is more likely to leave you at the one that you're at.
+
+864
+01:20:40,840 --> 01:20:53,840
+So there's complicated socioeconomic kinds of issues in all this, but at least the standard exists and is becoming more and more widely deployed as long as Congress pays attention.
+
+865
+01:20:53,840 --> 01:20:57,840
+It's ugly, so here's what a patient looks like, right?
+
+866
+01:20:57,840 --> 01:21:10,840
+It's the usual unreadable XML garbage, but fortunately there are parsers that can turn it into JSON and simpler representations, and so that's pretty common.
+
+867
+01:21:10,840 --> 01:21:17,840
+So the terminologies that exist are Loink and NDC, ICD-9 and 10.
+
+868
+01:21:17,840 --> 01:21:19,840
+SNOMED I didn't talk about today.
+
+869
+01:21:19,840 --> 01:21:33,840
+DSM-5 is the Diagnostic and Statistical Manual for Psychiatrists that's used as a common coding method for describing psychiatric disease, and there are many more of these.
+
+870
+01:21:33,840 --> 01:21:59,840
+There's something called the Unified Medical Language Systems Metathosaurus from the National Library of Medicine that integrates about 180 of these different terminologies, and so there is a nice one-stop shop where you can get all these things from them.
+
+871
+01:21:59,840 --> 01:22:02,840
+So take away lessons, know your data.
+
+872
+01:22:02,840 --> 01:22:18,840
+Remember that first example of the heart rates that comes up over and over again, and doing machine learning and analysis on data that you don't understand is likely to lead you to false conclusions.
+
+873
+01:22:18,840 --> 01:22:27,840
+Harmonization is difficult and time-consuming, and there are lots of things for which we just don't have standards, and so everybody develops their own representations.
+
+874
+01:22:27,840 --> 01:22:46,840
+I had a PhD student about a decade ago who in his thesis wrote that he spent about half his time cleaning data, and I gave that thesis to another student who started a few years later who read it and he comes to me with just awestruck, and he says,
+
+875
+01:22:46,840 --> 01:22:50,840
+what? He only spent half his time cleaning data.
+
+876
+01:22:50,840 --> 01:23:00,840
+Unfortunately, that's roughly where we are in this field, so sorry to be a downer, but that's the current state of the art.
+
+877
+01:23:00,840 --> 01:23:10,840
+And next time, David will start by looking at actually building some models with these kinds of data and showing you what we can accomplish.
+
+878
+01:23:10,840 --> 01:23:12,840
+Thank you.
+
+879
+01:23:16,840 --> 01:23:18,840
+Thank you.
+

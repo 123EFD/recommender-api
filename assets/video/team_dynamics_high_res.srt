@@ -1,0 +1,4200 @@
+1
+00:00:00,000 --> 00:00:02,480
+The following content is provided under a Creative
+
+2
+00:00:02,480 --> 00:00:03,880
+Commons license.
+
+3
+00:00:03,880 --> 00:00:06,920
+Your support will help MIT OpenCourseWare continue to
+
+4
+00:00:06,920 --> 00:00:10,560
+offer high quality educational resources for free.
+
+5
+00:00:10,560 --> 00:00:13,440
+To make a donation or view additional materials from
+
+6
+00:00:13,440 --> 00:00:17,400
+hundreds of MIT courses, visit MIT OpenCourseWare at
+
+7
+00:00:17,400 --> 00:00:18,440
+ocw.mit.edu.
+
+8
+00:00:22,120 --> 00:00:24,160
+OK, most everyone's here.
+
+9
+00:00:24,160 --> 00:00:26,000
+We're still going to take a few minutes to wait for the
+
+10
+00:00:26,000 --> 00:00:29,000
+last few people to show up.
+
+11
+00:00:29,000 --> 00:00:33,320
+I don't have a ton of announcements, but if you
+
+12
+00:00:33,320 --> 00:00:35,320
+looked at the syllabus, you might notice that there are a
+
+13
+00:00:35,320 --> 00:00:38,880
+couple days where we have, I think we've got TBD as the
+
+14
+00:00:38,880 --> 00:00:41,120
+topic, like TB-Determined.
+
+15
+00:00:41,120 --> 00:00:44,440
+What I'd like to do is just take a quick poll from you all.
+
+16
+00:00:44,440 --> 00:00:47,440
+Is there anything that you are interested in learning about
+
+17
+00:00:47,440 --> 00:00:50,680
+in the creation of video games that you either, we
+
+18
+00:00:50,680 --> 00:00:53,040
+haven't talked about it in class yet, maybe we've talked
+
+19
+00:00:53,040 --> 00:00:54,800
+about it, but not fully?
+
+20
+00:00:54,800 --> 00:00:57,000
+You've looked at the syllabus and it's not there on the
+
+21
+00:00:57,000 --> 00:01:01,320
+syllabus, or it's something that you think is going to be
+
+22
+00:01:01,320 --> 00:01:03,400
+directly useful for the games that you're working on
+
+23
+00:01:03,400 --> 00:01:05,240
+right now.
+
+24
+00:01:05,240 --> 00:01:07,320
+So just putting that out there, if there's any topics you
+
+25
+00:01:07,320 --> 00:01:12,320
+might want to talk about, learn about, let me know.
+
+26
+00:01:14,920 --> 00:01:15,920
+Yes?
+
+27
+00:01:15,920 --> 00:01:27,920
+Okay, so yeah, cool.
+
+28
+00:01:27,920 --> 00:01:33,920
+So what people do in the industry?
+
+29
+00:01:33,920 --> 00:01:35,280
+Cool, you are in luck.
+
+30
+00:01:35,280 --> 00:01:41,440
+On December 1st and 3rd, on the first we're having a
+
+31
+00:01:41,440 --> 00:01:45,440
+business and games panel, so two independent developers in
+
+32
+00:01:45,480 --> 00:01:48,040
+the area are going to come by and talk about how they started
+
+33
+00:01:48,040 --> 00:01:50,640
+their companies, what do they do, what's their daily life,
+
+34
+00:01:50,640 --> 00:01:51,760
+things like that.
+
+35
+00:01:51,760 --> 00:01:55,280
+And then another one following that is the community
+
+36
+00:01:55,280 --> 00:01:58,560
+manager for Firehose Games.
+
+37
+00:01:58,560 --> 00:02:02,160
+Sean Baptiste is going to talk to us about how do they get
+
+38
+00:02:02,160 --> 00:02:04,160
+their games out in the world, and how do they get people to
+
+39
+00:02:04,160 --> 00:02:08,240
+play their games, and how do they engage their fan base,
+
+40
+00:02:08,240 --> 00:02:11,120
+and how do they even just create a fan base in general.
+
+41
+00:02:11,120 --> 00:02:13,560
+So that's not on the syllabus, but that will be, we will be
+
+42
+00:02:13,560 --> 00:02:15,840
+doing that.
+
+43
+00:02:15,840 --> 00:02:21,840
+Any other topics?
+
+44
+00:02:21,840 --> 00:02:24,360
+Okay, I want to ask this again in a couple of weeks in case
+
+45
+00:02:24,360 --> 00:02:26,760
+something pops up, because you probably haven't done a lot of
+
+46
+00:02:26,760 --> 00:02:31,040
+technical things with your game engines yet.
+
+47
+00:02:31,040 --> 00:02:33,400
+So if there's anything gaming specific that you might want to
+
+48
+00:02:33,400 --> 00:02:36,800
+know about, either let us know through the video game
+
+49
+00:02:36,800 --> 00:02:40,640
+bosses email address, or let us know a class, yeah.
+
+50
+00:02:40,880 --> 00:02:42,880
+Who would be giving you the answers, like if it's open to,
+
+51
+00:02:42,880 --> 00:02:43,880
+can you get people?
+
+52
+00:02:43,880 --> 00:02:47,880
+I can get people, so I can get people who are local.
+
+53
+00:02:47,880 --> 00:02:50,080
+We've got connections to local industry.
+
+54
+00:02:50,080 --> 00:02:52,640
+We've got connections to the people who make the tools,
+
+55
+00:02:52,640 --> 00:02:54,480
+in some cases, depending on the tool.
+
+56
+00:02:54,480 --> 00:02:57,080
+That's kind of why I'm asking now, because it gives me time to
+
+57
+00:02:57,080 --> 00:02:59,680
+find new, to fill new gaps.
+
+58
+00:02:59,680 --> 00:03:02,640
+Also, it might be something that we can talk to.
+
+59
+00:03:02,640 --> 00:03:05,040
+So if there's anything design related that you think is useful
+
+60
+00:03:05,040 --> 00:03:08,440
+for your games that we haven't talked about yet, and you don't
+
+61
+00:03:08,440 --> 00:03:10,480
+get on the schedule, let us know.
+
+62
+00:03:10,480 --> 00:03:14,280
+If there's anything technical related, Drew can come up and
+
+63
+00:03:14,280 --> 00:03:15,280
+say something.
+
+64
+00:03:15,280 --> 00:03:17,040
+The other thing we can do is, if there's anything that you
+
+65
+00:03:17,040 --> 00:03:21,040
+want to do, or if you want to set up office hours in class
+
+66
+00:03:21,040 --> 00:03:24,380
+to talk about a certain topic for your game, specifically
+
+67
+00:03:24,380 --> 00:03:27,780
+technical issues, technical questions, that's what Drew is
+
+68
+00:03:27,780 --> 00:03:31,580
+here for, to come and talk with your group as a whole, or
+
+69
+00:03:31,580 --> 00:03:33,480
+just individual members of your group to talk about the
+
+70
+00:03:33,480 --> 00:03:34,380
+issues that you have.
+
+71
+00:03:34,380 --> 00:03:37,080
+So we can do that during class, during our schedule, one
+
+72
+00:03:37,080 --> 00:03:40,720
+and a half to two hour work in class periods, or you can set
+
+73
+00:03:40,720 --> 00:03:42,220
+up office hours with them.
+
+74
+00:03:48,320 --> 00:03:51,640
+OK, I'll just give people a couple more minutes.
+
+75
+00:03:51,640 --> 00:03:54,960
+The attendance sheet is moving around.
+
+76
+00:03:54,960 --> 00:03:59,220
+So is everybody sitting with their teams right now?
+
+77
+00:03:59,220 --> 00:04:00,480
+Does it look like?
+
+78
+00:04:00,480 --> 00:04:02,960
+Can we just show, I'm going to go across and just kind of try
+
+79
+00:04:02,960 --> 00:04:04,120
+to figure out which of these teams are.
+
+80
+00:04:04,120 --> 00:04:05,520
+So this is the SNAP team.
+
+81
+00:04:05,520 --> 00:04:08,040
+Is everyone here?
+
+82
+00:04:08,040 --> 00:04:09,880
+Two, OK.
+
+83
+00:04:09,880 --> 00:04:12,120
+Which team, this is forecast-based futures over
+
+84
+00:04:12,120 --> 00:04:13,760
+here, right?
+
+85
+00:04:13,760 --> 00:04:15,160
+How far do you go?
+
+86
+00:04:15,160 --> 00:04:17,640
+John, are you in this team, or are you in the next team?
+
+87
+00:04:17,640 --> 00:04:19,240
+Cool, all right.
+
+88
+00:04:19,240 --> 00:04:20,560
+Next team over, which team are you?
+
+89
+00:04:20,560 --> 00:04:21,080
+Collara?
+
+90
+00:04:21,080 --> 00:04:22,880
+No.
+
+91
+00:04:22,880 --> 00:04:24,640
+You're a Collara team?
+
+92
+00:04:24,640 --> 00:04:27,800
+Were you the Island group?
+
+93
+00:04:27,800 --> 00:04:30,240
+Animal Crossing one, cool.
+
+94
+00:04:30,240 --> 00:04:32,640
+And then in the front here, we've got Heat Wave, and in the
+
+95
+00:04:32,640 --> 00:04:34,560
+back, it's the other Collara group.
+
+96
+00:04:34,600 --> 00:04:37,520
+OK, I did not get a chance to play your game.
+
+97
+00:04:37,520 --> 00:04:39,000
+But I will, eventually.
+
+98
+00:04:39,000 --> 00:04:39,360
+I'm cool.
+
+99
+00:04:39,360 --> 00:04:40,600
+So there's going to be a little bit of an
+
+100
+00:04:40,600 --> 00:04:43,520
+interactivity in the talk.
+
+101
+00:04:43,520 --> 00:04:45,360
+I've given this talk before.
+
+102
+00:04:45,360 --> 00:04:47,320
+I rewrote the lectures, and I haven't given it since I
+
+103
+00:04:47,320 --> 00:04:49,480
+rewrote the lecture, so we'll see how it goes.
+
+104
+00:04:49,480 --> 00:04:53,760
+They're my backup to let me know if I forgot anything.
+
+105
+00:04:53,760 --> 00:04:55,560
+There will be some reading on this that I'm going to put
+
+106
+00:04:55,560 --> 00:04:56,160
+into Stellar.
+
+107
+00:04:56,160 --> 00:04:59,600
+So if you are interested in the topic, if you have more
+
+108
+00:04:59,600 --> 00:05:01,680
+interest in the topic and you want to read the reading, I
+
+109
+00:05:01,680 --> 00:05:03,440
+highly recommend it, especially if you think you're
+
+110
+00:05:03,440 --> 00:05:05,640
+going to be in a leadership position in the future, or
+
+111
+00:05:05,640 --> 00:05:08,080
+any kind of managerial position, or you're interested in
+
+112
+00:05:08,080 --> 00:05:10,560
+just psychology and how people talk to each other and work
+
+113
+00:05:10,560 --> 00:05:12,040
+together.
+
+114
+00:05:12,040 --> 00:05:14,400
+So our three main topics.
+
+115
+00:05:14,400 --> 00:05:18,120
+This will actually be pretty quick on this lecture.
+
+116
+00:05:18,120 --> 00:05:20,600
+We're going to do a really quick review of Agile.
+
+117
+00:05:20,600 --> 00:05:22,120
+We're going to talk about team dynamics.
+
+118
+00:05:22,120 --> 00:05:24,680
+And then we're going to talk about how do distributed
+
+119
+00:05:24,680 --> 00:05:26,080
+Agile teams perform?
+
+120
+00:05:26,080 --> 00:05:29,080
+So what are some of the best practices they have for
+
+121
+00:05:29,080 --> 00:05:30,160
+performing?
+
+122
+00:05:30,160 --> 00:05:31,720
+And then you're going to work in class.
+
+123
+00:05:31,720 --> 00:05:33,440
+And you'll have at least two hours to work in class today,
+
+124
+00:05:33,440 --> 00:05:36,840
+if not a little bit more than that.
+
+125
+00:05:36,840 --> 00:05:39,000
+So Agile processes.
+
+126
+00:05:39,000 --> 00:05:43,080
+If you forget everything in this class, you end the class,
+
+127
+00:05:43,080 --> 00:05:46,120
+you got into the real world, and somebody asks you, what
+
+128
+00:05:46,120 --> 00:05:47,400
+is Agile?
+
+129
+00:05:47,400 --> 00:05:49,760
+I hope you remember this part.
+
+130
+00:05:49,760 --> 00:05:50,720
+Iterative development.
+
+131
+00:05:50,720 --> 00:05:54,320
+Does anybody consider what they're doing iterative
+
+132
+00:05:54,320 --> 00:05:57,160
+development on their projects right now?
+
+133
+00:05:57,160 --> 00:06:01,120
+Are you working in short periods of time so you've broken up
+
+134
+00:06:01,120 --> 00:06:03,280
+your time into small sprints?
+
+135
+00:06:03,280 --> 00:06:04,680
+Are you doing all?
+
+136
+00:06:04,680 --> 00:06:07,040
+You can't really read it that well in the slide.
+
+137
+00:06:07,040 --> 00:06:10,280
+But are you within that short period of time designing what
+
+138
+00:06:10,280 --> 00:06:12,320
+you're going to work on, planning how it's going to
+
+139
+00:06:12,320 --> 00:06:17,000
+work, doing it, and then testing it, evaluating the test
+
+140
+00:06:17,000 --> 00:06:17,480
+and changing?
+
+141
+00:06:17,480 --> 00:06:19,680
+Are you doing all of that within one week or two week
+
+142
+00:06:19,680 --> 00:06:20,200
+cycle?
+
+143
+00:06:22,800 --> 00:06:23,960
+Raise your hands, yay?
+
+144
+00:06:23,960 --> 00:06:26,920
+So yes, raise your hands.
+
+145
+00:06:26,920 --> 00:06:28,880
+No, raise your hands.
+
+146
+00:06:28,920 --> 00:06:31,160
+It's OK if you say no.
+
+147
+00:06:31,160 --> 00:06:32,920
+OK.
+
+148
+00:06:32,920 --> 00:06:35,600
+If you're doing something that looks like this, then great.
+
+149
+00:06:38,680 --> 00:06:42,440
+And as remember, Agile, in particular, scrum processes,
+
+150
+00:06:42,440 --> 00:06:44,720
+they're based on these three pillars that Sarah talked
+
+151
+00:06:44,720 --> 00:06:46,680
+about when we first brought this up.
+
+152
+00:06:46,680 --> 00:06:49,880
+So the pillar of transparency, and what we mean by
+
+153
+00:06:49,880 --> 00:06:51,120
+transparency there, we really just
+
+154
+00:06:51,120 --> 00:06:53,680
+mean a common nomenclature.
+
+155
+00:06:53,680 --> 00:06:57,360
+To be honest, I don't care what you call the things that you
+
+156
+00:06:57,360 --> 00:06:59,800
+use as part of your process in your team.
+
+157
+00:06:59,800 --> 00:07:04,320
+So long as everyone within the team knows what it is, so long
+
+158
+00:07:04,320 --> 00:07:09,080
+as whoever you're submitting those processes to also know
+
+159
+00:07:09,080 --> 00:07:09,800
+who it is.
+
+160
+00:07:09,800 --> 00:07:11,640
+So we're not acting as your product owners in the class.
+
+161
+00:07:11,640 --> 00:07:14,240
+But if you had a product owner, they should also know what
+
+162
+00:07:14,240 --> 00:07:15,760
+you're calling things, what you're calling your product
+
+163
+00:07:15,760 --> 00:07:19,480
+backlog, what you're calling a task, how you're estimating,
+
+164
+00:07:19,480 --> 00:07:21,080
+and how you're doing your processes.
+
+165
+00:07:21,080 --> 00:07:23,800
+So everyone on the team should know it, not just in a more
+
+166
+00:07:23,800 --> 00:07:26,120
+traditional manner, a project manager knowing what all the
+
+167
+00:07:26,120 --> 00:07:27,880
+processes are.
+
+168
+00:07:27,880 --> 00:07:29,920
+There's a number of inspection that's going on.
+
+169
+00:07:29,920 --> 00:07:33,240
+So through the process, you are taking a look at all the
+
+170
+00:07:33,240 --> 00:07:37,480
+artifacts you created, so those backlog items, task lists,
+
+171
+00:07:37,480 --> 00:07:40,600
+things like that that you're creating during the process.
+
+172
+00:07:40,600 --> 00:07:42,560
+You're inspecting it, and in particular, you're inspecting
+
+173
+00:07:42,560 --> 00:07:43,480
+it during meetings.
+
+174
+00:07:43,480 --> 00:07:46,360
+So you're taking a look at what you've done in a meeting and
+
+175
+00:07:46,360 --> 00:07:47,840
+talking about it.
+
+176
+00:07:47,840 --> 00:07:49,000
+So you're not just doing a process.
+
+177
+00:07:49,000 --> 00:07:51,440
+You're doing a process, and you're talking about it, and
+
+178
+00:07:51,440 --> 00:07:54,320
+you're actively thinking about the process.
+
+179
+00:07:54,320 --> 00:07:55,320
+And then you're adapting.
+
+180
+00:07:55,320 --> 00:08:01,120
+So based on evidence, based on needs, changes in needs, you
+
+181
+00:08:01,120 --> 00:08:02,720
+are changing that process.
+
+182
+00:08:02,720 --> 00:08:04,600
+Again, if you're doing any one of these three things, you're
+
+183
+00:08:04,600 --> 00:08:08,240
+doing process as well, and you're doing some form of
+
+184
+00:08:08,240 --> 00:08:11,240
+agile-like process.
+
+185
+00:08:11,240 --> 00:08:14,920
+Another thing I hope you take from the class.
+
+186
+00:08:14,920 --> 00:08:18,280
+The agile manifesto, it is a manifesto.
+
+187
+00:08:18,280 --> 00:08:19,160
+It is an idea.
+
+188
+00:08:19,160 --> 00:08:22,880
+It is something that has some political weight behind it
+
+189
+00:08:22,880 --> 00:08:24,480
+that is saying, this is the way to do things.
+
+190
+00:08:24,480 --> 00:08:26,360
+This is the right way to do things.
+
+191
+00:08:26,360 --> 00:08:28,160
+But it's actually more vague than that.
+
+192
+00:08:28,160 --> 00:08:32,200
+It's really just saying, here are some four key things that
+
+193
+00:08:32,200 --> 00:08:35,960
+we feel are more important than other four key things.
+
+194
+00:08:35,960 --> 00:08:37,920
+And today, we're going to focus.
+
+195
+00:08:37,920 --> 00:08:41,400
+So the first item is individuals and interactions
+
+196
+00:08:41,400 --> 00:08:43,560
+over processes and tools.
+
+197
+00:08:43,560 --> 00:08:46,080
+So we've been talking to you a lot about process and tools
+
+198
+00:08:46,080 --> 00:08:47,760
+for the first part of the semester.
+
+199
+00:08:47,760 --> 00:08:50,840
+Now we're going to talk about individuals and interactions
+
+200
+00:08:50,840 --> 00:08:52,160
+between individuals.
+
+201
+00:08:52,160 --> 00:08:54,320
+So your team members.
+
+202
+00:08:54,360 --> 00:08:55,520
+All right.
+
+203
+00:08:55,520 --> 00:08:57,440
+What's a team?
+
+204
+00:08:57,440 --> 00:08:59,240
+Anybody give me a working definition for what you'd
+
+205
+00:08:59,240 --> 00:09:00,240
+call a team?
+
+206
+00:09:03,080 --> 00:09:05,280
+What'd you say?
+
+207
+00:09:05,280 --> 00:09:06,400
+A bunch of puppies.
+
+208
+00:09:06,400 --> 00:09:08,680
+Is it a group of people?
+
+209
+00:09:08,680 --> 00:09:10,480
+Is it just a group of people?
+
+210
+00:09:10,480 --> 00:09:14,080
+A group of people working toward a common purpose.
+
+211
+00:09:14,080 --> 00:09:17,160
+Anything else?
+
+212
+00:09:17,160 --> 00:09:18,560
+So it's a collection of individuals.
+
+213
+00:09:18,560 --> 00:09:19,800
+So it's a group of people.
+
+214
+00:09:19,800 --> 00:09:21,720
+They're working toward a common purpose.
+
+215
+00:09:21,720 --> 00:09:24,200
+They have shared responsibility for common outcomes.
+
+216
+00:09:24,200 --> 00:09:26,240
+If one of those puppies trips, that stick
+
+217
+00:09:26,240 --> 00:09:28,400
+goes in another puppy's mouth, and it hurts a lot.
+
+218
+00:09:30,960 --> 00:09:33,600
+So I want you to keep that in mind.
+
+219
+00:09:33,600 --> 00:09:38,680
+Shared responsibility, common purpose, common outcome.
+
+220
+00:09:38,680 --> 00:09:38,920
+All right.
+
+221
+00:09:38,920 --> 00:09:42,080
+So teams evolve over time.
+
+222
+00:09:42,080 --> 00:09:45,320
+And the little bit of research I'm going to talk about
+
+223
+00:09:45,320 --> 00:09:49,920
+actually comes from studying group behaviors.
+
+224
+00:09:49,920 --> 00:09:53,880
+But this is all from about the 1960s and on up.
+
+225
+00:09:53,920 --> 00:09:56,560
+And around the 2000s, and I'll post this reading up,
+
+226
+00:09:56,560 --> 00:09:58,800
+it was proven, or there was some studies showing that this
+
+227
+00:09:58,800 --> 00:09:59,720
+actually works for teams.
+
+228
+00:09:59,720 --> 00:10:02,560
+This does work for people who have a common goal.
+
+229
+00:10:02,560 --> 00:10:04,040
+But as you get a bunch of people together,
+
+230
+00:10:04,040 --> 00:10:05,560
+and you get a small group of people together,
+
+231
+00:10:05,560 --> 00:10:08,440
+and in our terms, we're calling a small group of people
+
+232
+00:10:08,440 --> 00:10:11,240
+eight to 10 people, maybe a little bit bigger,
+
+233
+00:10:11,240 --> 00:10:14,400
+but about 10 people total.
+
+234
+00:10:14,400 --> 00:10:16,600
+They're going to evolve based on those interpersonal
+
+235
+00:10:16,600 --> 00:10:18,600
+relationships, so how they know each other,
+
+236
+00:10:18,600 --> 00:10:21,200
+what they talk about, how they talk about,
+
+237
+00:10:21,200 --> 00:10:23,200
+and their task behaviors.
+
+238
+00:10:23,240 --> 00:10:26,400
+So we're going to be talking about not the tasks that you
+
+239
+00:10:26,400 --> 00:10:29,360
+are doing in your teams, but the behaviors surrounding
+
+240
+00:10:29,360 --> 00:10:30,400
+the tasks that you're doing it.
+
+241
+00:10:30,400 --> 00:10:35,240
+So if you are working on a task, if you are doing some coding,
+
+242
+00:10:35,240 --> 00:10:36,560
+how are you coding?
+
+243
+00:10:36,560 --> 00:10:38,200
+Or who are you coding with?
+
+244
+00:10:38,200 --> 00:10:40,560
+How are you talking to other people about what you're coding?
+
+245
+00:10:40,560 --> 00:10:42,640
+And you can apply that to any other tasks
+
+246
+00:10:42,640 --> 00:10:44,960
+that you're doing in your teams.
+
+247
+00:10:44,960 --> 00:10:47,000
+There's a lot of different theories.
+
+248
+00:10:47,000 --> 00:10:50,560
+Actually, Wikipedia is a pretty good nutshell
+
+249
+00:10:50,560 --> 00:10:52,880
+of what are all the different kinds of theories
+
+250
+00:10:52,880 --> 00:10:54,480
+and how different kind of models we
+
+251
+00:10:54,480 --> 00:10:56,360
+can use to describe how groups talk to each other
+
+252
+00:10:56,360 --> 00:10:58,640
+and how groups evolve, but they all
+
+253
+00:10:58,640 --> 00:11:00,160
+come down to these common things.
+
+254
+00:11:00,160 --> 00:11:02,160
+There's a period of getting to know each other.
+
+255
+00:11:02,160 --> 00:11:04,000
+There's a period of experiencing conflict,
+
+256
+00:11:04,000 --> 00:11:05,800
+and there's both positive and negative conflict
+
+257
+00:11:05,800 --> 00:11:07,760
+when you're talking with each other.
+
+258
+00:11:07,760 --> 00:11:10,360
+Your roles shift based on changing knowledge
+
+259
+00:11:10,360 --> 00:11:13,360
+and changing experience, and hopefully at some point,
+
+260
+00:11:13,360 --> 00:11:14,600
+there's some kind of consensus.
+
+261
+00:11:14,600 --> 00:11:16,480
+There's some kind of moving forward.
+
+262
+00:11:16,480 --> 00:11:18,520
+Decisions happen here.
+
+263
+00:11:18,520 --> 00:11:21,440
+The point is, though, what kind of decisions get made?
+
+264
+00:11:21,440 --> 00:11:23,560
+Are they effective decisions?
+
+265
+00:11:23,560 --> 00:11:27,000
+Or are they ineffective, unproven?
+
+266
+00:11:27,000 --> 00:11:28,800
+They get made because you just have to make them
+
+267
+00:11:28,800 --> 00:11:30,280
+and you have to move on.
+
+268
+00:11:30,280 --> 00:11:33,280
+And what we're hoping is that by analyzing how your teams work,
+
+269
+00:11:33,280 --> 00:11:35,920
+you can then move towards having some effective decision
+
+270
+00:11:35,920 --> 00:11:38,120
+making.
+
+271
+00:11:38,120 --> 00:11:40,480
+So the model that we're going to talk about
+
+272
+00:11:40,480 --> 00:11:42,800
+is Tuckman's model from 65.
+
+273
+00:11:42,800 --> 00:11:47,160
+It's got four phases, forming, norming, storming, performing.
+
+274
+00:11:47,160 --> 00:11:48,440
+It's very cutesy.
+
+275
+00:11:48,480 --> 00:11:51,520
+It's used in training sessions a lot.
+
+276
+00:11:51,520 --> 00:11:54,040
+It can just be something that you can just spit out and say.
+
+277
+00:11:54,040 --> 00:11:55,520
+And someone says, oh, you're smart.
+
+278
+00:11:55,520 --> 00:11:56,640
+You know that model.
+
+279
+00:11:56,640 --> 00:11:58,600
+But maybe you don't know everything behind it.
+
+280
+00:11:58,600 --> 00:12:00,480
+I might be more in the, you're smart,
+
+281
+00:12:00,480 --> 00:12:02,400
+but maybe you don't know more everything behind it.
+
+282
+00:12:02,400 --> 00:12:04,920
+I'm still learning about how this works.
+
+283
+00:12:04,920 --> 00:12:07,840
+But each phase has items you can identify.
+
+284
+00:12:07,840 --> 00:12:10,760
+And more useful for us is this is a model
+
+285
+00:12:10,760 --> 00:12:14,080
+you can use to figure out where your team is right now.
+
+286
+00:12:14,080 --> 00:12:15,760
+What phase are you in?
+
+287
+00:12:15,760 --> 00:12:18,280
+So you can then make decisions about where you need to go
+
+288
+00:12:18,280 --> 00:12:20,000
+and how you need to work together better.
+
+289
+00:12:22,640 --> 00:12:25,840
+So the forming phase of it.
+
+290
+00:12:25,840 --> 00:12:27,320
+This is when you first start getting together.
+
+291
+00:12:27,320 --> 00:12:29,280
+Everyone wants to be friendly.
+
+292
+00:12:29,280 --> 00:12:32,880
+Everyone wants to get along, to be accepted with each other.
+
+293
+00:12:32,880 --> 00:12:35,640
+There might be some serious problems from the get-go,
+
+294
+00:12:35,640 --> 00:12:38,480
+but they're usually avoided.
+
+295
+00:12:38,480 --> 00:12:41,200
+And the team learns about challenges and goals.
+
+296
+00:12:41,200 --> 00:12:42,880
+But not much gets done.
+
+297
+00:12:42,880 --> 00:12:47,640
+There's no real task completion going on in the stage.
+
+298
+00:12:47,640 --> 00:12:49,600
+Is that everybody's seen this,
+
+299
+00:12:49,600 --> 00:12:50,640
+when you think about your previous teams,
+
+300
+00:12:50,640 --> 00:12:51,800
+you've been in this stage, right?
+
+301
+00:12:51,800 --> 00:12:54,080
+When you first got together.
+
+302
+00:12:54,080 --> 00:12:55,400
+So project two, project three.
+
+303
+00:12:55,400 --> 00:12:57,240
+I'm gonna ask you some questions about project two
+
+304
+00:12:57,240 --> 00:12:58,520
+and three as we go forward.
+
+305
+00:12:59,440 --> 00:13:02,120
+All right, that's a happy stage.
+
+306
+00:13:02,120 --> 00:13:03,960
+Then storming happens.
+
+307
+00:13:03,960 --> 00:13:06,600
+People are able to express discontent.
+
+308
+00:13:06,600 --> 00:13:08,720
+There actually might have been discontents in phase one,
+
+309
+00:13:08,720 --> 00:13:11,960
+but it actually wasn't being expressed in some form.
+
+310
+00:13:11,960 --> 00:13:14,400
+In phase two, it's being expressed.
+
+311
+00:13:14,400 --> 00:13:16,760
+But how it's being expressed can be kind of different.
+
+312
+00:13:16,760 --> 00:13:19,160
+So it could be someone actively saying,
+
+313
+00:13:19,160 --> 00:13:21,360
+no, you're wrong, that's stupid.
+
+314
+00:13:21,360 --> 00:13:23,640
+It could be someone not talking,
+
+315
+00:13:23,640 --> 00:13:24,720
+but they're feeling the same thing
+
+316
+00:13:24,720 --> 00:13:26,240
+and they're thinking about the same thing.
+
+317
+00:13:26,240 --> 00:13:28,920
+It's the same kind of discontent that happened.
+
+318
+00:13:28,920 --> 00:13:30,920
+Opinions tend to get challenged.
+
+319
+00:13:30,920 --> 00:13:33,120
+It can be contentious, it can be unpleasant.
+
+320
+00:13:35,000 --> 00:13:37,560
+In order to advance past this stage,
+
+321
+00:13:37,560 --> 00:13:40,040
+what your team really needs is tolerance and patience.
+
+322
+00:13:40,040 --> 00:13:41,280
+I'm just gonna get through it.
+
+323
+00:13:41,280 --> 00:13:42,120
+But even more important,
+
+324
+00:13:42,120 --> 00:13:43,600
+you need to establish lines of trust
+
+325
+00:13:43,600 --> 00:13:45,920
+and open communication to get through the stage.
+
+326
+00:13:45,920 --> 00:13:47,360
+And this is what we've been doing
+
+327
+00:13:47,360 --> 00:13:51,360
+for the past first of the semester, is creating processes.
+
+328
+00:13:51,360 --> 00:13:53,000
+We've been giving you some tools that you can use,
+
+329
+00:13:53,000 --> 00:13:55,920
+then you can then create those processes in your teams.
+
+330
+00:13:55,920 --> 00:13:59,880
+So just a quick hand raise from teams.
+
+331
+00:13:59,880 --> 00:14:02,720
+Does anybody think that they are in this stage right now?
+
+332
+00:14:04,240 --> 00:14:07,440
+Do you think in your team you are currently,
+
+333
+00:14:07,440 --> 00:14:10,600
+you're expressing discontent, you are creating processes,
+
+334
+00:14:10,600 --> 00:14:11,720
+you don't have processes yet,
+
+335
+00:14:11,720 --> 00:14:14,120
+but you're figuring out what your processes might be?
+
+336
+00:14:16,640 --> 00:14:21,880
+Maybe, what do you say?
+
+337
+00:14:21,880 --> 00:14:23,280
+You're not sure?
+
+338
+00:14:23,280 --> 00:14:24,680
+Okay, all right.
+
+339
+00:14:27,920 --> 00:14:28,760
+Next up, norming.
+
+340
+00:14:28,760 --> 00:14:30,880
+So this is where you have those processes.
+
+341
+00:14:30,880 --> 00:14:33,040
+Individuals start giving up their own ideas and goals.
+
+342
+00:14:33,040 --> 00:14:35,640
+You're actually moving towards a team goal right now.
+
+343
+00:14:35,640 --> 00:14:37,400
+And people are starting to take responsibility
+
+344
+00:14:37,400 --> 00:14:39,040
+and rules are established.
+
+345
+00:14:39,040 --> 00:14:41,680
+Okay, comparing storming to norming,
+
+346
+00:14:41,680 --> 00:14:43,880
+raise your hands if you think your team is in norming
+
+347
+00:14:43,880 --> 00:14:44,720
+right now.
+
+348
+00:14:46,760 --> 00:14:48,160
+Okay, yeah.
+
+349
+00:14:48,160 --> 00:14:49,160
+All right, now raise your hands
+
+350
+00:14:49,160 --> 00:14:51,160
+if you think your team is in storming right now.
+
+351
+00:14:54,160 --> 00:14:55,000
+Okay.
+
+352
+00:15:01,160 --> 00:15:03,760
+All right, so, is anybody performing?
+
+353
+00:15:03,760 --> 00:15:06,160
+Are you functioning as a unit efficiently?
+
+354
+00:15:06,160 --> 00:15:08,760
+Are your team members already autonomous?
+
+355
+00:15:08,760 --> 00:15:11,960
+Is dissent expected and addressed right now?
+
+356
+00:15:11,960 --> 00:15:13,360
+This is where you want to get to.
+
+357
+00:15:14,000 --> 00:15:16,000
+You probably aren't this far yet.
+
+358
+00:15:16,000 --> 00:15:17,200
+My bet's you're probably somewhere
+
+359
+00:15:17,200 --> 00:15:18,600
+in the storming area things,
+
+360
+00:15:18,600 --> 00:15:21,000
+maybe getting close to the norming area things.
+
+361
+00:15:21,000 --> 00:15:23,000
+Basically, you're still talking to each other,
+
+362
+00:15:23,000 --> 00:15:24,440
+you're still trying to figure out
+
+363
+00:15:24,440 --> 00:15:27,600
+what are the different ways of communicating with each other.
+
+364
+00:15:27,600 --> 00:15:32,600
+What are the different processes and rules you might have?
+
+365
+00:15:34,800 --> 00:15:37,200
+And you might not get this far in class.
+
+366
+00:15:37,200 --> 00:15:39,400
+By the end of the semester, you might not be
+
+367
+00:15:39,400 --> 00:15:41,600
+fully efficient by the end of the semester.
+
+368
+00:15:42,040 --> 00:15:45,240
+Fully efficient by the end of the class, and that's okay.
+
+369
+00:15:46,280 --> 00:15:47,880
+But if you are, it's kind of cool.
+
+370
+00:15:49,880 --> 00:15:54,400
+So, the model in practice tends to be, it's non-linear.
+
+371
+00:15:54,400 --> 00:15:56,720
+It gets talked about and it was originally established
+
+372
+00:15:56,720 --> 00:15:59,340
+as you go from here to here to here to here.
+
+373
+00:15:59,340 --> 00:16:00,940
+You go through the phases, at the end of the thing,
+
+374
+00:16:00,940 --> 00:16:03,940
+you're done, your team's awesome, go you.
+
+375
+00:16:03,940 --> 00:16:07,340
+We actually see in process is that teams tend to,
+
+376
+00:16:07,340 --> 00:16:10,140
+they get in the forming, they go in the circle,
+
+377
+00:16:10,140 --> 00:16:13,260
+where they go from having some issues,
+
+378
+00:16:13,260 --> 00:16:16,020
+figuring out how to deal with those issues,
+
+379
+00:16:16,020 --> 00:16:17,540
+establish some rules, all right,
+
+380
+00:16:17,540 --> 00:16:20,460
+we're doing really well again, new challenge comes up,
+
+381
+00:16:20,460 --> 00:16:24,820
+we're back into storming, we've put ourselves in a position
+
+382
+00:16:24,820 --> 00:16:26,260
+where we don't know how to talk to each other,
+
+383
+00:16:26,260 --> 00:16:28,660
+or we don't know how to communicate with each other.
+
+384
+00:16:32,380 --> 00:16:34,420
+So, there's some problems with the model.
+
+385
+00:16:34,420 --> 00:16:36,580
+This is really a descriptive model.
+
+386
+00:16:36,580 --> 00:16:39,980
+It's a tool for us to use to see how things are going.
+
+387
+00:16:40,020 --> 00:16:42,020
+It's basically a way to evaluate symptoms,
+
+388
+00:16:44,220 --> 00:16:45,620
+but there's no triggers in the model.
+
+389
+00:16:45,620 --> 00:16:46,900
+We don't know when those things happen.
+
+390
+00:16:46,900 --> 00:16:49,900
+When does your team switch from storming to norming?
+
+391
+00:16:49,900 --> 00:16:51,660
+So this is what I'd like you to do in your teams,
+
+392
+00:16:51,660 --> 00:16:56,460
+just take a couple minutes, talk about your previous teams
+
+393
+00:16:56,460 --> 00:16:59,620
+you've been on, talk about the team you're on now.
+
+394
+00:16:59,620 --> 00:17:02,620
+When do you think your team would move from stage to stage,
+
+395
+00:17:02,620 --> 00:17:04,620
+and how could a team move intentionally?
+
+396
+00:17:05,540 --> 00:17:06,780
+So, and in particular,
+
+397
+00:17:06,780 --> 00:17:08,460
+think about that storming to norming part of it.
+
+398
+00:17:08,460 --> 00:17:10,940
+So what is it going to take for your team right now,
+
+399
+00:17:10,940 --> 00:17:12,380
+or what happened in your team right now,
+
+400
+00:17:12,380 --> 00:17:15,700
+to go from we are having some difficulty talking
+
+401
+00:17:15,700 --> 00:17:17,900
+with each other, we have a bunch of opinions,
+
+402
+00:17:17,900 --> 00:17:20,300
+to we're on the same page?
+
+403
+00:17:21,260 --> 00:17:22,860
+Take three minutes.
+
+404
+00:17:22,860 --> 00:17:24,660
+Just one thing I want to chime in.
+
+405
+00:17:24,660 --> 00:17:26,020
+There's a very, very good chance
+
+406
+00:17:26,020 --> 00:17:28,780
+that your team actually is still in forming stage,
+
+407
+00:17:28,780 --> 00:17:31,300
+and one of the reasons why no one,
+
+408
+00:17:31,300 --> 00:17:33,540
+like a very few of you might have put up your hands
+
+409
+00:17:33,540 --> 00:17:36,460
+that you don't actually want to express dissent,
+
+410
+00:17:36,460 --> 00:17:38,100
+which is exactly the situation
+
+411
+00:17:38,100 --> 00:17:40,180
+that you get in the forming stage.
+
+412
+00:17:40,180 --> 00:17:42,940
+You know, it is uncomfortable,
+
+413
+00:17:42,940 --> 00:17:47,220
+but hopefully you can logically see the benefits
+
+414
+00:17:47,220 --> 00:17:49,460
+of being in a team where you can talk about
+
+415
+00:17:49,460 --> 00:17:51,940
+the things that you disagree with, right?
+
+416
+00:17:51,940 --> 00:17:55,180
+So, it's possible that you are still in forming,
+
+417
+00:17:55,180 --> 00:17:57,340
+and it's good to identify your teams as,
+
+418
+00:17:57,340 --> 00:18:00,140
+okay, this is normal evolution of a team,
+
+419
+00:18:00,140 --> 00:18:02,180
+and that's where our team is at right now.
+
+420
+00:18:02,180 --> 00:18:03,900
+So talk about it among your team.
+
+421
+00:18:04,900 --> 00:18:07,180
+So take three minutes, just talking to your teams,
+
+422
+00:18:07,180 --> 00:18:09,700
+and then I'm gonna ask you some questions when we're done.
+
+423
+00:18:21,460 --> 00:18:26,460
+Okay, so, each group, give me something you talked about,
+
+424
+00:18:30,660 --> 00:18:32,700
+about what are the triggers,
+
+425
+00:18:32,740 --> 00:18:35,340
+what are the things you saw as you moved?
+
+426
+00:18:35,340 --> 00:18:38,100
+Just let me know which phases you're talking about.
+
+427
+00:18:38,100 --> 00:18:38,940
+So, go ahead.
+
+428
+00:18:48,220 --> 00:18:49,060
+Okay.
+
+429
+00:18:56,420 --> 00:18:57,260
+How do you know?
+
+430
+00:18:57,260 --> 00:19:00,420
+Or what caused that, what caused you to get there,
+
+431
+00:19:00,420 --> 00:19:01,260
+do you think?
+
+432
+00:19:02,700 --> 00:19:05,540
+Before the game, we had a story out,
+
+433
+00:19:05,540 --> 00:19:09,260
+and that was what we had to go through, sorry.
+
+434
+00:19:09,260 --> 00:19:11,780
+The reason that everything that we had to go through,
+
+435
+00:19:11,780 --> 00:19:14,620
+we're closer to forming now is because we just,
+
+436
+00:19:14,620 --> 00:19:18,860
+it's like, that's the end of the big amount of information
+
+437
+00:19:18,860 --> 00:19:23,100
+and what our team has done, much faster.
+
+438
+00:19:26,140 --> 00:19:26,980
+Okay.
+
+439
+00:19:27,820 --> 00:19:30,940
+Now let me get up to the front end for the forming,
+
+440
+00:19:31,180 --> 00:19:33,500
+and probably in the starting, yeah.
+
+441
+00:19:35,020 --> 00:19:40,020
+You guys are still working on the design decisions.
+
+442
+00:19:41,420 --> 00:19:43,220
+All right, so it's big decisions.
+
+443
+00:19:44,740 --> 00:19:46,140
+How big are those two teams?
+
+444
+00:19:47,620 --> 00:19:50,100
+Four and four, okay.
+
+445
+00:19:50,100 --> 00:19:50,940
+Is this somebody else?
+
+446
+00:19:50,940 --> 00:19:51,780
+Next.
+
+447
+00:19:53,700 --> 00:19:55,540
+A trigger that you saw that made you go
+
+448
+00:19:55,540 --> 00:19:56,900
+from one stage to the other.
+
+449
+00:19:57,860 --> 00:20:01,540
+I think we're also, as a team,
+
+450
+00:20:01,540 --> 00:20:03,260
+we're moving from story to learning.
+
+451
+00:20:04,940 --> 00:20:09,940
+And part of that, a trigger was solidifying our game,
+
+452
+00:20:10,340 --> 00:20:12,580
+or working on solidifying our game idea,
+
+453
+00:20:12,580 --> 00:20:15,980
+because at this point, while we all recognize
+
+454
+00:20:15,980 --> 00:20:18,060
+that we're one of the games in team,
+
+455
+00:20:18,060 --> 00:20:20,980
+we all have different ideas of what this game should be,
+
+456
+00:20:20,980 --> 00:20:22,940
+and as we are solidifying our game,
+
+457
+00:20:22,940 --> 00:20:24,500
+we're also getting ourselves in line
+
+458
+00:20:24,500 --> 00:20:27,060
+with what we're actually doing and how we're gonna make it.
+
+459
+00:20:27,060 --> 00:20:28,140
+Okay.
+
+460
+00:20:28,140 --> 00:20:31,940
+So do you think that the task of solidifying the game idea
+
+461
+00:20:31,940 --> 00:20:34,540
+is helping you, because there's this big decision
+
+462
+00:20:34,540 --> 00:20:37,420
+you have to make, is that helping you move,
+
+463
+00:20:37,420 --> 00:20:38,580
+like work as a team?
+
+464
+00:20:38,580 --> 00:20:40,060
+It's not getting in your way?
+
+465
+00:20:40,060 --> 00:20:42,100
+I think it's the fact that, like, as we're doing this,
+
+466
+00:20:42,100 --> 00:20:46,700
+we have a lot of, we definitely have to sort of conflict
+
+467
+00:20:46,700 --> 00:20:49,300
+in our team, where people work and start to have
+
+468
+00:20:49,300 --> 00:20:51,620
+different ideas and trying to work through it.
+
+469
+00:20:51,620 --> 00:20:53,340
+And at first, we weren't doing the best job
+
+470
+00:20:53,460 --> 00:20:55,820
+of getting those ideas and working through them,
+
+471
+00:20:55,820 --> 00:20:58,180
+but I see that now we're doing a much better job
+
+472
+00:20:58,180 --> 00:21:00,060
+while we're standing each other and seeing how it fits
+
+473
+00:21:00,060 --> 00:21:01,340
+into the bigger picture.
+
+474
+00:21:01,340 --> 00:21:02,940
+Okay, cool.
+
+475
+00:21:02,940 --> 00:21:03,780
+Next team.
+
+476
+00:21:04,660 --> 00:21:07,820
+A triggering moment that you saw in this team
+
+477
+00:21:07,820 --> 00:21:09,260
+or previous teams.
+
+478
+00:21:09,260 --> 00:21:13,100
+So we had a bigger college team at first,
+
+479
+00:21:13,100 --> 00:21:16,900
+and I think that having the decision to split up
+
+480
+00:21:16,900 --> 00:21:20,540
+was a way that help us jump down from it to storm it,
+
+481
+00:21:21,380 --> 00:21:24,980
+because ideas you sort of start to get,
+
+482
+00:21:24,980 --> 00:21:27,740
+are slowly to get to your ideas,
+
+483
+00:21:27,740 --> 00:21:31,380
+so they're conflicting ideas in terms of where our games go
+
+484
+00:21:31,380 --> 00:21:33,140
+in the previous storm session.
+
+485
+00:21:33,140 --> 00:21:33,980
+So it's basically just,
+
+486
+00:21:33,980 --> 00:21:36,140
+it's reducing the number of opinions, right?
+
+487
+00:21:36,140 --> 00:21:36,980
+Really, right?
+
+488
+00:21:42,980 --> 00:21:44,980
+And that was killing three people.
+
+489
+00:21:45,980 --> 00:21:50,980
+So with our game, I think getting Mr. Norming was really,
+
+490
+00:21:52,420 --> 00:21:54,820
+they talked about assigning tasks,
+
+491
+00:21:54,820 --> 00:21:57,220
+but also just the accountability aspect,
+
+492
+00:21:57,220 --> 00:22:00,140
+because instead of spending time arguing,
+
+493
+00:22:00,140 --> 00:22:02,020
+we already kind of have a designated person
+
+494
+00:22:02,020 --> 00:22:04,580
+or a couple of people who are accountable
+
+495
+00:22:04,580 --> 00:22:07,740
+for different things, which allows us to just kind of,
+
+496
+00:22:07,740 --> 00:22:10,220
+not argue in a deeper way.
+
+497
+00:22:11,580 --> 00:22:13,940
+So that's, like certain people have different,
+
+498
+00:22:14,780 --> 00:22:17,420
+they own some sub-taskers, own sub-rolls.
+
+499
+00:22:17,420 --> 00:22:19,140
+Okay, cool.
+
+500
+00:22:19,140 --> 00:22:21,180
+In the back, what do you think?
+
+501
+00:22:22,180 --> 00:22:25,300
+So I guess what's got us over to storming
+
+502
+00:22:25,300 --> 00:22:28,700
+was meeting together as a team to make design decisions,
+
+503
+00:22:28,700 --> 00:22:31,140
+or sort of like what has been said there.
+
+504
+00:22:31,140 --> 00:22:35,100
+I think that the next step for bringing us over to storming
+
+505
+00:22:35,100 --> 00:22:37,140
+would be like actually getting everyone
+
+506
+00:22:37,140 --> 00:22:39,220
+to participate in design decisions,
+
+507
+00:22:39,220 --> 00:22:42,700
+because people have both not shown up
+
+508
+00:22:42,820 --> 00:22:45,940
+and not particularly shown interest in getting things going.
+
+509
+00:22:45,940 --> 00:22:49,140
+So getting everyone on board, even, is specific.
+
+510
+00:22:49,140 --> 00:22:51,020
+All right, so that's a big one.
+
+511
+00:22:51,020 --> 00:22:53,620
+That's a huge difficulty with,
+
+512
+00:22:53,620 --> 00:22:55,140
+especially with student projects.
+
+513
+00:22:55,140 --> 00:22:58,420
+You've got all these other things going on around you.
+
+514
+00:22:58,420 --> 00:23:02,420
+Do you think you need everyone to contribute to the design,
+
+515
+00:23:02,420 --> 00:23:05,180
+or do you need everyone to be on board with the design?
+
+516
+00:23:06,540 --> 00:23:11,540
+So I understand like some people just are less interested
+
+517
+00:23:11,580 --> 00:23:14,700
+in having deep discussions about the design of the game,
+
+518
+00:23:14,700 --> 00:23:17,380
+but getting everyone to both be aware
+
+519
+00:23:17,380 --> 00:23:20,020
+and willing to participate when they need to.
+
+520
+00:23:20,020 --> 00:23:22,780
+Okay, because yeah, there's important conversations
+
+521
+00:23:22,780 --> 00:23:25,540
+being done that if they're not there when it happens,
+
+522
+00:23:25,540 --> 00:23:28,060
+they're not gonna know where the status of the game is.
+
+523
+00:23:28,060 --> 00:23:30,820
+Yeah, and they just need to be willing to participate.
+
+524
+00:23:30,820 --> 00:23:32,580
+If they're not there, take the step of,
+
+525
+00:23:32,580 --> 00:23:33,780
+oh, what'd you guys talk about?
+
+526
+00:23:33,780 --> 00:23:35,820
+I'm interested in knowing how long to.
+
+527
+00:23:35,820 --> 00:23:37,140
+Okay, cool.
+
+528
+00:23:37,140 --> 00:23:38,380
+Thank you for that lead,
+
+529
+00:23:38,380 --> 00:23:40,740
+because that gets us to our next stage.
+
+530
+00:23:40,740 --> 00:23:44,460
+So we're talking kind of,
+
+531
+00:23:44,460 --> 00:23:45,900
+I think we find ourselves talking a lot
+
+532
+00:23:45,900 --> 00:23:49,220
+about the product that we're making.
+
+533
+00:23:49,220 --> 00:23:50,260
+It's just easier.
+
+534
+00:23:50,260 --> 00:23:52,540
+It's the thing, it's that hard evident,
+
+535
+00:23:52,540 --> 00:23:54,020
+like that hard thing you can see,
+
+536
+00:23:54,020 --> 00:23:56,060
+like it's being made, it's being done.
+
+537
+00:23:57,260 --> 00:23:58,540
+We can play it.
+
+538
+00:23:58,540 --> 00:24:00,740
+That means we're probably doing something right,
+
+539
+00:24:00,740 --> 00:24:03,500
+but it's still very difficult still to talk about the people.
+
+540
+00:24:03,500 --> 00:24:05,740
+Although I saw being talking with the people a little bit here,
+
+541
+00:24:05,740 --> 00:24:09,660
+especially with accountability in this one, it was good.
+
+542
+00:24:09,700 --> 00:24:10,540
+Cool.
+
+543
+00:24:12,700 --> 00:24:14,980
+So that brings you to the next topic.
+
+544
+00:24:14,980 --> 00:24:16,740
+Teams are composed of individuals,
+
+545
+00:24:16,740 --> 00:24:18,060
+and each person on your team
+
+546
+00:24:18,060 --> 00:24:19,700
+is gonna have a lot of different factors
+
+547
+00:24:19,700 --> 00:24:23,300
+affecting what they do, how they do it, when they do it.
+
+548
+00:24:23,300 --> 00:24:27,220
+I can't give you the magic formula to get them motivated.
+
+549
+00:24:27,220 --> 00:24:30,740
+What I can do is show you some of the different ways
+
+550
+00:24:30,740 --> 00:24:33,660
+that you can then try to either understand
+
+551
+00:24:33,660 --> 00:24:34,900
+the people you're with,
+
+552
+00:24:34,900 --> 00:24:36,100
+understand the people on your team,
+
+553
+00:24:36,100 --> 00:24:38,180
+or find things to talk to them about.
+
+554
+00:24:38,180 --> 00:24:40,940
+You might notice a number of these things.
+
+555
+00:24:40,940 --> 00:24:42,180
+So to get someone who's motivated,
+
+556
+00:24:42,180 --> 00:24:44,420
+someone who's gonna be able to participate,
+
+557
+00:24:45,500 --> 00:24:46,460
+think about all these things.
+
+558
+00:24:46,460 --> 00:24:48,020
+Think about personal development.
+
+559
+00:24:49,340 --> 00:24:50,820
+So you're in a class,
+
+560
+00:24:50,820 --> 00:24:53,300
+you were here hopefully because you want to learn.
+
+561
+00:24:53,300 --> 00:24:55,900
+You want to learn a new skill, you want to try a new skill.
+
+562
+00:24:55,900 --> 00:24:57,340
+Everyone wants to learn a new skill.
+
+563
+00:24:57,340 --> 00:24:59,700
+There might be a skill that they wanna work on on your team.
+
+564
+00:24:59,700 --> 00:25:01,460
+And I think we've talked about that in the past
+
+565
+00:25:01,460 --> 00:25:03,340
+when we were talking about the vision statement
+
+566
+00:25:03,340 --> 00:25:05,980
+and people putting down why they're involved on the team
+
+567
+00:25:05,980 --> 00:25:07,780
+and why they're involved on this project.
+
+568
+00:25:07,780 --> 00:25:08,620
+So being aware of that
+
+569
+00:25:08,620 --> 00:25:10,780
+and constantly coming back to that for each person,
+
+570
+00:25:10,780 --> 00:25:13,300
+especially if you have someone on your team
+
+571
+00:25:13,300 --> 00:25:14,460
+who is just not participating
+
+572
+00:25:14,460 --> 00:25:18,340
+and you need to figure out how to engage them.
+
+573
+00:25:18,340 --> 00:25:20,140
+Think about the skills that they wanna bring to the table,
+
+574
+00:25:20,140 --> 00:25:22,420
+the skills they're trying to practice.
+
+575
+00:25:22,420 --> 00:25:23,820
+When it comes to motivation,
+
+576
+00:25:25,020 --> 00:25:28,260
+it largely comes down to intrinsic or extrinsic.
+
+577
+00:25:28,260 --> 00:25:30,740
+The extrinsic might be the grade they're gonna get,
+
+578
+00:25:30,740 --> 00:25:35,420
+but it's really difficult to really hone in on that
+
+579
+00:25:35,420 --> 00:25:37,380
+because the grade's shared between your groups.
+
+580
+00:25:37,380 --> 00:25:39,700
+So that might not be the place to look at.
+
+581
+00:25:39,700 --> 00:25:41,620
+Try to take a look at the intrinsic things.
+
+582
+00:25:41,620 --> 00:25:42,460
+What are the things that,
+
+583
+00:25:42,460 --> 00:25:44,140
+if they were enthusiast,
+
+584
+00:25:44,140 --> 00:25:47,660
+if they had enthusiasms about the project at some point,
+
+585
+00:25:49,100 --> 00:25:51,620
+try to remember what that was.
+
+586
+00:25:51,620 --> 00:25:54,020
+Ask somebody else on your team what that might have been.
+
+587
+00:25:54,020 --> 00:25:57,140
+See if you can bring that enthusiasm back into the project.
+
+588
+00:25:58,060 --> 00:26:01,420
+Morale or self-worth, there's been some research that shows
+
+589
+00:26:01,420 --> 00:26:03,820
+that the reason why people work well on teams
+
+590
+00:26:03,820 --> 00:26:05,700
+and the reason why we want to work on teams
+
+591
+00:26:05,740 --> 00:26:08,460
+is because it brings us self-worth.
+
+592
+00:26:09,620 --> 00:26:10,820
+There is, and in particular,
+
+593
+00:26:10,820 --> 00:26:12,740
+there's some self-awareness that can happen
+
+594
+00:26:12,740 --> 00:26:15,900
+by being on a team and getting,
+
+595
+00:26:15,900 --> 00:26:18,660
+and actually kinda links a little bit to extrinsic rewards,
+
+596
+00:26:18,660 --> 00:26:22,180
+by getting rewarded, getting feedback on my performance
+
+597
+00:26:22,180 --> 00:26:24,300
+is gonna help me do better.
+
+598
+00:26:24,300 --> 00:26:27,820
+Empowerment, giving ownership.
+
+599
+00:26:27,820 --> 00:26:32,820
+So raise your hands if your team uses assigning tasks
+
+600
+00:26:32,820 --> 00:26:34,100
+or taking tasks.
+
+601
+00:26:34,100 --> 00:26:36,140
+So assigning tasks, raise your hand.
+
+602
+00:26:36,140 --> 00:26:39,700
+If your team assigns tasks to individuals.
+
+603
+00:26:39,700 --> 00:26:41,140
+That team?
+
+604
+00:26:41,140 --> 00:26:42,700
+Kinda?
+
+605
+00:26:42,700 --> 00:26:43,860
+Yeah?
+
+606
+00:26:43,860 --> 00:26:46,020
+You assign, so there's one person on your team
+
+607
+00:26:46,020 --> 00:26:47,780
+that says you are going to do this?
+
+608
+00:26:49,180 --> 00:26:50,340
+All right.
+
+609
+00:26:50,340 --> 00:26:52,580
+Has anybody tried ownership
+
+610
+00:26:52,580 --> 00:26:55,300
+where someone takes a task from a set of tasks
+
+611
+00:26:55,300 --> 00:26:57,140
+that are available?
+
+612
+00:26:57,140 --> 00:26:58,140
+Little?
+
+613
+00:26:58,140 --> 00:26:59,380
+Little?
+
+614
+00:26:59,380 --> 00:27:00,700
+When does that work?
+
+615
+00:27:00,700 --> 00:27:01,900
+When does ownership work?
+
+616
+00:27:02,900 --> 00:27:05,100
+It will be forwarded, yeah.
+
+617
+00:27:05,100 --> 00:27:05,940
+What's that?
+
+618
+00:27:05,940 --> 00:27:07,100
+Some people are e-reporting,
+
+619
+00:27:07,100 --> 00:27:08,700
+they're interested in what we're doing.
+
+620
+00:27:08,700 --> 00:27:10,660
+So there's some of those other things,
+
+621
+00:27:10,660 --> 00:27:13,580
+that there's some enthusiasm over it.
+
+622
+00:27:13,580 --> 00:27:14,420
+Yeah?
+
+623
+00:27:14,420 --> 00:27:16,340
+It's usually like a while before the deadline, too.
+
+624
+00:27:16,340 --> 00:27:17,700
+So I go like, can you hear your deadline?
+
+625
+00:27:17,700 --> 00:27:18,740
+Okay, cool.
+
+626
+00:27:18,740 --> 00:27:20,060
+So yeah, yeah.
+
+627
+00:27:20,060 --> 00:27:21,620
+Yeah, you can run into problems if you say
+
+628
+00:27:21,620 --> 00:27:23,620
+like who's gonna do this and I'll be volunteers.
+
+629
+00:27:23,620 --> 00:27:24,460
+Yeah.
+
+630
+00:27:24,460 --> 00:27:27,060
+I'm making sure that it's good if you can volunteer
+
+631
+00:27:27,060 --> 00:27:29,860
+for tasks that they're enthusiastic about,
+
+632
+00:27:29,860 --> 00:27:32,020
+but then if nobody will volunteer to do something
+
+633
+00:27:32,100 --> 00:27:33,260
+that needs to be done and so on,
+
+634
+00:27:33,260 --> 00:27:34,660
+I'm just gonna say, okay, you're gonna do this.
+
+635
+00:27:34,660 --> 00:27:35,500
+Absolutely.
+
+636
+00:27:35,500 --> 00:27:36,420
+I feel like I'm in a hybrid environment.
+
+637
+00:27:36,420 --> 00:27:37,260
+Okay.
+
+638
+00:27:37,260 --> 00:27:38,980
+So where does it, yeah, go ahead.
+
+639
+00:27:38,980 --> 00:27:41,540
+Yeah, and I think also it depends on if
+
+640
+00:27:41,540 --> 00:27:44,100
+everyone on the team is willing to purchase ownership,
+
+641
+00:27:44,100 --> 00:27:45,860
+or if it's like only some schools,
+
+642
+00:27:45,860 --> 00:27:47,700
+because that also creates a different dynamic.
+
+643
+00:27:47,700 --> 00:27:48,540
+Absolutely.
+
+644
+00:27:48,540 --> 00:27:49,380
+So there's some?
+
+645
+00:27:49,380 --> 00:27:50,220
+Some people who are like,
+
+646
+00:27:50,220 --> 00:27:51,380
+do you think you can do this with the other non-students?
+
+647
+00:27:51,380 --> 00:27:54,180
+Like, do some of them need to start a certain task?
+
+648
+00:27:54,180 --> 00:27:56,180
+Are they something that's like kind of like
+
+649
+00:27:56,180 --> 00:27:58,260
+at the beginning after the book is serviced
+
+650
+00:27:58,260 --> 00:28:00,180
+and then like the task that I left
+
+651
+00:28:00,460 --> 00:28:02,780
+and then it's like sort of like that.
+
+652
+00:28:02,780 --> 00:28:03,900
+Okay.
+
+653
+00:28:03,900 --> 00:28:05,300
+So at the beginning,
+
+654
+00:28:05,300 --> 00:28:06,840
+everybody takes on tasks and at the end,
+
+655
+00:28:06,840 --> 00:28:09,460
+when you have the leftovers, they get assigned.
+
+656
+00:28:09,460 --> 00:28:10,700
+Yeah, Matt?
+
+657
+00:28:10,700 --> 00:28:12,500
+One of the biggest problems,
+
+658
+00:28:12,500 --> 00:28:15,340
+I think of this is that when you're not competing
+
+659
+00:28:15,340 --> 00:28:16,860
+on how it's beginning or working on it,
+
+660
+00:28:16,860 --> 00:28:20,460
+especially if it's really easy to become a lot of other work,
+
+661
+00:28:20,460 --> 00:28:22,260
+then things can kind of stall you
+
+662
+00:28:22,260 --> 00:28:24,060
+because you're helping develop your own games,
+
+663
+00:28:24,060 --> 00:28:27,660
+you're helping you have to be passive in order to do it.
+
+664
+00:28:27,660 --> 00:28:28,940
+So it might not, yeah,
+
+665
+00:28:28,940 --> 00:28:30,180
+so you might not actually have ownership.
+
+666
+00:28:30,180 --> 00:28:31,860
+It might look like you had ownership.
+
+667
+00:28:31,860 --> 00:28:33,060
+There was the evidence of ownership
+
+668
+00:28:33,060 --> 00:28:35,500
+in that someone said, okay, I'll take that task,
+
+669
+00:28:35,500 --> 00:28:38,900
+but there's no follow through, there's no commitment.
+
+670
+00:28:38,900 --> 00:28:41,100
+And that gets to the next one, commitment.
+
+671
+00:28:42,260 --> 00:28:45,140
+The best way to have commitment on your team
+
+672
+00:28:45,140 --> 00:28:47,260
+is for one person to be committed,
+
+673
+00:28:47,260 --> 00:28:50,260
+to express that commitment, to express that loyalty
+
+674
+00:28:50,260 --> 00:28:52,020
+for everyone else to see that loyalty
+
+675
+00:28:52,020 --> 00:28:53,580
+and see that commitment.
+
+676
+00:28:53,580 --> 00:28:55,460
+And then hopefully they pick up the ball and they're like,
+
+677
+00:28:55,460 --> 00:28:57,140
+okay, I'm gonna be committed too.
+
+678
+00:28:57,140 --> 00:28:59,980
+If that second person doesn't do that, pick it up,
+
+679
+00:28:59,980 --> 00:29:02,140
+then the chain, it doesn't travel through the chain,
+
+680
+00:29:02,140 --> 00:29:03,860
+it just doesn't happen.
+
+681
+00:29:03,860 --> 00:29:05,380
+Even though that one person went out of the way
+
+682
+00:29:05,380 --> 00:29:06,780
+to show that kind of sacrifice,
+
+683
+00:29:06,780 --> 00:29:08,500
+it just didn't get picked up.
+
+684
+00:29:08,500 --> 00:29:12,020
+So maybe think about, do you see that chain happening
+
+685
+00:29:12,020 --> 00:29:13,540
+on your teams?
+
+686
+00:29:13,540 --> 00:29:14,900
+Do you see it breaking?
+
+687
+00:29:14,900 --> 00:29:16,700
+Can you identify where that breaking point is?
+
+688
+00:29:16,700 --> 00:29:19,420
+And can you think about ways to fix that?
+
+689
+00:29:20,900 --> 00:29:22,380
+Trust is a big one.
+
+690
+00:29:23,420 --> 00:29:25,060
+How many, so raise your hands
+
+691
+00:29:25,060 --> 00:29:28,060
+if you have worked with the majority of the people
+
+692
+00:29:28,060 --> 00:29:31,460
+on your team before, in some fashion,
+
+693
+00:29:31,460 --> 00:29:32,900
+this class or other classes.
+
+694
+00:29:32,900 --> 00:29:34,980
+You feel like you know your teammates.
+
+695
+00:29:34,980 --> 00:29:35,940
+Like raise your hands if you feel like
+
+696
+00:29:35,940 --> 00:29:38,300
+you really know your teammates, you've worked with them before.
+
+697
+00:29:38,300 --> 00:29:39,700
+Hi, if you really think so.
+
+698
+00:29:40,660 --> 00:29:43,640
+So one, two, maybe.
+
+699
+00:29:43,640 --> 00:29:45,380
+One, two, three.
+
+700
+00:29:46,460 --> 00:29:49,340
+So think about how well you know each other.
+
+701
+00:29:49,340 --> 00:29:50,740
+Think about ways you can figure out
+
+702
+00:29:50,740 --> 00:29:52,380
+how you can know each other better.
+
+703
+00:29:53,380 --> 00:29:56,860
+Social interactions, going out to coffee,
+
+704
+00:29:56,860 --> 00:29:58,300
+going out for lunch, things like that.
+
+705
+00:29:58,300 --> 00:29:59,980
+Is there something that you can do
+
+706
+00:29:59,980 --> 00:30:03,060
+that will help that kind of thing happen?
+
+707
+00:30:03,060 --> 00:30:06,220
+And then here's the big one, this is the MIT One Stress.
+
+708
+00:30:06,220 --> 00:30:08,180
+And stress tends to be the negative.
+
+709
+00:30:08,180 --> 00:30:11,500
+It can be positive in that it's the end of the project
+
+710
+00:30:11,500 --> 00:30:14,340
+and it's due and you just need to get things done.
+
+711
+00:30:14,340 --> 00:30:15,980
+And that can lead to crunch,
+
+712
+00:30:15,980 --> 00:30:17,940
+but then there's also the huge negative aspect of stress.
+
+713
+00:30:17,940 --> 00:30:21,340
+And that's very much an external factor for the most part.
+
+714
+00:30:21,380 --> 00:30:23,180
+It could be an internal factor.
+
+715
+00:30:23,180 --> 00:30:25,300
+If stress is in it, if there's some stress
+
+716
+00:30:25,300 --> 00:30:28,180
+being caused by internal things going on with your team,
+
+717
+00:30:28,180 --> 00:30:30,540
+it's likely related to one of the ones above it.
+
+718
+00:30:33,660 --> 00:30:36,100
+So one way to think about these three,
+
+719
+00:30:36,980 --> 00:30:38,860
+one, two, three, seven things.
+
+720
+00:30:38,860 --> 00:30:40,700
+You can think of them as in terms of
+
+721
+00:30:40,700 --> 00:30:42,420
+the desire ability to learn new skills
+
+722
+00:30:42,420 --> 00:30:45,540
+or the desire ability to take on a task.
+
+723
+00:30:45,540 --> 00:30:46,700
+So if you're trying to come up with strategies
+
+724
+00:30:46,700 --> 00:30:49,260
+with your team on how to solve some of these problems,
+
+725
+00:30:49,260 --> 00:30:50,900
+think of it in those two terms.
+
+726
+00:30:52,180 --> 00:30:55,420
+All right.
+
+727
+00:30:55,420 --> 00:30:59,460
+So how do distributed teams perform?
+
+728
+00:30:59,460 --> 00:31:01,980
+So what do I mean by distributed?
+
+729
+00:31:01,980 --> 00:31:03,380
+What is a distributed team?
+
+730
+00:31:06,380 --> 00:31:07,220
+Yeah?
+
+731
+00:31:07,220 --> 00:31:12,220
+Yeah, or just everyone's all over the place.
+
+732
+00:31:12,780 --> 00:31:15,460
+It could mean that you are in Singapore
+
+733
+00:31:15,460 --> 00:31:18,500
+and someone else is in Ohio.
+
+734
+00:31:18,500 --> 00:31:21,020
+You could be separated by time zones, by oceans.
+
+735
+00:31:21,780 --> 00:31:23,620
+By, and really, I think that might be
+
+736
+00:31:23,620 --> 00:31:25,340
+East Campus in the Gregor maybe.
+
+737
+00:31:27,180 --> 00:31:28,180
+It could just be through distance.
+
+738
+00:31:28,180 --> 00:31:29,620
+It could be through your schools.
+
+739
+00:31:29,620 --> 00:31:30,700
+It could be through your departments,
+
+740
+00:31:30,700 --> 00:31:32,620
+your majors, whatnot.
+
+741
+00:31:32,620 --> 00:31:36,420
+There's some kind of boundaries going on between people.
+
+742
+00:31:36,420 --> 00:31:39,060
+In this case, it's largely time.
+
+743
+00:31:39,060 --> 00:31:41,180
+It's basically, some people can work during some hours.
+
+744
+00:31:41,180 --> 00:31:44,300
+Some people can't work during those hours.
+
+745
+00:31:44,300 --> 00:31:47,860
+So what have you done so far to fix that?
+
+746
+00:31:47,860 --> 00:31:50,100
+Think back on some of the postmortems you've given us.
+
+747
+00:31:50,100 --> 00:31:52,260
+What are some of the strategies you've already used
+
+748
+00:31:52,260 --> 00:31:55,700
+and seen used to figure out how to work
+
+749
+00:31:55,700 --> 00:31:58,180
+in across different time periods?
+
+750
+00:32:01,780 --> 00:32:03,140
+Yeah?
+
+751
+00:32:03,140 --> 00:32:05,860
+Well, right now, we're using a Slack,
+
+752
+00:32:05,860 --> 00:32:07,860
+which is pretty helpful.
+
+753
+00:32:10,260 --> 00:32:11,140
+What's it called?
+
+754
+00:32:11,140 --> 00:32:11,980
+Slack.
+
+755
+00:32:11,980 --> 00:32:13,260
+It's like, Clodoc.
+
+756
+00:32:13,260 --> 00:32:14,220
+It's like what?
+
+757
+00:32:14,220 --> 00:32:15,340
+Clodoc?
+
+758
+00:32:15,340 --> 00:32:16,180
+What's that?
+
+759
+00:32:16,180 --> 00:32:17,380
+It's group instant messaging.
+
+760
+00:32:17,380 --> 00:32:18,220
+Yay!
+
+761
+00:32:18,220 --> 00:32:20,820
+And it keeps track of all our song tasks.
+
+762
+00:32:20,820 --> 00:32:23,140
+And also, a few more people.
+
+763
+00:32:23,140 --> 00:32:23,980
+Cool.
+
+764
+00:32:23,980 --> 00:32:26,180
+Anybody else using a group I am or an IRC chat?
+
+765
+00:32:28,220 --> 00:32:29,060
+Yeah?
+
+766
+00:32:29,060 --> 00:32:30,380
+Do you use something called Gitter?
+
+767
+00:32:30,380 --> 00:32:31,940
+Or do you use, like, a chat and pie
+
+768
+00:32:31,940 --> 00:32:33,100
+because of your github?
+
+769
+00:32:33,100 --> 00:32:33,940
+Cool.
+
+770
+00:32:33,940 --> 00:32:37,940
+Are they just black on the internet or a lot of the github?
+
+771
+00:32:37,940 --> 00:32:39,700
+I think so, yeah.
+
+772
+00:32:39,700 --> 00:32:40,900
+Cool.
+
+773
+00:32:40,900 --> 00:32:41,900
+Okay.
+
+774
+00:32:41,900 --> 00:32:43,700
+It's great when it can hook up to things
+
+775
+00:32:43,700 --> 00:32:44,860
+and it works with your workflow.
+
+776
+00:32:44,860 --> 00:32:46,500
+It's also just great to have this period.
+
+777
+00:32:46,500 --> 00:32:47,380
+If you don't use any of those,
+
+778
+00:32:47,380 --> 00:32:48,220
+maybe think about Skype.
+
+779
+00:32:48,220 --> 00:32:49,900
+Any other things people use?
+
+780
+00:32:49,900 --> 00:32:50,740
+Yeah?
+
+781
+00:32:50,740 --> 00:32:53,580
+Um, just, in my experience, like,
+
+782
+00:32:53,580 --> 00:32:56,180
+if, let's say we're walking on something
+
+783
+00:32:56,180 --> 00:32:59,100
+and all of a sudden you just have to add a point,
+
+784
+00:32:59,100 --> 00:33:00,900
+it would be good to, like, keep the whole thing
+
+785
+00:33:00,900 --> 00:33:04,020
+informed about the progress that's happening on the branch.
+
+786
+00:33:04,020 --> 00:33:08,900
+So we usually, like, use Google, just Google it out,
+
+787
+00:33:08,900 --> 00:33:11,540
+explaining exactly what you have done so far.
+
+788
+00:33:11,540 --> 00:33:12,380
+So reporting.
+
+789
+00:33:12,740 --> 00:33:18,100
+I remember some people had issues with email
+
+790
+00:33:18,100 --> 00:33:19,380
+on previous teams.
+
+791
+00:33:19,380 --> 00:33:21,340
+Is anybody still using email as a primary means
+
+792
+00:33:21,340 --> 00:33:22,740
+of communication on your team?
+
+793
+00:33:24,460 --> 00:33:26,500
+How's it working for you, so far?
+
+794
+00:33:26,500 --> 00:33:28,140
+I think I'm still at this point yet.
+
+795
+00:33:28,140 --> 00:33:28,980
+Yeah.
+
+796
+00:33:28,980 --> 00:33:30,780
+I think we started talking about, you know,
+
+797
+00:33:30,780 --> 00:33:34,140
+the software store so we don't have to do everything.
+
+798
+00:33:34,140 --> 00:33:35,460
+Yep.
+
+799
+00:33:35,460 --> 00:33:37,540
+Are those emails gonna be archived and viewable
+
+800
+00:33:37,540 --> 00:33:39,500
+by everyone at a later date?
+
+801
+00:33:39,500 --> 00:33:40,500
+It's a good idea.
+
+802
+00:33:40,500 --> 00:33:41,340
+Yeah.
+
+803
+00:33:43,380 --> 00:33:48,260
+And I think that's why we tend to think about group IAMs
+
+804
+00:33:48,260 --> 00:33:50,300
+and particularly, um, Phillip likes IRC.
+
+805
+00:33:50,300 --> 00:33:52,100
+For that very reason, certain IRC servers
+
+806
+00:33:52,100 --> 00:33:54,460
+will keep an archive for you on other kinds
+
+807
+00:33:54,460 --> 00:33:55,580
+of group where we'll do that, too,
+
+808
+00:33:55,580 --> 00:33:56,940
+but they tend to be pricey.
+
+809
+00:33:59,140 --> 00:34:02,380
+Has anybody started using Trello on your teams yet?
+
+810
+00:34:03,420 --> 00:34:04,460
+Yeah.
+
+811
+00:34:04,460 --> 00:34:06,260
+Are you using it as a communication method
+
+812
+00:34:06,260 --> 00:34:09,660
+or as a recording of things?
+
+813
+00:34:10,660 --> 00:34:11,940
+Okay.
+
+814
+00:34:11,940 --> 00:34:14,300
+Anybody using that as a communication method at all?
+
+815
+00:34:14,300 --> 00:34:15,260
+Trying that out?
+
+816
+00:34:16,420 --> 00:34:17,260
+Okay.
+
+817
+00:34:17,260 --> 00:34:18,580
+Cause I think it can do email notifications
+
+818
+00:34:18,580 --> 00:34:20,260
+and things like that when things change,
+
+819
+00:34:20,260 --> 00:34:22,420
+assigning members to tasks, stuff like that.
+
+820
+00:34:24,260 --> 00:34:25,100
+Cool.
+
+821
+00:34:26,820 --> 00:34:27,660
+All right.
+
+822
+00:34:27,660 --> 00:34:30,460
+So again, we got talking into tools.
+
+823
+00:34:30,460 --> 00:34:32,860
+What other things can we do?
+
+824
+00:34:32,860 --> 00:34:35,900
+So another paper that is gonna be on Stellar,
+
+825
+00:34:35,900 --> 00:34:39,020
+if you wanna look at it, was basically a survey
+
+826
+00:34:39,060 --> 00:34:41,980
+of distributed teams using answer processes
+
+827
+00:34:41,980 --> 00:34:43,380
+and giving up some best practices
+
+828
+00:34:43,380 --> 00:34:45,220
+of what worked best for them.
+
+829
+00:34:45,220 --> 00:34:46,060
+And I was nice.
+
+830
+00:34:46,060 --> 00:34:48,260
+I'm just giving you the summary of that.
+
+831
+00:34:49,740 --> 00:34:52,940
+So one thing they noticed is having a one team mindset
+
+832
+00:34:52,940 --> 00:34:54,900
+was the thing that got them through
+
+833
+00:34:54,900 --> 00:34:56,300
+working together as a group.
+
+834
+00:34:57,260 --> 00:34:59,740
+What do we mean by one team?
+
+835
+00:34:59,740 --> 00:35:02,100
+That the group identifies,
+
+836
+00:35:02,100 --> 00:35:03,460
+well, firstly, identifies as a team,
+
+837
+00:35:03,460 --> 00:35:04,460
+like what we talked about before.
+
+838
+00:35:04,460 --> 00:35:06,900
+They all have a goal that they're going towards.
+
+839
+00:35:06,940 --> 00:35:09,700
+They all identify as going towards that goal.
+
+840
+00:35:09,700 --> 00:35:12,740
+They don't identify as just as an individual group.
+
+841
+00:35:13,860 --> 00:35:16,580
+But that's actually a major part of their identity.
+
+842
+00:35:17,420 --> 00:35:20,100
+And for them, it's because that's their 40 hour,
+
+843
+00:35:20,100 --> 00:35:24,700
+80 hour, 120 hour workdays or work weeks.
+
+844
+00:35:26,500 --> 00:35:28,140
+Something I think you're gonna have an issue with
+
+845
+00:35:28,140 --> 00:35:31,700
+because you're working smaller periods of time.
+
+846
+00:35:31,700 --> 00:35:32,740
+But what they're able to do,
+
+847
+00:35:32,740 --> 00:35:33,740
+the way they're able to do that
+
+848
+00:35:33,740 --> 00:35:35,220
+is they've got these frequent team interactions.
+
+849
+00:35:35,220 --> 00:35:37,540
+And actually, when they're working for a long period of time,
+
+850
+00:35:37,540 --> 00:35:40,740
+there are people who are working on their own
+
+851
+00:35:40,740 --> 00:35:42,900
+in their home or their home office with another team.
+
+852
+00:35:42,900 --> 00:35:45,060
+That's very far away.
+
+853
+00:35:45,060 --> 00:35:48,500
+And yet these teams still do a daily standup.
+
+854
+00:35:48,500 --> 00:35:49,900
+Does anybody here do a daily standup
+
+855
+00:35:49,900 --> 00:35:51,260
+on their teams right now?
+
+856
+00:35:53,660 --> 00:35:56,660
+So what they're doing is they're going on video.
+
+857
+00:35:56,660 --> 00:35:59,180
+They're talking to each other for a very short period of time
+
+858
+00:35:59,180 --> 00:36:01,540
+about what they've done, what they're going to do,
+
+859
+00:36:01,540 --> 00:36:02,540
+what's in their way.
+
+860
+00:36:03,540 --> 00:36:05,220
+The cool thing with daily standups
+
+861
+00:36:05,220 --> 00:36:07,540
+and why they think this works for them,
+
+862
+00:36:07,540 --> 00:36:11,340
+it goes back to those seven items I listed about
+
+863
+00:36:11,340 --> 00:36:13,260
+how do you get people engaged on a team?
+
+864
+00:36:13,260 --> 00:36:14,940
+It shows commitment.
+
+865
+00:36:14,940 --> 00:36:16,140
+The fact that there are some people,
+
+866
+00:36:16,140 --> 00:36:18,620
+that there are people who are showing up to meetings.
+
+867
+00:36:18,620 --> 00:36:20,700
+There is some kind of personal sacrifice.
+
+868
+00:36:20,700 --> 00:36:23,580
+Some people are meeting at a very strange hour of the day
+
+869
+00:36:23,580 --> 00:36:25,340
+that they're not normally going to meet.
+
+870
+00:36:25,340 --> 00:36:27,020
+And they're doing that because of the team.
+
+871
+00:36:27,020 --> 00:36:30,300
+They're sacrificing something personal for the team.
+
+872
+00:36:30,300 --> 00:36:31,940
+Everyone else on the team sees that.
+
+873
+00:36:31,980 --> 00:36:33,540
+They see that kind of commitment.
+
+874
+00:36:33,540 --> 00:36:37,100
+They feel like they need to reflect that back themselves.
+
+875
+00:36:37,100 --> 00:36:38,340
+Also trust.
+
+876
+00:36:38,340 --> 00:36:39,620
+And in this particular case,
+
+877
+00:36:39,620 --> 00:36:42,060
+it's the trust of not letting meetings take too long.
+
+878
+00:36:42,060 --> 00:36:45,420
+These daily standups really should only take 10 minutes.
+
+879
+00:36:45,420 --> 00:36:47,780
+An effective team can do it in five.
+
+880
+00:36:47,780 --> 00:36:50,580
+Effective 10-person team, 30 seconds each go.
+
+881
+00:36:50,580 --> 00:36:52,140
+Everyone says what they've done.
+
+882
+00:36:52,140 --> 00:36:54,100
+Everyone sees it with other's faces.
+
+883
+00:36:54,100 --> 00:36:55,700
+The great thing about seeing each other's faces
+
+884
+00:36:55,700 --> 00:36:59,460
+is you can see what stage of fear and anxiety they're in.
+
+885
+00:36:59,460 --> 00:37:00,820
+Then you can then talk to them later
+
+886
+00:37:00,820 --> 00:37:03,180
+and have some other personal interactions with them.
+
+887
+00:37:05,660 --> 00:37:08,220
+The other thing they do is they do co-located work.
+
+888
+00:37:09,220 --> 00:37:10,420
+They've got money sometimes,
+
+889
+00:37:10,420 --> 00:37:12,260
+so they're flying people back and forth.
+
+890
+00:37:12,260 --> 00:37:14,100
+But again, they're also doing co-located work
+
+891
+00:37:14,100 --> 00:37:17,300
+by doing things, having Skype always on in the background
+
+892
+00:37:17,300 --> 00:37:18,740
+while they're working together.
+
+893
+00:37:18,740 --> 00:37:20,300
+But they're not doing it the entire time.
+
+894
+00:37:20,300 --> 00:37:21,740
+They can't afford that.
+
+895
+00:37:21,740 --> 00:37:26,180
+So one thing you can do is to schedule your co-located time
+
+896
+00:37:27,140 --> 00:37:28,180
+at the beginning of the project,
+
+897
+00:37:28,180 --> 00:37:30,700
+which is basically what we've been doing in class
+
+898
+00:37:30,820 --> 00:37:32,100
+for the past few weeks,
+
+899
+00:37:32,100 --> 00:37:34,420
+identifying important milestones
+
+900
+00:37:34,420 --> 00:37:37,180
+and making sure you've scheduled a co-located period
+
+901
+00:37:37,180 --> 00:37:38,100
+during that milestone,
+
+902
+00:37:38,100 --> 00:37:40,580
+right before that milestone is gonna help you greatly,
+
+903
+00:37:40,580 --> 00:37:42,900
+doing Instric teams and doing video chat.
+
+904
+00:37:45,780 --> 00:37:48,380
+And here's a big one we haven't talked about in class so much,
+
+905
+00:37:48,380 --> 00:37:50,340
+but I get the impression that some of you
+
+906
+00:37:50,340 --> 00:37:54,740
+might be interested in this kind of thing, having coaches.
+
+907
+00:37:54,740 --> 00:37:57,140
+So we've already seen some of the teams
+
+908
+00:37:57,140 --> 00:38:00,180
+have a dedicated scrum master or producer.
+
+909
+00:38:00,220 --> 00:38:02,580
+Think about having a dedicated coach.
+
+910
+00:38:02,580 --> 00:38:04,460
+So someone who's on your team,
+
+911
+00:38:04,460 --> 00:38:07,100
+who is there to cultivate team spirit,
+
+912
+00:38:07,100 --> 00:38:09,460
+they're gonna emphasize the importance of one team.
+
+913
+00:38:09,460 --> 00:38:11,420
+They could be your scrum master or producer,
+
+914
+00:38:11,420 --> 00:38:15,220
+but they're not actually the same role.
+
+915
+00:38:15,220 --> 00:38:19,140
+The scrum master or the producer is measuring productivity.
+
+916
+00:38:19,140 --> 00:38:22,220
+They're measuring tasks, how well things get done.
+
+917
+00:38:22,220 --> 00:38:23,860
+The coaches are very different.
+
+918
+00:38:23,860 --> 00:38:25,780
+They're looking at how people interact with each other,
+
+919
+00:38:25,780 --> 00:38:27,100
+how people talk to each other,
+
+920
+00:38:27,100 --> 00:38:28,540
+how people work with each other.
+
+921
+00:38:28,580 --> 00:38:31,620
+Oftentimes, people who are naturally inclined to do one
+
+922
+00:38:31,620 --> 00:38:33,020
+can be inclined to do the other,
+
+923
+00:38:33,020 --> 00:38:34,820
+but that's not always the case.
+
+924
+00:38:34,820 --> 00:38:36,940
+So if you have someone on your team
+
+925
+00:38:36,940 --> 00:38:40,700
+who is one of those extroverted, outgoing,
+
+926
+00:38:40,700 --> 00:38:42,900
+or even introverted, but really interested
+
+927
+00:38:42,900 --> 00:38:45,020
+in what individuals do one-on-one
+
+928
+00:38:45,020 --> 00:38:46,900
+and how individuals work,
+
+929
+00:38:46,900 --> 00:38:50,300
+see if you can incorporate some coaching strategies
+
+930
+00:38:50,300 --> 00:38:52,180
+with your teammates.
+
+931
+00:38:52,180 --> 00:38:53,940
+And again, you can do one-on-one meetings,
+
+932
+00:38:53,940 --> 00:38:55,540
+and we can talk about this in the future.
+
+933
+00:38:55,540 --> 00:38:56,780
+If you're interested in this kind of stuff,
+
+934
+00:38:57,260 --> 00:38:59,860
+we can unpack on this topic and talk about it further.
+
+935
+00:39:01,820 --> 00:39:03,140
+But I highly recommend it.
+
+936
+00:39:04,460 --> 00:39:06,660
+All right, so I did mention meetings.
+
+937
+00:39:06,660 --> 00:39:08,060
+You do have agile meetings.
+
+938
+00:39:08,060 --> 00:39:10,620
+These people have agile meetings.
+
+939
+00:39:10,620 --> 00:39:11,940
+These are what they are.
+
+940
+00:39:11,940 --> 00:39:13,100
+Hopefully you're doing.
+
+941
+00:39:13,100 --> 00:39:18,100
+So who has a formal sprint process
+
+942
+00:39:18,380 --> 00:39:21,420
+where you plan your sprint before you start?
+
+943
+00:39:21,420 --> 00:39:24,900
+So you basically create your sprint task list at a meeting.
+
+944
+00:39:24,900 --> 00:39:25,740
+Is everyone there?
+
+945
+00:39:25,740 --> 00:39:28,420
+That's when you're saying, not everyone's there.
+
+946
+00:39:28,420 --> 00:39:32,700
+We have the tasks, and we hope it's a complete
+
+947
+00:39:32,700 --> 00:39:34,060
+and final day of the week.
+
+948
+00:39:34,060 --> 00:39:34,900
+Okay.
+
+949
+00:39:34,900 --> 00:39:36,820
+So we do have a formal week by week,
+
+950
+00:39:36,820 --> 00:39:38,380
+but we do go along, it doesn't matter.
+
+951
+00:39:38,380 --> 00:39:40,060
+Okay, cool.
+
+952
+00:39:40,060 --> 00:39:42,260
+And you had a meeting to create that.
+
+953
+00:39:42,260 --> 00:39:44,620
+Okay, so then you have your daily stand-ups
+
+954
+00:39:44,620 --> 00:39:45,940
+at the end of the sprints.
+
+955
+00:39:47,020 --> 00:39:48,380
+You wanna have a sprint review,
+
+956
+00:39:48,380 --> 00:39:50,580
+which is basically the inverse of the sprint planning meeting.
+
+957
+00:39:50,580 --> 00:39:53,020
+You go back and see what you made.
+
+958
+00:39:53,020 --> 00:39:54,140
+Hopefully you have a build,
+
+959
+00:39:54,140 --> 00:39:55,580
+and you just basically look at the build,
+
+960
+00:39:55,580 --> 00:39:58,100
+compare the build to the completed tasks
+
+961
+00:39:58,100 --> 00:39:59,700
+and make sure it matches.
+
+962
+00:39:59,700 --> 00:40:02,380
+The other meeting that you may or may not be doing
+
+963
+00:40:02,380 --> 00:40:04,140
+is the agile retrospective.
+
+964
+00:40:04,140 --> 00:40:06,200
+And that's how did you work this week?
+
+965
+00:40:06,200 --> 00:40:07,040
+Is anybody doing that?
+
+966
+00:40:07,040 --> 00:40:09,500
+Is anybody at the end of their sprint
+
+967
+00:40:09,500 --> 00:40:12,540
+talking about, basically talking about the processes
+
+968
+00:40:12,540 --> 00:40:14,260
+of what you did and how you did it?
+
+969
+00:40:16,860 --> 00:40:19,140
+Okay, that's kind of what I expect.
+
+970
+00:40:21,580 --> 00:40:22,900
+I think you're doing yourself a disservice
+
+971
+00:40:22,900 --> 00:40:23,900
+if you're not doing that.
+
+972
+00:40:23,940 --> 00:40:25,580
+And in particular, if you are doing that
+
+973
+00:40:25,580 --> 00:40:27,660
+and you're making that a face-to-face meeting,
+
+974
+00:40:27,660 --> 00:40:29,060
+that's the time when you can talk about
+
+975
+00:40:29,060 --> 00:40:30,480
+some of these interpersonal issues.
+
+976
+00:40:30,480 --> 00:40:32,900
+That's the time when you can talk about your feelings.
+
+977
+00:40:32,900 --> 00:40:34,660
+That's the time when you can open up
+
+978
+00:40:34,660 --> 00:40:37,140
+and try to figure out what is about,
+
+979
+00:40:37,140 --> 00:40:40,860
+like why are some of these tasks not getting taken on?
+
+980
+00:40:40,860 --> 00:40:42,240
+Who's not doing them?
+
+981
+00:40:42,240 --> 00:40:44,220
+And what's in their way from doing them?
+
+982
+00:40:44,220 --> 00:40:47,300
+But really, it's not about the,
+
+983
+00:40:47,300 --> 00:40:48,660
+it's not really about what's in their way.
+
+984
+00:40:48,660 --> 00:40:49,620
+It's difficult to talk about.
+
+985
+00:40:49,620 --> 00:40:50,900
+It's not about what's in their way,
+
+986
+00:40:50,900 --> 00:40:53,300
+but it might be about what outside of the project
+
+987
+00:40:53,300 --> 00:40:55,220
+and outside of the team could be in their way.
+
+988
+00:40:55,220 --> 00:40:57,820
+And you can work through some of those kind of issues.
+
+989
+00:41:00,820 --> 00:41:02,980
+So, I'm done.
+
+990
+00:41:02,980 --> 00:41:04,500
+What I'd like you to do before you go
+
+991
+00:41:04,500 --> 00:41:08,260
+and work in your teams is schedule a sprint retrospective.
+
+992
+00:41:08,260 --> 00:41:11,300
+So take a look at your sprint process.
+
+993
+00:41:11,300 --> 00:41:12,140
+How long is your sprint?
+
+994
+00:41:12,140 --> 00:41:14,020
+Is it one week or two weeks?
+
+995
+00:41:14,020 --> 00:41:16,100
+We've been assuming it's a one-week process,
+
+996
+00:41:16,100 --> 00:41:17,020
+one-week sprints.
+
+997
+00:41:18,780 --> 00:41:21,660
+Schedule a time period that everyone can attend
+
+998
+00:41:21,660 --> 00:41:24,980
+and a time, an amount of time that they can attend
+
+999
+00:41:24,980 --> 00:41:26,620
+that they can see each other face-to-face,
+
+1000
+00:41:26,620 --> 00:41:28,940
+but not necessarily are in the same room.
+
+1001
+00:41:28,940 --> 00:41:30,260
+If they can be in the same room, awesome.
+
+1002
+00:41:30,260 --> 00:41:34,260
+If you can't, try to figure out a time that you can chat
+
+1003
+00:41:34,260 --> 00:41:36,820
+using Google Hangout or some other kind of video chat,
+
+1004
+00:41:36,820 --> 00:41:39,020
+some other kind of face-to-face video chat.
+
+1005
+00:41:40,580 --> 00:41:41,820
+Make sure the meeting is focused
+
+1006
+00:41:41,820 --> 00:41:43,500
+on talking about your processes.
+
+1007
+00:41:43,500 --> 00:41:45,180
+So don't talk about your game.
+
+1008
+00:41:45,180 --> 00:41:46,780
+Don't talk about the work that you've done.
+
+1009
+00:41:46,780 --> 00:41:49,300
+Talk about how you organize yourself.
+
+1010
+00:41:50,300 --> 00:41:53,100
+And in particular, talk about your interpersonal matters.
+
+1011
+00:41:53,100 --> 00:41:56,500
+Talk about, basically communicate about communicating.
+
+1012
+00:41:56,500 --> 00:41:59,620
+So talk about how you are talking to each other.
+
+1013
+00:42:01,260 --> 00:42:03,740
+And yeah, I'm gonna talk to you about this again
+
+1014
+00:42:03,740 --> 00:42:05,020
+in a couple of weeks.
+
+1015
+00:42:05,020 --> 00:42:08,540
+And in a couple of weeks, I'm gonna give you some more.
+
+1016
+00:42:08,540 --> 00:42:11,020
+Once you're actually in the process of,
+
+1017
+00:42:11,020 --> 00:42:12,500
+I think most of you right now are probably
+
+1018
+00:42:12,500 --> 00:42:15,380
+in the concepting phase, pre-production phase right now.
+
+1019
+00:42:15,380 --> 00:42:16,700
+You're still kind of figuring out your game.
+
+1020
+00:42:16,700 --> 00:42:18,660
+You haven't quite, like, I guess you guys
+
+1021
+00:42:18,660 --> 00:42:20,060
+are actually working on your back end
+
+1022
+00:42:20,060 --> 00:42:22,900
+because someone did the initial design for you.
+
+1023
+00:42:22,900 --> 00:42:25,420
+The rest are probably still working out that design phase.
+
+1024
+00:42:25,420 --> 00:42:27,220
+When I talk about this again,
+
+1025
+00:42:27,220 --> 00:42:30,940
+you'll likely be in full-on production mode.
+
+1026
+00:42:30,940 --> 00:42:33,860
+And so some of the activities I'm gonna show you
+
+1027
+00:42:33,860 --> 00:42:36,660
+might hopefully help when you're doing these meetings.
+
+1028
+00:42:38,580 --> 00:42:39,780
+Any questions?
+
+1029
+00:42:42,140 --> 00:42:43,580
+Okay, so it's 1.50.
+
+1030
+00:42:43,580 --> 00:42:45,620
+Go ahead and take a few minutes to break.
+
+1031
+00:42:45,620 --> 00:42:47,100
+And then the rest of the class is yours
+
+1032
+00:42:47,140 --> 00:42:49,180
+to work in your teams.
+
+1033
+00:42:49,180 --> 00:42:50,380
+But still, do this.
+
+1034
+00:42:51,580 --> 00:42:52,920
+You can leave it on.
+
+1035
+00:42:52,920 --> 00:42:54,240
+You can leave it on.
+
+1036
+00:42:54,240 --> 00:42:55,080
+Go ahead.
+
+1037
+00:42:55,080 --> 00:42:57,420
+Oh, my God, this is gonna be so long.
+
+1038
+00:42:57,420 --> 00:42:58,820
+It's gonna be so long.
+
+1039
+00:42:58,820 --> 00:43:01,220
+And actually, I'll turn it off before we move on.
+
+1040
+00:43:01,220 --> 00:43:02,460
+This is a vacation.
+
+1041
+00:43:02,460 --> 00:43:03,300
+Yeah, I don't know.
+
+1042
+00:43:03,300 --> 00:43:04,900
+Yeah, because I love what you have.
+
+1043
+00:43:04,900 --> 00:43:07,180
+I actually think it's gonna be so long.
+
+1044
+00:43:07,180 --> 00:43:08,740
+What's the time?
+
+1045
+00:43:08,740 --> 00:43:09,580
+The time?
+
+1046
+00:43:09,580 --> 00:43:10,420
+I'm not sure.
+
+1047
+00:43:10,420 --> 00:43:11,620
+Yeah, definitely.
+
+1048
+00:43:11,620 --> 00:43:14,100
+So, how about you say it's gonna be so long.
+
+1049
+00:43:14,100 --> 00:43:14,940
+It's gonna be so long.
+
+1050
+00:43:14,940 --> 00:43:15,780
+What's the time?
+
