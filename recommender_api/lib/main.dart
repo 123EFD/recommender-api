@@ -7,9 +7,17 @@ import 'theme/app_theme.dart';
 import 'theme/glassmorphism.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'services/bundler_state.dart';
+import 'screens/bundler_setup_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => BundlerState(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -40,7 +48,81 @@ class _MyAppState extends State<MyApp> {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: _themeMode,
-      home: const SplitScreenTest(),
+      home: const MainNavigationScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
+
+  @override
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    const StudentProfileScreen(),
+    BundlerSetupScreen(),
+    const PdfChatScreen(isFullScreen: true),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    return Scaffold(
+      body: Row(
+        children: [
+          NavigationRail(
+            backgroundColor: isDark ? const Color(0xFF1A1A2E) : Colors.grey[100],
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            labelType: NavigationRailLabelType.all,
+            selectedLabelTextStyle: TextStyle(
+              color: isDark ? Colors.blueAccent : Colors.blue,
+              fontWeight: FontWeight.bold,
+            ),
+            unselectedLabelTextStyle: TextStyle(
+              color: isDark ? Colors.grey[400] : Colors.grey[700],
+            ),
+            selectedIconTheme: IconThemeData(
+              color: isDark ? Colors.blueAccent : Colors.blue,
+            ),
+            destinations: const [
+              NavigationRailDestination(
+                icon: Icon(Icons.psychology_outlined),
+                selectedIcon: Icon(Icons.psychology),
+                label: Text('Recommender'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.inventory_2_outlined),
+                selectedIcon: Icon(Icons.inventory_2),
+                label: Text('Bundle'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.chat_bubble_outline),
+                selectedIcon: Icon(Icons.chat_bubble),
+                label: Text('PDF Chat'),
+              ),
+            ],
+          ),
+          const VerticalDivider(thickness: 1, width: 1),
+          Expanded(
+            child: IndexedStack(
+              index: _selectedIndex,
+              children: _screens,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
