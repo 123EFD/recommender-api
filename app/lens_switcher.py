@@ -20,7 +20,7 @@ Given a piece of academic text, output ONE of the following lenses **exactly** a
 * **analogy** – rewrite the concept using a simple real‑world metaphor. Keep it under 150 words.
 * **visual** – output a **valid Mermaid flowchart** that captures the logical steps. Use only `graph TD` syntax.
 * **exam** – list the key technical keywords an examiner would look for, each on its own line, prefixed with “✔”.
-Do NOT add any explanations, headings, or extra text. Return *only* the requested content."""
+Do NOT add any explanations, headings, or extra text. Do NOT wrap the output in markdown code blocks or backticks. Return *only* the requested content."""
 
 @router.post("/transform", response_model=LensResponse)
 def transform(req: LensRequest):
@@ -33,7 +33,7 @@ def transform(req: LensRequest):
     result = groq_chat(
         system_prompt=SYSTEM_PROMPT,
         user_message=user_msg,
-        model="groq/llama4-Scout-17B"   # replace with whatever you use
+        model="llama-3.1-8b-instant"   # replace with whatever you use
     )
     
     return LensResponse(transformed=result.strip())

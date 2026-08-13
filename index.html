@@ -143,6 +143,25 @@
         </div>
     </div>
 
+    <div class="study-bundler-section">
+        <h3>⏱️ Only have a few minutes?</h3>
+        <p>Tell us how much time you have before your next class, and we'll build a custom survival guide.</p>
+        
+        <label for="time-budget">I have this many minutes:</label>
+        <input type="number" id="time-budget" placeholder="e.g., 15" min="5" max="120">
+        
+        <label for="topic-select">Topic I'm struggling with:</label>
+        <select id="topic-select">
+            <option value="Computer Science">Computer Science</option>
+            <option value="Data Structures">Data Structures</option>
+            <!-- Add your course topics here -->
+        </select>
+        <button onclick="generateBundle()">Build My Bundle</button>
+        
+        <!-- The results will appear here -->
+        <div id="bundle-results" class="results-container"></div>
+    </div>
+
     <div id="overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-30"></div>
     <script src="script.js"></script>
 </body>

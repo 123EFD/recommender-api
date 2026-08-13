@@ -31,12 +31,10 @@ import pandas as pd
 from fastapi.responses import FileResponse, StreamingResponse
 import hashlib
 import json
-from app import bundler, lens_switcher
+from app.bundler import router as bundler_router
+from app.lens_switcher import router as lens_router
 
-app = FastAPI()
 
-app.include_router(bundler.router)
-app.include_router(lens_switcher.router)
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -87,10 +85,21 @@ app = FastAPI(title="Educational Resource Predictor API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # Allows any web page to connect during testing
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(bundler_router)
+app.include_router(lens_router)
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse("index.html")
+
+@app.get("/script.js")
+def serve_js():
+    return FileResponse("script.js")
 
 class MindMapRequest(BaseModel):
     filename: str

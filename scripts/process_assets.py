@@ -9,6 +9,8 @@ import httpx
 import time
 from pathlib import Path
 
+from tag_constants import KEYWORD_MAP
+
 load_dotenv()
 
 # Paths to your assets
@@ -16,6 +18,7 @@ ASSETS_DIR = Path(__file__).parent.parent / "assets"
 DB_PATH = Path(__file__).parent.parent / "resources.db"
 FLASHCARDS_DIR = ASSETS_DIR / "flashcards"
 PYQ_CSV = ASSETS_DIR / "questions-data-new.csv"
+VIDEO_DIR = ASSETS_DIR / "video"
 import sys
 # Add the project root to sys.path so we can import the app module
 sys.path.append(str(Path(__file__).parent.parent))
@@ -39,13 +42,21 @@ def setup_db():
     conn.commit()
     return conn
 
-def process_anki_apkg(conn, apkg_path):
-    """
-    An .apkg file is a ZIP archive. This function unzips it, 
-    locates the Anki SQLite database, and extracts the flashcards.
-    """
-    print(f"Processing Flashcard Deck: {apkg_path.name}...")
+def classify_flashcard(content):
+    content_lower = content.lower()
+
+    for keyword, topic in KEYWORD_MAP.items():
+        if keyword in content_lower:
+            return topic
+    
+    return "General CS" # Fallback if no keywords match
+
+def process_anki_apkg(conn, apkg_path, batch_size=20):
+    
+    print(f"Processing Flashcard Deck: {apkg_path.name} in batches of {batch_size}...")
     cursor = conn.cursor()
+    
+    existing_flashcards = [row[0] for row in cursor.execute("SELECT content FROM micro_resources WHERE type = 'flashcard'")]
     
     with tempfile.TemporaryDirectory() as tmp_dir:
         # 1. Unzip the .apkg file
@@ -78,16 +89,29 @@ def process_anki_apkg(conn, apkg_path):
                     back = fields[1].replace('\n', '<br>')
                     content = f"**Front:** {front}\n**Back:** {back}"
                     
-                    # Assuming topic is the tags or a generic CS topic
-                    topic = tags.strip() if tags else "Computer Science"
+                    #resume check , if this flashcard alrdy in the db , skip
+                    already_processed = any(front in ec for ec in existing_flashcards)
+                    if already_processed:
+                        continue
+                    
+                    detected_topic = classify_flashcard(content)
                     
                     cursor.execute("""
                         INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
                         VALUES (?, ?, ?, ?, ?)
-                    """, (topic, 'flashcard', content, 2, 2))
+                    """, (detected_topic.strip(), 'flashcard', content, 2, 2))
+                    
                     count += 1
                     
-            print(f"  [+] Extracted {count} flashcards from {apkg_path.name}")
+                    if count % batch_size == 0:
+                        conn.commit()
+                        print(f" [+] Saved batch of {batch_size}. Total flashcards processed: {count}")
+                        
+                        time.sleep(2)
+                        
+            conn.commit()
+            print(f"  [+] Finished! Extracted & Tagged {count} NEW flashcards.")
+                    
         except Exception as e:
             print(f"  [!] Error reading Anki DB: {e}")
         finally:
@@ -101,7 +125,7 @@ def generate_solution_with_groq(question_text):
     user_message = f"Question: {question_text}"
     
     try:
-        return groq_chat(system_prompt=system_prompt, user_message=user_message, model="llama3-8b-8192")
+        return groq_chat(system_prompt=system_prompt, user_message=user_message, model="llama-3.1-8b-instant")
     except Exception as e:
         print(f"  [!] Groq API Error: {e}")
         return None
@@ -150,6 +174,86 @@ def process_pyq_csv(conn, csv_path, max_rows=10):
     conn.commit()
     print(f"  [+] Generated {count} PYQ solutions.")
 
+import re
+
+def time_to_minutes(time_str):
+    """Converts SRT timestamp 'HH:MM:SS,mmm' to total minutes."""
+    # Example: 00:05:30,000 -> 5.5
+    parts = re.split(r'[:,]', time_str)
+    if len(parts) >= 3:
+        h, m, s = int(parts[0]), int(parts[1]), int(parts[2])
+        return (h * 60) + m + (s / 60.0)
+    return 0
+
+def process_video_srt(conn, srt_dir, chunk_duration_min=5):
+    """Parses .srt files into N-minute chunks and stores them."""
+    if not srt_dir.exists():
+        print("  [!] Video directory not found.")
+        return
+
+    cursor = conn.cursor()
+    total_chunks = 0
+
+    for srt_file in srt_dir.glob("*.srt"):
+        print(f"Processing Video Subtitles: {srt_file.name}...")
+        
+        # Use filename as topic temporarily
+        topic = srt_file.stem.replace('_', ' ').title()
+        
+        with open(srt_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # Simple Regex to match SRT blocks
+        blocks = re.split(r'\n\n+', content.strip())
+        
+        current_chunk_text = []
+        current_chunk_start = None
+        current_chunk_end = None
+        
+        for block in blocks:
+            lines = block.split('\n')
+            if len(lines) >= 3:
+                # Line 2 has timestamps: 00:00:00,000 --> 00:00:05,000
+                timestamps = lines[1].split(' --> ')
+                if len(timestamps) == 2:
+                    start_min = time_to_minutes(timestamps[0])
+                    end_min = time_to_minutes(timestamps[1])
+                    text = ' '.join(lines[2:])
+                    
+                    if current_chunk_start is None:
+                        current_chunk_start = start_min
+                    
+                    current_chunk_text.append(text)
+                    current_chunk_end = end_min
+                    
+                    # If this chunk has reached our duration limit, save it!
+                    if (current_chunk_end - current_chunk_start) >= chunk_duration_min:
+                        chunk_content = f"**Video:** {topic} ({int(current_chunk_start)}m - {int(current_chunk_end)}m)\n\n" + " ".join(current_chunk_text)
+                        
+                        cursor.execute("""
+                            INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+                            VALUES (?, ?, ?, ?, ?)
+                        """, (topic, 'video_chunk', chunk_content, chunk_duration_min, 3))
+                        
+                        total_chunks += 1
+                        # Reset for next chunk
+                        current_chunk_text = []
+                        current_chunk_start = None
+
+        # Save any leftover text as the final chunk
+        if current_chunk_text and current_chunk_start is not None and current_chunk_end is not None:
+            actual_duration = max(1, int(current_chunk_end - current_chunk_start))
+            chunk_content = f"**Video:** {topic} ({int(current_chunk_start)}m - {int(current_chunk_end)}m)\n\n" + " ".join(current_chunk_text)
+            cursor.execute("""
+                INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+                VALUES (?, ?, ?, ?, ?)
+            """, (topic, 'video_chunk', chunk_content, actual_duration, 3))
+            total_chunks += 1
+            
+    conn.commit()
+    print(f"  [+] Extracted {total_chunks} video chunks.")
+
+
 if __name__ == "__main__":
     print("Starting Offline Asset Processing...")
     conn = setup_db()
@@ -166,6 +270,9 @@ if __name__ == "__main__":
         process_pyq_csv(conn, PYQ_CSV, max_rows=10) # Set limit higher when ready!
     else:
         print("  [!] PYQ CSV not found.")
+        
+    # 3. Process Video Subtitles (.srt files)
+    process_video_srt(conn, VIDEO_DIR, chunk_duration_min=5)
         
     conn.close()
     print("Offline Processing Complete! Data saved to resources.db")

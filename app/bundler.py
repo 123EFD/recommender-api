@@ -1,7 +1,6 @@
 #apply greedy first-fit knapsack to find best-fit study resources within given duration
 # and return JSON array (study pack)
 
-import resource
 import sqlite3
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, conint
@@ -17,10 +16,10 @@ class BundleRequest(BaseModel):
     
 class ResourceItem(BaseModel):
     resource_id: str
-    title: str
+    topic: str
     duration_min: int
     type: str
-    url: str
+    content: str
     
 def _open() -> sqlite3.Connection:
     return sqlite3.connect(DB_PATH)
@@ -33,10 +32,10 @@ def create_bundle(req: BundleRequest):
     
     #extend with cognitive_load weighting later
     sql = """
-    SELECT resource_id, title, CAST(duration_min AS INT) AS duration,
-           type, url
+    SELECT CAST(id AS TEXT) AS resource_id, topic, CAST(duration_min AS INT) AS duration,
+           type, content
     FROM micro_resources
-    WHERE (? IS NULL OR topic = ?)
+    WHERE (? IS NULL OR topic LIKE '%' || ? || '%')
     ORDER BY RANDOM();
     """
     
@@ -46,9 +45,9 @@ def create_bundle(req: BundleRequest):
     #greedy first-fit knapsack 
     total = 0
     bundle = []
-    for rid, title, dur , type, url in candidates:
+    for rid, topic, dur, type, content in candidates:
         if total + dur <= req.minutes_available:
-            bundle.append(ResourceItem(resource_id=rid, title=title, duration_min=dur, type=type, url=url))
+            bundle.append(ResourceItem(resource_id=rid, topic=topic, duration_min=dur, type=type, content=content))
             total += dur
         if total >= req.minutes_available:
             break

@@ -55,7 +55,7 @@ def generate_solution(question):
     return None
 
 def process_questions(conn, pyq_csv_path):
-    curosr = conn.cursor()
+    cursor = conn.cursor()
     with open(pyq_csv_path, 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -65,7 +65,7 @@ def process_questions(conn, pyq_csv_path):
             solution = generate_solution(question)
             
             if solution:
-                curosr.execute("""
+                cursor.execute("""
                     INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
                     VALUES (?, ?, ?, ?, ?)
                 """, (row['topic'], 'pyq_solution', solution, 5, 4)) #5 min to read, cognitive load 4/5

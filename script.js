@@ -331,3 +331,44 @@ document.getElementById("userQuestion").addEventListener("keypress", function(ev
         askQuestion();
     }
 });
+
+async function generateBundle() {
+    const minutes = document.getElementById('time-budget').value;
+    const topic = document.getElementById('topic-select').value;
+    const resultsContainer = document.getElementById("bundle-results");
+    
+    resultsContainer.innerHTML = "<p>⏳ Curating your study bundle...</p>";
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/bundler/create", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+
+            body: JSON.stringify({
+                minutes_available: parseInt(minutes),
+                topic : ""
+            })
+        });
+
+        if (!response.ok) throw new Error("Could not generate bundle.");
+
+        const data = await response.json();
+
+        //clear laading text
+        resultsContainer.innerHTML = "";
+
+        //loop through the retuned resources and display
+        data.forEach(item => {
+            resultsContainer.innerHTML += `
+            <div class="resource-card glass-morphism-style">
+                    <h4>${item.type.toUpperCase()} (${item.duration_min} mins)</h4>
+                    <p>${item.content}</p>
+            </div>
+            `;
+        });
+    } catch (error) {
+        resultsContainer.innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+    }
+}
