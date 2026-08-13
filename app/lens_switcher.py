@@ -30,10 +30,13 @@ def transform(req: LensRequest):
     #few-shot prompt (make as static file later )
     user_msg = f"""Topic : {req.lens}\n---\n{req.source_text}"""
     
-    result = groq_chat(
-        system_prompt=SYSTEM_PROMPT,
-        user_message=user_msg,
-        model="llama-3.1-8b-instant"   # replace with whatever you use
-    )
+    try:
+        result = groq_chat(
+                system_prompt=SYSTEM_PROMPT,
+                user_message=user_msg,
+                model="llama-3.1-8b-instant"   # replace with whatever you use
+            )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Transformation failed: {str(e)}")
     
     return LensResponse(transformed=result.strip())

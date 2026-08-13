@@ -8,6 +8,9 @@ from groq import Groq
 import httpx
 import time
 from pathlib import Path
+import re
+import pandas as pd
+import PyPDF2
 
 from tag_constants import KEYWORD_MAP
 
@@ -17,7 +20,7 @@ load_dotenv()
 ASSETS_DIR = Path(__file__).parent.parent / "assets"
 DB_PATH = Path(__file__).parent.parent / "resources.db"
 FLASHCARDS_DIR = ASSETS_DIR / "flashcards"
-PYQ_CSV = ASSETS_DIR / "questions-data-new.csv"
+PYQ_CSV = ASSETS_DIR / "pyq" / "questions-data-new.csv"
 VIDEO_DIR = ASSETS_DIR / "video"
 import sys
 # Add the project root to sys.path so we can import the app module
@@ -56,7 +59,8 @@ def process_anki_apkg(conn, apkg_path, batch_size=20):
     print(f"Processing Flashcard Deck: {apkg_path.name} in batches of {batch_size}...")
     cursor = conn.cursor()
     
-    existing_flashcards = [row[0] for row in cursor.execute("SELECT content FROM micro_resources WHERE type = 'flashcard'")]
+    existing_flashcards = {row[0].split('\n**Back:**')[0].replace('**Front:** ', '').strip() 
+        for row in cursor.execute("SELECT content FROM micro_resources WHERE type = 'flashcard'")}
     
     with tempfile.TemporaryDirectory() as tmp_dir:
         # 1. Unzip the .apkg file
@@ -89,10 +93,9 @@ def process_anki_apkg(conn, apkg_path, batch_size=20):
                     back = fields[1].replace('\n', '<br>')
                     content = f"**Front:** {front}\n**Back:** {back}"
                     
-                    #resume check , if this flashcard alrdy in the db , skip
-                    already_processed = any(front in ec for ec in existing_flashcards)
-                    if already_processed:
-                        continue
+                    if front.strip() in existing_flashcards:
+                        continue  # Skip already processed flashcards
+                    existing_flashcards.add(front.strip())
                     
                     detected_topic = classify_flashcard(content)
                     
@@ -174,8 +177,6 @@ def process_pyq_csv(conn, csv_path, max_rows=10):
     conn.commit()
     print(f"  [+] Generated {count} PYQ solutions.")
 
-import re
-
 def time_to_minutes(time_str):
     """Converts SRT timestamp 'HH:MM:SS,mmm' to total minutes."""
     # Example: 00:05:30,000 -> 5.5
@@ -253,7 +254,133 @@ def process_video_srt(conn, srt_dir, chunk_duration_min=5):
     conn.commit()
     print(f"  [+] Extracted {total_chunks} video chunks.")
 
+def process_programming_csv(conn, csv_path):
+    #read CSV usign pandas or csv.DictReader
+    print(f"Processing Programming CSV: {csv_path.name}...")
+    cursor = conn.cursor()
+    
+    df = pd.read_csv(csv_path)
+    count = 0
+    
+    #topic can be "Programming Language" or "Topic" column
+    for index, row in df.iterrows():
+        question = str(row.get('Question', ''))
+        language = str(row.get('Programming Language', ''))
+        topic = str(row.get('Topic', ''))
+        solution = str(row.get('AI-Generated Solution', ''))
+        explanation = str(row.get('Explanation', ''))
+        
+        if pd.isna(question) or question == 'nan' : continue
+    
+        #Combine the question, solution and explanation into a Markdown string and save it as a pyq_solution type.
+        db_topic = f"{language} {topic}".strip() if language != 'nan' else topic
+        if not db_topic or db_topic == 'nan':
+            db_topic = "General Programming"
+        
+        content = f"**Question:**\n{question}\n\n**Solution:**\n{solution}\n\n**Explanation:**\n{explanation}"
+        
+        cursor.execute("""
+            INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+            VALUES (?, ?, ?, ?, ?)
+        """, (db_topic, 'pyq_solution', content, 5, 4))
+        count += 1
+        
+    conn.commit()
+    print(f"  [+] Processed {count} programming resources.")
+    
+def process_software_csv(conn, csv_path):
+    print(f"Processing Software Question from {csv_path.name}...")
+    cursor = conn.cursor()
+    
+    #Add encoding='latin1' to the file reader to bypass the unicode error.
+    df = pd.read_csv(csv_path, encoding='latin1')
+    count = 0
+    
+    #Map its question/answer columns to our micro_resources schema.
+    for index, row in df.iterrows():
+        question = str(row.get('Question', ''))
+        answer = str(row.get('Answer', ''))
+        topic = str(row.get('Category', ''))
+        
+        if pd.isna(question) or question == 'nan' : continue
+        
+        if not topic or topic == 'nan':
+            topic = "General Software"
+        
+        content = f"**Question:**\n{question}\n\n**Answer:**\n{answer}"
+        
+        cursor.execute("""
+            INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+            VALUES (?, ?, ?, ?, ?)
+        """, (topic, 'flashcard', content, 2, 2))
+        count += 1
+        
+    conn.commit()
+    print(f"  [+] Processed {count} software resources.")
 
+def process_unstructured_folder(conn, pdf_path):
+    #Read the PDFs/TXTs and split the text into small 500-word chunks.
+    print(f"Processing Unstructured Folder: {pdf_path.name}...")
+    cursor = conn.cursor()
+    count = 0
+    
+    text_content = ""
+    try:
+        with open(pdf_path, 'rb') as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                text_content += page.extract_text() + "\n"
+    except Exception as e:
+        print(f"  [!] Error reading PDF {pdf_path}: {e}")
+        return
+    
+    words = text_content.split()
+    chunk_size = 500
+
+    for i in range(0, len(words), chunk_size):
+        chunk_words = words[i:i + chunk_size]
+        chunk_text = ' '.join(chunk_words)
+        if not chunk_text.strip(): continue
+        
+        print(f"    -> Generating flashcards from chunk {count+1}...")
+        system_prompt = "You are an expert Computer Science professor. Create 3-5 concise flashcards from this content. Format as markdown with **Question:** and **Answer:** pairs."
+            
+        try:
+            time.sleep(3) # To avoid hitting rate limits
+            response = groq_chat(system_prompt=system_prompt, 
+                                user_message=chunk_text,
+                                model="llama-3.1-8b-instant")
+            if response:
+                cursor.execute("""
+                    INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+                    VALUES (?, ?, ?, ?, ?)
+                """, ("Data Science", "flashcard", response, 2, 2))
+        except Exception as e:
+            print(f"  [!] Error generating flashcards: {e}")
+
+        print(f"    -> Generating PYQ from chunk {count+1}...")
+        pyq_prompt = "You are an expert Computer Science professor. Create 1 complex, exam-style past-year question and a detailed solution based on this content. Format as markdown with exactly '**Question:**' and '**Solution & Tip:**'."
+            
+        try:
+            time.sleep(3)
+            pyq_response = groq_chat(system_prompt=pyq_prompt, 
+                                user_message=chunk_text,
+                                model="llama-3.1-8b-instant")
+            if pyq_response:
+                cursor.execute("""
+                    INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
+                    VALUES (?, ?, ?, ?, ?)
+                """, ("Data Science", "pyq_solution", pyq_response, 5, 4))
+        except Exception as e:
+            print(f"  [!] Error generating PYQ: {e}")
+
+        count +=1
+        conn.commit()
+        
+    print(f"  [+] Processed {count} unstructured resources.")
+
+    
+    #Save under data science topic
 if __name__ == "__main__":
     print("Starting Offline Asset Processing...")
     conn = setup_db()
@@ -263,16 +390,37 @@ if __name__ == "__main__":
         for apkg_file in FLASHCARDS_DIR.glob("*.apkg"):
             process_anki_apkg(conn, apkg_file)
     else:
-        print("  [!] Flashcards directory not found.")
+        print(" [!] Flashcards directory not found.")
         
     # 2. Process PYQ CSV
     if PYQ_CSV.exists():
         process_pyq_csv(conn, PYQ_CSV, max_rows=10) # Set limit higher when ready!
     else:
-        print("  [!] PYQ CSV not found.")
+        print(" [!] PYQ CSV not found.")
         
     # 3. Process Video Subtitles (.srt files)
     process_video_srt(conn, VIDEO_DIR, chunk_duration_min=5)
+    
+    pyq_dir = ASSETS_DIR / "pyq"
+    
+    if (pyq_dir / "programming_questions_solutions.csv").exists():
+        process_programming_csv(conn, pyq_dir / "programming_questions_solutions.csv")
+    else:
+        print("  [!] Programming CSV not found.")
+        
+    if (pyq_dir / "software_questions.csv").exists():
+        process_software_csv(conn, pyq_dir / "software_questions.csv")
+    else:
+        print("  [!] Software CSV not found.")
+    ds_dir = pyq_dir / "data_science"
+    if (ds_dir / "questions1.pdf").exists():
+        process_unstructured_folder(conn, ds_dir / "questions1.pdf")
+    else:
+        print("  [!] Data Science PDF 1 not found.")
+        
+    if (ds_dir / "questions2.pdf").exists():
+        process_unstructured_folder(conn, ds_dir / "questions2.pdf")
+    else:
+        print("  [!] Data Science PDF 2 not found.")
         
     conn.close()
-    print("Offline Processing Complete! Data saved to resources.db")

@@ -1,0 +1,5 @@
+This is a collection of questions useful for people who want to test their data science knowledge
+ for interviews or for refreshing some specific topics.
+The first pdf contains questions related to data science in general, deep learning and neural networks.
+The second includes questions on predictive modeling, data analytics, product metrics, programming,
+statistical inference, communication and probability/statistics.
