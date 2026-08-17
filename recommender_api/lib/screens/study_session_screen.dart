@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/bundler_state.dart';
 import '../models/resource_item.dart';
-import '../widgets/flip_card_widget.dart';
 import '../widgets/flashcard_deck_widget.dart';
 import '../widgets/video_player_widget.dart';
 import '../widgets/pyq_solution_widget.dart';

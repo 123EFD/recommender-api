@@ -1,10 +1,12 @@
 # app/groq_client.py
 import os, httpx
+from dotenv import load_dotenv
 
+load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 BASE_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-def groq_chat(system_prompt: str, user_message: str, model: str = "llama-3.1-8b-instant"):
+def groq_chat(system_prompt: str, user_message: str, model: str = "openai/gpt-oss-20b"):
     payload = {
         "model": model,
         "messages": [

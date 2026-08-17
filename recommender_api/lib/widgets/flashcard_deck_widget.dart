@@ -63,7 +63,7 @@ class FlashcardDeckWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
       child: Center(
         child: FlashCard(
-          cardHeight: 500, // Big beautiful flashcard book!
+          cardHeight: MediaQuery.of(context).size.height * 0.8, // Massive card!
           topPages: topPages,
           bottomPages: bottomPages,
           headerColor: isDark ? const Color(0xFF232338) : Colors.white,

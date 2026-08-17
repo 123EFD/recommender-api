@@ -580,7 +580,7 @@ def predict_student_needs(student: StudentProfile):
                     """
                     try:
                         explain = client.chat.completions.create(
-                            model="llama-3.1-8b-instant",
+                            model="openai/gpt-oss-20b",
                             messages=[{"role": "user", "content": explain_prompt}],
                             max_tokens=80
                         )
@@ -605,7 +605,7 @@ def predict_student_needs(student: StudentProfile):
             
             try: 
                 habit_response = client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
+                    model="openai/gpt-oss-20b",
                     messages=[{"role": "user", "content": habit_prompt}],
                     max_tokens=100
                 )
@@ -709,7 +709,7 @@ def ask_pdf_question(request: ChatRequest):
         
         # Groq Call for Optimizer
         optimizer_response = client.chat.completions.create(
-            model="llama-3.1-8b-instant", # We use the smaller 8B model here because it's wildly fast for simple tasks
+            model="openai/gpt-oss-20b", # We use the smaller 8B model here because it's wildly fast for simple tasks
             messages=[{"role": "user", "content": prompt}],
             max_tokens=150
         )
@@ -830,7 +830,7 @@ def ask_pdf_question(request: ChatRequest):
         #streaming response
         def generate_stream():
             stream = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="openai/gpt-oss-20b",
                 messages=messages_payload,
                 max_tokens=2048,
                 stream=True
@@ -1124,7 +1124,7 @@ def generate_mindmap(request: MindMapRequest):
     try:
         # Enforce structural integrity out of open source networks via JSON mode configurations
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}

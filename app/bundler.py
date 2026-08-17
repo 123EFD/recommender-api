@@ -63,6 +63,9 @@ def create_bundle(req: BundleRequest):
         cur.execute(sql)
         candidates = cur.fetchall()
 
+    # Prioritize longer resources (Videos, PYQs) over Flashcards
+    candidates.sort(key=lambda x: x[2], reverse=True)
+
     # greedy first-fit knapsack 
     total = 0
     bundle = []

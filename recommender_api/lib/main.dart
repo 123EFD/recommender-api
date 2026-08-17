@@ -1,3 +1,4 @@
+import 'screens/home_screen.dart';
 import 'pdf_chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -64,64 +65,92 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    const StudentProfileScreen(),
-    BundlerSetupScreen(),
-    const PdfChatScreen(isFullScreen: true),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
+    final List<Widget> screens = [
+      HomeScreen(onNavigate: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      }),
+      const StudentProfileScreen(),
+      BundlerSetupScreen(),
+      const PdfChatScreen(isFullScreen: true),
+    ];
+
     return Scaffold(
-      body: Row(
-        children: [
-          NavigationRail(
-            backgroundColor: isDark ? const Color(0xFF1A1A2E) : Colors.grey[100],
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
+      appBar: AppBar(
+        title: const Text('AI Study Suite'),
+        elevation: 0,
+        backgroundColor: isDark ? const Color(0xFF1A1A2E) : Colors.blue,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+              MyApp.toggleTheme(context);
             },
-            labelType: NavigationRailLabelType.all,
-            selectedLabelTextStyle: TextStyle(
-              color: isDark ? Colors.blueAccent : Colors.blue,
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelTextStyle: TextStyle(
-              color: isDark ? Colors.grey[400] : Colors.grey[700],
-            ),
-            selectedIconTheme: IconThemeData(
-              color: isDark ? Colors.blueAccent : Colors.blue,
-            ),
-            destinations: const [
-              NavigationRailDestination(
-                icon: Icon(Icons.psychology_outlined),
-                selectedIcon: Icon(Icons.psychology),
-                label: Text('Recommender'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.inventory_2_outlined),
-                selectedIcon: Icon(Icons.inventory_2),
-                label: Text('Bundle'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.chat_bubble_outline),
-                selectedIcon: Icon(Icons.chat_bubble),
-                label: Text('PDF Chat'),
-              ),
-            ],
-          ),
-          const VerticalDivider(thickness: 1, width: 1),
-          Expanded(
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: _screens,
-            ),
+            tooltip: 'Toggle Theme',
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: isDark ? const Color(0xFF1A1A2E) : Colors.blue,
+              ),
+              child: const Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home_outlined),
+              title: const Text('Home'),
+              selected: _selectedIndex == 0,
+              onTap: () {
+                setState(() => _selectedIndex = 0);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.psychology_outlined),
+              title: const Text('Recommender'),
+              selected: _selectedIndex == 1,
+              onTap: () {
+                setState(() => _selectedIndex = 1);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.inventory_2_outlined),
+              title: const Text('Bundle'),
+              selected: _selectedIndex == 2,
+              onTap: () {
+                setState(() => _selectedIndex = 2);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.chat_bubble_outline),
+              title: const Text('PDF Chat'),
+              selected: _selectedIndex == 3,
+              onTap: () {
+                setState(() => _selectedIndex = 3);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: screens,
       ),
     );
   }
@@ -226,12 +255,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
           style: GoogleFonts.inter(fontWeight: FontWeight.w600),
         ),
         actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () {
-              MyApp.toggleTheme(context);
-            },
-          ),
           IconButton(
             icon: const Icon(Icons.chat_bubble_outline),
             onPressed: () {

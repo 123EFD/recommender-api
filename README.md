@@ -23,7 +23,7 @@ This project is built using a decoupled microservice architecture, allowing the 
 * **Deployment:** Hugging Face Spaces (Dockerized Linux Container)
 
 ### **AI & Machine Learning**
-* **LLM Provider:** Groq (Llama-3.3-70b-versatile for reasoning, Llama-3.1-8b-instant for fast tasks)
+* **LLM Provider:** Groq (GPT-OSS-120B for reasoning, GPT-OSS-20B for fast tasks)
 * **Embeddings:** `all-MiniLM-L6-v2` (SentenceTransformers)
 * **Re-Ranking:** `ms-marco-MiniLM-L-6-v2` (CrossEncoder)
 * **Predictive Model:** Custom PyTorch Multi-Layer Perceptron (MLP) for student risk analysis

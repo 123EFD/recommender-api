@@ -34,7 +34,7 @@ def transform(req: LensRequest):
         result = groq_chat(
                 system_prompt=SYSTEM_PROMPT,
                 user_message=user_msg,
-                model="llama-3.1-8b-instant"   # replace with whatever you use
+                model="openai/gpt-oss-20b"   # replace with whatever you use
             )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Transformation failed: {str(e)}")

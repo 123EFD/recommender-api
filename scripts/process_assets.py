@@ -128,7 +128,7 @@ def generate_solution_with_groq(question_text):
     user_message = f"Question: {question_text}"
     
     try:
-        return groq_chat(system_prompt=system_prompt, user_message=user_message, model="llama-3.1-8b-instant")
+        return groq_chat(system_prompt=system_prompt, user_message=user_message, model="openai/gpt-oss-20b")
     except Exception as e:
         print(f"  [!] Groq API Error: {e}")
         return None
@@ -349,7 +349,7 @@ def process_unstructured_folder(conn, pdf_path):
             time.sleep(3) # To avoid hitting rate limits
             response = groq_chat(system_prompt=system_prompt, 
                                 user_message=chunk_text,
-                                model="llama-3.1-8b-instant")
+                                model="openai/gpt-oss-20b")
             if response:
                 cursor.execute("""
                     INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)
@@ -365,7 +365,7 @@ def process_unstructured_folder(conn, pdf_path):
             time.sleep(3)
             pyq_response = groq_chat(system_prompt=pyq_prompt, 
                                 user_message=chunk_text,
-                                model="llama-3.1-8b-instant")
+                                model="openai/gpt-oss-20b")
             if pyq_response:
                 cursor.execute("""
                     INSERT INTO micro_resources (topic, type, content, duration_min, cognitive_load)

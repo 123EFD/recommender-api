@@ -84,10 +84,18 @@ class _PyqSolutionWidgetState extends State<PyqSolutionWidget> {
           Container(
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.blueGrey.shade50,
+              color: Theme.of(context).brightness == Brightness.dark 
+                  ? Colors.blueGrey.shade900 
+                  : Colors.blueGrey.shade50,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Text(widget.item.content, style: TextStyle(fontSize: 16)),
+            child: Text(
+              widget.item.content, 
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).textTheme.bodyMedium?.color,
+              ),
+            ),
           ),
           SizedBox(height: 24),
 
@@ -111,12 +119,20 @@ class _PyqSolutionWidgetState extends State<PyqSolutionWidget> {
             Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.amber.shade50,
+                color: Theme.of(context).brightness == Brightness.dark 
+                    ? Colors.amber.shade900.withValues(alpha: 0.2)
+                    : Colors.amber.shade50,
                 border: Border.all(color: Colors.amber),
                 borderRadius: BorderRadius.circular(12),
               ),
               // If the user selected 'visual', render the Mermaid chart. Otherwise, show normal text.
-              child: Text(_lensResult!, style: TextStyle(fontSize: 16)),
+              child: Text(
+                _lensResult!, 
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
+              ),
             ),
         ],
       ),
