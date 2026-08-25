@@ -17,9 +17,9 @@ class _BundlerSetupScreenState extends State<BundlerSetupScreen> {
 
     final bundlerState = context.watch<BundlerState>();
 
-    return Scaffold(
-      appBar: AppBar(title: Text("Survival Guide Builder")),
-      body: Padding(
+    return Container(
+      color: Colors.transparent,
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

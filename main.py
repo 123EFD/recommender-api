@@ -2,10 +2,6 @@ import os
 
 from time import time
 
-#gs_bin_path = r'C:\Program Files\gs\gs10.06.0\bin'
-#if gs_bin_path not in os.environ.get('PATH', ''):
-#    os.environ['PATH'] += os.pathsep + gs_bin_path
-
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
 import fitz
@@ -23,7 +19,6 @@ import requests
 import httpx
 from groq import Groq
 import nest_asyncio
-#from llama_parse import LlamaParse <--will be used later, alter for Camelot
 from duckduckgo_search import DDGS
 import concurrent.futures
 import camelot.io as camelot
@@ -33,8 +28,7 @@ import hashlib
 import json
 from app.bundler import router as bundler_router
 from app.lens_switcher import router as lens_router
-
-
+import math
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -52,30 +46,63 @@ if GROQ_API_KEY:
     client = Groq(api_key=GROQ_API_KEY)
 
 COURSE_MAPPING = {
+    # Faculty Core
     "WIX1001": "Computing Mathematics I",
-    "WIA1002": "Fundamentals of Programming Java",
+    "WIX1002": "Fundamentals of Programming",
     "WIX1003": "Computer Systems and Organization",
+    "WIX2001": "Thinking and Communication Skills",
+    "WIX2002": "Project Management",
+    
+    # Programme Core
+    "WIA1002": "Data Structure",
     "WIA1003": "Computer System Architecture",
-    "WIA1006": "Machine Learning",
     "WIA1005": "Network Technology Foundation",
-    "WIA2004": "Operating Systems",
-    "WIA2007": "Mobile Application Development",
+    "WIA1006": "Machine Learning",
+    "WIA2001": "Database",
+    "WIA2002": "Software Modeling",
     "WIA2003": "Probability and Statistics",
-    "WIA2006": "System Analysis and Design",
-    "WIF2003": "Web Programming",
+    "WIA2004": "Operating Systems",
+    "WIA2005": "Algorithm Design and Analysis",
+    "WIA2007": "Mobile Application Development",
+    "WIA2010": "Human Computer Interaction",
+    "WIA3001": "Industrial Training",
+    "WIA3002": "Academic Project I",
+    "WIA3003": "Academic Project II",
+    
+    # Specialization Electives
     "WIF2002": "Software Requirements Engineering",
+    "WIF2003": "Web Programming",
     "WIF3001": "Software Testing",
     "WIF3002": "Software Process and Quality",
-    "WIF3004": "Software Architecture and Design Paradigm",
+    "WIF3004": "Software Architecture and Design Paradigms",
     "WIF3005": "Software Maintenance and Evolution",
-    "WIF3006": "Component Based Software Engineering ",
+    "WIF3006": "Component Based Software Engineering",
     "WIF3008": "Real Time Systems",
     "WIF3009": "Python for Scientific Computing",
     "WIF3010": "Programming Language Paradigm",
     "WIF3011": "Concurrent and Parallel Programming",
     "WIG3005": "Game Development",
     "WIC2008": "Internet of Things",
-    "WIA2002": "Software Modeling"
+    "WIA2006": "System Analysis and Design" # Kept from original
+}
+
+# PHASE 11: Prerequisite DAG Graph (Directed Acyclic Graph)
+# Used for Root-Cause Back-Tracing Engine
+PREREQUISITE_GRAPH = {
+    # Official Prerequisites (from Curriculum Structure)
+    "WIA1002": ["WIX1002"],             # Data Structure requires Fundamentals of Programming
+    "WIA1003": ["WIX1003"],             # Architecture requires Systems & Org
+    "WIA2005": ["WIA1002"],             # Algorithm Design requires Data Structure
+    "WIA3003": ["WIA3002"],             # Project II requires Project I
+    "WIF3004": ["WIA2002", "WIF2002"],  # Software Arch requires Modeling (official) & Req Eng (previous)
+    "WIF3006": ["WIA2002"],             # Component Based SE requires Software Modeling
+    "WIF3011": ["WIX1002", "WIA2004"],  # Concurrent Programming requires Programming & OS
+    "WIC2008": ["WIA1005"],             # IoT requires Network Tech
+    
+    # Additional Logical Prerequisites (from previous mapping)
+    "WIA1006": ["WIA2003", "WIF3009"], # Machine Learning requires Prob&Stats, Python
+    "WIA2004": ["WIX1003", "WIA1003"], # OS requires Systems & Org, Architecture
+    "WIF2003": ["WIA1002", "WIA2006"], # Web Programming requires Data Structure, System Analysis
 }
 
 # 1. Initialize the FastAPI Application
@@ -361,6 +388,20 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
     
     return None
 
+def calculate_wilson_score(successes, n):
+    """Calculates the Wilson score interval for a given number of successes and total trials."""
+    if n == 0:
+        return 0.0
+    
+    z = 1.96  # Z-score for 95% confidence
+    p = successes / n
+    denominator = 1 + (z**2 / n)
+    
+    center_adjusted_probability = p + (z**2 / (2 * n))
+    adjusted_standard_deviation = math.sqrt((p * (1 - p) + (z**2 / (4 * n))) / n)
+    
+    return (center_adjusted_probability - adjusted_standard_deviation) / denominator
+
 #Async daya gathering helper methods
 def gather_chat_source(filename: str) -> str:
     """Queries the operational database to pull the conversational history context."""
@@ -494,6 +535,23 @@ def generate_cache_key(pdf_name: str, question: str) -> str:
     """Creates a unique ID for a specific question on a specific PDF."""
     unique_string = f"{pdf_name}_{question.strip().lower()}"
     return hashlib.md5(unique_string.encode()).hexdigest()
+    
+def get_all_prerequisites(course_id, visited=None):
+    if visited is None:
+        visited = set()
+        
+    if course_id in visited:
+        return []
+    
+    visited.add(course_id)
+    prerequisites = PREREQUISITE_GRAPH.get(course_id, [])
+    
+    all_prereqs = []
+    for prereq in prerequisites:
+        all_prereqs.append(prereq)
+        all_prereqs.extend(get_all_prerequisites(prereq, visited))
+    
+    return list(set(all_prereqs))  # Return unique prerequisites
 
 # 5. Define the API Endpoint
 @app.post("/predict")
@@ -526,6 +584,20 @@ def predict_student_needs(student: StudentProfile):
         if student.gaming == 1 : habit_risk += 0.30
         
         habit_risk = min(0.95, habit_risk) #prevent extreme values
+
+        recommended_subjects = [c.name for c in student.courses if c.grade < 3.0]
+        
+        prereq_set = set()
+    
+        for subject_code in recommended_subjects:
+            #fetch all prereq 
+            found_prereqs = get_all_prerequisites(subject_code)
+            prereq_set.update(found_prereqs)
+            
+        get_all_subject_prerequisites_list = list(prereq_set)
+        
+        #Combine the original failing subjects with their prerequisites
+        recommended_subjects = list(set(recommended_subjects + get_all_subject_prerequisites_list))
         
         #ensemble rish score, model + heuristic
         final_probability = (probability * 0.6) + (habit_risk * 0.4)
@@ -533,8 +605,8 @@ def predict_student_needs(student: StudentProfile):
         needs_help = final_probability > 0.5
         
         risk_percentage = round(final_probability * 100, 2)
-        
-        recommended_subjects = [c.name for c in student.courses if c.grade < 3.0]
+
+        # TODO: Call DAG Depth-First Search (DFS) helper function here
 
         if len(recommended_subjects) > 0 and needs_help:
             alert_level = "critical"
@@ -575,7 +647,8 @@ def predict_student_needs(student: StudentProfile):
                 def generate_explanation(res):
                     explain_prompt=f"""
                     A university student is struggling with the course '{res.subject_tag}'. 
-                    I am recommending a {res.resource_type} titled '{res.title}'. 
+                    I am recommending a {res.resource_type} titled '{res.title}' for the subject '{res.subject_tag}'.
+                    If this subject is a prerequisite for a more advanced class, explain that mastering this foundational concept is the root-cause fix for their struggles.
                     Write a single, encouraging sentence explaining why watching/reading this will help them improve their grade.
                     """
                     try:
@@ -1145,3 +1218,41 @@ def generate_mindmap(request: MindMapRequest):
         
     except Exception as groq_err:
         raise HTTPException(status_code=500, detail=f"LLM Visual Compiler engine failure: {str(groq_err)}")
+
+# --- PHASE 11: PEER-VALIDATED HEATMAP ---
+class HeatmapResource(BaseModel):
+    id: str
+    title: str
+    type: str
+    wilson_score: float
+    success_rate: float
+    total_struggling_attempts: int
+
+@app.get("/api/heatmap", response_model=List[HeatmapResource])
+def get_high_yield_heatmap():
+    """
+    Returns top-rated resources filtered by struggling students,
+    ranked using the Wilson Score Confidence Interval.
+    """
+
+    import random
+    mock_data = []
+    topics = ["Pointers in C", "Memory Allocation", "Graph Theory", "Backpropagation", "Normalization"]
+
+    
+    for i, t in enumerate(topics):
+        attempts = random.randint(10, 100)
+        successes = random.randint(int(attempts * 0.4), attempts)
+        rate = successes / attempts
+        mock_data.append(HeatmapResource(
+            id=str(i),
+            title=t,
+            type="video",
+            wilson_score=calculate_wilson_score(successes, attempts),
+            success_rate=successes,
+            total_struggling_attempts=attempts
+        ))
+    
+    # Sort by mocked wilson score
+    mock_data.sort(key=lambda x: x.wilson_score, reverse=True)
+    return mock_data

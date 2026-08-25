@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/grid_painter.dart';
 
 class HomeScreen extends StatelessWidget {
   final void Function(int) onNavigate;
@@ -14,41 +15,47 @@ class HomeScreen extends StatelessWidget {
       body: CustomPaint(
         painter: GridPainter(isDark: isDark),
         child: SizedBox.expand(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 64.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "AI STUDY SUITE",
-                  style: GoogleFonts.shareTechMono(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.blueAccent : Colors.blue[900],
-                    letterSpacing: 2.0,
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 64.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "AI STUDY SUITE",
+                    style: GoogleFonts.shareTechMono(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.blueAccent : Colors.blue[900],
+                      letterSpacing: 2.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  "Your ultimate edutech workspace. Analyze your academic profile, chat dynamically with your course PDFs, and generate bite-sized study bundles tailored exactly to your available time.",
-                  style: GoogleFonts.shareTechMono(
-                    fontSize: 20,
-                    color: isDark ? Colors.white70 : Colors.black87,
-                    height: 1.5,
+                  const SizedBox(height: 16),
+                  Text(
+                    "Your ultimate edutech workspace. Analyze your academic profile, chat dynamically with your course PDFs, and generate bite-sized study bundles tailored exactly to your available time.",
+                    style: GoogleFonts.shareTechMono(
+                      fontSize: 20,
+                      color: isDark ? Colors.white70 : Colors.black87,
+                      height: 1.5,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: 64),
-                Text(
-                  "// EXPLORE MODES",
-                  style: GoogleFonts.shareTechMono(
-                    fontSize: 24,
-                    color: isDark ? Colors.blueAccent : Colors.blue[800],
+                  const SizedBox(height: 64),
+                  Text(
+                    "// EXPLORE MODES",
+                    style: GoogleFonts.shareTechMono(
+                      fontSize: 24,
+                      color: isDark ? Colors.blueAccent : Colors.blue[800],
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: 24),
-                Wrap(
-                  spacing: 24,
-                  runSpacing: 24,
+                  const SizedBox(height: 24),
+                  Wrap(
+                    spacing: 24,
+                    runSpacing: 24,
+                    alignment: WrapAlignment.center,
                   children: [
                     _buildFeatureCard(
                       context: context,
@@ -81,6 +88,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      )
     );
   }
 
@@ -142,38 +150,4 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class GridPainter extends CustomPainter {
-  final bool isDark;
 
-  GridPainter({required this.isDark});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Background Color
-    final paintBg = Paint()
-      ..color = isDark ? Colors.black : const Color(0xFFFFFDE7) // Light yellow paper
-      ..style = PaintingStyle.fill;
-    
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paintBg);
-
-    // Grid Lines
-    final paintLines = Paint()
-      ..color = isDark ? Colors.blueAccent.withOpacity(0.2) : Colors.blue[200]!.withOpacity(0.5)
-      ..strokeWidth = 1.0;
-
-    const double gridSize = 40.0;
-
-    // Draw vertical lines
-    for (double i = 0; i <= size.width; i += gridSize) {
-      canvas.drawLine(Offset(i, 0), Offset(i, size.height), paintLines);
-    }
-
-    // Draw horizontal lines
-    for (double i = 0; i <= size.height; i += gridSize) {
-      canvas.drawLine(Offset(0, i), Offset(size.width, i), paintLines);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}

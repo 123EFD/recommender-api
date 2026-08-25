@@ -233,8 +233,9 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
 
     try {
       var request = http.Request('POST', Uri.parse('$_baseUrl/chat'));
+      request.body = jsonEncode({"question": question, "filename": _pdfName}); 
       request.headers['Content-Type'] = 'application/json';
-      request.body = jsonEncode({"question":question, "filename": _pdfName}); 
+      request.headers['Accept'] = 'text/event-stream';
 
       var response = await http.Client().send(request);
 
@@ -618,6 +619,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: const Text('PDF AI Workspace', style: TextStyle(fontWeight: FontWeight.w600)),

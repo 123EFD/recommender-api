@@ -14,6 +14,7 @@ import PyPDF2
 
 from tag_constants import KEYWORD_MAP
 
+
 load_dotenv()
 
 # Paths to your assets
@@ -90,7 +91,16 @@ def process_anki_apkg(conn, apkg_path, batch_size=20):
                 fields = flds.split('\x1f')
                 if len(fields) >= 2:
                     front = fields[0].replace('\n', '<br>')
-                    back = fields[1].replace('\n', '<br>')
+                    back_raw = fields[1].replace('\n', '<br>')
+                    
+                    # Phase 11: Add detailed explanation and research link to flashcard
+                    augment_prompt = "You are an expert tutor. Enhance this flashcard answer with a detailed explanation and a deep-dive research link (e.g. Wikipedia or documentation). Output ONLY the enhanced answer in HTML format using <br> for newlines."
+                    augment_user = f"Front: {front}\nBack: {back_raw}"
+                    try:
+                        back = groq_chat(system_prompt=augment_prompt, user_message=augment_user, model="openai/gpt-oss-20b")
+                    except Exception as e:
+                        back = f"{back_raw}<br><br><b>Explanation:</b> (Auto-generation failed - {str(e)})"
+
                     content = f"**Front:** {front}\n**Back:** {back}"
                     
                     if front.strip() in existing_flashcards:
