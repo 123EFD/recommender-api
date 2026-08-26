@@ -353,14 +353,16 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                                     final Uri url = Uri.parse(urlString);
                                     if (await canLaunchUrl(url)) {
                                       await launchUrl(url, mode: LaunchMode.externalApplication);
-                                    } else {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (content) => BundlerSetupScreen(),
-                                        ),
-                                      );
                                     }
+                                  } else {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (content) => BundlerSetupScreen(
+                                          initialTopic: item['title'],
+                                        ),
+                                      ),
+                                    );
                                   }
                                 }
                               )
