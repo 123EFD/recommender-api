@@ -20,7 +20,7 @@ class PdfChatScreen extends StatefulWidget {
 
 class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateMixin {
   List<String> _pdfLibrary = [];
-  final String _baseUrl = "https://kasshier-ai-study-suite.hf.space";
+  final String _baseUrl = "http://localhost:8000"; // Test local backend
 
   Uint8List? _pdfBytes;
   String _pdfName = "";
@@ -233,9 +233,9 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
 
     try {
       var request = http.Request('POST', Uri.parse('$_baseUrl/chat'));
+      request.headers['content-type'] = 'application/json; charset=utf-8';
+      request.headers['accept'] = 'text/event-stream';
       request.body = jsonEncode({"question": question, "filename": _pdfName}); 
-      request.headers['Content-Type'] = 'application/json';
-      request.headers['Accept'] = 'text/event-stream';
 
       var response = await http.Client().send(request);
 

@@ -228,7 +228,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
 
     try {
       // Target LOCAL backend to test the new DAG algorithm!
-      final url = Uri.parse('http://127.0.0.1:8000/predict');
+      final url = Uri.parse('http://localhost:8000/predict');
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -323,7 +323,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
               ),
               Expanded(
                 child: FutureBuilder<http.Response>(
-                  future: http.get(Uri.parse('https://kasshier-ai-study-suite.hf.space/api/heatmap')), // Target LOCAL backend
+                  future: http.get(Uri.parse('http://localhost:8000/api/heatmap')), // Target LOCAL backend
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
@@ -340,7 +340,30 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                               leading: Text("#${index + 1}", style: GoogleFonts.shareTechMono(color: Colors.orange, fontSize: 18, fontWeight: FontWeight.bold)),
                               title: Text(item['title'] ?? 'Unknown', style: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold)),
                               subtitle: Text("Wilson Score: ${(item['wilson_score'] * 100).toStringAsFixed(1)}% | Struggling Attempts: ${item['total_struggling_attempts']}", style: TextStyle(color: isDark ? Colors.white70 : Colors.black87, fontSize: 12)),
-                              trailing: Icon(item['type'] == 'video' ? Icons.play_circle_fill : Icons.article, color: isDark ? Colors.blueAccent : Colors.blue),
+                              trailing: IconButton(
+                                icon : Icon(
+                                  item['type'] == 'video' ? Icons.play_circle_fill : Icons.article,
+                                  color: isDark ? Colors.blueAccent : Colors.blue[300],
+                                  size: 28,
+                                ),
+                                onPressed: () async {
+                                  //check if have direct URL
+                                  final urlString = item['url'];
+                                  if (urlString != null && urlString.isNotEmpty) {
+                                    final Uri url = Uri.parse(urlString);
+                                    if (await canLaunchUrl(url)) {
+                                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (content) => BundlerSetupScreen(),
+                                        ),
+                                      );
+                                    }
+                                  }
+                                }
+                              )
                             );
                           },
                         );

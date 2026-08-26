@@ -322,7 +322,7 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
     # Translate code to name, default to the code itself if not found
     course_name = COURSE_MAPPING.get(course_code, course_code)
     
-    search_query = f"{course_name} full course"
+    search_query = f"{course_name} crash course"
     
     url = "https://www.googleapis.com/youtube/v3/search"
     
@@ -331,6 +331,7 @@ def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
         "q": search_query,
         "type": "video",
         "maxResults": 1, #later can test 
+        "videoDuration": "short" ,
         "key": YOUTUBE_API_KEY
     }
     
