@@ -22,7 +22,7 @@ class StudySessionScreen extends StatelessWidget {
 
     // Group items by type
     final flashcards = bundle.where((i) => i.type == 'flashcard').toList();
-    final videos = bundle.where((i) => i.type == 'video_chunk').toList();
+    final videos = bundle.where((i) => i.type == 'video_chunk' || i.type == 'video').toList();
     final pyqs = bundle.where((i) => i.type == 'pyq_solution').toList();
 
     // Dynamically build active tabs and their corresponding views
@@ -95,7 +95,7 @@ class StudySessionScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
-            if (type == 'video_chunk')
+            if (type == 'video_chunk' || type == 'video')
               VideoPlayerWidget(item: item)
             else if (type == 'pyq_solution')
               PyqSolutionWidget(item: item)

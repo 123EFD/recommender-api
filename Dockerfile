@@ -20,8 +20,8 @@ WORKDIR /app
 # Copy your files into the container
 COPY --chown=user . /app
 
-# Make the startup script executable
-RUN chmod +x start.sh
+# Make the startup script executable and ensure Unix line endings
+RUN sed -i -e 's/\r$//' start.sh && chmod +x start.sh
 
 # Upgrade pip and install basic Python build tools
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel

@@ -4,13 +4,40 @@ import '../services/bundler_state.dart';
 import 'study_session_screen.dart'; 
 
 class BundlerSetupScreen extends StatefulWidget {
+  final String? initialTopic;
+
+  const BundlerSetupScreen({super.key, this.initialTopic});
+  
   @override
   _BundlerSetupScreenState createState() => _BundlerSetupScreenState();
 }
 
+  // A list of suggested topics for the user to choose from.
+  final List<String> _suggestedTopics = const [
+    'General Programming',
+    'Data Science',
+    'Machine Learning',
+    'Algorithms',
+    'Data Structures',
+    'Database',
+    'Computer Networks',
+    'Software Engineering',
+    'Normalization',
+    'Memory Allocation',
+    'Graph Theory',
+    'Pointers in C',
+    'Backpropagation',
+];
+
 class _BundlerSetupScreenState extends State<BundlerSetupScreen> {
   final TextEditingController _minutesController = TextEditingController(text: "15");
-  final TextEditingController _topicController = TextEditingController(text: "General Programming");
+  late final TextEditingController _topicController;
+
+  @override
+  void initState() {
+    super.initState();
+    _topicController = TextEditingController(text: widget.initialTopic ?? "General Programming");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,35 +59,39 @@ class _BundlerSetupScreenState extends State<BundlerSetupScreen> {
             ),
             SizedBox(height: 20),
             Text("Topic", style: TextStyle(fontSize: 18)),
-            DropdownButtonFormField<String>(
-              value: _topicController.text.isEmpty ? 'General Programming' : _topicController.text,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              ),
-              items: [
-                'General Programming',
-                'Data Science',
-                'Machine Learning',
-                'Algorithms',
-                'Data Structures',
-                'Database',
-                'Computer Networks',
-                'Software Engineering',
-              ].map((String category) {
-                return DropdownMenuItem<String>(
-                  value: category,
-                  child: Text(category),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  _topicController.text = newValue;
+            SizedBox(height: 8),
+            Autocomplete<String>(
+              initialValue: TextEditingValue(text: _topicController.text),
+              optionsBuilder: (TextEditingValue textEditingValue) {
+                if (textEditingValue.text.isEmpty) {
+                  return _suggestedTopics;
                 }
+                // Filter suggestions based on what the user types (case-insensitive)
+                return _suggestedTopics.where((String option) {
+                  return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                });
+              },
+              onSelected: (String selection) {
+                _topicController.text = selection;
+              },
+              fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                // Keep our main _topicController in sync with user typing
+                textEditingController.addListener(() {
+                  _topicController.text = textEditingController.text;
+                });
+                return TextField(
+                  controller: textEditingController,
+                  focusNode: focusNode,
+                  decoration: InputDecoration(
+                    hintText: "Type or select a topic (e.g. Normalization)",
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  ),
+                );
               },
             ),
             SizedBox(height: 30),
-            
             // Show a spinner if loading, otherwise show the button
             if (bundlerState.isLoading)
               Center(child: CircularProgressIndicator())

@@ -1,7 +1,5 @@
 import os
-
 from time import time
-
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
 import fitz
@@ -29,6 +27,7 @@ import json
 from app.bundler import router as bundler_router
 from app.lens_switcher import router as lens_router
 import math
+import random
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -1235,25 +1234,60 @@ def get_high_yield_heatmap():
     Returns top-rated resources filtered by struggling students,
     ranked using the Wilson Score Confidence Interval.
     """
+    
+    heatmap_items = []
+    
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                #Count total PDFs uploaded
+                cur.execute("""
+                    SELECT topic_name, COUNT(*)
+                    , SUM(CASE WHEN is_successful = true THEN 1 ELSE 0 END) 
+                    FROM student_quiz_logs
+                    WHERE baseline_grade < 3.0
+                    GROUP BY topic_name
+                    HAVING COUNT(*) >= 5
+                """)
+                result = cur.fetchall()
+                
+                for i, row in enumerate(result):
+                    topic_name = row[0]
+                    attempts = row[1]
+                    successes = row[2]
+                    
+                    real_score = calculate_wilson_score(successes, attempts)
+                    
+                    #Append to heatmap_items array
+                    heatmap_items.append(HeatmapResource(
+                        id= str(i + 1),          # Use enumerate's index 'i' as the unique ID
+                        title=topic_name,
+                        type="video",            # Assuming all are videos for this example
+                        wilson_score=real_score,
+                        success_rate=(successes / attempts) if attempts > 0 else 0.0, # Success rate is a ratio (0.0 to 1.0),
+                        total_struggling_attempts= attempts
+                    ))
+                    
+    except Exception as e:
+        print(f"Database query error (falling back to mock data): {e}")
+    
+    #falback for DB which had no logs yet 
+    if not heatmap_items:
+        topics = ["Pointers in C", "Memory Allocation", "Graph Theory", "Backpropagation", "Normalization"]
+        for i, t in enumerate(topics):                                  #enumerate to get index for unique ID
+            attempts = random.randint(10, 100)                          # Random attempts between 10 and 100
+            successes = random.randint(int(attempts * 0.4), attempts)   # Random successes between 40% and 100% of attempts
+            heatmap_items.append(HeatmapResource(
+                id=str(i + 1),
+                title=t,
+                type="video",
+                wilson_score=calculate_wilson_score(successes, attempts),
+                success_rate=successes / attempts,
+                total_struggling_attempts=attempts
+            ))
+    heatmap_items.sort(key=lambda x: x.wilson_score, reverse=True)
+    return heatmap_items
 
-    import random
-    mock_data = []
-    topics = ["Pointers in C", "Memory Allocation", "Graph Theory", "Backpropagation", "Normalization"]
+                    
 
     
-    for i, t in enumerate(topics):
-        attempts = random.randint(10, 100)
-        successes = random.randint(int(attempts * 0.4), attempts)
-        rate = successes / attempts
-        mock_data.append(HeatmapResource(
-            id=str(i),
-            title=t,
-            type="video",
-            wilson_score=calculate_wilson_score(successes, attempts),
-            success_rate=successes,
-            total_struggling_attempts=attempts
-        ))
-    
-    # Sort by mocked wilson score
-    mock_data.sort(key=lambda x: x.wilson_score, reverse=True)
-    return mock_data

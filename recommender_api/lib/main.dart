@@ -358,8 +358,14 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (content) => BundlerSetupScreen(
-                                          initialTopic: item['title'],
+                                        builder: (content) => Scaffold(
+                                          appBar: AppBar(
+                                            title: const Text("Create Survival Bundle"),
+                                            backgroundColor: Colors.transparent,
+                                          ),
+                                          body: BundlerSetupScreen(
+                                            initialTopic: item['title'],
+                                          ),
                                         ),
                                       ),
                                     );

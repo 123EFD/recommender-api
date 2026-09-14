@@ -66,35 +66,38 @@ def create_bundle(req: BundleRequest):
         # Exact match for short words (C, C#, R, Go) to prevent unrelated topic matching
         # 1. First try an exact match
     if topic:
+        # 1. First try an exact match in SQLite
         sql = """SELECT CAST(id AS TEXT) AS resource_id, topic, CAST(duration_min AS INT) AS duration, type, content 
                 FROM micro_resources WHERE topic COLLATE NOCASE = ? ORDER BY RANDOM();"""
         sqlite_cur.execute(sql, (topic,))
-        candidates = sqlite_cur.fetchall()
+        sqlite_candidates = sqlite_cur.fetchall()
         
-        # 2. If exact match fails (e.g. for "Machine Learning" which has many subtopics like "Python Machine Learning"),
-        # do a fuzzy match for the category
-        if not candidates:
+        # 2. If exact match fails, do a fuzzy match for the category
+        if not sqlite_candidates:
             sql = """SELECT CAST(id AS TEXT) AS resource_id, topic, CAST(duration_min AS INT) AS duration, type, content 
                     FROM micro_resources WHERE topic LIKE '%' || ? || '%' COLLATE NOCASE ORDER BY RANDOM();"""
             # Use a slightly stripped word for better matching (e.g., 'Algorithm' instead of 'Algorithms')
             search_term = topic[:-1] if topic.endswith('s') else topic
             sqlite_cur.execute(sql, (search_term,))
-            candidates = sqlite_cur.fetchall()
+            sqlite_candidates = sqlite_cur.fetchall()
             
         # 3. Final Fallback to General CS just in case
-        if not candidates:
+        if not sqlite_candidates:
             print(f"Topic '{topic}' not found. Falling back to General CS.")
             sql = """SELECT CAST(id AS TEXT) AS resource_id, topic, CAST(duration_min AS INT) AS duration, type, content
                     FROM micro_resources WHERE topic COLLATE NOCASE = 'General CS' ORDER BY RANDOM();"""
             sqlite_cur.execute(sql)
-            candidates = sqlite_cur.fetchall()
+            sqlite_candidates = sqlite_cur.fetchall()
+            
+        # Add all SQLite flashcards without overwriting or skipping
+        candidates.extend(sqlite_candidates)
             
     else:
         # If user left topic blank, grab everything
         sql = """SELECT CAST(id AS TEXT), topic, CAST(duration_min AS INT), type, content 
                 FROM micro_resources ORDER BY RANDOM();"""
         sqlite_cur.execute(sql)
-        candidates = sqlite_cur.fetchall()
+        candidates.extend(sqlite_cur.fetchall())
 
     # Prioritize longer resources (Videos, PYQs) over Flashcards
     candidates.sort(key=lambda x: x[2], reverse=True)
