@@ -4,7 +4,11 @@
 import json
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from app.groq_client import groq_chat
+import importlib
+try:
+    from app.groq_client import groq_chat
+except ModuleNotFoundError:
+    groq_chat = importlib.import_module("groq_client").groq_chat
 
 router = APIRouter(prefix="/lens", tags=["ExplanationLens"])
 

@@ -83,7 +83,6 @@ def create_bundle(req: BundleRequest):
             
         # 3. Final Fallback to General CS just in case
         if not sqlite_candidates:
-            print(f"Topic '{topic}' not found. Falling back to General CS.")
             sql = """SELECT CAST(id AS TEXT) AS resource_id, topic, CAST(duration_min AS INT) AS duration, type, content
                     FROM micro_resources WHERE topic COLLATE NOCASE = 'General CS' ORDER BY RANDOM();"""
             sqlite_cur.execute(sql)

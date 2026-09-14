@@ -24,8 +24,13 @@ import pandas as pd
 from fastapi.responses import FileResponse, StreamingResponse
 import hashlib
 import json
-from app.bundler import router as bundler_router
-from app.lens_switcher import router as lens_router
+import importlib
+try:
+    from app.bundler import router as bundler_router
+    from app.lens_switcher import router as lens_router
+except ModuleNotFoundError:
+    bundler_router = importlib.import_module("bundler").router
+    lens_router = importlib.import_module("lens_switcher").router
 import math
 import random
 
