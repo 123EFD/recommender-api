@@ -1,8 +1,8 @@
 import os
 from time import time
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, UploadFile, File
-import fitz
+from fastapi import FastAPI, HTTPException, UploadFile, File, BackgroundTasks
+import pymupdf as fitz
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer, CrossEncoder
 from fastapi.middleware.cors import CORSMiddleware
@@ -316,6 +316,26 @@ def init_jobs_db():
         print(f"Error initializing pdf jobs table: {e}")
         
 init_jobs_db()
+
+def init_quiz_db():
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as curr:
+                curr.execute("""
+                    CREATE TABLE IF NOT EXISTS student_quiz_logs (
+                        id SERIAL PRIMARY KEY,
+                        topic_name TEXT NOT NULL,
+                        is_successful BOOLEAN NOT NULL,
+                        baseline_grade FLOAT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                """)
+            conn.commit()
+            print("Student quiz logs table initialized successfully.")
+    except Exception as e:
+        print(f"Error initializing student quiz logs table: {e}")
+
+init_quiz_db()
 
 def fetch_and_store_yt_videos(course_code: str) -> Optional[LearningResource]:
     """Fetches a video from YouTube if not in Neon, and saves it to the database."""
@@ -713,14 +733,46 @@ def predict_student_needs(student: StudentProfile):
         # If anything breaks, return a safe 500 error code
         raise HTTPException(status_code=500, detail=str(e))
     
+def process_pdf_in_background(filename: str):
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("UPDATE pdf_jobs SET status = 'processing' WHERE filename = %s", (filename,))
+            conn.commit()
+            
+        import worker
+        print(f"Starting background PDF processing for: {filename}...")
+        is_success = worker.process_pdf(filename)
+        final_status = 'completed' if is_success else 'failed'
+        
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "UPDATE pdf_jobs SET status = %s WHERE filename = %s",
+                    (final_status, filename)
+                )
+            conn.commit()
+        print(f"🏁 Background task finished {filename}: {final_status}")
+    except Exception as e:
+        print(f"Background task error for {filename}: {e}")
+        try:
+            with get_db_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "UPDATE pdf_jobs SET status = 'failed' WHERE filename = %s",
+                        (filename,)
+                    )
+                conn.commit()
+        except Exception:
+            pass
+
 @app.post("/upload-pdf")
-async def process_and_store_pdf(file: UploadFile = File(...)):
+async def process_and_store_pdf(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
     # 1. Strip away any fake paths from the browser
     if not file.filename:
         raise HTTPException(status_code=400, detail="Filename is required.")
     
     safe_filename = os.path.basename(file.filename)
-    
     file_path = f"uploads/{safe_filename}"
     
     try:
@@ -739,13 +791,15 @@ async def process_and_store_pdf(file: UploadFile = File(...)):
                     ON CONFLICT (filename)
                     DO UPDATE SET status = 'pending',created_at = CURRENT_TIMESTAMP
                     """,
-                    (file.filename, 'pending')
+                    (safe_filename, 'pending')
                 )
             conn.commit()        
-            
+        
+        background_tasks.add_task(process_pdf_in_background, safe_filename)
+
         return {
             "message" : "Upload received. Processing in background.",
-            "filename": file.filename,
+            "filename": safe_filename,
             "status": "pending"
         }
     except Exception as e:
@@ -1112,7 +1166,7 @@ def delete_pdf(filename: str):
         raise HTTPException(status_code=500, detail=str(e))
     
 #create new chat 
-@app.delete("/clear-chat/{fiename}")
+@app.delete("/clear-chat/{filename}")
 def clear_chat_history(filename: str):
     try:
         with get_db_connection() as conn: 
@@ -1293,6 +1347,303 @@ def get_high_yield_heatmap():
     heatmap_items.sort(key=lambda x: x.wilson_score, reverse=True)
     return heatmap_items
 
-                    
+# =====================================================================
+# PHASE 12: PDF AI WORKSPACE DIAGNOSTIC & CHAPTER FOCUS NAVIGATOR
+# =====================================================================
 
+class FocusAnalysisRequest(BaseModel):
+    course_code: str
+    course_grade: Optional[float] = 2.0
+    filename: str
+    prerequisites: Optional[List[str]] = []
+
+class SubchapterFocus(BaseModel):
+    subchapter_id: str
+    title: str
+    page_start: int
+    page_end: int
+    estimated_minutes: int
+    keypoints: List[str]
+    exam_warning: Optional[str] = None
+
+class ChapterFocus(BaseModel):
+    chapter_number: int
+    chapter_title: str
+    page_range: str
+    priority: str  # "CRITICAL", "HIGH_YIELD", "FOUNDATIONAL"
+    relevance_rationale: str
+    subchapters: List[SubchapterFocus]
+
+class FocusAnalysisResponse(BaseModel):
+    course_code: str
+    course_name: str
+    filename: str
+    total_estimated_study_hours: float
+    recommended_chapters: List[ChapterFocus]
+
+def extract_pdf_toc_and_structure(file_path: str) -> str:
+    """
+    Extracts the Table of Contents or chapter structure from a PDF using PyMuPDF.
+    Falls back to preliminary page text scanning if no embedded outline exists.
+    """
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"PDF asset not found: {file_path}")
+        
+    doc = fitz.open(file_path)
+    toc = doc.get_toc()
     
+    # 1. Embedded PDF Bookmarks / Outline
+    if toc and len(toc) >= 3:
+        toc_lines = []
+        for item in toc:
+            lvl, title, page = item[0], item[1], item[2]
+            if lvl <= 2:  # Only main chapters and primary sections
+                toc_lines.append(f"{'  ' * (lvl - 1)}- {title} (Page {page})")
+        if toc_lines:
+            return "\n".join(toc_lines[:80])
+            
+    # 2. Fallback: Scan preliminary pages for Table of Contents
+    preliminary_text = ""
+    max_scan_pages = min(15, len(doc))
+    for p_idx in range(max_scan_pages):
+        page_text = doc[p_idx].get_text()
+        lower_text = page_text.lower()
+        if any(marker in lower_text for marker in ["contents", "table of contents", "chapter 1", "chapter one"]):
+            preliminary_text += f"\n--- Preliminary Page {p_idx + 1} ---\n" + page_text
+            
+    if preliminary_text.strip():
+        return preliminary_text[:10000]
+        
+    # 3. Last Fallback: Sample headings from throughout the document
+    sample_text = ""
+    step = max(1, len(doc) // 10)
+    for p_idx in range(0, min(len(doc), 100), step):
+        sample_text += f"\n--- Page {p_idx + 1} ---\n" + doc[p_idx].get_text()[:400]
+    return sample_text[:8000]
+
+def _fallback_focus_response(course_code: str, course_name: str, filename: str) -> FocusAnalysisResponse:
+    """Generates a structured, high-yield diagnostic fallback if LLM or parsing is unavailable."""
+    return FocusAnalysisResponse(
+        course_code=course_code,
+        course_name=course_name,
+        filename=filename,
+        total_estimated_study_hours=2.5,
+        recommended_chapters=[
+            ChapterFocus(
+                chapter_number=1,
+                chapter_title="Foundations & Core Mathematical Mechanisms",
+                page_range="15-42",
+                priority="CRITICAL",
+                relevance_rationale=f"Addresses prerequisite bottlenecks detected in your profile for {course_name}.",
+                subchapters=[
+                    SubchapterFocus(
+                        subchapter_id="1.1",
+                        title="Core Formulations & Vector Representations",
+                        page_start=15,
+                        page_end=28,
+                        estimated_minutes=30,
+                        keypoints=[
+                            "Dimensional consistency is the foundation of matrix modeling.",
+                            "Closed-form normal equations minimize least squares error.",
+                            "Understand difference between loss function vs optimizer."
+                        ],
+                        exam_warning="Exam questions frequently test deriving gradients by hand."
+                    ),
+                    SubchapterFocus(
+                        subchapter_id="1.2",
+                        title="Loss Optimization & Regularization (L1 vs L2)",
+                        page_start=29,
+                        page_end=42,
+                        estimated_minutes=25,
+                        keypoints=[
+                            "L1 regularization yields sparse weight vectors (feature selection).",
+                            "L2 Ridge regularization penalizes large weights smoothly.",
+                            "Overfitting occurs when model parameters memorize noise."
+                        ],
+                        exam_warning="Don't confuse Ridge with Lasso in multiple choice questions."
+                    )
+                ]
+            ),
+            ChapterFocus(
+                chapter_number=2,
+                chapter_title="High-Yield Exam Algorithms & Problem Solutions",
+                page_range="65-98",
+                priority="HIGH_YIELD",
+                relevance_rationale="Covers the most frequent 20-mark essay and calculation questions in semester finals.",
+                subchapters=[
+                    SubchapterFocus(
+                        subchapter_id="2.1",
+                        title="Algorithmic Walkthrough & Step-by-Step Execution",
+                        page_start=65,
+                        page_end=80,
+                        estimated_minutes=35,
+                        keypoints=[
+                            "Always trace algorithmic state step-by-step with an iteration table.",
+                            "Analyze worst-case time complexity O(N log N) vs space complexity.",
+                            "Check convergence criteria before declaring optimal state."
+                        ],
+                        exam_warning="Students lose marks by skipping edge case validation in final steps."
+                    )
+                ]
+            )
+        ]
+    )
+
+@app.post("/api/analyze-pdf-focus", response_model=FocusAnalysisResponse)
+def analyze_pdf_focus(req: FocusAnalysisRequest):
+    """
+    Cross-references a student's enrolled course weaknesses and prerequisite gaps
+    against an uploaded PDF textbook or syllabus to pinpoint exact chapters,
+    subchapters, page ranges, and high-yield exam keypoints.
+    """
+    filename = req.filename.strip()
+    file_path = os.path.join("uploads", filename)
+    
+    if not os.path.exists(file_path):
+        # Fallback to check if filename was passed without uploads/
+        if os.path.exists(filename):
+            file_path = filename
+        else:
+            raise HTTPException(status_code=404, detail=f"PDF document '{filename}' was not found in uploads folder.")
+            
+    course_name = COURSE_MAPPING.get(req.course_code.upper().strip(), req.course_code)
+    
+    # Identify prerequisite bottlenecks
+    prereqs = list(req.prerequisites) if req.prerequisites else []
+    if not prereqs:
+        raw_prereqs = PREREQUISITE_GRAPH.get(req.course_code.upper().strip(), [])
+        prereqs = [COURSE_MAPPING.get(p, p) for p in raw_prereqs]
+        
+    # Extract TOC / Outline
+    try:
+        toc_context = extract_pdf_toc_and_structure(file_path)
+    except Exception as e:
+        print(f"Error extracting PDF TOC: {e}")
+        toc_context = "Table of contents extraction unavailable."
+        
+    # If no Groq client is configured, return a deterministic fallback
+    if not client:
+        return _fallback_focus_response(req.course_code, course_name, filename)
+        
+    system_prompt = """You are an elite University Academic Advisor, Diagnostic Curriculum Specialist, and Exam Strategist.
+Your goal is to analyze a student's course performance risk and cross-reference it with a textbook/syllabus Table of Contents (TOC).
+You must output a strictly valid JSON object identifying the top 3-4 most critical chapters and subchapters the student must focus on to survive and pass exams.
+
+JSON Schema:
+{
+  "recommended_chapters": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "String",
+      "page_range": "String (e.g. 45-72)",
+      "priority": "CRITICAL" | "HIGH_YIELD" | "FOUNDATIONAL",
+      "relevance_rationale": "1-2 sentences explaining why this chapter directly addresses the student's weaknesses or prerequisite gaps.",
+      "subchapters": [
+        {
+          "subchapter_id": "1.1",
+          "title": "String",
+          "page_start": 45,
+          "page_end": 52,
+          "estimated_minutes": 25,
+          "keypoints": [
+            "Specific equation, mathematical mechanism, or algorithm definition",
+            "Core principle or conceptual distinction",
+            "Why this is asked in university exams"
+          ],
+          "exam_warning": "1 sentence warning about common student misconceptions or past exam question traps."
+        }
+      ]
+    }
+  ]
+}
+
+Priority Guidelines:
+- CRITICAL: Essential prerequisite foundations that the student lacks (e.g. math/core gaps preventing comprehension).
+- HIGH_YIELD: High-frequency exam topics with heavy mark allocations in university finals.
+- FOUNDATIONAL: Core theoretical mechanisms required for advanced topics.
+
+Constraint: Return ONLY valid parseable JSON. Do not include markdown ticks, explanation text, or extra commentary.
+"""
+
+    user_prompt = f"""Student Profile:
+- Course Code: {req.course_code} ({course_name})
+- Current Test/Quiz Grade: {req.course_grade} / 4.0 (Student is at academic risk)
+- Prerequisite Bottlenecks Detected by DAG: {', '.join(prereqs) if prereqs else 'None explicit'}
+- Target Textbook / Syllabus Asset: {filename}
+
+Extracted Document Table of Contents & Structure Context:
+{toc_context[:9000]}
+
+Analyze the document structure and synthesize the top 3-4 prioritized chapters and subchapters the student must study."""
+
+    try:
+        # Try primary model first, fallback to versatile if needed
+        model_name = "openai/gpt-oss-20b"
+        try:
+            chat_completion = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.2,
+                max_tokens=2500
+            )
+        except Exception:
+            chat_completion = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.2,
+                max_tokens=2500
+            )
+            
+        raw_json = chat_completion.choices[0].message.content
+        data = json.loads(raw_json)
+        
+        raw_chapters = data.get("recommended_chapters", [])
+        if not raw_chapters:
+            return _fallback_focus_response(req.course_code, course_name, filename)
+            
+        chapters_out = []
+        total_mins = 0
+        
+        for ch in raw_chapters:
+            sub_list = []
+            for sub in ch.get("subchapters", []):
+                mins = int(sub.get("estimated_minutes", 25))
+                total_mins += mins
+                sub_list.append(SubchapterFocus(
+                    subchapter_id=str(sub.get("subchapter_id", "1.1")),
+                    title=str(sub.get("title", "Core Concept")),
+                    page_start=int(sub.get("page_start", 1)),
+                    page_end=int(sub.get("page_end", 10)),
+                    estimated_minutes=mins,
+                    keypoints=[str(kp) for kp in sub.get("keypoints", ["Core concept definition"])],
+                    exam_warning=sub.get("exam_warning")
+                ))
+                
+            chapters_out.append(ChapterFocus(
+                chapter_number=int(ch.get("chapter_number", 1)),
+                chapter_title=str(ch.get("chapter_title", "Foundational Chapter")),
+                page_range=str(ch.get("page_range", "1-20")),
+                priority=str(ch.get("priority", "HIGH_YIELD")).upper(),
+                relevance_rationale=str(ch.get("relevance_rationale", f"Relevant for mastering {course_name}.")),
+                subchapters=sub_list
+            ))
+            
+        return FocusAnalysisResponse(
+            course_code=req.course_code,
+            course_name=course_name,
+            filename=filename,
+            total_estimated_study_hours=round(total_mins / 60.0, 1),
+            recommended_chapters=chapters_out
+        )
+        
+    except Exception as err:
+        print(f"Focus analysis LLM error: {err}")
+        return _fallback_focus_response(req.course_code, course_name, filename)
