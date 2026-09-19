@@ -29,15 +29,29 @@ class GlassContainer extends StatelessWidget {
     final isLight = brightness == Brightness.light;
     
     final fillTopLeft = isLight 
-        ? Colors.white.withValues(alpha: opacity) 
-        : Colors.white.withValues(alpha: opacity * 0.6);
+        ? const Color(0xFFFAF8F5).withValues(alpha: (opacity * 2.5).clamp(0.0, 0.90)) 
+        : const Color(0xFF26292E).withValues(alpha: (opacity * 2.0).clamp(0.0, 0.85));
     final fillBottomRight = isLight 
-        ? Colors.white.withValues(alpha: opacity * 0.4) 
-        : Colors.white.withValues(alpha: opacity * 0.2);
-    final borderCol = Colors.white.withValues(alpha: borderOpacity);
+        ? const Color(0xFFEDE8DC).withValues(alpha: (opacity * 1.8).clamp(0.0, 0.70)) 
+        : const Color(0xFF1E2024).withValues(alpha: (opacity * 1.5).clamp(0.0, 0.60));
+    final borderCol = isLight
+        ? const Color(0xFFD5B893).withValues(alpha: (borderOpacity * 1.8).clamp(0.0, 0.65))
+        : const Color(0xFFBFA76F).withValues(alpha: (borderOpacity * 1.2).clamp(0.0, 0.45));
 
     return Container(
       margin: margin,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: [
+          BoxShadow(
+            color: isLight 
+                ? const Color(0xFF4B3B2A).withValues(alpha: 0.05) 
+                : Colors.black.withValues(alpha: 0.35),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: BackdropFilter(
@@ -46,7 +60,7 @@ class GlassContainer extends StatelessWidget {
             padding: padding,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadius),
-              border: Border.all(color: borderCol),
+              border: Border.all(color: borderCol, width: 1.2),
               gradient: gradient ?? LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
