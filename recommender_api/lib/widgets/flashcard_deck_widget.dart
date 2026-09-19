@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:animated_flash_cards/animated_flash_cards.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/resource_item.dart';
+import '../theme/app_theme.dart';
 
 class FlashcardDeckWidget extends StatelessWidget {
   final List<ResourceItem> items;
 
-  const FlashcardDeckWidget({Key? key, required this.items}) : super(key: key);
+  const FlashcardDeckWidget({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) {
-      return Center(child: Text("No flashcards available."));
+      return Center(
+        child: Text(
+          "No archival flashcards available.",
+          style: GoogleFonts.cinzel(fontSize: 16, color: DarkAcademiaPalette.slateGray),
+        ),
+      );
     }
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     List<Widget> topPages = [];
     List<Widget> bottomPages = [];
 
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    for (var item in items) {
+    for (int i = 0; i < items.length; i++) {
+      var item = items[i];
       String frontText = "";
       String backText = "";
 
@@ -46,69 +53,254 @@ class FlashcardDeckWidget extends StatelessWidget {
 
       topPages.add(_buildCardFace(
         context: context,
-        title: "Question",
+        title: "QUERY PROMPT",
         content: frontText,
+        isQuestion: true,
+        index: i + 1,
+        total: items.length,
         isDark: isDark,
       ));
 
       bottomPages.add(_buildCardFace(
         context: context,
-        title: "Answer",
+        title: "SYNTHESIZED EXPLANATION",
         content: backText,
+        isQuestion: false,
+        index: i + 1,
+        total: items.length,
         isDark: isDark,
       ));
     }
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-      child: Center(
-        child: FlashCard(
-          cardHeight: MediaQuery.of(context).size.height * 0.8, // Massive card!
-          topPages: topPages,
-          bottomPages: bottomPages,
-          headerColor: isDark ? const Color(0xFF232338) : Colors.white,
-          bottomColor: isDark ? const Color(0xFF2A2A40) : const Color(0xFFF0F0F5),
-          topPageColor: isDark ? const Color(0xFF1E1E2E) : Colors.white,
-          bottomPageColor: isDark ? const Color(0xFF1E1E2E) : Colors.white,
-          borderRadiusAll: 24,
+    final estMinutes = (items.length * 1.5).ceil();
+
+    return Column(
+      children: [
+        // Archival Bookmark Header
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0, bottom: 4.0, left: 12.0, right: 12.0),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              decoration: BoxDecoration(
+                color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.tan.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isDark
+                      ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4)
+                      : DarkAcademiaPalette.tan,
+                  width: 1.2,
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.bookmark, size: 14, color: DarkAcademiaPalette.fadedGold),
+                  const SizedBox(width: 8),
+                  Text(
+                    "FOLIO COLLECTION • ${items.length} CARDS",
+                    style: GoogleFonts.cinzel(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.1,
+                      color: isDark ? Colors.white : DarkAcademiaPalette.caputMortuum,
+                    ),
+                  ),
+                  Container(
+                    height: 12,
+                    width: 1,
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4) : DarkAcademiaPalette.tan,
+                  ),
+                  Text(
+                    "~$estMinutes MIN READ",
+                    style: GoogleFonts.shareTechMono(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
+
+        // Outer Dark Rim Tap / Flip Guidance
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            decoration: BoxDecoration(
+              color: isDark ? DarkAcademiaPalette.charcoalSlate.withValues(alpha: 0.8) : DarkAcademiaPalette.tan.withValues(alpha: 0.25),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.3) : DarkAcademiaPalette.tan,
+                width: 1,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.touch_app_outlined,
+                  size: 13,
+                  color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                ),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    "TAP OUTER RIM OR SWIPE VERTICALLY TO FLIP",
+                    style: GoogleFonts.shareTechMono(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.9,
+                      color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        // Flashcard Deck
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final cardHeight = (constraints.maxHeight - 12).clamp(240.0, 560.0);
+                return Center(
+                  child: FlashCard(
+                    cardHeight: cardHeight,
+                    margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                    topPages: topPages,
+                    bottomPages: bottomPages,
+                    headerColor: isDark ? DarkAcademiaPalette.spaceCadet : const Color(0xFF6F4D38),
+                    bottomColor: isDark ? DarkAcademiaPalette.charcoalSlate : const Color(0xFF4B3B2A),
+                    topPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
+                    bottomPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
+                    borderRadiusAll: 16,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-  // A helper function to draw a clean, elegant card face
+  // A helper function to draw an archival library catalog card face
   Widget _buildCardFace({
     required BuildContext context,
     required String title,
     required String content,
+    required bool isQuestion,
+    required int index,
+    required int total,
     required bool isDark,
   }) {
+    final badgeColor = isQuestion
+        ? (isDark ? DarkAcademiaPalette.caputMortuum : DarkAcademiaPalette.vintageMaroon)
+        : DarkAcademiaPalette.forestMoss;
+
+    final isLong = content.length > 90;
+    final fontSize = isLong ? 14.0 : 16.5;
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isDark
+              ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.25)
+              : DarkAcademiaPalette.tan.withValues(alpha: 0.7),
+          width: 1.2,
+        ),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: isDark ? Colors.blueAccent : Colors.blueGrey,
-              letterSpacing: 1.2,
-            ),
+          // Card Catalog Header Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: badgeColor,
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: DarkAcademiaPalette.fadedGold,
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        isQuestion ? Icons.help_outline : Icons.menu_book,
+                        size: 12,
+                        color: DarkAcademiaPalette.fadedGold,
+                      ),
+                      const SizedBox(width: 5),
+                      Flexible(
+                        child: Text(
+                          title,
+                          style: GoogleFonts.cinzel(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 0.8,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                "CARD $index / $total",
+                style: GoogleFonts.shareTechMono(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                  letterSpacing: 0.8,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 32),
+
+          const SizedBox(height: 8),
+
+          // Archival Content - Takes all available space cleanly without footer cutoffs
           Expanded(
-            child: SingleChildScrollView(
-              child: Text(
-                content,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                  height: 1.5,
-                  color: isDark ? Colors.white : Colors.black87,
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
+                  child: Text(
+                    content,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'serif',
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.w500,
+                      height: 1.45,
+                      color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+                    ),
+                  ),
                 ),
               ),
             ),
