@@ -7,12 +7,24 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'theme/glassmorphism.dart';
+import 'theme/app_theme.dart';
 import 'mind_map_screen.dart';
 
 class PdfChatScreen extends StatefulWidget {
   final bool isFullScreen;
-  const PdfChatScreen({super.key, this.isFullScreen = false});
+  final String? initialPdfName;
+  final int? initialPage;
+  final String? initialPrompt;
+
+  const PdfChatScreen({
+    super.key,
+    this.isFullScreen = false,
+    this.initialPdfName,
+    this.initialPage,
+    this.initialPrompt,
+  });
 
   @override
   State<PdfChatScreen> createState() => _PdfChatScreenState();
@@ -27,6 +39,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
   bool _isProcessingPdf = false;
 
   final TextEditingController _chatController = TextEditingController();
+  final PdfViewerController _pdfViewerController = PdfViewerController();
   bool _isAiThinking = false;
 
   List<Map<String, String>> _currentActiveChat = [];
@@ -48,12 +61,20 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
       parent: _sidebarController,
       curve: Curves.easeOutCubic,
     );
+
+    if (widget.initialPdfName != null && widget.initialPdfName!.isNotEmpty) {
+      _loadChatForFile(widget.initialPdfName!);
+    }
+    if (widget.initialPrompt != null && widget.initialPrompt!.isNotEmpty) {
+      _chatController.text = widget.initialPrompt!;
+    }
   }
 
   @override
   void dispose() {
     _sidebarController.dispose();
     _chatController.dispose();
+    _pdfViewerController.dispose();
     super.dispose();
   }
 
@@ -93,8 +114,9 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     }
   }
 
-  Future<void> _waitForProcessing(String filename) async {
+  Future<bool> _waitForProcessing(String filename) async {
     bool isDone = false;
+    bool success = false;
 
     while (!isDone) {
       await Future.delayed(const Duration(seconds: 2));
@@ -109,19 +131,17 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
 
           if (data['status'] == 'completed') {
             isDone = true;
+            success = true;
           } else if (data['status'] == 'failed') {
-            setState(() {
-              _currentActiveChat = [
-                {"role": "ai", "text": "❌ The AI failed to read this document."}
-              ];
-            });
             isDone = true;
+            success = false;
           }
         }
       } catch (e) {
         debugPrint("Error waiting for processing: $e");
       }
     }
+    return success;
   }
 
   Future<void> _saveMessage(String role, String text) async {
@@ -201,14 +221,21 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
             ];
           });
 
-          await _waitForProcessing(data['filename']);
+          bool success = await _waitForProcessing(data['filename']);
           await _loadChatForFile(data['filename']);
 
           if (_currentActiveChat.isEmpty) {
-            _saveMessage(
-              "ai",
-              "✅ Successfully loaded the document. What would you like to know?",
-            );
+            if (success) {
+              _saveMessage(
+                "ai",
+                "✅ Successfully loaded the document. What would you like to know?",
+              );
+            } else {
+              _saveMessage(
+                "ai",
+                "❌ The AI failed to extract text or vectorize this document. Please check the backend worker logs.",
+              );
+            }
           }
         }
       } catch (e) {
@@ -438,11 +465,18 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
       //use StatefulBuilder to manage the dialog state and update own UI instead of entire screen
       return StatefulBuilder(
         builder: (context, setDialogState) {
-          final theme = Theme.of(context);
+          final isDark = Theme.of(context).brightness == Brightness.dark;
 
           return AlertDialog(
-            //glassmorphism background color from theme
-            title: const Text('Generate Mind Map'),
+            backgroundColor: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: BorderSide(
+                color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.35) : DarkAcademiaPalette.tan,
+                width: 1.5,
+              ),
+            ),
+            title: Text('Generate Mind Map', style: GoogleFonts.cinzel(fontWeight: FontWeight.bold)),
             content: SizedBox(
               width: 450,
               child: Column(
@@ -451,7 +485,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                 children: [
 
                   //Source Selection Tabs
-                  const Text('Source', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('Source', style: GoogleFonts.cinzel(fontWeight: FontWeight.bold, fontSize: 13)),
                   const SizedBox(height: 8),
 
                   Row(
@@ -505,10 +539,11 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                   const Text('Map Type', style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
                   Wrap(
-                    spacing : 8,
+                    spacing: 8,
                     runSpacing: 8,
                     children: mapTypes.map((type) {
                       final isSelected = type['id'] == selectedMapType;
+                      final isDark = Theme.of(context).brightness == Brightness.dark;
                       return GestureDetector(
                         onTap: () {
                           //update selectedMapType using setDialogState
@@ -520,23 +555,48 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                           width: 130,
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            //primary color gradient if selected, else neutral background
-                            gradient: isSelected ? LinearGradient(
-                              colors: [Colors.blue[600]!, Colors.blue[400]!],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ) : null,
-                            color: isSelected ? null : theme.colorScheme.surface.withValues(alpha: 0.5),
+                            color: isSelected
+                                ? (isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum)
+                                : (isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0)),
                             borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected
+                                  ? DarkAcademiaPalette.fadedGold
+                                  : (isDark ? DarkAcademiaPalette.slateGray.withValues(alpha: 0.3) : DarkAcademiaPalette.tan),
+                              width: isSelected ? 1.5 : 1,
+                            ),
+                            boxShadow: isSelected
+                                ? [
+                                    BoxShadow(
+                                      color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.2),
+                                      blurRadius: 6,
+                                      offset: const Offset(0, 2),
+                                    )
+                                  ]
+                                : null,
                           ),
                           child: Column(
                             children: [
-                              Icon(type['icon'] as IconData),
-                              const SizedBox(height: 4),
-                              Text(type['label'] as String, textAlign:
-                              TextAlign.center),
+                              Icon(
+                                type['icon'] as IconData,
+                                color: isSelected
+                                    ? DarkAcademiaPalette.fadedGold
+                                    : (isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                type['label'] as String,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.cinzel(
+                                  fontSize: 11,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+                                  color: isSelected
+                                      ? Colors.white
+                                      : (isDark ? Colors.white70 : DarkAcademiaPalette.oxfordBrown),
+                                ),
+                              ),
                             ],
-                            ),
+                          ),
                         ),
                       );
                     }).toList(),
@@ -549,9 +609,22 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(dialogContext),
-                  child: const Text("Cancel"),
+                  child: Text(
+                    "Cancel",
+                    style: GoogleFonts.inter(
+                      color: Theme.of(context).brightness == Brightness.dark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                    ),
+                  ),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).brightness == Brightness.dark ? DarkAcademiaPalette.caputMortuum : DarkAcademiaPalette.spaceCadet,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: const BorderSide(color: DarkAcademiaPalette.fadedGold, width: 1),
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.pop(dialogContext);
                     //call the mind map generation function with selected options
@@ -562,7 +635,10 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                       pageEnd : int.tryParse(pageEndController.text)
                     );
                   },
-                  child: const Text('Generate Mind Map'),
+                  child: Text(
+                    'Synthesize Mind Map',
+                    style: GoogleFonts.cinzel(fontWeight: FontWeight.bold, letterSpacing: 0.8),
+                  ),
                 ),
               ],
           );
@@ -578,7 +654,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     required int selectedIndex,
     required VoidCallback onTap,
   }) {
-    final theme = Theme.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isSelected = index == selectedIndex;
     return Expanded(
       child: GestureDetector(
@@ -587,23 +663,26 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
           padding: const EdgeInsets.symmetric(vertical: 10),
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-            gradient: isSelected
-                ? LinearGradient(
-                    colors: [Colors.blue[600]!, Colors.blue[400]!],
-                  )
-                : null,
-            color: isSelected ? null : theme.colorScheme.surface.withValues(alpha: 0.5),
+            color: isSelected
+                ? (isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum)
+                : (isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0)),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: isSelected ? Colors.blue : theme.colorScheme.onSurface.withValues(alpha: 0.2),
+              color: isSelected
+                  ? DarkAcademiaPalette.fadedGold
+                  : (isDark ? DarkAcademiaPalette.slateGray.withValues(alpha: 0.3) : DarkAcademiaPalette.tan),
+              width: isSelected ? 1.5 : 1,
             ),
           ),
           child: Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: isSelected ? Colors.white : theme.colorScheme.onSurface,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            style: GoogleFonts.cinzel(
+              color: isSelected
+                  ? (isDark ? DarkAcademiaPalette.fadedGold : Colors.white)
+                  : (isDark ? Colors.white70 : DarkAcademiaPalette.oxfordBrown),
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              fontSize: 12,
             ),
           ),
         ),
@@ -622,7 +701,10 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: const Text('PDF AI Workspace', style: TextStyle(fontWeight: FontWeight.w600)),
+          title: Text(
+            'PDF AI Scholar Workspace',
+            style: GoogleFonts.cinzel(fontWeight: FontWeight.bold, letterSpacing: 1.1),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
@@ -633,7 +715,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(
-                color: (isDark ? Colors.black : Colors.white).withValues(alpha: 0.5),
+                color: (isDark ? DarkAcademiaPalette.charcoalSlate : Colors.white).withValues(alpha: 0.7),
               ),
             ),
           ),
@@ -660,7 +742,10 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                         child: SizedBox(
                           width: 20,
                           height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                            color: DarkAcademiaPalette.fadedGold,
+                          ),
                         ),
                       ),
                     )
@@ -696,13 +781,15 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                     return Column(
                       children: [
                         TabBar(
-                          labelColor: theme.colorScheme.primary,
-                          unselectedLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                          indicatorColor: theme.colorScheme.primary,
+                          indicatorColor: DarkAcademiaPalette.fadedGold,
                           indicatorWeight: 3,
+                          labelColor: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                          unselectedLabelColor: isDark ? DarkAcademiaPalette.slateGray : DarkAcademiaPalette.oxfordBrown.withValues(alpha: 0.6),
+                          labelStyle: GoogleFonts.cinzel(fontWeight: FontWeight.bold, fontSize: 13),
+                          unselectedLabelStyle: GoogleFonts.cinzel(fontSize: 13),
                           tabs: const [
-                            Tab(icon: Icon(Icons.picture_as_pdf), text: "Document"),
-                            Tab(icon: Icon(Icons.chat), text: "Chat"),
+                            Tab(icon: Icon(Icons.picture_as_pdf), text: "Folio Document"),
+                            Tab(icon: Icon(Icons.auto_stories), text: "Scholar Chat"),
                           ],
                         ),
                         Expanded(
@@ -749,7 +836,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                 );
               },
               child: SizedBox(
-                width: 300,
+                width: 310,
                 height: double.infinity,
                 child: GlassContainer(
                   child: Material(
@@ -761,73 +848,119 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                           Container(
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  theme.colorScheme.primary.withValues(alpha: 0.8),
-                                  theme.colorScheme.secondary.withValues(alpha: 0.8),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                              color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.5),
+                                  width: 1.5,
+                                ),
                               ),
                             ),
-                            child: const Text(
-                              'Your PDF Library',
-                              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.local_library_outlined, color: DarkAcademiaPalette.fadedGold, size: 22),
+                                const SizedBox(width: 10),
+                                Text(
+                                  'Archival Folios',
+                                  style: GoogleFonts.cinzel(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.1,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           if (_pdfLibrary.isEmpty)
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
                               child: Text(
-                                "No PDFs uploaded yet.",
-                                style: TextStyle(color: Colors.orangeAccent, fontSize: 18),
+                                "No archival folios cataloged yet.",
+                                style: GoogleFonts.cinzel(
+                                  color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                                  fontSize: 13,
+                                ),
                               ),
                             ).animate().fadeIn(duration: 400.ms),
                           Expanded(
                             child: ListView.builder(
-                              padding: EdgeInsets.zero,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
                               itemCount: _pdfLibrary.length,
                               itemBuilder: (context, index) {
                                 String filename = _pdfLibrary[index];
-                                return ListTile(
-                                  leading: const Icon(Icons.picture_as_pdf, color: Colors.redAccent),
-                                  title: Text(filename, style: const TextStyle(fontWeight: FontWeight.w500)),
-                                  trailing: PopupMenuButton<String>(
-                                    icon: const Icon(Icons.more_vert, size: 20),
-                                    onSelected: (value) {
-                                      if (value == 'rename') {
-                                        _showRenameDialog(filename);
-                                      } else if (value == 'delete') {
-                                        _deletePdf(filename);
-                                      }
-                                    },
-                                    itemBuilder: (BuildContext context) => [
-                                      const PopupMenuItem(
-                                        value: 'rename',
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.edit, size: 18, color: Colors.blue),
-                                            SizedBox(width: 8),
-                                            Text("Rename"),
-                                          ],
-                                        ),
-                                      ),
-                                      const PopupMenuItem(
-                                        value: 'delete',
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.delete, size: 18, color: Colors.red),
-                                            SizedBox(width: 8),
-                                            Text("Delete", style: TextStyle(color: Colors.red)),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                final isCurrent = _pdfName == filename;
+                                return Container(
+                                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: isCurrent
+                                        ? (isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.tan.withValues(alpha: 0.35))
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: isCurrent
+                                        ? Border.all(color: DarkAcademiaPalette.fadedGold, width: 1.2)
+                                        : Border.all(color: Colors.transparent),
                                   ),
-                                  onTap: () {
-                                    _toggleSidebar();
-                                    _loadChatForFile(filename);
-                                  },
+                                  child: ListTile(
+                                    leading: Icon(
+                                      Icons.menu_book,
+                                      color: isCurrent
+                                          ? DarkAcademiaPalette.fadedGold
+                                          : (isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum),
+                                      size: 20,
+                                    ),
+                                    title: Text(
+                                      filename,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontFamily: 'serif',
+                                        fontWeight: isCurrent ? FontWeight.bold : FontWeight.w500,
+                                        fontSize: 13.5,
+                                        color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+                                      ),
+                                    ),
+                                    trailing: PopupMenuButton<String>(
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        size: 18,
+                                        color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                                      ),
+                                      onSelected: (value) {
+                                        if (value == 'rename') {
+                                          _showRenameDialog(filename);
+                                        } else if (value == 'delete') {
+                                          _deletePdf(filename);
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) => [
+                                        const PopupMenuItem(
+                                          value: 'rename',
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.edit, size: 16, color: DarkAcademiaPalette.burntUmber),
+                                              SizedBox(width: 8),
+                                              Text("Rename Folio"),
+                                            ],
+                                          ),
+                                        ),
+                                        const PopupMenuItem(
+                                          value: 'delete',
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.delete, size: 16, color: DarkAcademiaPalette.caputMortuum),
+                                              SizedBox(width: 8),
+                                              Text("Delete", style: TextStyle(color: DarkAcademiaPalette.caputMortuum)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    onTap: () {
+                                      _toggleSidebar();
+                                      _loadChatForFile(filename);
+                                    },
+                                  ),
                                 ).animate().fadeIn(delay: (50 * index).ms, duration: 400.ms).slideX(begin: -0.2, end: 0);
                               },
                             ),
@@ -846,31 +979,43 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
   }
 
   Widget _buildPdfViewer() {
-    final theme = Theme.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        gradient: _pdfName.isEmpty ? LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            theme.colorScheme.surface,
-            theme.colorScheme.surface.withValues(alpha: 0.8),
-          ],
-        ) : null,
+        color: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+        border: Border(
+          right: BorderSide(
+            color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.2) : DarkAcademiaPalette.tan,
+            width: 1,
+          ),
+        ),
       ),
       child: _isProcessingPdf
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(color: DarkAcademiaPalette.fadedGold),
+            )
           : _pdfName.isNotEmpty
           ? (_pdfBytes != null 
               ? SfPdfViewer.memory(
                   _pdfBytes!,
+                  controller: _pdfViewerController,
+                  onDocumentLoaded: (details) {
+                    if (widget.initialPage != null && widget.initialPage! > 0) {
+                      _pdfViewerController.jumpToPage(widget.initialPage!);
+                    }
+                  },
                   onDocumentLoadFailed: (details) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to load local PDF: ${details.description}')));
                   },
                 )
               : SfPdfViewer.network(
                   '$_baseUrl/get-pdf/${Uri.encodeComponent(_pdfName)}',
+                  controller: _pdfViewerController,
+                  onDocumentLoaded: (details) {
+                    if (widget.initialPage != null && widget.initialPage! > 0) {
+                      _pdfViewerController.jumpToPage(widget.initialPage!);
+                    }
+                  },
                   onDocumentLoadFailed: (details) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -885,24 +1030,30 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.picture_as_pdf, size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                  Icon(
+                    Icons.menu_book,
+                    size: 64,
+                    color: isDark ? DarkAcademiaPalette.tan.withValues(alpha: 0.3) : DarkAcademiaPalette.slateGray.withValues(alpha: 0.3),
+                  ),
                   const SizedBox(height: 16),
                   Text(
-                    "Tap the upload icon to add a PDF",
-                    style: TextStyle(fontSize: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+                    "Select or upload an archival folio to begin examination",
+                    style: GoogleFonts.cinzel(
+                      fontSize: 14,
+                      color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                    ),
                   ),
                 ],
               ),
-            ).animate().fadeIn(duration: 600.ms).scale(begin: const Offset(0.9, 0.9)),
+            ).animate().fadeIn(duration: 600.ms).scale(begin: const Offset(0.95, 0.95)),
     );
   }
 
   Widget _buildChatInterface() {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      color: theme.colorScheme.surface,
+      color: isDark ? DarkAcademiaPalette.charcoalSlate.withValues(alpha: 0.7) : DarkAcademiaPalette.antiqueIvory.withValues(alpha: 0.5),
       child: Column(
         children: [
           Expanded(
@@ -916,35 +1067,95 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                 Widget messageBubble = isUser
                     ? Container(
                         margin: const EdgeInsets.only(bottom: 12),
-                        padding: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue[600]!, Colors.blue[400]!],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                          color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum,
+                          borderRadius: BorderRadius.circular(16).copyWith(bottomRight: const Radius.circular(3)),
+                          border: Border.all(
+                            color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4),
+                            width: 1,
                           ),
-                          borderRadius: BorderRadius.circular(16).copyWith(bottomRight: const Radius.circular(4)),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withValues(alpha: 0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 4),
+                              color: Colors.black.withValues(alpha: 0.12),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
-                        child: Text(msg['text']!, style: const TextStyle(color: Colors.white)),
+                        child: Text(
+                          msg['text']!,
+                          style: GoogleFonts.inter(
+                            color: const Color(0xFFFAF7F0),
+                            fontSize: 14,
+                            height: 1.45,
+                          ),
+                        ),
                       )
                     : Container(
                         margin: const EdgeInsets.only(bottom: 12),
-                        child: GlassContainer(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: MarkdownBody(
-                              data: msg['text']!,
-                              styleSheet: MarkdownStyleSheet(
-                                p: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
-                              ),
+                        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.85),
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
+                            borderRadius: BorderRadius.circular(16).copyWith(bottomLeft: const Radius.circular(3)),
+                            border: Border.all(
+                              color: isDark
+                                  ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.25)
+                                  : DarkAcademiaPalette.tan,
+                              width: 1.2,
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.06),
+                                blurRadius: 6,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.auto_stories,
+                                    size: 14,
+                                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    "SCHOLAR AI RESPONSE",
+                                    style: GoogleFonts.cinzel(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.1,
+                                      color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              MarkdownBody(
+                                data: msg['text']!,
+                                styleSheet: MarkdownStyleSheet(
+                                  p: TextStyle(
+                                    fontFamily: 'serif',
+                                    fontSize: 15,
+                                    height: 1.55,
+                                    color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+                                  ),
+                                  code: GoogleFonts.shareTechMono(
+                                    fontSize: 13,
+                                    backgroundColor: isDark ? const Color(0xFF1E2024) : const Color(0xFFEDE8DC),
+                                    color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
@@ -954,7 +1165,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                   child: messageBubble,
                 ).animate()
                  .fadeIn(duration: 300.ms)
-                 .slideX(begin: isUser ? 0.2 : -0.2, end: 0, curve: Curves.easeOutCubic);
+                 .slideX(begin: isUser ? 0.15 : -0.15, end: 0, curve: Curves.easeOutCubic);
               },
             ),
           ),
@@ -965,17 +1176,24 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("AI is thinking", style: TextStyle(color: Colors.grey)),
+                  Text(
+                    "AI Scholar is consulting texts...",
+                    style: GoogleFonts.cinzel(
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic,
+                      color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                    ),
+                  ),
                   const SizedBox(width: 8),
                   Row(
                     children: List.generate(3, (index) => 
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Container(
-                          width: 6,
-                          height: 6,
+                          width: 5,
+                          height: 5,
                           decoration: const BoxDecoration(
-                            color: Colors.grey,
+                            color: DarkAcademiaPalette.fadedGold,
                             shape: BoxShape.circle,
                           ),
                         ).animate(onPlay: (controller) => controller.repeat())
@@ -991,42 +1209,75 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
 
           GlassContainer(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               decoration: BoxDecoration(
-                color: (isDark ? Colors.black : Colors.white).withValues(alpha: 0.5),
-                border: Border(top: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.1))),
+                color: (isDark ? DarkAcademiaPalette.charcoalSlate : Colors.white).withValues(alpha: 0.85),
+                border: Border(
+                  top: BorderSide(
+                    color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.25) : DarkAcademiaPalette.tan,
+                    width: 1,
+                  ),
+                ),
               ),
               child: Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _chatController,
+                      style: TextStyle(
+                        fontFamily: 'serif',
+                        color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+                      ),
                       decoration: InputDecoration(
-                        hintText: _pdfName.isEmpty ? "Upload a PDF first..." : "Ask about the PDF...",
-                        hintStyle: TextStyle(color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+                        hintText: _pdfName.isEmpty ? "Select or upload an archival folio..." : "Inquire with the AI scholar...",
+                        hintStyle: GoogleFonts.cinzel(
+                          fontSize: 13,
+                          color: (isDark ? Colors.white54 : DarkAcademiaPalette.oxfordBrown.withValues(alpha: 0.5)),
+                        ),
                         filled: true,
-                        fillColor: theme.colorScheme.surface.withValues(alpha: 0.5),
+                        fillColor: isDark ? const Color(0xFF1E2024) : DarkAcademiaPalette.antiqueIvory.withValues(alpha: 0.5),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(24),
-                          borderSide: BorderSide.none,
+                          borderSide: BorderSide(
+                            color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.3) : DarkAcademiaPalette.tan,
+                          ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(24),
+                          borderSide: BorderSide(
+                            color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.3) : DarkAcademiaPalette.tan,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(24),
+                          borderSide: const BorderSide(
+                            color: DarkAcademiaPalette.fadedGold,
+                            width: 1.5,
+                          ),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       ),
                       enabled: _pdfName.isNotEmpty,
                       onSubmitted: (_) => _sendMessage(),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 10),
                   Container(
                     decoration: BoxDecoration(
-                      gradient: _pdfName.isEmpty ? null : LinearGradient(
-                        colors: [Colors.blue[600]!, Colors.blue[400]!],
-                      ),
-                      color: _pdfName.isEmpty ? Colors.grey : null,
+                      color: _pdfName.isEmpty
+                          ? (isDark ? Colors.white12 : Colors.black12)
+                          : (isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum),
                       shape: BoxShape.circle,
+                      border: _pdfName.isNotEmpty
+                          ? Border.all(color: DarkAcademiaPalette.fadedGold, width: 1.2)
+                          : null,
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.send, color: Colors.white, size: 20),
+                      icon: Icon(
+                        Icons.send,
+                        color: _pdfName.isEmpty ? Colors.grey : DarkAcademiaPalette.fadedGold,
+                        size: 18,
+                      ),
                       onPressed: _pdfName.isEmpty ? null : _sendMessage,
                     ),
                   ),
