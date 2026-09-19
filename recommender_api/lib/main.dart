@@ -1,6 +1,8 @@
 import 'screens/home_screen.dart';
+import 'screens/pdf_focus_diagnostic_screen.dart';
 import 'pdf_chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
@@ -93,8 +95,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               title: const Text('AI Study Suite'),
               elevation: 0,
               backgroundColor: isDark 
-                  ? Colors.black.withOpacity(0.5) 
-                  : const Color(0xFFFFFDE7).withOpacity(0.5),
+                  ? Colors.black.withValues(alpha: 0.5) 
+                  : const Color(0xFFFFFDE7).withValues(alpha: 0.5),
               foregroundColor: isDark ? Colors.blueAccent : Colors.blue[900],
               actions: [
                 IconButton(
@@ -178,9 +180,53 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   }
 }
 
+const Map<String, String> kAvailableCourses = {
+  // Faculty Core
+  "WIX1001": "Computing Mathematics I",
+  "WIX1002": "Fundamentals of Programming",
+  "WIX1003": "Computer Systems and Organization",
+  "WIX2001": "Thinking and Communication Skills",
+  "WIX2002": "Project Management",
+
+  // Programme Core
+  "WIA1002": "Data Structure",
+  "WIA1003": "Computer System Architecture",
+  "WIA1005": "Network Technology Foundation",
+  "WIA1006": "Machine Learning",
+  "WIA2001": "Database",
+  "WIA2002": "Software Modeling",
+  "WIA2003": "Probability and Statistics",
+  "WIA2004": "Operating Systems",
+  "WIA2005": "Algorithm Design and Analysis",
+  "WIA2007": "Mobile Application Development",
+  "WIA2010": "Human Computer Interaction",
+  "WIA3001": "Industrial Training",
+  "WIA3002": "Academic Project I",
+  "WIA3003": "Academic Project II",
+
+  // Specialization Electives
+  "WIF2002": "Software Requirements Engineering",
+  "WIF2003": "Web Programming",
+  "WIF3001": "Software Testing",
+  "WIF3002": "Software Process and Quality",
+  "WIF3004": "Software Architecture and Design Paradigms",
+  "WIF3005": "Software Maintenance and Evolution",
+  "WIF3006": "Component Based Software Engineering",
+  "WIF3008": "Real Time Systems",
+  "WIF3009": "Python for Scientific Computing",
+  "WIF3010": "Programming Language Paradigm",
+  "WIF3011": "Concurrent and Parallel Programming",
+  "WIG3005": "Game Development",
+  "WIC2008": "Internet of Things",
+  "WIA2006": "System Analysis and Design",
+};
+
 class CourseEntry {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController gradeController = TextEditingController();
+  String? courseCode;
+  final TextEditingController gradeController;
+
+  CourseEntry({this.courseCode, String? grade})
+      : gradeController = TextEditingController(text: grade ?? '');
 }
 
 class StudentProfileScreen extends StatefulWidget {
@@ -196,7 +242,9 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
 
   int _selectedAttendance = 3;
   int _selectedPreparation = 2;
-  List<CourseEntry> _courses = [CourseEntry()];
+  final List<CourseEntry> _courses = [
+    CourseEntry(courseCode: 'WIA1006', grade: '3.0'),
+  ];
   final int income = 2, hometown = 1, department = 0, gaming = 2;
   bool _isLoading = false;
   Map<String, dynamic>? _predictionResult;
@@ -207,9 +255,28 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       _predictionResult = null;
     });
 
-    List<Map<String, dynamic>> coursesArray = _courses.map((course) {
+    final validCourses = _courses
+        .where((c) => c.courseCode != null && c.courseCode!.trim().isNotEmpty)
+        .toList();
+
+    if (validCourses.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please select at least one course code from the dropdown.'),
+            backgroundColor: DarkAcademiaPalette.caputMortuum,
+          ),
+        );
+      }
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    List<Map<String, dynamic>> coursesArray = validCourses.map((course) {
       return {
-        "name": course.nameController.text.toUpperCase().trim(),
+        "name": course.courseCode!,
         "grade": double.tryParse(course.gradeController.text) ?? 0.0,
       };
     }).toList();
@@ -241,10 +308,10 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
           _predictionResult = data;
         });
       } else {
-        print("Server error: ${response.statusCode}");
+        debugPrint("Server error: ${response.statusCode}");
       }
     } catch (e) {
-      print("Error: $e");
+      debugPrint("Error: $e");
     } finally {
       setState(() {
         _isLoading = false;
@@ -261,6 +328,290 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     }
   }
 
+  void _openPdfWorkspaceLaunchpad() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    String? targetCourse;
+    double? targetGrade;
+    for (var c in _courses) {
+      if (c.courseCode != null && c.courseCode!.isNotEmpty) {
+        final g = double.tryParse(c.gradeController.text);
+        if (g != null && g < 3.0) {
+          targetCourse = c.courseCode;
+          targetGrade = g;
+          break;
+        }
+      }
+    }
+    if (targetCourse == null && _courses.isNotEmpty && _courses.first.courseCode != null) {
+      targetCourse = _courses.first.courseCode;
+      targetGrade = double.tryParse(_courses.first.gradeController.text) ?? 2.0;
+    }
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return Container(
+          decoration: BoxDecoration(
+            color: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+            border: Border.all(
+              color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4) : DarkAcademiaPalette.tan,
+              width: 1.5,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.35),
+                blurRadius: 20,
+                offset: const Offset(0, -4),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Container(
+                  width: 48,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4)
+                        : DarkAcademiaPalette.tan.withValues(alpha: 0.7),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 18),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.6)),
+                    ),
+                    child: Text(
+                      "ACADEMIC INTELLIGENCE",
+                      style: GoogleFonts.shareTechMono(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "PDF AI WORKSPACE",
+                style: GoogleFonts.cinzel(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                "Choose your study modality for syllabus navigation and archival research:",
+                style: GoogleFonts.sourceSerif4(
+                  fontSize: 13,
+                  color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown.withValues(alpha: 0.8),
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // Option 1: Diagnostic Chapter Radar (Default / Highlighted)
+              InkWell(
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PdfFocusDiagnosticScreen(
+                        initialCourseCode: targetCourse,
+                        initialGrade: targetGrade,
+                      ),
+                    ),
+                  );
+                },
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? DarkAcademiaPalette.spaceCadet.withValues(alpha: 0.8)
+                        : DarkAcademiaPalette.antiqueIvory,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: DarkAcademiaPalette.fadedGold,
+                      width: 2.0,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: DarkAcademiaPalette.fadedGold.withValues(alpha: isDark ? 0.15 : 0.2),
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.25),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: DarkAcademiaPalette.fadedGold),
+                        ),
+                        child: const Icon(
+                          Icons.radar_rounded,
+                          color: DarkAcademiaPalette.fadedGold,
+                          size: 24,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Diagnostic Chapter Radar",
+                                  style: GoogleFonts.cinzel(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark ? DarkAcademiaPalette.antiqueIvory : DarkAcademiaPalette.caputMortuum,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: DarkAcademiaPalette.fadedGold,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    "RECOMMENDED",
+                                    style: GoogleFonts.shareTechMono(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "Cross-reference textbook & syllabus TOC against your course bottlenecks to pinpoint critical chapters, estimated study time, and exam trap alerts.",
+                              style: GoogleFonts.sourceSerif4(
+                                fontSize: 12,
+                                color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                                height: 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 14),
+
+              // Option 2: Direct PDF Chat & Mind Map
+              InkWell(
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PdfChatScreen(isFullScreen: true),
+                    ),
+                  );
+                },
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? const Color(0xFF1E2024)
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: isDark
+                          ? DarkAcademiaPalette.slateGray.withValues(alpha: 0.4)
+                          : DarkAcademiaPalette.tan,
+                      width: 1.2,
+                    ),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: isDark
+                              ? DarkAcademiaPalette.charcoalSlate
+                              : DarkAcademiaPalette.antiqueIvory,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isDark ? DarkAcademiaPalette.tan.withValues(alpha: 0.5) : DarkAcademiaPalette.tan,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.chat_bubble_outline_rounded,
+                          color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum,
+                          size: 24,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Direct PDF Chat & Mind Map",
+                              style: GoogleFonts.cinzel(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: isDark ? DarkAcademiaPalette.antiqueIvory : DarkAcademiaPalette.caputMortuum,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "Open full document reader, chat with AI about any section, and compile dynamic Mermaid mind maps.",
+                              style: GoogleFonts.sourceSerif4(
+                                fontSize: 12,
+                                color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                                height: 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -275,12 +626,12 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
         elevation: 0,
         title: Text(
           'Student Academic Profile',
-          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+          style: GoogleFonts.cinzel(fontWeight: FontWeight.bold, letterSpacing: 1.1),
         ),
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon: const Icon(Icons.local_fire_department, color: Colors.orange),
+              icon: const Icon(Icons.local_fire_department, color: DarkAcademiaPalette.fadedGold),
               tooltip: "High-Yield Heatmap",
               onPressed: () {
                 Scaffold.of(context).openEndDrawer();
@@ -288,35 +639,78 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.chat_bubble_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const PdfChatScreen(isFullScreen: true,)
-                ),
-              );
-            },
+            icon: Icon(
+              Icons.auto_stories_outlined,
+              color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum,
+            ),
+            tooltip: "PDF AI Workspace",
+            onPressed: _openPdfWorkspaceLaunchpad,
           ),
         ],
       ),
       endDrawer: Drawer(
-        width: 350,
+        width: 360,
+        backgroundColor: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
         child: Container(
-          color: isDark ? const Color(0xFF16213E) : Colors.white,
+          decoration: BoxDecoration(
+            color: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+            border: Border(
+              left: BorderSide(
+                color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.35) : DarkAcademiaPalette.tan,
+                width: 1.5,
+              ),
+            ),
+          ),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.only(top: 50, left: 16, bottom: 16),
+                padding: const EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 16),
                 width: double.infinity,
-                color: isDark ? Colors.black87 : Colors.blue[50],
+                decoration: BoxDecoration(
+                  color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.5),
+                      width: 1.5,
+                    ),
+                  ),
+                ),
                 child: Row(
                   children: [
-                    const Icon(Icons.local_fire_department, color: Colors.orange, size: 28),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Peer-Validated Heatmap",
-                      style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: DarkAcademiaPalette.fadedGold, width: 1.2),
+                      ),
+                      child: const Icon(Icons.local_fire_department, color: DarkAcademiaPalette.fadedGold, size: 20),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "PEER VALIDATION INDEX",
+                            style: GoogleFonts.cinzel(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.2,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            "Archival Wilson-Score Heatmap",
+                            style: GoogleFonts.inter(
+                              fontSize: 11,
+                              color: DarkAcademiaPalette.tan,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -326,66 +720,216 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                   future: http.get(Uri.parse('http://localhost:8000/api/heatmap')), // Target LOCAL backend
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(
+                        child: CircularProgressIndicator(color: DarkAcademiaPalette.fadedGold),
+                      );
                     } else if (snapshot.hasError) {
-                      return Center(child: Text("Error loading heatmap: ${snapshot.error}", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)));
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            "Error loading archival heatmap:\n${snapshot.error}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      );
                     } else if (snapshot.hasData) {
                       if (snapshot.data!.statusCode == 200) {
                         final List<dynamic> items = jsonDecode(snapshot.data!.body);
                         return ListView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             final item = items[index];
-                            return ListTile(
-                              leading: Text("#${index + 1}", style: GoogleFonts.shareTechMono(color: Colors.orange, fontSize: 18, fontWeight: FontWeight.bold)),
-                              title: Text(item['title'] ?? 'Unknown', style: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold)),
-                              subtitle: Text("Wilson Score: ${(item['wilson_score'] * 100).toStringAsFixed(1)}% | Struggling Attempts: ${item['total_struggling_attempts']}", style: TextStyle(color: isDark ? Colors.white70 : Colors.black87, fontSize: 12)),
-                              trailing: IconButton(
-                                icon : Icon(
-                                  item['type'] == 'video' ? Icons.play_circle_fill : Icons.article,
-                                  color: isDark ? Colors.blueAccent : Colors.blue[300],
-                                  size: 28,
+                            final sealColor = index == 0
+                                ? DarkAcademiaPalette.caputMortuum
+                                : (index == 1
+                                    ? DarkAcademiaPalette.burntUmber
+                                    : (index == 2
+                                        ? DarkAcademiaPalette.spaceCadet
+                                        : (isDark ? const Color(0xFF353940) : const Color(0xFFE2DDD2))));
+                            return Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: isDark ? const Color(0xFF23252A) : Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: isDark
+                                      ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.25)
+                                      : DarkAcademiaPalette.tan.withValues(alpha: 0.7),
+                                  width: 1,
                                 ),
-                                onPressed: () async {
-                                  //check if have direct URL
-                                  final urlString = item['url'];
-                                  if (urlString != null && urlString.isNotEmpty) {
-                                    final Uri url = Uri.parse(urlString);
-                                    if (await canLaunchUrl(url)) {
-                                      await launchUrl(url, mode: LaunchMode.externalApplication);
-                                    }
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (content) => Scaffold(
-                                          appBar: AppBar(
-                                            title: const Text("Create Survival Bundle"),
-                                            backgroundColor: Colors.transparent,
-                                          ),
-                                          body: BundlerSetupScreen(
-                                            initialTopic: item['title'],
-                                          ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.05),
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // Wax seal badge
+                                  Container(
+                                    width: 34,
+                                    height: 34,
+                                    decoration: BoxDecoration(
+                                      color: sealColor,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: DarkAcademiaPalette.fadedGold,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "#${index + 1}",
+                                        style: GoogleFonts.cinzel(
+                                          color: DarkAcademiaPalette.fadedGold,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    );
-                                  }
-                                }
-                              )
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  // Content
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          item['title'] ?? 'Unknown',
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.cinzel(
+                                            fontSize: 12.5,
+                                            fontWeight: FontWeight.w700,
+                                            color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.15),
+                                                borderRadius: BorderRadius.circular(4),
+                                                border: Border.all(
+                                                  color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4),
+                                                  width: 0.8,
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Wilson: ${(item['wilson_score'] * 100).toStringAsFixed(1)}%",
+                                                style: GoogleFonts.shareTechMono(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Text(
+                                              "Struggles: ${item['total_struggling_attempts']}",
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                color: isDark ? Colors.white60 : DarkAcademiaPalette.oxfordBrown.withValues(alpha: 0.7),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Tactile Pill Button
+                                  InkWell(
+                                    onTap: () async {
+                                      final urlString = item['url'];
+                                      if (urlString != null && urlString.isNotEmpty) {
+                                        final Uri url = Uri.parse(urlString);
+                                        if (await canLaunchUrl(url)) {
+                                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                                        }
+                                      } else {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (content) => Scaffold(
+                                              appBar: AppBar(
+                                                title: Text("Create Survival Bundle", style: GoogleFonts.cinzel(fontWeight: FontWeight.bold)),
+                                                backgroundColor: Colors.transparent,
+                                              ),
+                                              body: BundlerSetupScreen(
+                                                initialTopic: item['title'],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: isDark
+                                            ? DarkAcademiaPalette.caputMortuum
+                                            : DarkAcademiaPalette.tan.withValues(alpha: 0.35),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(
+                                          color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.7),
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            item['type'] == 'video' ? Icons.play_circle_fill : Icons.auto_stories,
+                                            size: 13,
+                                            color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            item['type'] == 'video' ? "Watch" : "Study",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 10.5,
+                                              fontWeight: FontWeight.bold,
+                                              color: isDark ? Colors.white : DarkAcademiaPalette.caputMortuum,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         );
                       } else {
-                        // Show the actual error from the server instead of generic text
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const CircularProgressIndicator(), // Loading button/indicator above text
+                              const CircularProgressIndicator(color: DarkAcademiaPalette.fadedGold),
                               const SizedBox(height: 16),
-                              Text("Server Error ${snapshot.data!.statusCode}\nIs your backend running?", 
+                              Text(
+                                "Server Error ${snapshot.data!.statusCode}\nIs your backend running?", 
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)),
+                                style: TextStyle(
+                                  color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                                  fontSize: 12,
+                                ),
+                              ),
                             ],
                           ),
                         );
@@ -395,11 +939,16 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const CircularProgressIndicator(),
+                            const CircularProgressIndicator(color: DarkAcademiaPalette.fadedGold),
                             const SizedBox(height: 16),
-                            Text("Heatmap Loading...\n(Wilson Score Algorithm Pending)", 
+                            Text(
+                              "Heatmap Loading...\n(Wilson Score Algorithm Pending)", 
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)),
+                              style: TextStyle(
+                                color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
                         ),
                       );
@@ -419,105 +968,174 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GlassContainer(
-                  borderRadius: 16,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(child: _buildTextField('SSC Score (0-4)', _sscController)),
-                            const SizedBox(width: 16),
-                            Expanded(child: _buildTextField('Last Semester GPA', _lastGpaController)),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        _buildDropdown(
-                          label: 'Class Attendance',
-                          value: _selectedAttendance,
-                          items: const {1: 'Below 40%', 2: '40%-59%', 3: '60%-79%', 4: '80%-100%'},
-                          onChanged: (val) => setState(() => _selectedAttendance = val!),
-                        ),
-                        const SizedBox(height: 16),
-                        _buildDropdown(
-                          label: 'Daily Study Preparation',
-                          value: _selectedPreparation,
-                          items: const {1: '0-1 hour', 2: '2-3 hours', 3: 'More than 3 hours'},
-                          onChanged: (val) => setState(() => _selectedPreparation = val!),
-                        ),
-                      ],
-                    ),
+                // ================= STEP 1: ACADEMIC FOUNDATIONS =================
+                _buildStepCard(
+                  stepNumber: "01",
+                  stepTag: "HISTORICAL FOUNDATIONS",
+                  title: "Baseline Academic Resilience",
+                  description: "Calibrates baseline student resilience to detect performance anomalies in your university coursework.",
+                  icon: Icons.history_edu_outlined,
+                  isDark: isDark,
+                  child: Row(
+                    children: [
+                      Expanded(child: _buildTextField('Secondary School GPA (0-4.0)', _sscController)),
+                      const SizedBox(width: 16),
+                      Expanded(child: _buildTextField('Last Semester GPA (0-4.0)', _lastGpaController)),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                
-                GlassContainer(
-                  borderRadius: 16,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Current Semester Courses',
-                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        const SizedBox(height: 16),
-                        ..._courses.asMap().entries.map((entry) {
-                          int index = entry.key;
-                          CourseEntry course = entry.value;
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: course.nameController,
-                                    decoration: InputDecoration(
-                                      hintText: 'Code (e.g. WIA1006)',
-                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                                      filled: true,
-                                      fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
+                const SizedBox(height: 18),
+
+                // ================= STEP 2: BEHAVIORAL TRAJECTORY =================
+                _buildStepCard(
+                  stepNumber: "02",
+                  stepTag: "BEHAVIORAL TRAJECTORY",
+                  title: "Study Habits & Engagement",
+                  description: "Real-time engagement factors calibrated by our PyTorch multi-layer perceptron.",
+                  icon: Icons.bolt_outlined,
+                  isDark: isDark,
+                  child: Column(
+                    children: [
+                      _buildSegmentedSelector(
+                        label: 'Class Attendance Rate',
+                        subtitle: _selectedAttendance >= 3 ? "Optimal Engagement" : "At-Risk Zone",
+                        value: _selectedAttendance,
+                        activeColor: _selectedAttendance <= 2 ? Colors.redAccent : Colors.blueAccent,
+                        items: const {1: '< 40%', 2: '40%-59%', 3: '60%-79%', 4: '80%-100%'},
+                        onChanged: (val) => setState(() => _selectedAttendance = val),
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 20),
+                      _buildSegmentedSelector(
+                        label: 'Daily Independent Study Preparation',
+                        subtitle: _selectedPreparation >= 2 ? "Consistent Routine" : "Needs Revision",
+                        value: _selectedPreparation,
+                        activeColor: Colors.teal,
+                        items: const {1: '0 - 1 hr', 2: '2 - 3 hrs', 3: '> 3 hrs'},
+                        onChanged: (val) => setState(() => _selectedPreparation = val),
+                        isDark: isDark,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 18),
+
+                // ================= STEP 3: CURRENT CURRICULUM ENROLLMENT =================
+                _buildStepCard(
+                  stepNumber: "03",
+                  stepTag: "CURRICULUM ENROLLMENT",
+                  title: "Current Semester Registered Courses",
+                  description: "Enter your registered courses and current test/quiz scores to trace prerequisite bottlenecks.",
+                  icon: Icons.account_tree_outlined,
+                  isDark: isDark,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ..._courses.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        CourseEntry course = entry.value;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: DropdownButtonFormField<String>(
+                                  initialValue: course.courseCode,
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Select Course Code',
+                                    style: TextStyle(
+                                      color: isDark 
+                                          ? DarkAcademiaPalette.tan.withValues(alpha: 0.6) 
+                                          : DarkAcademiaPalette.oxfordBrown.withValues(alpha: 0.6),
+                                      fontSize: 13,
                                     ),
                                   ),
+                                  icon: const Icon(Icons.keyboard_arrow_down, size: 20),
+                                  dropdownColor: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+                                  style: GoogleFonts.sourceSerif4(
+                                    color: isDark ? DarkAcademiaPalette.antiqueIvory : DarkAcademiaPalette.oxfordBrown,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.school_outlined, size: 18),
+                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                                    filled: true,
+                                    fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
+                                  ),
+                                  items: kAvailableCourses.entries.map((c) {
+                                    return DropdownMenuItem<String>(
+                                      value: c.key,
+                                      child: Text(
+                                        '${c.key} - ${c.value}',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.sourceSerif4(
+                                          fontSize: 13,
+                                          color: isDark ? DarkAcademiaPalette.antiqueIvory : DarkAcademiaPalette.oxfordBrown,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (val) {
+                                    setState(() {
+                                      course.courseCode = val;
+                                    });
+                                  },
                                 ),
-                                const SizedBox(width: 12),
-                                SizedBox(
-                                  width: 90,
-                                  child: TextFormField(
-                                    controller: course.gradeController,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    decoration: InputDecoration(
-                                      hintText: 'Grade',
-                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                                      filled: true,
-                                      fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
-                                    ),
+                              ),
+                              const SizedBox(width: 12),
+                              SizedBox(
+                                width: 110,
+                                child: TextFormField(
+                                  controller: course.gradeController,
+                                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                                    TextInputFormatter.withFunction((oldValue, newValue) {
+                                      final text = newValue.text;
+                                      if (text.isEmpty) return newValue;
+                                      // Reject letters, negative signs, multiple dots, special chars
+                                      if (!RegExp(r'^\d*\.?\d*$').hasMatch(text)) {
+                                        return oldValue;
+                                      }
+                                      final val = double.tryParse(text);
+                                      if (val != null && val > 4.0) {
+                                        return oldValue;
+                                      }
+                                      return newValue;
+                                    }),
+                                  ],
+                                  decoration: InputDecoration(
+                                    hintText: 'Grade (0-4)',
+                                    prefixIcon: const Icon(Icons.grade_outlined, size: 18),
+                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                                    filled: true,
+                                    fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
                                   ),
                                 ),
+                              ),
+                              if (_courses.length > 1)
                                 IconButton(
-                                  icon: const Icon(Icons.close, color: Colors.redAccent),
+                                  icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
                                   onPressed: () {
                                     setState(() { _courses.removeAt(index); });
                                   },
                                 ),
-                              ],
-                            ),
-                          );
-                        }),
-                        TextButton.icon(
-                          onPressed: () {
-                            setState(() { _courses.add(CourseEntry()); });
-                          },
-                          icon: const Icon(Icons.add),
-                          label: const Text('Add Another Course'),
-                        ),
-                      ],
-                    ),
+                            ],
+                          ),
+                        );
+                      }),
+                      TextButton.icon(
+                        onPressed: () {
+                          setState(() { _courses.add(CourseEntry()); });
+                        },
+                        icon: const Icon(Icons.add_circle_outline),
+                        label: const Text('Add Another Registered Course'),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -626,6 +1244,21 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
         TextFormField(
           controller: controller,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+            TextInputFormatter.withFunction((oldValue, newValue) {
+              final text = newValue.text;
+              if (text.isEmpty) return newValue;
+              if (!RegExp(r'^\d*\.?\d*$').hasMatch(text)) {
+                return oldValue;
+              }
+              final val = double.tryParse(text);
+              if (val != null && val > 4.0) {
+                return oldValue;
+              }
+              return newValue;
+            }),
+          ],
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -637,29 +1270,159 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
     );
   }
 
-  Widget _buildDropdown({
+  Widget _buildStepCard({
+    required String stepNumber,
+    required String stepTag,
+    required String title,
+    required String description,
+    required IconData icon,
+    required Widget child,
+    required bool isDark,
+  }) {
+    return GlassContainer(
+      borderRadius: 18,
+      child: Padding(
+        padding: const EdgeInsets.all(22.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.blueAccent.withValues(alpha: 0.15) : Colors.blue.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(icon, size: 20, color: isDark ? Colors.blueAccent : Colors.blue[700]),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "STEP $stepNumber // $stepTag",
+                        style: GoogleFonts.shareTechMono(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.blueAccent : Colors.blue[800],
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                      Text(
+                        title,
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.white : const Color(0xFF0F172A),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              description,
+              style: GoogleFonts.inter(
+                fontSize: 12,
+                color: isDark ? Colors.white60 : const Color(0xFF64748B),
+                height: 1.4,
+              ),
+            ),
+            const SizedBox(height: 18),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSegmentedSelector({
     required String label,
+    required String subtitle,
     required int value,
     required Map<int, String> items,
-    required void Function(int?) onChanged,
+    required void Function(int) onChanged,
+    required bool isDark,
+    Color activeColor = Colors.blueAccent,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
-        DropdownButtonFormField<int>(
-          initialValue: value,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            filled: true,
-            fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(label, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+            Text(
+              subtitle,
+              style: GoogleFonts.inter(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: isDark ? Colors.white60 : const Color(0xFF64748B),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: isDark ? Colors.black.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.04),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
+            ),
           ),
-          items: items.entries.map((entry) {
-            return DropdownMenuItem<int>(value: entry.key, child: Text(entry.value));
-          }).toList(),
-          onChanged: onChanged,
+          child: Row(
+            children: items.entries.map((entry) {
+              final isSelected = entry.key == value;
+              return Expanded(
+                child: GestureDetector(
+                  onTap: () => onChanged(entry.key),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? (isDark ? activeColor.withValues(alpha: 0.25) : activeColor.withValues(alpha: 0.15))
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: isSelected
+                            ? activeColor.withValues(alpha: isDark ? 0.7 : 0.6)
+                            : Colors.transparent,
+                        width: 1.2,
+                      ),
+                      boxShadow: isSelected
+                          ? [
+                              BoxShadow(
+                                color: activeColor.withValues(alpha: 0.2),
+                                blurRadius: 8,
+                                offset: const Offset(0, 2),
+                              ),
+                            ]
+                          : null,
+                    ),
+                    child: Text(
+                      entry.value,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                        color: isSelected
+                            ? (isDark ? Colors.white : activeColor)
+                            : (isDark ? Colors.white60 : Colors.black54),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ],
     );
