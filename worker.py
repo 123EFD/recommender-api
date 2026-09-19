@@ -4,7 +4,7 @@ import warnings
 from dotenv import load_dotenv
 from fastapi import HTTPException
 import psycopg
-import fitz
+import pymupdf as fitz
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import camelot.io as camelot
@@ -46,8 +46,9 @@ def process_pdf(filename):
         #2. Extract text using fitz pdf
         print(f"Processing PDF: {filename}...")
         with fitz.open(file_path) as doc:
+            total_pages = doc.page_count
             #3. READ PDF AND TRACK PAGES
-            #enumerate allows i ndex number of the vector to be kept track with the text chunk
+            #enumerate allows index number of the vector to be kept track with the text chunk
             for page_num, page in enumerate(doc.pages(), start=1):
                 page_text = page.get_text()
                 if not page_text.strip():
@@ -57,8 +58,6 @@ def process_pdf(filename):
                     chunks_with_pages.append(f"[Page {page_num}]\n{chunk}")
             
         #4. Extract tables from Camelot
-        total_pages = doc.page_count
-        
         if total_pages <= 50:
             
             print(f"Extracting tables from PDF: {filename}...")
