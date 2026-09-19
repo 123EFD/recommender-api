@@ -82,6 +82,9 @@ class _BundlerSetupScreenState extends State<BundlerSetupScreen> {
                 return TextField(
                   controller: textEditingController,
                   focusNode: focusNode,
+                  onChanged: (val) {
+                    _topicController.text = val;
+                  },
                   decoration: InputDecoration(
                     hintText: "Type or select a topic (e.g. Normalization)",
                     prefixIcon: Icon(Icons.search),
