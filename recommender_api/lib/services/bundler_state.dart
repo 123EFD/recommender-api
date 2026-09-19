@@ -34,4 +34,16 @@ class BundlerState extends ChangeNotifier {
     isLoading = false;
     notifyListeners(); // Tells the UI to hide the spinner and show the new cards
   }
+
+  void addDirectFlashcards(List<ResourceItem> flashcards) {
+    currentBundle = [...flashcards, ...currentBundle];
+    errorMessage = "";
+    notifyListeners();
+  }
+
+  void setDirectBundle(List<ResourceItem> items) {
+    currentBundle = List.from(items);
+    errorMessage = "";
+    notifyListeners();
+  }
 }
