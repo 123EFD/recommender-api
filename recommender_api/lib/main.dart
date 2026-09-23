@@ -1034,12 +1034,26 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                       ..._courses.asMap().entries.map((entry) {
                         int index = entry.key;
                         CourseEntry course = entry.value;
+
+                        // Calculate courses already chosen in OTHER rows to enforce uniqueness
+                        final selectedInOtherRows = _courses
+                            .asMap()
+                            .entries
+                            .where((e) => e.key != index && e.value.courseCode != null && e.value.courseCode!.isNotEmpty)
+                            .map((e) => e.value.courseCode!)
+                            .toSet();
+
+                        final availableForThisRow = kAvailableCourses.entries
+                            .where((c) => !selectedInOtherRows.contains(c.key))
+                            .toList();
+
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: Row(
                             children: [
                               Expanded(
                                 child: DropdownButtonFormField<String>(
+                                  key: ValueKey('course_dropdown_${index}_${course.courseCode}'),
                                   initialValue: course.courseCode,
                                   isExpanded: true,
                                   hint: Text(
@@ -1065,7 +1079,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                                     filled: true,
                                     fillColor: Theme.of(context).cardColor.withValues(alpha: 0.5),
                                   ),
-                                  items: kAvailableCourses.entries.map((c) {
+                                  items: availableForThisRow.map((c) {
                                     return DropdownMenuItem<String>(
                                       value: c.key,
                                       child: Text(
@@ -1128,21 +1142,45 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                           ),
                         );
                       }),
-                      TextButton.icon(
-                        onPressed: () {
-                          setState(() { _courses.add(CourseEntry()); });
-                        },
-                        icon: const Icon(Icons.add_circle_outline),
-                        label: const Text('Add Another Registered Course'),
-                      ),
+                      Builder(builder: (context) {
+                        final alreadySelected = _courses
+                            .map((c) => c.courseCode)
+                            .where((c) => c != null && c.isNotEmpty)
+                            .toSet();
+                        final hasAvailableCourses = alreadySelected.length < kAvailableCourses.length;
+
+                        if (!hasAvailableCourses) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text(
+                              'All available curriculum courses have been added.',
+                              style: GoogleFonts.sourceSerif4(
+                                fontSize: 12,
+                                fontStyle: FontStyle.italic,
+                                color: DarkAcademiaPalette.slateGray,
+                              ),
+                            ),
+                          );
+                        }
+
+                        return TextButton.icon(
+                          onPressed: () {
+                            final nextCode = kAvailableCourses.keys
+                                .firstWhere((k) => !alreadySelected.contains(k), orElse: () => '');
+                            setState(() {
+                              _courses.add(CourseEntry(courseCode: nextCode.isNotEmpty ? nextCode : null));
+                            });
+                          },
+                          icon: const Icon(Icons.add_circle_outline),
+                          label: const Text('Add Another Registered Course'),
+                        );
+                      }),
                     ],
                   ),
                 ),
                 const SizedBox(height: 24),
                 
-                if (_isLoading)
-                  const Center(child: CircularProgressIndicator()).animate().fadeIn()
-                else if (_predictionResult != null)
+                if (_predictionResult != null) ...[
                   GlassContainer(
                     borderRadius: 16,
                     gradient: LinearGradient(
@@ -1188,45 +1226,104 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                       ),
                     ),
                   ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0, curve: Curves.easeOut),
+                  const SizedBox(height: 24),
+                ],
                 
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  height: 54,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.blue[600]!, Colors.blue[400]!],
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.withValues(alpha: 0.3),
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
+                // Centered, theme-aligned action button that hides and turns into a loading state
+                if (_isLoading)
+                  Center(
+                    child: Container(
+                      constraints: const BoxConstraints(maxWidth: 380),
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: isDark ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4) : DarkAcademiaPalette.tan,
+                          width: 1.5,
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.08),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.2,
+                              color: DarkAcademiaPalette.fadedGold,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Flexible(
+                            child: Text(
+                              "Analyzing Academic Risk & Needs...",
+                              style: GoogleFonts.cinzel(
+                                fontSize: 13.5,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.9,
+                                color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  ).animate().fadeIn(duration: 300.ms)
+                else
+                  Center(
+                    child: Container(
+                      constraints: const BoxConstraints(maxWidth: 340),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: DarkAcademiaPalette.fadedGold,
+                          width: 1.5,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: isDark 
+                                ? DarkAcademiaPalette.spaceCadet.withValues(alpha: 0.5)
+                                : DarkAcademiaPalette.caputMortuum.withValues(alpha: 0.25),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
-                      onPressed: _analyzeNeeds,
-                      child: Text(
-                        'Analyze Needs with AI',
-                        style: GoogleFonts.inter(
-                          fontSize: 16, 
-                          fontWeight: FontWeight.bold, 
-                          color: Colors.white,
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: DarkAcademiaPalette.antiqueIvory,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: _analyzeNeeds,
+                        icon: const Icon(Icons.auto_awesome, size: 18, color: DarkAcademiaPalette.fadedGold),
+                        label: Text(
+                          'Analyze Needs with AI',
+                          style: GoogleFonts.cinzel(
+                            fontSize: 14.5,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.1,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

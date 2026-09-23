@@ -14,9 +14,6 @@ class ResourceItem {
   });
 
   factory ResourceItem.fromJson(Map<String, dynamic> json) {
-    // [BLANK 1]: Return a new ResourceItem by mapping the JSON keys to the properties.
-    // Hint: The JSON keys from FastAPI are exactly: 
-    // 'resource_id', 'topic', 'duration', 'type', and 'content'.
     return ResourceItem(
        // ... your mapping here (e.g. resourceId: json['resource_id'] as String)
       resourceId: json['resource_id'] as String,

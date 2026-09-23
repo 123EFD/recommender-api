@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_flash_cards/animated_flash_cards.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import '../models/resource_item.dart';
 import '../theme/app_theme.dart';
 
@@ -37,11 +38,13 @@ class FlashcardDeckWidget extends StatelessWidget {
             .replaceAll('&gt;', '>');
 
         if (cleanContent.contains('**Answer:**')) {
-          frontText = cleanContent.split('**Answer:**')[0].replaceAll('**Question:**', '').trim();
-          backText = cleanContent.split('**Answer:**')[1].trim();
+          final parts = cleanContent.split('**Answer:**');
+          frontText = parts[0].replaceAll('**Question:**', '').trim();
+          backText = parts.sublist(1).join('**Answer:**').trim();
         } else if (cleanContent.contains('**Back:**')) {
-          frontText = cleanContent.split('**Back:**')[0].replaceAll('**Front:**', '').trim();
-          backText = cleanContent.split('**Back:**')[1].trim();
+          final parts = cleanContent.split('**Back:**');
+          frontText = parts[0].replaceAll('**Front:**', '').trim();
+          backText = parts.sublist(1).join('**Back:**').trim();
         } else {
           frontText = cleanContent;
           backText = "No back provided.";
@@ -51,9 +54,12 @@ class FlashcardDeckWidget extends StatelessWidget {
         backText = "Could not parse answer.";
       }
 
+      final promptTitle = item.topic.isNotEmpty ? "PROMPT • ${item.topic}" : "QUERY PROMPT";
+      final answerTitle = item.topic.isNotEmpty ? "EXPLANATION • ${item.topic}" : "SYNTHESIZED EXPLANATION";
+
       topPages.add(_buildCardFace(
         context: context,
-        title: "QUERY PROMPT",
+        title: promptTitle,
         content: frontText,
         isQuestion: true,
         index: i + 1,
@@ -63,7 +69,7 @@ class FlashcardDeckWidget extends StatelessWidget {
 
       bottomPages.add(_buildCardFace(
         context: context,
-        title: "SYNTHESIZED EXPLANATION",
+        title: answerTitle,
         content: backText,
         isQuestion: false,
         index: i + 1,
@@ -173,18 +179,30 @@ class FlashcardDeckWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
             child: LayoutBuilder(
               builder: (context, constraints) {
-                final cardHeight = (constraints.maxHeight - 12).clamp(240.0, 560.0);
+                // Ensure balanced card viewport:
+                // Cap width on wide desktop monitors (720px) to prevent stretched, flat cards.
+                // Expand height comfortably (up to 720px) to provide ample reading room without constant scrolling.
+                final double maxIdealWidth = 720.0;
+                final double cardWidth = (constraints.maxWidth > maxIdealWidth + 24)
+                    ? maxIdealWidth
+                    : (constraints.maxWidth - 16).clamp(280.0, maxIdealWidth);
+                final double cardHeight = (constraints.maxHeight - 12).clamp(360.0, 720.0);
+
                 return Center(
-                  child: FlashCard(
-                    cardHeight: cardHeight,
-                    margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-                    topPages: topPages,
-                    bottomPages: bottomPages,
-                    headerColor: isDark ? DarkAcademiaPalette.spaceCadet : const Color(0xFF6F4D38),
-                    bottomColor: isDark ? DarkAcademiaPalette.charcoalSlate : const Color(0xFF4B3B2A),
-                    topPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
-                    bottomPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
-                    borderRadiusAll: 16,
+                  child: SizedBox(
+                    width: cardWidth,
+                    height: cardHeight,
+                    child: FlashCard(
+                      cardHeight: cardHeight,
+                      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                      topPages: topPages,
+                      bottomPages: bottomPages,
+                      headerColor: isDark ? DarkAcademiaPalette.spaceCadet : const Color(0xFF6F4D38),
+                      bottomColor: isDark ? DarkAcademiaPalette.charcoalSlate : const Color(0xFF4B3B2A),
+                      topPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
+                      bottomPageColor: isDark ? const Color(0xFF23252A) : const Color(0xFFFAF7F0),
+                      borderRadiusAll: 16,
+                    ),
                   ),
                 );
               },
@@ -195,7 +213,33 @@ class FlashcardDeckWidget extends StatelessWidget {
     );
   }
 
-  // A helper function to draw an archival library catalog card face
+  // Sanitizes markdown, unescapes backticks, and auto-balances code fences
+  String _cleanMarkdownForFlashcard(String raw) {
+    if (raw.isEmpty) return raw;
+    String text = raw;
+
+    // Convert literal escaped newlines and quotes if encoded
+    if (text.contains(r'\n')) {
+      text = text.replaceAll(r'\n', '\n');
+    }
+    if (text.contains(r'\"')) {
+      text = text.replaceAll(r'\"', '"');
+    }
+
+    // Unescape backticks and markdown symbols that may have been backslash-escaped in JSON responses
+    text = text.replaceAll(r'\`', '`');
+    text = text.replaceAll(r'\\`', '`');
+
+    // Balance unclosed triple code fences if response was interrupted
+    final fenceCount = RegExp(r'```').allMatches(text).length;
+    if (fenceCount % 2 != 0) {
+      text = '$text\n```';
+    }
+
+    return text.trim();
+  }
+
+  // A helper function to draw an archival library catalog card face with rich Markdown
   Widget _buildCardFace({
     required BuildContext context,
     required String title,
@@ -209,12 +253,16 @@ class FlashcardDeckWidget extends StatelessWidget {
         ? (isDark ? DarkAcademiaPalette.caputMortuum : DarkAcademiaPalette.vintageMaroon)
         : DarkAcademiaPalette.forestMoss;
 
-    final isLong = content.length > 90;
-    final fontSize = isLong ? 14.0 : 16.5;
+    final cleanedContent = _cleanMarkdownForFlashcard(content);
+    final hasCodeOrComplex = cleanedContent.contains('```') ||
+        cleanedContent.contains('\n- ') ||
+        cleanedContent.contains('\n* ') ||
+        cleanedContent.contains('\n1.') ||
+        !isQuestion;
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
@@ -281,26 +329,77 @@ class FlashcardDeckWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
 
-          // Archival Content - Takes all available space cleanly without footer cutoffs
+          // Archival Content - Takes all available space with rich Markdown and code block support
           Expanded(
-            child: Center(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
-                  child: Text(
-                    content,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'serif',
-                      fontSize: fontSize,
-                      fontWeight: FontWeight.w500,
-                      height: 1.45,
-                      color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
+              child: MarkdownBody(
+                data: cleanedContent,
+                styleSheet: MarkdownStyleSheet(
+                  p: TextStyle(
+                    fontFamily: 'serif',
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500,
+                    height: 1.5,
+                    color: isDark ? const Color(0xFFF2EFE9) : DarkAcademiaPalette.oxfordBrown,
+                  ),
+                  h1: GoogleFonts.cinzel(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                  ),
+                  h2: GoogleFonts.cinzel(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                  ),
+                  h3: GoogleFonts.cinzel(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.vintageMaroon,
+                  ),
+                  strong: TextStyle(
+                    fontFamily: 'serif',
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                  ),
+                  em: const TextStyle(
+                    fontFamily: 'serif',
+                    fontStyle: FontStyle.italic,
+                  ),
+                  code: GoogleFonts.shareTechMono(
+                    fontSize: 13,
+                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.vintageMaroon,
+                    backgroundColor: isDark ? const Color(0xFF1B1D22) : const Color(0xFFEDE8DC),
+                  ),
+                  codeblockPadding: const EdgeInsets.all(12),
+                  codeblockDecoration: BoxDecoration(
+                    color: isDark ? const Color(0xFF141619) : const Color(0xFFEDE8DC),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: isDark
+                          ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.3)
+                          : DarkAcademiaPalette.tan.withValues(alpha: 0.8),
+                      width: 1,
                     ),
                   ),
+                  blockquote: TextStyle(
+                    fontFamily: 'serif',
+                    fontStyle: FontStyle.italic,
+                    color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.slateGray,
+                  ),
+                  blockquoteDecoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        color: DarkAcademiaPalette.fadedGold,
+                        width: 3,
+                      ),
+                    ),
+                  ),
+                  textAlign: hasCodeOrComplex ? WrapAlignment.start : WrapAlignment.center,
                 ),
               ),
             ),

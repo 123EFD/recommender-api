@@ -144,6 +144,8 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
 
   bool _isLoadingLibrary = false;
   bool _isUploadingPdf = false;
+  bool _isResolvingPdf = false;
+  String? _generatingFlashcardSubId;
   bool _isAnalyzing = false;
   String? _errorMessage;
 
@@ -164,7 +166,11 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
     );
 
     _selectedPdf = widget.initialPdfName;
-    _fetchLibrary();
+    _fetchLibrary().then((_) {
+      if (_selectedPdf == null) {
+        _resolveCoursePdf(_selectedCourseCode);
+      }
+    });
   }
 
   @override
@@ -184,6 +190,8 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
           _libraryPdfs = list;
           if (_selectedPdf == null && list.isNotEmpty) {
             _selectedPdf = list.first;
+          } else if (_selectedPdf != null && !list.contains(_selectedPdf)) {
+            _selectedPdf = list.isNotEmpty ? list.first : null;
           }
         });
       }
@@ -191,6 +199,42 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
       debugPrint("Failed to fetch library: $e");
     } finally {
       setState(() => _isLoadingLibrary = false);
+    }
+  }
+
+  Future<void> _resolveCoursePdf(String courseCode) async {
+    setState(() => _isResolvingPdf = true);
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/api/resolve-course-pdf'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'course_code': courseCode}),
+      );
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final String resolvedFile = data['filename'] ?? '';
+        if (resolvedFile.isNotEmpty) {
+          await _fetchLibrary();
+          setState(() {
+            _selectedPdf = resolvedFile;
+          });
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Resolved curriculum textbook: "$resolvedFile" (${data['source']})'),
+                backgroundColor: DarkAcademiaPalette.forestMoss,
+                duration: const Duration(seconds: 3),
+              ),
+            );
+          }
+        }
+      }
+    } catch (e) {
+      debugPrint("Error resolving course PDF: $e");
+    } finally {
+      if (mounted) {
+        setState(() => _isResolvingPdf = false);
+      }
     }
   }
 
@@ -317,41 +361,75 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
     );
   }
 
-  void _makeFlashcards(SubchapterFocusModel sub) {
-    final courseName = _analysisResult?.courseName ?? kAvailableCourses[_selectedCourseCode] ?? _selectedCourseCode;
-    final List<ResourceItem> newCards = [];
+  Future<void> _makeFlashcards(SubchapterFocusModel sub) async {
+    setState(() {
+      _generatingFlashcardSubId = sub.subchapterId;
+    });
 
-    for (int i = 0; i < sub.keypoints.length; i++) {
-      final kp = sub.keypoints[i];
-      final card = ResourceItem(
-        resourceId: 'focus_${sub.subchapterId}_${i + 1}',
-        topic: sub.title,
-        durationMin: 5,
-        type: 'flashcard',
-        content: '**Question:** In $courseName [${sub.title}], explain: $kp\n\n**Answer:** Key conceptual foundation from pages ${sub.pageStart}-${sub.pageEnd}.\n\nExam Note: ${sub.examWarning ?? "Review this concept carefully for midterms and finals."}',
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/api/generate-subchapter-flashcards'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'course_code': _selectedCourseCode,
+          'subchapter_title': sub.title,
+          'page_start': sub.pageStart,
+          'page_end': sub.pageEnd,
+          'filename': _selectedPdf ?? '',
+          'keypoints': sub.keypoints,
+          'exam_warning': sub.examWarning,
+        }),
       );
-      newCards.add(card);
-    }
+      
+      final List<ResourceItem> newCards = [];
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        for (var item in data) {
+          newCards.add(ResourceItem(
+            resourceId: item['resource_id'] ?? 'fc_${sub.subchapterId}_${DateTime.now().millisecondsSinceEpoch}',
+            topic: item['topic'] ?? sub.title,
+            durationMin: item['duration_min'] ?? 5,
+            type: 'flashcard',
+            content: item['content'] ?? '',
+          ));
+        }
+      }
 
-    if (newCards.isNotEmpty) {
-      context.read<BundlerState>().addDirectFlashcards(newCards);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Added ${newCards.length} flashcards for "${sub.title}" to your Study Bundle!'),
-          backgroundColor: DarkAcademiaPalette.caputMortuum,
-          duration: const Duration(seconds: 4),
-          action: SnackBarAction(
-            label: 'Open Deck',
-            textColor: DarkAcademiaPalette.fadedGold,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const StudySessionScreen()),
-              );
-            },
+      if (newCards.isNotEmpty && mounted) {
+        context.read<BundlerState>().addDirectFlashcards(newCards);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Synthesized ${newCards.length} deep exam flashcards for "${sub.title}" from PDF!'),
+            backgroundColor: DarkAcademiaPalette.forestMoss,
+            duration: const Duration(seconds: 4),
+            action: SnackBarAction(
+              label: 'Open Deck',
+              textColor: DarkAcademiaPalette.fadedGold,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StudySessionScreen()),
+                );
+              },
+            ),
           ),
-        ),
-      );
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to generate flashcards: $e'),
+            backgroundColor: DarkAcademiaPalette.caputMortuum,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _generatingFlashcardSubId = null;
+        });
+      }
     }
   }
 
@@ -524,6 +602,7 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
                 onChanged: (val) {
                   if (val != null) {
                     setState(() => _selectedCourseCode = val);
+                    _resolveCoursePdf(val);
                   }
                 },
               ),
@@ -607,14 +686,26 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
                             color: textColor,
                           ),
                         ),
-                        if (_isLoadingLibrary)
-                          const SizedBox(
-                            width: 12,
-                            height: 12,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 1.5,
-                              color: DarkAcademiaPalette.fadedGold,
-                            ),
+                        if (_isLoadingLibrary || _isResolvingPdf)
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                _isResolvingPdf ? "Resolving textbook... " : "",
+                                style: GoogleFonts.cinzel(
+                                  fontSize: 10,
+                                  color: DarkAcademiaPalette.fadedGold,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                                height: 12,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 1.5,
+                                  color: DarkAcademiaPalette.fadedGold,
+                                ),
+                              ),
+                            ],
                           ),
                       ],
                     ),
@@ -1220,22 +1311,36 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
                 ),
               ),
               const SizedBox(width: 10),
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () => _makeFlashcards(sub),
-                  icon: const Icon(Icons.style_outlined, size: 15),
-                  label: Text(
-                    "Make Flashcards",
-                    style: GoogleFonts.shareTechMono(fontSize: 12),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: DarkAcademiaPalette.forestMoss,
-                    foregroundColor: DarkAcademiaPalette.antiqueIvory,
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                  ),
-                ),
+              Builder(
+                builder: (context) {
+                  final isGenerating = _generatingFlashcardSubId == sub.subchapterId;
+                  return Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: isGenerating ? null : () => _makeFlashcards(sub),
+                      icon: isGenerating
+                          ? const SizedBox(
+                              width: 14,
+                              height: 14,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: DarkAcademiaPalette.antiqueIvory,
+                              ),
+                            )
+                          : const Icon(Icons.style_outlined, size: 15),
+                      label: Text(
+                        isGenerating ? "Synthesizing..." : "Make Flashcards",
+                        style: GoogleFonts.shareTechMono(fontSize: 12),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: DarkAcademiaPalette.forestMoss,
+                        foregroundColor: DarkAcademiaPalette.antiqueIvory,
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

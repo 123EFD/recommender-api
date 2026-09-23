@@ -246,6 +246,44 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
     }
   }
 
+  String _sanitizeMarkdown(String raw) {
+    if (raw.isEmpty) return raw;
+    final lines = raw.split('\n');
+    final sanitizedLines = <String>[];
+    bool inTable = false;
+
+    for (int i = 0; i < lines.length; i++) {
+      String line = lines[i];
+      final trimmed = line.trim();
+
+      // Check if line is part of a markdown table
+      final isTableLine = trimmed.startsWith('|') || (trimmed.contains('|') && trimmed.endsWith('|'));
+      if (isTableLine) {
+        inTable = true;
+        // In GFM tables, multiline code fences inside table cells break parsing.
+        // Replace triple backticks within table rows with inline backticks.
+        if (line.contains('```')) {
+          line = line.replaceAll('```', '`');
+        }
+      } else {
+        if (inTable && !trimmed.contains('|')) {
+          inTable = false;
+        }
+      }
+      sanitizedLines.add(line);
+    }
+
+    String result = sanitizedLines.join('\n');
+
+    // Balance unclosed triple code fences if response was streaming/interrupted
+    final fenceCount = RegExp(r'```').allMatches(result).length;
+    if (fenceCount % 2 != 0) {
+      result += '\n```';
+    }
+
+    return result;
+  }
+
   Future<void> _sendMessage() async {
     String question = _chatController.text.trim();
     if (question.isEmpty || _pdfName.isEmpty) return;
@@ -1140,7 +1178,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                               ),
                               const SizedBox(height: 8),
                               MarkdownBody(
-                                data: msg['text']!,
+                                data: _sanitizeMarkdown(msg['text']!),
                                 styleSheet: MarkdownStyleSheet(
                                   p: TextStyle(
                                     fontFamily: 'serif',

@@ -13,7 +13,5 @@ CURATED_VIDEOS = {
     "Image Processing High Res": "https://www.youtube.com/watch?v=QMLbTEQJCaI",
 }
 
-# [BLANK 1]: Add a fallback function that returns a generic CS video if the topic is not found
-# Hint: def get_video_url(topic): return CURATED_VIDEOS.get(topic, "https://www.youtube.com/results?search_query=" + topic.replace(" ", "+"))
 def get_video_url(topic):
     return CURATED_VIDEOS.get(topic, "https://www.youtube.com/results?search_query=" + topic.replace(" ", "+"))
