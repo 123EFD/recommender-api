@@ -4,7 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_latex/flutter_markdown_latex.dart';
+import 'package:markdown/markdown.dart' as md;
 import 'package:http/http.dart' as http;
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -1178,7 +1180,21 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                               ),
                               const SizedBox(height: 8),
                               MarkdownBody(
+                                selectable: true,
                                 data: _sanitizeMarkdown(msg['text']!),
+                                builders: {
+                                  'latex': LatexElementBuilder(
+                                    textStyle: TextStyle(
+                                      fontFamily: 'serif',
+                                      fontSize: 15,
+                                      color: isDark ? const Color(0xFFF2EFE9) : DarkAcademiaPalette.oxfordBrown,
+                                    ),
+                                  ),
+                                },
+                                extensionSet: md.ExtensionSet(
+                                  [LatexBlockSyntax(), ...md.ExtensionSet.gitHubFlavored.blockSyntaxes],
+                                  [LatexInlineSyntax(), ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes],
+                                ),
                                 styleSheet: MarkdownStyleSheet(
                                   p: TextStyle(
                                     fontFamily: 'serif',
@@ -1190,6 +1206,17 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                                     fontSize: 13,
                                     backgroundColor: isDark ? const Color(0xFF1E2024) : const Color(0xFFEDE8DC),
                                     color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.caputMortuum,
+                                  ),
+                                  codeblockPadding: const EdgeInsets.all(12),
+                                  codeblockDecoration: BoxDecoration(
+                                    color: isDark ? const Color(0xFF141619) : const Color(0xFFEDE8DC),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: isDark
+                                          ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.3)
+                                          : DarkAcademiaPalette.tan.withValues(alpha: 0.8),
+                                      width: 1,
+                                    ),
                                   ),
                                 ),
                               ),

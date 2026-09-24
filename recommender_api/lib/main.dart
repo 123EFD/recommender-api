@@ -92,12 +92,20 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: AppBar(
-              title: const Text('AI Study Suite'),
+              title: Text(
+                'AI Study Suite',
+                style: GoogleFonts.cinzel(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                ),
+              ),
               elevation: 0,
               backgroundColor: isDark 
-                  ? Colors.black.withValues(alpha: 0.5) 
-                  : const Color(0xFFFFFDE7).withValues(alpha: 0.5),
-              foregroundColor: isDark ? Colors.blueAccent : Colors.blue[900],
+                  ? DarkAcademiaPalette.charcoalSlate.withValues(alpha: 0.65) 
+                  : DarkAcademiaPalette.antiqueIvory.withValues(alpha: 0.75),
+              foregroundColor: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
               actions: [
                 IconButton(
                   icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
@@ -112,57 +120,146 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+        backgroundColor: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.antiqueIvory,
+        child: Column(
           children: [
-            DrawerHeader(
+            // Scholarly Archival Header
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(20, 52, 20, 22),
               decoration: BoxDecoration(
-                color: isDark ? Colors.black87 : const Color(0xFFFFFDE7),
+                color: isDark ? DarkAcademiaPalette.spaceCadet : DarkAcademiaPalette.caputMortuum,
+                border: Border(
+                  bottom: BorderSide(
+                    color: DarkAcademiaPalette.fadedGold.withValues(alpha: 0.4),
+                    width: 1.5,
+                  ),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.25),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: isDark ? Colors.blueAccent : Colors.blue[900], 
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(9),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isDark ? DarkAcademiaPalette.charcoalSlate : DarkAcademiaPalette.vintageMaroon,
+                      border: Border.all(
+                        color: DarkAcademiaPalette.fadedGold,
+                        width: 1.5,
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.account_balance,
+                      color: DarkAcademiaPalette.fadedGold,
+                      size: 22,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ARCHIVAL VAULT',
+                          style: GoogleFonts.cinzel(
+                            fontSize: 15.5,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.4,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          'Pedagogical Recommender',
+                          style: GoogleFonts.sourceSerif4(
+                            fontSize: 11.5,
+                            fontStyle: FontStyle.italic,
+                            color: DarkAcademiaPalette.tan,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Navigation Items
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                children: [
+                  _buildVaultNavItem(
+                    context: context,
+                    icon: Icons.cottage_outlined,
+                    label: 'Campus Home',
+                    index: 0,
+                    isDark: isDark,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildVaultNavItem(
+                    context: context,
+                    icon: Icons.hub_outlined,
+                    label: 'Academic Recommender',
+                    index: 1,
+                    isDark: isDark,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildVaultNavItem(
+                    context: context,
+                    icon: Icons.auto_stories_outlined,
+                    label: 'Study Bundles',
+                    index: 2,
+                    isDark: isDark,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildVaultNavItem(
+                    context: context,
+                    icon: Icons.history_edu_outlined,
+                    label: 'PDF AI Scholar',
+                    index: 3,
+                    isDark: isDark,
+                  ),
+                ],
+              ),
+            ),
+
+            // Archival Footer
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: isDark
+                        ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.2)
+                        : DarkAcademiaPalette.tan.withValues(alpha: 0.6),
+                    width: 1,
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home_outlined, color: isDark ? Colors.blueAccent : Colors.blue[800]),
-              title: const Text('Home'),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                setState(() => _selectedIndex = 0);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.psychology_outlined, color: isDark ? Colors.blueAccent : Colors.blue[800]),
-              title: const Text('Recommender'),
-              selected: _selectedIndex == 1,
-              onTap: () {
-                setState(() => _selectedIndex = 1);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory_2_outlined, color: isDark ? Colors.blueAccent : Colors.blue[800]),
-              title: const Text('Bundle'),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                setState(() => _selectedIndex = 2);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.chat_bubble_outline, color: isDark ? Colors.blueAccent : Colors.blue[800]),
-              title: const Text('PDF Chat'),
-              selected: _selectedIndex == 3,
-              onTap: () {
-                setState(() => _selectedIndex = 3);
-                Navigator.pop(context);
-              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.school_outlined, size: 14, color: DarkAcademiaPalette.fadedGold),
+                  const SizedBox(width: 8),
+                  Text(
+                    'VERITAS • ERUDITIO • SAPIENTIA',
+                    style: GoogleFonts.cinzel(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                      color: isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -175,6 +272,62 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             children: screens,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildVaultNavItem({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required int index,
+    required bool isDark,
+  }) {
+    final isSelected = _selectedIndex == index;
+    final activeBg = isDark
+        ? DarkAcademiaPalette.spaceCadet
+        : DarkAcademiaPalette.caputMortuum.withValues(alpha: 0.12);
+    final activeBorder = isDark
+        ? DarkAcademiaPalette.fadedGold.withValues(alpha: 0.5)
+        : DarkAcademiaPalette.fadedGold;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isSelected ? activeBg : Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isSelected ? activeBorder : Colors.transparent,
+          width: 1.2,
+        ),
+      ),
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        leading: Icon(
+          icon,
+          color: isSelected
+              ? DarkAcademiaPalette.fadedGold
+              : (isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown),
+          size: 20,
+        ),
+        title: Text(
+          label,
+          style: GoogleFonts.cinzel(
+            fontSize: 13.5,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+            letterSpacing: 0.8,
+            color: isSelected
+                ? (isDark ? Colors.white : DarkAcademiaPalette.caputMortuum)
+                : (isDark ? DarkAcademiaPalette.tan : DarkAcademiaPalette.oxfordBrown),
+          ),
+        ),
+        trailing: isSelected
+            ? const Icon(Icons.arrow_forward_ios, size: 12, color: DarkAcademiaPalette.fadedGold)
+            : null,
+        dense: true,
+        onTap: () {
+          setState(() => _selectedIndex = index);
+          Navigator.pop(context);
+        },
       ),
     );
   }

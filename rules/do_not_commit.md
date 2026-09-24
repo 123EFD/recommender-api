@@ -1,33 +1,138 @@
 ---
-name: do_not_commit
-description: Do Not Commit learning rule. Algorithms should be left blank in the code and explained here for learning purposes.
+name: pedagogical_learning_and_concepts
+description: Rules for leaving core logic blank for learning and documenting interview & real-world applications of applied concepts.
 ---
 
-# Do Not Commit & Learning Algorithms Guide
+# Pedagogical Learning & Applied Concepts Rule
 
-**Rule:** When the user is learning a new theoretical algorithm or advanced backend logic, the AI Agent MUST NOT write the core logic directly into the source code (e.g., `main.py`). The logic block must be left blank with `pass` and a `TODO` comment so the user can implement it themselves.
+## Core Rules for the Agent
 
-**Prerequisite Knowledge & Research:**
-All theoretical explanations for advanced features must be documented here in this file for the user to study.
+1. **Leave Core Logic as Blank for Active Learning**:
+   When implementing advanced algorithmic, mathematical, or data-transformation logic:
+   - The agent MUST NOT write the core logic directly in the code.
+   - The agent must designate it clearly with `[BLANK N]` and provide clear context:
+     - Input arguments and data types.
+     - Expected output structures.
+     - Helpful mathematical or algorithmic hints.
+     - A stub returning a fallback or `pass`.
+   
+2. **Deep-Dive Concept Explanations (Interview & Real-World Utility)**:
+   For every blank logic block and advanced concept implemented, the agent MUST explicitly explain:
+   - **Applied Concepts & Mathematical Foundations**: Formula derivation, algorithmic complexity (Big-O time and space), and trade-offs.
+   - **Real-World Industry Applications**: Exactly where and how this algorithmic pattern is used in modern production engineering (e.g., Google Search, Netflix/Spotify recommendation, Uber dispatch, distributed caching, LLM RAG pipelines).
+   - **Technical Interview Edge**: How this concept appears in FAANG/tier-1 technical interviews, talking points to impress interviewers, edge cases to mention, and system design trade-offs.
 
 ---
 
-## 1. "Root-Cause" Prerequisite Back-Tracing Engine
-**Concept:** A student struggling in a specific advanced subject often lacks fundamental prerequisite knowledge.
-**Algorithm (DAG Traversal):**
-- We model the curriculum as a Directed Acyclic Graph (DAG) where nodes are subjects, and edges represent prerequisites.
-- Example: `WIA1006 (Machine Learning)` ➔ requires `WIA2003 (Probability & Statistics)` and `WIF3009 (Python)`.
-- When tracing back, we use **Depth-First Search (DFS)** to traverse upstream recursively.
-- For each visited node, we query the `learning_resources` database to fetch targeted micro-resources.
-- **Topological Sorting** ensures we present the foundational prerequisites *before* the intermediate ones in the UI.
+## Documented Concepts & Learning Algorithms
 
-## 2. Peer-Validated "High-Yield" Heatmap
-**Concept:** Not all study resources are equal. We want to find resources that specifically help *at-risk* or *struggling* students improve, ignoring votes from students who already had straight A's.
-**Algorithm (Wilson Score Interval):**
-- Simply calculating average rating (e.g., 5/5 stars) is flawed because 1 positive review (100%) ranks higher than 98 positive reviews out of 100 (98%).
-- **Wilson Score Confidence Interval** balances the proportion of positive ratings against the total number of ratings to establish a statistically reliable lower-bound estimate.
-- **Formula:** 
-  `P_hat = (positive_successes) / (total_attempts)`
-  The formula calculates the lower bound of a normal approximation interval.
-- **Filtering (Targeted Cohort):** The algorithm filters the dataset to ONLY include ratings submitted by students whose initial grade was poor (e.g., < 40%) but showed an improvement delta after viewing the resource.
-- **Heat Computation:** The resulting Wilson Score is mapped to a color temperature gradient (e.g., 0.90+ = Deep Red/Orange 🔥, 0.75+ = Yellow ⭐) for rendering in the Heatmap UI.
+### 1. "Root-Cause" Prerequisite Back-Tracing Engine
+- **Concept**: A student struggling in an advanced topic usually suffers from gaps in foundational prerequisites.
+- **Algorithm (DAG Traversal & Topological Sort)**:
+  - Models the curriculum as a Directed Acyclic Graph (DAG) with courses/topics as nodes and dependency relations as directed edges.
+  - Recursively traverses upstream dependencies using **Depth-First Search (DFS)** with cycle detection.
+  - Applies **Kahn's Algorithm** or post-order DFS reverse sorting to topologically order prerequisites so fundamentals are studied first.
+- **Real-World Applications**:
+  - **Build Systems (Bazel, Gradle, Webpack)**: Dependency resolution graphs to determine optimal compilation orders.
+  - **Task Schedulers (Apache Airflow, Celery)**: Orchestrating asynchronous DAG workflows without circular deadlocks.
+  - **Package Managers (npm, pip, pub)**: Resolving transitive dependency trees.
+- **Interview Talking Points**:
+  - Explain cycle detection using graph coloring (White/Gray/Black node states) or in-degree tracking.
+  - Contrast BFS vs DFS traversal: DFS discovers deep dependency chains; BFS uncovers immediate co-requisites.
+
+---
+
+### 2. Peer-Validated "High-Yield" Heatmap (Wilson Score Confidence Interval)
+- **Concept**: Average user ratings (e.g. 5/5 stars) fail when comparing an item with 1 positive review (100%) against an item with 98 positive reviews out of 100 (98%).
+- **Algorithm (Wilson Score Interval)**:
+  - Calculates the statistically robust lower bound of a Bernoulli parameter confidence interval:
+    $$\hat{p} = \frac{n_{\text{pos}}}{n}, \quad \text{Lower Bound} = \frac{\hat{p} + \frac{z^2}{2n} - z \sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}$$
+  - Filters ratings specifically to the targeted cohort: students who initially failed or scored $< 40\%$ and improved after studying the resource.
+- **Real-World Applications**:
+  - **Reddit & Hacker News Ranking**: Sorting comments and posts by "Best" using Wilson score intervals to prevent fresh single-upvoted comments from beating established top-quality comments.
+  - **Amazon / Yelp Review Sorting**: Ranking verified purchaser reviews by helpfulness.
+  - **E-Commerce Fraud Detection**: Identifying anomalous conversion spikes from low-sample sellers.
+- **Interview Talking Points**:
+  - Explain why naive Bayesian average or arithmetic mean fails on cold-start items with few reviews.
+  - Discuss the $z$-score tradeoff (typically $z = 1.96$ for 95% confidence).
+
+---
+
+### 3. Dynamic Micro-Resource Bundling (Multi-Choice 0/1 Knapsack)
+- **Concept**: Students have strict time budgets (e.g., 30 mins, 60 mins). A study bundle must pack the highest academic utility without exceeding the time limit, while ensuring multi-modal diversity (reading, video, flashcards, past-year problems).
+- **Algorithm**:
+  - Dynamic programming 0/1 Knapsack formulation where $W$ is the student's study duration budget, weights $w_i$ are resource durations in minutes, and values $v_i$ are utility scores derived from historical cohort success deltas.
+- **Real-World Applications**:
+  - **Cloud Resource Allocation (AWS EC2 Spot Instances / Kubernetes Pod Scheduling)**: Packing workloads with CPU/RAM requirements onto hardware servers.
+  - **AdTech Bidding (Google Ads / Meta)**: Selecting the optimal set of auction ads to show in a fixed screen slot to maximize expected revenue.
+- **Interview Talking Points**:
+  - Compare DP table space complexity $O(n \cdot W)$ vs 1D array space optimization $O(W)$.
+  - Discuss Fractional Knapsack (Greedy algorithm with value-to-weight ratio) vs 0/1 Knapsack (requires DP or Branch-and-Bound).
+
+---
+
+### 4. Rich Concept Explanations & Deep-Dive Research Links on Flashcards
+- **Concept**: Transforming static flashcards into dynamic, multi-tier knowledge anchors with real-world paper citations (ArXiv, PubMed, OpenStax, Semantic Scholar).
+- **Algorithm**:
+  - Hybrid RAG (Retrieval-Augmented Generation) combining dense vector embeddings with cross-encoder re-ranking.
+  - Generating LaTeX mathematical formulas and structured markdown citations dynamically.
+- **Real-World Applications**:
+  - **Perplexity AI / Consensus**: Academic search engines synthesizing direct answers backed by peer-reviewed research papers.
+  - **Medical Diagnostic Assistants (Epic Systems / Med-PaLM)**: Providing clinical recommendations with verbatim citations to clinical trial publications.
+- **Interview Talking Points**:
+  - Explain RAG retrieval vs parametric memory hallucination.
+  - Discuss Reciprocal Rank Fusion (RRF) for merging dense vector searches with sparse BM25 keyword searches.
+
+---
+
+### 5. Live YouTube Search API Integration with Quota Caching
+- **Concept**: Real-time retrieval of targeted educational video lectures with metadata caching and fallback heuristics.
+- **Algorithm**:
+  - Exponential backoff retry strategy with LRU memory caching to conserve YouTube Data API v3 quota (10,000 units/day limit).
+  - Title relevance scoring via Levenshtein distance and token set similarity.
+- **Real-World Applications**:
+  - **Video Streaming Aggregators**: Integrating external media platforms without hitting third-party rate limits.
+  - **Content Distribution Networks (CDNs)**: Cache invalidation and cache-aside patterns.
+- **Interview Talking Points**:
+  - Discuss Cache-Aside vs Write-Through vs Write-Back caching strategies.
+  - How to handle API rate limiting using token bucket and leaky bucket algorithms.
+
+---
+
+## Pinned Master Roadmap & Priority Registry
+
+| # | Improvement | Origin Date | Complexity | Priority | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | Micro-Diagnostic 2-Min Adaptive Quiz (CAT) | 2026-07-31 | High | 🔥 High | Pending |
+| 2 | Bayesian / Deep Knowledge Tracing (BKT/DKT) | 2026-07-31 | High | Medium | Pending |
+| 3 | Multimodal PYQ Photo Scanner & Timestamp Mapper | 2026-07-31 | High | Medium | Pending |
+| 4 | Native Interactive Mermaid Flowchart Render | 2026-08-08 | Medium | 🔥 High | Pending |
+| 5 | Lens Transformation Cache Layer | 2026-07-31 | Low | Low | Pending |
+| 6 | Flashcard Deep-Dive Explanations & Links | 2026-08-17 | Low – Medium | Medium | **ACTIVE** |
+| 7 | Real student_quiz_logs Table & In-App Voting | 2026-08-21 | Medium | 🔥 High | Pending |
+| 8 | Live YouTube API Search for Video Resources | 2026-08-25 | Medium | Medium | **ACTIVE** |
+| 9 | PDF.js Web Worker & Semantic Chunk Retrieval Fix | 2026-09-14 | Low – Medium | Medium | Pending |
+
+---
+
+## Pinned Architectural Blueprint: Flashcard Topic Relevance, External Question Datasets & Heatmap Integration
+
+### 1. Root Cause of Topic Contamination
+- **Legacy Database Noise**: Historic records in `resources.db` contained mismatched topic labels (e.g., OOP record `#10212` labeled as "Computer Networks").
+- **Unconstrained Fallback**: When candidates fell short for a time budget, `app/bundler.py` previously executed an unrestricted `ORDER BY RANDOM()` on `General CS`, leaking dynamic programming and recursion into unrelated networking decks.
+
+### 2. The 4-Pillar Architectural Solution
+1. **Dual-Tier Generation Model**:
+   - Primary: Curated, high-yield university past-exam question banks (PYQs).
+   - Dynamic: On-demand PDF RAG generation using authoritative uploaded textbooks (`Topic01-Foundation.pdf`, `Algorithms-JeffE.pdf`, `DiscMathII.pdf`).
+2. **Prerequisite-Aware Fallback (DAG Traversal)**:
+   - If candidate resources for a specific topic run short, the bundler NEVER falls back to random `General CS`.
+   - Instead, it traverses `COURSE_PREREQUISITES` to only source foundational prerequisite cards (e.g. `WIA1005 (Computer Networks)` falls back to its immediate ancestor `WIA1003 (Computer Systems Architecture)`).
+3. **Semantic Relevance Embedding Guard**:
+   - Computes cosine similarity between candidate flashcard embeddings and canonical syllabus topics:
+     $$\text{CosineSim}(\vec{E}_{\text{card}}, \vec{E}_{\text{course}}) = \frac{\vec{E}_{\text{card}} \cdot \vec{E}_{\text{course}}}{\|\vec{E}_{\text{card}}\| \|\vec{E}_{\text{course}}\|}$$
+   - Any candidate scoring $< 0.65$ is automatically purged from the study bundle.
+4. **Adaptive Wilson Score Heatmap Integration**:
+   - Integrates `student_quiz_logs` to adaptively boost high-heat flashcards (proven to help struggling students master threshold concepts).
+   - Extensible to any newly registered course in `kAvailableCourses`.
+

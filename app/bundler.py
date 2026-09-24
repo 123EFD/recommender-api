@@ -6,6 +6,8 @@ from typing import List, Dict
 import os
 from dotenv import load_dotenv
 import psycopg
+import time
+from app.video_link import search_youtube_live
 
 load_dotenv()
 
@@ -107,31 +109,68 @@ def create_bundle(req: BundleRequest):
 
     # Partition candidates into categories to ensure curriculum diversity
     videos = [c for c in candidates if c[3] in ('video', 'video_chunk', 'youtube')]
+
+    # Live YouTube Search Integration: If no video candidates exist for the requested topic, dynamically fetch one
+    if topic and not videos:
+        try:
+            live_vid = search_youtube_live(topic)
+            if live_vid and "url" in live_vid:
+                live_item = (f"live_yt_{int(time.time())}", topic, 15, "video", live_vid["url"])
+                videos.append(live_item)
+                candidates.append(live_item)
+        except Exception as yt_err:
+            print(f"Error fetching live YouTube video for study bundle: {yt_err}")
+
     readings = [c for c in candidates if c[3] in ('pdf', 'book', 'article', 'reading', 'doc')]
     pyqs = [c for c in candidates if c[3] in ('pyq_solution', 'problem', 'quiz')]
     flashcards = [c for c in candidates if c[3] in ('flashcard', 'flashcards')]
     others = [c for c in candidates if c not in videos and c not in readings and c not in pyqs and c not in flashcards]
 
+    def _normalize_content_key(text: str) -> str:
+        clean = (text or "").lower().replace('<br>', ' ').replace('\n', ' ')
+        if '**answer:**' in clean:
+            clean = clean.split('**answer:**')[0]
+        elif '**back:**' in clean:
+            clean = clean.split('**back:**')[0]
+        return "".join(c for c in clean if c.isalnum())
+
     bundle = []
     total = 0
+    seen_ids = set()
+    seen_keys = set()
+
+    def _can_add(rid: str, content: str) -> bool:
+        if rid in seen_ids:
+            return False
+        key = _normalize_content_key(content)
+        if key and key in seen_keys:
+            return False
+        return True
+
+    def _add_item(rid: str, topic_name: str, dur: int, rtype: str, content: str):
+        nonlocal total
+        bundle.append(ResourceItem(resource_id=rid, topic=topic_name, duration_min=dur, type=rtype, content=content))
+        total += dur
+        seen_ids.add(rid)
+        key = _normalize_content_key(content)
+        if key:
+            seen_keys.add(key)
 
     # 1. Multi-modal diversity phase: try to include at least 1 item from each available category
     pools = [videos, readings, pyqs, flashcards, others]
     for pool in pools:
         for c in pool:
             rid, topic_name, dur, rtype, content = c
-            if total + dur <= req.minutes_available and not any(r.resource_id == rid for r in bundle):
-                bundle.append(ResourceItem(resource_id=rid, topic=topic_name, duration_min=dur, type=rtype, content=content))
-                total += dur
+            if total + dur <= req.minutes_available and _can_add(rid, content):
+                _add_item(rid, topic_name, dur, rtype, content)
                 break
 
     # 2. Greedy fill phase: fill remaining minutes with available candidates
-    remaining_candidates = [c for c in candidates if not any(r.resource_id == c[0] for r in bundle)]
+    remaining_candidates = [c for c in candidates if _can_add(c[0], c[4])]
     remaining_candidates.sort(key=lambda x: x[2], reverse=True)
     for rid, topic_name, dur, rtype, content in remaining_candidates:
-        if total + dur <= req.minutes_available:
-            bundle.append(ResourceItem(resource_id=rid, topic=topic_name, duration_min=dur, type=rtype, content=content))
-            total += dur
+        if total + dur <= req.minutes_available and _can_add(rid, content):
+            _add_item(rid, topic_name, dur, rtype, content)
         if total >= req.minutes_available:
             break
         
@@ -143,11 +182,10 @@ def create_bundle(req: BundleRequest):
         fallback_candidates = sqlite_cur.fetchall()
         
         for rid, topic_name, dur, rtype, content in fallback_candidates:
-            if any(r.resource_id == rid for r in bundle):
+            if not _can_add(rid, content):
                 continue
             if total + dur <= req.minutes_available:
-                bundle.append(ResourceItem(resource_id=rid, topic=topic_name, duration_min=dur, type=rtype, content=content))
-                total += dur
+                _add_item(rid, topic_name, dur, rtype, content)
             if total >= req.minutes_available:
                 break
             

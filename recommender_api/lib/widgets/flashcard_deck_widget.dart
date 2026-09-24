@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_flash_cards/animated_flash_cards.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_latex/flutter_markdown_latex.dart';
+import 'package:markdown/markdown.dart' as md;
+import 'package:url_launcher/url_launcher.dart';
 import '../models/resource_item.dart';
 import '../theme/app_theme.dart';
 
@@ -21,12 +24,35 @@ class FlashcardDeckWidget extends StatelessWidget {
       );
     }
 
+    // Deduplicate items by question/prompt content signature to prevent identical cards
+    final seenCardKeys = <String>{};
+    final uniqueItems = <ResourceItem>[];
+
+    for (final item in items) {
+      String clean = item.content.toLowerCase().replaceAll('<br>', ' ').replaceAll('\n', ' ');
+      if (clean.contains('**answer:**')) {
+        clean = clean.split('**answer:**')[0];
+      } else if (clean.contains('**back:**')) {
+        clean = clean.split('**back:**')[0];
+      }
+      final key = clean.replaceAll(RegExp(r'[^a-z0-9]'), '');
+      if (key.isNotEmpty) {
+        if (!seenCardKeys.contains(key)) {
+          seenCardKeys.add(key);
+          uniqueItems.add(item);
+        }
+      } else if (!seenCardKeys.contains(item.content.trim())) {
+        seenCardKeys.add(item.content.trim());
+        uniqueItems.add(item);
+      }
+    }
+
     final isDark = Theme.of(context).brightness == Brightness.dark;
     List<Widget> topPages = [];
     List<Widget> bottomPages = [];
 
-    for (int i = 0; i < items.length; i++) {
-      var item = items[i];
+    for (int i = 0; i < uniqueItems.length; i++) {
+      var item = uniqueItems[i];
       String frontText = "";
       String backText = "";
 
@@ -63,7 +89,7 @@ class FlashcardDeckWidget extends StatelessWidget {
         content: frontText,
         isQuestion: true,
         index: i + 1,
-        total: items.length,
+        total: uniqueItems.length,
         isDark: isDark,
       ));
 
@@ -73,7 +99,7 @@ class FlashcardDeckWidget extends StatelessWidget {
         content: backText,
         isQuestion: false,
         index: i + 1,
-        total: items.length,
+        total: uniqueItems.length,
         isDark: isDark,
       ));
     }
@@ -338,6 +364,19 @@ class FlashcardDeckWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
               child: MarkdownBody(
                 data: cleanedContent,
+                builders: {
+                  'latex': LatexElementBuilder(
+                    textStyle: TextStyle(
+                      fontFamily: 'serif',
+                      fontSize: 15.0,
+                      color: isDark ? const Color(0xFFF2EFE9) : DarkAcademiaPalette.oxfordBrown,
+                    ),
+                  ),
+                },
+                extensionSet: md.ExtensionSet(
+                  [LatexBlockSyntax(), ...md.ExtensionSet.gitHubFlavored.blockSyntaxes],
+                  [LatexInlineSyntax(), ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes],
+                ),
                 styleSheet: MarkdownStyleSheet(
                   p: TextStyle(
                     fontFamily: 'serif',
@@ -399,8 +438,24 @@ class FlashcardDeckWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  a: TextStyle(
+                    fontFamily: 'serif',
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                    decoration: TextDecoration.underline,
+                    decorationColor: isDark ? DarkAcademiaPalette.fadedGold : DarkAcademiaPalette.caputMortuum,
+                  ),
                   textAlign: hasCodeOrComplex ? WrapAlignment.start : WrapAlignment.center,
                 ),
+                onTapLink: (text, href, title) async {
+                  if (href != null && href.isNotEmpty) {
+                    final uri = Uri.tryParse(href);
+                    if (uri != null && await canLaunchUrl(uri)) {
+                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                    }
+                  }
+                },
               ),
             ),
           ),
