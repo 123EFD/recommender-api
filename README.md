@@ -1,4 +1,4 @@
-# 🏛️ University AI Academic Suite & Pedagogical Recommender
+# 🏛️ suluh-ai: University AI Academic Suite & Pedagogical Recommender
 
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Flutter](https://img.shields.io/badge/Frontend-Flutter%20Web-02569B.svg?style=flat&logo=flutter)](https://flutter.dev/)
