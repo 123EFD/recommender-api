@@ -2,7 +2,7 @@ import os
 import re
 import time
 import requests
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -41,7 +41,7 @@ VERIFIED_COLLEGIATE_CHANNELS = {
 
 # In-Memory Cache-Aside Storage for YouTube API responses
 # Structure: { normalized_query: { "url": str, "title": str, "channel": str, "timestamp": float } }
-_YOUTUBE_CACHE: Dict[str, Dict] = {}
+_YOUTUBE_CACHE: Dict[str, Dict[str, Any]] = {}
 CACHE_TTL_SECONDS = 86400  # 24-hour Time-To-Live to conserve quota
 
 
@@ -60,10 +60,8 @@ CACHE_TTL_SECONDS = 86400  # 24-hour Time-To-Live to conserve quota
 # Output:
 #   Optional[Dict[str, str]] - Winning candidate video object with direct URL
 # ==============================================================================
-def rank_and_cache_video_selection(topic: str, candidates: List[Dict[str, str]]) -> Optional[Dict[str, str]]:
-    """
-    [BLANK 2]: Student learning block for ranking video candidates and cache persistence.
-    """
+def rank_and_cache_video_selection(topic: str, candidates: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+
     # --------------------------------------------------------------------------
     # [BLANK 2 - TODO FOR LEARNER]:
     # 1. Normalize the topic string into lowercase words (stopwords excluded).
@@ -75,10 +73,8 @@ def rank_and_cache_video_selection(topic: str, candidates: List[Dict[str, str]])
     # 4. Save the winner to _YOUTUBE_CACHE[topic.lower()] with {"url": ..., "timestamp": time.time()}.
     # 5. Return the winner dict.
     # --------------------------------------------------------------------------
-    pass
-
-    # Pedagogical Fallback Implementation:
-    # Heuristically selects the most promising educational candidate and caches it.
+    if not candidates:
+        return None
     if not candidates:
         return None
 
@@ -100,7 +96,7 @@ def rank_and_cache_video_selection(topic: str, candidates: List[Dict[str, str]])
         score = jaccard
         if any(vc in channel for vc in VERIFIED_COLLEGIATE_CHANNELS):
             score += 0.35
-        if any(w in title for w in ("lecture", "full course", "tutorial", "explained")):
+        if any(w in title for w in ("lecture", "full course", "tutorial", "explained", "algorithm", "cs", "computer science")):
             score += 0.15
 
         if score > best_score:
@@ -119,8 +115,7 @@ def rank_and_cache_video_selection(topic: str, candidates: List[Dict[str, str]])
     _YOUTUBE_CACHE[norm_topic] = result
     return result
 
-
-def search_youtube_live(topic: str) -> Optional[Dict[str, str]]:
+def search_youtube_live(topic: str) -> Optional[Dict[str, Any]]:
     """
     Retrieves live educational YouTube videos using the official YouTube Data API v3
     with quota-conserving Cache-Aside lookup and scraper fallback.

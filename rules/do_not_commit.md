@@ -5,19 +5,25 @@ description: Rules for leaving core logic blank for learning and documenting int
 
 # Pedagogical Learning & Applied Concepts Rule
 
-## Core Rules for the Agent
+## 🛑 Strict Zero-Solution Policy for Codebase Blanks
 
-1. **Leave Core Logic as Blank for Active Learning**:
-   When implementing advanced algorithmic, mathematical, or data-transformation logic:
-   - The agent MUST NOT write the core logic directly in the code.
-   - The agent must designate it clearly with `[BLANK N]` and provide clear context:
-     - Input arguments and data types.
-     - Expected output structures.
-     - Helpful mathematical or algorithmic hints.
-     - A stub returning a fallback or `pass`.
-   
-2. **Deep-Dive Concept Explanations (Interview & Real-World Utility)**:
-   For every blank logic block and advanced concept implemented, the agent MUST explicitly explain:
+When implementing core algorithmic procedures, mathematical transformations, or diagnostic filters designated for learning:
+
+1. **NEVER Write the Working Solution in the Codebase**:
+   - The agent MUST NOT write out the completed algorithm or logic below the TODO/BLANK comment block.
+   - The agent MUST NOT write "fallback implementations" or "reference solutions" in the file that defeat the purpose of the blank.
+   - The function body for any `[BLANK N]` MUST strictly contain **ONLY**:
+     1. **Specification Docstring**: Precise description of the task, input argument types, and expected output dictionary/list structure.
+     2. **Step-by-Step TODO Checklist**: Algorithmic steps, formula hints, and constants to use.
+     3. **Non-Crashing Stub**: A clean, minimal stub (`pass` with `return None` or `return []`) so the module compiles without syntax errors.
+
+2. **Where Solutions Belong**:
+   - The learner writes their own implementation directly in the file.
+   - When the learner asks for review or guidance, the agent provides architectural guidance, code reviews, bug diagnoses, and algorithmic explanations **in the chat dialogue**.
+   - The agent must NEVER overwrite or inject full code into a `[BLANK N]` file unless the user explicitly commands: *"Apply this solution to the file"* or *"Fill in the blank for me"*.
+
+3. **Mandatory Deep-Dive Documentation for Every Concept**:
+   For every blank logic block and advanced concept, the agent MUST explicitly document:
    - **Applied Concepts & Mathematical Foundations**: Formula derivation, algorithmic complexity (Big-O time and space), and trade-offs.
    - **Real-World Industry Applications**: Exactly where and how this algorithmic pattern is used in modern production engineering (e.g., Google Search, Netflix/Spotify recommendation, Uber dispatch, distributed caching, LLM RAG pipelines).
    - **Technical Interview Edge**: How this concept appears in FAANG/tier-1 technical interviews, talking points to impress interviewers, edge cases to mention, and system design trade-offs.

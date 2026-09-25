@@ -5,17 +5,28 @@ description: Rules for leaving core logic blank for learning and documenting int
 
 # Pedagogical Learning & Applied Concepts Rule
 
-## Mandatory Agent Workflow
+## 🛑 Strict Zero-Solution Policy for Codebase Blanks
 
-1. **Leave Core Logic Blank for Active Learning**:
-   - When implementing core algorithmic procedures or advanced business logic, the agent MUST NOT provide the complete solution in the codebase.
-   - Use `[BLANK N]` with descriptive type annotations, input parameters, expected return structures, and a `pass` or safe fallback return.
-   
-2. **Document Applied Concepts with Interview & Production Context**:
-   - For every blank logic block and advanced concept, the agent MUST provide:
-     1. **Mathematical & Algorithmic Foundation**: Deep theoretical mechanics, formulas, time/space complexity ($O(N)$), and trade-offs.
-     2. **Production / Real-World Applications**: Where this exact algorithm or design pattern is used in industry (e.g., Google, Netflix, Uber, AWS, LLM RAG pipelines).
-     3. **Technical Interview Applications**: How to present this concept in technical interviews, common interviewer questions, edge cases, and design discussions.
+When implementing core algorithmic procedures, mathematical transformations, or diagnostic filters designated for learning:
+
+1. **NEVER Write the Working Solution in the Codebase**:
+   - The agent MUST NOT write out the completed algorithm or logic below the TODO/BLANK comment block.
+   - The agent MUST NOT write "fallback implementations" or "reference solutions" in the file that defeat the purpose of the blank.
+   - The function body for any `[BLANK N]` MUST strictly contain **ONLY**:
+     1. **Specification Docstring**: Precise description of the task, input argument types, and expected output dictionary/list structure.
+     2. **Step-by-Step TODO Checklist**: Algorithmic steps, formula hints, and constants to use.
+     3. **Non-Crashing Stub**: A clean, minimal stub (`pass` with `return None` or `return []`) so the module compiles without syntax errors.
+
+2. **Where Solutions Belong**:
+   - The learner writes their own implementation directly in the file.
+   - When the learner asks for review or guidance, the agent provides architectural guidance, code reviews, bug diagnoses, and algorithmic explanations **in the chat dialogue**.
+   - The agent must NEVER overwrite or inject full code into a `[BLANK N]` file unless the user explicitly commands: *"Apply this solution to the file"* or *"Fill in the blank for me"*.
+
+3. **Mandatory Deep-Dive Documentation for Every Concept**:
+   For every blank logic block and advanced concept, the agent MUST explicitly document:
+   - **Mathematical & Algorithmic Foundation**: Deep theoretical mechanics, formulas, time/space complexity ($O(N)$), and trade-offs.
+   - **Production / Real-World Applications**: Where this exact algorithm or design pattern is used in industry (e.g., Google Search, Netflix/Spotify recommendation, Uber dispatch, distributed caching, LLM RAG pipelines).
+   - **Technical Interview Edge**: How this concept appears in FAANG/tier-1 technical interviews, talking points to impress interviewers, edge cases to mention, and system design trade-offs.
 
 ---
 
@@ -28,9 +39,9 @@ description: Rules for leaving core logic blank for learning and documenting int
 | 3 | Multimodal PYQ Photo Scanner & Timestamp Mapper | 2026-07-31 | High | Medium | Pending |
 | 4 | Native Interactive Mermaid Flowchart Render | 2026-08-08 | Medium | 🔥 High | Pending |
 | 5 | Lens Transformation Cache Layer | 2026-07-31 | Low | Low | Pending |
-| 6 | Flashcard Deep-Dive Explanations & Links | 2026-08-17 | Low – Medium | Medium | **ACTIVE** |
+| 6 | Flashcard Deep-Dive Explanations & Links | 2026-08-17 | Low – Medium | Medium | **ACTIVE** (`[BLANK 1]`) |
 | 7 | Real student_quiz_logs Table & In-App Voting | 2026-08-21 | Medium | 🔥 High | Pending |
-| 8 | Live YouTube API Search for Video Resources | 2026-08-25 | Medium | Medium | **ACTIVE** |
+| 8 | Live YouTube API Search for Video Resources | 2026-08-25 | Medium | Medium | **ACTIVE** (`[BLANK 2]`) |
 | 9 | PDF.js Web Worker & Semantic Chunk Retrieval Fix | 2026-09-14 | Low – Medium | Medium | Pending |
 
 ---
@@ -55,4 +66,3 @@ description: Rules for leaving core logic blank for learning and documenting int
 4. **Adaptive Wilson Score Heatmap Integration**:
    - Integrates `student_quiz_logs` to adaptively boost high-heat flashcards (proven to help struggling students master threshold concepts).
    - Extensible to any newly registered course in `kAvailableCourses`.
-

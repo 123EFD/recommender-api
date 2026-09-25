@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 import joblib
 import numpy as np
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 import psycopg 
 import requests
 import httpx
@@ -35,6 +35,7 @@ except ModuleNotFoundError:
     lens_router = importlib.import_module("lens_switcher").router
 import math
 import random
+from urllib.parse import urlparse
 
 os.makedirs("uploads", exist_ok=True)
 
@@ -2012,19 +2013,6 @@ def resolve_course_pdf(req: ResolveCoursePdfRequest):
         title=f"{course_name} Reference Material",
         message=f"Associated default curriculum asset '{fallback_file}'."
     )
-# ==============================================================================
-# [BLANK 1]: Academic Citation Validator & Literature Ranking Engine
-# Task: Verify that suggested research links belong to high-authority academic
-# domains (arxiv.org, ietf.org, rfc-editor.org, openstax.org, ieee.org, acm.org, wikipedia.org),
-# filter out hallucinated or dead URLs, and rank them by domain authority and keyword relevance.
-#
-# Input:
-#   raw_citations: List[Dict[str, str]] - [{title, url, domain, reason}]
-#   course_code: str - e.g. "WIA1005"
-#   topic_title: str - e.g. "TCP Flow and Congestion Control"
-# Output:
-#   List[Dict[str, str]] - Validated, deduplicated, and ranked citations.
-# ==============================================================================
 
 TRUSTED_ACADEMIC_DOMAINS = {
     "arxiv.org": 1.0,
@@ -2053,49 +2041,108 @@ CURATED_LITERATURE_REGISTRY = {
     ]
 }
 
-def validate_and_rank_citations(raw_citations: List[Dict[str, str]], course_code: str, topic_title: str) -> List[Dict[str, str]]:
+def normalize_url(url: str) -> str:
+    """Canonicalizes URLS to prever duplication by striping http / https,
+    'www' and trailing slashes / querry fragments
     """
-    [BLANK 1]: Student learning block for citation scoring and domain validation.
-    """
-    # --------------------------------------------------------------------------
-    # [BLANK 1 - TODO FOR LEARNER]:
-    # 1. Iterate over raw_citations from the LLM.
-    # 2. Extract the hostname/domain from each citation['url'].
-    # 3. Check if the domain is in TRUSTED_ACADEMIC_DOMAINS (or ends with a trusted suffix).
-    # 4. Score each candidate by: Score = Domain_Weight + (Keyword_Matches * 0.1).
-    # 5. Deduplicate by URL and return the top 2 ranked citations.
-    # --------------------------------------------------------------------------
-    pass
+    if not url:
+        return ""
 
-    # Pedagogical Fallback Implementation:
-    # Safely curates verified citations from the registry or filters valid LLM items.
+    if "://" not in url:
+        url = "http://" + url  
+        
+    parsed_url = urlparse(url.strip())
+    domain = parsed_url.netloc.lower()
+    if domain.startswith("www."):
+        domain = domain[4:]
+    path  = parsed_url.path.rstrip("/")
+    return f"{domain}{path}"
+
+
+def get_domain_info(url:str, trusted_domains: Dict[str, float]) -> tuple[bool, float, str]:
+    """
+    Extracts hosname/domain from URL and checks it is trusted 
+    Returns (is_trusted: bool, domain_weight: float, domain_name: str)
+    """
+    
+    try:
+        if "://" not in url:
+            url = "https://" + url
+        netloc = urlparse(url.strip()).netloc.lower()
+        if netloc.startswith("www."):
+            netloc = netloc[4:]
+            
+        for trusted_host, weight in trusted_domains.items():
+            if netloc == trusted_host or netloc.endswith("." + trusted_host):
+                return True, weight, trusted_host  
+    except Exception as e:
+        print(f"Error checking domain: {e}")
+    return False, 0.0, ""
+
+def validate_and_rank_citations(raw_citations: List[Dict[str, str]], course_code: str, topic_title: str) -> List[Dict[str, str]]:
     validated = []
     seen_urls = set()
-
-    for item in raw_citations:
-        url = item.get("url", "").strip()
-        title = item.get("title", "").strip()
-        if not url.startswith("http") or not title or url in seen_urls:
-            continue
-        is_trusted = any(td in url.lower() for td in TRUSTED_ACADEMIC_DOMAINS)
-        if is_trusted:
+    
+    #Score and filter citations from LLM
+    if raw_citations and isinstance(raw_citations, list):
+        topic_tokens = set(re.findall(r'\w+', topic_title.lower()))
+        
+        for item in raw_citations:
+            url = item.get("url", "").strip()
+            title = item.get("title", "").strip()
+            
+            if not url or not title:
+                continue
+            canonical_url = normalize_url(url)
+            if canonical_url in seen_urls:
+                continue
+            
+            is_trusted, domain_weight, domain_name = get_domain_info(url, TRUSTED_ACADEMIC_DOMAINS)
+            if not is_trusted:
+                continue
+            #keyword relevance between citation title and subchapter topic
+            title_tokens = set(re.findall(r'\w+', title.lower()))
+            keywords = len(topic_tokens.intersection(title_tokens))
+            score = domain_weight + (keywords * 0.1)
+            
             validated.append({
                 "title": title,
                 "url": url,
-                "domain": item.get("domain", "Academic Literature"),
-                "reason": item.get("reason", "Foundational literature on this topic.")
+                "domain": domain_name or item.get("domain", "Academic Literature"),
+                "reason": item.get("reason", "Foundational literature on this topic."),
+                "score": score,
+                "canonical_url": canonical_url
             })
-            seen_urls.add(url)
+            seen_urls.add(canonical_url)
+    
+    validated.sort(key=lambda x: x["score"], reverse=True)
+    
+    validated = [
+        {
+            "title": c["title"],
+            "url": c["url"],
+            "domain": c["domain"],
+            "reason": c["reason"]
+        }
+        for c in validated
+    ]
 
     # If LLM didn't produce trusted links, draw from our verified literature registry
     registry_hits = CURATED_LITERATURE_REGISTRY.get(course_code.upper().strip(), [])
     for reg in registry_hits:
-        if reg["url"] not in seen_urls and len(validated) < 2:
-            validated.append(reg)
-            seen_urls.add(reg["url"])
+        if len(validated) >= 2:
+            break
+        canonical_url = normalize_url(reg["url"])
+        if canonical_url not in seen_urls :
+            validated.append({
+                "title": reg["title"],
+                "url": reg["url"],
+                "domain": reg["domain"],
+                "reason": reg["reason"]
+            })
+            seen_urls.add(canonical_url)
 
     return validated[:2]
-
 
 @app.post("/api/generate-subchapter-flashcards", response_model=List[FlashcardItem])
 def generate_subchapter_flashcards(req: SubchapterFlashcardRequest):
