@@ -14,6 +14,60 @@ import 'theme/glassmorphism.dart';
 import 'theme/app_theme.dart';
 import 'mind_map_screen.dart';
 
+class AcademicBlockquoteBuilder extends MarkdownElementBuilder {
+  final bool isDark;
+  AcademicBlockquoteBuilder({required this.isDark});
+
+  @override
+  Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    final rawText = element.textContent;
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFD2E3FC), // Distinct light blue container
+        borderRadius: BorderRadius.circular(8),
+        border: const Border(
+          left: BorderSide(
+            color: Color(0xFF1967D2), // Dark academic royal blue indicator
+            width: 4,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.06),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: MarkdownBody(
+        data: rawText,
+        styleSheet: MarkdownStyleSheet(
+          p: const TextStyle(
+            color: Color(0xFF111111), // High-contrast jet black text
+            fontFamily: 'serif',
+            fontSize: 14.5,
+            height: 1.5,
+          ),
+          strong: const TextStyle(
+            color: Color(0xFF000000), // Solid black bold text
+            fontWeight: FontWeight.bold,
+            fontFamily: 'serif',
+          ),
+          listBullet: const TextStyle(
+            color: Color(0xFF111111),
+            fontWeight: FontWeight.bold,
+          ),
+          h1: const TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.bold),
+          h2: const TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.bold),
+          h3: const TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
 class PdfChatScreen extends StatefulWidget {
   final bool isFullScreen;
   final String? initialPdfName;
@@ -1190,6 +1244,7 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                                       color: isDark ? const Color(0xFFF2EFE9) : DarkAcademiaPalette.oxfordBrown,
                                     ),
                                   ),
+                                  'blockquote': AcademicBlockquoteBuilder(isDark: isDark),
                                 },
                                 extensionSet: md.ExtensionSet(
                                   [LatexBlockSyntax(), ...md.ExtensionSet.gitHubFlavored.blockSyntaxes],
@@ -1202,6 +1257,24 @@ class _PdfChatScreenState extends State<PdfChatScreen> with TickerProviderStateM
                                     height: 1.55,
                                     color: isDark ? Colors.white : DarkAcademiaPalette.oxfordBrown,
                                   ),
+                                  blockquote: const TextStyle(
+                                    fontFamily: 'serif',
+                                    fontSize: 14.5,
+                                    height: 1.5,
+                                    color: Color(0xFF111111),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  blockquoteDecoration: BoxDecoration(
+                                    color: const Color(0xFFD2E3FC),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: const Border(
+                                      left: BorderSide(
+                                        color: Color(0xFF1967D2),
+                                        width: 4,
+                                      ),
+                                    ),
+                                  ),
+                                  blockquotePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   code: GoogleFonts.shareTechMono(
                                     fontSize: 13,
                                     backgroundColor: isDark ? const Color(0xFF1E2024) : const Color(0xFFEDE8DC),

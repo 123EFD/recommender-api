@@ -395,11 +395,44 @@ class _PdfFocusDiagnosticScreenState extends State<PdfFocusDiagnosticScreen> {
         }
       }
 
+      // Query targeted video lecture strictly relevant to this course and subchapter
+      try {
+        final vidResp = await http.post(
+          Uri.parse('$_baseUrl/api/resolve-subchapter-video'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'course_code': _selectedCourseCode,
+            'subchapter_title': sub.title,
+          }),
+        );
+        if (vidResp.statusCode == 200 && vidResp.body.isNotEmpty && vidResp.body != 'null') {
+          final dynamic vidData = jsonDecode(vidResp.body);
+          if (vidData != null && vidData is Map && vidData['url'] != null) {
+            newCards.add(ResourceItem(
+              resourceId: vidData['video_id'] ?? 'vid_${DateTime.now().millisecondsSinceEpoch}',
+              topic: vidData['title'] ?? sub.title,
+              durationMin: vidData['duration_min'] ?? 15,
+              type: 'video',
+              content: vidData['url'],
+            ));
+          }
+        }
+      } catch (vidErr) {
+        debugPrint('Error fetching relevant video for subchapter: $vidErr');
+      }
+
       if (newCards.isNotEmpty && mounted) {
-        context.read<BundlerState>().addDirectFlashcards(newCards);
+        // Set clean, dedicated bundle for this subchapter to avoid carrying over stale videos from other courses
+        context.read<BundlerState>().setDirectBundle(newCards);
+        final cardCount = newCards.where((c) => c.type == 'flashcard').length;
+        final hasVideo = newCards.any((c) => c.type == 'video');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Synthesized ${newCards.length} deep exam flashcards for "${sub.title}" from PDF!'),
+            content: Text(
+              hasVideo
+                  ? 'Synthesized $cardCount exam flashcards + 1 verified video lecture for "${sub.title}"!'
+                  : 'Synthesized $cardCount deep exam flashcards for "${sub.title}"!',
+            ),
             backgroundColor: DarkAcademiaPalette.forestMoss,
             duration: const Duration(seconds: 4),
             action: SnackBarAction(

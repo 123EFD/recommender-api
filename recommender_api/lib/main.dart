@@ -1371,9 +1371,20 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                               style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                             const SizedBox(height: 12),
-                            ...(_predictionResult!['resource_links'] as List).map((res) {
-                              return _buildResourceCard(res as Map<String, dynamic>);
-                            }),
+                            ...(() {
+                              final seenRes = <String>{};
+                              final uniqueResources = <Map<String, dynamic>>[];
+                              for (final raw in (_predictionResult!['resource_links'] as List)) {
+                                if (raw is Map<String, dynamic>) {
+                                  final key = '${raw['course_code']}_${(raw['title'] ?? '').toString().trim().toLowerCase()}';
+                                  if (!seenRes.contains(key)) {
+                                    seenRes.add(key);
+                                    uniqueResources.add(raw);
+                                  }
+                                }
+                              }
+                              return uniqueResources.map((res) => _buildResourceCard(res));
+                            })(),
                           ],
                         ],
                       ),

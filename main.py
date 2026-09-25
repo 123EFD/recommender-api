@@ -265,8 +265,13 @@ def fetch_neon_resources(subjects: List[str]) -> List[LearningResource]:
                 
                 rows = cur.fetchall()  
                 
-                #convert database rows to Pydantic objects
+                seen_keys = set()
+                #convert database rows to Pydantic objects with deduplication
                 for row in rows:
+                    key = f"{str(row[4]).strip().upper()}_{str(row[1]).strip().lower()}_{str(row[2]).strip().lower()}"
+                    if key in seen_keys:
+                        continue
+                    seen_keys.add(key)
                     resources_list.append(LearningResource(
                         subject_tag=row[0], 
                         title=row[1], 
@@ -722,7 +727,17 @@ def predict_student_needs(student: StudentProfile):
                 })
             except Exception as e:
                 print(f"Habit LLM error: {e}")
-                    
+        # Deduplicate resource_links to ensure unique recommendations
+        deduped_links = []
+        seen_res_keys = set()
+        for r in resource_links:
+            r_dict = r if isinstance(r, dict) else r.dict() if hasattr(r, 'dict') else vars(r)
+            key = f"{str(r_dict.get('course_code', '')).strip().upper()}_{str(r_dict.get('title', '')).strip().lower()}_{str(r_dict.get('url', '')).strip().lower()}"
+            if key not in seen_res_keys:
+                seen_res_keys.add(key)
+                deduped_links.append(r)
+        resource_links = deduped_links
+
         return {
             "alert_level": alert_level,
             "needs_resources": needs_help,
@@ -1947,10 +1962,13 @@ def resolve_course_pdf(req: ResolveCoursePdfRequest):
                     cur.execute(
                         """
                         INSERT INTO learning_resources (course_code, subject_tag, title, url, resource_type)
-                        VALUES (%s, %s, %s, %s, 'PDF')
-                        ON CONFLICT DO NOTHING;
+                        SELECT %s, %s, %s, %s, 'PDF'
+                        WHERE NOT EXISTS (
+                            SELECT 1 FROM learning_resources
+                            WHERE course_code = %s AND (LOWER(TRIM(title)) = LOWER(TRIM(%s)) OR LOWER(TRIM(url)) = LOWER(TRIM(%s)))
+                        );
                         """,
-                        (code, course_name, repo_info["title"], repo_info["url"])
+                        (code, course_name, repo_info["title"], repo_info["url"], code, repo_info["title"], repo_info["url"])
                     )
                 conn.commit()
         except Exception:
@@ -2013,6 +2031,83 @@ def resolve_course_pdf(req: ResolveCoursePdfRequest):
         title=f"{course_name} Reference Material",
         message=f"Associated default curriculum asset '{fallback_file}'."
     )
+
+class ResolveSubchapterVideoRequest(BaseModel):
+    course_code: str
+    subchapter_title: str
+
+class ResolveSubchapterVideoResponse(BaseModel):
+    video_id: str
+    title: str
+    url: str
+    channel: str
+    duration_min: int
+
+@app.post("/api/resolve-subchapter-video", response_model=Optional[ResolveSubchapterVideoResponse])
+def resolve_subchapter_video(req: ResolveSubchapterVideoRequest):
+    """
+    Finds a targeted educational video lecture strictly relevant to the given
+    course code and subchapter title (e.g. Math -> Discrete Math / Logic video, not Software Engineering).
+    """
+    code = req.course_code.upper().strip()
+    sub_title = req.subchapter_title.strip()
+    course_name = COURSE_MAPPING.get(code, code)
+    
+    # 1. First check Neon database for existing verified videos for this exact course
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT title, url
+                    FROM learning_resources
+                    WHERE course_code = %s AND (resource_type ILIKE 'video%%' OR resource_type ILIKE 'youtube%%')
+                    ORDER BY id ASC;
+                    """,
+                    (code,)
+                )
+                videos = cur.fetchall()
+                if videos:
+                    sub_tokens = set(re.findall(r'\b[a-zA-Z0-9]{3,}\b', sub_title.lower()))
+                    best_video = None
+                    best_overlap = 0
+
+                    for v_title, v_url in videos:
+                        v_tokens = set(re.findall(r'\b[a-zA-Z0-9]{3,}\b', v_title.lower()))
+                        overlap = len(sub_tokens.intersection(v_tokens))
+                        if overlap > best_overlap:
+                            best_overlap = overlap
+                            best_video = (v_title, v_url)
+
+                    # If an exact topic match was found in Neon
+                    if best_video and best_overlap > 0:
+                        return ResolveSubchapterVideoResponse(
+                            video_id=f"neon_{code}_{int(time())}",
+                            title=best_video[0].strip(),
+                            url=best_video[1].strip(),
+                            channel=f"{course_name} Faculty Lecture",
+                            duration_min=15
+                        )
+    except Exception as db_err:
+        print(f"Error querying Neon for subchapter video: {db_err}")
+
+    # 2. Check live YouTube search or curated fallback using search_youtube_live
+    try:
+        from app.video_link import search_youtube_live
+        query = f"{course_name} {sub_title}"
+        yt_match = search_youtube_live(query)
+        if yt_match and "url" in yt_match:
+            return ResolveSubchapterVideoResponse(
+                video_id=f"yt_{int(time())}",
+                title=yt_match.get("title", f"{sub_title} Lecture"),
+                url=yt_match["url"],
+                channel=yt_match.get("channel", "Academic Video"),
+                duration_min=15
+            )
+    except Exception as yt_err:
+        print(f"Error resolving YouTube lecture for {query}: {yt_err}")
+
+    return None
 
 TRUSTED_ACADEMIC_DOMAINS = {
     "arxiv.org": 1.0,
