@@ -1,0 +1,28 @@
+# Version control & CI
+.git/
+.github/
+.gitignore
+
+# Flutter Frontend (Runs on client/device, not inside backend container)
+recommender_api/
+
+# Local databases and runtime state
+resources.db
+uploads/
+*.sqlite3
+*.db
+
+# Python virtual environment & bytecode
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing & temporary logs
+tests/
+log.txt
+*.log
+.coverage
+htmlcov/

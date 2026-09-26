@@ -1,0 +1,162 @@
+name: CI/CD Pipeline & Hugging Face Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+  security-events: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ============================================================================
+  # STAGE 1: CODE QUALITY & SYNTAX VALIDATION
+  # ============================================================================
+  code-quality:
+    name: 🔍 Code Quality & Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install Linting Tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff flake8
+
+      - name: Fail-Fast Python Bytecode Compilation
+        run: |
+          echo "Compiling all Python files to detect syntax errors..."
+          python -m py_compile $(find . -maxdepth 3 -name "*.py" -not -path "*/venv/*" -not -path "*/.git/*")
+
+      - name: Run Ruff Static Linter
+        run: |
+          echo "Running fast AST linter across backend codebase..."
+          ruff check . --select E9,F63,F7,F82 --exclude recommender_api --exclude venv
+
+  # ============================================================================
+  # STAGE 2: SECURITY & SECRET AUDIT
+  # ============================================================================
+  security-audit:
+    name: 🛡️ Security & Secret Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install Security Scanners
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit pip-audit
+
+      - name: SAST Security Scan with Bandit
+        run: |
+          echo "Scanning Python codebase for common security vulnerabilities..."
+          bandit -r . -ll -x "./venv,./recommender_api,./tests"
+
+      - name: Dependency Vulnerability Audit with pip-audit
+        run: |
+          echo "Auditing requirements.txt against national vulnerability databases..."
+          pip-audit -r requirements.txt || echo "::warning::pip-audit identified advisory notes in dependencies."
+
+  # ============================================================================
+  # STAGE 3: AUTOMATED TEST SUITE
+  # ============================================================================
+  test-backend:
+    name: 🧪 Automated Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ghostscript libgl1 libglib2.0-0
+
+      - name: Install Backend Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+          pip install pytest httpx
+
+      - name: Run Test Suite
+        env:
+          DATABASE_URL: "postgresql://ci_dummy:ci_dummy@localhost:5432/ci_test"
+          GEMINI_API_KEY: "dummy_ci_key"
+        run: |
+          pytest tests/ -v
+
+  # ============================================================================
+  # STAGE 4: AUTOMATED ZERO-LEAK HUGGING FACE SPACE DEPLOYMENT
+  # ============================================================================
+  deploy-huggingface:
+    name: 🚀 Sync & Deploy to Hugging Face Spaces
+    needs: [code-quality, security-audit, test-backend]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Validate Deployment Secrets
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "${HF_TOKEN}" ]; then
+            echo "::error::HF_TOKEN secret is not set in GitHub repository secrets! Please add HF_TOKEN in Settings -> Secrets and variables -> Actions to enable automated Hugging Face deployment."
+            exit 1
+          fi
+
+      - name: Push Synchronized Codebase to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ secrets.HF_SPACE_NAME || 'Kasshier/ai-study-suite' }}
+        run: |
+          echo "Configuring Hugging Face Space remote credentials..."
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions CI"
+          
+          # Add Hugging Face Space as a remote using the Write Token
+          git remote add hf "https://kasshier:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}.git"
+          
+          echo "Pushing full backend repository (all updated files) to Hugging Face Space..."
+          git push --force hf main:main
+          echo "✅ Successfully synced and deployed backend to Hugging Face Spaces!"
